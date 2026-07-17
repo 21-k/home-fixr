@@ -80,16 +80,15 @@ export default function JoinPage() {
                 </select>
               </label>
 
+              <Field
+                label="Years in the trade"
+                name="years_experience"
+                type="number"
+                placeholder={role === "senior" ? "15" : "0"}
+              />
+
               {role === "senior" && (
-                <>
-                  <Field label="Title" name="title" placeholder="Master Plumber" />
-                  <Field
-                    label="Years of experience"
-                    name="years_experience"
-                    type="number"
-                    placeholder="15"
-                  />
-                </>
+                <Field label="Title" name="title" placeholder="Master Plumber" />
               )}
             </div>
           </div>
