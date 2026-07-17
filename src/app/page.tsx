@@ -1,132 +1,111 @@
-import { createClient } from "@/lib/supabase/server";
+import Link from "next/link";
+import { getCurrentProfile } from "@/lib/auth/session";
 
-// Shapes we read from Supabase. `author` is embedded from the profiles table
-// via the posts.author_id foreign key.
-type Author = {
-  full_name: string;
-  avatar_initials: string;
-  role: "junior" | "senior";
-  trade: string | null;
-  region: string | null;
-};
+const FEATURES = [
+  {
+    href: "/feed",
+    icon: "💬",
+    title: "Ask the people who know",
+    body: "Post a question and get answers from people with 20+ years on the job, not random internet strangers.",
+  },
+  {
+    href: "/mentors",
+    icon: "🤝",
+    title: "Find a mentor",
+    body: "Browse senior pros by trade and region. Send a message, set up a call, or shadow them on a job.",
+  },
+  {
+    href: "/collabs",
+    icon: "🔧",
+    title: "Team up when it counts",
+    body: "Need a second hand or a specialist? Post a collab. Looking for ride-along experience? Find one.",
+  },
+];
 
-type Post = {
-  id: string;
-  type: "question" | "tip" | "discussion";
-  title: string;
-  body: string;
-  trade: string | null;
-  region: string | null;
-  helpful_count: number;
-  reply_count: number;
-  created_at: string;
-  author: Author | null;
-};
-
-const TYPE_STYLES: Record<Post["type"], string> = {
-  question: "bg-blue-50 text-blue-700 dark:bg-blue-950 dark:text-blue-300",
-  tip: "bg-green-50 text-green-700 dark:bg-green-950 dark:text-green-300",
-  discussion:
-    "bg-purple-50 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
-};
-
-function timeAgo(iso: string): string {
-  const diff = Date.now() - new Date(iso).getTime();
-  const mins = Math.round(diff / 60000);
-  if (mins < 60) return `${mins}m ago`;
-  const hrs = Math.round(mins / 60);
-  if (hrs < 24) return `${hrs}h ago`;
-  return `${Math.round(hrs / 24)}d ago`;
-}
-
-export default async function Home() {
-  const supabase = await createClient();
-
-  const { data, error } = await supabase
-    .from("posts")
-    .select(
-      `id, type, title, body, trade, region, helpful_count, reply_count, created_at,
-       author:profiles ( full_name, avatar_initials, role, trade, region )`,
-    )
-    .order("created_at", { ascending: false });
-
-  const posts = (data ?? []) as unknown as Post[];
+export default async function LandingPage() {
+  const profile = await getCurrentProfile();
 
   return (
-    <div className="mx-auto w-full max-w-2xl flex-1 px-4 py-10 sm:py-16">
-      <header className="mb-10">
-        <h1 className="text-2xl font-semibold tracking-tight">Home Fixr</h1>
-        <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-          Where senior tradespeople mentor the next generation.
-        </p>
+    <div className="flex min-h-dvh flex-col bg-white">
+      <header className="flex items-center justify-between border-b border-zinc-200 px-6 py-3.5 sm:px-10">
+        <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
+          <span className="grid size-7 place-items-center rounded-md bg-brand-500 text-sm font-semibold text-white">
+            HF
+          </span>
+          Home Fixr
+        </Link>
+        <div className="flex items-center gap-2">
+          {profile ? (
+            <Link
+              href="/feed"
+              className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"
+            >
+              Go to your feed →
+            </Link>
+          ) : (
+            <>
+              <Link
+                href="/login"
+                className="rounded-lg border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium hover:bg-zinc-100"
+              >
+                Sign in
+              </Link>
+              <Link
+                href="/join"
+                className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"
+              >
+                Join the community
+              </Link>
+            </>
+          )}
+        </div>
       </header>
 
-      {error ? (
-        <div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700 dark:border-red-900 dark:bg-red-950 dark:text-red-300">
-          <p className="font-medium">Couldn’t load the feed.</p>
-          <p className="mt-1 font-mono text-xs">{error.message}</p>
+      <main className="mx-auto w-full max-w-5xl flex-1 px-6 py-16 sm:px-10 sm:py-24">
+        <h1 className="max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
+          The trades pass down knowledge one conversation at a time.{" "}
+          <span className="text-brand-500">Now at scale.</span>
+        </h1>
+        <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-600">
+          Home Fixr connects new vocational graduates — future plumbers, HVAC
+          techs, and electricians — with senior tradespeople who&apos;ve been
+          doing the work for decades. Ask questions, find mentors, and team up on
+          jobs when an extra set of hands matters.
+        </p>
+
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Link
+            href="/join"
+            className="rounded-lg bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-700"
+          >
+            I&apos;m new to the trade →
+          </Link>
+          <Link
+            href="/join"
+            className="rounded-lg border border-zinc-300 bg-white px-5 py-3 text-sm font-medium hover:bg-zinc-100"
+          >
+            I&apos;m a senior pro
+          </Link>
         </div>
-      ) : posts.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-zinc-300 p-10 text-center dark:border-zinc-700">
-          <p className="text-sm font-medium">No posts yet.</p>
-          <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-            Run <code className="font-mono">supabase/seed.sql</code> to add
-            sample data, or be the first to post.
-          </p>
-        </div>
-      ) : (
-        <ul className="flex flex-col gap-4">
-          {posts.map((post) => (
-            <li
-              key={post.id}
-              className="rounded-xl border border-zinc-200 p-5 transition-colors hover:border-zinc-300 dark:border-zinc-800 dark:hover:border-zinc-700"
+
+        <div className="mt-20 grid gap-5 sm:grid-cols-3">
+          {FEATURES.map((f) => (
+            <Link
+              key={f.href}
+              href={f.href}
+              className="rounded-xl border border-zinc-200 p-6 transition-all hover:-translate-y-0.5 hover:border-brand-500"
             >
-              <div className="flex items-center gap-3">
-                <span className="flex size-9 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-xs font-semibold text-zinc-700 dark:bg-zinc-800 dark:text-zinc-200">
-                  {post.author?.avatar_initials ?? "??"}
-                </span>
-                <div className="min-w-0 text-sm">
-                  <span className="font-medium">
-                    {post.author?.full_name ?? "Unknown"}
-                  </span>
-                  {post.author?.role === "senior" && (
-                    <span className="ml-1.5 rounded bg-amber-100 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-800 dark:bg-amber-950 dark:text-amber-300">
-                      Mentor
-                    </span>
-                  )}
-                  <span className="text-zinc-500 dark:text-zinc-400">
-                    {" · "}
-                    {[post.author?.trade, post.author?.region]
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-3 flex items-center gap-2">
-                <span
-                  className={`rounded px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${TYPE_STYLES[post.type]}`}
-                >
-                  {post.type}
-                </span>
-                <span className="text-xs text-zinc-400">
-                  {timeAgo(post.created_at)}
-                </span>
-              </div>
-
-              <h2 className="mt-2 font-semibold leading-snug">{post.title}</h2>
-              <p className="mt-1 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {post.body}
+              <span className="mb-3 grid size-10 place-items-center rounded-lg bg-brand-50 text-lg text-brand-700">
+                {f.icon}
+              </span>
+              <h3 className="font-semibold">{f.title}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-zinc-600">
+                {f.body}
               </p>
-
-              <div className="mt-4 flex gap-4 text-xs text-zinc-500 dark:text-zinc-400">
-                <span>👍 {post.helpful_count} helpful</span>
-                <span>💬 {post.reply_count} replies</span>
-              </div>
-            </li>
+            </Link>
           ))}
-        </ul>
-      )}
+        </div>
+      </main>
     </div>
   );
 }
