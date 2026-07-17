@@ -11,6 +11,13 @@ const TRADES: { key: TradeType; icon: string; label: string }[] = [
   { key: "hvac", icon: "❄️", label: "HVAC" },
 ];
 
+// Region values match the ", NJ"/", NY" suffix stored on profiles via ilike.
+const REGIONS: { label: string; value: string }[] = [
+  { label: "New Jersey", value: "NJ" },
+  { label: "New York", value: "NY" },
+  { label: "Pennsylvania", value: "PA" },
+];
+
 type Search = { trade?: string; region?: string; avail?: string };
 
 function buildHref(current: Search, patch: Search): string {
@@ -67,6 +74,15 @@ export default async function MentorsPage({
           <SideLink active={sp.trade === t.key}>
             {t.icon} {t.label}
           </SideLink>
+        </Link>
+      ))}
+      <SideSection>Region</SideSection>
+      <Link href={buildHref(sp, { region: undefined })}>
+        <SideLink active={!sp.region}>All regions</SideLink>
+      </Link>
+      {REGIONS.map((r) => (
+        <Link key={r.value} href={buildHref(sp, { region: r.value })}>
+          <SideLink active={sp.region === r.value}>{r.label}</SideLink>
         </Link>
       ))}
       <SideSection>Availability</SideSection>

@@ -134,7 +134,14 @@ export default async function ProfilePage({
           )}
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            {viewer?.id === profile.id ? (
+            {!viewer ? (
+              <Link
+                href="/login"
+                className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
+              >
+                Sign in to connect
+              </Link>
+            ) : viewer.id === profile.id ? (
               <Link
                 href="/settings"
                 className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
