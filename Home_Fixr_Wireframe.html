@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Home Fixr — Wireframe & Concept</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --font-sans: 'Geist', sans-serif;
+    --font-mono: 'Geist Mono', monospace;
+    --color-brand-50: #f7f2ff;
+    --color-brand-100: #f1e6ff;
+    --color-brand-200: #decdff;
+    --color-brand-500: #8c5de1;
+    --color-brand-600: #6a3ebd;
+    --color-brand-700: #492a7e;
+    --color-neutral-0: #ffffff;
+    --color-neutral-50: #fafafa;
+    --color-neutral-100: #f4f4f5;
+    --color-neutral-200: #e4e4e7;
+    --color-neutral-300: #d4d4d8;
+    --color-neutral-400: #a1a1ab;
+    --color-neutral-500: #71717b;
+    --color-neutral-600: #52525c;
+    --color-neutral-700: #3f3f47;
+    --color-neutral-900: #18181b;
+    --success-bg: #ecfef3;
+    --success-fg: #008234;
+    --info-bg: #f0f9ff;
+    --info-fg: #005b89;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: var(--font-sans);
+    background: var(--color-neutral-100);
+    color: var(--color-neutral-900);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* === Doc shell === */
+  .doc-header {
+    background: var(--color-neutral-0);
+    border-bottom: 1px solid var(--color-neutral-200);
+    padding: 24px 40px;
+  }
+  .doc-title {
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin: 0 0 4px 0;
+  }
+  .doc-sub {
+    font-size: 14px;
+    color: var(--color-neutral-600);
+    margin: 0;
+  }
+  .doc-sub strong { color: var(--color-brand-700); }
+
+  .concept {
+    background: var(--color-brand-50);
+    border-bottom: 1px solid var(--color-neutral-200);
+    padding: 32px 40px;
+  }
+  .concept-title {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    margin: 0 0 12px 0;
+    color: var(--color-brand-700);
+  }
+  .concept p {
+    font-size: 14px;
+    color: var(--color-neutral-700);
+    line-height: 22px;
+    margin: 0 0 8px 0;
+    max-width: 880px;
+  }
+  .pill-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+  .pill {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: var(--color-brand-100);
+    color: var(--color-brand-700);
+  }
+  .pill.muted { background: var(--color-neutral-100); color: var(--color-neutral-600); }
+
+  /* === Tab nav === */
+  .tabs {
+    display: flex;
+    gap: 4px;
+    padding: 12px 40px 0 40px;
+    background: var(--color-neutral-0);
+    border-bottom: 1px solid var(--color-neutral-200);
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .tab {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-neutral-600);
+    background: transparent;
+    border: none;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab:hover { color: var(--color-neutral-900); }
+  .tab.active {
+    color: var(--color-neutral-900);
+    border-bottom-color: var(--color-brand-500);
+    font-weight: 600;
+  }
+
+  /* === Screen frame === */
+  .screen-wrap { padding: 40px; }
+  .screen {
+    background: var(--color-neutral-50);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .screen-chrome {
+    background: var(--color-neutral-0);
+    border-bottom: 1px solid var(--color-neutral-200);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-neutral-500);
+    font-family: var(--font-mono);
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot.r { background: #ff5f56; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #27c93f; }
+  .url { margin-left: 16px; }
+
+  /* === App layout inside screen === */
+  .app-header {
+    background: var(--color-neutral-0);
+    border-bottom: 1px solid var(--color-neutral-200);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    cursor: pointer;
+  }
+  .logo:hover { color: var(--color-brand-500); }
+  .logo-mark {
+    width: 28px; height: 28px;
+    background: var(--color-brand-500);
+    border-radius: 6px;
+    display: grid; place-items: center;
+    color: white; font-weight: 600; font-size: 14px;
+  }
+  .app-nav { display: flex; gap: 4px; }
+  .app-nav a {
+    font-size: 14px;
+    color: var(--color-neutral-600);
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .app-nav a:hover { background: var(--color-neutral-100); color: var(--color-neutral-900); }
+  .app-nav a.current {
+    color: var(--color-neutral-900);
+    background: var(--color-neutral-100);
+    font-weight: 500;
+  }
+  .app-user {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px;
+  }
+  .avatar {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--color-brand-200);
+    color: var(--color-brand-700);
+    display: grid; place-items: center;
+    font-weight: 600; font-size: 13px;
+  }
+  .avatar.lg { width: 56px; height: 56px; font-size: 18px; }
+  .avatar.clickable { cursor: pointer; transition: transform 0.1s; }
+  .avatar.clickable:hover { transform: scale(1.06); outline: 2px solid var(--color-brand-300); outline-offset: 1px; }
+
+  .app-body {
+    display: grid;
+    grid-template-columns: 240px 1fr 280px;
+    min-height: 640px;
+  }
+  .sidebar {
+    background: var(--color-neutral-0);
+    border-right: 1px solid var(--color-neutral-200);
+    padding: 20px 12px;
+  }
+  .side-section {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 8px 12px;
+    margin-top: 8px;
+  }
+  .side-link {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px;
+    color: var(--color-neutral-700);
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  .side-link:hover { background: var(--color-neutral-100); color: var(--color-neutral-900); }
+  .side-link.active {
+    background: var(--color-brand-50);
+    color: var(--color-brand-700);
+    font-weight: 500;
+  }
+  .side-link.active:hover { background: var(--color-brand-100); }
+
+  .main {
+    padding: 24px 28px;
+    background: var(--color-neutral-50);
+    overflow-y: auto;
+  }
+  .panel {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .panel h3 {
+    margin: 0 0 12px 0;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .right {
+    background: var(--color-neutral-0);
+    border-left: 1px solid var(--color-neutral-200);
+    padding: 20px;
+  }
+  .right h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-neutral-500);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin: 0 0 12px 0;
+  }
+
+  /* === Cards / posts === */
+  .post {
+    border-bottom: 1px solid var(--color-neutral-200);
+    padding: 16px 0;
+    cursor: pointer;
+    margin: 0 -12px;
+    padding: 16px 12px;
+    border-radius: 6px;
+    transition: background 0.1s;
+  }
+  .post:hover { background: var(--color-neutral-50); }
+  .post:last-child { border-bottom: none; }
+  .post-head {
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 8px;
+  }
+  .post-meta { font-size: 13px; color: var(--color-neutral-600); }
+  .post-meta strong { color: var(--color-neutral-900); font-weight: 600; }
+  .post-tag {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: auto;
+  }
+  .post-tag.q { background: var(--info-bg); color: var(--info-fg); }
+  .post-tag.tip { background: var(--success-bg); color: var(--success-fg); }
+  .post-tag.collab { background: var(--color-brand-50); color: var(--color-brand-700); }
+  .post-title {
+    font-size: 15px; font-weight: 600;
+    margin: 0 0 4px 0;
+  }
+  .post-body {
+    font-size: 14px;
+    color: var(--color-neutral-700);
+    line-height: 22px;
+    margin: 0 0 8px 0;
+  }
+  .post-foot {
+    display: flex; gap: 16px;
+    font-size: 13px;
+    color: var(--color-neutral-500);
+  }
+
+  /* === Buttons === */
+  .btn {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn:hover { filter: brightness(1.1); }
+  .btn-primary {
+    background: var(--color-neutral-900);
+    color: var(--color-neutral-50);
+  }
+  .btn-primary:hover { background: var(--color-neutral-700); filter: none; }
+  .btn-brand {
+    background: var(--color-brand-500);
+    color: white;
+  }
+  .btn-brand:hover { background: var(--color-brand-600); filter: none; }
+  .btn-secondary {
+    background: var(--color-neutral-0);
+    color: var(--color-neutral-900);
+    border: 1px solid var(--color-neutral-300);
+  }
+  .btn-secondary:hover { background: var(--color-neutral-100); filter: none; }
+
+  /* === Role select cards === */
+  .role-wrap {
+    max-width: 720px; margin: 60px auto;
+    padding: 0 24px;
+  }
+  .role-wrap h2 {
+    font-size: 32px; font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 8px 0;
+  }
+  .role-wrap p { color: var(--color-neutral-600); font-size: 14px; margin: 0 0 32px 0; }
+  .role-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .role-card {
+    background: var(--color-neutral-0);
+    border: 2px solid var(--color-neutral-200);
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .role-card:hover { border-color: var(--color-brand-500); }
+  .role-card.selected {
+    border-color: var(--color-brand-500);
+    background: var(--color-brand-50);
+  }
+  .role-icon {
+    width: 40px; height: 40px;
+    background: var(--color-brand-100);
+    color: var(--color-brand-700);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+  .role-card h3 {
+    font-size: 18px; font-weight: 600;
+    margin: 0 0 6px 0;
+  }
+  .role-card p {
+    font-size: 14px; color: var(--color-neutral-600);
+    margin: 0; line-height: 20px;
+  }
+
+  /* === Mentor cards === */
+  .mentor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .mentor-card {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 10px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .mentor-card:hover {
+    border-color: var(--color-brand-500);
+    box-shadow: 0 2px 8px rgba(140, 93, 225, 0.12);
+  }
+  .mentor-card .mh {
+    display: flex; gap: 14px;
+    margin-bottom: 12px;
+  }
+  .mentor-card .mn { font-size: 15px; font-weight: 600; margin: 0; }
+  .mentor-card .mt { font-size: 13px; color: var(--color-neutral-600); margin: 2px 0 0 0; }
+  .mentor-card .mb {
+    font-size: 13px;
+    color: var(--color-neutral-700);
+    line-height: 20px;
+    margin: 0 0 12px 0;
+  }
+  .mentor-card .mf {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px;
+    color: var(--color-neutral-600);
+  }
+  .mentor-stats { display: flex; gap: 14px; font-size: 12px; }
+  .mentor-stats span strong { color: var(--color-neutral-900); font-weight: 600; }
+
+  /* === Profile === */
+  .profile-hero {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .profile-hero h2 { font-size: 22px; font-weight: 600; margin: 0 0 4px 0; letter-spacing: -0.005em; }
+  .profile-hero .sub { color: var(--color-neutral-600); font-size: 14px; margin: 0 0 12px 0; }
+  .profile-hero .actions { display: flex; gap: 8px; }
+  .profile-stats {
+    display: flex; gap: 32px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--color-neutral-200);
+  }
+  .profile-stat { font-size: 13px; color: var(--color-neutral-600); }
+  .profile-stat strong {
+    display: block;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-neutral-900);
+    margin-bottom: 2px;
+  }
+
+  /* === Job board === */
+  .job-card {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .job-card:hover { border-color: var(--color-brand-500); }
+  .job-card .jh { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+  .job-card h4 { font-size: 15px; font-weight: 600; margin: 0 0 4px 0; }
+  .job-card .jm { font-size: 13px; color: var(--color-neutral-600); margin: 0 0 8px 0; }
+  .job-card p { font-size: 14px; color: var(--color-neutral-700); margin: 0 0 12px 0; line-height: 20px; }
+
+  /* === Thread === */
+  .thread-q {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 16px;
+  }
+  .thread-q h2 { margin: 0 0 8px 0; font-size: 20px; font-weight: 600; letter-spacing: -0.005em; }
+  .thread-q .qm { font-size: 13px; color: var(--color-neutral-600); margin: 0 0 14px 0; }
+  .thread-q p { font-size: 14px; line-height: 22px; color: var(--color-neutral-700); margin: 0; }
+  .reply {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 10px;
+    padding: 18px;
+    margin-bottom: 12px;
+  }
+  .reply.accepted {
+    border-color: var(--success-fg);
+    background: var(--success-bg);
+  }
+  .reply-head { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .reply-head .name { font-size: 14px; font-weight: 600; cursor: pointer; }
+  .reply-head .name:hover { color: var(--color-brand-500); }
+  .reply-head .badge {
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--color-brand-100);
+    color: var(--color-brand-700);
+    padding: 2px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .reply p { font-size: 14px; line-height: 22px; color: var(--color-neutral-700); margin: 0 0 10px 0; }
+  .reply .rf { font-size: 12px; color: var(--color-neutral-500); }
+
+  /* === Landing === */
+  .landing { padding: 64px 40px; max-width: 1100px; margin: 0 auto; }
+  .landing h1 {
+    font-size: 48px; font-weight: 600;
+    letter-spacing: -0.02em;
+    margin: 0 0 16px 0;
+    line-height: 1.1;
+  }
+  .landing h1 span { color: var(--color-brand-500); }
+  .landing .lede {
+    font-size: 18px;
+    color: var(--color-neutral-600);
+    line-height: 28px;
+    max-width: 720px;
+    margin: 0 0 32px 0;
+  }
+  .landing .ctas { display: flex; gap: 12px; margin-bottom: 64px; }
+  .landing .ctas .btn { padding: 12px 20px; font-size: 15px; }
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .feature {
+    background: var(--color-neutral-0);
+    border: 1px solid var(--color-neutral-200);
+    border-radius: 12px;
+    padding: 24px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .feature:hover { border-color: var(--color-brand-500); transform: translateY(-2px); }
+  .feature .fi {
+    width: 40px; height: 40px;
+    background: var(--color-brand-50);
+    color: var(--color-brand-700);
+    border-radius: 8px;
+    display: grid; place-items: center;
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .feature h3 { font-size: 16px; font-weight: 600; margin: 0 0 6px 0; }
+  .feature p { font-size: 14px; color: var(--color-neutral-600); line-height: 22px; margin: 0; }
+
+  /* === Toast (for fake interactions) === */
+  .toast {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--color-neutral-900);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+
+  /* === Helpful "clickable" hint === */
+  .nav-hint {
+    background: var(--color-brand-50);
+    border-bottom: 1px solid var(--color-brand-200);
+    padding: 8px 40px;
+    font-size: 13px;
+    color: var(--color-brand-700);
+    text-align: center;
+  }
+
+  /* === Mobile-ish === */
+  @media (max-width: 1000px) {
+    .app-body { grid-template-columns: 1fr; }
+    .sidebar, .right { display: none; }
+    .mentor-grid { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; }
+    .role-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="doc-header">
+  <h1 class="doc-title">Home Fixr — Concept &amp; Wireframe</h1>
+  <p class="doc-sub">Click around — links, mentors, posts, jobs, and buttons all navigate. Built with the Navanta design system. Data shown is illustrative.</p>
+</div>
+
+<div class="concept">
+  <h2 class="concept-title">The Concept (one paragraph)</h2>
+  <p><strong>Home Fixr</strong> is a social community platform that pairs <strong>senior trade experts</strong> — plumbers, HVAC technicians, electricians — with <strong>new entrants</strong> to the trade. New graduates come to learn the unwritten knowledge of the work (pricing, customer relationships, job-site judgment, code questions) directly from people who have been doing it for decades. Optional job collaboration lets members team up when an extra hand or extra expertise is needed.</p>
+  <p>Scope is intentionally narrow: it is a community, not a marketplace, not a lead-gen service, and not a business-in-a-box.</p>
+  <div class="pill-row">
+    <span class="pill">Mentorship</span>
+    <span class="pill">Community Q&amp;A</span>
+    <span class="pill">Optional Job Collab</span>
+    <span class="pill muted">Not a marketplace</span>
+    <span class="pill muted">Not lead-gen</span>
+    <span class="pill muted">No invoicing/payments</span>
+  </div>
+</div>
+
+<div class="nav-hint">💡 This is a clickable prototype — click any mentor, post, job, or nav link to walk through the flow.</div>
+
+<div class="tabs" id="tabs">
+  <button class="tab active" data-screen="landing">1 — Landing</button>
+  <button class="tab" data-screen="signup">2 — Sign Up (Pick Role)</button>
+  <button class="tab" data-screen="feed">3 — Community Feed</button>
+  <button class="tab" data-screen="mentors">4 — Mentor Directory</button>
+  <button class="tab" data-screen="profile">5 — Mentor Profile</button>
+  <button class="tab" data-screen="thread">6 — Question Thread</button>
+  <button class="tab" data-screen="jobs">7 — Job Collab Board</button>
+</div>
+
+<!-- ============ SCREEN 1: Landing ============ -->
+<div class="screen-wrap" id="screen-landing">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div class="app-nav">
+        <a class="current">How it works</a>
+        <a onclick="go('signup')">For mentors</a>
+        <a onclick="go('signup')">For new entrants</a>
+        <a onclick="toast('About page — not built in this prototype')">About</a>
+      </div>
+      <div>
+        <button class="btn btn-secondary" onclick="go('feed')">Sign in</button>
+        <button class="btn btn-brand" onclick="go('signup')">Join the community</button>
+      </div>
+    </div>
+    <div class="landing">
+      <h1>The trades pass down knowledge<br/>one conversation at a time. <span>Now at scale.</span></h1>
+      <p class="lede">Home Fixr connects new vocational graduates — future plumbers, HVAC techs, and electricians — with senior tradespeople who've been doing the work for decades. Ask questions, find mentors, and team up on jobs when an extra set of hands matters.</p>
+      <div class="ctas">
+        <button class="btn btn-primary" onclick="go('signup')">I'm new to the trade →</button>
+        <button class="btn btn-secondary" onclick="go('signup')">I'm a senior pro</button>
+      </div>
+      <div class="feature-grid">
+        <div class="feature" onclick="go('feed')">
+          <div class="fi">💬</div>
+          <h3>Ask the people who know</h3>
+          <p>Post a question and get answers from people with 20+ years on the job, not random internet strangers.</p>
+        </div>
+        <div class="feature" onclick="go('mentors')">
+          <div class="fi">🤝</div>
+          <h3>Find a mentor</h3>
+          <p>Browse senior pros by trade and region. Send a message, set up a call, or shadow them on a job.</p>
+        </div>
+        <div class="feature" onclick="go('jobs')">
+          <div class="fi">🔧</div>
+          <h3>Team up when it counts</h3>
+          <p>Need a second hand or a specialist? Post a collab. Looking for ride-along experience? Find one.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 2: Sign up — role picker ============ -->
+<div class="screen-wrap" id="screen-signup" style="display:none">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com/join</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div></div>
+      <div><button class="btn btn-secondary" onclick="go('feed')">Already a member? Sign in</button></div>
+    </div>
+    <div class="role-wrap">
+      <h2>How will you use Home Fixr?</h2>
+      <p>Pick the one that fits you best. You can switch later.</p>
+      <div class="role-grid">
+        <div class="role-card selected" id="role-junior" onclick="selectRole('junior')">
+          <div class="role-icon">🎓</div>
+          <h3>I'm new to the trade</h3>
+          <p>Recent vocational graduate, apprentice, or junior. Looking for guidance, mentors, and a community of pros who've been there.</p>
+        </div>
+        <div class="role-card" id="role-senior" onclick="selectRole('senior')">
+          <div class="role-icon">🛠️</div>
+          <h3>I'm a senior pro</h3>
+          <p>5+ years in the trades. Want to mentor newcomers, answer questions, and occasionally team up on jobs.</p>
+        </div>
+      </div>
+      <div style="margin-top:24px; display:flex; justify-content:space-between; align-items:center;">
+        <p style="font-size:13px; color: var(--color-neutral-500); margin:0;">Step 1 of 3 — Role · Trade · Profile</p>
+        <button class="btn btn-brand" onclick="go('feed')">Continue →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 3: Community feed ============ -->
+<div class="screen-wrap" id="screen-feed" style="display:none">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com/feed</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div class="app-nav">
+        <a class="current" onclick="go('feed')">Feed</a>
+        <a onclick="go('mentors')">Mentors</a>
+        <a onclick="go('jobs')">Jobs</a>
+        <a onclick="toast('Messages — not built in this prototype')">Messages</a>
+      </div>
+      <div class="app-user">
+        <span>Marcus J.</span>
+        <div class="avatar">MJ</div>
+      </div>
+    </div>
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="side-section">My Feed</div>
+        <div class="side-link active">🏠 Home</div>
+        <div class="side-link" onclick="toast('Trending filter — same feed, sorted by trending')">🔥 Trending</div>
+        <div class="side-link" onclick="toast('Saved posts — empty in this prototype')">⭐ Saved</div>
+        <div class="side-section">My Trades</div>
+        <div class="side-link" onclick="toast('Filtered to Electrical')">⚡ Electrical</div>
+        <div class="side-link" onclick="toast('Filtered to Plumbing')">🚿 Plumbing</div>
+        <div class="side-link" onclick="toast('Filtered to HVAC')">❄️ HVAC</div>
+        <div class="side-section">Community</div>
+        <div class="side-link" onclick="go('mentors')">👥 My mentors (2)</div>
+        <div class="side-link" onclick="go('jobs')">💼 My collabs</div>
+      </aside>
+      <main class="main">
+        <div class="panel">
+          <h3>Ask the community</h3>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <div class="avatar">MJ</div>
+            <input type="text" placeholder="Got a question for the pros?" style="flex:1; padding: 10px 14px; border: 1px solid var(--color-neutral-300); border-radius: 8px; font-family: inherit; font-size: 14px;" />
+            <button class="btn btn-brand" onclick="toast('Posted! (Not really — this is a prototype)')">Post</button>
+          </div>
+        </div>
+        <div class="panel" style="padding-top:8px;">
+          <div class="post" onclick="go('thread')">
+            <div class="post-head">
+              <div class="avatar">EM</div>
+              <div class="post-meta"><strong>Emma R.</strong> · Apprentice Plumber · NJ · 2h ago</div>
+              <span class="post-tag q">Question</span>
+            </div>
+            <h4 class="post-title">First customer asked me to do work I'm not licensed for — how do I say no without losing them?</h4>
+            <p class="post-body">Homeowner wants me to swap out a panel while I'm there for a plumbing job. I'm not licensed for electrical. Want to keep the relationship but not break the rules. What's the script?</p>
+            <div class="post-foot">💬 14 replies · ⭐ 28 helpful · 👁️ Following</div>
+          </div>
+          <div class="post" onclick="go('profile')">
+            <div class="post-head">
+              <div class="avatar clickable" onclick="event.stopPropagation(); go('profile')">TM</div>
+              <div class="post-meta"><strong>Tony Martinez</strong> · Master Electrician · 30 yrs · 4h ago</div>
+              <span class="post-tag tip">Tip from a pro</span>
+            </div>
+            <h4 class="post-title">If you're under 25 and starting your own truck — get a real CPA before you book your first job.</h4>
+            <p class="post-body">I see new guys try to do their own books for the first year to save money. By tax season they've lost more in mistakes than 12 months of a bookkeeper would've cost. Get a CPA who knows the trades. That's it. That's the post.</p>
+            <div class="post-foot">💬 22 replies · ⭐ 67 helpful</div>
+          </div>
+          <div class="post" onclick="go('jobs')">
+            <div class="post-head">
+              <div class="avatar clickable" onclick="event.stopPropagation(); go('profile')">DK</div>
+              <div class="post-meta"><strong>Dave Kowalski</strong> · Plumber · 25 yrs · Yesterday</div>
+              <span class="post-tag collab">Collab</span>
+            </div>
+            <h4 class="post-title">Junior welcome — boiler install ride-along, Saturday in Trenton</h4>
+            <p class="post-body">Doing a residential boiler swap this Saturday. Happy to bring 1 apprentice/junior along to watch and help. Bring your own boots. No pay, but I'll buy lunch and you'll see a full install start to finish.</p>
+            <div class="post-foot">💬 9 interested · 📍 Trenton, NJ · 📅 Sat, June 6</div>
+          </div>
+        </div>
+      </main>
+      <aside class="right">
+        <h4>Your mentors</h4>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px; cursor:pointer; padding: 6px; border-radius: 6px;" onclick="go('profile')" onmouseover="this.style.background='var(--color-neutral-50)'" onmouseout="this.style.background='transparent'">
+          <div class="avatar">MR</div>
+          <div>
+            <div style="font-size:14px; font-weight:600;">Mike Rodriguez</div>
+            <div style="font-size:12px; color:var(--color-neutral-600);">Master Plumber · 28 yrs</div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; margin-bottom:20px; cursor:pointer; padding: 6px; border-radius: 6px;" onclick="go('mentors')" onmouseover="this.style.background='var(--color-neutral-50)'" onmouseout="this.style.background='transparent'">
+          <div class="avatar">LC</div>
+          <div>
+            <div style="font-size:14px; font-weight:600;">Linda Chen</div>
+            <div style="font-size:12px; color:var(--color-neutral-600);">HVAC Tech · 22 yrs</div>
+          </div>
+        </div>
+        <h4>Trending in NJ</h4>
+        <p style="font-size:13px; color:var(--color-neutral-700); line-height:20px; cursor:pointer;" onclick="go('thread')">📋 New 2026 NJ permit rules for water heaters</p>
+        <p style="font-size:13px; color:var(--color-neutral-700); line-height:20px; cursor:pointer;" onclick="go('thread')">💰 What guys are charging for service calls right now</p>
+        <p style="font-size:13px; color:var(--color-neutral-700); line-height:20px; cursor:pointer;" onclick="go('thread')">🧯 Inspectors flagging undersized whips on mini-splits</p>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 4: Mentors directory ============ -->
+<div class="screen-wrap" id="screen-mentors" style="display:none">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com/mentors</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div class="app-nav">
+        <a onclick="go('feed')">Feed</a>
+        <a class="current" onclick="go('mentors')">Mentors</a>
+        <a onclick="go('jobs')">Jobs</a>
+        <a onclick="toast('Messages — not built in this prototype')">Messages</a>
+      </div>
+      <div class="app-user"><span>Marcus J.</span><div class="avatar">MJ</div></div>
+    </div>
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="side-section">Filter</div>
+        <div class="side-link active">All trades</div>
+        <div class="side-link" onclick="toast('Filtered to Electrical mentors')">⚡ Electrical</div>
+        <div class="side-link" onclick="toast('Filtered to Plumbing mentors')">🚿 Plumbing</div>
+        <div class="side-link" onclick="toast('Filtered to HVAC mentors')">❄️ HVAC</div>
+        <div class="side-section">Region</div>
+        <div class="side-link active">New Jersey</div>
+        <div class="side-link" onclick="toast('Filtered to New York')">New York</div>
+        <div class="side-link" onclick="toast('Filtered to Pennsylvania')">Pennsylvania</div>
+        <div class="side-section">Availability</div>
+        <div class="side-link" onclick="toast('Filtered: open to messages')">Open to messages</div>
+        <div class="side-link" onclick="toast('Filtered: open to ride-alongs')">Open to ride-alongs</div>
+      </aside>
+      <main class="main" style="grid-column: span 2;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
+          <h2 style="margin:0; font-size:20px; font-weight:600;">Senior pros in your area</h2>
+          <span style="font-size:13px; color: var(--color-neutral-500);">Showing 28 mentors · sorted by Most active</span>
+        </div>
+        <div class="mentor-grid">
+          <div class="mentor-card" onclick="go('profile')">
+            <div class="mh">
+              <div class="avatar lg">MR</div>
+              <div>
+                <p class="mn">Mike Rodriguez</p>
+                <p class="mt">Master Plumber · 28 yrs · Newark, NJ</p>
+              </div>
+            </div>
+            <p class="mb">"30 years of fixing other people's mistakes. Happy to help you avoid most of mine. Specializing in residential repipes and boiler systems."</p>
+            <div class="mf">
+              <div class="mentor-stats">
+                <span><strong>147</strong> answered</span>
+                <span><strong>12</strong> mentees</span>
+                <span><strong>4.9</strong>★</span>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); toast('Message sent to Mike Rodriguez (prototype)')">Message</button>
+            </div>
+          </div>
+          <div class="mentor-card" onclick="toast('Profile for Linda Chen — only Mike has a full profile in this prototype')">
+            <div class="mh">
+              <div class="avatar lg">LC</div>
+              <div>
+                <p class="mn">Linda Chen</p>
+                <p class="mt">HVAC Technician · 22 yrs · Edison, NJ</p>
+              </div>
+            </div>
+            <p class="mb">"Commercial HVAC, focus on rooftop units and refrigeration. I do ride-alongs once a month. Ask me about EPA 608 prep."</p>
+            <div class="mf">
+              <div class="mentor-stats">
+                <span><strong>89</strong> answered</span>
+                <span><strong>8</strong> mentees</span>
+                <span><strong>4.8</strong>★</span>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); toast('Message sent to Linda Chen (prototype)')">Message</button>
+            </div>
+          </div>
+          <div class="mentor-card" onclick="toast('Profile for Tony Martinez — only Mike has a full profile in this prototype')">
+            <div class="mh">
+              <div class="avatar lg">TM</div>
+              <div>
+                <p class="mn">Tony Martinez</p>
+                <p class="mt">Master Electrician · 30 yrs · Jersey City, NJ</p>
+              </div>
+            </div>
+            <p class="mb">"Started my own shop at 24. Made every mistake. Ask me anything about pulling permits, dealing with inspectors, or pricing a service call."</p>
+            <div class="mf">
+              <div class="mentor-stats">
+                <span><strong>203</strong> answered</span>
+                <span><strong>18</strong> mentees</span>
+                <span><strong>5.0</strong>★</span>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); toast('Message sent to Tony Martinez (prototype)')">Message</button>
+            </div>
+          </div>
+          <div class="mentor-card" onclick="toast('Profile for Sarah Williams — only Mike has a full profile in this prototype')">
+            <div class="mh">
+              <div class="avatar lg">SW</div>
+              <div>
+                <p class="mn">Sarah Williams</p>
+                <p class="mt">HVAC Specialist · 18 yrs · Trenton, NJ</p>
+              </div>
+            </div>
+            <p class="mb">"Residential heating and AC. I run a 3-person team. Always looking to bring along apprentices. Big believer in women in the trades."</p>
+            <div class="mf">
+              <div class="mentor-stats">
+                <span><strong>76</strong> answered</span>
+                <span><strong>6</strong> mentees</span>
+                <span><strong>4.9</strong>★</span>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); toast('Message sent to Sarah Williams (prototype)')">Message</button>
+            </div>
+          </div>
+          <div class="mentor-card" onclick="toast('Profile for Dave Kowalski — only Mike has a full profile in this prototype')">
+            <div class="mh">
+              <div class="avatar lg">DK</div>
+              <div>
+                <p class="mn">Dave Kowalski</p>
+                <p class="mt">Plumber · 25 yrs · Paterson, NJ</p>
+              </div>
+            </div>
+            <p class="mb">"Old-school plumber. New-school customer service. Will tell you when you're undercharging, because everyone is."</p>
+            <div class="mf">
+              <div class="mentor-stats">
+                <span><strong>118</strong> answered</span>
+                <span><strong>9</strong> mentees</span>
+                <span><strong>4.8</strong>★</span>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); toast('Message sent to Dave Kowalski (prototype)')">Message</button>
+            </div>
+          </div>
+          <div class="mentor-card" onclick="toast('Profile for Ramon Gutierrez — only Mike has a full profile in this prototype')">
+            <div class="mh">
+              <div class="avatar lg">RG</div>
+              <div>
+                <p class="mn">Ramon Gutierrez</p>
+                <p class="mt">Electrician · 16 yrs · Elizabeth, NJ</p>
+              </div>
+            </div>
+            <p class="mb">"Service work, panel upgrades, EV chargers. Bilingual EN/ES. I answer messages fast — usually same day."</p>
+            <div class="mf">
+              <div class="mentor-stats">
+                <span><strong>54</strong> answered</span>
+                <span><strong>4</strong> mentees</span>
+                <span><strong>4.9</strong>★</span>
+              </div>
+              <button class="btn btn-secondary" onclick="event.stopPropagation(); toast('Message sent to Ramon Gutierrez (prototype)')">Message</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 5: Mentor profile ============ -->
+<div class="screen-wrap" id="screen-profile" style="display:none">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com/u/mike-rodriguez</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div class="app-nav">
+        <a onclick="go('feed')">Feed</a>
+        <a class="current" onclick="go('mentors')">Mentors</a>
+        <a onclick="go('jobs')">Jobs</a>
+        <a onclick="toast('Messages — not built in this prototype')">Messages</a>
+      </div>
+      <div class="app-user"><span>Marcus J.</span><div class="avatar">MJ</div></div>
+    </div>
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="side-section">Back</div>
+        <div class="side-link" onclick="go('mentors')">← All mentors</div>
+        <div class="side-section">Trade tags</div>
+        <div class="side-link" onclick="toast('Filtered: Repipes')">Repipes</div>
+        <div class="side-link" onclick="toast('Filtered: Boiler systems')">Boiler systems</div>
+        <div class="side-link" onclick="toast('Filtered: Residential')">Residential</div>
+      </aside>
+      <main class="main" style="grid-column: span 2;">
+        <div class="profile-hero">
+          <div class="avatar lg" style="width:80px; height:80px; font-size:24px;">MR</div>
+          <div style="flex:1;">
+            <h2>Mike Rodriguez</h2>
+            <p class="sub">Master Plumber · 28 years · Newark, NJ</p>
+            <p style="font-size:14px; color:var(--color-neutral-700); line-height:22px; margin:0 0 12px 0;">"30 years of fixing other people's mistakes. Happy to help you avoid most of mine. Specializing in residential repipes and boiler systems. Open to ride-alongs once a month."</p>
+            <div class="actions">
+              <button class="btn btn-brand" onclick="toast('Message sent to Mike Rodriguez (prototype)')">Send a message</button>
+              <button class="btn btn-secondary" onclick="toast('Ride-along request sent (prototype)')">Ask to ride along</button>
+              <button class="btn btn-secondary" onclick="toast('Now following Mike Rodriguez')">Follow</button>
+            </div>
+            <div class="profile-stats">
+              <div class="profile-stat"><strong>147</strong>questions answered</div>
+              <div class="profile-stat"><strong>12</strong>active mentees</div>
+              <div class="profile-stat"><strong>4.9★</strong>helpfulness rating</div>
+              <div class="profile-stat"><strong>3</strong>collab jobs posted</div>
+            </div>
+          </div>
+        </div>
+        <div class="panel">
+          <h3>Recent answers from Mike</h3>
+          <div class="post" onclick="go('thread')">
+            <div class="post-head">
+              <div class="post-meta">Replied to <strong>Emma R.</strong> · "First customer asked me to do work I'm not licensed for…"</div>
+              <span class="post-tag tip">Accepted answer</span>
+            </div>
+            <p class="post-body">Easy script: "I'd love to help you with that but it's outside my license — if I do it and something goes wrong, your insurance won't cover it. Let me put you in touch with someone I trust." Then actually have someone to refer. Customers respect this every single time.</p>
+            <div class="post-foot">⭐ 41 helpful · 12 replies</div>
+          </div>
+          <div class="post" onclick="toast('Thread for Jamal T.'s multimeter question — not built in this prototype')">
+            <div class="post-head">
+              <div class="post-meta">Replied to <strong>Jamal T.</strong> · "Best multimeter for under $200?"</div>
+            </div>
+            <p class="post-body">Fluke 117. It's $180-ish, it lasts 20 years, and every inspector and contractor recognizes the brand. Don't buy on Amazon — buy from a proper supply house so the warranty is real.</p>
+            <div class="post-foot">⭐ 28 helpful</div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 6: Question thread ============ -->
+<div class="screen-wrap" id="screen-thread" style="display:none">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com/q/first-customer-said-no</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div class="app-nav">
+        <a class="current" onclick="go('feed')">Feed</a>
+        <a onclick="go('mentors')">Mentors</a>
+        <a onclick="go('jobs')">Jobs</a>
+        <a onclick="toast('Messages — not built in this prototype')">Messages</a>
+      </div>
+      <div class="app-user"><span>Marcus J.</span><div class="avatar">MJ</div></div>
+    </div>
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="side-section">Thread</div>
+        <div class="side-link active">Question</div>
+        <div class="side-link">14 replies</div>
+        <div class="side-link">⭐ 28 helpful</div>
+        <div class="side-section">Tagged</div>
+        <div class="side-link" onclick="toast('Filtered: Plumbing threads')">Plumbing</div>
+        <div class="side-link" onclick="toast('Filtered: Licensing threads')">Licensing</div>
+        <div class="side-link" onclick="toast('Filtered: Customer relations threads')">Customer relations</div>
+        <div class="side-section">Back</div>
+        <div class="side-link" onclick="go('feed')">← Back to feed</div>
+      </aside>
+      <main class="main" style="grid-column: span 2;">
+        <div class="thread-q">
+          <h2>First customer asked me to do work I'm not licensed for — how do I say no without losing them?</h2>
+          <p class="qm">Asked by <strong>Emma R.</strong> · Apprentice Plumber · 2 hours ago · Tagged: Plumbing, Licensing</p>
+          <p>Homeowner wants me to swap out a panel while I'm there for a plumbing job. I'm not licensed for electrical. Want to keep the relationship but not break the rules. What's the script?</p>
+        </div>
+        <div class="reply accepted">
+          <div class="reply-head">
+            <div class="avatar clickable" onclick="go('profile')">MR</div>
+            <div>
+              <div class="name" onclick="go('profile')">Mike Rodriguez</div>
+              <div style="font-size:12px; color:var(--color-neutral-600);">Master Plumber · 28 yrs</div>
+            </div>
+            <span class="badge">Senior pro</span>
+            <span class="post-tag tip" style="margin-left:auto;">✓ Accepted answer</span>
+          </div>
+          <p>Easy script: "I'd love to help you with that but it's outside my license — if I do it and something goes wrong, your insurance won't cover it. Let me put you in touch with someone I trust." Then actually have someone to refer. Customers respect this every single time. The ones who push back after that aren't customers you want.</p>
+          <div class="rf">⭐ 41 helpful · 4 replies</div>
+        </div>
+        <div class="reply">
+          <div class="reply-head">
+            <div class="avatar clickable" onclick="toast('Profile for Tony Martinez — only Mike has a full profile in this prototype')">TM</div>
+            <div>
+              <div class="name" onclick="toast('Profile for Tony Martinez — only Mike has a full profile in this prototype')">Tony Martinez</div>
+              <div style="font-size:12px; color:var(--color-neutral-600);">Master Electrician · 30 yrs</div>
+            </div>
+            <span class="badge">Senior pro</span>
+          </div>
+          <p>Adding to Mike's answer — if you DM me your zip I'll send you 2 or 3 licensed electricians in NJ I'd send my mom to. Building that referral network early is how you turn a one-time job into a long-term customer.</p>
+          <div class="rf">⭐ 19 helpful</div>
+        </div>
+        <div class="reply">
+          <div class="reply-head">
+            <div class="avatar clickable" onclick="toast('Profile for Sarah Williams — only Mike has a full profile in this prototype')">SW</div>
+            <div>
+              <div class="name" onclick="toast('Profile for Sarah Williams — only Mike has a full profile in this prototype')">Sarah Williams</div>
+              <div style="font-size:12px; color:var(--color-neutral-600);">HVAC Specialist · 18 yrs</div>
+            </div>
+            <span class="badge">Senior pro</span>
+          </div>
+          <p>One more thing — write it down somewhere. Every time a customer asks you to do something out of scope, you should already know which trusted person you'd refer them to. Mike and Tony's referral network advice is how you build a real business in 3 years instead of 10.</p>
+          <div class="rf">⭐ 14 helpful</div>
+        </div>
+        <div class="panel">
+          <h3>Add your reply</h3>
+          <textarea placeholder="Share what you'd do…" style="width:100%; min-height:80px; padding: 10px 14px; border: 1px solid var(--color-neutral-300); border-radius: 8px; font-family: inherit; font-size: 14px; resize: vertical;"></textarea>
+          <div style="margin-top: 10px; text-align: right;">
+            <button class="btn btn-brand" onclick="toast('Reply posted (prototype)')">Post reply</button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<!-- ============ SCREEN 7: Job collab board ============ -->
+<div class="screen-wrap" id="screen-jobs" style="display:none">
+  <div class="screen">
+    <div class="screen-chrome">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="url">homefixr.com/collabs</span>
+    </div>
+    <div class="app-header">
+      <div class="logo" onclick="go('landing')"><div class="logo-mark">HF</div> Home Fixr</div>
+      <div class="app-nav">
+        <a onclick="go('feed')">Feed</a>
+        <a onclick="go('mentors')">Mentors</a>
+        <a class="current" onclick="go('jobs')">Jobs</a>
+        <a onclick="toast('Messages — not built in this prototype')">Messages</a>
+      </div>
+      <div class="app-user"><span>Marcus J.</span><div class="avatar">MJ</div></div>
+    </div>
+    <div class="app-body">
+      <aside class="sidebar">
+        <div class="side-section">Type</div>
+        <div class="side-link active">All collabs</div>
+        <div class="side-link" onclick="toast('Filtered: Extra hand collabs')">🤝 Need an extra hand</div>
+        <div class="side-link" onclick="toast('Filtered: Junior ride-alongs')">🎓 Junior ride-along</div>
+        <div class="side-link" onclick="toast('Filtered: Specialist consults')">🧠 Need a specialist</div>
+        <div class="side-section">Region</div>
+        <div class="side-link active">New Jersey</div>
+        <div class="side-link" onclick="toast('Filtered: within 25 mi of you')">Within 25 mi</div>
+      </aside>
+      <main class="main" style="grid-column: span 2;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 16px;">
+          <div>
+            <h2 style="margin:0 0 4px 0; font-size:20px; font-weight:600;">Job collabs</h2>
+            <p style="margin:0; font-size:13px; color:var(--color-neutral-600);">Need help on a job, or want to learn by tagging along? Post or browse below.</p>
+          </div>
+          <button class="btn btn-brand" onclick="toast('Post a collab — not built in this prototype')">+ Post a collab</button>
+        </div>
+        <div class="job-card" onclick="toast('Applied to ride-along with Dave (prototype)')">
+          <div class="jh">
+            <div>
+              <h4>Junior welcome — boiler install ride-along, Saturday in Trenton</h4>
+              <p class="jm">Posted by <span style="cursor:pointer; color: var(--color-brand-600);" onclick="event.stopPropagation(); go('profile')">Dave Kowalski</span> · Plumber · 25 yrs · Yesterday</p>
+            </div>
+            <span class="post-tag collab">🎓 Junior ride-along</span>
+          </div>
+          <p>Doing a residential boiler swap this Saturday. Happy to bring 1 apprentice along to watch and help. Bring your own boots. No pay, but I'll buy lunch and you'll see a full install start to finish.</p>
+          <div style="display:flex; gap:12px; font-size:13px; color:var(--color-neutral-600);">
+            <span>📍 Trenton, NJ</span>
+            <span>📅 Sat, June 6 · 7am</span>
+            <span>👥 9 interested</span>
+          </div>
+        </div>
+        <div class="job-card" onclick="toast('Applied to Tony's panel upgrade collab (prototype)')">
+          <div class="jh">
+            <div>
+              <h4>Need a 2nd hand on a service panel upgrade — Newark, this Sat</h4>
+              <p class="jm">Posted by <span style="cursor:pointer; color: var(--color-brand-600);" onclick="event.stopPropagation(); go('profile')">Tony Martinez</span> · Master Electrician · 30 yrs · 4h ago</p>
+            </div>
+            <span class="post-tag" style="background: var(--success-bg); color: var(--success-fg);">🤝 Extra hand</span>
+          </div>
+          <p>200A service panel swap on a residential. Need a licensed apprentice or junior electrician. 8am-2pm, paid day rate. NJ ticket required.</p>
+          <div style="display:flex; gap:12px; font-size:13px; color:var(--color-neutral-600);">
+            <span>📍 Newark, NJ</span>
+            <span>📅 Sat, June 6</span>
+            <span>💵 Day rate</span>
+            <span>👥 3 applied</span>
+          </div>
+        </div>
+        <div class="job-card" onclick="toast('Reached out to Linda about VRF consult (prototype)')">
+          <div class="jh">
+            <div>
+              <h4>HVAC commissioning help needed — Edison, NJ commercial rooftop</h4>
+              <p class="jm">Posted by <span style="cursor:pointer; color: var(--color-brand-600);" onclick="event.stopPropagation(); go('profile')">Linda Chen</span> · HVAC Tech · 22 yrs · 2 days ago</p>
+            </div>
+            <span class="post-tag" style="background: var(--info-bg); color: var(--info-fg);">🧠 Specialist</span>
+          </div>
+          <p>Looking for someone with VRF commissioning experience to consult on a 4-zone install. Day on-site or remote walk-through both work. Happy to pay or trade hours.</p>
+          <div style="display:flex; gap:12px; font-size:13px; color:var(--color-neutral-600);">
+            <span>📍 Edison, NJ</span>
+            <span>📅 Flexible</span>
+            <span>💵 Paid or trade</span>
+            <span>👥 2 interested</span>
+          </div>
+        </div>
+      </main>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  const screens = ['landing','signup','feed','mentors','profile','thread','jobs'];
+  const tabs = document.querySelectorAll('.tab');
+
+  function go(screen) {
+    if (!screens.includes(screen)) return;
+    screens.forEach(s => {
+      document.getElementById('screen-' + s).style.display = (s === screen) ? 'block' : 'none';
+    });
+    tabs.forEach(t => {
+      t.classList.toggle('active', t.dataset.screen === screen);
+    });
+    window.scrollTo({ top: document.querySelector('.tabs').offsetTop - 4, behavior: 'smooth' });
+  }
+
+  tabs.forEach(t => {
+    t.addEventListener('click', () => go(t.dataset.screen));
+  });
+
+  function selectRole(role) {
+    document.getElementById('role-junior').classList.toggle('selected', role === 'junior');
+    document.getElementById('role-senior').classList.toggle('selected', role === 'senior');
+  }
+
+  let toastTimer = null;
+  function toast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2200);
+  }
+</script>
+
+</body>
+</html>
