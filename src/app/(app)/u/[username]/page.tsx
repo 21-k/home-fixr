@@ -155,11 +155,12 @@ export default async function ProfilePage({
                   username={profile.username}
                   isFollowing={isFollowing}
                 />
-                <ToastButton
-                  variant="secondary"
-                  label="Send a message"
-                  message={`Messaging ${profile.full_name} isn't built yet.`}
-                />
+                <Link
+                  href={`/messages/${profile.username}`}
+                  className="rounded-lg border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium hover:bg-zinc-100"
+                >
+                  Send a message
+                </Link>
                 {profile.is_open_to_ride_alongs && (
                   <ToastButton
                     variant="secondary"

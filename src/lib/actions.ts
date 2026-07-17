@@ -135,6 +135,58 @@ export async function expressInterest(formData: FormData): Promise<void> {
   revalidatePath("/collabs");
 }
 
+// --- Messaging (messages table added in migrations/0002) ---
+
+export async function sendMessage(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const { supabase, user } = await requireUser();
+  if (!user) return { error: "Please sign in to send a message." };
+
+  const recipientId = String(formData.get("recipient_id") ?? "");
+  const username = String(formData.get("username") ?? "");
+  const body = String(formData.get("body") ?? "").trim();
+  if (!recipientId || recipientId === user.id)
+    return { error: "Invalid recipient." };
+  if (!body) return { error: "Write a message first." };
+
+  const { error } = await supabase
+    .from("messages")
+    .insert({ sender_id: user.id, recipient_id: recipientId, body });
+  if (error) return { error: error.message };
+
+  revalidatePath("/messages");
+  if (username) revalidatePath(`/messages/${username}`);
+  return { ok: true };
+}
+
+export async function markConversationRead(otherId: string): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user || !otherId) return;
+  await supabase
+    .from("messages")
+    .update({ read_at: new Date().toISOString() })
+    .eq("recipient_id", user.id)
+    .eq("sender_id", otherId)
+    .is("read_at", null);
+  revalidatePath("/messages");
+}
+
+// --- Notifications (notifications table + triggers added in migrations/0002) ---
+
+export async function markAllNotificationsRead(): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user) return;
+  await supabase
+    .from("notifications")
+    .update({ read_at: new Date().toISOString() })
+    .eq("user_id", user.id)
+    .is("read_at", null);
+  revalidatePath("/notifications");
+  revalidatePath("/feed");
+}
+
 // --- Profile editing (RLS: a user can update only their own row) ---
 
 export async function updateProfile(

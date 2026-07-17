@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
-import { ToastButton } from "@/components/ToastButton";
 import { profileHeadline } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, TradeType } from "@/lib/types";
@@ -131,12 +130,12 @@ export default async function MentorsPage({
                     mentees
                   </span>
                 </div>
-                <ToastButton
-                  variant="secondary"
-                  label="Message"
-                  message={`Messaging ${m.full_name} isn't built yet.`}
-                  className="!py-1.5"
-                />
+                <Link
+                  href={`/messages/${m.username}`}
+                  className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium hover:bg-zinc-100"
+                >
+                  Message
+                </Link>
               </div>
             </div>
           ))}

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Avatar } from "@/components/Avatar";
-import { ToastButton } from "@/components/ToastButton";
 import { signOut } from "@/lib/auth/actions";
 import type { Profile } from "@/lib/types";
 
@@ -11,9 +10,16 @@ const NAV = [
   { href: "/feed", label: "Feed" },
   { href: "/mentors", label: "Mentors" },
   { href: "/collabs", label: "Jobs" },
+  { href: "/messages", label: "Messages" },
 ];
 
-export function AppHeader({ profile }: { profile: Profile | null }) {
+export function AppHeader({
+  profile,
+  unread = 0,
+}: {
+  profile: Profile | null;
+  unread?: number;
+}) {
   const pathname = usePathname();
 
   return (
@@ -52,15 +58,22 @@ export function AppHeader({ profile }: { profile: Profile | null }) {
             </Link>
           );
         })}
-        <ToastButton
-          variant="nav"
-          label="Messages"
-          message="Messages aren't built yet — coming in a future update."
-        />
       </nav>
 
       {profile ? (
         <div className="flex items-center gap-3 text-sm">
+          <Link
+            href="/notifications"
+            aria-label="Notifications"
+            className="relative rounded-md px-1.5 py-1 text-lg hover:bg-zinc-100"
+          >
+            🔔
+            {unread > 0 && (
+              <span className="absolute -right-0.5 -top-0.5 grid min-w-4 place-items-center rounded-full bg-brand-500 px-1 text-[10px] font-semibold text-white">
+                {unread > 9 ? "9+" : unread}
+              </span>
+            )}
+          </Link>
           <Link href={`/u/${profile.username}`} className="hidden font-medium sm:block">
             {profile.full_name}
           </Link>
