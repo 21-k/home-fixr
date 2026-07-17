@@ -32,7 +32,21 @@ insert into profiles (id, username, full_name, avatar_initials, title, role, tra
   ('20000000-0000-0000-0000-000000000001', 'emma.reyes',     'Emma Reyes',      'ER', 'Apprentice Plumber',  'junior', 'plumbing',   'Newark, NJ',      'Second-year apprentice trying to learn everything I can before I''m out on my own.', null, true, false),
   ('20000000-0000-0000-0000-000000000002', 'jamal.thompson', 'Jamal Thompson',  'JT', 'Apprentice Electrician','junior','electrical', 'Jersey City, NJ', 'Just finished my vocational program. Soaking up everything I can.', null, true, false),
   ('20000000-0000-0000-0000-000000000003', 'marcus.johnson', 'Marcus Johnson',  'MJ', 'New to the trade',    'junior', 'hvac',       'Newark, NJ',      'Career switcher, starting out in HVAC. Excited to learn from people who''ve done it.', null, true, false)
-on conflict (id) do nothing;
+-- Upsert (not "do nothing"): the signup trigger auto-creates a placeholder
+-- profile the instant the auth.users rows above are inserted, so we must
+-- OVERWRITE those placeholders with the real seed data here.
+on conflict (id) do update set
+  username               = excluded.username,
+  full_name              = excluded.full_name,
+  avatar_initials        = excluded.avatar_initials,
+  title                  = excluded.title,
+  role                   = excluded.role,
+  trade                  = excluded.trade,
+  region                 = excluded.region,
+  bio                    = excluded.bio,
+  years_experience       = excluded.years_experience,
+  is_open_to_messages    = excluded.is_open_to_messages,
+  is_open_to_ride_alongs = excluded.is_open_to_ride_alongs;
 
 insert into posts (id, author_id, type, title, body, trade, region, helpful_count, reply_count) values
   ('a0000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', 'question',   'First customer asked me to do work I''m not licensed for — how do I say no without losing them?', 'Homeowner wants me to swap out a panel while I''m there for a plumbing job. I''m not licensed for electrical. Want to keep the relationship but not break the rules. What''s the script?', 'plumbing',   'Newark, NJ',      28, 0),
