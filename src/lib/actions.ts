@@ -133,3 +133,53 @@ export async function expressInterest(formData: FormData): Promise<void> {
   await supabase.rpc("express_collab_interest", { p_collab_id: collabId });
   revalidatePath("/collabs");
 }
+
+// --- Mentorship: junior requests a senior; senior accepts or declines ---
+
+export async function requestMentorship(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const { supabase, user } = await requireUser();
+  if (!user) return { error: "Please sign in to request mentorship." };
+
+  const seniorId = String(formData.get("senior_id") ?? "");
+  const username = String(formData.get("username") ?? "");
+  if (!seniorId) return { error: "Missing mentor." };
+  if (seniorId === user.id) return { error: "You can't mentor yourself." };
+
+  // Upsert to (re)open a request. RLS lets a user write rows where they are the
+  // junior; the unique (junior_id, senior_id) constraint makes this idempotent.
+  const { error } = await supabase
+    .from("mentorships")
+    .upsert(
+      { junior_id: user.id, senior_id: seniorId, status: "pending" },
+      { onConflict: "junior_id,senior_id" },
+    );
+  if (error) return { error: error.message };
+
+  if (username) revalidatePath(`/u/${username}`);
+  revalidatePath("/mentorships");
+  revalidatePath("/feed");
+  return { ok: true };
+}
+
+export async function respondToMentorship(formData: FormData): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user) return;
+
+  const id = String(formData.get("mentorship_id") ?? "");
+  const decision = String(formData.get("decision") ?? "");
+  if (!id || (decision !== "active" && decision !== "declined")) return;
+
+  // RLS restricts the update to rows where the caller is the senior (or junior);
+  // we additionally scope by senior_id so only the mentor can accept/decline.
+  await supabase
+    .from("mentorships")
+    .update({ status: decision })
+    .eq("id", id)
+    .eq("senior_id", user.id);
+
+  revalidatePath("/mentorships");
+  revalidatePath("/feed");
+}

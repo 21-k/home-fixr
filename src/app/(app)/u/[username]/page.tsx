@@ -2,11 +2,13 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { MentorshipButton } from "@/components/MentorshipButton";
 import { PostCard } from "@/components/PostCard";
 import { ToastButton } from "@/components/ToastButton";
+import { getCurrentProfile } from "@/lib/auth/session";
 import { profileHeadline, timeAgo } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
-import type { AuthorLite, Post, Profile } from "@/lib/types";
+import type { AuthorLite, MentorshipStatus, Post, Profile } from "@/lib/types";
 
 const AUTHOR_COLS =
   "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
@@ -36,6 +38,21 @@ export default async function ProfilePage({
 
   if (!profileData) notFound();
   const profile = profileData as Profile;
+
+  // Mentorship state between the viewer (as junior) and this senior.
+  const viewer = await getCurrentProfile();
+  const canRequestMentorship =
+    !!viewer && viewer.id !== profile.id && profile.role === "senior";
+  let mentorshipStatus: MentorshipStatus | null = null;
+  if (canRequestMentorship) {
+    const { data: m } = await supabase
+      .from("mentorships")
+      .select("status")
+      .eq("junior_id", viewer!.id)
+      .eq("senior_id", profile.id)
+      .maybeSingle();
+    mentorshipStatus = (m?.status as MentorshipStatus) ?? null;
+  }
 
   const [{ data: postsData }, { data: repliesData }, { count: menteeCount }, { count: collabCount }, { count: answeredCount }] =
     await Promise.all([
@@ -96,9 +113,16 @@ export default async function ProfilePage({
             </p>
           )}
 
-          <div className="mt-4 flex flex-wrap gap-2">
+          <div className="mt-4 flex flex-wrap items-center gap-2">
+            {canRequestMentorship && (
+              <MentorshipButton
+                seniorId={profile.id}
+                username={profile.username}
+                status={mentorshipStatus}
+              />
+            )}
             <ToastButton
-              variant="brand"
+              variant="secondary"
               label="Send a message"
               message={`Messaging ${profile.full_name} isn't built yet.`}
             />

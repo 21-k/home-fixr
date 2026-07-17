@@ -58,6 +58,9 @@ export default async function FeedPage({
       <Link href="/mentors">
         <SideLink>👥 Mentors</SideLink>
       </Link>
+      <Link href="/mentorships">
+        <SideLink>🤝 My mentorships</SideLink>
+      </Link>
       <Link href="/collabs">
         <SideLink>💼 Job collabs</SideLink>
       </Link>
@@ -66,9 +69,12 @@ export default async function FeedPage({
 
   const right = (
     <div>
-      <h4 className="mb-3 text-[13px] font-semibold uppercase tracking-wide text-zinc-500">
-        {profile?.role === "senior" ? "Your mentees" : "Your mentors"}
-      </h4>
+      <Link
+        href="/mentorships"
+        className="mb-3 block text-[13px] font-semibold uppercase tracking-wide text-zinc-500 hover:text-brand-600"
+      >
+        {profile?.role === "senior" ? "Your mentees" : "Your mentors"} →
+      </Link>
       {connections.length === 0 ? (
         <p className="mb-6 text-[13px] text-zinc-500">
           {profile
