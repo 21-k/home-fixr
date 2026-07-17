@@ -1,22 +1,23 @@
 import Link from "next/link";
+import { Handshake, MessageSquare, Wrench } from "lucide-react";
 import { getCurrentProfile } from "@/lib/auth/session";
 
 const FEATURES = [
   {
     href: "/feed",
-    icon: "💬",
+    Icon: MessageSquare,
     title: "Ask the people who know",
     body: "Post a question and get answers from people with 20+ years on the job, not random internet strangers.",
   },
   {
     href: "/mentors",
-    icon: "🤝",
+    Icon: Handshake,
     title: "Find a mentor",
     body: "Browse senior pros by trade and region. Send a message, set up a call, or shadow them on a job.",
   },
   {
     href: "/collabs",
-    icon: "🔧",
+    Icon: Wrench,
     title: "Team up when it counts",
     body: "Need a second hand or a specialist? Post a collab. Looking for ride-along experience? Find one.",
   },
@@ -95,8 +96,8 @@ export default async function LandingPage() {
               href={f.href}
               className="rounded-xl border border-zinc-200 p-6 transition-all hover:-translate-y-0.5 hover:border-brand-500"
             >
-              <span className="mb-3 grid size-10 place-items-center rounded-lg bg-brand-50 text-lg text-brand-700">
-                {f.icon}
+              <span className="mb-3 grid size-10 place-items-center rounded-lg bg-brand-50 text-brand-700">
+                <f.Icon className="size-5" />
               </span>
               <h3 className="font-semibold">{f.title}</h3>
               <p className="mt-1.5 text-sm leading-relaxed text-zinc-600">

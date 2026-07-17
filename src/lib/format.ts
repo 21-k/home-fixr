@@ -27,19 +27,8 @@ const TRADE_LABELS: Record<TradeType, string> = {
   other: "General",
 };
 
-const TRADE_EMOJI: Record<TradeType, string> = {
-  plumbing: "🚿",
-  hvac: "❄️",
-  electrical: "⚡",
-  other: "🔧",
-};
-
 export function tradeLabel(trade: TradeType | null): string {
   return trade ? TRADE_LABELS[trade] : "General";
-}
-
-export function tradeEmoji(trade: TradeType | null): string {
-  return trade ? TRADE_EMOJI[trade] : "🔧";
 }
 
 /** A one-line headline like "Master Plumber · 28 yrs · Newark, NJ". */
@@ -58,7 +47,7 @@ export const POST_TYPE_LABEL: Record<PostType, string> = {
 };
 
 export const COLLAB_TYPE_LABEL: Record<CollabType, string> = {
-  extra_hand: "🤝 Extra hand",
-  ride_along: "🎓 Junior ride-along",
-  specialist: "🧠 Specialist",
+  extra_hand: "Extra hand",
+  ride_along: "Junior ride-along",
+  specialist: "Specialist",
 };

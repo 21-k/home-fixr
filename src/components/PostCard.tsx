@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MessageSquare, Star } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import type { AuthorLite, Post } from "@/lib/types";
@@ -42,7 +43,7 @@ export function PostCard({
         </span>
       </div>
 
-      <Link href={`/q/${post.id}`} className="group block">
+      <Link href={`/q/${post.slug ?? post.id}`} className="group block">
         <h3 className="font-semibold leading-snug group-hover:text-brand-600">
           {post.title}
         </h3>
@@ -52,8 +53,12 @@ export function PostCard({
       </Link>
 
       <div className="mt-2 flex gap-4 text-[13px] text-zinc-500">
-        <span>💬 {post.reply_count} replies</span>
-        <span>⭐ {post.helpful_count} helpful</span>
+        <span className="inline-flex items-center gap-1.5">
+          <MessageSquare className="size-3.5" /> {post.reply_count} replies
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Star className="size-3.5" /> {post.helpful_count} helpful
+        </span>
       </div>
     </article>
   );

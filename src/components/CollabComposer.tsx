@@ -49,9 +49,9 @@ export function CollabComposer() {
         />
         <div className="grid gap-3 sm:grid-cols-2">
           <select name="type" defaultValue="extra_hand" className={`${inputCls} bg-white`}>
-            <option value="extra_hand">🤝 Need an extra hand</option>
-            <option value="ride_along">🎓 Junior ride-along</option>
-            <option value="specialist">🧠 Need a specialist</option>
+            <option value="extra_hand">Need an extra hand</option>
+            <option value="ride_along">Junior ride-along</option>
+            <option value="specialist">Need a specialist</option>
           </select>
           <select name="trade" defaultValue="" className={`${inputCls} bg-white`}>
             <option value="">Any trade</option>

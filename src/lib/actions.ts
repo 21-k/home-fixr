@@ -64,7 +64,7 @@ export async function createReply(
     .insert({ post_id: postId, author_id: user.id, body });
   if (error) return { error: error.message };
 
-  revalidatePath(`/q/${postId}`);
+  revalidatePath("/q/[slug]", "page");
   return { ok: true };
 }
 
@@ -104,9 +104,8 @@ export async function acceptReply(formData: FormData): Promise<void> {
   const { supabase, user } = await requireUser();
   if (!user) return;
   const replyId = String(formData.get("reply_id") ?? "");
-  const postId = String(formData.get("post_id") ?? "");
   await supabase.rpc("accept_reply", { p_reply_id: replyId });
-  revalidatePath(`/q/${postId}`);
+  revalidatePath("/q/[slug]", "page");
 }
 
 export async function markPostHelpful(formData: FormData): Promise<void> {
@@ -114,7 +113,7 @@ export async function markPostHelpful(formData: FormData): Promise<void> {
   if (!user) return;
   const postId = String(formData.get("post_id") ?? "");
   await supabase.rpc("mark_post_helpful", { p_post_id: postId });
-  revalidatePath(`/q/${postId}`);
+  revalidatePath("/q/[slug]", "page");
   revalidatePath("/feed");
 }
 
@@ -122,9 +121,8 @@ export async function markReplyHelpful(formData: FormData): Promise<void> {
   const { supabase, user } = await requireUser();
   if (!user) return;
   const replyId = String(formData.get("reply_id") ?? "");
-  const postId = String(formData.get("post_id") ?? "");
   await supabase.rpc("mark_reply_helpful", { p_reply_id: replyId });
-  revalidatePath(`/q/${postId}`);
+  revalidatePath("/q/[slug]", "page");
 }
 
 export async function expressInterest(formData: FormData): Promise<void> {
@@ -241,9 +239,8 @@ export async function deleteReply(formData: FormData): Promise<void> {
   const { supabase, user } = await requireUser();
   if (!user) return;
   const id = String(formData.get("reply_id") ?? "");
-  const postId = String(formData.get("post_id") ?? "");
   await supabase.from("replies").delete().eq("id", id).eq("author_id", user.id);
-  revalidatePath(`/q/${postId}`);
+  revalidatePath("/q/[slug]", "page");
 }
 
 // --- Follow / unfollow (follows table added in migrations/0002) ---

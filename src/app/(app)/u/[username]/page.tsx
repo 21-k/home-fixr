@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
+import { Star } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { FollowButton } from "@/components/FollowButton";
 import { MentorshipButton } from "@/components/MentorshipButton";
@@ -218,8 +219,9 @@ export default async function ProfilePage({
               <p className="line-clamp-3 text-sm leading-relaxed text-zinc-700">
                 {a.body}
               </p>
-              <div className="mt-1 text-xs text-zinc-500">
-                ⭐ {a.helpful_count} helpful · {timeAgo(a.created_at)}
+              <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-zinc-500">
+                <Star className="size-3" /> {a.helpful_count} helpful ·{" "}
+                {timeAgo(a.created_at)}
               </div>
             </div>
           ))}

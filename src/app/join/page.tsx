@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useActionState, useState } from "react";
+import { GraduationCap, Wrench, type LucideIcon } from "lucide-react";
 import { signUp, type AuthState } from "@/lib/auth/actions";
 import type { UserRole } from "@/lib/types";
 
@@ -43,14 +44,14 @@ export default function JoinPage() {
             <RoleCard
               selected={role === "junior"}
               onSelect={() => setRole("junior")}
-              icon="🎓"
+              Icon={GraduationCap}
               title="I'm new to the trade"
               desc="Recent vocational graduate, apprentice, or junior. Looking for guidance, mentors, and a community of pros who've been there."
             />
             <RoleCard
               selected={role === "senior"}
               onSelect={() => setRole("senior")}
-              icon="🛠️"
+              Icon={Wrench}
               title="I'm a senior pro"
               desc="5+ years in the trades. Want to mentor newcomers, answer questions, and occasionally team up on jobs."
             />
@@ -128,13 +129,13 @@ export default function JoinPage() {
 function RoleCard({
   selected,
   onSelect,
-  icon,
+  Icon,
   title,
   desc,
 }: {
   selected: boolean;
   onSelect: () => void;
-  icon: string;
+  Icon: LucideIcon;
   title: string;
   desc: string;
 }) {
@@ -148,8 +149,8 @@ function RoleCard({
           : "border-zinc-200 bg-white hover:border-brand-500"
       }`}
     >
-      <span className="mb-3 grid size-10 place-items-center rounded-lg bg-brand-100 text-xl text-brand-700">
-        {icon}
+      <span className="mb-3 grid size-10 place-items-center rounded-lg bg-brand-100 text-brand-700">
+        <Icon className="size-5" />
       </span>
       <h3 className="text-lg font-semibold">{title}</h3>
       <p className="mt-1.5 text-sm leading-5 text-zinc-600">{desc}</p>

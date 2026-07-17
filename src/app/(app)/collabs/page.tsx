@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { Banknote, CalendarDays, MapPin, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { CollabComposer } from "@/components/CollabComposer";
+import { CollabIcon } from "@/components/icons";
 import { expressInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { COLLAB_TYPE_LABEL } from "@/lib/format";
@@ -10,16 +12,16 @@ import type { AuthorLite, CollabType, JobCollab } from "@/lib/types";
 const AUTHOR_COLS = "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 const TYPE_FILTERS: { key: CollabType; label: string }[] = [
-  { key: "extra_hand", label: "🤝 Need an extra hand" },
-  { key: "ride_along", label: "🎓 Junior ride-along" },
-  { key: "specialist", label: "🧠 Need a specialist" },
+  { key: "extra_hand", label: "Need an extra hand" },
+  { key: "ride_along", label: "Junior ride-along" },
+  { key: "specialist", label: "Need a specialist" },
 ];
 
 const PAY_LABEL: Record<string, string> = {
-  day_rate: "💵 Day rate",
-  unpaid: "🎁 Unpaid (experience)",
-  trade: "🔁 Trade hours",
-  flexible: "💵 Paid or trade",
+  day_rate: "Day rate",
+  unpaid: "Unpaid (experience)",
+  trade: "Trade hours",
+  flexible: "Paid or trade",
 };
 
 const TYPE_BADGE: Record<CollabType, string> = {
@@ -56,7 +58,9 @@ export default async function CollabsPage({
       </Link>
       {TYPE_FILTERS.map((t) => (
         <Link key={t.key} href={`/collabs?type=${t.key}`}>
-          <SideLink active={type === t.key}>{t.label}</SideLink>
+          <SideLink active={type === t.key}>
+            <CollabIcon type={t.key} /> {t.label}
+          </SideLink>
         </Link>
       ))}
     </nav>
@@ -110,8 +114,9 @@ export default async function CollabsPage({
                   </p>
                 </div>
                 <span
-                  className={`shrink-0 rounded px-2 py-0.5 text-xs font-medium ${TYPE_BADGE[c.type]}`}
+                  className={`inline-flex shrink-0 items-center gap-1 rounded px-2 py-0.5 text-xs font-medium ${TYPE_BADGE[c.type]}`}
                 >
+                  <CollabIcon type={c.type} className="size-3.5" />
                   {COLLAB_TYPE_LABEL[c.type]}
                 </span>
               </div>
@@ -119,18 +124,28 @@ export default async function CollabsPage({
               <p className="mt-3 text-sm leading-relaxed text-zinc-700">{c.body}</p>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-zinc-600">
-                {c.location && <span>📍 {c.location}</span>}
+                {c.location && (
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="size-3.5" /> {c.location}
+                  </span>
+                )}
                 {c.scheduled_date && (
-                  <span>
-                    📅{" "}
+                  <span className="inline-flex items-center gap-1">
+                    <CalendarDays className="size-3.5" />
                     {new Date(c.scheduled_date + "T00:00:00").toLocaleDateString(
                       "en-US",
                       { weekday: "short", month: "short", day: "numeric" },
                     )}
                   </span>
                 )}
-                {c.pay_type && <span>{PAY_LABEL[c.pay_type] ?? c.pay_type}</span>}
-                <span>👥 {c.interested_count} interested</span>
+                {c.pay_type && (
+                  <span className="inline-flex items-center gap-1">
+                    <Banknote className="size-3.5" /> {PAY_LABEL[c.pay_type] ?? c.pay_type}
+                  </span>
+                )}
+                <span className="inline-flex items-center gap-1">
+                  <Users className="size-3.5" /> {c.interested_count} interested
+                </span>
                 {profile && (
                   <form action={expressInterest} className="ml-auto">
                     <input type="hidden" name="collab_id" value={c.id} />

@@ -67,7 +67,11 @@ insert into job_collabs (id, poster_id, type, title, body, trade, location, sche
   ('c0000000-0000-0000-0000-000000000001', '10000000-0000-0000-0000-000000000005', 'ride_along', 'Junior welcome — boiler install ride-along, Saturday in Trenton', 'Doing a residential boiler swap this Saturday. Happy to bring 1 apprentice along to watch and help. Bring your own boots. No pay, but I''ll buy lunch and you''ll see a full install start to finish.', 'plumbing',   'Trenton, NJ', '2026-07-25', 'unpaid',   9),
   ('c0000000-0000-0000-0000-000000000002', '10000000-0000-0000-0000-000000000003', 'extra_hand', 'Need a 2nd hand on a service panel upgrade — Newark, this Sat',    '200A service panel swap on a residential. Need a licensed apprentice or junior electrician. 8am-2pm, paid day rate. NJ ticket required.', 'electrical', 'Newark, NJ',  '2026-07-25', 'day_rate', 3),
   ('c0000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000002', 'specialist', 'HVAC commissioning help needed — Edison, NJ commercial rooftop',   'Looking for someone with VRF commissioning experience to consult on a 4-zone install. Day on-site or remote walk-through both work. Happy to pay or trade hours.', 'hvac', 'Edison, NJ', null, 'flexible', 2)
-on conflict (id) do nothing;
+-- Upsert content fields so edits to this seed (e.g. dates) apply on re-run.
+on conflict (id) do update set
+  title = excluded.title, body = excluded.body, type = excluded.type,
+  trade = excluded.trade, location = excluded.location,
+  scheduled_date = excluded.scheduled_date, pay_type = excluded.pay_type;
 
 insert into mentorships (junior_id, senior_id, status) values
   ('20000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', 'active'),

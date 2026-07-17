@@ -25,6 +25,7 @@ export type Profile = {
 export type Post = {
   id: string;
   author_id: string;
+  slug: string | null;
   type: PostType;
   title: string;
   body: string;

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Star } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { ReplyComposer } from "@/components/ReplyComposer";
@@ -20,20 +21,32 @@ const AUTHOR_COLS =
 
 type ReplyWithAuthor = Reply & { author: AuthorLite | null };
 
+const UUID_RE =
+  /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
 export default async function ThreadPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ slug: string }>;
 }) {
-  const { id } = await params;
+  const { slug } = await params;
   const supabase = await createClient();
   const profile = await getCurrentProfile();
 
-  const { data: postData } = await supabase
+  // Look up by slug; fall back to id so old /q/<uuid> links (and pre-slug data)
+  // still resolve.
+  let { data: postData } = await supabase
     .from("posts")
     .select(`*, author:profiles ( ${AUTHOR_COLS} )`)
-    .eq("id", id)
+    .eq("slug", slug)
     .maybeSingle();
+  if (!postData && UUID_RE.test(slug)) {
+    ({ data: postData } = await supabase
+      .from("posts")
+      .select(`*, author:profiles ( ${AUTHOR_COLS} )`)
+      .eq("id", slug)
+      .maybeSingle());
+  }
 
   if (!postData) notFound();
   const post = postData as unknown as Post & { author: AuthorLite | null };
@@ -41,7 +54,7 @@ export default async function ThreadPage({
   const { data: repliesData } = await supabase
     .from("replies")
     .select(`*, author:profiles ( ${AUTHOR_COLS} )`)
-    .eq("post_id", id)
+    .eq("post_id", post.id)
     .order("is_accepted", { ascending: false })
     .order("helpful_count", { ascending: false })
     .order("created_at", { ascending: true });
@@ -54,7 +67,9 @@ export default async function ThreadPage({
       <SideSection>Thread</SideSection>
       <SideLink active>Question</SideLink>
       <SideLink>{post.reply_count} replies</SideLink>
-      <SideLink>⭐ {post.helpful_count} helpful</SideLink>
+      <SideLink>
+        <Star className="size-4" /> {post.helpful_count} helpful
+      </SideLink>
       <SideSection>Back</SideSection>
       <Link href="/feed">
         <SideLink>← Back to feed</SideLink>
@@ -93,9 +108,9 @@ export default async function ThreadPage({
               <input type="hidden" name="post_id" value={post.id} />
               <button
                 type="submit"
-                className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
               >
-                ⭐ Helpful ({post.helpful_count})
+                <Star className="size-3.5" /> Helpful ({post.helpful_count})
               </button>
             </form>
             {isOwner && (
@@ -158,7 +173,10 @@ export default async function ThreadPage({
               {reply.body}
             </p>
             <div className="mt-3 flex items-center gap-3 text-xs text-zinc-500">
-              <span>⭐ {reply.helpful_count} helpful · {timeAgo(reply.created_at)}</span>
+              <span className="inline-flex items-center gap-1.5">
+                <Star className="size-3.5" /> {reply.helpful_count} helpful ·{" "}
+                {timeAgo(reply.created_at)}
+              </span>
               {profile && (
                 <form action={markReplyHelpful}>
                   <input type="hidden" name="reply_id" value={reply.id} />

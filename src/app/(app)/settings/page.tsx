@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Settings as SettingsIcon, User } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { SettingsForm } from "@/components/SettingsForm";
 import { getCurrentProfile } from "@/lib/auth/session";
@@ -11,9 +12,13 @@ export default async function SettingsPage() {
   const sidebar = (
     <nav>
       <SideSection>Account</SideSection>
-      <SideLink active>⚙️ Edit profile</SideLink>
+      <SideLink active>
+        <SettingsIcon className="size-4" /> Edit profile
+      </SideLink>
       <Link href={`/u/${profile.username}`}>
-        <SideLink>👤 View my profile</SideLink>
+        <SideLink>
+          <User className="size-4" /> View my profile
+        </SideLink>
       </Link>
       <Link href="/feed">
         <SideLink>← Back to feed</SideLink>

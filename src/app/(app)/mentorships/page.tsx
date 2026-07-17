@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { respondToMentorship } from "@/lib/actions";
@@ -26,13 +27,19 @@ export default async function MentorshipsPage() {
     <nav>
       <SideSection>Community</SideSection>
       <Link href="/feed">
-        <SideLink>🏠 Feed</SideLink>
+        <SideLink>
+          <Home className="size-4" /> Feed
+        </SideLink>
       </Link>
       <Link href="/mentors">
-        <SideLink>👥 Find mentors</SideLink>
+        <SideLink>
+          <Users className="size-4" /> Find mentors
+        </SideLink>
       </Link>
       <Link href="/mentorships">
-        <SideLink active>🤝 My mentorships</SideLink>
+        <SideLink active>
+          <Handshake className="size-4" /> My mentorships
+        </SideLink>
       </Link>
     </nav>
   );

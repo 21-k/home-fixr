@@ -1,14 +1,15 @@
 import Link from "next/link";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { TradeIcon } from "@/components/icons";
 import { profileHeadline } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, TradeType } from "@/lib/types";
 
-const TRADES: { key: TradeType; icon: string; label: string }[] = [
-  { key: "electrical", icon: "⚡", label: "Electrical" },
-  { key: "plumbing", icon: "🚿", label: "Plumbing" },
-  { key: "hvac", icon: "❄️", label: "HVAC" },
+const TRADES: { key: TradeType; label: string }[] = [
+  { key: "electrical", label: "Electrical" },
+  { key: "plumbing", label: "Plumbing" },
+  { key: "hvac", label: "HVAC" },
 ];
 
 // Region values match the ", NJ"/", NY" suffix stored on profiles via ilike.
@@ -72,7 +73,7 @@ export default async function MentorsPage({
       {TRADES.map((t) => (
         <Link key={t.key} href={buildHref(sp, { trade: t.key })}>
           <SideLink active={sp.trade === t.key}>
-            {t.icon} {t.label}
+            <TradeIcon trade={t.key} /> {t.label}
           </SideLink>
         </Link>
       ))}

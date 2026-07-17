@@ -1,6 +1,8 @@
 import Link from "next/link";
+import { Briefcase, Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { TradeIcon } from "@/components/icons";
 import { PostCard } from "@/components/PostCard";
 import { PostComposer } from "@/components/PostComposer";
 import { ToastButton } from "@/components/ToastButton";
@@ -12,10 +14,10 @@ import type { AuthorLite, Post, Profile, TradeType } from "@/lib/types";
 const AUTHOR_COLS =
   "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
-const TRADE_FILTERS: { key: TradeType; icon: string; label: string }[] = [
-  { key: "electrical", icon: "⚡", label: "Electrical" },
-  { key: "plumbing", icon: "🚿", label: "Plumbing" },
-  { key: "hvac", icon: "❄️", label: "HVAC" },
+const TRADE_FILTERS: { key: TradeType; label: string }[] = [
+  { key: "electrical", label: "Electrical" },
+  { key: "plumbing", label: "Plumbing" },
+  { key: "hvac", label: "HVAC" },
 ];
 
 type PostWithAuthor = Post & { author: AuthorLite | null };
@@ -44,25 +46,33 @@ export default async function FeedPage({
     <nav>
       <SideSection>My Feed</SideSection>
       <Link href="/feed">
-        <SideLink active={!trade}>🏠 Home</SideLink>
+        <SideLink active={!trade}>
+          <Home className="size-4" /> Home
+        </SideLink>
       </Link>
       <SideSection>My Trades</SideSection>
       {TRADE_FILTERS.map((t) => (
         <Link key={t.key} href={`/feed?trade=${t.key}`}>
           <SideLink active={trade === t.key}>
-            {t.icon} {t.label}
+            <TradeIcon trade={t.key} /> {t.label}
           </SideLink>
         </Link>
       ))}
       <SideSection>Community</SideSection>
       <Link href="/mentors">
-        <SideLink>👥 Mentors</SideLink>
+        <SideLink>
+          <Users className="size-4" /> Mentors
+        </SideLink>
       </Link>
       <Link href="/mentorships">
-        <SideLink>🤝 My mentorships</SideLink>
+        <SideLink>
+          <Handshake className="size-4" /> My mentorships
+        </SideLink>
       </Link>
       <Link href="/collabs">
-        <SideLink>💼 Job collabs</SideLink>
+        <SideLink>
+          <Briefcase className="size-4" /> Job collabs
+        </SideLink>
       </Link>
     </nav>
   );
@@ -105,17 +115,17 @@ export default async function FeedPage({
       <div className="flex flex-col gap-2.5 text-[13px] leading-5 text-zinc-700">
         <ToastButton
           variant="link"
-          label="📋 New 2026 NJ permit rules for water heaters"
+          label="New 2026 NJ permit rules for water heaters"
           message="Trending topics aren't wired up yet."
         />
         <ToastButton
           variant="link"
-          label="💰 What guys are charging for service calls right now"
+          label="What guys are charging for service calls right now"
           message="Trending topics aren't wired up yet."
         />
         <ToastButton
           variant="link"
-          label="🧯 Inspectors flagging undersized whips on mini-splits"
+          label="Inspectors flagging undersized whips on mini-splits"
           message="Trending topics aren't wired up yet."
         />
       </div>

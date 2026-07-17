@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Bell } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { signOut } from "@/lib/auth/actions";
 import type { Profile } from "@/lib/types";
@@ -65,11 +66,11 @@ export function AppHeader({
           <Link
             href="/notifications"
             aria-label="Notifications"
-            className="relative rounded-md px-1.5 py-1 text-lg hover:bg-zinc-100"
+            className="relative rounded-md p-2 text-zinc-600 hover:bg-zinc-100 hover:text-zinc-900"
           >
-            🔔
+            <Bell className="size-5" />
             {unread > 0 && (
-              <span className="absolute -right-0.5 -top-0.5 grid min-w-4 place-items-center rounded-full bg-brand-500 px-1 text-[10px] font-semibold text-white">
+              <span className="absolute right-0 top-0.5 grid min-w-4 place-items-center rounded-full bg-brand-500 px-1 text-[10px] font-semibold text-white">
                 {unread > 9 ? "9+" : unread}
               </span>
             )}
