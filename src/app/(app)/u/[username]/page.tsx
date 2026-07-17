@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { FollowButton } from "@/components/FollowButton";
 import { MentorshipButton } from "@/components/MentorshipButton";
 import { PostCard } from "@/components/PostCard";
 import { ToastButton } from "@/components/ToastButton";
@@ -53,6 +54,25 @@ export default async function ProfilePage({
       .maybeSingle();
     mentorshipStatus = (m?.status as MentorshipStatus) ?? null;
   }
+
+  // Follow state + follower count. The follows table lands in migrations/0002;
+  // Supabase returns an error (not a throw) if it's missing, so these safely
+  // degrade to false/0 until you run that migration.
+  let isFollowing = false;
+  if (viewer && viewer.id !== profile.id) {
+    const { data: f } = await supabase
+      .from("follows")
+      .select("follower_id")
+      .eq("follower_id", viewer.id)
+      .eq("following_id", profile.id)
+      .maybeSingle();
+    isFollowing = !!f;
+  }
+  const { count: followerCountRaw } = await supabase
+    .from("follows")
+    .select("*", { count: "exact", head: true })
+    .eq("following_id", profile.id);
+  const followerCount = followerCountRaw ?? 0;
 
   const [{ data: postsData }, { data: repliesData }, { count: menteeCount }, { count: collabCount }, { count: answeredCount }] =
     await Promise.all([
@@ -114,34 +134,46 @@ export default async function ProfilePage({
           )}
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            {canRequestMentorship && (
-              <MentorshipButton
-                seniorId={profile.id}
-                username={profile.username}
-                status={mentorshipStatus}
-              />
+            {viewer?.id === profile.id ? (
+              <Link
+                href="/settings"
+                className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
+              >
+                Edit profile
+              </Link>
+            ) : (
+              <>
+                {canRequestMentorship && (
+                  <MentorshipButton
+                    seniorId={profile.id}
+                    username={profile.username}
+                    status={mentorshipStatus}
+                  />
+                )}
+                <FollowButton
+                  profileId={profile.id}
+                  username={profile.username}
+                  isFollowing={isFollowing}
+                />
+                <ToastButton
+                  variant="secondary"
+                  label="Send a message"
+                  message={`Messaging ${profile.full_name} isn't built yet.`}
+                />
+                {profile.is_open_to_ride_alongs && (
+                  <ToastButton
+                    variant="secondary"
+                    label="Ask to ride along"
+                    message="Ride-along requests aren't wired up yet."
+                  />
+                )}
+              </>
             )}
-            <ToastButton
-              variant="secondary"
-              label="Send a message"
-              message={`Messaging ${profile.full_name} isn't built yet.`}
-            />
-            {profile.is_open_to_ride_alongs && (
-              <ToastButton
-                variant="secondary"
-                label="Ask to ride along"
-                message="Ride-along requests aren't wired up yet."
-              />
-            )}
-            <ToastButton
-              variant="secondary"
-              label="Follow"
-              message={`Now following ${profile.full_name} (not persisted yet).`}
-            />
           </div>
 
           <dl className="mt-5 flex flex-wrap gap-8 border-t border-zinc-200 pt-4">
             <Stat value={answeredCount ?? 0} label="answers" />
+            <Stat value={followerCount} label="followers" />
             <Stat value={menteeCount ?? 0} label="active mentees" />
             <Stat value={collabCount ?? 0} label="collabs posted" />
           </dl>

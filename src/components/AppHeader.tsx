@@ -25,6 +25,15 @@ export function AppHeader({ profile }: { profile: Profile | null }) {
         Home Fixr
       </Link>
 
+      <form action="/search" className="hidden md:block">
+        <input
+          type="search"
+          name="q"
+          placeholder="Search posts & members…"
+          className="w-56 rounded-lg border border-zinc-300 bg-zinc-50 px-3 py-1.5 text-sm outline-none focus:border-brand-500 focus:bg-white"
+        />
+      </form>
+
       <nav className="flex items-center gap-1">
         {NAV.map((item) => {
           const active =

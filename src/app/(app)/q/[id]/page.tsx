@@ -3,7 +3,13 @@ import { notFound } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { ReplyComposer } from "@/components/ReplyComposer";
-import { acceptReply, markPostHelpful, markReplyHelpful } from "@/lib/actions";
+import {
+  acceptReply,
+  deletePost,
+  deleteReply,
+  markPostHelpful,
+  markReplyHelpful,
+} from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo, tradeLabel } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
@@ -82,15 +88,28 @@ export default async function ThreadPage({
           {post.body}
         </p>
         {profile && (
-          <form action={markPostHelpful} className="mt-4">
-            <input type="hidden" name="post_id" value={post.id} />
-            <button
-              type="submit"
-              className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
-            >
-              ⭐ Helpful ({post.helpful_count})
-            </button>
-          </form>
+          <div className="mt-4 flex items-center gap-2">
+            <form action={markPostHelpful}>
+              <input type="hidden" name="post_id" value={post.id} />
+              <button
+                type="submit"
+                className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
+              >
+                ⭐ Helpful ({post.helpful_count})
+              </button>
+            </form>
+            {isOwner && (
+              <form action={deletePost}>
+                <input type="hidden" name="post_id" value={post.id} />
+                <button
+                  type="submit"
+                  className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium text-red-600 hover:bg-red-50"
+                >
+                  Delete
+                </button>
+              </form>
+            )}
+          </div>
         )}
       </article>
 
@@ -155,6 +174,15 @@ export default async function ThreadPage({
                   <input type="hidden" name="post_id" value={post.id} />
                   <button type="submit" className="font-medium text-success-fg hover:underline">
                     ✓ Accept this answer
+                  </button>
+                </form>
+              )}
+              {profile?.id === reply.author_id && (
+                <form action={deleteReply}>
+                  <input type="hidden" name="reply_id" value={reply.id} />
+                  <input type="hidden" name="post_id" value={post.id} />
+                  <button type="submit" className="font-medium text-red-600 hover:underline">
+                    Delete
                   </button>
                 </form>
               )}

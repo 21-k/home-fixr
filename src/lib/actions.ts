@@ -1,6 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
 import type { CollabType, PostType, TradeType } from "@/lib/types";
 
@@ -132,6 +133,94 @@ export async function expressInterest(formData: FormData): Promise<void> {
   const collabId = String(formData.get("collab_id") ?? "");
   await supabase.rpc("express_collab_interest", { p_collab_id: collabId });
   revalidatePath("/collabs");
+}
+
+// --- Profile editing (RLS: a user can update only their own row) ---
+
+export async function updateProfile(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const { supabase, user } = await requireUser();
+  if (!user) return { error: "Please sign in." };
+
+  const fullName = String(formData.get("full_name") ?? "").trim();
+  if (!fullName) return { error: "Name can't be empty." };
+
+  const yearsRaw = String(formData.get("years_experience") ?? "").trim();
+  const { error } = await supabase
+    .from("profiles")
+    .update({
+      full_name: fullName,
+      title: String(formData.get("title") ?? "").trim() || null,
+      trade: nullableTrade(formData.get("trade")),
+      region: String(formData.get("region") ?? "").trim() || null,
+      bio: String(formData.get("bio") ?? "").trim() || null,
+      years_experience: yearsRaw ? Number(yearsRaw) : null,
+      is_open_to_messages: formData.get("is_open_to_messages") === "on",
+      is_open_to_ride_alongs: formData.get("is_open_to_ride_alongs") === "on",
+    })
+    .eq("id", user.id);
+  if (error) return { error: error.message };
+
+  const { data: prof } = await supabase
+    .from("profiles")
+    .select("username")
+    .eq("id", user.id)
+    .single();
+  if (prof?.username) revalidatePath(`/u/${prof.username}`);
+  revalidatePath("/settings");
+  revalidatePath("/feed");
+  return { ok: true };
+}
+
+// --- Delete own content (RLS: author-only delete policies) ---
+
+export async function deletePost(formData: FormData): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user) return;
+  const id = String(formData.get("post_id") ?? "");
+  await supabase.from("posts").delete().eq("id", id).eq("author_id", user.id);
+  revalidatePath("/feed");
+  redirect("/feed");
+}
+
+export async function deleteReply(formData: FormData): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user) return;
+  const id = String(formData.get("reply_id") ?? "");
+  const postId = String(formData.get("post_id") ?? "");
+  await supabase.from("replies").delete().eq("id", id).eq("author_id", user.id);
+  revalidatePath(`/q/${postId}`);
+}
+
+// --- Follow / unfollow (follows table added in migrations/0002) ---
+
+export async function toggleFollow(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const { supabase, user } = await requireUser();
+  if (!user) return { error: "Please sign in to follow people." };
+
+  const targetId = String(formData.get("target_id") ?? "");
+  const username = String(formData.get("username") ?? "");
+  const isFollowing = String(formData.get("is_following") ?? "") === "true";
+  if (!targetId || targetId === user.id) return { error: "Can't follow that." };
+
+  const { error } = isFollowing
+    ? await supabase
+        .from("follows")
+        .delete()
+        .eq("follower_id", user.id)
+        .eq("following_id", targetId)
+    : await supabase
+        .from("follows")
+        .insert({ follower_id: user.id, following_id: targetId });
+
+  if (error) return { error: error.message };
+  if (username) revalidatePath(`/u/${username}`);
+  return { ok: true };
 }
 
 // --- Mentorship: junior requests a senior; senior accepts or declines ---
