@@ -5,6 +5,7 @@ import { Avatar } from "@/components/Avatar";
 import { TradeIcon } from "@/components/icons";
 import { PostCard } from "@/components/PostCard";
 import { PostComposer } from "@/components/PostComposer";
+import { ProfilePrompt } from "@/components/ProfilePrompt";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { profileHeadline } from "@/lib/format";
@@ -134,6 +135,7 @@ export default async function FeedPage({
 
   return (
     <AppBody sidebar={sidebar} right={right}>
+      {profile && <ProfilePrompt profile={profile} />}
       {profile ? (
         <PostComposer initials={profile.avatar_initials} />
       ) : (

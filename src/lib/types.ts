@@ -20,6 +20,8 @@ export type Profile = {
   years_experience: number | null;
   is_open_to_messages: boolean;
   is_open_to_ride_alongs: boolean;
+  /** Null until the /welcome step is finished or skipped (migration 0006). */
+  onboarded_at: string | null;
   created_at: string;
 };
 
