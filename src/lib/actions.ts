@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { CV_BUCKET } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 import type { CollabType, PostType, TradeType } from "@/lib/types";
 
@@ -125,11 +126,124 @@ export async function markReplyHelpful(formData: FormData): Promise<void> {
   revalidatePath("/q/[slug]", "page");
 }
 
-export async function expressInterest(formData: FormData): Promise<void> {
+// --- Job collabs: expressing / withdrawing / responding to interest ---
+// (collab_interests table added in migrations/0004)
+
+/**
+ * Raise or lower your hand on a collab. The unique (collab_id, user_id)
+ * constraint makes this idempotent, and a DB trigger recomputes
+ * job_collabs.interested_count from the rows — so double-clicking can no
+ * longer inflate the count the way the old counter-bumping RPC did.
+ */
+export async function toggleCollabInterest(formData: FormData): Promise<void> {
   const { supabase, user } = await requireUser();
   if (!user) return;
+
   const collabId = String(formData.get("collab_id") ?? "");
-  await supabase.rpc("express_collab_interest", { p_collab_id: collabId });
+  if (!collabId) return;
+  const isInterested = String(formData.get("is_interested") ?? "") === "true";
+
+  if (isInterested) {
+    // Grab any attached CV first so withdrawing doesn't orphan the file.
+    const { data: existing } = await supabase
+      .from("collab_interests")
+      .select("cv_path")
+      .eq("collab_id", collabId)
+      .eq("user_id", user.id)
+      .maybeSingle();
+
+    await supabase
+      .from("collab_interests")
+      .delete()
+      .eq("collab_id", collabId)
+      .eq("user_id", user.id);
+
+    if (existing?.cv_path) {
+      await supabase.storage.from(CV_BUCKET).remove([existing.cv_path]);
+    }
+  } else {
+    const note = String(formData.get("note") ?? "").trim();
+    // RLS also blocks expressing interest in your own posting.
+    await supabase
+      .from("collab_interests")
+      .insert({ collab_id: collabId, user_id: user.id, note: note || null });
+  }
+
+  revalidatePath("/collabs");
+  revalidatePath("/collabs/mine");
+}
+
+/**
+ * Submit (or revise) a job application: a short pitch plus an optional CV.
+ *
+ * The file itself is uploaded straight from the browser to Storage — Server
+ * Actions cap request bodies at 1MB by default and Vercel's function limit is
+ * ~4.5MB, so routing a CV through here would be fragile. We only receive the
+ * resulting object key.
+ *
+ * Called imperatively from the client (after the upload finishes) rather than
+ * via useActionState, hence the single-argument signature.
+ */
+export async function applyToCollab(formData: FormData): Promise<FormState> {
+  const { supabase, user } = await requireUser();
+  if (!user) return { error: "Please sign in to apply." };
+
+  const collabId = String(formData.get("collab_id") ?? "");
+  if (!collabId) return { error: "Missing job." };
+
+  const note = String(formData.get("note") ?? "").trim();
+  if (!note) return { error: "Add a short note so the poster knows why you." };
+  if (note.length > 1500) return { error: "Keep your note under 1500 characters." };
+
+  const cvPath = String(formData.get("cv_path") ?? "").trim();
+  const cvName = String(formData.get("cv_name") ?? "").trim();
+
+  // Never trust a client-supplied object key: the poster-read storage policy
+  // grants access to whatever path is stored here, so a crafted value could
+  // otherwise expose another member's file. Uploads live under "<user_id>/".
+  if (cvPath && !cvPath.startsWith(`${user.id}/`)) {
+    return { error: "That attachment isn't yours." };
+  }
+
+  const { data: collab } = await supabase
+    .from("job_collabs")
+    .select("poster_id")
+    .eq("id", collabId)
+    .maybeSingle();
+  if (!collab) return { error: "That job is no longer posted." };
+  if (collab.poster_id === user.id) {
+    return { error: "This is your own posting." };
+  }
+
+  const { error } = await supabase.from("collab_interests").upsert(
+    {
+      collab_id: collabId,
+      user_id: user.id,
+      note,
+      ...(cvPath ? { cv_path: cvPath, cv_name: cvName || "CV" } : {}),
+    },
+    { onConflict: "collab_id,user_id" },
+  );
+  if (error) return { error: error.message };
+
+  revalidatePath("/collabs");
+  revalidatePath("/collabs/mine");
+  return { ok: true };
+}
+
+/** The poster accepts or declines one person's interest. */
+export async function respondToCollabInterest(formData: FormData): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user) return;
+
+  const id = String(formData.get("interest_id") ?? "");
+  const decision = String(formData.get("decision") ?? "");
+  if (!id || (decision !== "accepted" && decision !== "declined")) return;
+
+  // RLS restricts this update to rows on collabs the caller posted.
+  await supabase.from("collab_interests").update({ status: decision }).eq("id", id);
+
+  revalidatePath("/collabs/mine");
   revalidatePath("/collabs");
 }
 

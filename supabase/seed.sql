@@ -1,7 +1,7 @@
 -- ================================================================
 -- Home Fixr — DEV seed data
 -- ================================================================
--- Run order:  schema.sql  ->  migrations/0001_app.sql  ->  seed.sql
+-- Run order:  schema.sql  ->  migrations/0001..0005  ->  seed.sql
 -- (The reply-count trigger from the migration keeps posts.reply_count
 --  accurate as these replies are inserted, so posts start at 0 here.)
 --
@@ -72,6 +72,19 @@ on conflict (id) do update set
   title = excluded.title, body = excluded.body, type = excluded.type,
   trade = excluded.trade, location = excluded.location,
   scheduled_date = excluded.scheduled_date, pay_type = excluded.pay_type;
+  -- NOTE: interested_count is deliberately NOT upserted — migration 0004's
+  -- trigger derives it from collab_interests below.
+
+-- Who's interested in each collab (migrations/0004_collab_interests.sql).
+-- The count trigger recomputes job_collabs.interested_count from these rows,
+-- so these are the numbers the Jobs page shows.
+insert into collab_interests (collab_id, user_id, status, note) values
+  ('c0000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000001', 'accepted',   'Second-year apprentice in Newark, I can be in Trenton by 7. I''ve never seen a full boiler swap start to finish.'),
+  ('c0000000-0000-0000-0000-000000000001', '20000000-0000-0000-0000-000000000003', 'interested', 'Career switcher into HVAC — I know it''s a plumbing job but the hydronics overlap is exactly what I want to learn.'),
+  ('c0000000-0000-0000-0000-000000000002', '20000000-0000-0000-0000-000000000002', 'interested', 'Apprentice electrician, NJ ticket in hand. Done two panel swaps under supervision.'),
+  ('c0000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000004', 'interested', 'I''ve commissioned a handful of 4-zone VRF systems. Happy to do a remote walk-through first.')
+on conflict (collab_id, user_id) do update set
+  status = excluded.status, note = excluded.note;
 
 insert into mentorships (junior_id, senior_id, status) values
   ('20000000-0000-0000-0000-000000000003', '10000000-0000-0000-0000-000000000001', 'active'),

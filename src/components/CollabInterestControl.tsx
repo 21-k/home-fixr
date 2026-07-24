@@ -1,0 +1,127 @@
+"use client";
+
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { MessageSquare } from "lucide-react";
+import { CollabApplyForm } from "@/components/CollabApplyForm";
+import { toggleCollabInterest } from "@/lib/actions";
+import type { CollabInterestStatus } from "@/lib/types";
+
+/**
+ * The apply / applied / withdraw control on a collab card, plus the button to
+ * message the poster directly.
+ *
+ * Posters see a link to their applicants rather than a button they can't press
+ * — Storage and table RLS both reject interest in your own posting.
+ */
+export function CollabInterestControl({
+  collabId,
+  userId,
+  isOwnPosting,
+  status,
+  note,
+  cvName,
+  posterUsername,
+}: {
+  collabId: string;
+  userId: string;
+  isOwnPosting: boolean;
+  status: CollabInterestStatus | undefined;
+  note: string | null;
+  cvName: string | null;
+  posterUsername: string | null;
+}) {
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
+
+  const messageLink = posterUsername ? (
+    <Link
+      href={`/messages/${posterUsername}`}
+      className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
+    >
+      <MessageSquare className="size-3.5" /> Message
+    </Link>
+  ) : null;
+
+  if (isOwnPosting) {
+    return (
+      <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-zinc-100 pt-3">
+        <Link
+          href="/collabs/mine"
+          className="text-[13px] font-medium text-brand-600 hover:underline"
+        >
+          Your posting — see who&apos;s interested
+        </Link>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-3 border-t border-zinc-100 pt-3">
+      <div className="flex flex-wrap items-center gap-2">
+        {status === "accepted" && (
+          <span className="rounded bg-success-bg px-2 py-1 text-xs font-medium text-success-fg">
+            ✓ You&apos;re in
+          </span>
+        )}
+        {status === "declined" && (
+          <span className="rounded border border-zinc-300 px-2 py-1 text-xs font-medium text-zinc-500">
+            Not this time
+          </span>
+        )}
+        {status === "interested" && (
+          <span className="rounded border border-zinc-300 px-2 py-1 text-xs font-medium text-zinc-500">
+            Applied — awaiting reply
+          </span>
+        )}
+
+        {!status && !open && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="rounded-lg bg-brand-500 px-3 py-1.5 text-[13px] font-medium text-white hover:bg-brand-600"
+          >
+            I&apos;m interested
+          </button>
+        )}
+
+        {status === "interested" && !open && (
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
+          >
+            Edit application
+          </button>
+        )}
+
+        {status === "interested" && (
+          <form action={toggleCollabInterest}>
+            <input type="hidden" name="collab_id" value={collabId} />
+            <input type="hidden" name="is_interested" value="true" />
+            <button className="rounded-lg px-3 py-1.5 text-[13px] font-medium text-zinc-500 hover:text-zinc-900">
+              Withdraw
+            </button>
+          </form>
+        )}
+
+        <div className="ml-auto">{messageLink}</div>
+      </div>
+
+      {open && (
+        <CollabApplyForm
+          collabId={collabId}
+          userId={userId}
+          existingNote={note}
+          existingCvName={cvName}
+          onDone={() => {
+            setOpen(false);
+            router.refresh();
+          }}
+          onCancel={() => setOpen(false)}
+        />
+      )}
+    </div>
+  );
+}
