@@ -12,10 +12,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const DESCRIPTION =
+  "Home Fixr connects new plumbers, HVAC techs, and electricians with senior tradespeople who mentor them. Ask questions, find a mentor, team up on jobs. Community, not a marketplace.";
+
+// metadataBase makes the relative OG/Twitter image URLs below absolute, which
+// is what Reddit, Facebook, and iMessage need to render a link preview.
 export const metadata: Metadata = {
-  title: "Home Fixr",
-  description:
-    "A community where senior tradespeople mentor the next generation.",
+  metadataBase: new URL("https://home-fixr.com"),
+  title: {
+    default: "Home Fixr — mentorship for the skilled trades",
+    template: "%s · Home Fixr",
+  },
+  description: DESCRIPTION,
+  applicationName: "Home Fixr",
+  keywords: [
+    "trades mentorship",
+    "plumbing apprentice",
+    "HVAC apprentice",
+    "electrician apprentice",
+    "vocational graduates",
+    "skilled trades community",
+  ],
+  openGraph: {
+    type: "website",
+    siteName: "Home Fixr",
+    url: "/",
+    title: "Home Fixr — mentorship for the skilled trades",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Home Fixr — mentorship for the skilled trades",
+    description: DESCRIPTION,
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({
