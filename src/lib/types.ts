@@ -5,6 +5,7 @@ export type TradeType = "plumbing" | "hvac" | "electrical" | "other";
 export type PostType = "question" | "tip" | "discussion";
 export type CollabType = "extra_hand" | "ride_along" | "specialist";
 export type MentorshipStatus = "pending" | "active" | "declined";
+export type CollabInterestStatus = "interested" | "accepted" | "declined";
 
 export type Profile = {
   id: string;
@@ -57,6 +58,20 @@ export type JobCollab = {
   scheduled_date: string | null;
   pay_type: string | null;
   interested_count: number;
+  created_at: string;
+};
+
+// One row per person who raised their hand on a collab (migration 0004).
+export type CollabInterest = {
+  id: string;
+  collab_id: string;
+  user_id: string;
+  status: CollabInterestStatus;
+  note: string | null;
+  // Object key in the private `cvs` Storage bucket, plus the original
+  // filename for display (migration 0005).
+  cv_path: string | null;
+  cv_name: string | null;
   created_at: string;
 };
 

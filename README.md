@@ -21,7 +21,9 @@ Built with **Next.js 16 (App Router)**, **React 19**, **Tailwind CSS v4**, and
 - **Mentor directory** — browse seniors by trade / region / availability.
 - **Profiles** — bio, stats, recent posts & answers; editable in Settings.
 - **Mentorships** — juniors request, seniors accept/decline.
-- **Job collabs** — post/browse collaboration gigs, express interest.
+- **Job collabs** — post/browse collaboration gigs; apply with a short pitch and
+  an optional CV, message the poster, and track everything on **My jobs**
+  (who applied to yours, what you applied to). Posters accept/decline.
 - **Follows, messaging, notifications** — social layer (requires migration 0002).
 - **Search** across posts and members.
 
@@ -53,7 +55,14 @@ In the Supabase **SQL Editor**, run these **in order** (each is idempotent):
    trigger, RPCs (accept/helpful/interest), `title` column
 3. `supabase/migrations/0002_social.sql` — follows, messages, notifications
    (+ RLS, grants, notification triggers)
-4. `supabase/seed.sql` — demo data (optional but recommended)
+4. `supabase/migrations/0003_post_slugs.sql` — `posts.slug` + auto-slug trigger
+5. `supabase/migrations/0004_collab_interests.sql` — `collab_interests` table so
+   job interest records *who* raised their hand (+ derived `interested_count`,
+   accept/decline, notifications)
+6. `supabase/migrations/0005_cv_attachments.sql` — application notes + CV
+   uploads: creates the **private `cvs` Storage bucket** and its policies in
+   SQL, so there is nothing to set up in the Storage dashboard
+7. `supabase/seed.sql` — demo data (optional but recommended)
 
 ### 4. Disable email confirmation (dev)
 

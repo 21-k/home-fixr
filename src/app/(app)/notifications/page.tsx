@@ -12,7 +12,9 @@ type NotifType =
   | "mentorship_request"
   | "mentorship_accepted"
   | "message"
-  | "follow";
+  | "follow"
+  | "collab_interest"
+  | "collab_accepted";
 
 type Notif = {
   id: string;
@@ -44,6 +46,16 @@ function describe(n: Notif): { text: string; href: string } {
         text: `${name} followed you`,
         href: n.actor ? `/u/${n.actor.username}` : "/feed",
       };
+    case "collab_interest":
+      return {
+        text: `${name} is interested in your job posting`,
+        href: "/collabs/mine",
+      };
+    case "collab_accepted":
+      return {
+        text: `${name} accepted you for a job`,
+        href: "/collabs/mine",
+      };
     default:
       return { text: "New notification", href: "/feed" };
   }
@@ -71,8 +83,8 @@ export default async function NotificationsPage() {
 
       {notifs.length === 0 ? (
         <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500">
-          Nothing yet. Replies, mentorship requests, follows, and messages show up
-          here.
+          Nothing yet. Replies, mentorship requests, follows, messages, and job
+          interest show up here.
         </p>
       ) : (
         <div className="divide-y divide-zinc-100 rounded-xl border border-zinc-200 bg-white">

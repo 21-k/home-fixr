@@ -1,13 +1,18 @@
 import Link from "next/link";
-import { Banknote, CalendarDays, MapPin, Users } from "lucide-react";
+import { Banknote, CalendarDays, ClipboardList, MapPin, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { CollabComposer } from "@/components/CollabComposer";
 import { CollabIcon } from "@/components/icons";
-import { expressInterest } from "@/lib/actions";
+import { CollabInterestControl } from "@/components/CollabInterestControl";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { COLLAB_TYPE_LABEL } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
-import type { AuthorLite, CollabType, JobCollab } from "@/lib/types";
+import type {
+  AuthorLite,
+  CollabInterest,
+  CollabType,
+  JobCollab,
+} from "@/lib/types";
 
 const AUTHOR_COLS = "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
@@ -50,6 +55,21 @@ export default async function CollabsPage({
   const { data } = await query;
   const collabs = (data ?? []) as unknown as CollabWithPoster[];
 
+  // Which of these have I already applied to, and with what? RLS only returns
+  // my own rows here, so this is safe to query wholesale. The note and filename
+  // let the form reopen prefilled for edits.
+  type MyInterest = Pick<CollabInterest, "status" | "note" | "cv_name">;
+  const myInterest = new Map<string, MyInterest>();
+  if (profile) {
+    const { data: mine } = await supabase
+      .from("collab_interests")
+      .select("collab_id, status, note, cv_name")
+      .eq("user_id", profile.id);
+    for (const r of (mine ?? []) as (MyInterest & { collab_id: string })[]) {
+      myInterest.set(r.collab_id, r);
+    }
+  }
+
   const sidebar = (
     <nav>
       <SideSection>Type</SideSection>
@@ -63,6 +83,16 @@ export default async function CollabsPage({
           </SideLink>
         </Link>
       ))}
+      {profile && (
+        <>
+          <SideSection>Yours</SideSection>
+          <Link href="/collabs/mine">
+            <SideLink>
+              <ClipboardList className="size-4" /> My jobs
+            </SideLink>
+          </Link>
+        </>
+      )}
     </nav>
   );
 
@@ -146,18 +176,19 @@ export default async function CollabsPage({
                 <span className="inline-flex items-center gap-1">
                   <Users className="size-3.5" /> {c.interested_count} interested
                 </span>
-                {profile && (
-                  <form action={expressInterest} className="ml-auto">
-                    <input type="hidden" name="collab_id" value={c.id} />
-                    <button
-                      type="submit"
-                      className="rounded-lg bg-brand-500 px-3 py-1.5 text-[13px] font-medium text-white hover:bg-brand-600"
-                    >
-                      I&apos;m interested
-                    </button>
-                  </form>
-                )}
               </div>
+
+              {profile && (
+                <CollabInterestControl
+                  collabId={c.id}
+                  userId={profile.id}
+                  isOwnPosting={c.poster_id === profile.id}
+                  status={myInterest.get(c.id)?.status}
+                  note={myInterest.get(c.id)?.note ?? null}
+                  cvName={myInterest.get(c.id)?.cv_name ?? null}
+                  posterUsername={c.poster?.username ?? null}
+                />
+              )}
             </div>
           ))}
         </div>
@@ -165,3 +196,4 @@ export default async function CollabsPage({
     </AppBody>
   );
 }
+
