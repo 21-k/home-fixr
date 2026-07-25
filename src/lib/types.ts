@@ -7,6 +7,16 @@ export type CollabType = "extra_hand" | "ride_along" | "specialist";
 export type MentorshipStatus = "pending" | "active" | "declined";
 export type CollabInterestStatus = "interested" | "accepted" | "declined";
 
+/** Coarse age bands — see the privacy note in migration 0008. */
+export type AgeRange =
+  | "under_18"
+  | "18_24"
+  | "25_34"
+  | "35_44"
+  | "45_54"
+  | "55_plus"
+  | "undisclosed";
+
 export type Profile = {
   id: string;
   username: string;
@@ -74,6 +84,16 @@ export type CollabInterest = {
   // filename for display (migration 0005).
   cv_path: string | null;
   cv_name: string | null;
+  // Application detail (migration 0008). All optional — the pitch is the only
+  // thing we insist on.
+  years_experience: number | null;
+  graduation_year: number | null;
+  age_range: AgeRange | null;
+  skills: string[] | null;
+  is_licensed: boolean | null;
+  license_note: string | null;
+  has_own_tools: boolean | null;
+  has_transport: boolean | null;
   created_at: string;
 };
 

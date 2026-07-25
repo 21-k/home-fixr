@@ -2,6 +2,12 @@
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import {
+  AGE_RANGE_VALUES,
+  GENERAL_SKILLS,
+  MAX_SKILLS,
+  SKILLS_BY_TRADE,
+} from "@/lib/skills";
 import { CV_BUCKET } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 import type { CollabType, PostType, TradeType } from "@/lib/types";
@@ -215,11 +221,60 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
     return { error: "This is your own posting." };
   }
 
+  // --- Optional application detail (migration 0008) ---
+
+  const intOrNull = (raw: FormDataEntryValue | null): number | null => {
+    const s = String(raw ?? "").trim();
+    if (!s) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? Math.trunc(n) : NaN;
+  };
+
+  const years = intOrNull(formData.get("years_experience"));
+  if (years !== null && (Number.isNaN(years) || years < 0 || years > 70)) {
+    return { error: "Years in the trade should be a number between 0 and 70." };
+  }
+
+  const gradYear = intOrNull(formData.get("graduation_year"));
+  if (gradYear !== null && (Number.isNaN(gradYear) || gradYear < 1950 || gradYear > 2100)) {
+    return { error: "Graduation year doesn't look right." };
+  }
+
+  const ageRaw = String(formData.get("age_range") ?? "").trim();
+  if (ageRaw && !AGE_RANGE_VALUES.includes(ageRaw as (typeof AGE_RANGE_VALUES)[number])) {
+    return { error: "Pick an age range from the list." };
+  }
+
+  // Only accept skills from the curated list — free-text values arriving here
+  // would be a crafted request, not something the form can produce.
+  const allowedSkills = new Set([
+    ...Object.values(SKILLS_BY_TRADE).flat(),
+    ...GENERAL_SKILLS,
+  ]);
+  const skills = formData
+    .getAll("skills")
+    .map((s) => String(s))
+    .filter((s) => allowedSkills.has(s))
+    .slice(0, MAX_SKILLS);
+
+  const licenseNote = String(formData.get("license_note") ?? "").trim();
+  if (licenseNote.length > 120) {
+    return { error: "Keep the licence note short." };
+  }
+
   const { error } = await supabase.from("collab_interests").upsert(
     {
       collab_id: collabId,
       user_id: user.id,
       note,
+      years_experience: years,
+      graduation_year: gradYear,
+      age_range: ageRaw || null,
+      skills: skills.length ? skills : null,
+      is_licensed: formData.get("is_licensed") === "on",
+      license_note: licenseNote || null,
+      has_own_tools: formData.get("has_own_tools") === "on",
+      has_transport: formData.get("has_transport") === "on",
       ...(cvPath ? { cv_path: cvPath, cv_name: cvName || "CV" } : {}),
     },
     { onConflict: "collab_id,user_id" },
