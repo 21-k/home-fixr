@@ -5,6 +5,7 @@ product review with Gaurav.
 
 | Document | What it's for |
 | --- | --- |
+| [platforms.md](platforms.md) | Channel research — where tradespeople actually are, with reported reach |
 | [reddit-facebook-templates.md](reddit-facebook-templates.md) | Post and DM templates, plus the rules that get people banned |
 | [social-launch.md](social-launch.md) | Account setup and the first two weeks of content |
 | [firm-partnerships.md](firm-partnerships.md) | Building a real contact list + call/email scripts |
