@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import { Paperclip } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { timeAgo } from "@/lib/format";
@@ -10,10 +11,21 @@ type Message = {
   id: string;
   sender_id: string;
   recipient_id: string;
-  body: string;
+  body: string | null;
+  attachment_name: string | null;
+  attachment_type: string | null;
   read_at: string | null;
   created_at: string;
 };
+
+/** A photo with no caption still needs to read as something in the list. */
+function preview(m: Message): string {
+  if (m.body) return m.body;
+  if (m.attachment_name) {
+    return `${m.attachment_type?.startsWith("image/") ? "Photo" : "File"} · ${m.attachment_name}`;
+  }
+  return "";
+}
 
 export default async function MessagesPage() {
   const me = await getCurrentProfile();
@@ -72,9 +84,12 @@ export default async function MessagesPage() {
                       {timeAgo(c.last.created_at)}
                     </span>
                   </div>
-                  <p className="truncate text-sm text-zinc-600">
+                  <p className="flex items-center gap-1 truncate text-sm text-zinc-600">
                     {c.last.sender_id === me.id && "You: "}
-                    {c.last.body}
+                    {!c.last.body && c.last.attachment_name && (
+                      <Paperclip className="size-3.5 shrink-0 text-zinc-400" />
+                    )}
+                    {preview(c.last)}
                   </p>
                 </div>
                 {c.unread > 0 && (

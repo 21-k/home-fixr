@@ -33,3 +33,40 @@ export function checkCvFile(file: File): string | null {
   }
   return null;
 }
+
+// ================================================================
+// Message attachments — private `message-attachments` bucket
+// (created in supabase/migrations/0007_message_attachments.sql).
+// ================================================================
+
+export const MESSAGE_BUCKET = "message-attachments";
+
+export const MESSAGE_MAX_BYTES = 10 * 1024 * 1024; // 10 MB
+
+export const MESSAGE_MIME_TYPES = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+  "image/heic",
+  "image/gif",
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+] as const;
+
+export const MESSAGE_ACCEPT = ".jpg,.jpeg,.png,.webp,.heic,.gif,.pdf,.doc,.docx";
+
+export function checkMessageFile(file: File): string | null {
+  if (file.size > MESSAGE_MAX_BYTES) {
+    return "That file is over 10MB. Try a smaller photo or a compressed PDF.";
+  }
+  if (!(MESSAGE_MIME_TYPES as readonly string[]).includes(file.type)) {
+    return "You can send images, PDFs, and Word documents.";
+  }
+  return null;
+}
+
+/** Images render inline in the thread; everything else becomes a download. */
+export function isImageType(mime: string | null): boolean {
+  return Boolean(mime?.startsWith("image/"));
+}

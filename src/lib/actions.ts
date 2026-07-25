@@ -249,10 +249,17 @@ export async function respondToCollabInterest(formData: FormData): Promise<void>
 
 // --- Messaging (messages table added in migrations/0002) ---
 
-export async function sendMessage(
-  _prev: FormState,
-  formData: FormData,
-): Promise<FormState> {
+/**
+ * Send a message, optionally with a file or image (migration 0007).
+ *
+ * Like CVs, attachments upload straight from the browser to Storage and only
+ * the object key arrives here — a job-site photo routinely exceeds the 1MB
+ * Server Action body cap.
+ *
+ * Called imperatively from the composer once any upload finishes, so this takes
+ * a single argument rather than the useActionState (prev, formData) pair.
+ */
+export async function sendMessage(formData: FormData): Promise<FormState> {
   const { supabase, user } = await requireUser();
   if (!user) return { error: "Please sign in to send a message." };
 
@@ -261,11 +268,29 @@ export async function sendMessage(
   const body = String(formData.get("body") ?? "").trim();
   if (!recipientId || recipientId === user.id)
     return { error: "Invalid recipient." };
-  if (!body) return { error: "Write a message first." };
 
-  const { error } = await supabase
-    .from("messages")
-    .insert({ sender_id: user.id, recipient_id: recipientId, body });
+  const path = String(formData.get("attachment_path") ?? "").trim();
+  const name = String(formData.get("attachment_name") ?? "").trim();
+  const type = String(formData.get("attachment_type") ?? "").trim();
+
+  // A photo on its own is a valid message, but something has to be there.
+  if (!body && !path) return { error: "Write a message or attach a file." };
+
+  // Never trust a client-supplied object key: the recipient-read storage policy
+  // grants access to whatever path is stored on the row, so a crafted value
+  // could otherwise leak another member's upload. Keys live under "<user_id>/".
+  if (path && !path.startsWith(`${user.id}/`)) {
+    return { error: "That attachment isn't yours." };
+  }
+
+  const { error } = await supabase.from("messages").insert({
+    sender_id: user.id,
+    recipient_id: recipientId,
+    body,
+    ...(path
+      ? { attachment_path: path, attachment_name: name || "Attachment", attachment_type: type || null }
+      : {}),
+  });
   if (error) return { error: error.message };
 
   revalidatePath("/messages");
@@ -336,6 +361,65 @@ export async function updateProfile(
   revalidatePath("/settings");
   revalidatePath("/feed");
   return { ok: true };
+}
+
+/**
+ * The post-signup welcome step (migration 0006). Signup itself only takes name,
+ * email, password, and role, so this is where trade, region, and experience get
+ * filled in — including `role` for Google users, who never saw our form and
+ * were defaulted to 'junior' by the signup trigger.
+ *
+ * Stamping `onboarded_at` is what stops the prompt from reappearing.
+ */
+export async function completeOnboarding(
+  _prev: FormState,
+  formData: FormData,
+): Promise<FormState> {
+  const { supabase, user } = await requireUser();
+  if (!user) return { error: "Please sign in." };
+
+  const role = String(formData.get("role") ?? "");
+  if (role !== "junior" && role !== "senior") {
+    return { error: "Pick whether you're new to the trade or a senior pro." };
+  }
+
+  const fullName = String(formData.get("full_name") ?? "").trim();
+  const yearsRaw = String(formData.get("years_experience") ?? "").trim();
+  const years = yearsRaw ? Number(yearsRaw) : null;
+  if (years !== null && (Number.isNaN(years) || years < 0 || years > 70)) {
+    return { error: "Years in the trade should be a number between 0 and 70." };
+  }
+
+  const update: Record<string, unknown> = {
+    role,
+    trade: nullableTrade(formData.get("trade")),
+    region: String(formData.get("region") ?? "").trim() || null,
+    title: String(formData.get("title") ?? "").trim() || null,
+    years_experience: years,
+    onboarded_at: new Date().toISOString(),
+  };
+  // Only overwrite the name if they actually typed one — Google already gave us
+  // a good value and we don't want a blank field wiping it.
+  if (fullName) update.full_name = fullName;
+
+  const { error } = await supabase.from("profiles").update(update).eq("id", user.id);
+  if (error) return { error: error.message };
+
+  revalidatePath("/feed");
+  revalidatePath("/settings");
+  redirect("/feed");
+}
+
+/** Lets someone dismiss the welcome step and fill their profile in later. */
+export async function skipOnboarding(): Promise<void> {
+  const { supabase, user } = await requireUser();
+  if (!user) return;
+  await supabase
+    .from("profiles")
+    .update({ onboarded_at: new Date().toISOString() })
+    .eq("id", user.id);
+  revalidatePath("/feed");
+  redirect("/feed");
 }
 
 // --- Delete own content (RLS: author-only delete policies) ---

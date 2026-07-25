@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useActionState, useState } from "react";
 import { GraduationCap, Wrench, type LucideIcon } from "lucide-react";
+import { GoogleButton } from "@/components/GoogleButton";
 import { signUp, type AuthState } from "@/lib/auth/actions";
 import type { UserRole } from "@/lib/types";
 
@@ -33,9 +34,21 @@ export default function JoinPage() {
         <h1 className="text-3xl font-semibold tracking-tight">
           How will you use Home Fixr?
         </h1>
-        <p className="mt-2 mb-8 text-sm text-zinc-600">
+        <p className="mt-2 mb-6 text-sm text-zinc-600">
           Pick the one that fits you best. You can switch later.
         </p>
+
+        <div className="mb-6 rounded-xl border border-zinc-200 bg-white p-5">
+          <GoogleButton label="Sign up with Google" />
+          <p className="mt-2.5 text-center text-[13px] text-zinc-500">
+            Fastest way in — we&apos;ll ask about your trade after.
+          </p>
+          <div className="mt-4 flex items-center gap-3">
+            <span className="h-px flex-1 bg-zinc-200" />
+            <span className="text-xs uppercase tracking-wide text-zinc-400">or</span>
+            <span className="h-px flex-1 bg-zinc-200" />
+          </div>
+        </div>
 
         <form action={formAction} className="flex flex-col gap-6">
           <input type="hidden" name="role" value={role} />
@@ -57,39 +70,20 @@ export default function JoinPage() {
             />
           </div>
 
+          {/* Deliberately three fields. Trade, region, years, and title are
+              asked at /welcome once the user is already signed in — a stranger
+              deciding whether to trust us shouldn't face a seven-field form. */}
           <div className="rounded-xl border border-zinc-200 bg-white p-6">
-            <h2 className="mb-4 text-base font-semibold">Your details</h2>
+            <h2 className="mb-1 text-base font-semibold">Create your account</h2>
+            <p className="mb-4 text-[13px] text-zinc-500">
+              That&apos;s all we need — no newsletter, no spam.
+            </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <Field label="Full name" name="full_name" required placeholder="Marcus Johnson" />
               <Field label="Email" name="email" type="email" required placeholder="you@example.com" />
-              <Field label="Password" name="password" type="password" required placeholder="At least 6 characters" />
-              <Field label="Region" name="region" placeholder="Newark, NJ" />
-
-              <label className="flex flex-col gap-1.5">
-                <span className="text-sm font-medium">Trade</span>
-                <select
-                  name="trade"
-                  defaultValue=""
-                  className="rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-brand-500"
-                >
-                  <option value="">Choose a trade…</option>
-                  <option value="plumbing">Plumbing</option>
-                  <option value="hvac">HVAC</option>
-                  <option value="electrical">Electrical</option>
-                  <option value="other">Other / General</option>
-                </select>
-              </label>
-
-              <Field
-                label="Years in the trade"
-                name="years_experience"
-                type="number"
-                placeholder={role === "senior" ? "15" : "0"}
-              />
-
-              {role === "senior" && (
-                <Field label="Title" name="title" placeholder="Master Plumber" />
-              )}
+              <div className="sm:col-span-2">
+                <Field label="Password" name="password" type="password" required placeholder="At least 6 characters" />
+              </div>
             </div>
           </div>
 

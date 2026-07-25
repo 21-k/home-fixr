@@ -1,8 +1,9 @@
 "use server";
 
+import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { createClient } from "@/lib/supabase/server";
-import type { UserRole, TradeType } from "@/lib/types";
+import type { UserRole } from "@/lib/types";
 
 export type AuthState = { error?: string; message?: string };
 
@@ -34,6 +35,12 @@ export async function signIn(
   redirect("/feed");
 }
 
+/**
+ * Signup collects the minimum: name, email, password, and which side of the
+ * trade you're on. Trade, region, years, and title are asked at /welcome once
+ * the user is already inside — a stranger deciding whether to trust us should
+ * not be facing a seven-field form.
+ */
 export async function signUp(
   _prev: AuthState,
   formData: FormData,
@@ -42,10 +49,6 @@ export async function signUp(
   const password = String(formData.get("password") ?? "");
   const fullName = String(formData.get("full_name") ?? "").trim();
   const role = String(formData.get("role") ?? "junior") as UserRole;
-  const trade = String(formData.get("trade") ?? "") as TradeType | "";
-  const region = String(formData.get("region") ?? "").trim();
-  const title = String(formData.get("title") ?? "").trim();
-  const yearsRaw = String(formData.get("years_experience") ?? "").trim();
 
   if (!email || !password) return { error: "Email and password are required." };
   if (password.length < 6)
@@ -64,24 +67,51 @@ export async function signUp(
         username: usernameFrom(email),
         avatar_initials: initialsFrom(fullName),
         role,
-        trade: trade || null,
-        region: region || null,
-        title: title || (role === "senior" ? "Senior pro" : "New to the trade"),
-        years_experience: yearsRaw || null,
       },
     },
   });
 
   if (error) return { error: error.message };
 
-  // Email confirmation OFF -> a session exists immediately, so go to the feed.
-  if (data.session) redirect("/feed");
+  // Email confirmation OFF -> a session exists immediately.
+  if (data.session) redirect("/welcome");
 
   // Email confirmation ON -> no session yet.
   return {
     message:
       "Account created! Check your email to confirm your address, then sign in.",
   };
+}
+
+/**
+ * Kick off Google OAuth. Supabase returns a URL we redirect the browser to;
+ * Google then bounces back to /auth/callback with a code to exchange.
+ *
+ * Requires the Google provider to be enabled in Supabase → Authentication →
+ * Sign In / Providers, with a Google Cloud OAuth client's ID and secret.
+ */
+export async function signInWithGoogle(): Promise<AuthState> {
+  const supabase = await createClient();
+
+  // Derive the origin from the request so this works on localhost, Vercel
+  // previews, and the production domain without per-environment config.
+  const hdrs = await headers();
+  const host = hdrs.get("x-forwarded-host") ?? hdrs.get("host") ?? "localhost:3000";
+  const protocol = host.startsWith("localhost") ? "http" : "https";
+  const origin = `${protocol}://${host}`;
+
+  const { data, error } = await supabase.auth.signInWithOAuth({
+    provider: "google",
+    options: {
+      redirectTo: `${origin}/auth/callback`,
+      queryParams: { prompt: "select_account" },
+    },
+  });
+
+  if (error) return { error: error.message };
+  if (!data.url) return { error: "Could not start Google sign-in." };
+
+  redirect(data.url);
 }
 
 export async function signOut(): Promise<void> {
