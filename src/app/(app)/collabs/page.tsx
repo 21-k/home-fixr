@@ -56,14 +56,29 @@ export default async function CollabsPage({
   const collabs = (data ?? []) as unknown as CollabWithPoster[];
 
   // Which of these have I already applied to, and with what? RLS only returns
-  // my own rows here, so this is safe to query wholesale. The note and filename
-  // let the form reopen prefilled for edits.
-  type MyInterest = Pick<CollabInterest, "status" | "note" | "cv_name">;
+  // my own rows here, so this is safe to query wholesale. Pulling the full
+  // application lets the form reopen prefilled for edits.
+  type MyInterest = Pick<
+    CollabInterest,
+    | "status"
+    | "note"
+    | "cv_name"
+    | "years_experience"
+    | "graduation_year"
+    | "age_range"
+    | "skills"
+    | "is_licensed"
+    | "license_note"
+    | "has_own_tools"
+    | "has_transport"
+  >;
   const myInterest = new Map<string, MyInterest>();
   if (profile) {
     const { data: mine } = await supabase
       .from("collab_interests")
-      .select("collab_id, status, note, cv_name")
+      .select(
+        "collab_id, status, note, cv_name, years_experience, graduation_year, age_range, skills, is_licensed, license_note, has_own_tools, has_transport",
+      )
       .eq("user_id", profile.id);
     for (const r of (mine ?? []) as (MyInterest & { collab_id: string })[]) {
       myInterest.set(r.collab_id, r);
@@ -184,8 +199,9 @@ export default async function CollabsPage({
                   userId={profile.id}
                   isOwnPosting={c.poster_id === profile.id}
                   status={myInterest.get(c.id)?.status}
-                  note={myInterest.get(c.id)?.note ?? null}
-                  cvName={myInterest.get(c.id)?.cv_name ?? null}
+                  application={myInterest.get(c.id) ?? null}
+                  trade={c.trade}
+                  defaultYears={profile.years_experience}
                   posterUsername={c.poster?.username ?? null}
                 />
               )}

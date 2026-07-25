@@ -1,7 +1,9 @@
 import Link from "next/link";
 import {
+  AlertTriangle,
   Briefcase,
   CalendarDays,
+  Check,
   ClipboardList,
   FileText,
   MapPin,
@@ -13,6 +15,7 @@ import { CollabIcon } from "@/components/icons";
 import { respondToCollabInterest, toggleCollabInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import { ageRangeLabel } from "@/lib/skills";
 import { CV_BUCKET, CV_SIGNED_URL_SECONDS } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 import type {
@@ -226,6 +229,7 @@ export default async function MyJobsPage() {
                                   {i.note}
                                 </p>
                               )}
+                              <ApplicationDetail interest={i} />
                               {i.cv_path && (
                                 <div className="mt-1.5">
                                   <CvLink
@@ -291,6 +295,7 @@ export default async function MyJobsPage() {
                       {i.note}
                     </p>
                   )}
+                  <ApplicationDetail interest={i} />
                   {i.cv_path && (
                     <div className="mt-1.5">
                       <CvLink url={cvUrls.get(i.cv_path)} name={i.cv_name} />
@@ -364,6 +369,91 @@ function CollabHeading({ collab }: { collab: JobCollab }) {
         )}
       </div>
     </>
+  );
+}
+
+/**
+ * The screening detail from an application (migration 0008): time in the trade,
+ * graduation year, age band, skills, licence, tools, transport.
+ *
+ * Renders nothing when an applicant filled none of it in — everything past the
+ * pitch is optional, and an empty grid of dashes reads worse than absence.
+ */
+function ApplicationDetail({ interest: i }: { interest: CollabInterest }) {
+  const facts: { label: string; value: string }[] = [];
+  if (i.years_experience != null) {
+    facts.push({
+      label: "In the trade",
+      value: `${i.years_experience} ${i.years_experience === 1 ? "yr" : "yrs"}`,
+    });
+  }
+  if (i.graduation_year != null) {
+    facts.push({ label: "Graduated", value: String(i.graduation_year) });
+  }
+  const age = ageRangeLabel(i.age_range);
+  if (age) facts.push({ label: "Age", value: age });
+  if (i.is_licensed) {
+    facts.push({ label: "Licensed", value: i.license_note || "Yes" });
+  }
+
+  const badges: string[] = [];
+  if (i.has_own_tools) badges.push("Own tools");
+  if (i.has_transport) badges.push("Own transport");
+
+  const skills = i.skills ?? [];
+  if (facts.length === 0 && badges.length === 0 && skills.length === 0) return null;
+
+  return (
+    <div className="mt-2 rounded-lg border border-zinc-200 bg-white p-3">
+      {facts.length > 0 && (
+        <dl className="flex flex-wrap gap-x-5 gap-y-1.5">
+          {facts.map((f) => (
+            <div key={f.label}>
+              <dt className="text-[11px] uppercase tracking-wide text-zinc-500">
+                {f.label}
+              </dt>
+              <dd className="text-[13px] font-medium text-zinc-800">{f.value}</dd>
+            </div>
+          ))}
+        </dl>
+      )}
+
+      {i.age_range === "under_18" && (
+        <p className="mt-2 flex items-start gap-1.5 rounded bg-amber-50 px-2.5 py-1.5 text-[12px] leading-relaxed text-amber-900">
+          <AlertTriangle className="mt-0.5 size-3 shrink-0" />
+          <span>
+            Applicant is under 18 — check site age rules, parental consent, and
+            your insurance before bringing them along.
+          </span>
+        </p>
+      )}
+
+      {skills.length > 0 && (
+        <div className="mt-2.5 flex flex-wrap gap-1">
+          {skills.map((s) => (
+            <span
+              key={s}
+              className="rounded-full bg-brand-50 px-2 py-0.5 text-[12px] font-medium text-brand-700"
+            >
+              {s}
+            </span>
+          ))}
+        </div>
+      )}
+
+      {badges.length > 0 && (
+        <div className="mt-2 flex flex-wrap gap-1">
+          {badges.map((b) => (
+            <span
+              key={b}
+              className="inline-flex items-center gap-1 rounded bg-success-bg px-2 py-0.5 text-[12px] font-medium text-success-fg"
+            >
+              <Check className="size-3" /> {b}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 

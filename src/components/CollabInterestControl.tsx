@@ -4,9 +4,12 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { MessageSquare } from "lucide-react";
-import { CollabApplyForm } from "@/components/CollabApplyForm";
+import {
+  CollabApplyForm,
+  type ExistingApplication,
+} from "@/components/CollabApplyForm";
 import { toggleCollabInterest } from "@/lib/actions";
-import type { CollabInterestStatus } from "@/lib/types";
+import type { CollabInterestStatus, TradeType } from "@/lib/types";
 
 /**
  * The apply / applied / withdraw control on a collab card, plus the button to
@@ -20,16 +23,20 @@ export function CollabInterestControl({
   userId,
   isOwnPosting,
   status,
-  note,
-  cvName,
+  application,
+  trade,
+  defaultYears,
   posterUsername,
 }: {
   collabId: string;
   userId: string;
   isOwnPosting: boolean;
   status: CollabInterestStatus | undefined;
-  note: string | null;
-  cvName: string | null;
+  /** The caller's own existing application, for prefilling an edit. */
+  application: ExistingApplication | null;
+  /** Drives which skill checklist the form shows. */
+  trade: TradeType | null;
+  defaultYears: number | null;
   posterUsername: string | null;
 }) {
   const router = useRouter();
@@ -113,8 +120,9 @@ export function CollabInterestControl({
         <CollabApplyForm
           collabId={collabId}
           userId={userId}
-          existingNote={note}
-          existingCvName={cvName}
+          trade={trade}
+          defaultYears={defaultYears}
+          existing={application}
           onDone={() => {
             setOpen(false);
             router.refresh();
