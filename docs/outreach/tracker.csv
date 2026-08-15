@@ -1,0 +1,10 @@
+type,name,trade,town,contact_name,phone,email,website,source,status,last_contact,notes
+association,NJ PHCC (Plumbing-Heating-Cooling Contractors of NJ),all,statewide,,,,https://njphcc.clubexpress.com,web research 2026-07-24,not started,,Runs own plumbing + HVAC apprenticeships — mentorship already their business. Highest-value first call.
+association,NJ ACCA (Air Conditioning Contractors of America NJ),hvac,statewide,,,,https://www.njacca.org/,web research 2026-07-24,not started,,Non-profit HVACR trade association statewide.
+association,United Association of New Jersey,hvac,statewide,,,,https://www.uanj.org/,web research 2026-07-24,not started,,160+ union HVACR contractors in jurisdiction.
+association,Career Tech NJ (county vo-tech umbrella),all,statewide,,,,https://careertechnj.org/adults/,web research 2026-07-24,not started,,Searchable adult-program finder. Best route to juniors in bulk.
+school,Camden County College,all,Blackwood,,,,https://www.camdencc.edu/program/returning-technicaltrade-professionals/,web research 2026-07-24,not started,,Electrical/Plumbing/HVAC apprenticeships; 144 classroom + 2000 OJT hrs per year.
+school,Hunterdon County Polytech,all,Flemington,,,,https://www.hcvsdadulted.org/apprenticeships,web research 2026-07-24,not started,,4-year apprenticeships in Electrical HVAC Plumbing.
+school,Somerset County Vo-Tech,plumbing,Bridgewater,,,,https://www.scvths.org/programs/career-technical-programs/plumbing-environmental-technology,web research 2026-07-24,not started,,Plumbing & Environmental Technology program.
+school,Ocean County Vo-Tech,all,Toms River,,,,https://www.ocvts.org/construction,web research 2026-07-24,not started,,Construction trades programs.
+school,Essex County Vo-Tech,plumbing,Newark,,,,https://mycareer.nj.gov/training/49656,web research 2026-07-24,not started,,Plumbing apprenticeship training. Newark = same region as seeded content.
