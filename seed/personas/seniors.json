@@ -1,0 +1,794 @@
+[
+  {
+    "slot_id": "S01",
+    "roster_no": 1,
+    "handle": "BergenBoilerMan",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Frank Castellano",
+    "avatar_initials": "BB",
+    "role": "senior",
+    "trade": "plumbing",
+    "region": "NJ-North",
+    "county": "Bergen",
+    "town_hint": "Hackensack",
+    "public_region": "Bergen County, NJ",
+    "title": "Master Plumber",
+    "years_in": 28,
+    "path": "owner",
+    "affiliation_hint": "Owns a small residential service shop, 4 trucks, Bergen County",
+    "licenses": [
+      "NJ Master Plumber"
+    ],
+    "bio": "Master plumber, 28 years. Small shop in Bergen, four trucks. Boilers, steam, residential service. If you learned it on YouTube I'll probably tell you why it's wrong. Ask anyway.",
+    "voice": {
+      "register": "salty",
+      "punctuation": "normal",
+      "tics": [
+        "calls people 'kid'",
+        "ends a hard truth with 'that's the job'"
+      ],
+      "swears": "mild"
+    },
+    "situation": "Short on helpers worth keeping. Still takes the worst January no-heat calls himself because he doesn't trust anyone else on old steam yet.",
+    "goals": [
+      "find two apprentices worth keeping",
+      "stop running emergency calls himself before 60"
+    ],
+    "activity_level": "heavy",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "28 yrs in",
+      "owns shop, 4 trucks",
+      "Bergen County, works around Hackensack/Lodi/Garfield",
+      "boilers + steam specialist",
+      "NJ Master Plumber"
+    ],
+    "fact_flags": [],
+    "joined_at": "2026-07-05T10:35:30-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S02",
+    "roster_no": 2,
+    "handle": "ForemanFromMorris",
+    "display_name": "Greg P.",
+    "display_preference": "first_name_initial",
+    "full_name": "Greg Petrakis",
+    "avatar_initials": "GP",
+    "role": "senior",
+    "trade": "electrical",
+    "region": "NJ-North",
+    "county": "Morris",
+    "town_hint": "Parsippany",
+    "public_region": "Morris County, NJ",
+    "title": "Foreman, Inside Wireman (IBEW)",
+    "years_in": 19,
+    "path": "foreman",
+    "affiliation_hint": "IBEW Local 102 journeyman, foreman the last 6 years",
+    "licenses": [],
+    "bio": "Inside wireman, 19 years, running work as a foreman for the last 6. Mostly data halls and big commercial lately (Secaucus, Piscataway). I'll talk union apprenticeship all day. Wear your glasses.",
+    "voice": {
+      "register": "formal",
+      "punctuation": "normal",
+      "tics": [
+        "brings up LOTO and PPE",
+        "signs off 'stay safe'"
+      ],
+      "swears": "none"
+    },
+    "situation": "Running a crew on a long data-center fit-out; gets a lot of apprentices who've never worked in a live building.",
+    "goals": [
+      "get more NJ kids to apply to the apprenticeship",
+      "retire with all ten fingers"
+    ],
+    "activity_level": "heavy",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "19 yrs",
+      "IBEW Local 102 journeyman, foreman 6 yrs",
+      "Morris County, lives near Parsippany",
+      "data center / commercial work in Secaucus & Piscataway",
+      "big on safety"
+    ],
+    "fact_flags": [
+      "IBEW Local 102 covers Morris County area (verify jurisdiction)"
+    ],
+    "joined_at": "2026-07-08T22:45:10-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S03",
+    "roster_no": 3,
+    "handle": "DownTheShoreSparks",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Kevin Doyle",
+    "avatar_initials": "DT",
+    "role": "senior",
+    "trade": "electrical",
+    "region": "NJ-Central",
+    "county": "Monmouth",
+    "town_hint": "Middletown",
+    "public_region": "Monmouth County, NJ",
+    "title": "Electrical Contractor",
+    "years_in": 22,
+    "path": "owner",
+    "affiliation_hint": "Non-union shop owner, Monmouth County",
+    "licenses": [
+      "NJ Electrical Contractor"
+    ],
+    "bio": "Licensed EC, run a small non-union shop in Monmouth. Shore houses and renovations, a lot of raised homes since Sandy. Trade school got me in the door faster than any list would have, but that was me. Your mileage may vary.",
+    "voice": {
+      "register": "chatty",
+      "punctuation": "normal",
+      "tics": [
+        "brings up Sandy rebuilds",
+        "says 'honestly' a lot"
+      ],
+      "swears": "mild"
+    },
+    "situation": "Busy with shore renovation work; always looking for a helper who shows up on time and doesn't need to be told twice.",
+    "goals": [
+      "hire one more licensed guy",
+      "get his apprentice through the contractor exam"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "22 yrs",
+      "NJ Electrical Contractor, non-union shop",
+      "Monmouth County (Middletown)",
+      "shore renovations, raised houses post-Sandy",
+      "went to trade school"
+    ],
+    "fact_flags": [],
+    "joined_at": "2026-07-03T05:53:32-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S04",
+    "roster_no": 4,
+    "handle": "MiddlesexHeatPumps",
+    "display_name": "Paul Genovese",
+    "display_preference": "full_name",
+    "full_name": "Paul Genovese",
+    "avatar_initials": "PG",
+    "role": "senior",
+    "trade": "hvac",
+    "region": "NJ-Central",
+    "county": "Middlesex",
+    "town_hint": "Edison",
+    "public_region": "Middlesex County, NJ",
+    "title": "HVAC contractor, owner",
+    "years_in": 25,
+    "path": "owner",
+    "affiliation_hint": "Owns an HVAC company in Middlesex County",
+    "licenses": [
+      "NJ Master HVACR Contractor",
+      "EPA 608 Universal"
+    ],
+    "bio": "25 years in HVAC, own a residential/light commercial company in Middlesex. Oil-to-gas conversions, heat pumps, a lot of rebate paperwork. Happy to talk the business side: pricing, callbacks, why most new guys undercharge.",
+    "voice": {
+      "register": "formal",
+      "punctuation": "normal",
+      "tics": [
+        "writes in bullet points (the only one who does)",
+        "talks margins and callbacks"
+      ],
+      "swears": "none"
+    },
+    "situation": "Busier with heat-pump installs than ever; trying to train techs on the sales and paperwork side, not just wrenching.",
+    "goals": [
+      "build a second install crew",
+      "get callbacks under 3%"
+    ],
+    "activity_level": "heavy",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "25 yrs",
+      "owns HVAC company, Middlesex County (Edison)",
+      "oil-to-gas, heat pumps, rebates",
+      "NJ Master HVACR Contractor + EPA 608 Universal",
+      "uses bullet points"
+    ],
+    "fact_flags": [
+      "uses a full name on the site: confirm 'Paul Genovese' isn't a real NJ HVAC contractor before prod",
+      "NJ HVACR license name: 'Master HVACR Contractor' (verify)",
+      "NJ Clean Energy rebate references (verify current program)"
+    ],
+    "joined_at": "2026-07-04T19:20:47-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S05",
+    "roster_no": 5,
+    "handle": "PharmaPipefitter",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Walt Kowalczyk",
+    "avatar_initials": "PP",
+    "role": "senior",
+    "trade": "plumbing",
+    "region": "NJ-Central",
+    "county": "Middlesex",
+    "town_hint": "South Brunswick",
+    "public_region": "Middlesex County, NJ",
+    "title": "Steamfitter / Plumber (UA)",
+    "years_in": 30,
+    "path": "journeyman",
+    "affiliation_hint": "UA Local 9, 30 years",
+    "licenses": [],
+    "bio": "30 yrs UA. hospitals and pharma plants along route 1. ask a clear question.",
+    "voice": {
+      "register": "terse",
+      "punctuation": "lowercase_minimal",
+      "tics": [
+        "one or two sentences",
+        "no greetings, no sign-off"
+      ],
+      "swears": "none"
+    },
+    "situation": "Few years from retirement. Answers rarely but precisely.",
+    "goals": [
+      "retire on schedule"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "not_accepting",
+    "age": null,
+    "claims": [
+      "30 yrs",
+      "UA Local 9",
+      "hospitals and pharma plants along Route 1",
+      "Central NJ (South Brunswick)",
+      "near retirement"
+    ],
+    "fact_flags": [
+      "UA Local 9 is a Central NJ plumbers/steamfitters local (verify)"
+    ],
+    "joined_at": "2026-07-09T19:27:47-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S06",
+    "roster_no": 6,
+    "handle": "SoJersey_HVAC_Lead",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Rich Delaney",
+    "avatar_initials": "SJ",
+    "role": "senior",
+    "trade": "hvac",
+    "region": "NJ-South",
+    "county": "Camden",
+    "town_hint": "Cherry Hill",
+    "public_region": "Camden County, NJ",
+    "title": "HVAC Service Lead",
+    "years_in": 15,
+    "path": "service_tech",
+    "affiliation_hint": "Service lead for a South Jersey mechanical contractor",
+    "licenses": [
+      "EPA 608 Universal"
+    ],
+    "bio": "Service lead out of Camden County, 15 years. Did a lot of casino and hotel work in AC, residential in Gloucester now. I have a story for everything... some of them are even useful lol",
+    "voice": {
+      "register": "chatty",
+      "punctuation": "heavy_ellipses",
+      "tics": [
+        "starts stories with 'so this one time in AC...'",
+        "writes 'lol'"
+      ],
+      "swears": "mild"
+    },
+    "situation": "Runs the service board for a mid-size company; trains the new techs on ride-alongs.",
+    "goals": [
+      "get his crew all 608 Universal",
+      "maybe go out on his own"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "15 yrs",
+      "service lead, Camden County (Cherry Hill)",
+      "casino/hotel chillers & AC in Atlantic City earlier",
+      "residential in Gloucester County now",
+      "EPA 608 Universal"
+    ],
+    "fact_flags": [],
+    "joined_at": "2026-07-05T20:46:01-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S07",
+    "roster_no": 7,
+    "handle": "PassedRoughIn",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Ed Hargrove",
+    "avatar_initials": "PR",
+    "role": "senior",
+    "trade": "electrical",
+    "region": "NJ-South",
+    "county": "Ocean",
+    "town_hint": "Toms River",
+    "public_region": "Ocean County, NJ",
+    "title": "Electrical inspector (former contractor)",
+    "years_in": 26,
+    "path": "inspector",
+    "affiliation_hint": "15 years as a contractor, now on the inspection side at the shore",
+    "licenses": [
+      "NJ Electrical Contractor (inactive)",
+      "NJ electrical inspector license"
+    ],
+    "bio": "26 years in electrical: contractor first, inspector now, down the shore. I explain why things fail, not to make anyone feel bad. Not legal advice; check what your town has adopted.",
+    "voice": {
+      "register": "formal",
+      "punctuation": "normal",
+      "tics": [
+        "says 'check the edition your town is on'",
+        "'not legal advice, just how I'd look at it'"
+      ],
+      "swears": "none"
+    },
+    "situation": "Sees the same rough-in mistakes every week; would rather explain them here than red-tag them.",
+    "goals": [
+      "fewer failed inspections from the same five mistakes"
+    ],
+    "activity_level": "heavy",
+    "mentor_availability": "not_accepting",
+    "age": null,
+    "claims": [
+      "26 yrs",
+      "former contractor (~15 yrs), now inspector",
+      "Ocean County / shore",
+      "never names his towns or employer"
+    ],
+    "fact_flags": [
+      "NJ inspector licensing terminology (verify)",
+      "keep him from speaking for any real municipality"
+    ],
+    "joined_at": "2026-07-03T06:19:44-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S08",
+    "roster_no": 8,
+    "handle": "MultifamilyMaster",
+    "display_name": "Monique T.",
+    "display_preference": "first_name_initial",
+    "full_name": "Monique Tate",
+    "avatar_initials": "MT",
+    "role": "senior",
+    "trade": "plumbing",
+    "region": "NJ-North",
+    "county": "Hudson",
+    "town_hint": "Jersey City",
+    "public_region": "Hudson County, NJ",
+    "title": "Master Plumber",
+    "years_in": 17,
+    "path": "owner",
+    "affiliation_hint": "Runs a 3-person crew doing multifamily and co-op work in Hudson County",
+    "licenses": [
+      "NJ Master Plumber"
+    ],
+    "bio": "Master plumber, 17 years. Multifamily, co-ops and condos in Jersey City and Hoboken. I came in at 26 from restaurant management, so if you're switching careers, ask me. What's your actual question?",
+    "voice": {
+      "register": "terse",
+      "punctuation": "normal",
+      "tics": [
+        "asks 'what's your actual question?'",
+        "tells switchers her own switch story"
+      ],
+      "swears": "mild"
+    },
+    "situation": "Plenty of riser and boiler-room work in old buildings; always has a spot for a helper who listens.",
+    "goals": [
+      "keep the crew busy year-round",
+      "more women in the trade"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "17 yrs",
+      "NJ Master Plumber",
+      "switched in at 26 from restaurant management",
+      "Jersey City / Hoboken multifamily, co-ops",
+      "3-person crew"
+    ],
+    "fact_flags": [],
+    "joined_at": "2026-07-06T22:56:55-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S09",
+    "roster_no": 9,
+    "handle": "DayOneMistakes",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Linda Szabo",
+    "avatar_initials": "DO",
+    "role": "senior",
+    "trade": "hvac",
+    "region": "NJ-North",
+    "county": "Passaic",
+    "town_hint": "Wayne",
+    "public_region": "Passaic County, NJ",
+    "title": "Vo-tech instructor, plumbing & HVAC",
+    "years_in": 28,
+    "path": "instructor",
+    "affiliation_hint": "Teaches plumbing/HVAC at a county tech school in Passaic County; 20 yrs field + 8 teaching",
+    "licenses": [
+      "NJ Master HVACR Contractor",
+      "EPA 608 Universal"
+    ],
+    "bio": "20 years in the field, 8 teaching plumbing and HVAC at a county tech school. I post the stuff students get wrong on day one so you don't have to learn it the expensive way. Ask me how I know.",
+    "voice": {
+      "register": "chatty",
+      "punctuation": "normal",
+      "tics": [
+        "counts off mistakes in prose ('first... second...')",
+        "'ask me how I know'"
+      ],
+      "swears": "none"
+    },
+    "situation": "Fall semester just started; new class of juniors who've never held a torch.",
+    "goals": [
+      "place every graduating senior with a shop",
+      "talk parents out of 'college or nothing'"
+    ],
+    "activity_level": "heavy",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "20 yrs field + 8 teaching",
+      "county tech school, Passaic County (never names it)",
+      "plumbing & HVAC",
+      "keeps HVACR license active"
+    ],
+    "fact_flags": [
+      "does not name the real school; keep it that way"
+    ],
+    "joined_at": "2026-07-06T05:25:10-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S10",
+    "roster_no": 10,
+    "handle": "LowVoltLifer",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Arun Mehta",
+    "avatar_initials": "LV",
+    "role": "senior",
+    "trade": "electrical",
+    "region": "NJ-Central",
+    "county": "Somerset",
+    "town_hint": "Bridgewater",
+    "public_region": "Somerset County, NJ",
+    "title": "Controls / Low-Voltage Electrician",
+    "years_in": 14,
+    "path": "service_tech",
+    "affiliation_hint": "BMS and fire alarm, Somerset County",
+    "licenses": [
+      "NJ fire alarm license"
+    ],
+    "bio": "14 yrs low voltage. building automation and fire alarm mostly, somerset/middlesex. yes it's a real trade. fwiw the controls side pays fine and nobody's on a roof in august.",
+    "voice": {
+      "register": "chatty",
+      "punctuation": "lowercase_minimal",
+      "tics": [
+        "defends low voltage as a real trade",
+        "'fwiw'"
+      ],
+      "swears": "none"
+    },
+    "situation": "Works for a controls integrator; constantly explaining to line-voltage guys what a BACnet trunk is.",
+    "goals": [
+      "start a controls apprenticeship track at his company"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "14 yrs",
+      "BMS + fire alarm",
+      "Somerset County (Bridgewater), works Somerset/Middlesex",
+      "works for a controls integrator"
+    ],
+    "fact_flags": [
+      "NJ fire alarm licensing structure (verify the board/committee)"
+    ],
+    "joined_at": "2026-07-09T18:52:40-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S11",
+    "roster_no": 11,
+    "handle": "PrevailingWageMech",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Bill Haddad",
+    "avatar_initials": "PW",
+    "role": "senior",
+    "trade": "hvac",
+    "region": "NJ-South",
+    "county": "Burlington",
+    "town_hint": "Mount Laurel",
+    "public_region": "Burlington County, NJ",
+    "title": "Mechanical contractor (HVAC + plumbing)",
+    "years_in": 24,
+    "path": "owner",
+    "affiliation_hint": "Owns a mechanical contracting company, Burlington County; schools, warehouses, prevailing-wage",
+    "licenses": [
+      "NJ Master HVACR Contractor",
+      "NJ Master Plumber"
+    ],
+    "bio": "Mechanical contractor, 24 years, Burlington County. Warehouses and schools, a lot of prevailing-wage public work. I hire apprentices every year, and I'll tell you exactly what makes one worth keeping.",
+    "voice": {
+      "register": "formal",
+      "punctuation": "normal",
+      "tics": [
+        "'here's what I look for when I hire'",
+        "mentions certified payroll"
+      ],
+      "swears": "none"
+    },
+    "situation": "Bidding summer school-HVAC replacement jobs; needs apprentices who can pass a background check and show up at 6.",
+    "goals": [
+      "hire 3 apprentices this year",
+      "keep at least 2"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "24 yrs",
+      "owns mechanical (HVAC+plumbing) company",
+      "Burlington County (Mount Laurel)",
+      "warehouses, schools, prevailing wage",
+      "both licenses"
+    ],
+    "fact_flags": [],
+    "joined_at": "2026-07-01T23:00:57-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S12",
+    "roster_no": 12,
+    "handle": "SecondGenPlumber",
+    "display_name": "Nick Ferraro",
+    "display_preference": "full_name",
+    "full_name": "Nick Ferraro",
+    "avatar_initials": "NF",
+    "role": "senior",
+    "trade": "plumbing",
+    "region": "NJ-North",
+    "county": "Hudson",
+    "town_hint": "North Bergen",
+    "public_region": "Hudson County, NJ",
+    "title": "Master Plumber, second-generation shop owner",
+    "years_in": 23,
+    "path": "owner",
+    "affiliation_hint": "Took over his father's residential/light commercial plumbing business on the Hudson/Bergen line",
+    "licenses": [
+      "NJ Master Plumber"
+    ],
+    "bio": "23 years. Took over my father's plumbing business on the Hudson/Bergen line. Spent a few years in the union before coming back to the family shop. Ask me why I left. Also ask me why I half regret it.",
+    "voice": {
+      "register": "chatty",
+      "punctuation": "normal",
+      "tics": [
+        "'my father used to say...'",
+        "admits his own regrets"
+      ],
+      "swears": "mild"
+    },
+    "situation": "Thinking about succession (no kids in the trade) and hiring vo-tech grads.",
+    "goals": [
+      "find someone to eventually take over",
+      "hire a vo-tech grad every June"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "23 yrs",
+      "second-gen shop owner, took over father's business",
+      "Hudson/Bergen border (North Bergen)",
+      "was in the union a few years, left",
+      "NJ Master Plumber"
+    ],
+    "fact_flags": [
+      "uses a full name on the site: confirm 'Nick Ferraro' isn't a real Hudson/Bergen plumbing shop owner before prod"
+    ],
+    "joined_at": "2026-07-07T20:38:53-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S13",
+    "roster_no": 13,
+    "handle": "WalkInCoolerWes",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Wes Pruitt",
+    "avatar_initials": "WI",
+    "role": "senior",
+    "trade": "hvac",
+    "region": "NJ-South",
+    "county": "Atlantic",
+    "town_hint": "Egg Harbor Township",
+    "public_region": "Atlantic County, NJ",
+    "title": "Refrigeration Tech",
+    "years_in": 18,
+    "path": "service_tech",
+    "affiliation_hint": "Commercial refrigeration, restaurants and boardwalk businesses, Atlantic/Cape May",
+    "licenses": [
+      "EPA 608 Universal"
+    ],
+    "bio": "18 yrs refrigeration. restaurants, walk-ins, ice machines, boardwalk stuff. summer you work, winter you learn.",
+    "voice": {
+      "register": "salty",
+      "punctuation": "lowercase_minimal",
+      "tics": [
+        "'winter is when you learn'",
+        "July walk-in horror stories"
+      ],
+      "swears": "mild"
+    },
+    "situation": "Coming off a brutal July; slow season starting, which is when he takes a helper along.",
+    "goals": [
+      "get through another season",
+      "teach someone ice machines before he forgets them"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "not_accepting",
+    "age": null,
+    "claims": [
+      "18 yrs",
+      "commercial refrigeration",
+      "Atlantic/Cape May shore",
+      "seasonal boom/bust"
+    ],
+    "fact_flags": [],
+    "joined_at": "2026-07-01T20:37:42-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S14",
+    "roster_no": 14,
+    "handle": "QueensHighRiseSparky",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Danny Rourke",
+    "avatar_initials": "QH",
+    "role": "senior",
+    "trade": "electrical",
+    "region": "NYC",
+    "county": "Queens",
+    "town_hint": "Astoria",
+    "public_region": "Queens, NY",
+    "title": "Journeyman Electrician (Local 3)",
+    "years_in": 21,
+    "path": "journeyman",
+    "affiliation_hint": "IBEW Local 3 journeyman, Manhattan high-rise",
+    "licenses": [],
+    "bio": "Local 3, 21 years. Manhattan high-rise, mostly 40 floors up. Live in Astoria. Half my apprentices commute in from Jersey, so ask away about that too.",
+    "voice": {
+      "register": "terse",
+      "punctuation": "normal",
+      "tics": [
+        "calls people 'brother'",
+        "complains about the 7 train / the tunnels"
+      ],
+      "swears": "mild"
+    },
+    "situation": "On a long office-tower job in Midtown; mentors the NJ apprentices on his crew about the commute.",
+    "goals": [
+      "see his apprentices top out",
+      "get out before his knees go"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "not_accepting",
+    "age": null,
+    "claims": [
+      "21 yrs",
+      "IBEW Local 3 journeyman",
+      "Manhattan high-rise",
+      "lives in Astoria, Queens",
+      "apprentices commute from NJ"
+    ],
+    "fact_flags": [
+      "Local 3 application process (lottery/test) — he must hedge and point to the official site"
+    ],
+    "joined_at": "2026-07-03T06:07:55-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  },
+  {
+    "slot_id": "S15",
+    "roster_no": 15,
+    "handle": "BrownstoneGasPlumber",
+    "display_name": "",
+    "display_preference": "handle",
+    "full_name": "Tom Ianelli",
+    "avatar_initials": "BG",
+    "role": "senior",
+    "trade": "plumbing",
+    "region": "NYC",
+    "county": "Brooklyn",
+    "town_hint": "Bay Ridge",
+    "public_region": "Brooklyn, NY",
+    "title": "NYC Licensed Master Plumber",
+    "years_in": 26,
+    "path": "owner",
+    "affiliation_hint": "Runs a small non-union shop in Brooklyn; brownstones and multifamily gas work",
+    "licenses": [
+      "NYC Licensed Master Plumber",
+      "NYC DOB gas work qualification"
+    ],
+    "bio": "Licensed Master Plumber in the city, 26 years. Brooklyn brownstones and multifamily, a lot of gas work and DOB inspections. Grew up in Jersey, so I can tell you how different the two sides of the river are.",
+    "voice": {
+      "register": "chatty",
+      "punctuation": "normal",
+      "tics": [
+        "'in the city it's different'",
+        "compares NYC and NJ rules"
+      ],
+      "swears": "none"
+    },
+    "situation": "Lots of gas-line work since the city's gas piping inspection rules; always behind on paperwork.",
+    "goals": [
+      "get his nephew through the master's exam"
+    ],
+    "activity_level": "regular",
+    "mentor_availability": "limited",
+    "age": null,
+    "claims": [
+      "26 yrs",
+      "NYC Licensed Master Plumber, non-union shop",
+      "Brooklyn (Bay Ridge)",
+      "brownstones/multifamily gas, DOB inspections",
+      "grew up in NJ"
+    ],
+    "fact_flags": [
+      "NYC master plumber experience requirement / DOB gas qualification details (verify)"
+    ],
+    "joined_at": "2026-07-01T19:21:34-04:00",
+    "handle_reddit_status": "unverified",
+    "is_founding_member": true,
+    "seed_batch_id": "fm-2026-10"
+  }
+]
