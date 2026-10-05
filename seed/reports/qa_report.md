@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T10:45:19-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-05T10:46:21-04:00 · threads: `content/threads.sample.scheduled.json` · db: no · app: no
 
 | status | check | detail |
 |---|---|---|
@@ -30,23 +30,5 @@ Run: 2026-10-05T10:45:19-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | plagiarism: no 12-word overlap (internal; no external corpus) | 8-gram overlaps: 3; 12+: [] |
 | PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 81%, 0-4am 0%; 5:12 6:10 7:1 8:5 9:2 10:4 11:1 12:6 13:2 14:2 15:3 16:1 17:4 18:4 19:7 20:17 21:12 22:13 23:13 |
 | PASS | Friday nights quiet | 0 posts Fri after 6pm |
-| PASS | fact lint written for human review | 55 flagged sentences -> seed/reports/fact_lint.md |
+| PASS | fact lint written for human review | 56 flagged sentences -> seed/reports/fact_lint.md |
 | PASS | About sentence present in source |  |
-| PASS | DB: 136 seeded profiles | 136 |
-| PASS | DB: every seeded profile is_founding_member |  |
-| PASS | DB: no handle collision with any other member | 0 |
-| PASS | DB: zero notifications involving seeded accounts | 0 |
-| PASS | DB: no seeded Senior accepting mentees | 0 |
-| PASS | DB: seeded auth users have no password and are banned | 0 |
-| PASS | app: /feed renders | 200 |
-| PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 87 badges for 20 posts |
-| PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
-| PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
-| PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
-| PASS | app: all 136 profile pages render (200) | [] |
-| PASS | app: Founding Community badge on every seeded profile | [] |
-| PASS | app: no private full_name on handle-preference profiles | [] |
-| PASS | app: seeded thread pages render with badges | 20 threads checked; bad: [] |
-| PASS | app: About page carries the §0.3 sentence |  |
-| PASS | app: landing FAQ + footer link to About |  |

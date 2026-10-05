@@ -41,17 +41,18 @@ Every sentence in the sample threads and Senior personas that touches licensing,
 | T08/r0 | BrownstoneGasPlumber | post | You'd be in your 50s with a license, and plenty of guys run shops into their 60s. |
 | T08/r1 | plumbguy917 | **no** | do the work first, worry about the license in 5 years. |
 | T08/r2 | BergenBoilerMan | **no** | Jersey side isn't 'easier,' kid, it's just a different board with different rules. |
-| T10/r0 | SecondGenPlumber | **no** | Cash every Friday means no workers comp if you get hurt and no paperwork showing three years of experience when you want a license someday. |
+| T10/r0 | SecondGenPlumber | **no** | Cash every Friday usually means no workers comp if you get hurt and no paperwork showing three years of experience when you want a license someday. |
 | T10/r1 | PassedRoughIn | post | If you ever go for a license you'll need to show experience, and cash with no records makes that hard. |
 | T12/r0 | MiddlesexHeatPumps | post | - Do they pay for school or your license prep? |
 | T12/r2 | PrevailingWageMech | **no** | Either your buddy's in the union and you're hearing the total package, or he's on a prevailing-wage job, or it's a story. |
-| T12/r3 | ForemanFromMorris | **no** | The union side publishes its wage and benefit package, so look that up on the local's site if you want a real comparison, and remember the benefits are a big piece of the number. |
+| T12/r3 | ForemanFromMorris | **no** | The locals usually publish their wage and benefit package, so look that up on the local's site if you want a real comparison, and remember the benefits are a big piece of the number. |
 | T13/r0 | PassedRoughIn | yes | Not legal advice, just how I'd look at it: in NJ, electrical work for pay is supposed to be done by or under a licensed electrical contractor, with a permit where one's required. |
 | T13/r0 | PassedRoughIn | post | If you do it on your own and something goes wrong (a fire, a shock), you have no insurance and no license behind you, and the homeowner's insurance company is going to ask who did the work. |
 | T13/r4 | BergenBoilerMan | post | You're not licensed, kid. |
-| T14 | MiddlesexHeatPumps | **no** | - Get your license first. |
-| T14 | MiddlesexHeatPumps | **no** | Registering as a home improvement contractor is not the same as holding a trade license, and it doesn't let you do licensed work. |
-| T14/r0 | PrevailingWageMech | **no** | Prevailing-wage jobs mean certified payroll every week and a lot of paperwork. |
+| T14 | MiddlesexHeatPumps | post | - Get your license first. |
+| T14 | MiddlesexHeatPumps | yes | As I understand NJ's rules, registering as a home improvement contractor is not the same as holding a trade license, and it doesn't let you do licensed work. |
+| T14 | MiddlesexHeatPumps | yes | Check with Consumer Affairs. |
+| T14/r0 | PrevailingWageMech | **no** | Prevailing-wage jobs mean certified payroll and a lot of paperwork, at least on every one we've done. |
 | T14/r2 | CondensateOverflow | **no** | question on the first one, so if i register as a home improvement contractor i still can't do hvac work on my own? |
 | T14/r3 | MiddlesexHeatPumps | post | - Home improvement registration is for general home improvement work |
 | T14/r3 | MiddlesexHeatPumps | post | - HVACR work needs the HVACR license (or working under someone who has it) |
