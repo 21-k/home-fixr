@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T10:41:04-04:00 · threads: `content/threads.sample.scheduled.json` · db: no · app: no
+Run: 2026-10-05T10:42:35-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -32,3 +32,21 @@ Run: 2026-10-05T10:41:04-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | Friday nights quiet | 0 posts Fri after 6pm |
 | PASS | fact lint written for human review | 55 flagged sentences -> seed/reports/fact_lint.md |
 | PASS | About sentence present in source |  |
+| PASS | DB: 136 seeded profiles | 136 |
+| PASS | DB: every seeded profile is_founding_member |  |
+| PASS | DB: no handle collision with any other member | 0 |
+| PASS | DB: zero notifications involving seeded accounts | 0 |
+| PASS | DB: no seeded Senior accepting mentees | 0 |
+| PASS | DB: seeded auth users have no password and are banned | 0 |
+| PASS | app: /feed renders | 200 |
+| PASS | app: no full_name of handle-preference users on /feed | [] |
+| PASS | app: Founding Community badge on /feed | 91 badges for 20 posts |
+| PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
+| PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
+| PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
+| PASS | app: all 136 profile pages render (200) | [] |
+| PASS | app: Founding Community badge on every seeded profile | [] |
+| PASS | app: no private full_name on handle-preference profiles | [] |
+| PASS | app: seeded thread pages render with badges | 20 threads checked; bad: [] |
+| PASS | app: About page carries the §0.3 sentence |  |
+| PASS | app: landing FAQ + footer link to About |  |

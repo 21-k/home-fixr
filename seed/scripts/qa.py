@@ -256,9 +256,12 @@ def check_app(app, people, threads):
     record("app: no private full_name on handle-preference profiles", not leaks, str(leaks[:5]))
     # Threads: replies render with badges.
     code, html = fetch(f"{app}/feed")
-    slugs = re.findall(r'href="/q/([^"]+)"', html)
+    def slugify(x):
+        return re.sub(r"[^a-z0-9]+", "-", x.lower()).strip("-")[:40]
+    seeded_prefixes = [slugify(t["title"]) for t in threads]
+    slugs = [s for s in re.findall(r'href="/q/([^"]+)"', html) if any(s.startswith(pfx) for pfx in seeded_prefixes)]
     thread_bad = []
-    for s in sorted(set(slugs))[:25]:
+    for s in sorted(set(slugs)):
         c, h = fetch(f"{app}/q/{s}")
         if c != 200 or "Founding Community" not in h:
             thread_bad.append(f"{s}:{c}")

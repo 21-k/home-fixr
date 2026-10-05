@@ -122,10 +122,10 @@ def build_sample(src: str, out: str) -> None:
         t["helpful_count"] = lognormal_int(rng, 2.0 + (0.4 if starter["role"] == "senior" else 0) + 0.05 * n_rep, 0.6, 2, 40)
         for r in t.get("replies", []):
             role = people[r["author"]]["role"]
-            mu = 1.7 if role == "senior" else 0.6
+            mu = 1.5 if role == "senior" else 0.5
             if r.get("accepted"):
-                mu += 0.7
-            r["helpful_count"] = lognormal_int(rng, mu, 0.7, 0, 60)
+                mu += 1.0
+            r["helpful_count"] = lognormal_int(rng, mu, 0.55, 0, 45)
             r["accepted"] = bool(r.get("accepted"))
         for author, where in [(t["author"], t["id"])] + [(r["author"], t["id"]) for r in t.get("replies", [])]:
             m = memory.setdefault(author, {"claims": people[author]["claims"], "appears_in": []})

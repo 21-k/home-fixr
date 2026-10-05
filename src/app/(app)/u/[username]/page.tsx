@@ -144,7 +144,28 @@ export default async function ProfilePage({
           )}
 
           <div className="mt-4 flex flex-wrap items-center gap-2">
-            {!viewer ? (
+            {isFounding ? (
+              <>
+                {viewer && viewer.id !== profile.id && (
+                  <FollowButton
+                    profileId={profile.id}
+                    username={profile.username}
+                    isFollowing={isFollowing}
+                  />
+                )}
+                <p className="w-full rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[13px] leading-relaxed text-amber-900">
+                  {FOUNDING_CONTACT_MESSAGE}{" "}
+                  <Link href="/about#founding-community" className="font-medium underline">
+                    Learn more
+                  </Link>
+                  . To find a mentor who&apos;ll answer, filter the{" "}
+                  <Link href="/mentors?avail=accepting" className="font-medium underline">
+                    mentor directory
+                  </Link>{" "}
+                  by &ldquo;Accepting mentees&rdquo;.
+                </p>
+              </>
+            ) : !viewer ? (
               <Link
                 href="/login"
                 className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
@@ -158,25 +179,6 @@ export default async function ProfilePage({
               >
                 Edit profile
               </Link>
-            ) : isFounding ? (
-              <>
-                <FollowButton
-                  profileId={profile.id}
-                  username={profile.username}
-                  isFollowing={isFollowing}
-                />
-                <p className="w-full rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[13px] leading-relaxed text-amber-900">
-                  {FOUNDING_CONTACT_MESSAGE}{" "}
-                  <Link href="/about#founding-community" className="font-medium underline">
-                    Learn more
-                  </Link>
-                  . To find a mentor who&apos;ll answer, filter the{" "}
-                  <Link href="/mentors?avail=accepting" className="font-medium underline">
-                    mentor directory
-                  </Link>{" "}
-                  by &ldquo;Accepting mentees&rdquo;.
-                </p>
-              </>
             ) : (
               <>
                 {canRequestMentorship && (
