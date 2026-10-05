@@ -375,13 +375,14 @@ begin
 
   -- An explicit username in metadata keeps its casing; an email-derived one
   -- is lowercased. Either way: '-' becomes '_', other invalid characters are
-  -- dropped, edge dots trimmed, and the result capped to leave suffix room.
+  -- dropped, edge dots trimmed, capped at 22 (shortened further only if a
+  -- numeric suffix is needed to dedupe).
   v_base := coalesce(
     nullif(new.raw_user_meta_data->>'username', ''),
     lower(split_part(coalesce(new.email, ''), '@', 1))
   );
   v_base := regexp_replace(replace(coalesce(v_base, ''), '-', '_'), '[^A-Za-z0-9_.]', '', 'g');
-  v_base := btrim(left(v_base, 18), '.');
+  v_base := btrim(left(v_base, 22), '.');
   if length(v_base) < 3 or public.is_reserved_handle(v_base) then
     v_base := 'member';
   end if;
