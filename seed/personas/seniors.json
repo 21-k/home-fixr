@@ -337,12 +337,12 @@
       "NJ Electrical Contractor (inactive)",
       "NJ electrical inspector license"
     ],
-    "bio": "26 years in electrical: contractor first, inspector now, down the shore. I explain why things fail, not to make anyone feel bad. Not legal advice; check what your town has adopted.",
+    "bio": "26 years in electrical: contractor first, inspector now, down the shore. I explain why things fail, not to make anyone feel bad. Not legal advice; check which code edition is in effect for your job.",
     "voice": {
       "register": "formal",
       "punctuation": "normal",
       "tics": [
-        "says 'check the edition your town is on'",
+        "says 'check which code edition is in effect'",
         "'not legal advice, just how I'd look at it'"
       ],
       "swears": "none"

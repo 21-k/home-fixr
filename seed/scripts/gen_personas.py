@@ -129,8 +129,8 @@ SENIORS = {
         full_name="Ed Hargrove", display_preference="handle", title="Electrical inspector (former contractor)",
         years_in=26, path="inspector", affiliation_hint="15 years as a contractor, now on the inspection side at the shore",
         licenses=["NJ Electrical Contractor (inactive)", "NJ electrical inspector license"],
-        bio="26 years in electrical: contractor first, inspector now, down the shore. I explain why things fail, not to make anyone feel bad. Not legal advice; check what your town has adopted.",
-        voice=dict(register="formal", punctuation="normal", tics=["says 'check the edition your town is on'", "'not legal advice, just how I'd look at it'"], swears="none"),
+        bio="26 years in electrical: contractor first, inspector now, down the shore. I explain why things fail, not to make anyone feel bad. Not legal advice; check which code edition is in effect for your job.",
+        voice=dict(register="formal", punctuation="normal", tics=["says 'check which code edition is in effect'", "'not legal advice, just how I'd look at it'"], swears="none"),
         situation="Sees the same rough-in mistakes every week; would rather explain them here than red-tag them.",
         goals=["fewer failed inspections from the same five mistakes"],
         mentor_availability="not_accepting", town_hint="Toms River",
@@ -364,8 +364,12 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
         path = "nonunion_apprentice"
     age_switch = rng.randint(26, 42)
     old_job = rng.choice(OLD_JOBS)
+    implied = {"exretail_nowhvac": "retail management", "wasabarista": "a coffee shop",
+               "forklifttofittings": "a warehouse", "officetotools": "an office job I hated",
+               "deskjobescapee": "an office job I hated"}
+    old_job = implied.get(handle_rec["handle"].lower(), old_job)
     texture = rng.choice(WORK_TEXTURE[trade])
-    class_of = rng.choice([2024, 2025, 2026, 2027])
+    class_of = rng.choice([2026, 2027])  # current students; grads use class_of - 2/3
     st = "NY" if region == "NYC" else "NJ"
     place_pub = f"{county}, NY" if region == "NYC" else f"{county} County, NJ"
     tn, tp = TRADE_NOUN[trade], TRADE_PERSON[trade]
@@ -374,7 +378,7 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
         years_in = year
         affiliation = f"{local} {ORD[year]} year"
         title = f"{ORD[year]}-year apprentice, {local.split(' Local')[0]}"
-        bios = [f"{ORD[year]} yr out of {local.split()[-1]}. {_cap(texture)}. Here to ask the dumb questions before I ask them on the job.",
+        bios = [f"{ORD[year]} yr {'in Local 1' if local == 'Plumbers Local 1' else 'out of ' + local.split()[-1]}. {_cap(texture)}. Here to ask the dumb questions before I ask them on the job.",
                 f"{local} apprentice, {ORD[year]} year. Based around {town}. Still figuring out which side of the work I like.",
                 f"Year {year} in the apprenticeship ({local}). {_cap(texture)}. Night school twice a week, which is a lot."]
         situation = rng.choice([f"Shop keeps the crew on {texture}; wants to see other kinds of work before topping out.",
@@ -385,7 +389,7 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
         affiliation = None
         title = f"{tp} helper" if years_in < 2 else f"Apprentice {tp}"
         bios = [f"{'Helper' if years_in < 2 else 'Apprentice'} at a small non-union shop near {town}. {_cap(texture)}.",
-                f"{years_in or 'Less than 1'} yr{'s' if years_in != 1 else ''} in, non-union, {county} County. Trying to learn more than the boss wants to teach.",
+                f"{(str(years_in) + (' yrs' if years_in != 1 else ' yr')) if years_in else 'Less than a year'} in, non-union, {county}{'' if region == 'NYC' else ' County'}. Trying to learn more than the boss wants to teach.",
                 f"Working for {_a(tn)} shop out of {town}. {_cap(texture)}. Want to get licensed eventually."]
         situation = rng.choice(["Boss is decent but won't pay for school; wondering whether to look around.",
                                 f"Small shop, {texture}; mostly carrying material so far.",
@@ -395,18 +399,20 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
         years_in = 0
         affiliation = f"{county} County vo-tech, class of '{str(class_of)[2:]}" if region != "NYC" else "trade program in Queens"
         title = f"{tn} student" if trade != "general" else "Vo-tech student"
-        bios = [f"Senior in the {tn} program at the county vo-tech. Graduating {class_of}. Trying to figure out union vs going straight to a shop.",
+        school = "a trade high school in Queens" if region == "NYC" else "the county vo-tech"
+        bios = [f"Senior in the {tn} program at {school}. Graduating {class_of}. Trying to figure out union vs going straight to a shop.",
                 f"Vo-tech student{(", " + tn) if trade != "general" else ""}. Shop class is the only class I actually like lol.",
-                f"In the {tn} program at {county} County vo-tech. Looking for a summer helper job."]
+                f"In the {tn} program at {school}. Looking for a helper job on weekends."]
         situation = rng.choice(["Parents want college; would rather work.", "Shop teacher keeps pushing the union application; not sure yet.",
                                 "Needs a summer job that counts toward something."])
     elif path == "votech_grad":
         years_in = rng.randint(0, 2)
         affiliation = f"{county} County vo-tech '{str(class_of - 2)[2:]}" if region != "NYC" else "Apex grad (NYC)"
         title = f"New {tp}" if trade != "general" else "Vo-tech grad"
-        bios = [f"Finished the county vo-tech {tn} program, now working my first real job near {town}.",
+        school = "a trade school" if region == "NYC" else "the county vo-tech"
+        bios = [f"Finished {school} {tn} program, now working my first real job near {town}.",
                 f"Vo-tech grad, {tn}. {_cap(texture)}. Applied to the apprenticeship, waiting to hear.",
-                f"Got out of school last June and got hired by a shop in {county}. Still the new guy."]
+                f"Got out of school and got hired by a shop in {county}. Still the new guy."]
         situation = rng.choice(["Applied to the union and is waiting; working for a shop meanwhile.",
                                 "School covered the basics; the job is teaching everything else.",
                                 "First job out of school is mostly demo."])
@@ -420,7 +426,7 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
         situation = rng.choice([f"Has savings for about six months; needs to land a helper job fast.",
                                 f"Wife/partner is supportive but nervous about the pay cut.",
                                 f"Taking a night class to test the waters before quitting {old_job}.",
-                                "Body's fine for now; worried about knees at 40."])
+                                "Body's fine for now; worried about knees long-term."])
     else:  # service_tech
         years_in = rng.randint(2, 5)
         affiliation = None
