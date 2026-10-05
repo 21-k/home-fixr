@@ -159,6 +159,13 @@ class Scheduler:
             if local.hour < 5:
                 # Nobody's posting at 3am: slide to the morning commute window.
                 t = self.at(local.date(), _pick(rng, {5: 3, 6: 2}), rng)
+            local = t.astimezone(NY)
+            if local.weekday() == 4 and local.hour >= 18:
+                # Friday nights are dead: the reply lands Saturday morning or Sunday evening.
+                if rng.random() < 0.6:
+                    t = self.at(local.date() + timedelta(days=2), _pick(rng, _SUNDAY_HOURS), rng)
+                else:
+                    t = self.at(local.date() + timedelta(days=1), _pick(rng, {8: 1, 9: 1, 10: 1, 11: 1}), rng)
             if i == 0:
                 t = max(t, post_at + timedelta(minutes=20))  # first reply >= 20 min
             t = self._clamp(t)
