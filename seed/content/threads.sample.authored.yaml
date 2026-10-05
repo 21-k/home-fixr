@@ -63,7 +63,7 @@ threads:
   trade: electrical
   author: Edison.volts
   title: "Ranked way down the list after the interview. Is it over?"
-  body: "Did the aptitude test and the interview this summer. Got my ranking and I'm way down, like 180-something. Vo-tech grad, no family in the trade. Is it basically over for this year? Should I just retest?"
+  body: "Did the aptitude test and the interview this summer. Got my ranking and I'm way down, like 180-something. Vo-tech grad, no family in the trade. Is it basically over for this year? Should I just retest? Working nights at a warehouse right now so I can pay for my car."
   replies:
     - author: ForemanFromMorris
       body: |
@@ -128,7 +128,7 @@ threads:
   nyc: true
   author: Flushing.sparks
   title: "How does the Local 3 apprenticeship application actually work now?"
-  body: "In a trade program in Queens, graduating soon. Teachers keep telling me different things about Local 3: one says it's a lottery, one says there's a test, my uncle says you need to know someone. Anyone actually go through it recently? What should I be doing now?"
+  body: "In a trade program in Queens, graduating soon. Teachers keep telling me different things about Local 3: one says it's a lottery, one says there's a test, my uncle says you need to know someone. Anyone actually go through it recently? What should I be doing now, while I'm still in school, so I'm ready when it opens?"
   replies:
     - author: QueensHighRiseSparky
       accepted: true
@@ -151,7 +151,7 @@ threads:
   trade: plumbing
   author: BergenPlumber
   title: "What license do I actually have when I top out?"
-  body: "3rd year apprentice. guys on the job say different things. when I finish, what am I? journeyman? do I need a license to work? when can I go for master? NJ."
+  body: "3rd year apprentice. guys on the job say different things. when I finish, what am I? journeyman? do I need a license to work? when can I go for master? NJ. trying to plan ahead instead of finding out at the end."
   replies:
     - author: BergenBoilerMan
       body: |
@@ -513,7 +513,7 @@ threads:
   trade: hvac
   author: ExRetail_NowHVAC
   title: "Passed my 608 Universal!"
-  body: "Took the advice in the 608 thread, did practice tests until Core was boring. Passed Universal on the first try. Six months ago I was managing a store in Deptford. Start the new job Monday."
+  body: "Took the advice in the 608 thread, did practice tests until Core was boring. Passed Universal on the first try. Six months ago I was managing a store in Deptford. Start the new job Monday. Bought my own gauges this weekend like a kid at Christmas."
   replies:
     - author: DayOneMistakes
       body: "That's how it's done. Congratulations. Now go learn everything the test didn't cover."
@@ -532,7 +532,7 @@ threads:
   trade: other
   author: SoJersey_HVAC_Lead
   title: "Settle this once and for all: pork roll or Taylor ham?"
-  body: "Had a new guy from Bergen on my crew this week call it Taylor ham at the Wawa and the whole counter went quiet lol. I'm from Gloucester County, it's pork roll, I'll die on this hill. Go."
+  body: "Had a new guy from Bergen on my crew this week call it Taylor ham at the Wawa and the whole counter went quiet lol. I'm from Gloucester County, it's pork roll, I'll die on this hill. Winter's coming and we need this settled before the on-call rotation starts. Go."
   replies:
     - author: BergenBoilerMan
       body: "Taylor ham. Been calling it that for 50 years. Not changing now."
