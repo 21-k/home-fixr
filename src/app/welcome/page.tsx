@@ -2,6 +2,7 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { WelcomeForm } from "@/components/WelcomeForm";
+import { firstNameInitial } from "@/lib/display";
 
 /**
  * The post-signup step. Signup asks only for the essentials, so this is where
@@ -28,11 +29,12 @@ export default async function WelcomePage() {
       </header>
 
       <div className="mx-auto max-w-2xl px-6 py-12">
+        {/* Private context: this is the member's own name, shown only to them. */}
         <h1 className="text-3xl font-semibold tracking-tight">
-          Welcome, {profile.full_name.split(" ")[0]}.
+          Welcome, {firstNameInitial(profile.full_name).split(" ")[0] || "there"}.
         </h1>
         <p className="mt-2 mb-8 text-[15px] leading-7 text-zinc-600">
-          Two quick things so we can point you at the right people. You can
+          A few quick things so we can point you at the right people. You can
           change any of this later in Settings.
         </p>
 

@@ -1,19 +1,21 @@
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Star } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
+import { FoundingBadge } from "@/components/FoundingBadge";
 import { FollowButton } from "@/components/FollowButton";
 import { MentorshipButton } from "@/components/MentorshipButton";
 import { PostCard } from "@/components/PostCard";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { profileHeadline, timeAgo } from "@/lib/format";
+import { displayName } from "@/lib/display";
+import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
+import { AVAILABILITY_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
+import { findProfileByHandle } from "@/lib/profile-lookup";
 import { createClient } from "@/lib/supabase/server";
-import type { AuthorLite, MentorshipStatus, Post, Profile } from "@/lib/types";
-
-const AUTHOR_COLS =
-  "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
+import type { AuthorLite, MentorshipStatus, Post } from "@/lib/types";
 
 type ReplyWithPost = {
   id: string;
@@ -32,19 +34,19 @@ export default async function ProfilePage({
   const { username } = await params;
   const supabase = await createClient();
 
-  const { data: profileData } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("username", username)
-    .maybeSingle();
-
-  if (!profileData) notFound();
-  const profile = profileData as Profile;
+  const profile = await findProfileByHandle(supabase, username);
+  if (!profile) notFound();
+  // One canonical URL per member: /u/<exact handle>.
+  if (profile.username !== decodeURIComponent(username)) {
+    redirect(`/u/${profile.username}`);
+  }
+  const name = displayName(profile);
+  const isFounding = profile.is_founding_member;
 
   // Mentorship state between the viewer (as junior) and this senior.
   const viewer = await getCurrentProfile();
   const canRequestMentorship =
-    !!viewer && viewer.id !== profile.id && profile.role === "senior";
+    !!viewer && viewer.id !== profile.id && profile.role === "senior" && !isFounding;
   let mentorshipStatus: MentorshipStatus | null = null;
   if (canRequestMentorship) {
     const { data: m } = await supabase
@@ -124,10 +126,17 @@ export default async function ProfilePage({
       <section className="mb-4 flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-6 sm:flex-row">
         <Avatar initials={profile.avatar_initials} size="xl" />
         <div className="flex-1">
-          <h1 className="text-2xl font-semibold tracking-tight">
-            {profile.full_name}
-          </h1>
+          <div className="flex flex-wrap items-center gap-2">
+            <h1 className="text-2xl font-semibold tracking-tight">{name}</h1>
+            {isFounding && <FoundingBadge size="md" />}
+          </div>
+          <p className="mt-0.5 text-sm text-zinc-500">@{profile.username}</p>
           <p className="mt-0.5 text-sm text-zinc-600">{profileHeadline(profile)}</p>
+          {profile.role === "senior" && (
+            <p className="mt-1 text-[13px] text-zinc-500">
+              Mentoring: {AVAILABILITY_LABEL[profile.mentor_availability]}
+            </p>
+          )}
           {profile.bio && (
             <p className="mt-3 text-sm leading-relaxed text-zinc-700">
               {profile.bio}
@@ -149,6 +158,25 @@ export default async function ProfilePage({
               >
                 Edit profile
               </Link>
+            ) : isFounding ? (
+              <>
+                <FollowButton
+                  profileId={profile.id}
+                  username={profile.username}
+                  isFollowing={isFollowing}
+                />
+                <p className="w-full rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[13px] leading-relaxed text-amber-900">
+                  {FOUNDING_CONTACT_MESSAGE}{" "}
+                  <Link href="/about#founding-community" className="font-medium underline">
+                    Learn more
+                  </Link>
+                  . To find a mentor who&apos;ll answer, filter the{" "}
+                  <Link href="/mentors?avail=accepting" className="font-medium underline">
+                    mentor directory
+                  </Link>{" "}
+                  by &ldquo;Accepting mentees&rdquo;.
+                </p>
+              </>
             ) : (
               <>
                 {canRequestMentorship && (
@@ -156,6 +184,7 @@ export default async function ProfilePage({
                     seniorId={profile.id}
                     username={profile.username}
                     status={mentorshipStatus}
+                    availability={profile.mentor_availability}
                   />
                 )}
                 <FollowButton
@@ -192,7 +221,7 @@ export default async function ProfilePage({
       {answers.length > 0 && (
         <div className="mb-4 rounded-xl border border-zinc-200 bg-white p-5">
           <h2 className="mb-3 font-semibold">
-            Recent answers from {profile.full_name.split(" ")[0]}
+            Recent answers from {name}
           </h2>
           {answers.map((a) => (
             <div key={a.id} className="border-b border-zinc-200 py-3 last:border-b-0">
@@ -229,7 +258,7 @@ export default async function ProfilePage({
       )}
 
       <div className="rounded-xl border border-zinc-200 bg-white px-5 py-2">
-        <h2 className="py-3 font-semibold">Posts from {profile.full_name.split(" ")[0]}</h2>
+        <h2 className="py-3 font-semibold">Posts from {name}</h2>
         {posts.length === 0 ? (
           <p className="py-6 text-sm text-zinc-500">No posts yet.</p>
         ) : (

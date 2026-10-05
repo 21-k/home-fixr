@@ -1,6 +1,7 @@
 import type {
   AuthorLite,
   CollabType,
+  MentorAvailability,
   PostType,
   TradeType,
 } from "@/lib/types";
@@ -44,6 +45,12 @@ export const POST_TYPE_LABEL: Record<PostType, string> = {
   question: "Question",
   tip: "Tip from a pro",
   discussion: "Discussion",
+};
+
+export const AVAILABILITY_LABEL: Record<MentorAvailability, string> = {
+  accepting: "Accepting mentees",
+  limited: "Limited availability",
+  not_accepting: "Not taking mentees",
 };
 
 export const COLLAB_TYPE_LABEL: Record<CollabType, string> = {

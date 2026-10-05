@@ -4,8 +4,10 @@ import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { CollabComposer } from "@/components/CollabComposer";
 import { CollabIcon } from "@/components/icons";
 import { CollabInterestControl } from "@/components/CollabInterestControl";
+import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { COLLAB_TYPE_LABEL } from "@/lib/format";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type {
   AuthorLite,
@@ -14,7 +16,6 @@ import type {
   JobCollab,
 } from "@/lib/types";
 
-const AUTHOR_COLS = "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 const TYPE_FILTERS: { key: CollabType; label: string }[] = [
   { key: "extra_hand", label: "Need an extra hand" },
@@ -149,12 +150,10 @@ export default async function CollabsPage({
                   <h3 className="font-semibold">{c.title}</h3>
                   <p className="mt-0.5 text-[13px] text-zinc-600">
                     Posted by{" "}
-                    <Link
-                      href={c.poster ? `/u/${c.poster.username}` : "#"}
+                    <UserName
+                      person={c.poster}
                       className="font-medium text-brand-600 hover:underline"
-                    >
-                      {c.poster?.full_name ?? "Unknown"}
-                    </Link>
+                    />
                     {c.poster?.title ? ` · ${c.poster.title}` : ""}
                   </p>
                 </div>
@@ -203,6 +202,7 @@ export default async function CollabsPage({
                   trade={c.trade}
                   defaultYears={profile.years_experience}
                   posterUsername={c.poster?.username ?? null}
+                  posterIsFounding={!!c.poster?.is_founding_member}
                 />
               )}
             </div>

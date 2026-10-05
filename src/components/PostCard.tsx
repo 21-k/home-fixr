@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { MessageSquare, Star } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
+import { UserName } from "@/components/UserName";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import type { AuthorLite, Post } from "@/lib/types";
 
@@ -26,12 +27,7 @@ export function PostCard({
           href={author ? `/u/${author.username}` : undefined}
         />
         <div className="text-[13px] text-zinc-600">
-          <Link
-            href={author ? `/u/${author.username}` : "#"}
-            className="font-semibold text-zinc-900 hover:text-brand-500"
-          >
-            {author?.full_name ?? "Unknown"}
-          </Link>
+          <UserName person={author} />
           {author && ` · ${profileHeadline(author)}`}
           {" · "}
           {timeAgo(post.created_at)}

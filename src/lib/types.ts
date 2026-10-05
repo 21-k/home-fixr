@@ -6,6 +6,10 @@ export type PostType = "question" | "tip" | "discussion";
 export type CollabType = "extra_hand" | "ride_along" | "specialist";
 export type MentorshipStatus = "pending" | "active" | "declined";
 export type CollabInterestStatus = "interested" | "accepted" | "declined";
+/** How a member's name renders publicly (migration 0009). */
+export type DisplayPreference = "handle" | "first_name_initial" | "full_name";
+/** Whether a senior is taking mentorship requests (migration 0009). */
+export type MentorAvailability = "accepting" | "limited" | "not_accepting";
 
 /** Coarse age bands — see the privacy note in migration 0008. */
 export type AgeRange =
@@ -19,8 +23,16 @@ export type AgeRange =
 
 export type Profile = {
   id: string;
+  /** The public handle (migration 0009 rules). Profiles live at /u/<username>. */
   username: string;
+  /** Private by default — render names with displayName(), never this. */
   full_name: string;
+  display_preference: DisplayPreference;
+  /** Null = handle was auto-derived at signup and never chosen. */
+  username_changed_at: string | null;
+  /** Seeded by the Home Fixr team; shown with a "Founding Community" badge. */
+  is_founding_member: boolean;
+  mentor_availability: MentorAvailability;
   avatar_initials: string;
   title: string | null;
   role: UserRole;
@@ -98,7 +110,19 @@ export type CollabInterest = {
 };
 
 // A short profile shape used when embedding an author into another row.
+// Matches AUTHOR_COLS in src/lib/profile-cols.ts.
 export type AuthorLite = Pick<
   Profile,
-  "id" | "username" | "full_name" | "avatar_initials" | "title" | "role" | "trade" | "region" | "years_experience"
+  | "id"
+  | "username"
+  | "full_name"
+  | "display_preference"
+  | "is_founding_member"
+  | "mentor_availability"
+  | "avatar_initials"
+  | "title"
+  | "role"
+  | "trade"
+  | "region"
+  | "years_experience"
 >;

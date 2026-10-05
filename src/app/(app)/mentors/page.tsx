@@ -1,8 +1,10 @@
 import Link from "next/link";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { FoundingBadge } from "@/components/FoundingBadge";
 import { TradeIcon } from "@/components/icons";
-import { profileHeadline } from "@/lib/format";
+import { displayName } from "@/lib/display";
+import { AVAILABILITY_LABEL, profileHeadline } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, TradeType } from "@/lib/types";
 
@@ -42,6 +44,10 @@ export default async function MentorsPage({
   if (sp.region) query = query.ilike("region", `%${sp.region}%`);
   if (sp.avail === "messages") query = query.eq("is_open_to_messages", true);
   if (sp.avail === "ride_alongs") query = query.eq("is_open_to_ride_alongs", true);
+  // "Accepting mentees" only lists mentors a real person will answer for:
+  // Founding Community accounts never qualify (plan §4 / §6).
+  if (sp.avail === "accepting")
+    query = query.eq("mentor_availability", "accepting").eq("is_founding_member", false);
 
   const { data } = await query.order("years_experience", {
     ascending: false,
@@ -87,6 +93,9 @@ export default async function MentorsPage({
         </Link>
       ))}
       <SideSection>Availability</SideSection>
+      <Link href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })}>
+        <SideLink active={sp.avail === "accepting"}>Accepting mentees</SideLink>
+      </Link>
       <Link href={buildHref(sp, { avail: sp.avail === "messages" ? undefined : "messages" })}>
         <SideLink active={sp.avail === "messages"}>Open to messages</SideLink>
       </Link>
@@ -120,9 +129,12 @@ export default async function MentorsPage({
                 <div className="mb-3 flex gap-3.5">
                   <Avatar initials={m.avatar_initials} size="lg" />
                   <div>
-                    <p className="font-semibold">{m.full_name}</p>
+                    <p className="font-semibold">{displayName(m)}</p>
                     <p className="mt-0.5 text-[13px] text-zinc-600">
                       {profileHeadline(m)}
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500">
+                      {AVAILABILITY_LABEL[m.mentor_availability]}
                     </p>
                   </div>
                 </div>
@@ -147,12 +159,16 @@ export default async function MentorsPage({
                     mentees
                   </span>
                 </div>
-                <Link
-                  href={`/messages/${m.username}`}
-                  className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium hover:bg-zinc-100"
-                >
-                  Message
-                </Link>
+                {m.is_founding_member ? (
+                  <FoundingBadge />
+                ) : (
+                  <Link
+                    href={`/messages/${m.username}`}
+                    className="rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium hover:bg-zinc-100"
+                  >
+                    Message
+                  </Link>
+                )}
               </div>
             </div>
           ))}

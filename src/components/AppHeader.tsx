@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { Bell } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { signOut } from "@/lib/auth/actions";
+import { displayName } from "@/lib/display";
 import type { Profile } from "@/lib/types";
 
 const NAV = [
@@ -76,7 +77,7 @@ export function AppHeader({
             )}
           </Link>
           <Link href={`/u/${profile.username}`} className="hidden font-medium sm:block">
-            {profile.full_name}
+            {displayName(profile)}
           </Link>
           <Avatar initials={profile.avatar_initials} href={`/u/${profile.username}`} />
           <form action={signOut}>

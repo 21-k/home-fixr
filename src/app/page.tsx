@@ -17,6 +17,7 @@ import {
   Wrench,
 } from "lucide-react";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { FOUNDING_ABOUT_SENTENCE } from "@/lib/founding";
 
 // ================================================================
 // Landing page. Every section is server-rendered and every "screenshot" is
@@ -411,6 +412,10 @@ export default async function LandingPage() {
                   a: "As little as you want. Answer a question when you've got five minutes. Mentorship requests are opt-in, and you can turn off ride-alongs and messages in your settings.",
                 },
                 {
+                  q: "Who are the Founding Community members?",
+                  a: FOUNDING_ABOUT_SENTENCE,
+                },
+                {
                   q: "Which trades are covered?",
                   a: "Plumbing, HVAC, and electrical are the focus today, with a general category for everything adjacent. We'd rather be genuinely useful in a few trades than thin across twenty.",
                 },
@@ -473,6 +478,7 @@ export default async function LandingPage() {
               { href: "/mentors", label: "Mentors" },
               { href: "/collabs", label: "Jobs" },
               { href: "/search", label: "Search" },
+              { href: "/about", label: "About" },
               { href: "/join", label: "Join" },
               { href: "/login", label: "Sign in" },
             ].map((l) => (

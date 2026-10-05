@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { Paperclip } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { displayName } from "@/lib/display";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { timeAgo } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite } from "@/lib/types";
@@ -52,7 +54,7 @@ export default async function MessagesPage() {
   if (otherIds.length) {
     const { data: profs } = await supabase
       .from("profiles")
-      .select("id, username, full_name, avatar_initials, title, role, trade, region, years_experience")
+      .select(AUTHOR_COLS)
       .in("id", otherIds);
     for (const p of (profs ?? []) as AuthorLite[]) profilesById.set(p.id, p);
   }
@@ -79,7 +81,7 @@ export default async function MessagesPage() {
                 <Avatar initials={p?.avatar_initials ?? "??"} size="md" />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold">{p?.full_name ?? "Unknown"}</span>
+                    <span className="font-semibold">{displayName(p)}</span>
                     <span className="text-xs text-zinc-400">
                       {timeAgo(c.last.created_at)}
                     </span>

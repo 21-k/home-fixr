@@ -1,12 +1,10 @@
-import Link from "next/link";
 import { Avatar } from "@/components/Avatar";
 import { PostCard } from "@/components/PostCard";
+import { UserName } from "@/components/UserName";
 import { profileHeadline } from "@/lib/format";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, Post, Profile } from "@/lib/types";
-
-const AUTHOR_COLS =
-  "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 export default async function SearchPage({
   searchParams,
@@ -33,7 +31,8 @@ export default async function SearchPage({
       supabase
         .from("profiles")
         .select("*")
-        .or(`full_name.ilike.%${safe}%,bio.ilike.%${safe}%,title.ilike.%${safe}%`)
+        // Members are found by handle, not by their (private) full name.
+        .or(`username.ilike.%${safe}%,bio.ilike.%${safe}%,title.ilike.%${safe}%`)
         .limit(20),
     ]);
     posts = (postData ?? []) as unknown as (Post & { author: AuthorLite | null })[];
@@ -64,17 +63,19 @@ export default async function SearchPage({
             ) : (
               <div className="flex flex-col gap-1 rounded-xl border border-zinc-200 bg-white p-2">
                 {people.map((p) => (
-                  <Link
+                  <div
                     key={p.id}
-                    href={`/u/${p.username}`}
                     className="flex items-center gap-3 rounded-lg p-2 hover:bg-zinc-50"
                   >
-                    <Avatar initials={p.avatar_initials} size="md" />
+                    <Avatar initials={p.avatar_initials} size="md" href={`/u/${p.username}`} />
                     <div>
-                      <div className="text-sm font-semibold">{p.full_name}</div>
+                      <div className="text-sm">
+                        <UserName person={p} />{" "}
+                        <span className="text-xs text-zinc-500">@{p.username}</span>
+                      </div>
                       <div className="text-xs text-zinc-600">{profileHeadline(p)}</div>
                     </div>
-                  </Link>
+                  </div>
                 ))}
               </div>
             )}

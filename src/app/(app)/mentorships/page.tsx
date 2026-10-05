@@ -2,14 +2,13 @@ import Link from "next/link";
 import { Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { UserName } from "@/components/UserName";
 import { respondToMentorship } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { profileHeadline, timeAgo } from "@/lib/format";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, MentorshipStatus } from "@/lib/types";
-
-const AUTHOR_COLS =
-  "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 type Row = {
   id: string;
@@ -191,12 +190,7 @@ function PersonRow({
         href={person ? `/u/${person.username}` : undefined}
       />
       <div className="min-w-0 flex-1">
-        <Link
-          href={person ? `/u/${person.username}` : "#"}
-          className="text-sm font-semibold hover:text-brand-500"
-        >
-          {person?.full_name ?? "Unknown"}
-        </Link>
+        <UserName person={person} className="text-sm font-semibold hover:text-brand-500" />
         <div className="truncate text-xs text-zinc-600">
           {person ? profileHeadline(person) : meta}
         </div>

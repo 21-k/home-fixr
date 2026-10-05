@@ -3,6 +3,8 @@ import { redirect } from "next/navigation";
 import { Avatar } from "@/components/Avatar";
 import { MarkAllRead } from "@/components/MarkAllRead";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { displayName } from "@/lib/display";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { timeAgo } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite } from "@/lib/types";
@@ -28,7 +30,7 @@ type Notif = {
 };
 
 function describe(n: Notif): { text: string; href: string } {
-  const name = n.actor?.full_name ?? "Someone";
+  const name = n.actor ? displayName(n.actor) : "Someone";
   switch (n.type) {
     case "reply":
       return { text: `${name} replied to your post`, href: `/q/${n.entity_id}` };
@@ -69,7 +71,7 @@ export default async function NotificationsPage() {
   const { data } = await supabase
     .from("notifications")
     .select(
-      "id, type, actor_id, entity_type, entity_id, read_at, created_at, actor:profiles!notifications_actor_id_fkey ( id, username, full_name, avatar_initials, title, role, trade, region, years_experience )",
+      `id, type, actor_id, entity_type, entity_id, read_at, created_at, actor:profiles!notifications_actor_id_fkey ( ${AUTHOR_COLS} )`,
     )
     .eq("user_id", me.id)
     .order("created_at", { ascending: false })

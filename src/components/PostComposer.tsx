@@ -1,22 +1,27 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useRef, useState } from "react";
 import { createPost, type FormState } from "@/lib/actions";
 import { Avatar } from "@/components/Avatar";
 
 const initial: FormState = {};
 
 export function PostComposer({ initials }: { initials: string }) {
-  const [state, formAction, pending] = useActionState(createPost, initial);
   const [open, setOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (state.ok) {
-      formRef.current?.reset();
-      setOpen(false);
-    }
-  }, [state.ok]);
+  // Close + clear on success inside the action itself rather than in an
+  // effect watching state.ok (react-hooks/set-state-in-effect).
+  const [state, formAction, pending] = useActionState(
+    async (prev: FormState, formData: FormData) => {
+      const result = await createPost(prev, formData);
+      if (result.ok) {
+        formRef.current?.reset();
+        setOpen(false);
+      }
+      return result;
+    },
+    initial,
+  );
 
   return (
     <form

@@ -1,21 +1,81 @@
 "use client";
 
 import { useActionState } from "react";
+import { DisplayPreferenceField } from "@/components/DisplayPreferenceField";
+import { HandleField } from "@/components/HandleField";
 import { updateProfile, type FormState } from "@/lib/actions";
+import { HANDLE_CHANGE_DAYS } from "@/lib/handles";
 import type { Profile } from "@/lib/types";
 
 const initial: FormState = {};
 const inputCls =
   "rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-brand-500";
 
-export function SettingsForm({ profile }: { profile: Profile }) {
+/**
+ * `nextHandleChange` is computed on the server (ISO string or null) so render
+ * stays pure: null means the handle can be changed now.
+ */
+export function SettingsForm({
+  profile,
+  nextHandleChange,
+}: {
+  profile: Profile;
+  nextHandleChange: string | null;
+}) {
   const [state, formAction, pending] = useActionState(updateProfile, initial);
+  const locked = nextHandleChange !== null;
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
+      <section id="handle" className="flex scroll-mt-20 flex-col gap-4 border-b border-zinc-200 pb-5">
+        <h2 className="text-base font-semibold">Public identity</h2>
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div className="flex flex-col gap-1.5">
+            <span className="text-sm font-medium">Handle</span>
+            <HandleField
+              defaultValue={profile.username}
+              currentHandle={profile.username}
+              disabled={locked}
+              disabledNote={
+                locked
+                  ? `You can change your handle again on ${new Date(nextHandleChange!).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}.`
+                  : undefined
+              }
+            />
+            {!locked && (
+              <p className="text-[12px] text-zinc-500">
+                Your profile lives at /u/your-handle. You can change it once every{" "}
+                {HANDLE_CHANGE_DAYS} days; old links to the previous handle stop working.
+              </p>
+            )}
+          </div>
+          <DisplayPreferenceField
+            defaultValue={profile.display_preference}
+            handle={profile.username}
+            fullName={profile.full_name}
+          />
+        </div>
+        {profile.role === "senior" && (
+          <label className="flex max-w-xs flex-col gap-1.5">
+            <span className="text-sm font-medium">Mentoring availability</span>
+            <select
+              name="mentor_availability"
+              defaultValue={profile.mentor_availability}
+              className={`${inputCls} bg-white`}
+            >
+              <option value="accepting">Accepting mentees</option>
+              <option value="limited">Limited availability</option>
+              <option value="not_accepting">Not taking mentees</option>
+            </select>
+          </label>
+        )}
+      </section>
+
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="flex flex-col gap-1.5">
-          <span className="text-sm font-medium">Full name</span>
+          <span className="text-sm font-medium">
+            Full name <span className="font-normal text-zinc-500">(private unless shown above)</span>
+          </span>
           <input name="full_name" defaultValue={profile.full_name} required className={inputCls} />
         </label>
         <label className="flex flex-col gap-1.5">

@@ -286,6 +286,18 @@ create trigger profiles_guard
   before insert or update on profiles
   for each row execute function public.profiles_guard();
 
+-- "Keep my current handle." Marks an auto-derived handle as chosen (so the app
+-- stops nudging) WITHOUT starting the 30-day change clock: the stamp is
+-- backdated by 30 days.
+create or replace function public.confirm_current_handle()
+returns void language sql security definer set search_path = public as $$
+  update profiles
+     set username_changed_at = now() - interval '30 days'
+   where id = auth.uid() and username_changed_at is null;
+$$;
+revoke all on function public.confirm_current_handle() from public, anon;
+grant execute on function public.confirm_current_handle() to authenticated;
+
 -- ----------------------------------------------------------------
 -- 7. Contact guards. Founding Community accounts have no human behind them,
 --    so a real member must not be able to send them a message, a mentorship
