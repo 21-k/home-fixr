@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T10:42:35-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-05T10:45:19-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -40,7 +40,7 @@ Run: 2026-10-05T10:42:35-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | DB: seeded auth users have no password and are banned | 0 |
 | PASS | app: /feed renders | 200 |
 | PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 91 badges for 20 posts |
+| PASS | app: Founding Community badge on /feed | 87 badges for 20 posts |
 | PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
 | PASS | app: 'Accepting mentees' filter excludes every Founding account |  |

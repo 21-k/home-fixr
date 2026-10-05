@@ -1,0 +1,34 @@
+{
+  "dependents": {
+    "real replies on seeded posts": 0,
+    "real follows involving seeded accounts": 0,
+    "real mentorships involving seeded accounts": 0,
+    "messages involving seeded accounts": 0,
+    "real applications to seeded collabs": 0,
+    "real posts by seeded accounts (should be 0)": 0
+  },
+  "deleted": {
+    "collab_interests": 0,
+    "follows": 0,
+    "mentorships": 0,
+    "replies": 99,
+    "posts": 20,
+    "job_collabs": 0,
+    "notifications": 1,
+    "auth.users (+profiles)": 136,
+    "auth.users (orphans)": 0
+  },
+  "left": {
+    "profiles": 0,
+    "posts": 0,
+    "replies": 0,
+    "job_collabs": 0,
+    "collab_interests": 0,
+    "mentorships": 0,
+    "follows": 0,
+    "auth.users": 0
+  },
+  "batch": "fm-2026-10",
+  "dry_run": false,
+  "ran_at": "2026-10-05T14:45:45+00:00"
+}
