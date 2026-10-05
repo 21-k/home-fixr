@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T10:46:53-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-05T10:48:08-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|

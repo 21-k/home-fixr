@@ -302,6 +302,9 @@ def _pick_path(rng: random.Random, trade: str, region: str) -> str:
 def _local(trade: str, region: str, county: str) -> str | None:
     if trade == "electrical" and county in ("Monmouth", "Ocean"):
         return MONMOUTH_OCEAN_ELEC
+    # Best understanding (VERIFY): Bergen/Hudson are IBEW 164, the rest of the north 102.
+    if trade == "electrical" and county in ("Bergen", "Hudson"):
+        return "IBEW Local 164"
     opts = LOCAL_BY.get((trade, region))
     return opts[0] if opts else None
 

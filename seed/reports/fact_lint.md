@@ -110,15 +110,15 @@ Every sentence in the sample threads and Senior personas that touches licensing,
 | BrownstoneGasPlumber | license | NYC DOB gas work qualification |
 | BrownstoneGasPlumber | affiliation | Runs a small non-union shop in Brooklyn; brownstones and multifamily gas work |
 | BergenPlumber | flag | affiliation 'UA Local 24 3rd year' |
-| JughandleJourneyman | flag | affiliation 'IBEW Local 102 2nd year' |
-| fmelecnj | flag | affiliation 'IBEW Local 102 1st year' |
-| mselecnj | flag | affiliation 'IBEW Local 102 1st year' |
+| JughandleJourneyman | flag | affiliation 'IBEW Local 164 2nd year' |
+| fmelecnj | flag | affiliation 'IBEW Local 164 1st year' |
+| mselecnj | flag | affiliation 'IBEW Local 164 1st year' |
 | NorthJerseyCopper | flag | affiliation 'UA Local 24 1st year' |
-| JerseyTomatoWires | flag | affiliation 'IBEW Local 102 4th year' |
-| FifthYearAlmost | flag | affiliation 'IBEW Local 102 4th year' |
+| JerseyTomatoWires | flag | affiliation 'IBEW Local 164 4th year' |
+| FifthYearAlmost | flag | affiliation 'IBEW Local 164 4th year' |
 | essex_plumber | flag | affiliation 'UA Local 24 4th year' |
 | peteplumb80 | flag | affiliation 'UA Local 24 1st year' |
-| TwistAndTape | flag | affiliation 'IBEW Local 102 2nd year' |
+| TwistAndTape | flag | affiliation 'IBEW Local 164 2nd year' |
 | shutoff200amp | flag | affiliation 'UA Local 24 1st year' |
 | PlumbFromMorris | flag | affiliation 'UA Local 24 4th year' |
 | big_manny_plumb | flag | affiliation 'UA Local 24 3rd year' |

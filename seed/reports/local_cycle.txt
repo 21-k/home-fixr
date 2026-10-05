@@ -1,4 +1,4 @@
-# Local seed -> QA -> wipe cycle (final run, 2026-10-05 10:46 EDT)
+# Local seed -> QA -> wipe cycle (final run, 2026-10-05 10:48 EDT)
 
 table baseline seeded after_wipe status
 profiles 10 146 10 OK
@@ -13,5 +13,5 @@ notifications 11 11 11 OK
 auth.users 10 146 10 OK
 demo_reply_count_sum 4 4 4 OK
 
-QA: 44 pass, 2 warn, 0 fail
+QA (--db --app, --allow-unverified-handles): 44 pass, 2 warn, 0 fail
 Also verified in an earlier run of the same cycle: wipe.py refused while a real member's reply sat on a seeded post (1 dependent row), and succeeded after that reply was removed.
