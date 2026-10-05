@@ -1,27 +1,17 @@
-# Local seed -> QA -> wipe cycle (2026-10-05 10:45 EDT)
+# Local seed -> QA -> wipe cycle (final run, 2026-10-05 10:46 EDT)
 
-table baseline -> after_wipe status
-profiles 10 -> 10 OK
-posts 5 -> 5 OK
-replies 4 -> 4 OK
-job_collabs 3 -> 3 OK
-collab_interests 4 -> 4 OK
-mentorships 3 -> 3 OK
-follows 0 -> 0 OK
-messages 0 -> 0 OK
-notifications 11 -> 11 OK
-auth.users 10 -> 10 OK
-demo_reply_count_sum 4 -> 4 OK
+table baseline seeded after_wipe status
+profiles 10 146 10 OK
+posts 5 25 5 OK
+replies 4 103 4 OK
+job_collabs 3 3 3 OK
+collab_interests 4 4 4 OK
+mentorships 3 3 3 OK
+follows 0 0 0 OK
+messages 0 0 0 OK
+notifications 11 11 11 OK
+auth.users 10 146 10 OK
+demo_reply_count_sum 4 4 4 OK
 
-seeded counts:
-profiles 146
-posts 25
-replies 103
-job_collabs 3
-collab_interests 4
-mentorships 3
-follows 0
-messages 0
-notifications 11
-auth.users 146
-demo post reply_count sum 4
+QA: 44 pass, 2 warn, 0 fail
+Also verified in an earlier run of the same cycle: wipe.py refused while a real member's reply sat on a seeded post (1 dependent row), and succeeded after that reply was removed.
