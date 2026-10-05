@@ -126,7 +126,7 @@ class Scheduler:
                 w *= 2.5
             if frac is not None:
                 pos = i / max(1, len(days) - 1)
-                w *= 2.718 ** (-((pos - frac) ** 2) / 0.004)
+                w *= 2.718 ** (-((pos - frac) ** 2) / 0.02) + 1e-4
             weights.append(w)
         for _ in range(20):
             d = rng.choices(days, weights=weights)[0]
@@ -155,6 +155,12 @@ class Scheduler:
                 if t <= prev:
                     t = self.at(d + timedelta(days=1), _pick(rng, _SENIOR_REPLY_HOURS), rng)
             t = max(t, r["not_before"] + timedelta(minutes=5))
+            local = t.astimezone(NY)
+            if local.hour < 5:
+                # Nobody's posting at 3am: slide to the morning commute window.
+                t = self.at(local.date(), _pick(rng, {5: 3, 6: 2}), rng)
+            if i == 0:
+                t = max(t, post_at + timedelta(minutes=20))  # first reply >= 20 min
             t = self._clamp(t)
             if t <= prev:
                 t = prev + timedelta(minutes=rng.randint(3, 40))
@@ -173,7 +179,9 @@ def schedule_threads(threads: list[dict], personas: dict[str, dict], sch: Schedu
     n = len(threads)
     for i, t in enumerate(threads):
         starter = personas[t["author"]]
-        joined = datetime.fromisoformat(starter["joined_at"])
+        # The whole cast must exist before the thread starts.
+        cast = [starter] + [personas[r["author"]] for r in t.get("replies", [])]
+        joined = max(datetime.fromisoformat(p["joined_at"]) for p in cast)
         frac = (i + 0.5) / n
         post_at = sch.thread_time(t["id"], t.get("trade"), joined + timedelta(hours=1), frac=frac)
         replies = t.get("replies", [])
