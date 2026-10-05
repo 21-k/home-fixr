@@ -573,7 +573,7 @@
     "path": "votech_student",
     "affiliation_hint": "Essex County vo-tech, class of '24",
     "licenses": [],
-    "bio": "Vo-tech student, the trades. Shop class is the only class I actually like lol.",
+    "bio": "Vo-tech student. Shop class is the only class I actually like lol.",
     "voice": {
       "register": "terse",
       "punctuation": "normal",
@@ -1891,7 +1891,7 @@
     "handle": "FirstYearSparky",
     "display_name": "",
     "display_preference": "handle",
-    "full_name": "Sam Patel",
+    "full_name": "Brandon Santos",
     "avatar_initials": "FY",
     "role": "junior",
     "trade": "electrical",
@@ -1899,18 +1899,17 @@
     "county": "Morris",
     "town_hint": "Denville",
     "public_region": "Morris County, NJ",
-    "title": "Apprentice electrician",
-    "years_in": 3,
+    "title": "electrician helper",
+    "years_in": 1,
     "path": "nonunion_apprentice",
     "affiliation_hint": null,
     "licenses": [],
-    "bio": "Working for an electrical shop out of Denville. Pulling wire in warehouses off 8A. Want to get licensed eventually.",
+    "bio": "1 yr in, non-union, Morris County. Trying to learn more than the boss wants to teach.",
     "voice": {
       "register": "chatty",
       "punctuation": "normal",
       "tics": [
-        "uses 'lol'",
-        "mentions Wawa"
+        "asks two questions at once"
       ],
       "swears": "none"
     },
@@ -1925,7 +1924,7 @@
       "electrical",
       "nonunion apprentice",
       "from around Denville, Morris",
-      "3 yrs in"
+      "1 yrs in"
     ],
     "fact_flags": [],
     "joined_at": "2026-09-05T21:28:36-04:00",
@@ -1937,22 +1936,22 @@
     "slot_id": "J040",
     "roster_no": null,
     "handle": "PlumbFromMorris",
-    "display_name": "Terrell N.",
+    "display_name": "Kyle R.",
     "display_preference": "first_name_initial",
-    "full_name": "Terrell Novak",
-    "avatar_initials": "TN",
+    "full_name": "Kyle Ruiz",
+    "avatar_initials": "KR",
     "role": "junior",
     "trade": "plumbing",
     "region": "NJ-North",
     "county": "Morris",
     "town_hint": "Rockaway",
     "public_region": "Morris County, NJ",
-    "title": "plumbing student",
-    "years_in": 0,
-    "path": "votech_student",
-    "affiliation_hint": "Morris County vo-tech, class of '26",
+    "title": "4th-year apprentice, UA",
+    "years_in": 4,
+    "path": "union_apprentice",
+    "affiliation_hint": "UA Local 24 4th year",
     "licenses": [],
-    "bio": "In the plumbing program at Morris County vo-tech. Looking for a summer helper job.",
+    "bio": "Year 4 in the apprenticeship (UA Local 24). Mostly service and drain calls. Night school twice a week, which is a lot.",
     "voice": {
       "register": "chatty",
       "punctuation": "normal",
@@ -1962,22 +1961,24 @@
       ],
       "swears": "none"
     },
-    "situation": "Parents want college; would rather work.",
+    "situation": "Shop keeps the crew on mostly service and drain calls; wants to see other kinds of work before topping out.",
     "goals": [
-      "finish the program",
-      "get a summer helper job"
+      "get through year 5",
+      "stop being the material guy"
     ],
     "activity_level": "occasional",
     "mentor_availability": null,
     "age": null,
     "claims": [
       "plumbing",
-      "votech student",
+      "union apprentice",
       "from around Rockaway, Morris",
-      "0 yrs in",
-      "Morris County vo-tech, class of '26"
+      "4 yrs in",
+      "UA Local 24 4th year"
     ],
-    "fact_flags": [],
+    "fact_flags": [
+      "affiliation 'UA Local 24 4th year'"
+    ],
     "joined_at": "2026-07-23T12:15:22-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1987,45 +1988,48 @@
     "slot_id": "J041",
     "roster_no": null,
     "handle": "big_manny_plumb",
-    "display_name": "Paul K.",
+    "display_name": "Mateo B.",
     "display_preference": "first_name_initial",
-    "full_name": "Paul Kim",
-    "avatar_initials": "PK",
+    "full_name": "Mateo Baptiste",
+    "avatar_initials": "MB",
     "role": "junior",
     "trade": "plumbing",
     "region": "NJ-North",
     "county": "Morris",
     "town_hint": "Rockaway",
     "public_region": "Morris County, NJ",
-    "title": "New to plumbing (career switch)",
-    "years_in": 0,
-    "path": "career_switcher",
-    "affiliation_hint": null,
+    "title": "3rd-year apprentice, UA",
+    "years_in": 3,
+    "path": "union_apprentice",
+    "affiliation_hint": "UA Local 24 3rd year",
     "licenses": [],
-    "bio": "Switching careers at 36 after restaurant kitchens. Leaning plumbing.",
+    "bio": "ua local 24 apprentice, 3rd year, based around rockaway. still figuring out which side of the work i like",
     "voice": {
       "register": "terse",
-      "punctuation": "normal",
+      "punctuation": "lowercase_minimal",
       "tics": [
-        "mentions Wawa"
+        "mentions his/her foreman"
       ],
       "swears": "none"
     },
-    "situation": "Has savings for about six months; needs to land a helper job fast.",
+    "situation": "Shop keeps the crew on boiler work in the winter; wants to see other kinds of work before topping out.",
     "goals": [
-      "figure out which trade",
-      "find a pre-apprenticeship"
+      "top out",
+      "get my journeyman card"
     ],
     "activity_level": "lurker",
     "mentor_availability": null,
-    "age": 36,
+    "age": null,
     "claims": [
       "plumbing",
-      "career switcher",
+      "union apprentice",
       "from around Rockaway, Morris",
-      "0 yrs in"
+      "3 yrs in",
+      "UA Local 24 3rd year"
     ],
-    "fact_flags": [],
+    "fact_flags": [
+      "affiliation 'UA Local 24 3rd year'"
+    ],
     "joined_at": "2026-07-03T17:19:46-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2037,7 +2041,7 @@
     "handle": "EdisonPlumb",
     "display_name": "",
     "display_preference": "handle",
-    "full_name": "Marcus Marino",
+    "full_name": "Priya Diaz",
     "avatar_initials": "EP",
     "role": "junior",
     "trade": "plumbing",
@@ -2045,12 +2049,12 @@
     "county": "Middlesex",
     "town_hint": "Edison",
     "public_region": "Middlesex County, NJ",
-    "title": "plumbing student",
-    "years_in": 0,
-    "path": "votech_student",
-    "affiliation_hint": "Middlesex County vo-tech, class of '25",
+    "title": "2nd-year apprentice, UA",
+    "years_in": 2,
+    "path": "union_apprentice",
+    "affiliation_hint": "UA Local 9 2nd year",
     "licenses": [],
-    "bio": "senior in the plumbing program at the county vo-tech, graduating 2025. trying to figure out union vs going straight to a shop",
+    "bio": "2nd yr out of 9, old houses with galvanized everything. here to ask the dumb questions before i ask them on the job",
     "voice": {
       "register": "salty",
       "punctuation": "lowercase_minimal",
@@ -2060,22 +2064,24 @@
       ],
       "swears": "none"
     },
-    "situation": "Shop teacher keeps pushing the union application; not sure yet.",
+    "situation": "Juggling school nights and early starts; first real paycheck that covers rent.",
     "goals": [
-      "finish the program",
-      "get a summer helper job"
+      "get through year 3",
+      "stop being the material guy"
     ],
     "activity_level": "lurker",
     "mentor_availability": null,
     "age": null,
     "claims": [
       "plumbing",
-      "votech student",
+      "union apprentice",
       "from around Edison, Middlesex",
-      "0 yrs in",
-      "Middlesex County vo-tech, class of '25"
+      "2 yrs in",
+      "UA Local 9 2nd year"
     ],
-    "fact_flags": [],
+    "fact_flags": [
+      "affiliation 'UA Local 9 2nd year'"
+    ],
     "joined_at": "2026-07-20T22:13:21-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3023,20 +3029,20 @@
     "town_hint": "Asbury Park",
     "public_region": "Monmouth County, NJ",
     "title": "Apprentice HVAC tech",
-    "years_in": 2,
+    "years_in": 3,
     "path": "nonunion_apprentice",
     "affiliation_hint": null,
     "licenses": [],
-    "bio": "Working for an HVAC shop out of Asbury Park... Rooftop units on strip malls. Want to get licensed eventually.",
+    "bio": "working for an hvac shop out of asbury park, rooftop units on strip malls. want to get licensed eventually",
     "voice": {
       "register": "chatty",
-      "punctuation": "heavy_ellipses",
+      "punctuation": "lowercase_minimal",
       "tics": [
         "says 'appreciate it'"
       ],
       "swears": "none"
     },
-    "situation": "Good shop, just wants to understand the why behind the instructions.",
+    "situation": "Paid by the hour, no benefits yet; trying to figure out if that's normal.",
     "goals": [
       "get real school hours",
       "eventually get licensed"
@@ -3048,7 +3054,7 @@
       "hvac",
       "nonunion apprentice",
       "from around Asbury Park, Monmouth",
-      "2 yrs in"
+      "3 yrs in"
     ],
     "fact_flags": [],
     "joined_at": "2026-07-01T21:42:03-04:00",
@@ -3075,16 +3081,16 @@
     "path": "nonunion_apprentice",
     "affiliation_hint": null,
     "licenses": [],
-    "bio": "Working for an electrical shop out of Middletown... Mostly new construction townhouses. Want to get licensed eventually.",
+    "bio": "working for an electrical shop out of middletown, mostly new construction townhouses. want to get licensed eventually",
     "voice": {
-      "register": "terse",
-      "punctuation": "heavy_ellipses",
+      "register": "chatty",
+      "punctuation": "lowercase_minimal",
       "tics": [
         "adds 'edit:' later"
       ],
       "swears": "mild"
     },
-    "situation": "Paid by the hour, no benefits yet; trying to figure out if that's normal.",
+    "situation": "Small shop, mostly new construction townhouses; mostly carrying material so far.",
     "goals": [
       "learn service, not just new construction"
     ],
@@ -3472,7 +3478,7 @@
     "licenses": [],
     "bio": "",
     "voice": {
-      "register": "chatty",
+      "register": "formal",
       "punctuation": "normal",
       "tics": [
         "mentions his/her foreman",
@@ -3480,9 +3486,10 @@
       ],
       "swears": "none"
     },
-    "situation": "Paid by the hour, no benefits yet; trying to figure out if that's normal.",
+    "situation": "Small shop, boilers and furnaces in the fall; mostly carrying material so far.",
     "goals": [
-      "learn service, not just new construction"
+      "find a shop that teaches",
+      "get on the books"
     ],
     "activity_level": "lurker",
     "mentor_availability": null,
@@ -4247,10 +4254,10 @@
     "slot_id": "J087",
     "roster_no": null,
     "handle": "HelperForNow",
-    "display_name": "Jayden O.",
+    "display_name": "Isaiah K.",
     "display_preference": "first_name_initial",
-    "full_name": "Jayden Ortiz",
-    "avatar_initials": "JO",
+    "full_name": "Isaiah Kim",
+    "avatar_initials": "IK",
     "role": "junior",
     "trade": "electrical",
     "region": "NJ-South",
@@ -4262,19 +4269,18 @@
     "path": "nonunion_apprentice",
     "affiliation_hint": null,
     "licenses": [],
-    "bio": "Working for an electrical shop out of Manahawkin. Residential remodels. Want to get licensed eventually.",
+    "bio": "working for an electrical shop out of manahawkin, residential remodels. want to get licensed eventually",
     "voice": {
       "register": "formal",
-      "punctuation": "normal",
+      "punctuation": "lowercase_minimal",
       "tics": [
-        "says 'appreciate it'"
+        "adds 'edit:' later"
       ],
       "swears": "none"
     },
-    "situation": "Boss is decent but won't pay for school; wondering whether to look around.",
+    "situation": "Small shop, residential remodels; mostly carrying material so far.",
     "goals": [
-      "get real school hours",
-      "eventually get licensed"
+      "learn service, not just new construction"
     ],
     "activity_level": "regular",
     "mentor_availability": null,
@@ -4297,7 +4303,7 @@
     "handle": "LadderLegs",
     "display_name": "",
     "display_preference": "handle",
-    "full_name": "Kofi Kowalski",
+    "full_name": "Nicole Dunn",
     "avatar_initials": "LL",
     "role": "junior",
     "trade": "electrical",
@@ -4305,37 +4311,39 @@
     "county": "Ocean",
     "town_hint": "Jackson",
     "public_region": "Ocean County, NJ",
-    "title": "electrical student",
-    "years_in": 0,
-    "path": "votech_student",
-    "affiliation_hint": "Ocean County vo-tech, class of '26",
+    "title": "4th-year apprentice, IBEW",
+    "years_in": 4,
+    "path": "union_apprentice",
+    "affiliation_hint": "IBEW Local 400 4th year",
     "licenses": [],
-    "bio": "",
+    "bio": "ibew local 400 apprentice, 4th year, based around jackson. still figuring out which side of the work i like",
     "voice": {
-      "register": "salty",
-      "punctuation": "normal",
+      "register": "chatty",
+      "punctuation": "lowercase_minimal",
       "tics": [
-        "short one-liners",
-        "asks two questions at once"
+        "adds 'edit:' later",
+        "ends with 'thanks in advance'"
       ],
       "swears": "none"
     },
-    "situation": "Shop teacher keeps pushing the union application; not sure yet.",
+    "situation": "Juggling school nights and early starts; first real paycheck that covers rent.",
     "goals": [
-      "finish the program",
-      "get a summer helper job"
+      "finish the apprenticeship",
+      "buy a house before 30"
     ],
     "activity_level": "lurker",
     "mentor_availability": null,
     "age": null,
     "claims": [
       "electrical",
-      "votech student",
+      "union apprentice",
       "from around Jackson, Ocean",
-      "0 yrs in",
-      "Ocean County vo-tech, class of '26"
+      "4 yrs in",
+      "IBEW Local 400 4th year"
     ],
-    "fact_flags": [],
+    "fact_flags": [
+      "affiliation 'IBEW Local 400 4th year'"
+    ],
     "joined_at": "2026-07-08T21:25:52-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4347,7 +4355,7 @@
     "handle": "dahvacnj",
     "display_name": "",
     "display_preference": "handle",
-    "full_name": "Kyle Romano",
+    "full_name": "Danny Diaz",
     "avatar_initials": "DA",
     "role": "junior",
     "trade": "hvac",
@@ -4355,34 +4363,37 @@
     "county": "Ocean",
     "town_hint": "Toms River",
     "public_region": "Ocean County, NJ",
-    "title": "Apprentice HVAC tech",
-    "years_in": 3,
-    "path": "nonunion_apprentice",
-    "affiliation_hint": null,
-    "licenses": [],
-    "bio": "Apprentice at a small non-union shop near Toms River... Installs mostly, some service.",
+    "title": "New HVAC tech",
+    "years_in": 0,
+    "path": "votech_grad",
+    "affiliation_hint": "Ocean County vo-tech '23",
+    "licenses": [
+      "EPA 608 Universal"
+    ],
+    "bio": "vo-tech grad, hvac, duct work and changeouts. applied to the apprenticeship, waiting to hear",
     "voice": {
-      "register": "chatty",
-      "punctuation": "heavy_ellipses",
+      "register": "terse",
+      "punctuation": "lowercase_minimal",
       "tics": [
-        "adds 'edit:' later",
-        "writes 'idk'"
+        "ends with 'thanks in advance'",
+        "apologizes for dumb questions"
       ],
       "swears": "none"
     },
-    "situation": "Small shop, installs mostly, some service; mostly carrying material so far.",
+    "situation": "School covered the basics; the job is teaching everything else.",
     "goals": [
-      "get real school hours",
-      "eventually get licensed"
+      "land a real apprenticeship",
+      "get my 608"
     ],
     "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
       "hvac",
-      "nonunion apprentice",
+      "votech grad",
       "from around Toms River, Ocean",
-      "3 yrs in"
+      "0 yrs in",
+      "Ocean County vo-tech '23"
     ],
     "fact_flags": [],
     "joined_at": "2026-07-20T12:58:40-04:00",
@@ -4404,35 +4415,34 @@
     "county": "Ocean",
     "town_hint": "Lakewood",
     "public_region": "Ocean County, NJ",
-    "title": "HVAC student",
-    "years_in": 0,
-    "path": "votech_student",
-    "affiliation_hint": "Ocean County vo-tech, class of '27",
+    "title": "HVAC tech helper",
+    "years_in": 1,
+    "path": "nonunion_apprentice",
+    "affiliation_hint": null,
     "licenses": [],
-    "bio": "",
+    "bio": "helper at a small non-union shop near lakewood, installs mostly, some service",
     "voice": {
-      "register": "terse",
-      "punctuation": "normal",
+      "register": "chatty",
+      "punctuation": "lowercase_minimal",
       "tics": [
         "adds 'edit:' later",
         "asks two questions at once"
       ],
       "swears": "none"
     },
-    "situation": "Needs a summer job that counts toward something.",
+    "situation": "Good shop, just wants to understand the why behind the instructions.",
     "goals": [
-      "finish the program",
-      "get a summer helper job"
+      "find a shop that teaches",
+      "get on the books"
     ],
     "activity_level": "lurker",
     "mentor_availability": null,
     "age": null,
     "claims": [
       "hvac",
-      "votech student",
+      "nonunion apprentice",
       "from around Lakewood, Ocean",
-      "0 yrs in",
-      "Ocean County vo-tech, class of '27"
+      "1 yrs in"
     ],
     "fact_flags": [],
     "joined_at": "2026-07-17T17:52:34-04:00",

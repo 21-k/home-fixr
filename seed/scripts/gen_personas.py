@@ -381,7 +381,7 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
                                 f"Juggling school nights and early starts; first real paycheck that covers rent.",
                                 f"Got on after two tries at the aptitude test; still feels behind the guys with family in the trade."])
     elif path == "nonunion_apprentice":
-        years_in = rng.randint(0, 3)
+        years_in = year if forced else rng.randint(0, 3)
         affiliation = None
         title = f"{tp} helper" if years_in < 2 else f"Apprentice {tp}"
         bios = [f"{'Helper' if years_in < 2 else 'Apprentice'} at a small non-union shop near {town}. {_cap(texture)}.",
@@ -396,7 +396,7 @@ def make_junior(slot, handle_rec, rng: random.Random) -> dict:
         affiliation = f"{county} County vo-tech, class of '{str(class_of)[2:]}" if region != "NYC" else "trade program in Queens"
         title = f"{tn} student" if trade != "general" else "Vo-tech student"
         bios = [f"Senior in the {tn} program at the county vo-tech. Graduating {class_of}. Trying to figure out union vs going straight to a shop.",
-                f"Vo-tech student, {tn}. Shop class is the only class I actually like lol.",
+                f"Vo-tech student{(", " + tn) if trade != "general" else ""}. Shop class is the only class I actually like lol.",
                 f"In the {tn} program at {county} County vo-tech. Looking for a summer helper job."]
         situation = rng.choice(["Parents want college; would rather work.", "Shop teacher keeps pushing the union application; not sure yet.",
                                 "Needs a summer job that counts toward something."])
