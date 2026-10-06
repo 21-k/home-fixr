@@ -275,6 +275,25 @@ def api_user_cannot_set_seeding_flag_through_rls_path(conn):
     assert cur.fetchone()[0] is False
 
 
+@case
+def member_can_set_own_avatar_within_the_allowed_set(conn):
+    cur = conn.cursor()
+    u = make_user(cur, "av@example.test")
+    other = make_user(cur, "av2@example.test")
+    as_user(cur, u)
+    cur.execute("update profiles set avatar_style = 'icon', avatar_icon = 'wrench' where id = %s", (u,))
+    cur.execute("update profiles set avatar_style = 'none', avatar_icon = null where id = %s", (u,))
+    cur.execute("select avatar_style from profiles where id = %s", (u,))
+    assert cur.fetchone()[0] == "none"
+    expect_error(cur, "update profiles set avatar_style = 'icon', avatar_icon = null where id = %s", (u,), "avatar_icon_required")
+    expect_error(cur, "update profiles set avatar_style = 'icon', avatar_icon = 'skull' where id = %s", (u,), "avatar_icon_valid")
+    expect_error(cur, "update profiles set avatar_style = 'photo' where id = %s", (u,), "avatar_style_valid")
+    expect_error(cur, "update profiles set avatar_style = 'none', is_founding_member = true where id = %s", (u,), "staff")
+    # RLS: someone else's row is untouched (0 rows updated, no error).
+    cur.execute("update profiles set avatar_style = 'none' where id = %s", (other,))
+    assert cur.rowcount == 0
+
+
 if __name__ == "__main__":
     width = max(len(n) for n, _, _ in RESULTS)
     failed = 0
