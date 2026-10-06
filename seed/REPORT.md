@@ -7,15 +7,23 @@ No production project was connected to, migrated or seeded; nothing was deployed
 20 sample threads (`seed/content/threads.sample.authored.yaml`). Per the plan, the remaining ~170
 threads, collabs, mentor requests and follows are **not** written yet.
 
+**Pass 2 (after Gaurav's Senior review):** the 15 Seniors have new names and handles (including
+`Kash_sing`) and every persona has an avatar style. Migration **0011** adds `avatar_style`
+(`initials | icon | none`) and `avatar_icon` (wrench, flame, plug, snowflake, hardhat, zap, thermometer,
+hammer). `<Avatar>` renders initials on a per-handle muted colour pair, a lucide trade icon on a muted
+tile, or a grey silhouette at all 13 call sites, and Settings has an avatar picker. Screenshots are in
+`seed/reports/screens/` (mentors, Kash_sing's profile, a thread). No Junior's identity changed; Juniors
+only gained avatar fields.
+
 ---
 
 ## 0. Repo recon: schema, auth, seeding mechanism
 
-### Tables (after `schema.sql` + migrations 0001–0010)
+### Tables (after `schema.sql` + migrations 0001–0011)
 
 | table | key columns (seeding-relevant) | notes |
 |---|---|---|
-| `profiles` | `id` (= `auth.users.id`, cascade), `username` (unique, not null; **the handle**), `full_name` (not null, private), `avatar_initials` (not null), `title`, `role` (`junior`/`senior`), `trade`, `region`, `bio`, `years_experience`, `is_open_to_messages`, `is_open_to_ride_alongs`, `onboarded_at` (0006); **0009:** `display_preference`, `username_changed_at`, `is_founding_member`, `seed_batch_id`, `mentor_availability` | public read (RLS `using (true)`), owner update |
+| `profiles` | `id` (= `auth.users.id`, cascade), `username` (unique, not null; **the handle**), `full_name` (not null, private), `avatar_initials` (not null), `title`, `role` (`junior`/`senior`), `trade`, `region`, `bio`, `years_experience`, `is_open_to_messages`, `is_open_to_ride_alongs`, `onboarded_at` (0006); **0009:** `display_preference`, `username_changed_at`, `is_founding_member`, `seed_batch_id`, `mentor_availability`; **0011:** `avatar_style` (`initials`/`icon`/`none`), `avatar_icon` | public read (RLS `using (true)`), owner update |
 | `posts` | `author_id`, `type` (`question`/`tip`/`discussion`), `title`, `body`, `trade`, `region`, `helpful_count`, `reply_count` (trigger), `slug` (0003, trigger), `created_at`, `seed_batch_id` | public read |
 | `replies` | `post_id`, `author_id`, `body`, `is_accepted`, `helpful_count`, `created_at`, `seed_batch_id` | public read |
 | `job_collabs` | `poster_id`, `type` (`extra_hand`/`ride_along`/`specialist`), `title`, `body`, `trade`, `location`, `scheduled_date`, `pay_type`, `interested_count` (trigger), `seed_batch_id` | public read |
@@ -104,11 +112,11 @@ passwords) → commit. Ids are `uuid5(batch, key)`, so reruns are deterministic.
 ### Tests
 - `npm test` (node:test, no new dependencies): handle format, suggestions, the display helper and error
   mapping, plus a guard that **fails on any raw `full_name` outside the allow-listed private files**, the
-  badge wiring, and the About sentence. 9/9 pass.
+  badge wiring, the About sentence, and (pass 2) the avatar icon set, colour hashing and call sites. 12/12 pass.
 - `npm run test:db` (`tests/db_rules_test.py`, rollback-only against local, simulating PostgREST's
   `authenticated` role): signup derivation, format, case-insensitive uniqueness, reserved list, rate limit
   and tamper resistance, founding-flag protection, legacy rows, all contact guards, availability, and
-  notification suppression. 15/15 pass.
+  notification suppression, and (pass 2) members setting their own avatar within the allowed set. 16/16 pass.
 - End-to-end checks through the real local REST API with a real local member's JWT:
   - messaging a Founding account → 42501 `founding_member`
   - a mentorship request → 42501
@@ -136,7 +144,7 @@ There is deliberately no working path to production yet.
 ```bash
 npm ci
 npx supabase start                                  # config.toml disables auto-migrations (schema.sql must run first)
-seed/scripts/local_db_setup.sh --with-demo-seed     # schema.sql -> 0001..0010 (+ demo members as "existing users")
+seed/scripts/local_db_setup.sh --with-demo-seed     # schema.sql -> 0001..0011 (+ demo members as "existing users")
 uv run seed/scripts/gen_handles.py --reuse-log      # re-assign handles without re-hitting Reddit (drop the flag to re-check)
 uv run seed/scripts/gen_personas.py                 # seniors.json + juniors.json (validated)
 uv run seed/scripts/gen_threads.py sample           # validate + build the 20 sample threads
@@ -155,7 +163,7 @@ Python dependencies are declared inline (PEP 723), so `uv run` installs them. `n
 
 ## 3. QA and test results (all run in this pass)
 
-- `npm run lint` is clean. `npm run build` compiles all 21 routes. `npm test` 9/9, `npm run test:db` 15/15.
+- `npm run lint` is clean. `npm run build` compiles all 21 routes. `npm test` 12/12, `npm run test:db` 16/16 (pass 2, on a fresh `supabase db reset` + 0001–0011).
 - With the dev server pointed at local Supabase, logged out and logged in as a real local junior, these
   all return 200: `/`, `/feed`, `/mentors`, `/collabs`, `/about`, `/search`, `/welcome`, `/settings`,
   `/u/<handle>`, `/messages/<founding handle>`. Welcome shows the handle step, and Settings shows the
@@ -173,7 +181,7 @@ Python dependencies are declared inline (PEP 723), so `uv run` installs them. `n
 
   Seeding created zero notifications. Wipe refused (1 dependent row) while a real member's reply sat on a
   seeded post, then succeeded after that reply was removed.
-- **qa.py** (`seed/reports/qa_report.md`): 44 pass, 2 warn, 0 fail with `--allow-unverified-handles`.
+- **qa.py** (`seed/reports/qa_report.md`): 48 pass, 2 warn, 0 fail (pass 2; was 44 before the avatar checks) with `--allow-unverified-handles`.
   Without that flag the Reddit check FAILs, which is correct: it's a production blocker.
   - Warnings: 0/136 handles have a Reddit 404; 1 of 20 threads has zero replies (5%; the plan wants ≥8%,
     so 2 are needed).
@@ -200,6 +208,11 @@ near-duplicates.
 The 136 assigned handles pass the app's format and reserved/blocked rules, don't collide with existing
 members (case-insensitive), and are at Levenshtein distance ≥ 2 from each other. **None has a Reddit
 404.**
+
+Pass 2: the 15 renamed Senior handles were run through the app's format and reserved rules (all `ok`)
+and checked against every Junior handle (no Levenshtein ≤1 pairs). They were never sent to Reddit (not
+retried); the 5 pass-1 Reddit requests were for Senior handles that are now retired, and those rows stay
+in `handles_checked.csv` marked `retired`. No Junior handle changed.
 
 Style mix: trade+place 24, trade+number 16, humor 16, name 20, role/status 12, NJ flavor 15 (11%),
 lazy/old 18 (13%), curated Senior 15.
@@ -264,9 +277,9 @@ not hedged are questions or personal statements, not claims. The claims themselv
     an **unnamed** Passaic County tech school.
 
 **People and names**
-22. Two Seniors display full names (the plan's "business-facing name"): **Paul Genovese** (S04, Middlesex
-    HVAC owner) and **Nick Ferraro** (S12, Hudson/Bergen plumbing shop). Check that neither matches a real
-    NJ contractor. The 24 first-name-plus-initial members display as e.g. "Greg P." and "Monique T.".
+22. One Senior displays a full name (the plan's "business-facing name"): **Rui Teixeira** (S12,
+    Hudson/Bergen plumbing shop, Kearny). Confirm that isn't a real Hudson/Bergen plumbing shop owner before
+    prod. Three Seniors show first name + initial ("Marcus B.", "Joy D.", "Arkady V."), as do 21 Juniors.
 
 **Schedule**
 23. The heat-wave dates in `schedule.py` (Jul 20–24 and Aug 10–13, 2026) are placeholders that haven't been
@@ -280,23 +293,29 @@ All 15 have `is_founding_member = true`. None can log in, be messaged, be sent a
 receive a job application, and none is "accepting". The full records (bio, voice, situation, goals,
 claims, fact flags) are in `personas/seniors.json`.
 
-| # | handle | shows as | trade | region | yrs | title | licenses | mentoring | activity | voice |
-|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | BergenBoilerMan | handle | plumbing | Bergen County, NJ | 28 | Master Plumber | NJ Master Plumber | limited | heavy | salty |
-| 2 | ForemanFromMorris | Greg P. | electrical | Morris County, NJ | 19 | Foreman, inside wireman (IBEW 102) | — | limited | heavy | formal |
-| 3 | DownTheShoreSparks | handle | electrical | Monmouth County, NJ | 22 | Electrical Contractor (non-union) | NJ Electrical Contractor | limited | regular | chatty |
-| 4 | MiddlesexHeatPumps | Paul Genovese | hvac | Middlesex County, NJ | 25 | HVAC contractor, owner | NJ Master HVACR Contractor, EPA 608 Universal | limited | heavy | formal; the only one who uses bullets |
-| 5 | PharmaPipefitter | handle | plumbing | Middlesex County, NJ | 30 | Steamfitter/plumber (UA 9) | — | not accepting | regular | terse, lowercase |
-| 6 | SoJersey_HVAC_Lead | handle | hvac | Camden County, NJ | 15 | HVAC service lead | EPA 608 Universal | limited | regular | chatty, ellipses |
-| 7 | PassedRoughIn | handle | electrical | Ocean County, NJ | 26 | Electrical inspector (ex-contractor) | NJ EC (inactive), inspector license | not accepting | heavy | formal |
-| 8 | MultifamilyMaster | Monique T. | plumbing | Hudson County, NJ | 17 | Master Plumber | NJ Master Plumber | limited | regular | terse, direct |
-| 9 | DayOneMistakes | handle | hvac | Passaic County, NJ | 28 | Vo-tech instructor | NJ Master HVACR Contractor, EPA 608 Universal | limited | heavy | chatty |
-| 10 | LowVoltLifer | handle | electrical | Somerset County, NJ | 14 | Controls / low-voltage | NJ fire alarm license | limited | regular | chatty, lowercase |
-| 11 | PrevailingWageMech | handle | hvac | Burlington County, NJ | 24 | Mechanical contractor | NJ Master HVACR + Master Plumber | limited | regular | formal |
-| 12 | SecondGenPlumber | Nick Ferraro | plumbing | Hudson County, NJ | 23 | Second-generation shop owner | NJ Master Plumber | limited | regular | chatty |
-| 13 | WalkInCoolerWes | handle | hvac | Atlantic County, NJ | 18 | Refrigeration tech | EPA 608 Universal | not accepting | regular | salty, lowercase |
-| 14 | QueensHighRiseSparky | handle | electrical | Queens, NY | 21 | Journeyman (Local 3) | — | not accepting | regular | terse |
-| 15 | BrownstoneGasPlumber | handle | plumbing | Brooklyn, NY | 26 | NYC Licensed Master Plumber | NYC LMP, DOB gas qualification | limited | regular | chatty |
+| # | handle | shows as | avatar | trade | region | yrs | title | licenses | mentoring | activity | voice |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| 1 | oldsteam_zig | handle ("Ziggy" to friends) | icon: wrench | plumbing | Bergen County, NJ | 28 | Master Plumber | NJ Master Plumber | limited | heavy | salty |
+| 2 | mbell_wireman | Marcus B. | initials | electrical | Morris County, NJ | 19 | Foreman, inside wireman (IBEW 102) | — | limited | heavy | formal |
+| 3 | thiago_sparks | handle | none | electrical | Monmouth County, NJ (Long Branch) | 22 | Electrical Contractor (non-union) | NJ Electrical Contractor | limited | regular | chatty |
+| 4 | Kash_sing | handle | icon: flame | hvac | Middlesex County, NJ | 25 | HVAC contractor, owner | NJ Master HVACR Contractor, EPA 608 Universal | limited | heavy | formal; the only one who uses bullets |
+| 5 | dhollis61 | handle | none | plumbing | Middlesex County, NJ | 30 | Steamfitter/plumber (UA 9) | — | not accepting | regular | terse, lowercase |
+| 6 | hec_does_ac | handle | initials | hvac | Camden County, NJ | 15 | HVAC service lead | EPA 608 Universal | limited | regular | chatty, ellipses |
+| 7 | codebook_dale | handle | none | electrical | Ocean County, NJ | 26 | Electrical inspector (ex-contractor) | NJ EC (inactive), inspector license | not accepting | heavy | formal |
+| 8 | joyd_plumbing | Joy D. | initials | plumbing | Hudson County, NJ | 17 | Master Plumber | NJ Master Plumber | limited | regular | terse, direct |
+| 9 | ms_almonte | handle | initials | hvac | Passaic County, NJ | 28 | Vo-tech instructor | NJ Master HVACR Contractor, EPA 608 Universal | limited | heavy | chatty |
+| 10 | wchen_controls | handle | icon: plug | electrical | Somerset County, NJ | 14 | Controls / low-voltage | NJ fire alarm license | limited | regular | chatty, lowercase |
+| 11 | haddad_mech | handle | none | hvac | Burlington County, NJ | 24 | Mechanical contractor | NJ Master HVACR + Master Plumber | limited | regular | formal |
+| 12 | rui_t_kearny | Rui Teixeira | initials | plumbing | Hudson County, NJ (Kearny) | 23 | Second-generation shop owner | NJ Master Plumber | limited | regular | chatty |
+| 13 | tnguyen_refrig | handle | icon: snowflake | hvac | Atlantic County, NJ | 18 | Refrigeration tech | EPA 608 Universal | not accepting | regular | salty, lowercase |
+| 14 | dreb_jman | handle | none | electrical | Queens, NY | 21 | Journeyman (Local 3) | — | not accepting | regular | terse |
+| 15 | bklyn_arkady | Arkady V. | initials | plumbing | Brooklyn, NY | 26 | NYC Licensed Master Plumber | NYC LMP, DOB gas qualification | limited | regular | chatty |
+
+Pass 2 (Gaurav's review): the Seniors were renamed (private names: Zbigniew Nowak, Marcus Bell, Thiago
+Ferreira, Kashmir Singh, Dwayne Hollis, Hector Rivera, Dale Whitacre, Joy Dimaculangan, Rosa Almonte, Wei
+Chen, Sami Haddad, Rui Teixeira, Tuan Nguyen, Andre Baptiste, Arkady Volkov) and given avatars. Roles,
+counties, trades, years, voices, bios and situations are unchanged; town hints moved for S03 (Long Branch)
+and S12 (Kearny).
 
 **Juniors (121):** 109 NJ / 12 NYC. Paths: non-union 35, union 24, vo-tech grad 19, vo-tech student 13,
 career switcher 24, service tech 6. Activity: lurker 49, occasional 42, regular 24, heavy 6. They were
@@ -308,7 +327,7 @@ Seniors.
   3 started by Seniors; 99 replies in total.
 - The plan's style beats: an `edit:`, two `update:` posts, a quote-style "^" reply, a reply that misreads
   the question (and gets corrected), and a Senior politely correcting another Senior.
-- Voice and texture: S04's bullets; regional detail (Wawa vs QuickChek, the Turnpike, Hoboken parking,
+- Voice and texture: Kash_sing's bullets; regional detail (Wawa vs QuickChek, the Turnpike, Hoboken parking,
   steam heat in Bayonne, shore raised houses, pork roll).
 
 ---
@@ -342,7 +361,8 @@ Seniors.
 15. **The sample's category mix is A4 B4 C3 D3 E4 F2, with 1 zero-reply thread (5%).** The plan's shares
     and its ≥8% zero-reply target apply to the full ~190 threads.
 16. **Avatar initials come from the public name** (the handle's capitals), so they don't leak private
-    initials. There are no image avatars in this pass.
+    initials. Avatars (pass 2, migration 0011) are styles, not images: initials on a muted colour pair
+    derived from the handle, a trade icon, or a grey silhouette. Mix: 44% none / 40% initials / 16% icon.
 17. **`supabase/config.toml` disables auto-migrations and auto-seed**; `local_db_setup.sh` applies
     everything in order.
 18. Fixed two pre-existing lint errors so lint passes.
@@ -364,13 +384,13 @@ Seniors.
 5. **`full_name` is still readable through the API.** Rendering hides it, but RLS lets anyone with the anon
    key run `select full_name` on `profiles`. Making it truly private needs column privileges or a public
    view. That's a bigger change and isn't done.
-6. **The two full-name Seniors** (Paul Genovese, Nick Ferraro): keep them, or switch them to handles to rule
+6. **The full-name Senior** (Rui Teixeira): keep, or switch to a handle to rule
    out matching a real contractor?
 7. **Existing members' display default:** keep `handle` (privacy-first, as the plan says) or set existing
    rows to `full_name` so they aren't surprised?
 8. **Union-local mapping** for junior affiliations (§5 items 1–4): confirm it, or have a tradesperson
    correct it before the full set.
-9. **Production path:** 0009/0010 must run on prod before any seed, and `seed.py` refuses non-local hosts
+9. **Production path:** 0009–0011 must run on prod before any seed, and `seed.py` refuses non-local hosts
    by design. Decide the prod mechanism (DB connection string or a service-role job) and who runs it.
 10. **Replies from real users on seeded posts** will notify a seeded account nobody reads, and a seeded
     question author can never accept a real answer. Is that acceptable for the founding period?
