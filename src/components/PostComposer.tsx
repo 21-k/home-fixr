@@ -2,11 +2,11 @@
 
 import { useActionState, useRef, useState } from "react";
 import { createPost, type FormState } from "@/lib/actions";
-import { Avatar } from "@/components/Avatar";
+import { Avatar, type AvatarPerson } from "@/components/Avatar";
 
 const initial: FormState = {};
 
-export function PostComposer({ initials }: { initials: string }) {
+export function PostComposer({ me }: { me: AvatarPerson }) {
   const [open, setOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   // Close + clear on success inside the action itself rather than in an
@@ -30,7 +30,7 @@ export function PostComposer({ initials }: { initials: string }) {
       className="rounded-xl border border-zinc-200 bg-white p-5"
     >
       <div className="flex items-center gap-2.5">
-        <Avatar initials={initials} size="md" />
+        <Avatar person={me} size="md" />
         <input
           name="title"
           required

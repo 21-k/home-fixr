@@ -67,7 +67,7 @@ export default async function SearchPage({
                     key={p.id}
                     className="flex items-center gap-3 rounded-lg p-2 hover:bg-zinc-50"
                   >
-                    <Avatar initials={p.avatar_initials} size="md" href={`/u/${p.username}`} />
+                    <Avatar person={p} size="md" href={`/u/${p.username}`} />
                     <div>
                       <div className="text-sm">
                         <UserName person={p} />{" "}

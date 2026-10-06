@@ -98,7 +98,7 @@ export default async function FeedPage({
               key={c.id}
               className="flex items-center gap-2.5 rounded-md p-1.5 hover:bg-zinc-50"
             >
-              <Avatar initials={c.avatar_initials} size="sm" href={`/u/${c.username}`} />
+              <Avatar person={c} size="sm" href={`/u/${c.username}`} />
               <div>
                 <div className="text-sm">
                   <UserName person={c} />
@@ -137,7 +137,7 @@ export default async function FeedPage({
     <AppBody sidebar={sidebar} right={right}>
       {profile && <ProfilePrompt profile={profile} />}
       {profile ? (
-        <PostComposer initials={profile.avatar_initials} />
+        <PostComposer me={profile} />
       ) : (
         <div className="rounded-xl border border-zinc-200 bg-white p-5 text-sm text-zinc-600">
           <Link href="/join" className="font-medium text-brand-600 hover:underline">

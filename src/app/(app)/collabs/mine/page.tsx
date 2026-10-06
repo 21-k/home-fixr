@@ -205,7 +205,7 @@ export default async function MyJobsPage() {
                         return (
                           <div key={i.id} className="flex gap-3 py-3">
                             <Avatar
-                              initials={person?.avatar_initials ?? "??"}
+                              person={person}
                               size="md"
                               href={person ? `/u/${person.username}` : undefined}
                             />

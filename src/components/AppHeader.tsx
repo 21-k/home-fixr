@@ -79,7 +79,7 @@ export function AppHeader({
           <Link href={`/u/${profile.username}`} className="hidden font-medium sm:block">
             {displayName(profile)}
           </Link>
-          <Avatar initials={profile.avatar_initials} href={`/u/${profile.username}`} />
+          <Avatar person={profile} href={`/u/${profile.username}`} />
           <form action={signOut}>
             <button
               type="submit"

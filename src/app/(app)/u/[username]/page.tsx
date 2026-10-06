@@ -124,7 +124,7 @@ export default async function ProfilePage({
   return (
     <AppBody sidebar={sidebar}>
       <section className="mb-4 flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-6 sm:flex-row">
-        <Avatar initials={profile.avatar_initials} size="xl" />
+        <Avatar person={profile} size="xl" />
         <div className="flex-1">
           <div className="flex flex-wrap items-center gap-2">
             <h1 className="text-2xl font-semibold tracking-tight">{name}</h1>

@@ -14,6 +14,7 @@ import {
   HANDLE_STATUS_COPY,
   type HandleStatus,
 } from "@/lib/handles";
+import { AVATAR_STYLES, isAvatarIcon, type AvatarStyle } from "@/lib/avatar";
 import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { CV_BUCKET } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
@@ -488,6 +489,16 @@ export async function updateProfile(
   };
   if (handle.changed) update.username = handle.value;
   if (availability && before.role === "senior") update.mentor_availability = availability;
+
+  // Avatar (migration 0011). Only values from the fixed sets are accepted.
+  const avatarStyle = String(formData.get("avatar_style") ?? "");
+  if (avatarStyle) {
+    if (!AVATAR_STYLES.includes(avatarStyle as AvatarStyle)) return { error: "Pick an avatar style." };
+    const icon = formData.get("avatar_icon");
+    if (avatarStyle === "icon" && !isAvatarIcon(icon)) return { error: "Pick an icon for your avatar." };
+    update.avatar_style = avatarStyle;
+    update.avatar_icon = avatarStyle === "icon" ? icon : null;
+  }
 
   const { error } = await supabase.from("profiles").update(update).eq("id", user.id);
   if (error) return { error: handleErrorMessage(error) };

@@ -142,7 +142,7 @@ export default async function ThreadPage({
           >
             <div className="mb-2 flex items-center gap-2.5">
               <Avatar
-                initials={reply.author?.avatar_initials ?? "??"}
+                person={reply.author}
                 size="md"
                 href={reply.author ? `/u/${reply.author.username}` : undefined}
               />

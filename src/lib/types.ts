@@ -1,4 +1,5 @@
 // Database types mirroring supabase/schema.sql.
+import type { AvatarIconKey, AvatarStyle } from "@/lib/avatar";
 
 export type UserRole = "junior" | "senior";
 export type TradeType = "plumbing" | "hvac" | "electrical" | "other";
@@ -33,6 +34,9 @@ export type Profile = {
   /** Seeded by the Home Fixr team; shown with a "Founding Community" badge. */
   is_founding_member: boolean;
   mentor_availability: MentorAvailability;
+  /** Avatar (migration 0011): initials | icon | none; icon key when style = icon. */
+  avatar_style: AvatarStyle;
+  avatar_icon: AvatarIconKey | null;
   avatar_initials: string;
   title: string | null;
   role: UserRole;
@@ -120,6 +124,8 @@ export type AuthorLite = Pick<
   | "is_founding_member"
   | "mentor_availability"
   | "avatar_initials"
+  | "avatar_style"
+  | "avatar_icon"
   | "title"
   | "role"
   | "trade"

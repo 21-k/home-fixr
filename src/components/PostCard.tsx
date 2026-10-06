@@ -22,7 +22,7 @@ export function PostCard({
     <article className="border-b border-zinc-200 py-4 last:border-b-0">
       <div className="mb-2 flex items-center gap-2.5">
         <Avatar
-          initials={author?.avatar_initials ?? "??"}
+          person={author}
           size="md"
           href={author ? `/u/${author.username}` : undefined}
         />

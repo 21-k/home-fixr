@@ -100,7 +100,7 @@ export default async function NotificationsPage() {
                   n.read_at ? "" : "bg-brand-50/40"
                 }`}
               >
-                <Avatar initials={n.actor?.avatar_initials ?? "??"} size="md" />
+                <Avatar person={n.actor} size="md" />
                 <div className="min-w-0 flex-1">
                   <p className="text-sm">{text}</p>
                   <p className="text-xs text-zinc-500">{timeAgo(n.created_at)}</p>

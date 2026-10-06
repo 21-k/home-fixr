@@ -127,7 +127,7 @@ export default async function MentorsPage({
             >
               <Link href={`/u/${m.username}`} className="block">
                 <div className="mb-3 flex gap-3.5">
-                  <Avatar initials={m.avatar_initials} size="lg" />
+                  <Avatar person={m} size="lg" />
                   <div>
                     <p className="font-semibold">{displayName(m)}</p>
                     <p className="mt-0.5 text-[13px] text-zinc-600">

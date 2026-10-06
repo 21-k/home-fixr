@@ -79,7 +79,7 @@ export default async function ConversationPage({
 
       <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white">
         <div className="flex items-center gap-3 border-b border-zinc-200 p-4">
-          <Avatar initials={other.avatar_initials} size="md" href={`/u/${other.username}`} />
+          <Avatar person={other} size="md" href={`/u/${other.username}`} />
           <div>
             <UserName person={other} className="font-semibold hover:text-brand-500" />
             <div className="text-xs text-zinc-600">{profileHeadline(other)}</div>

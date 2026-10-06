@@ -185,7 +185,7 @@ function PersonRow({
   return (
     <div className="flex items-center gap-3 py-2.5 first:pt-0 last:pb-0">
       <Avatar
-        initials={person?.avatar_initials ?? "??"}
+        person={person}
         size="md"
         href={person ? `/u/${person.username}` : undefined}
       />

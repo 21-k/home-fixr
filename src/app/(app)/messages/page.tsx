@@ -78,7 +78,7 @@ export default async function MessagesPage() {
                 href={p ? `/messages/${p.username}` : "#"}
                 className="flex items-center gap-3 p-4 hover:bg-zinc-50"
               >
-                <Avatar initials={p?.avatar_initials ?? "??"} size="md" />
+                <Avatar person={p} size="md" />
                 <div className="min-w-0 flex-1">
                   <div className="flex items-center gap-2">
                     <span className="font-semibold">{displayName(p)}</span>

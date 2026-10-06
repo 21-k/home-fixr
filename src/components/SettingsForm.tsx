@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
+import { AvatarPicker } from "@/components/AvatarPicker";
 import { DisplayPreferenceField } from "@/components/DisplayPreferenceField";
 import { HandleField } from "@/components/HandleField";
 import { updateProfile, type FormState } from "@/lib/actions";
@@ -55,6 +56,12 @@ export function SettingsForm({
             fullName={profile.full_name}
           />
         </div>
+        <AvatarPicker
+          username={profile.username}
+          initials={profile.avatar_initials}
+          defaultStyle={profile.avatar_style}
+          defaultIcon={profile.avatar_icon}
+        />
         {profile.role === "senior" && (
           <label className="flex max-w-xs flex-col gap-1.5">
             <span className="text-sm font-medium">Mentoring availability</span>
