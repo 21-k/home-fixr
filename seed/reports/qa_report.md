@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T20:38:41-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-05T21:02:09-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -31,7 +31,7 @@ Run: 2026-10-05T20:38:41-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | bullet points only from Kash_sing | [] |
 | PASS | nobody mentions/praises Home Fixr | [] |
 | PASS | plagiarism: no 12-word overlap (internal; no external corpus) | 8-gram overlaps: 3; 12+: [] |
-| PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 81%, 0-4am 0%; 5:12 6:10 7:1 8:5 9:2 10:4 11:1 12:6 13:2 14:2 15:3 16:1 17:4 18:4 19:7 20:17 21:12 22:13 23:13 |
+| PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 82%, 0-4am 1%; 0:1 5:8 6:11 7:2 8:4 9:3 10:6 11:1 12:5 13:7 15:3 17:2 18:4 19:8 20:14 21:23 22:7 23:10 |
 | PASS | Friday nights quiet | 0 posts Fri after 6pm |
 | PASS | fact lint written for human review | 56 flagged sentences -> seed/reports/fact_lint.md |
 | PASS | About sentence present in source |  |
@@ -44,7 +44,7 @@ Run: 2026-10-05T20:38:41-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | DB: seeded auth users have no password and are banned | 0 |
 | PASS | app: /feed renders | 200 |
 | PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 79 badges for 20 posts |
+| PASS | app: Founding Community badge on /feed | 80 badges for 20 posts |
 | PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
 | PASS | app: 'Accepting mentees' filter excludes every Founding account |  |

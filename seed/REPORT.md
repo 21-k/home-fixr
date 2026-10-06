@@ -149,7 +149,7 @@ uv run seed/scripts/gen_handles.py --reuse-log      # re-assign handles without 
 uv run seed/scripts/gen_personas.py                 # seniors.json + juniors.json (validated)
 uv run seed/scripts/gen_threads.py sample           # validate + build the 20 sample threads
 uv run seed/scripts/gen_threads.py briefs --n 170   # cast briefs for the rest (next pass)
-uv run seed/scripts/schedule.py [--start 2026-07-24]  # timestamps (America/New_York -> UTC)
+uv run seed/scripts/schedule.py [--plan] [--end D]    # timestamps (America/New_York -> UTC); --plan shows the ramp
 uv run seed/scripts/seed.py [--dry-run|--replace]   # write batch fm-2026-10 to LOCAL
 npm run dev                                         # gitignored .env.local -> http://127.0.0.1:54321 + local anon key
 uv run seed/scripts/qa.py --db --app http://localhost:3000 [--allow-unverified-handles]
@@ -370,9 +370,12 @@ Seniors.
 
 ## 8. Open questions for Gaurav
 
-1. **Backfill window:** seeded history starts July 1, but the site launched around July 24. All 15 Seniors
-   currently join July 1–10. Should seeded history predate launch? `schedule.py --start 2026-07-24`
-   re-times everything.
+1. ~~**Backfill window**~~ **Decided (Gaurav, Oct 5):** seeded history starts at the July 24 launch and ramps
+   rather than spreading evenly: 1-2 threads a day after launch, 3-4 a day from Aug 7, Aug 24-26 blank, a
+   weekend spike Aug 29-30 (5 and 9), then a slow climb through September. `schedule.py --plan` prints the
+   day-by-day plan (213 threads, a bit above the plan's ~190 because of the September climb); the 20-thread
+   sample takes evenly spaced slots from it. Joins now run Jul 24 - Oct 1 (Seniors Jul 24 - Aug 1). When the
+   full set is seeded to prod, pass `--end` = the day before seeding.
 2. **Disclosure accuracy:** the About sentence says the seed was made "with help from NJ tradespeople", but
    this pass's content was written by Claude with no tradesperson review. Either recruit reviewers before
    prod or change the wording. Also decide whether to say the text was AI-assisted.
