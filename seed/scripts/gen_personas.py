@@ -56,7 +56,7 @@ AVAIL = {"accepting", "limited", "not_accepting"}
 # ---------------------------------------------------------------------------
 SENIORS = {
     "S01": dict(
-        full_name="Frank Castellano", display_preference="handle", title="Master Plumber",
+        full_name="Zbigniew Nowak", display_preference="handle", title="Master Plumber",
         years_in=28, path="owner", affiliation_hint="Owns a small residential service shop, 4 trucks, Bergen County",
         licenses=["NJ Master Plumber"],
         bio="Master plumber, 28 years. Small shop in Bergen, four trucks. Boilers, steam, residential service. If you learned it on YouTube I'll probably tell you why it's wrong. Ask anyway.",
@@ -67,7 +67,7 @@ SENIORS = {
         claims=["28 yrs in", "owns shop, 4 trucks", "Bergen County, works around Hackensack/Lodi/Garfield", "boilers + steam specialist", "NJ Master Plumber"],
     ),
     "S02": dict(
-        full_name="Greg Petrakis", display_preference="first_name_initial", title="Foreman, Inside Wireman (IBEW)",
+        full_name="Marcus Bell", display_preference="first_name_initial", title="Foreman, Inside Wireman (IBEW)",
         years_in=19, path="foreman", affiliation_hint="IBEW Local 102 journeyman, foreman the last 6 years",
         licenses=[],
         bio="Inside wireman, 19 years, running work as a foreman for the last 6. Mostly data halls and big commercial lately (Secaucus, Piscataway). I'll talk union apprenticeship all day. Wear your glasses.",
@@ -79,18 +79,18 @@ SENIORS = {
         fact_flags=["IBEW Local 102 covers Morris County area (verify jurisdiction)"],
     ),
     "S03": dict(
-        full_name="Kevin Doyle", display_preference="handle", title="Electrical Contractor",
+        full_name="Thiago Ferreira", display_preference="handle", title="Electrical Contractor",
         years_in=22, path="owner", affiliation_hint="Non-union shop owner, Monmouth County",
         licenses=["NJ Electrical Contractor"],
         bio="Licensed EC, run a small non-union shop in Monmouth. Shore houses and renovations, a lot of raised homes since Sandy. Trade school got me in the door faster than any list would have, but that was me. Your mileage may vary.",
         voice=dict(register="chatty", punctuation="normal", tics=["brings up Sandy rebuilds", "says 'honestly' a lot"], swears="mild"),
         situation="Busy with shore renovation work; always looking for a helper who shows up on time and doesn't need to be told twice.",
         goals=["hire one more licensed guy", "get his apprentice through the contractor exam"],
-        mentor_availability="limited", town_hint="Middletown",
-        claims=["22 yrs", "NJ Electrical Contractor, non-union shop", "Monmouth County (Middletown)", "shore renovations, raised houses post-Sandy", "went to trade school"],
+        mentor_availability="limited", town_hint="Long Branch",
+        claims=["22 yrs", "NJ Electrical Contractor, non-union shop", "Monmouth County (Long Branch)", "shore renovations, raised houses post-Sandy", "went to trade school"],
     ),
     "S04": dict(
-        full_name="Paul Genovese", display_preference="full_name", title="HVAC contractor, owner",
+        full_name="Kashmir Singh", display_preference="handle", title="HVAC contractor, owner",
         years_in=25, path="owner", affiliation_hint="Owns an HVAC company in Middlesex County",
         licenses=["NJ Master HVACR Contractor", "EPA 608 Universal"],
         bio="25 years in HVAC, own a residential/light commercial company in Middlesex. Oil-to-gas conversions, heat pumps, a lot of rebate paperwork. Happy to talk the business side: pricing, callbacks, why most new guys undercharge.",
@@ -99,11 +99,10 @@ SENIORS = {
         goals=["build a second install crew", "get callbacks under 3%"],
         mentor_availability="limited", town_hint="Edison",
         claims=["25 yrs", "owns HVAC company, Middlesex County (Edison)", "oil-to-gas, heat pumps, rebates", "NJ Master HVACR Contractor + EPA 608 Universal", "uses bullet points"],
-        fact_flags=["uses a full name on the site: confirm 'Paul Genovese' isn't a real NJ HVAC contractor before prod",
-                    "NJ HVACR license name: 'Master HVACR Contractor' (verify)", "NJ Clean Energy rebate references (verify current program)"],
+        fact_flags=["NJ HVACR license name: 'Master HVACR Contractor' (verify)", "NJ Clean Energy rebate references (verify current program)"],
     ),
     "S05": dict(
-        full_name="Walt Kowalczyk", display_preference="handle", title="Steamfitter / Plumber (UA)",
+        full_name="Dwayne Hollis", display_preference="handle", title="Steamfitter / Plumber (UA)",
         years_in=30, path="journeyman", affiliation_hint="UA Local 9, 30 years",
         licenses=[],
         bio="30 yrs UA. hospitals and pharma plants along route 1. ask a clear question.",
@@ -115,7 +114,7 @@ SENIORS = {
         fact_flags=["UA Local 9 is a Central NJ plumbers/steamfitters local (verify)"],
     ),
     "S06": dict(
-        full_name="Rich Delaney", display_preference="handle", title="HVAC Service Lead",
+        full_name="Hector Rivera", display_preference="handle", title="HVAC Service Lead",
         years_in=15, path="service_tech", affiliation_hint="Service lead for a South Jersey mechanical contractor",
         licenses=["EPA 608 Universal"],
         bio="Service lead out of Camden County, 15 years. Did a lot of casino and hotel work in AC, residential in Gloucester now. I have a story for everything... some of them are even useful lol",
@@ -126,7 +125,7 @@ SENIORS = {
         claims=["15 yrs", "service lead, Camden County (Cherry Hill)", "casino/hotel chillers & AC in Atlantic City earlier", "residential in Gloucester County now", "EPA 608 Universal"],
     ),
     "S07": dict(
-        full_name="Ed Hargrove", display_preference="handle", title="Electrical inspector (former contractor)",
+        full_name="Dale Whitacre", display_preference="handle", title="Electrical inspector (former contractor)",
         years_in=26, path="inspector", affiliation_hint="15 years as a contractor, now on the inspection side at the shore",
         licenses=["NJ Electrical Contractor (inactive)", "NJ electrical inspector license"],
         bio="26 years in electrical: contractor first, inspector now, down the shore. I explain why things fail, not to make anyone feel bad. Not legal advice; check which code edition is in effect for your job.",
@@ -138,7 +137,7 @@ SENIORS = {
         fact_flags=["NJ inspector licensing terminology (verify)", "keep him from speaking for any real municipality"],
     ),
     "S08": dict(
-        full_name="Monique Tate", display_preference="first_name_initial", title="Master Plumber",
+        full_name="Joy Dimaculangan", display_preference="first_name_initial", title="Master Plumber",
         years_in=17, path="owner", affiliation_hint="Runs a 3-person crew doing multifamily and co-op work in Hudson County",
         licenses=["NJ Master Plumber"],
         bio="Master plumber, 17 years. Multifamily, co-ops and condos in Jersey City and Hoboken. I came in at 26 from restaurant management, so if you're switching careers, ask me. What's your actual question?",
@@ -149,7 +148,7 @@ SENIORS = {
         claims=["17 yrs", "NJ Master Plumber", "switched in at 26 from restaurant management", "Jersey City / Hoboken multifamily, co-ops", "3-person crew"],
     ),
     "S09": dict(
-        full_name="Linda Szabo", display_preference="handle", title="Vo-tech instructor, plumbing & HVAC",
+        full_name="Rosa Almonte", display_preference="handle", title="Vo-tech instructor, plumbing & HVAC",
         years_in=28, path="instructor", affiliation_hint="Teaches plumbing/HVAC at a county tech school in Passaic County; 20 yrs field + 8 teaching",
         licenses=["NJ Master HVACR Contractor", "EPA 608 Universal"],
         bio="20 years in the field, 8 teaching plumbing and HVAC at a county tech school. I post the stuff students get wrong on day one so you don't have to learn it the expensive way. Ask me how I know.",
@@ -161,7 +160,7 @@ SENIORS = {
         fact_flags=["does not name the real school; keep it that way"],
     ),
     "S10": dict(
-        full_name="Arun Mehta", display_preference="handle", title="Controls / Low-Voltage Electrician",
+        full_name="Wei Chen", display_preference="handle", title="Controls / Low-Voltage Electrician",
         years_in=14, path="service_tech", affiliation_hint="BMS and fire alarm, Somerset County",
         licenses=["NJ fire alarm license"],
         bio="14 yrs low voltage. building automation and fire alarm mostly, somerset/middlesex. yes it's a real trade. fwiw the controls side pays fine and nobody's on a roof in august.",
@@ -173,7 +172,7 @@ SENIORS = {
         fact_flags=["NJ fire alarm licensing structure (verify the board/committee)"],
     ),
     "S11": dict(
-        full_name="Bill Haddad", display_preference="handle", title="Mechanical contractor (HVAC + plumbing)",
+        full_name="Sami Haddad", display_preference="handle", title="Mechanical contractor (HVAC + plumbing)",
         years_in=24, path="owner", affiliation_hint="Owns a mechanical contracting company, Burlington County; schools, warehouses, prevailing-wage",
         licenses=["NJ Master HVACR Contractor", "NJ Master Plumber"],
         bio="Mechanical contractor, 24 years, Burlington County. Warehouses and schools, a lot of prevailing-wage public work. I hire apprentices every year, and I'll tell you exactly what makes one worth keeping.",
@@ -184,19 +183,19 @@ SENIORS = {
         claims=["24 yrs", "owns mechanical (HVAC+plumbing) company", "Burlington County (Mount Laurel)", "warehouses, schools, prevailing wage", "both licenses"],
     ),
     "S12": dict(
-        full_name="Nick Ferraro", display_preference="full_name", title="Master Plumber, second-generation shop owner",
+        full_name="Rui Teixeira", display_preference="full_name", title="Master Plumber, second-generation shop owner",
         years_in=23, path="owner", affiliation_hint="Took over his father's residential/light commercial plumbing business on the Hudson/Bergen line",
         licenses=["NJ Master Plumber"],
         bio="23 years. Took over my father's plumbing business on the Hudson/Bergen line. Spent a few years in the union before coming back to the family shop. Ask me why I left. Also ask me why I half regret it.",
         voice=dict(register="chatty", punctuation="normal", tics=["'my father used to say...'", "admits his own regrets"], swears="mild"),
         situation="Thinking about succession (no kids in the trade) and hiring vo-tech grads.",
         goals=["find someone to eventually take over", "hire a vo-tech grad every June"],
-        mentor_availability="limited", town_hint="North Bergen",
-        claims=["23 yrs", "second-gen shop owner, took over father's business", "Hudson/Bergen border (North Bergen)", "was in the union a few years, left", "NJ Master Plumber"],
-        fact_flags=["uses a full name on the site: confirm 'Nick Ferraro' isn't a real Hudson/Bergen plumbing shop owner before prod"],
+        mentor_availability="limited", town_hint="Kearny",
+        claims=["23 yrs", "second-gen shop owner, took over father's business", "Hudson/Bergen border (Kearny)", "was in the union a few years, left", "NJ Master Plumber"],
+        fact_flags=["confirm 'Rui Teixeira' isn't a real Hudson/Bergen plumbing shop owner before prod"],
     ),
     "S13": dict(
-        full_name="Wes Pruitt", display_preference="handle", title="Refrigeration Tech",
+        full_name="Tuan Nguyen", display_preference="handle", title="Refrigeration Tech",
         years_in=18, path="service_tech", affiliation_hint="Commercial refrigeration, restaurants and boardwalk businesses, Atlantic/Cape May",
         licenses=["EPA 608 Universal"],
         bio="18 yrs refrigeration. restaurants, walk-ins, ice machines, boardwalk stuff. summer you work, winter you learn.",
@@ -207,7 +206,7 @@ SENIORS = {
         claims=["18 yrs", "commercial refrigeration", "Atlantic/Cape May shore", "seasonal boom/bust"],
     ),
     "S14": dict(
-        full_name="Danny Rourke", display_preference="handle", title="Journeyman Electrician (Local 3)",
+        full_name="Andre Baptiste", display_preference="handle", title="Journeyman Electrician (Local 3)",
         years_in=21, path="journeyman", affiliation_hint="IBEW Local 3 journeyman, Manhattan high-rise",
         licenses=[],
         bio="Local 3, 21 years. Manhattan high-rise, mostly 40 floors up. Live in Astoria. Half my apprentices commute in from Jersey, so ask away about that too.",
@@ -219,7 +218,7 @@ SENIORS = {
         fact_flags=["Local 3 application process (lottery/test) — he must hedge and point to the official site"],
     ),
     "S15": dict(
-        full_name="Tom Ianelli", display_preference="handle", title="NYC Licensed Master Plumber",
+        full_name="Arkady Volkov", display_preference="first_name_initial", title="NYC Licensed Master Plumber",
         years_in=26, path="owner", affiliation_hint="Runs a small non-union shop in Brooklyn; brownstones and multifamily gas work",
         licenses=["NYC Licensed Master Plumber", "NYC DOB gas work qualification"],
         bio="Licensed Master Plumber in the city, 26 years. Brooklyn brownstones and multifamily, a lot of gas work and DOB inspections. Grew up in Jersey, so I can tell you how different the two sides of the river are.",
@@ -231,6 +230,35 @@ SENIORS = {
         fact_flags=["NYC master plumber experience requirement / DOB gas qualification details (verify)"],
     ),
 }
+
+# Avatar per Senior (plan §5a: no photos, no faces). style: initials | icon | none.
+SENIOR_AVATARS = {
+    "S01": ("icon", "wrench"), "S02": ("initials", None), "S03": ("none", None),
+    "S04": ("icon", "flame"), "S05": ("none", None), "S06": ("initials", None),
+    "S07": ("none", None), "S08": ("initials", None), "S09": ("initials", None),
+    "S10": ("icon", "plug"), "S11": ("none", None), "S12": ("initials", None),
+    "S13": ("icon", "snowflake"), "S14": ("none", None), "S15": ("initials", None),
+}
+AVATAR_ICONS = {"wrench", "flame", "plug", "snowflake", "hardhat", "zap", "thermometer", "hammer"}
+JUNIOR_TRADE_ICONS = {
+    "plumbing": ["wrench"], "hvac": ["flame", "snowflake", "thermometer"],
+    "electrical": ["plug", "zap"], "general": ["hardhat", "hammer"],
+}
+
+
+def junior_avatars(juniors: list[dict]) -> None:
+    """~45% none, ~40% initials, ~15% icon (trade-matched), deterministic and
+    drawn from a separate RNG so it doesn't disturb any other Junior field."""
+    rng = random.Random(RNG_SEED + 21)
+    n = len(juniors)
+    n_icon = round(n * 0.15)
+    n_initials = round(n * 0.40)
+    styles = ["icon"] * n_icon + ["initials"] * n_initials + ["none"] * (n - n_icon - n_initials)
+    rng.shuffle(styles)
+    for p, style in zip(juniors, styles):
+        p["avatar_style"] = style
+        p["avatar_icon"] = rng.choice(JUNIOR_TRADE_ICONS[p["trade"]]) if style == "icon" else None
+
 
 # ---------------------------------------------------------------------------
 # Junior pools
@@ -541,12 +569,15 @@ def build() -> tuple[list[dict], list[dict]]:
             "age": d.get("age"),
             "claims": d.get("claims", []),
             "fact_flags": d.get("fact_flags", []),
+            "avatar_style": SENIOR_AVATARS[s.slot_id][0] if s.role == "senior" else None,
+            "avatar_icon": SENIOR_AVATARS[s.slot_id][1] if s.role == "senior" else None,
             "joined_at": joins[s.slot_id].isoformat(timespec="seconds"),
             "handle_reddit_status": h["reddit_status"],
             "is_founding_member": True,
             "seed_batch_id": BATCH_ID,
         }
         (seniors if s.role == "senior" else juniors).append(rec)
+    junior_avatars(juniors)
     return seniors, juniors
 
 
@@ -571,6 +602,10 @@ def validate(seniors: list[dict], juniors: list[dict]) -> list[str]:
                 errs.append(f"{p['handle']}: seeded Senior must be limited/not_accepting")
             if p["trade"] == "general" or p["activity_level"] not in ("regular", "heavy"):
                 errs.append(f"{p['handle']}: Senior trade/activity")
+        if p["avatar_style"] not in ("initials", "icon", "none"):
+            errs.append(f"{p['handle']}: bad avatar_style {p['avatar_style']}")
+        if (p["avatar_style"] == "icon") != (p["avatar_icon"] is not None) or (p["avatar_icon"] and p["avatar_icon"] not in AVATAR_ICONS):
+            errs.append(f"{p['handle']}: avatar_icon {p['avatar_icon']} inconsistent with style {p['avatar_style']}")
         if not p["is_founding_member"] or p["seed_batch_id"] != BATCH_ID:
             errs.append(f"{p['handle']}: missing founding flag/batch")
     nyc = sum(p["region"] == "NYC" for p in everyone)
@@ -601,6 +636,7 @@ def main() -> None:
     print("junior activity:", dict(Counter(p["activity_level"] for p in juniors)))
     print("junior paths:", dict(Counter(p["path"] for p in juniors)))
     print("senior availability:", dict(Counter(p["mentor_availability"] for p in seniors)))
+    print("avatars (all):", dict(Counter(p["avatar_style"] for p in everyone)), " juniors:", dict(Counter(p["avatar_style"] for p in juniors)))
 
 
 if __name__ == "__main__":

@@ -170,22 +170,26 @@ NJ_FLAVOR = [
 ]
 
 # Two curated candidates per Senior (plan §2 roster), still subject to checks.
+# Curated Senior handles (plan §2 roster; names revised in Gaurav's review).
+# The first entry is the chosen handle and always wins its slot (see assign());
+# the second is a fallback kept so the candidate pool and RNG draws stay the
+# same shape, which keeps every Junior's handle stable across renames.
 SENIOR_CURATED = {
-    "S01": ["BergenBoilerMan", "CopperAndCastIron"],
-    "S02": ["ForemanFromMorris", "DataHallSparky"],
-    "S03": ["SaltAirSparky", "DownTheShoreSparks"],
-    "S04": ["MiddlesexHeatPumps", "OilToGasGuy"],
-    "S05": ["Rt1Steamfitter", "PharmaPipefitter"],
-    "S06": ["CasinoChillerTech", "SoJersey_HVAC_Lead"],
-    "S07": ["GreenTagOrBust", "PassedRoughIn"],
-    "S08": ["RiserRoomRegular", "MultifamilyMaster"],
-    "S09": ["DayOneMistakes", "ShopTeacherTech"],
-    "S10": ["LowVoltLifer", "BMS_and_FireAlarm"],
-    "S11": ["PrevailingWageMech", "KeepableApprentice"],
-    "S12": ["SecondGenPlumber", "PopsOldTruck"],
-    "S13": ["WalkInCoolerWes", "WinterIsForLearning"],
-    "S14": ["FortyFloorsUp", "QueensHighRiseSparky"],
-    "S15": ["BrownstoneGasPlumber", "BklynGasTest"],
+    "S01": ["oldsteam_zig", "ziggy_steamheat"],
+    "S02": ["mbell_wireman", "marcusb_102"],
+    "S03": ["thiago_sparks", "ferreira_wires"],
+    "S04": ["Kash_sing", "kashmir_hvac"],
+    "S05": ["dhollis61", "dwayne_ua9"],
+    "S06": ["hec_does_ac", "hector_ac_nj"],
+    "S07": ["codebook_dale", "dale_inspects"],
+    "S08": ["joyd_plumbing", "joy_risers"],
+    "S09": ["ms_almonte", "rosa_teaches"],
+    "S10": ["wchen_controls", "wei_bms"],
+    "S11": ["haddad_mech", "sami_mech"],
+    "S12": ["rui_t_kearny", "rui_plumbing"],
+    "S13": ["tnguyen_refrig", "tuan_walkins"],
+    "S14": ["dreb_jman", "andre_local3"],
+    "S15": ["bklyn_arkady", "arkady_gas"],
 }
 
 
@@ -201,8 +205,8 @@ def generate(rng: random.Random) -> list[Cand]:
         out.append(c)
 
     for slot, hs in SENIOR_CURATED.items():
-        for h in hs:
-            add(Cand(h, "curated_senior", role="senior", slot=slot))
+        for i, h in enumerate(hs):
+            add(Cand(h, "curated_senior", role="senior", slot=slot, extra={"primary": i == 0}))
 
     place_keys = list(PLACES)
     # trade + place
@@ -369,10 +373,14 @@ def reddit_check(cands: list[Cand], rng: random.Random, enabled: bool) -> str:
     return "ok"
 
 
+PRIOR_LOG: dict[str, dict] = {}
+
+
 def reuse_previous_log(cands: list[Cand]) -> str:
     """Copy Reddit outcomes from the last run so re-runs don't re-hit Reddit."""
     log = SEED_DIR / "handles_checked.csv"
     prior = {r["candidate"].lower(): r for r in csv.DictReader(log.open())}
+    PRIOR_LOG.update(prior)
     blocked = any("persistent block" in r["note"] for r in prior.values())
     for c in cands:
         if c.status != "passed_offline":
@@ -381,7 +389,9 @@ def reuse_previous_log(cands: list[Cand]) -> str:
         if r and r["status"] in ("free", "taken", "unverified"):
             c.status, c.http, c.checked_at, c.note = r["status"], r["http"], r["checked_at"], r["note"]
         else:
-            c.status, c.note = "unverified", "not in previous log"
+            c.status = "unverified"
+            c.note = ("not checked: reddit blocked unauthenticated requests in pass 1; not retried"
+                      if blocked else "not in previous log")
     return "blocked" if blocked else "ok"
 
 
@@ -409,6 +419,7 @@ def assign(cands: list[Cand], rng: random.Random, accept: set[str]) -> list[dict
             return None
         sc = 0.0
         sc += 10 if c.slot == s.slot_id else 0
+        sc += 1 if c.extra.get("primary") else 0  # chosen handle beats its fallback (rng adds < 1)
         sc += 2 if c.trade == s.trade else 0
         sc += 2 if c.counties and s.county in c.counties else 0
         sc += 1 if c.regions and s.region in c.regions else 0
@@ -472,6 +483,13 @@ def main() -> None:
         w.writerow(["candidate", "style", "status", "http", "checked_at", "note"])
         for c in cands:
             w.writerow([c.handle, c.style, c.status, c.http, c.checked_at or datetime.now(timezone.utc).isoformat(timespec="seconds"), c.note])
+        # Keep the audit trail for candidates that are no longer generated
+        # (e.g. the Senior handles replaced in Gaurav's review).
+        current = {c.handle.lower() for c in cands}
+        for key, r in PRIOR_LOG.items():
+            if key not in current:
+                note = r["note"] if r["note"].startswith("retired") else f"retired (no longer a candidate); was: {r['note']}"
+                w.writerow([r["candidate"], r["style"], r["status"], r["http"], r["checked_at"], note])
     print(f"wrote {log}")
 
     accept = {"free"} if reddit == "ok" else {"free", "unverified"}

@@ -1,6 +1,6 @@
 {
   "batch_id": "fm-2026-10",
-  "generated_at": "2026-10-05T13:40:53+00:00",
+  "generated_at": "2026-10-06T00:32:36+00:00",
   "reddit_check": "blocked",
   "note": "All handles passed the app's format/reserved/DB checks and Levenshtein>1 within the roster. Reddit could not be checked (see handles_checked.csv); every handle is UNVERIFIED against Reddit and must be re-checked before production use.",
   "handles": [
@@ -1457,7 +1457,7 @@
       "checked_at": "2026-10-05T13:40:29+00:00"
     },
     {
-      "handle": "BergenBoilerMan",
+      "handle": "oldsteam_zig",
       "slot_id": "S01",
       "role": "senior",
       "trade": "plumbing",
@@ -1465,11 +1465,11 @@
       "county": "Bergen",
       "style": "curated_senior",
       "reddit_status": "unverified",
-      "reddit_http": "403",
-      "checked_at": "2026-10-05T13:40:20+00:00"
+      "reddit_http": "",
+      "checked_at": ""
     },
     {
-      "handle": "ForemanFromMorris",
+      "handle": "mbell_wireman",
       "slot_id": "S02",
       "role": "senior",
       "trade": "electrical",
@@ -1477,11 +1477,11 @@
       "county": "Morris",
       "style": "curated_senior",
       "reddit_status": "unverified",
-      "reddit_http": "403",
-      "checked_at": "2026-10-05T13:40:24+00:00"
+      "reddit_http": "",
+      "checked_at": ""
     },
     {
-      "handle": "DownTheShoreSparks",
+      "handle": "thiago_sparks",
       "slot_id": "S03",
       "role": "senior",
       "trade": "electrical",
@@ -1490,10 +1490,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "MiddlesexHeatPumps",
+      "handle": "Kash_sing",
       "slot_id": "S04",
       "role": "senior",
       "trade": "hvac",
@@ -1502,10 +1502,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "PharmaPipefitter",
+      "handle": "dhollis61",
       "slot_id": "S05",
       "role": "senior",
       "trade": "plumbing",
@@ -1514,10 +1514,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "SoJersey_HVAC_Lead",
+      "handle": "hec_does_ac",
       "slot_id": "S06",
       "role": "senior",
       "trade": "hvac",
@@ -1526,10 +1526,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "PassedRoughIn",
+      "handle": "codebook_dale",
       "slot_id": "S07",
       "role": "senior",
       "trade": "electrical",
@@ -1538,10 +1538,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "MultifamilyMaster",
+      "handle": "joyd_plumbing",
       "slot_id": "S08",
       "role": "senior",
       "trade": "plumbing",
@@ -1550,10 +1550,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "DayOneMistakes",
+      "handle": "ms_almonte",
       "slot_id": "S09",
       "role": "senior",
       "trade": "hvac",
@@ -1562,10 +1562,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "LowVoltLifer",
+      "handle": "wchen_controls",
       "slot_id": "S10",
       "role": "senior",
       "trade": "electrical",
@@ -1574,10 +1574,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "PrevailingWageMech",
+      "handle": "haddad_mech",
       "slot_id": "S11",
       "role": "senior",
       "trade": "hvac",
@@ -1586,10 +1586,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "SecondGenPlumber",
+      "handle": "rui_t_kearny",
       "slot_id": "S12",
       "role": "senior",
       "trade": "plumbing",
@@ -1598,10 +1598,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "WalkInCoolerWes",
+      "handle": "tnguyen_refrig",
       "slot_id": "S13",
       "role": "senior",
       "trade": "hvac",
@@ -1610,10 +1610,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "QueensHighRiseSparky",
+      "handle": "dreb_jman",
       "slot_id": "S14",
       "role": "senior",
       "trade": "electrical",
@@ -1622,10 +1622,10 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     },
     {
-      "handle": "BrownstoneGasPlumber",
+      "handle": "bklyn_arkady",
       "slot_id": "S15",
       "role": "senior",
       "trade": "plumbing",
@@ -1634,7 +1634,7 @@
       "style": "curated_senior",
       "reddit_status": "unverified",
       "reddit_http": "",
-      "checked_at": "2026-10-05T13:40:29+00:00"
+      "checked_at": ""
     }
   ]
 }

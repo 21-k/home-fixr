@@ -43,6 +43,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-16T20:08:57-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -95,6 +97,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 3rd year'"
     ],
+    "avatar_style": "icon",
+    "avatar_icon": "wrench",
     "joined_at": "2026-07-25T20:12:57-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -147,6 +151,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 164 2nd year'"
     ],
+    "avatar_style": "icon",
+    "avatar_icon": "plug",
     "joined_at": "2026-07-20T05:25:02-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -198,6 +204,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 164 1st year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-25T11:22:35-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -249,6 +257,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 164 1st year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-19T09:07:56-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -301,6 +311,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 1st year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T05:30:17-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -349,6 +361,8 @@
       "Bergen County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-10T05:01:24-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -398,6 +412,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-11T17:58:49-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -450,6 +466,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 164 4th year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-08-03T05:08:15-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -497,6 +515,8 @@
       "2 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T18:05:36-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -549,6 +569,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 164 4th year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-16T05:39:40-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -599,6 +621,8 @@
       "Essex County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T18:00:04-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -651,6 +675,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 4th year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-05T13:56:51-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -699,6 +725,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T20:03:31-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -747,6 +775,8 @@
       "Essex County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-13T21:47:12-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -796,6 +826,8 @@
       "Essex County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-20T15:51:09-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -844,6 +876,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-21T22:38:16-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -895,6 +929,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 1st year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-18T21:09:18-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -943,6 +979,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T21:42:27-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -991,6 +1029,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-07T12:54:19-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1039,6 +1079,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T13:12:49-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1087,6 +1129,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "wrench",
     "joined_at": "2026-08-10T21:00:57-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1135,6 +1179,8 @@
       "4 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "wrench",
     "joined_at": "2026-07-02T21:18:40-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1187,6 +1233,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 164 2nd year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-08-30T19:59:05-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1236,6 +1284,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-09T19:08:23-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1287,6 +1337,8 @@
       "Hudson County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-18T11:11:23-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1337,6 +1389,8 @@
       "Hudson County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-13T19:32:44-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1385,6 +1439,8 @@
       "4 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-07T05:52:24-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1433,6 +1489,8 @@
       "2 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-02T22:49:59-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1482,6 +1540,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-08T14:50:35-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1530,6 +1590,8 @@
       "4 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-02T06:07:07-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1579,6 +1641,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-02T12:07:36-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1626,6 +1690,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-08-07T17:26:01-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1676,6 +1742,8 @@
       "Passaic County vo-tech, class of '27"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-10T12:01:17-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1727,6 +1795,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 1st year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-04T09:01:18-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1778,6 +1848,8 @@
       "Morris County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-20T05:59:31-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1829,6 +1901,8 @@
       "Morris County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-21T19:01:14-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1880,6 +1954,8 @@
       "Morris County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "snowflake",
     "joined_at": "2026-08-07T05:07:27-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1927,6 +2003,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-05T21:28:36-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -1979,6 +2057,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 4th year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-23T12:15:22-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2030,6 +2110,8 @@
     "fact_flags": [
       "affiliation 'UA Local 24 3rd year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T17:19:46-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2082,6 +2164,8 @@
     "fact_flags": [
       "affiliation 'UA Local 9 2nd year'"
     ],
+    "avatar_style": "icon",
+    "avatar_icon": "wrench",
     "joined_at": "2026-07-20T22:13:21-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2130,6 +2214,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T06:17:51-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2179,6 +2265,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-21T22:12:18-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2229,6 +2317,8 @@
       "Middlesex County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-07T21:12:25-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2276,6 +2366,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "thermometer",
     "joined_at": "2026-09-13T22:07:58-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2324,6 +2416,8 @@
       "Middlesex County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T18:07:17-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2371,6 +2465,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-22T21:04:12-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2420,6 +2516,8 @@
       "Middlesex County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-18T11:21:01-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2469,6 +2567,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-22T12:37:56-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2517,6 +2617,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-08-11T22:07:27-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2565,6 +2667,8 @@
       "2 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-17T05:03:47-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2614,6 +2718,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-08-05T21:32:25-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2663,6 +2769,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T12:50:59-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2713,6 +2821,8 @@
       "Monmouth County vo-tech, class of '27"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-01T14:38:39-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2762,6 +2872,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "snowflake",
     "joined_at": "2026-09-08T19:45:54-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2813,6 +2925,8 @@
     "fact_flags": [
       "affiliation 'UA Local 9 3rd year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T12:38:14-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2861,6 +2975,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "wrench",
     "joined_at": "2026-09-23T05:39:57-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2909,6 +3025,8 @@
       "Monmouth County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-22T20:43:45-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -2958,6 +3076,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-09T12:52:55-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3009,6 +3129,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 400 2nd year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-31T20:04:41-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3057,6 +3179,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "snowflake",
     "joined_at": "2026-07-01T21:42:03-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3104,6 +3228,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T12:47:08-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3155,6 +3281,8 @@
     "fact_flags": [
       "affiliation 'UA Local 9 2nd year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T20:26:46-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3204,6 +3332,8 @@
       "2 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-20T21:44:37-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3253,6 +3383,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "flame",
     "joined_at": "2026-07-01T17:09:59-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3301,6 +3433,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-02T07:24:40-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3352,6 +3486,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 456 3rd year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-21T19:31:03-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3403,6 +3539,8 @@
       "Union County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-28T21:17:08-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3452,6 +3590,8 @@
       "Union County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-04T20:51:19-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3501,6 +3641,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T05:46:53-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3550,6 +3692,8 @@
       "Mercer County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-01T13:04:14-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3602,6 +3746,8 @@
     "fact_flags": [
       "affiliation 'UA Local 9 4th year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-04T13:10:32-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3651,6 +3797,8 @@
       "Mercer County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-05T14:41:02-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3700,6 +3848,8 @@
       "2 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-03T18:57:13-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3747,6 +3897,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-07T12:40:23-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3796,6 +3948,8 @@
       "Somerset County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-09T21:29:40-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3848,6 +4002,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 456 2nd year'"
     ],
+    "avatar_style": "icon",
+    "avatar_icon": "zap",
     "joined_at": "2026-07-27T06:01:12-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3899,6 +4055,8 @@
       "Somerset County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-19T15:09:56-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3948,6 +4106,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-08-31T12:42:06-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -3997,6 +4157,8 @@
       "2 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T05:00:54-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4047,6 +4209,8 @@
       "Ocean County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-09T20:31:18-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4095,6 +4259,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-22T19:39:43-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4147,6 +4313,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 400 4th year'"
     ],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-02T19:19:08-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4198,6 +4366,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 400 2nd year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-05T20:59:40-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4245,6 +4415,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-10T21:38:38-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4292,6 +4464,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-31T12:00:48-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4344,6 +4518,8 @@
     "fact_flags": [
       "affiliation 'IBEW Local 400 4th year'"
     ],
+    "avatar_style": "icon",
+    "avatar_icon": "zap",
     "joined_at": "2026-07-08T21:25:52-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4396,6 +4572,8 @@
       "Ocean County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-20T12:58:40-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4445,6 +4623,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-17T17:52:34-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4494,6 +4674,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T05:29:23-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4541,6 +4723,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-06T20:40:33-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4589,6 +4773,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-25T10:45:36-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4638,6 +4824,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-16T12:04:32-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4685,6 +4873,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "hammer",
     "joined_at": "2026-07-24T05:36:26-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4734,6 +4924,8 @@
       "Camden County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-18T19:30:51-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4782,6 +4974,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-21T13:04:51-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4831,6 +5025,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-26T21:45:51-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4881,6 +5077,8 @@
       "Burlington County vo-tech '25"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-05T19:04:57-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4929,6 +5127,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-15T12:36:53-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -4979,6 +5179,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-03T06:24:58-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5027,6 +5229,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-05T16:23:04-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5075,6 +5279,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-20T21:43:01-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5124,6 +5330,8 @@
       "Gloucester County vo-tech, class of '26"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-22T20:10:03-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5173,6 +5381,8 @@
       "3 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-03T21:48:31-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5222,6 +5432,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-22T12:46:19-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5270,6 +5482,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-07T19:12:14-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5318,6 +5532,8 @@
       "Atlantic County vo-tech '24"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-31T06:08:03-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5367,6 +5583,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-08-03T17:27:04-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5416,6 +5634,8 @@
       "trade program in Queens"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-02T06:16:12-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5466,6 +5686,8 @@
       "trade program in Queens"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "zap",
     "joined_at": "2026-08-09T20:24:50-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5514,6 +5736,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "zap",
     "joined_at": "2026-07-06T23:55:59-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5563,6 +5787,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-03T12:46:43-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5613,6 +5839,8 @@
     "fact_flags": [
       "affiliation 'Apex grad (NYC)'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-05T22:10:08-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5664,6 +5892,8 @@
     "fact_flags": [
       "affiliation 'Plumbers Local 1 1st year'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-09-17T19:12:14-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5712,6 +5942,8 @@
       "1 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-09-11T12:21:38-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5762,6 +5994,8 @@
       "trade program in Queens"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "zap",
     "joined_at": "2026-07-02T06:23:45-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5809,6 +6043,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-04T11:42:10-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5861,6 +6097,8 @@
     "fact_flags": [
       "affiliation 'Apex grad (NYC)'"
     ],
+    "avatar_style": "initials",
+    "avatar_icon": null,
     "joined_at": "2026-07-04T21:51:20-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5909,6 +6147,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "none",
+    "avatar_icon": null,
     "joined_at": "2026-07-09T23:13:24-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
@@ -5958,6 +6198,8 @@
       "0 yrs in"
     ],
     "fact_flags": [],
+    "avatar_style": "icon",
+    "avatar_icon": "zap",
     "joined_at": "2026-07-22T06:05:50-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
