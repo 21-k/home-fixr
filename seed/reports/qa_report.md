@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T10:48:08-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-05T20:38:41-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -13,8 +13,11 @@ Run: 2026-10-05T10:48:08-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | handle format 4-22 [A-Za-z0-9_.] | [] |
 | PASS | every handle logged in handles_checked.csv | [] |
 | WARN | every handle has a logged Reddit 404 | 0/136 have a 404; rest unverified (Reddit returned 403, see REPORT.md) |
-| PASS | display preference ≈80/18/2 | {'handle': 110, 'first_name_initial': 24, 'full_name': 2} |
+| PASS | display preference ≈80/18/2 | {'handle': 110, 'first_name_initial': 25, 'full_name': 1} |
 | PASS | no seeded Senior shown as accepting mentees | [] |
+| PASS | avatar mix ≈45% none / 40% initials / 15% icon (±5 pts) | icon 16%, initials 40%, none 44% |
+| PASS | every 'icon' persona has an allowed icon (and only they do) | [] |
+| PASS | Junior icons match their trade | [] |
 | PASS | junior activity 40/35/20/5 | {'regular': 24, 'occasional': 42, 'lurker': 49, 'heavy': 6} |
 | PASS | all flagged is_founding_member + batch |  |
 | WARN | ≥8% zero-reply threads | 1/20 = 5% (sample of 20; 2 needed for 8%) |
@@ -25,7 +28,7 @@ Run: 2026-10-05T10:48:08-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | all categories A–F present | {'A': 4, 'B': 4, 'C': 3, 'D': 3, 'E': 4, 'F': 2} |
 | PASS | persona consistency: Seniors' stated years match |  |
 | PASS | lowercase-voice Seniors stay lowercase | [] |
-| PASS | bullet points only from MiddlesexHeatPumps | [] |
+| PASS | bullet points only from Kash_sing | [] |
 | PASS | nobody mentions/praises Home Fixr | [] |
 | PASS | plagiarism: no 12-word overlap (internal; no external corpus) | 8-gram overlaps: 3; 12+: [] |
 | PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 81%, 0-4am 0%; 5:12 6:10 7:1 8:5 9:2 10:4 11:1 12:6 13:2 14:2 15:3 16:1 17:4 18:4 19:7 20:17 21:12 22:13 23:13 |
@@ -37,10 +40,11 @@ Run: 2026-10-05T10:48:08-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | DB: no handle collision with any other member | 0 |
 | PASS | DB: zero notifications involving seeded accounts | 0 |
 | PASS | DB: no seeded Senior accepting mentees | 0 |
+| PASS | DB: seeded avatar fields written and consistent | 0 |
 | PASS | DB: seeded auth users have no password and are banned | 0 |
 | PASS | app: /feed renders | 200 |
 | PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 92 badges for 20 posts |
+| PASS | app: Founding Community badge on /feed | 79 badges for 20 posts |
 | PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
 | PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
