@@ -123,8 +123,8 @@ def check_threads(threads, people):
                  and re.search(r"(^|[.!?]\s+)[A-Z][a-z]", text.split("\n", 1)[-1] if "/r" not in where else text)]
     record("lowercase-voice Seniors stay lowercase", not lower_bad, str(lower_bad[:5]), warn=True)
     bullets = [where for author, text, where in all_texts(threads)
-               if re.search(r"^\s*[-*•]\s", text, re.M) and author != "MiddlesexHeatPumps"]
-    record("bullet points only from MiddlesexHeatPumps", not bullets, str(bullets))
+               if re.search(r"^\s*[-*•]\s", text, re.M) and author != "Kash_sing"]
+    record("bullet points only from Kash_sing", not bullets, str(bullets))
     praise = [where for _, text, where in all_texts(threads) if re.search(r"home ?fixr", text, re.I)]
     record("nobody mentions/praises Home Fixr", not praise, str(praise))
 

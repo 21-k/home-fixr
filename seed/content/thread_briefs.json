@@ -42,7 +42,7 @@
       },
       "cast": [
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -184,7 +184,7 @@
       "nyc": true,
       "reply_count": 14,
       "starter": {
-        "handle": "QueensHighRiseSparky",
+        "handle": "dreb_jman",
         "role": "senior",
         "trade": "electrical",
         "region": "NYC",
@@ -232,7 +232,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -275,7 +275,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -400,7 +400,7 @@
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -422,7 +422,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -481,12 +481,12 @@
           "union apprentice",
           "from around Hackensack, Bergen",
           "4 yrs in",
-          "IBEW Local 102 4th year"
+          "IBEW Local 164 4th year"
         ]
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -508,7 +508,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -530,7 +530,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -572,7 +572,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -635,7 +635,7 @@
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -656,7 +656,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -678,7 +678,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -715,7 +715,7 @@
       "nyc": false,
       "reply_count": 4,
       "starter": {
-        "handle": "DayOneMistakes",
+        "handle": "ms_almonte",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-North",
@@ -741,7 +741,7 @@
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -780,7 +780,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
@@ -888,11 +888,11 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -933,7 +933,7 @@
       "nyc": false,
       "reply_count": 0,
       "starter": {
-        "handle": "PassedRoughIn",
+        "handle": "codebook_dale",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-South",
@@ -1019,7 +1019,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -1041,7 +1041,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -1057,13 +1057,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -1106,7 +1106,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -1300,7 +1300,7 @@
       },
       "cast": [
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -1322,7 +1322,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -1434,7 +1434,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -1456,7 +1456,7 @@
           ]
         },
         {
-          "handle": "LowVoltLifer",
+          "handle": "wchen_controls",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -1565,7 +1565,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -1586,7 +1586,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -1602,7 +1602,7 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
@@ -1671,7 +1671,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -1753,12 +1753,12 @@
           "union apprentice",
           "from around North Bergen, Hudson",
           "2 yrs in",
-          "IBEW Local 102 2nd year"
+          "IBEW Local 164 2nd year"
         ]
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -1822,7 +1822,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -1843,7 +1843,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -1864,7 +1864,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -1948,11 +1948,11 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -1994,7 +1994,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -2031,7 +2031,7 @@
       "nyc": true,
       "reply_count": 5,
       "starter": {
-        "handle": "QueensHighRiseSparky",
+        "handle": "dreb_jman",
         "role": "senior",
         "trade": "electrical",
         "region": "NYC",
@@ -2078,7 +2078,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -2100,7 +2100,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -2121,7 +2121,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -2143,7 +2143,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -2227,7 +2227,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -2249,7 +2249,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -2330,7 +2330,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         }
       ]
@@ -2351,7 +2351,7 @@
       "nyc": true,
       "reply_count": 6,
       "starter": {
-        "handle": "BrownstoneGasPlumber",
+        "handle": "bklyn_arkady",
         "role": "senior",
         "trade": "plumbing",
         "region": "NYC",
@@ -2378,7 +2378,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -2400,7 +2400,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -2416,7 +2416,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -2443,7 +2443,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -2546,7 +2546,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -2562,13 +2562,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -2738,7 +2738,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -2801,7 +2801,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -2866,7 +2866,7 @@
       },
       "cast": [
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -2882,13 +2882,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -2924,7 +2924,7 @@
       "nyc": false,
       "reply_count": 0,
       "starter": {
-        "handle": "DayOneMistakes",
+        "handle": "ms_almonte",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-North",
@@ -3014,7 +3014,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -3078,7 +3078,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -3100,7 +3100,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -3164,7 +3164,7 @@
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -3228,7 +3228,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -3291,7 +3291,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -3350,7 +3350,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
@@ -3440,7 +3440,7 @@
       },
       "cast": [
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -3456,13 +3456,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -3478,7 +3478,7 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
@@ -3525,7 +3525,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -3547,7 +3547,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -3569,7 +3569,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -3633,7 +3633,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -3655,7 +3655,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -3676,7 +3676,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -3780,7 +3780,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -3802,7 +3802,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -3818,7 +3818,7 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
@@ -3888,7 +3888,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -3930,7 +3930,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -3952,7 +3952,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -4040,7 +4040,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -4122,7 +4122,7 @@
           ]
         },
         {
-          "handle": "LowVoltLifer",
+          "handle": "wchen_controls",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -4143,7 +4143,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -4159,7 +4159,7 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
@@ -4205,7 +4205,7 @@
       },
       "cast": [
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -4227,7 +4227,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -4264,7 +4264,7 @@
       "nyc": false,
       "reply_count": 13,
       "starter": {
-        "handle": "SoJersey_HVAC_Lead",
+        "handle": "hec_does_ac",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-South",
@@ -4291,7 +4291,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -4356,7 +4356,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -4442,7 +4442,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -4464,7 +4464,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -4486,7 +4486,7 @@
           ]
         },
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -4525,7 +4525,7 @@
       "nyc": false,
       "reply_count": 12,
       "starter": {
-        "handle": "ForemanFromMorris",
+        "handle": "mbell_wireman",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-North",
@@ -4552,7 +4552,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -4574,7 +4574,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -4637,7 +4637,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -4653,13 +4653,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -4725,7 +4725,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -4747,7 +4747,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -4763,13 +4763,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -4785,7 +4785,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -4898,7 +4898,7 @@
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -4920,7 +4920,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -4941,7 +4941,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -5025,7 +5025,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -5047,7 +5047,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -5069,7 +5069,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -5111,7 +5111,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -5150,7 +5150,7 @@
       "nyc": false,
       "reply_count": 2,
       "starter": {
-        "handle": "MiddlesexHeatPumps",
+        "handle": "Kash_sing",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-Central",
@@ -5177,7 +5177,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -5235,11 +5235,11 @@
       "nyc": false,
       "reply_count": 3,
       "starter": {
-        "handle": "SecondGenPlumber",
+        "handle": "rui_t_kearny",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
-        "town_hint": "North Bergen",
+        "town_hint": "Kearny",
         "years_in": 23,
         "path": "owner",
         "voice": {
@@ -5255,14 +5255,14 @@
         "claims": [
           "23 yrs",
           "second-gen shop owner, took over father's business",
-          "Hudson/Bergen border (North Bergen)",
+          "Hudson/Bergen border (Kearny)",
           "was in the union a few years, left",
           "NJ Master Plumber"
         ]
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -5284,7 +5284,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -5349,7 +5349,7 @@
       },
       "cast": [
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -5458,7 +5458,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -5480,7 +5480,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -5583,7 +5583,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         }
       ]
@@ -5666,7 +5666,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -5687,7 +5687,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -5808,7 +5808,7 @@
       "nyc": false,
       "reply_count": 22,
       "starter": {
-        "handle": "PrevailingWageMech",
+        "handle": "haddad_mech",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-South",
@@ -5835,7 +5835,7 @@
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -5878,7 +5878,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -5984,7 +5984,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -6006,7 +6006,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -6070,7 +6070,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -6109,7 +6109,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         }
       ]
@@ -6150,7 +6150,7 @@
       },
       "cast": [
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -6193,7 +6193,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -6225,11 +6225,11 @@
       "nyc": false,
       "reply_count": 3,
       "starter": {
-        "handle": "SecondGenPlumber",
+        "handle": "rui_t_kearny",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
-        "town_hint": "North Bergen",
+        "town_hint": "Kearny",
         "years_in": 23,
         "path": "owner",
         "voice": {
@@ -6245,14 +6245,14 @@
         "claims": [
           "23 yrs",
           "second-gen shop owner, took over father's business",
-          "Hudson/Bergen border (North Bergen)",
+          "Hudson/Bergen border (Kearny)",
           "was in the union a few years, left",
           "NJ Master Plumber"
         ]
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -6421,7 +6421,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -6525,7 +6525,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -6607,7 +6607,7 @@
       },
       "cast": [
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -6623,13 +6623,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -6713,7 +6713,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -6735,7 +6735,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -6798,7 +6798,7 @@
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -6880,7 +6880,7 @@
       "nyc": false,
       "reply_count": 2,
       "starter": {
-        "handle": "ForemanFromMorris",
+        "handle": "mbell_wireman",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-North",
@@ -7055,7 +7055,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -7118,7 +7118,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -7139,7 +7139,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -7180,7 +7180,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -7202,7 +7202,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -7350,7 +7350,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -7372,7 +7372,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -7394,7 +7394,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -7479,7 +7479,7 @@
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -7501,7 +7501,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -7523,7 +7523,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -7678,7 +7678,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -7700,7 +7700,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -7767,7 +7767,7 @@
       },
       "cast": [
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -7914,7 +7914,7 @@
       "nyc": false,
       "reply_count": 3,
       "starter": {
-        "handle": "ForemanFromMorris",
+        "handle": "mbell_wireman",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-North",
@@ -7961,7 +7961,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -7982,7 +7982,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -8168,7 +8168,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -8229,7 +8229,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -8251,7 +8251,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -8335,7 +8335,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -8439,7 +8439,7 @@
       },
       "cast": [
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -8504,7 +8504,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -8565,7 +8565,7 @@
             "union apprentice",
             "from around Teaneck, Bergen",
             "2 yrs in",
-            "IBEW Local 102 2nd year"
+            "IBEW Local 164 2nd year"
           ]
         }
       ]
@@ -8611,7 +8611,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -8719,7 +8719,7 @@
       },
       "cast": [
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -8761,7 +8761,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -8783,7 +8783,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -8867,7 +8867,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -8888,7 +8888,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -8955,7 +8955,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -8998,7 +8998,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -9020,7 +9020,7 @@
           ]
         },
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -9104,7 +9104,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -9166,7 +9166,7 @@
       },
       "cast": [
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -9182,13 +9182,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -9251,7 +9251,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -9360,7 +9360,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -9382,7 +9382,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -9446,7 +9446,7 @@
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -9468,7 +9468,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -9505,7 +9505,7 @@
       "nyc": false,
       "reply_count": 9,
       "starter": {
-        "handle": "MultifamilyMaster",
+        "handle": "joyd_plumbing",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
@@ -9553,7 +9553,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -9596,7 +9596,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -9618,7 +9618,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -9765,7 +9765,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -9787,7 +9787,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -9830,7 +9830,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -9869,7 +9869,7 @@
       "nyc": false,
       "reply_count": 0,
       "starter": {
-        "handle": "BergenBoilerMan",
+        "handle": "oldsteam_zig",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
@@ -9961,7 +9961,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -9983,7 +9983,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -10068,7 +10068,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -10090,7 +10090,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -10130,7 +10130,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         },
         {
@@ -10211,7 +10211,7 @@
       "nyc": false,
       "reply_count": 4,
       "starter": {
-        "handle": "PassedRoughIn",
+        "handle": "codebook_dale",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-South",
@@ -10237,7 +10237,7 @@
       },
       "cast": [
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -10253,7 +10253,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -10301,7 +10301,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -10388,7 +10388,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -10431,7 +10431,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -10515,7 +10515,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -10557,7 +10557,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -10660,7 +10660,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -10682,7 +10682,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -10703,7 +10703,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -10719,7 +10719,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -10762,7 +10762,7 @@
       "nyc": true,
       "reply_count": 10,
       "starter": {
-        "handle": "QueensHighRiseSparky",
+        "handle": "dreb_jman",
         "role": "senior",
         "trade": "electrical",
         "region": "NYC",
@@ -10789,7 +10789,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -10810,7 +10810,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -10895,7 +10895,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -10917,7 +10917,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -10981,7 +10981,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -11003,7 +11003,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -11109,7 +11109,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -11192,7 +11192,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -11213,7 +11213,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -11252,7 +11252,7 @@
       "nyc": false,
       "reply_count": 12,
       "starter": {
-        "handle": "PassedRoughIn",
+        "handle": "codebook_dale",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-South",
@@ -11278,7 +11278,7 @@
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -11300,7 +11300,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -11322,7 +11322,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -11383,7 +11383,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
@@ -11448,7 +11448,7 @@
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -11469,7 +11469,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -11491,7 +11491,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -11507,13 +11507,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -11640,7 +11640,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -11683,7 +11683,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -11705,7 +11705,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -11789,7 +11789,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -11805,13 +11805,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -11978,7 +11978,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -12037,7 +12037,7 @@
       },
       "cast": [
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -12059,7 +12059,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -12098,11 +12098,11 @@
             "union apprentice",
             "from around Garfield, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -12226,7 +12226,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -12247,7 +12247,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -12263,7 +12263,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -12352,7 +12352,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -12374,7 +12374,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -12500,7 +12500,7 @@
       "nyc": false,
       "reply_count": 17,
       "starter": {
-        "handle": "MiddlesexHeatPumps",
+        "handle": "Kash_sing",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-Central",
@@ -12548,7 +12548,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -12649,11 +12649,11 @@
       "nyc": false,
       "reply_count": 2,
       "starter": {
-        "handle": "SecondGenPlumber",
+        "handle": "rui_t_kearny",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
-        "town_hint": "North Bergen",
+        "town_hint": "Kearny",
         "years_in": 23,
         "path": "owner",
         "voice": {
@@ -12669,14 +12669,14 @@
         "claims": [
           "23 yrs",
           "second-gen shop owner, took over father's business",
-          "Hudson/Bergen border (North Bergen)",
+          "Hudson/Bergen border (Kearny)",
           "was in the union a few years, left",
           "NJ Master Plumber"
         ]
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -12760,7 +12760,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -12803,7 +12803,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -12906,11 +12906,11 @@
       "nyc": false,
       "reply_count": 5,
       "starter": {
-        "handle": "DownTheShoreSparks",
+        "handle": "thiago_sparks",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-Central",
-        "town_hint": "Middletown",
+        "town_hint": "Long Branch",
         "years_in": 22,
         "path": "owner",
         "voice": {
@@ -12926,7 +12926,7 @@
         "claims": [
           "22 yrs",
           "NJ Electrical Contractor, non-union shop",
-          "Monmouth County (Middletown)",
+          "Monmouth County (Long Branch)",
           "shore renovations, raised houses post-Sandy",
           "went to trade school"
         ]
@@ -12974,7 +12974,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -13082,7 +13082,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -13124,7 +13124,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -13166,7 +13166,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -13231,7 +13231,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -13252,7 +13252,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -13292,7 +13292,7 @@
       "nyc": false,
       "reply_count": 8,
       "starter": {
-        "handle": "QueensHighRiseSparky",
+        "handle": "dreb_jman",
         "role": "senior",
         "trade": "electrical",
         "region": "NYC",
@@ -13341,7 +13341,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -13380,11 +13380,11 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -13406,7 +13406,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -13445,7 +13445,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
@@ -13486,7 +13486,7 @@
       "nyc": false,
       "reply_count": 11,
       "starter": {
-        "handle": "ForemanFromMorris",
+        "handle": "mbell_wireman",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-North",
@@ -13577,7 +13577,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -13636,11 +13636,11 @@
             "union apprentice",
             "from around Garfield, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -13747,7 +13747,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -13852,7 +13852,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -13892,7 +13892,7 @@
             "union apprentice",
             "from around Teaneck, Bergen",
             "2 yrs in",
-            "IBEW Local 102 2nd year"
+            "IBEW Local 164 2nd year"
           ]
         }
       ]
@@ -13939,7 +13939,7 @@
       },
       "cast": [
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -13982,7 +13982,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -14004,7 +14004,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -14107,7 +14107,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -14129,7 +14129,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -14201,7 +14201,7 @@
       "nyc": false,
       "reply_count": 2,
       "starter": {
-        "handle": "BergenBoilerMan",
+        "handle": "oldsteam_zig",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
@@ -14249,7 +14249,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -14335,7 +14335,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -14418,7 +14418,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -14501,7 +14501,7 @@
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -14522,7 +14522,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -14608,7 +14608,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -14734,11 +14734,11 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "1 yrs in",
-            "IBEW Local 102 1st year"
+            "IBEW Local 164 1st year"
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -14801,7 +14801,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -14884,7 +14884,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -14906,7 +14906,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -14944,7 +14944,7 @@
       "nyc": false,
       "reply_count": 3,
       "starter": {
-        "handle": "PrevailingWageMech",
+        "handle": "haddad_mech",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-South",
@@ -15015,7 +15015,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -15163,7 +15163,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -15228,7 +15228,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -15271,7 +15271,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -15293,7 +15293,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -15398,7 +15398,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -15419,7 +15419,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -15441,7 +15441,7 @@
           ]
         },
         {
-          "handle": "LowVoltLifer",
+          "handle": "wchen_controls",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -15506,7 +15506,7 @@
       },
       "cast": [
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -15570,7 +15570,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -15591,7 +15591,7 @@
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -15719,7 +15719,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -15735,13 +15735,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -15781,7 +15781,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         }
       ]
@@ -15826,7 +15826,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -15848,7 +15848,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -15972,7 +15972,7 @@
       "nyc": false,
       "reply_count": 0,
       "starter": {
-        "handle": "PassedRoughIn",
+        "handle": "codebook_dale",
         "role": "senior",
         "trade": "electrical",
         "region": "NJ-South",
@@ -16041,7 +16041,7 @@
       },
       "cast": [
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -16084,7 +16084,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -16106,7 +16106,7 @@
           ]
         },
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -16146,7 +16146,7 @@
             "union apprentice",
             "from around Hackensack, Bergen",
             "4 yrs in",
-            "IBEW Local 102 4th year"
+            "IBEW Local 164 4th year"
           ]
         }
       ]
@@ -16192,7 +16192,7 @@
       },
       "cast": [
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -16213,7 +16213,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -16278,7 +16278,7 @@
       },
       "cast": [
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -16320,7 +16320,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -16446,7 +16446,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -16468,7 +16468,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -16554,7 +16554,7 @@
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -16576,7 +16576,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -16592,7 +16592,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -16681,7 +16681,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -16703,7 +16703,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -16769,7 +16769,7 @@
       },
       "cast": [
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -16832,7 +16832,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -16848,7 +16848,7 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
@@ -16894,12 +16894,12 @@
           "union apprentice",
           "from around Hackensack, Bergen",
           "4 yrs in",
-          "IBEW Local 102 4th year"
+          "IBEW Local 164 4th year"
         ]
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -16920,7 +16920,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -16936,7 +16936,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -16961,7 +16961,7 @@
       "nyc": false,
       "reply_count": 8,
       "starter": {
-        "handle": "MiddlesexHeatPumps",
+        "handle": "Kash_sing",
         "role": "senior",
         "trade": "hvac",
         "region": "NJ-Central",
@@ -16988,7 +16988,7 @@
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -17009,7 +17009,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -17025,13 +17025,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -17052,7 +17052,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -17068,13 +17068,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -17137,7 +17137,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -17284,7 +17284,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -17306,7 +17306,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -17322,7 +17322,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -17394,7 +17394,7 @@
       },
       "cast": [
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -17410,13 +17410,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -17460,7 +17460,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -17476,13 +17476,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -17570,7 +17570,7 @@
       },
       "cast": [
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -17634,7 +17634,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -17718,7 +17718,7 @@
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -17840,7 +17840,7 @@
           ]
         },
         {
-          "handle": "MultifamilyMaster",
+          "handle": "joyd_plumbing",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -17862,7 +17862,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -17883,7 +17883,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -17905,7 +17905,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -17992,7 +17992,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -18014,7 +18014,7 @@
           ]
         },
         {
-          "handle": "SecondGenPlumber",
+          "handle": "rui_t_kearny",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -18030,13 +18030,13 @@
           "claims": [
             "23 yrs",
             "second-gen shop owner, took over father's business",
-            "Hudson/Bergen border (North Bergen)",
+            "Hudson/Bergen border (Kearny)",
             "was in the union a few years, left",
             "NJ Master Plumber"
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -18052,13 +18052,13 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -18080,7 +18080,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -18166,7 +18166,7 @@
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -18313,7 +18313,7 @@
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -18355,7 +18355,7 @@
           ]
         },
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -18377,7 +18377,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -18399,7 +18399,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -18486,7 +18486,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -18508,7 +18508,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -18593,7 +18593,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -18614,7 +18614,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -18745,7 +18745,7 @@
           ]
         },
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -18761,7 +18761,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -18804,12 +18804,12 @@
           "union apprentice",
           "from around Hackensack, Bergen",
           "4 yrs in",
-          "IBEW Local 102 4th year"
+          "IBEW Local 164 4th year"
         ]
       },
       "cast": [
         {
-          "handle": "BergenBoilerMan",
+          "handle": "oldsteam_zig",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-North",
@@ -18831,7 +18831,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -18893,7 +18893,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -19002,7 +19002,7 @@
           ]
         },
         {
-          "handle": "QueensHighRiseSparky",
+          "handle": "dreb_jman",
           "role": "senior",
           "trade": "electrical",
           "region": "NYC",
@@ -19108,7 +19108,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -19172,7 +19172,7 @@
       },
       "cast": [
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -19194,7 +19194,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -19215,7 +19215,7 @@
           ]
         },
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -19279,7 +19279,7 @@
       },
       "cast": [
         {
-          "handle": "DownTheShoreSparks",
+          "handle": "thiago_sparks",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -19295,7 +19295,7 @@
           "claims": [
             "22 yrs",
             "NJ Electrical Contractor, non-union shop",
-            "Monmouth County (Middletown)",
+            "Monmouth County (Long Branch)",
             "shore renovations, raised houses post-Sandy",
             "went to trade school"
           ]
@@ -19322,7 +19322,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -19409,7 +19409,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -19452,7 +19452,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -19575,12 +19575,12 @@
           "union apprentice",
           "from around Hackensack, Bergen",
           "4 yrs in",
-          "IBEW Local 102 4th year"
+          "IBEW Local 164 4th year"
         ]
       },
       "cast": [
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -19601,7 +19601,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -19669,7 +19669,7 @@
       },
       "cast": [
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -19691,7 +19691,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -19727,7 +19727,7 @@
       "nyc": false,
       "reply_count": 0,
       "starter": {
-        "handle": "BrownstoneGasPlumber",
+        "handle": "bklyn_arkady",
         "role": "senior",
         "trade": "plumbing",
         "region": "NYC",
@@ -19815,7 +19815,7 @@
           ]
         },
         {
-          "handle": "PassedRoughIn",
+          "handle": "codebook_dale",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-South",
@@ -19847,11 +19847,11 @@
       "nyc": false,
       "reply_count": 4,
       "starter": {
-        "handle": "SecondGenPlumber",
+        "handle": "rui_t_kearny",
         "role": "senior",
         "trade": "plumbing",
         "region": "NJ-North",
-        "town_hint": "North Bergen",
+        "town_hint": "Kearny",
         "years_in": 23,
         "path": "owner",
         "voice": {
@@ -19867,7 +19867,7 @@
         "claims": [
           "23 yrs",
           "second-gen shop owner, took over father's business",
-          "Hudson/Bergen border (North Bergen)",
+          "Hudson/Bergen border (Kearny)",
           "was in the union a few years, left",
           "NJ Master Plumber"
         ]
@@ -19895,7 +19895,7 @@
           ]
         },
         {
-          "handle": "ForemanFromMorris",
+          "handle": "mbell_wireman",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-North",
@@ -19917,7 +19917,7 @@
           ]
         },
         {
-          "handle": "BrownstoneGasPlumber",
+          "handle": "bklyn_arkady",
           "role": "senior",
           "trade": "plumbing",
           "region": "NYC",
@@ -19939,7 +19939,7 @@
           ]
         },
         {
-          "handle": "PharmaPipefitter",
+          "handle": "dhollis61",
           "role": "senior",
           "trade": "plumbing",
           "region": "NJ-Central",
@@ -20005,7 +20005,7 @@
       },
       "cast": [
         {
-          "handle": "SoJersey_HVAC_Lead",
+          "handle": "hec_does_ac",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -20027,7 +20027,7 @@
           ]
         },
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -20172,7 +20172,7 @@
       },
       "cast": [
         {
-          "handle": "LowVoltLifer",
+          "handle": "wchen_controls",
           "role": "senior",
           "trade": "electrical",
           "region": "NJ-Central",
@@ -20193,7 +20193,7 @@
           ]
         },
         {
-          "handle": "PrevailingWageMech",
+          "handle": "haddad_mech",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",
@@ -20318,7 +20318,7 @@
       },
       "cast": [
         {
-          "handle": "DayOneMistakes",
+          "handle": "ms_almonte",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-North",
@@ -20339,7 +20339,7 @@
           ]
         },
         {
-          "handle": "MiddlesexHeatPumps",
+          "handle": "Kash_sing",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-Central",
@@ -20382,7 +20382,7 @@
           ]
         },
         {
-          "handle": "WalkInCoolerWes",
+          "handle": "tnguyen_refrig",
           "role": "senior",
           "trade": "hvac",
           "region": "NJ-South",

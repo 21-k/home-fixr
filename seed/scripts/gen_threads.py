@@ -36,7 +36,7 @@ import yaml
 sys.path.insert(0, str(Path(__file__).parent))
 from common import BATCH_ID, RNG_SEED, SEED_DIR, load_json, write_json  # noqa: E402
 
-BULLET_ALLOWED = {"MiddlesexHeatPumps"}  # "nobody writes in bullet points except one Senior"
+BULLET_ALLOWED = {"Kash_sing"}  # "nobody writes in bullet points except one Senior"
 POST_TYPES = {"question", "tip", "discussion"}
 APP_TRADES = {"plumbing", "hvac", "electrical", "other"}
 
