@@ -78,6 +78,18 @@ def check_personas(people, allow_unverified):
            dict(disp).__str__(), warn=True)
     acc = [p["handle"] for p in seniors if p["mentor_availability"] == "accepting"]
     record("no seeded Senior shown as accepting mentees", not acc, str(acc))
+    av = Counter(p["avatar_style"] for p in people)
+    n = len(people)
+    record("avatar mix ≈45% none / 40% initials / 15% icon (±5 pts)",
+           abs(100 * av["none"] / n - 45) <= 5 and abs(100 * av["initials"] / n - 40) <= 5 and abs(100 * av["icon"] / n - 15) <= 5,
+           ", ".join(f"{k} {100 * v / n:.0f}%" for k, v in sorted(av.items())))
+    icons = {"wrench", "flame", "plug", "snowflake", "hardhat", "zap", "thermometer", "hammer"}
+    bad_icon = [p["handle"] for p in people if (p["avatar_style"] == "icon") != bool(p["avatar_icon"]) or (p["avatar_icon"] and p["avatar_icon"] not in icons)]
+    record("every 'icon' persona has an allowed icon (and only they do)", not bad_icon, str(bad_icon[:5]))
+    trade_icons = {"plumbing": {"wrench"}, "hvac": {"flame", "snowflake", "thermometer"},
+                   "electrical": {"plug", "zap"}, "general": {"hardhat", "hammer"}}
+    off = [p["handle"] for p in juniors if p["avatar_icon"] and p["avatar_icon"] not in trade_icons[p["trade"]]]
+    record("Junior icons match their trade", not off, str(off[:5]))
     act = Counter(p["activity_level"] for p in juniors)
     record("junior activity 40/35/20/5", act == Counter({"lurker": 49, "occasional": 42, "regular": 24, "heavy": 6}), dict(act).__str__())
     record("all flagged is_founding_member + batch", all(p["is_founding_member"] and p["seed_batch_id"] == BATCH_ID for p in people))
@@ -210,6 +222,8 @@ def check_db(db_url, people):
         record("DB: zero notifications involving seeded accounts", notif == 0, str(notif))
         acc = one("select count(*) from profiles where seed_batch_id = %s and role = 'senior' and mentor_availability = 'accepting'", BATCH_ID)
         record("DB: no seeded Senior accepting mentees", acc == 0, str(acc))
+        mism = one("select count(*) from profiles where seed_batch_id = %s and (avatar_style is null or (avatar_style = 'icon') <> (avatar_icon is not null))", BATCH_ID)
+        record("DB: seeded avatar fields written and consistent", mism == 0, str(mism))
         pw = one("select count(*) from auth.users where raw_app_meta_data->>'seed_batch_id' = %s and (coalesce(encrypted_password,'') <> '' or banned_until is null)", BATCH_ID)
         record("DB: seeded auth users have no password and are banned", pw == 0, str(pw))
 

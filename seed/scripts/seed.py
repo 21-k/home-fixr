@@ -118,6 +118,7 @@ def seed(conn, batch: str, people: list[dict], threads: list[dict]) -> dict:
               title = %s, role = %s, trade = %s, region = %s, bio = %s, years_experience = %s,
               is_open_to_messages = false, is_open_to_ride_alongs = false,
               mentor_availability = %s, is_founding_member = true, seed_batch_id = %s,
+              avatar_style = %s, avatar_icon = %s,
               username_changed_at = %s, onboarded_at = %s, created_at = %s, updated_at = %s
             where id = %s
             """,
@@ -126,6 +127,7 @@ def seed(conn, batch: str, people: list[dict], threads: list[dict]) -> dict:
                 p["title"], p["role"], app_trade(p["trade"]), p["public_region"], p["bio"] or None,
                 p["years_in"] or None,
                 p["mentor_availability"] or "not_accepting", batch,
+                p["avatar_style"], p["avatar_icon"],
                 p["joined_at"], p["joined_at"], p["joined_at"], p["joined_at"],
                 pid[p["handle"]],
             ),
