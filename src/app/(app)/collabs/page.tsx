@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Banknote, CalendarDays, ClipboardList, MapPin, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -38,6 +39,8 @@ const TYPE_BADGE: Record<CollabType, string> = {
 };
 
 type CollabWithPoster = JobCollab & { poster: AuthorLite | null };
+
+export const metadata: Metadata = { title: "Job collabs" };
 
 export default async function CollabsPage({
   searchParams,

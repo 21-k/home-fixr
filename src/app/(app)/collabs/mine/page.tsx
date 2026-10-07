@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -44,6 +45,8 @@ const STATUS_BADGE: Record<CollabInterestStatus, { label: string; className: str
   },
 };
 
+export const metadata: Metadata = { title: "My jobs" };
+
 export default async function MyJobsPage() {
   const me = await getCurrentProfile();
   const supabase = await createClient();
@@ -63,6 +66,7 @@ export default async function MyJobsPage() {
   if (!me) {
     return (
       <AppBody sidebar={sidebar} mobileLabel="Jobs">
+        <h1 className="mb-4 text-xl font-semibold">My jobs</h1>
         <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
           <Link
             href={loginHref("/collabs/mine")}

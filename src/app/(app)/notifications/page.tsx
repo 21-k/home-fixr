@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Avatar } from "@/components/Avatar";
@@ -63,6 +64,8 @@ function describe(n: Notif): { text: string; href: string } {
       return { text: "New notification", href: "/feed" };
   }
 }
+
+export const metadata: Metadata = { title: "Notifications" };
 
 export default async function NotificationsPage() {
   const me = await getCurrentProfile();

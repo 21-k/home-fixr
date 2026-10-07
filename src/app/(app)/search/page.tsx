@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Avatar } from "@/components/Avatar";
 import { PostCard } from "@/components/PostCard";
 import { UserName } from "@/components/UserName";
@@ -5,6 +6,8 @@ import { profileHeadline } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, Post, Profile } from "@/lib/types";
+
+export const metadata: Metadata = { title: "Search" };
 
 export default async function SearchPage({
   searchParams,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Handshake, Home, Users } from "lucide-react";
@@ -19,6 +20,8 @@ type Row = {
   status: MentorshipStatus;
   created_at: string;
 };
+
+export const metadata: Metadata = { title: "Mentorships" };
 
 export default async function MentorshipsPage() {
   const me = await getCurrentProfile();

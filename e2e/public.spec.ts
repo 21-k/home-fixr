@@ -30,7 +30,8 @@ test.describe("public routes render healthy @public", () => {
       const res = await visit(page, href);
       expect(res?.status(), href).toBe(200);
       await expect(page.locator("h1").first()).toBeVisible();
-      await expect(page.getByRole("link", { name: /Back to feed/ }).first()).toBeAttached();
+      // (on phones it sits in the collapsed sidebar; header-nav.spec clicks it there)
+      await expect(page.locator('a[href="/feed"]', { hasText: "Back to feed" }).first()).toBeAttached();
       await expectFitsViewport(page);
     }
   });

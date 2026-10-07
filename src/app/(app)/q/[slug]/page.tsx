@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Star } from "lucide-react";
@@ -24,6 +25,21 @@ type ReplyWithAuthor = Reply & { author: AuthorLite | null };
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("posts")
+    .select("title")
+    .eq(UUID_RE.test(slug) ? "id" : "slug", slug)
+    .maybeSingle();
+  return { title: data?.title ?? "Thread not found" };
+}
 
 export default async function ThreadPage({
   params,

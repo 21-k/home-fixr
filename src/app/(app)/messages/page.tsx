@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Paperclip } from "lucide-react";
@@ -29,6 +30,8 @@ function preview(m: Message): string {
   }
   return "";
 }
+
+export const metadata: Metadata = { title: "Messages" };
 
 export default async function MessagesPage() {
   const me = await getCurrentProfile();

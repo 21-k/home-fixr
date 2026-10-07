@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Briefcase, Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -22,6 +23,8 @@ const TRADE_FILTERS: { key: TradeType; label: string }[] = [
 ];
 
 type PostWithAuthor = Post & { author: AuthorLite | null };
+
+export const metadata: Metadata = { title: "Feed" };
 
 export default async function FeedPage({
   searchParams,
@@ -126,6 +129,9 @@ export default async function FeedPage({
 
   return (
     <AppBody sidebar={sidebar} mobileLabel="Trades & community" right={right}>
+      <h1 className="sr-only">
+        {trade ? `${TRADE_FILTERS.find((t) => t.key === trade)?.label ?? "Trade"} feed` : "Community feed"}
+      </h1>
       {profile && <ProfilePrompt profile={profile} />}
       {profile ? (
         <PostComposer me={profile} />

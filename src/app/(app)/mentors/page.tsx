@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
@@ -30,6 +31,8 @@ function buildHref(current: Search, patch: Search): string {
   const qs = params.toString();
   return qs ? `/mentors?${qs}` : "/mentors";
 }
+
+export const metadata: Metadata = { title: "Mentors" };
 
 export default async function MentorsPage({
   searchParams,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -26,6 +27,15 @@ type ReplyWithPost = {
   created_at: string;
   post: { id: string; slug: string | null; title: string } | null;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}): Promise<Metadata> {
+  const profile = await findProfileByHandle(await createClient(), (await params).username);
+  return { title: profile ? `${displayName(profile)} (@${profile.username})` : "Member not found" };
+}
 
 export default async function ProfilePage({
   params,

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { FileText } from "lucide-react";
@@ -27,6 +28,8 @@ type Message = {
   attachment_type: string | null;
   created_at: string;
 };
+
+export const metadata: Metadata = { title: "Messages" };
 
 export default async function ConversationPage({
   params,
@@ -82,7 +85,9 @@ export default async function ConversationPage({
         <div className="flex items-center gap-3 border-b border-zinc-200 p-4">
           <Avatar person={other} size="md" href={`/u/${other.username}`} />
           <div>
-            <UserName person={other} className="font-semibold hover:text-brand-500" />
+            <h1 className="text-base">
+              <UserName person={other} className="font-semibold hover:text-brand-500" />
+            </h1>
             <div className="text-xs text-zinc-600">{profileHeadline(other)}</div>
           </div>
         </div>

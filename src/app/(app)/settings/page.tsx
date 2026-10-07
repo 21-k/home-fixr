@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { Settings as SettingsIcon, User } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -5,6 +6,8 @@ import { SettingsForm } from "@/components/SettingsForm";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { HANDLE_CHANGE_DAYS } from "@/lib/handles";
 import { loginHref } from "@/lib/next-path";
+
+export const metadata: Metadata = { title: "Settings" };
 
 export default async function SettingsPage() {
   const profile = await getCurrentProfile();
