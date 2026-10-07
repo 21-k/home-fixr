@@ -16,7 +16,8 @@ export default defineConfig({
   // (each wipes its outputDir on start).
   outputDir: IS_LIVE ? "./e2e/.results-live" : "./e2e/.results",
   timeout: IS_LIVE ? 30 * 60_000 : 90_000,
-  expect: { timeout: 10_000 },
+  // Generous: the dev server compiles routes on first hit and slows under 4 workers.
+  expect: { timeout: 20_000 },
   fullyParallel: !IS_LIVE,
   workers: IS_LIVE ? 1 : process.env.CI ? 2 : 4,
   retries: 0,
