@@ -281,7 +281,7 @@ def check_app(app, people, threads):
             thread_bad.append(f"{s}:{c}")
     record("app: seeded thread pages render with badges", bool(slugs) and not thread_bad, f"{len(set(slugs))} threads checked; bad: {thread_bad[:3]}")
     code, about = fetch(f"{app}/about")
-    sentence = "Our earliest discussions were seeded by the Home Fixr team, with help from NJ tradespeople, to show how the community works. Founding Community accounts are marked."
+    sentence = "Our earliest discussions were written by the Home Fixr team, with AI assistance, to show how the community works. Founding Community accounts are marked."
     record("app: About page carries the §0.3 sentence", code == 200 and sentence in about.replace("&#x27;", "'"))
     code, landing = fetch(f"{app}/")
     record("app: landing FAQ + footer link to About", code == 200 and 'href="/about"' in landing and "Founding Community" in landing)

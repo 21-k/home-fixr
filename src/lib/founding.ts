@@ -5,4 +5,4 @@ export const FOUNDING_CONTACT_MESSAGE =
   "This is a Founding Community account, set up by the Home Fixr team to seed early discussions. It doesn't take messages, mentorship requests, or job applications.";
 
 export const FOUNDING_ABOUT_SENTENCE =
-  "Our earliest discussions were seeded by the Home Fixr team, with help from NJ tradespeople, to show how the community works. Founding Community accounts are marked.";
+  "Our earliest discussions were written by the Home Fixr team, with AI assistance, to show how the community works. Founding Community accounts are marked.";
