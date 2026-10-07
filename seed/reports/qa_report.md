@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-07T01:11:30-04:00 · threads: `content/threads.sample.scheduled.json` · db: no · app: no
+Run: 2026-10-07T01:16:00-04:00 · threads: `content/threads.sample.scheduled.json` · db: no · app: no
 
 | status | check | detail |
 |---|---|---|
@@ -55,16 +55,18 @@ Run: 2026-10-07T01:11:30-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | social: mentorship times inside the window, after both joined, accepted hours-days later | latency h: min 2, median 23, max 143;  |
 | PASS | social: thread-implied pairs (thanks / 'update: did what X said') are in the graph, after the exchange | 10 anchored; [] |
 | PASS | social: no mentor answers their mentee's later thread as a stranger | [] |
-| PASS | social: no self-follows, no duplicate follows, both ends are personas | 402 follows |
+| PASS | social: no self-follows, no duplicate follows, both ends are personas | 389 follows |
 | PASS | social: every mentee follows their mentor | [] |
-| PASS | social: ~20% of accounts follow nobody (17-23%) | 27/136 = 20% |
-| PASS | social: followers by kind in band (pillars 15-40, Seniors 5-15, active Juniors 0-8, occasional 0-5, lurkers 0-3) | pillar 19-35 (median 28); senior 7-15 (median 13); heavy 2-8 (median 4); regular 0-8 (median 3); occasional 0-3 (median 0); lurker 0-1 (median 0) |
-| PASS | social: the graph is skewed (top 5 accounts hold >= 25% of follows) | top 5: [('oldsteam_zig', 35), ('codebook_dale', 34), ('Kash_sing', 28), ('mbell_wireman', 23), ('ms_almonte', 19)] |
-| PASS | social: follows of non-pillars mostly within trade or region (>= 75%) | 213/263 |
+| PASS | social: ~20% of accounts follow nobody (17-23%) | 28/136 = 21% |
+| PASS | social: followers by kind in band (pillars 15-40, Seniors 5-15, active Juniors 0-8, occasional 0-5, lurkers 0-3) | pillar 22-40 (median 26); senior 6-14 (median 12); heavy 2-8 (median 7); regular 0-8 (median 3); occasional 0-3 (median 0); lurker 0-1 (median 0) |
+| PASS | social: the graph is skewed (top 5 accounts hold >= 25% of follows) | top 5: [('oldsteam_zig', 40), ('Kash_sing', 31), ('mbell_wireman', 26), ('codebook_dale', 22), ('ms_almonte', 22)] |
+| PASS | social: follows of non-pillars mostly within trade or region (>= 75%) | 195/248 |
 | PASS | social: Seniors who follow anyone follow some other Seniors | [] |
-| PASS | social: Seniors follow only the occasional standout Junior (regular/heavy) | {'heavy': 3, 'regular': 4} |
-| PASS | social: Juniors mostly follow the Senior whose answer they accepted (>= 50%) | 10/11 |
+| PASS | social: Seniors follow only the occasional standout Junior (regular/heavy) | {'heavy': 6, 'regular': 2} |
+| PASS | social: Juniors mostly follow the Senior whose answer they accepted (>= 50%) | 11/11 |
 | PASS | social: every follow is after both joined and inside the window | [] |
+| PASS | social: thread-prompted follows come after the exchange | 51 prompted; early: [] |
+| PASS | social: follows/requests keep the posting rhythm (0-4am <= 3%) | 0/425 at 0-4am |
 | PASS | helpful: the accepted answer has the most helpful votes in its thread | [] |
 | PASS | helpful: no short reply outvotes the substantive Senior answer | [] |
 | PASS | answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted) | oldsteam_zig:9/7 mbell_wireman:3/3 thiago_sparks:7/6 Kash_sing:4/4(+1 own) dhollis61:2/2 hec_does_ac:6/6(+1 own) codebook_dale:4/4 joyd_plumbing:4/4 ms_almonte:3/3(+1 own) wchen_controls:0/0 haddad_mech:4/4 rui_t_kearny:7/6 tnguyen_refrig:4/4 dreb_jman:1/1 bklyn_arkady:2/2 |

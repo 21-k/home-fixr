@@ -339,6 +339,21 @@ def check_social(people, threads, ments, follows):
     bad_ft = [f"{f['follower']}->{f['following']}" for f in follows
               if not (max(joined[f["follower"]], joined[f["following"]]) < datetime.fromisoformat(f["created_at"]) <= WINDOW_END)]
     record("social: every follow is after both joined and inside the window", not bad_ft, str(bad_ft[:5]))
+    first_meet = {}
+    for t in threads:
+        for r in t.get("replies", []):
+            at = datetime.fromisoformat(r["created_at"])
+            for other in {t["author"]} | {x["author"] for x in t["replies"]}:
+                for k in ((other, r["author"]), (r["author"], other)):
+                    if k[0] != k[1]:
+                        first_meet[k] = min(first_meet.get(k, at), at)
+    prompted = [f for f in follows if f.get("why") in ("answered their thread", "same thread")]
+    early = [f"{f['follower']}->{f['following']}" for f in prompted
+             if datetime.fromisoformat(f["created_at"]) <= first_meet.get((f["follower"], f["following"]), WINDOW_END)]
+    record("social: thread-prompted follows come after the exchange", not early, f"{len(prompted)} prompted; early: {early[:4]}")
+    times = [datetime.fromisoformat(f["created_at"]) for f in follows] + [datetime.fromisoformat(m["requested_at"]) for m in ments]
+    night = sum(t.astimezone(NY).hour < 5 for t in times)
+    record("social: follows/requests keep the posting rhythm (0-4am <= 3%)", night <= 0.03 * len(times), f"{night}/{len(times)} at 0-4am")
 
     # ---- existing counts: helpful votes and "answered"
     acc_lead = [t["id"] for t in threads if any(r["accepted"] for r in t.get("replies", []))

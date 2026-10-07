@@ -160,7 +160,8 @@ class Social:
                 dt = self.sch.at(d, _pick(self.rng, hours or _hours_for(d)), self.rng)
                 if not_before < dt <= self.end:
                     return dt
-        return min(not_before + timedelta(minutes=self.rng.randint(5, 50)), self.end)
+        t = not_before + timedelta(minutes=self.rng.randint(5, 50))
+        return t if t <= self.end else not_before + (self.end - not_before) * self.rng.uniform(0.3, 0.9)
 
     def lognormal_td(self, median_h: float, sigma: float, lo_h: float, hi_h: float) -> timedelta:
         h = math.exp(math.log(median_h) + self.rng.gauss(0, sigma))
@@ -360,13 +361,23 @@ class Social:
             zero.add(rng.choices(left, weights=[zero_w[kind(self.people[h])] for h in left])[0])
         self.zero = zero
 
-        def add(a, b, at, why, req=False):
+        def add(a, b, at, why, req=False, after=None):
             if a == b or a in zero or (a, b) in edges:
                 return
             lo = max(self.joined[a], self.joined[b]) + timedelta(minutes=10)
+            if after:
+                lo = max(lo, after + timedelta(minutes=2))  # never before the reply that prompted it
             if lo >= self.end:
                 return
-            at = min(max(at, lo), self.end)
+            at = max(at, lo)
+            if at.astimezone(NY).hour < 5:
+                # Nobody's on at 3am: it happens on the morning commute instead.
+                at = self.place(at, at.astimezone(NY).replace(hour=5, minute=0), {5: 3, 6: 2})
+            if at > self.end:
+                # Too close to the end of the window: somewhere in what's left, or not at all.
+                if self.end - lo < timedelta(minutes=20):
+                    return
+                at = lo + (self.end - lo) * rng.uniform(0.2, 0.9)
             edges[(a, b)] = {"follower": a, "following": b, "created_at": at, "why": why}
             if req:
                 required.add((a, b))
@@ -408,7 +419,7 @@ class Social:
             else:
                 p = 0.12
             if rng.random() < p:
-                add(starter, replier, at + self.lognormal_td(3, 1.0, 0.1, 48), f"answered their thread")
+                add(starter, replier, at + self.lognormal_td(3, 1.0, 0.1, 48), "answered their thread", after=at)
         for (x, y), at in sorted(self.cothread.items()):
             a, b = self.people[x], self.people[y]
             if not senior_may_follow(a, b):
@@ -420,7 +431,7 @@ class Social:
             else:
                 p = 0.05
             if rng.random() < p:
-                add(x, y, at + self.lognormal_td(6, 1.0, 0.1, 72), "same thread")
+                add(x, y, at + self.lognormal_td(6, 1.0, 0.1, 72), "same thread", after=at)
 
         # 4. Fill out-degrees by popularity x trade x region.
         def pop(b: dict, follower: dict) -> float:
