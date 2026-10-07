@@ -45,35 +45,25 @@ export default async function FeedPage({
   const sidebar = (
     <nav>
       <SideSection>My Feed</SideSection>
-      <Link href="/feed">
-        <SideLink active={!trade}>
-          <Home className="size-4" /> Home
-        </SideLink>
-      </Link>
+      <SideLink href="/feed" active={!trade}>
+        <Home className="size-4" /> Home
+      </SideLink>
       <SideSection>My Trades</SideSection>
       {TRADE_FILTERS.map((t) => (
-        <Link key={t.key} href={`/feed?trade=${t.key}`}>
-          <SideLink active={trade === t.key}>
-            <TradeIcon trade={t.key} /> {t.label}
-          </SideLink>
-        </Link>
+        <SideLink key={t.key} href={`/feed?trade=${t.key}`} active={trade === t.key}>
+          <TradeIcon trade={t.key} /> {t.label}
+        </SideLink>
       ))}
       <SideSection>Community</SideSection>
-      <Link href="/mentors">
-        <SideLink>
-          <Users className="size-4" /> Mentors
-        </SideLink>
-      </Link>
-      <Link href="/mentorships">
-        <SideLink>
-          <Handshake className="size-4" /> My mentorships
-        </SideLink>
-      </Link>
-      <Link href="/collabs">
-        <SideLink>
-          <Briefcase className="size-4" /> Job collabs
-        </SideLink>
-      </Link>
+      <SideLink href="/mentors">
+        <Users className="size-4" /> Mentors
+      </SideLink>
+      <SideLink href="/mentorships">
+        <Handshake className="size-4" /> My mentorships
+      </SideLink>
+      <SideLink href="/collabs">
+        <Briefcase className="size-4" /> Job collabs
+      </SideLink>
     </nav>
   );
 
@@ -134,7 +124,7 @@ export default async function FeedPage({
   );
 
   return (
-    <AppBody sidebar={sidebar} right={right}>
+    <AppBody sidebar={sidebar} mobileLabel="Trades & community" right={right}>
       {profile && <ProfilePrompt profile={profile} />}
       {profile ? (
         <PostComposer me={profile} />

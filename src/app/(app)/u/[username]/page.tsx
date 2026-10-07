@@ -112,17 +112,13 @@ export default async function ProfilePage({
   const sidebar = (
     <nav>
       <SideSection>Back</SideSection>
-      <Link href="/mentors">
-        <SideLink>← All mentors</SideLink>
-      </Link>
-      <Link href="/feed">
-        <SideLink>← Back to feed</SideLink>
-      </Link>
+      <SideLink href="/mentors">← All mentors</SideLink>
+      <SideLink href="/feed">← Back to feed</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Back">
       <section className="mb-4 flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-6 sm:flex-row">
         <Avatar person={profile} size="xl" />
         <div className="flex-1">

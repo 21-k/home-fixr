@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Settings as SettingsIcon, User } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -18,19 +17,15 @@ export default async function SettingsPage() {
       <SideLink active>
         <SettingsIcon className="size-4" /> Edit profile
       </SideLink>
-      <Link href={`/u/${profile.username}`}>
-        <SideLink>
-          <User className="size-4" /> View my profile
-        </SideLink>
-      </Link>
-      <Link href="/feed">
-        <SideLink>← Back to feed</SideLink>
-      </Link>
+      <SideLink href={`/u/${profile.username}`}>
+        <User className="size-4" /> View my profile
+      </SideLink>
+      <SideLink href="/feed">← Back to feed</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Account">
       <h1 className="mb-1 text-xl font-semibold">Edit profile</h1>
       <p className="mb-5 text-[13px] text-zinc-600">
         This is what the community sees on your profile.

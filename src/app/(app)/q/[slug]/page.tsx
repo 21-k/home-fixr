@@ -71,14 +71,12 @@ export default async function ThreadPage({
         <Star className="size-4" /> {post.helpful_count} helpful
       </SideLink>
       <SideSection>Back</SideSection>
-      <Link href="/feed">
-        <SideLink>← Back to feed</SideLink>
-      </Link>
+      <SideLink href="/feed">← Back to feed</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Thread">
       <article className="mb-4 rounded-xl border border-zinc-200 bg-white p-6">
         <div className="mb-3 flex items-center gap-2.5">
           <span className="rounded bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">

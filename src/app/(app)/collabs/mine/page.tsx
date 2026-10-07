@@ -50,22 +50,18 @@ export default async function MyJobsPage() {
   const sidebar = (
     <nav>
       <SideSection>Jobs</SideSection>
-      <Link href="/collabs">
-        <SideLink>
-          <Briefcase className="size-4" /> All collabs
-        </SideLink>
-      </Link>
-      <Link href="/collabs/mine">
-        <SideLink active>
-          <ClipboardList className="size-4" /> My jobs
-        </SideLink>
-      </Link>
+      <SideLink href="/collabs">
+        <Briefcase className="size-4" /> All collabs
+      </SideLink>
+      <SideLink href="/collabs/mine" active>
+        <ClipboardList className="size-4" /> My jobs
+      </SideLink>
     </nav>
   );
 
   if (!me) {
     return (
-      <AppBody sidebar={sidebar}>
+      <AppBody sidebar={sidebar} mobileLabel="Jobs">
         <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
           <Link href="/login" className="font-medium text-brand-600 hover:underline">
             Sign in
@@ -162,7 +158,7 @@ export default async function MyJobsPage() {
     applicants.filter((i) => i.collab_id === collabId);
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Jobs">
       <h1 className="mb-1 text-xl font-semibold">My jobs</h1>
       <p className="mb-5 text-[13px] text-zinc-600">
         Jobs you posted and who&apos;s interested, plus the ones you&apos;ve put

@@ -73,40 +73,26 @@ export default async function MentorsPage({
   const sidebar = (
     <nav>
       <SideSection>Filter</SideSection>
-      <Link href={buildHref(sp, { trade: undefined })}>
-        <SideLink active={!sp.trade}>All trades</SideLink>
-      </Link>
+      <SideLink href={buildHref(sp, { trade: undefined })} active={!sp.trade}>All trades</SideLink>
       {TRADES.map((t) => (
-        <Link key={t.key} href={buildHref(sp, { trade: t.key })}>
-          <SideLink active={sp.trade === t.key}>
-            <TradeIcon trade={t.key} /> {t.label}
-          </SideLink>
-        </Link>
+        <SideLink key={t.key} href={buildHref(sp, { trade: t.key })} active={sp.trade === t.key}>
+          <TradeIcon trade={t.key} /> {t.label}
+        </SideLink>
       ))}
       <SideSection>Region</SideSection>
-      <Link href={buildHref(sp, { region: undefined })}>
-        <SideLink active={!sp.region}>All regions</SideLink>
-      </Link>
+      <SideLink href={buildHref(sp, { region: undefined })} active={!sp.region}>All regions</SideLink>
       {REGIONS.map((r) => (
-        <Link key={r.value} href={buildHref(sp, { region: r.value })}>
-          <SideLink active={sp.region === r.value}>{r.label}</SideLink>
-        </Link>
+        <SideLink key={r.value} href={buildHref(sp, { region: r.value })} active={sp.region === r.value}>{r.label}</SideLink>
       ))}
       <SideSection>Availability</SideSection>
-      <Link href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })}>
-        <SideLink active={sp.avail === "accepting"}>Accepting mentees</SideLink>
-      </Link>
-      <Link href={buildHref(sp, { avail: sp.avail === "messages" ? undefined : "messages" })}>
-        <SideLink active={sp.avail === "messages"}>Open to messages</SideLink>
-      </Link>
-      <Link href={buildHref(sp, { avail: sp.avail === "ride_alongs" ? undefined : "ride_alongs" })}>
-        <SideLink active={sp.avail === "ride_alongs"}>Open to ride-alongs</SideLink>
-      </Link>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })} active={sp.avail === "accepting"}>Accepting mentees</SideLink>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "messages" ? undefined : "messages" })} active={sp.avail === "messages"}>Open to messages</SideLink>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "ride_alongs" ? undefined : "ride_alongs" })} active={sp.avail === "ride_alongs"}>Open to ride-alongs</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Filter mentors">
       <div className="mb-4 flex items-center justify-between">
         <h1 className="text-xl font-semibold">Senior pros in the community</h1>
         <span className="text-[13px] text-zinc-500">

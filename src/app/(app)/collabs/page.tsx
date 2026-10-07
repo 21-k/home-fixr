@@ -89,31 +89,25 @@ export default async function CollabsPage({
   const sidebar = (
     <nav>
       <SideSection>Type</SideSection>
-      <Link href="/collabs">
-        <SideLink active={!type}>All collabs</SideLink>
-      </Link>
+      <SideLink href="/collabs" active={!type}>All collabs</SideLink>
       {TYPE_FILTERS.map((t) => (
-        <Link key={t.key} href={`/collabs?type=${t.key}`}>
-          <SideLink active={type === t.key}>
-            <CollabIcon type={t.key} /> {t.label}
-          </SideLink>
-        </Link>
+        <SideLink key={t.key} href={`/collabs?type=${t.key}`} active={type === t.key}>
+          <CollabIcon type={t.key} /> {t.label}
+        </SideLink>
       ))}
       {profile && (
         <>
           <SideSection>Yours</SideSection>
-          <Link href="/collabs/mine">
-            <SideLink>
-              <ClipboardList className="size-4" /> My jobs
-            </SideLink>
-          </Link>
+          <SideLink href="/collabs/mine">
+            <ClipboardList className="size-4" /> My jobs
+          </SideLink>
         </>
       )}
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Filter jobs">
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">Job collabs</h1>
