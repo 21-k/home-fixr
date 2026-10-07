@@ -1,4 +1,5 @@
 import { test, expect, visit, expectFitsViewport } from "./support/fixtures";
+import { rest } from "./support/db";
 import { FOUNDING, PUBLIC_ROUTES, discoverThreads } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
 
@@ -68,6 +69,17 @@ test.describe("member content layout", () => {
     await expect(page).toHaveURL(/\/q\/long-link-check/);
     await expect(page.getByRole("heading", { level: 1, name: title })).toBeVisible();
     await expectFitsViewport(page);
+  });
+});
+
+test.describe("canonical thread URLs", () => {
+  test("old /q/<post id> links (notifications) redirect to the slug URL", async ({ page }) => {
+    const [href] = await discoverThreads(page, 1);
+    const slug = href.replace("/q/", "");
+    const [post] = await rest<{ id: string }[]>(`posts?select=id&slug=eq.${slug}`);
+    const res = await page.request.get(`/q/${post.id}`, { maxRedirects: 0 });
+    expect([307, 308]).toContain(res.status());
+    expect(res.headers()["location"]).toBe(`/q/${slug}`);
   });
 });
 

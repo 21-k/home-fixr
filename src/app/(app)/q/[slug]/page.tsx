@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Star } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
@@ -67,6 +67,8 @@ export default async function ThreadPage({
 
   if (!postData) notFound();
   const post = postData as unknown as Post & { author: AuthorLite | null };
+  // One canonical URL per thread: id links (e.g. from notifications) -> slug.
+  if (post.slug && slug !== post.slug) redirect(`/q/${post.slug}`);
 
   const { data: repliesData } = await supabase
     .from("replies")
