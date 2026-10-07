@@ -11,7 +11,8 @@ Thread/reply generator keyed to persona voices (plan §5).
 `sample`  reads content/threads.sample.authored.yaml (20 threads written by
           hand for the tone review), validates it against the personas and
           the §5 style rules, adds helpful counts (log-normal; Senior answers
-          higher) and writes content/threads.sample.json plus
+          higher; then rebalanced so accepted / substantive Senior answers
+          lead, see rebalance_helpful) and writes content/threads.sample.json plus
           content/persona_memory.json (claims each persona has made).
 `briefs`  plans the remaining threads: category by the §4 shares, a topic
           from themes.yaml, a starter (85% Juniors, weighted by activity) and
@@ -55,6 +56,42 @@ def has_bullets(text: str) -> bool:
 
 def lognormal_int(rng: random.Random, mu: float, sigma: float, lo: int, hi: int) -> int:
     return max(lo, min(hi, int(round(math.exp(rng.gauss(mu, sigma))))))
+
+
+SHORT_REPLY_WORDS = 25        # "short": a quip, an "agree", a me-too
+SUBSTANTIVE_WORDS = 40        # a real Senior answer
+
+
+def rebalance_helpful(replies: list[dict]) -> list[tuple[int, int, int]]:
+    """Make accepted and substantive Senior answers usually lead on helpful votes.
+
+    Raw log-normal draws can leave a 21-word "agree with Ziggy" on 29 votes
+    while the accepted answer it agrees with sits on 8. The leader is the
+    accepted reply, else the highest-voted Senior reply of 40+ words. Anyone
+    outranking it (any reply when the leader is accepted, only short replies
+    when it isn't) swaps counts with it, so the thread's numbers stay the same
+    numbers, just on the right replies; a tie bumps the leader by one.
+    Returns (index, old, new) for every reply that changed. Replies must carry
+    `role` (senior/junior) for this call; it is not written out."""
+    if not replies:
+        return []
+    before = [r["helpful_count"] for r in replies]
+    acc = [r for r in replies if r.get("accepted")]
+    subs = [r for r in replies if r["_role"] == "senior" and words(r["body"]) >= SUBSTANTIVE_WORDS]
+    leader = acc[0] if acc else (max(subs, key=lambda r: r["helpful_count"]) if subs else None)
+    if leader is None:
+        return []
+    for _ in range(len(replies) + 1):
+        offenders = [r for r in replies if r is not leader and r["helpful_count"] >= leader["helpful_count"]
+                     and (leader.get("accepted") or words(r["body"]) < SHORT_REPLY_WORDS)]
+        if not offenders:
+            break
+        top = max(offenders, key=lambda r: r["helpful_count"])
+        if top["helpful_count"] > leader["helpful_count"]:
+            top["helpful_count"], leader["helpful_count"] = leader["helpful_count"], top["helpful_count"]
+        else:
+            leader["helpful_count"] += 1
+    return [(i, b, r["helpful_count"]) for i, (b, r) in enumerate(zip(before, replies)) if b != r["helpful_count"]]
 
 
 def validate(threads: list[dict], people: dict[str, dict]) -> tuple[list[str], list[str]]:
@@ -113,6 +150,7 @@ def build_sample(src: str, out: str) -> None:
 
     rng = random.Random(RNG_SEED + 11)
     memory: dict[str, dict] = {}
+    rebalanced: list[str] = []
     for t in threads:
         starter = people[t["author"]]
         t["region"] = starter["public_region"]
@@ -127,6 +165,12 @@ def build_sample(src: str, out: str) -> None:
                 mu += 1.0
             r["helpful_count"] = lognormal_int(rng, mu, 0.55, 0, 45)
             r["accepted"] = bool(r.get("accepted"))
+        for r in t.get("replies", []):
+            r["_role"] = people[r["author"]]["role"]
+        for i, old, new in rebalance_helpful(t.get("replies", [])):
+            rebalanced.append(f"{t['id']}/r{i}: {old} -> {new}")
+        for r in t.get("replies", []):
+            del r["_role"]
         for author, where in [(t["author"], t["id"])] + [(r["author"], t["id"]) for r in t.get("replies", [])]:
             m = memory.setdefault(author, {"claims": people[author]["claims"], "appears_in": []})
             if where not in m["appears_in"]:
@@ -138,6 +182,7 @@ def build_sample(src: str, out: str) -> None:
     print(f"threads: {len(threads)}  replies: {sum(reps)}  zero-reply: {sum(r == 0 for r in reps)}")
     print("categories:", dict(Counter(t["category"] for t in threads)))
     print("nyc:", sum(bool(t.get("nyc")) for t in threads), " senior starters:", sum(t["starter_role"] == "senior" for t in threads))
+    print(f"helpful rebalanced ({len(rebalanced)}):", "; ".join(rebalanced))
     print(f"wrote {SEED_DIR / out}")
 
 

@@ -60,7 +60,7 @@
         {
           "author": "mbell_wireman",
           "body": "Not over. Lists move: people take other jobs, move, don't show up. How far a list moves in a year depends on how much work there is, and I can't speak for how your local runs theirs.\n\nCall the apprenticeship office and ask, politely, how retesting works and whether a retest replaces your score. Then go get a job in the meantime.\n",
-          "helpful_count": 1,
+          "helpful_count": 5,
           "accepted": false
         },
         {
@@ -72,7 +72,7 @@
         {
           "author": "thiago_sparks",
           "body": "Plenty of non-union shops in Middlesex would hire a vo-tech grad tomorrow. Your hours count for something either way.",
-          "helpful_count": 4,
+          "helpful_count": 1,
           "accepted": false
         },
         {
@@ -190,13 +190,13 @@
         {
           "author": "oldsteam_zig",
           "body": "Kid, this confuses everybody. NJ is built around the master license: that's the one that lets you pull permits and run work. There's a journeyman license too, and last I checked whether you need it depends on who you work for and what you're doing.\n\nDon't take my word or anybody's on the job. Go to the state board of master plumbers' page and read the requirements, or call them. It's changed since I took mine.\n",
-          "helpful_count": 4,
+          "helpful_count": 5,
           "accepted": false
         },
         {
           "author": "rui_t_kearny",
           "body": "From what I remember you need five years as a journeyman before you can sit for the master. Took me forever.",
-          "helpful_count": 5,
+          "helpful_count": 4,
           "accepted": false
         },
         {
@@ -281,12 +281,12 @@
           "author": "codebook_dale",
           "accepted": true,
           "body": "Not legal advice, just how I'd look at it. When cable runs through a hole close to the edge of a stud, it needs protection so a drywall screw doesn't find it. That's what a nail plate is for, and it's one of the most common write-ups I see. Box fill is counting conductors, devices and clamps against the box's volume; a small box with a GFCI and a couple of cables fills up fast.\n\nThe inspector is enforcing whatever code edition is in effect for that permit. Next time, ask politely for the section number. Most inspectors will give it to you and respect you more for asking.\n",
-          "helpful_count": 12
+          "helpful_count": 13
         },
         {
           "author": "thiago_sparks",
           "body": "Honestly nail plates are the number one thing I see guys skip on remodels down here. Your boss knows better, he just didn't want to hear it in front of you.",
-          "helpful_count": 13,
+          "helpful_count": 12,
           "accepted": false
         },
         {
@@ -405,7 +405,7 @@
           "author": "rui_t_kearny",
           "accepted": true,
           "body": "Cash every Friday usually means no workers comp if you get hurt and no paperwork showing three years of experience when you want a license someday. That's the part that would worry me more than the PEX.\n\nMy father used to say never quit angry and never quit without the next job lined up. Small state. Everybody knows everybody. Line up the next shop, give him notice, thank him for the three years. That's it.\n",
-          "helpful_count": 6
+          "helpful_count": 7
         },
         {
           "author": "codebook_dale",
@@ -636,12 +636,12 @@
           "author": "oldsteam_zig",
           "accepted": true,
           "body": "Learn to sweat, kid. Press is great and I own the tools, but you'll be on jobs where you can't press, and you need to know why joints fail.\n\nNine out of ten times a joint that looks perfect and drips has water in the line. Water in the pipe pulls the heat away and the solder never flows all the way in. Was there a valve or a low spot near that tee?\n",
-          "helpful_count": 8
+          "helpful_count": 29
         },
         {
           "author": "rui_t_kearny",
           "body": "Agree with Ziggy. And heat the fitting, not the solder. When the solder gets pulled in on its own, you're there.",
-          "helpful_count": 29,
+          "helpful_count": 8,
           "accepted": false
         },
         {
@@ -726,12 +726,12 @@
           "author": "thiago_sparks",
           "accepted": true,
           "body": "Honestly everybody's brain breaks on 3-ways once. Think of it like this: the common (dark screw) on one switch is where power comes in, the common on the other switch is where it goes out to the light. The two travelers just run between the two switches, and flipping either switch picks which traveler is live.\n\nDraw it on a piece of cardboard on the job. Seriously.\n",
-          "helpful_count": 9
+          "helpful_count": 10
         },
         {
           "author": "codebook_dale",
           "body": "And test, don't guess. Turn the breaker off, verify it's dead with a tester before you touch anything, then check your work with the power back on.",
-          "helpful_count": 10,
+          "helpful_count": 9,
           "accepted": false
         },
         {
