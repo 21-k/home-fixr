@@ -8,11 +8,63 @@ import {
   MAX_SKILLS,
   SKILLS_BY_TRADE,
 } from "@/lib/skills";
+import {
+  handleErrorMessage,
+  handleFormatError,
+  HANDLE_STATUS_COPY,
+  type HandleStatus,
+} from "@/lib/handles";
+import { AVATAR_STYLES, isAvatarIcon, type AvatarStyle } from "@/lib/avatar";
+import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { CV_BUCKET } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
-import type { CollabType, PostType, TradeType } from "@/lib/types";
+import type {
+  CollabType,
+  DisplayPreference,
+  MentorAvailability,
+  PostType,
+  TradeType,
+} from "@/lib/types";
 
 export type FormState = { error?: string; ok?: boolean };
+
+const DISPLAY_PREFS: DisplayPreference[] = ["handle", "first_name_initial", "full_name"];
+const AVAILABILITY: MentorAvailability[] = ["accepting", "limited", "not_accepting"];
+
+type SupabaseServer = Awaited<ReturnType<typeof createClient>>;
+
+/** Is this member a Founding Community (seeded) account? */
+async function contactTarget(supabase: SupabaseServer, profileId: string) {
+  const { data } = await supabase
+    .from("profiles")
+    .select("is_founding_member, mentor_availability, role")
+    .eq("id", profileId)
+    .maybeSingle();
+  return data as
+    | { is_founding_member: boolean; mentor_availability: MentorAvailability; role: string }
+    | null;
+}
+
+/** Friendly copy for the contact-guard errors raised by migration 0009. */
+function contactErrorMessage(err: { message: string; hint?: string | null }): string {
+  if (err.hint === "founding_member") return FOUNDING_CONTACT_MESSAGE;
+  if (err.hint === "mentor_not_accepting") return "This mentor isn't taking new mentees right now.";
+  return err.message;
+}
+
+/**
+ * Live availability check for the handle field. Format is checked here first
+ * so obviously-bad input never hits the database.
+ */
+export async function checkHandleAvailability(handle: string): Promise<HandleStatus> {
+  const h = String(handle ?? "").trim();
+  const formatError = handleFormatError(h);
+  if (formatError) return formatError;
+  const supabase = await createClient();
+  const { data, error } = await supabase.rpc("check_handle", { p_handle: h });
+  if (error || typeof data !== "string") return "error";
+  return (data in HANDLE_STATUS_COPY ? data : "error") as HandleStatus;
+}
 
 async function requireUser() {
   const supabase = await createClient();
@@ -169,6 +221,15 @@ export async function toggleCollabInterest(formData: FormData): Promise<void> {
     }
   } else {
     const note = String(formData.get("note") ?? "").trim();
+    const { data: collab } = await supabase
+      .from("job_collabs")
+      .select("poster_id")
+      .eq("id", collabId)
+      .maybeSingle();
+    if (!collab) return;
+    const poster = await contactTarget(supabase, collab.poster_id);
+    // Founding Community postings have no human behind them (DB blocks it too).
+    if (poster?.is_founding_member) return;
     // RLS also blocks expressing interest in your own posting.
     await supabase
       .from("collab_interests")
@@ -220,6 +281,8 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
   if (collab.poster_id === user.id) {
     return { error: "This is your own posting." };
   }
+  const poster = await contactTarget(supabase, collab.poster_id);
+  if (poster?.is_founding_member) return { error: FOUNDING_CONTACT_MESSAGE };
 
   // --- Optional application detail (migration 0008) ---
 
@@ -279,7 +342,7 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
     },
     { onConflict: "collab_id,user_id" },
   );
-  if (error) return { error: error.message };
+  if (error) return { error: contactErrorMessage(error) };
 
   revalidatePath("/collabs");
   revalidatePath("/collabs/mine");
@@ -338,6 +401,10 @@ export async function sendMessage(formData: FormData): Promise<FormState> {
     return { error: "That attachment isn't yours." };
   }
 
+  const target = await contactTarget(supabase, recipientId);
+  if (!target) return { error: "Invalid recipient." };
+  if (target.is_founding_member) return { error: FOUNDING_CONTACT_MESSAGE };
+
   const { error } = await supabase.from("messages").insert({
     sender_id: user.id,
     recipient_id: recipientId,
@@ -346,7 +413,7 @@ export async function sendMessage(formData: FormData): Promise<FormState> {
       ? { attachment_path: path, attachment_name: name || "Attachment", attachment_type: type || null }
       : {}),
   });
-  if (error) return { error: error.message };
+  if (error) return { error: contactErrorMessage(error) };
 
   revalidatePath("/messages");
   if (username) revalidatePath(`/messages/${username}`);
@@ -391,31 +458,85 @@ export async function updateProfile(
   const fullName = String(formData.get("full_name") ?? "").trim();
   if (!fullName) return { error: "Name can't be empty." };
 
-  const yearsRaw = String(formData.get("years_experience") ?? "").trim();
-  const { error } = await supabase
+  const { data: before } = await supabase
     .from("profiles")
-    .update({
-      full_name: fullName,
-      title: String(formData.get("title") ?? "").trim() || null,
-      trade: nullableTrade(formData.get("trade")),
-      region: String(formData.get("region") ?? "").trim() || null,
-      bio: String(formData.get("bio") ?? "").trim() || null,
-      years_experience: yearsRaw ? Number(yearsRaw) : null,
-      is_open_to_messages: formData.get("is_open_to_messages") === "on",
-      is_open_to_ride_alongs: formData.get("is_open_to_ride_alongs") === "on",
-    })
-    .eq("id", user.id);
-  if (error) return { error: error.message };
-
-  const { data: prof } = await supabase
-    .from("profiles")
-    .select("username")
+    .select("username, username_changed_at, role")
     .eq("id", user.id)
     .single();
-  if (prof?.username) revalidatePath(`/u/${prof.username}`);
+  if (!before) return { error: "Profile not found." };
+
+  const handle = parseHandleField(formData, before.username);
+  if ("error" in handle) return { error: handle.error };
+  const pref = parseDisplayPreference(formData);
+  if ("error" in pref) return { error: pref.error };
+
+  const availabilityRaw = String(formData.get("mentor_availability") ?? "");
+  const availability = AVAILABILITY.includes(availabilityRaw as MentorAvailability)
+    ? (availabilityRaw as MentorAvailability)
+    : undefined;
+
+  const yearsRaw = String(formData.get("years_experience") ?? "").trim();
+  const update: Record<string, unknown> = {
+    full_name: fullName,
+    display_preference: pref.value,
+    title: String(formData.get("title") ?? "").trim() || null,
+    trade: nullableTrade(formData.get("trade")),
+    region: String(formData.get("region") ?? "").trim() || null,
+    bio: String(formData.get("bio") ?? "").trim() || null,
+    years_experience: yearsRaw ? Number(yearsRaw) : null,
+    is_open_to_messages: formData.get("is_open_to_messages") === "on",
+    is_open_to_ride_alongs: formData.get("is_open_to_ride_alongs") === "on",
+  };
+  if (handle.changed) update.username = handle.value;
+  if (availability && before.role === "senior") update.mentor_availability = availability;
+
+  // Avatar (migration 0011). Only values from the fixed sets are accepted.
+  const avatarStyle = String(formData.get("avatar_style") ?? "");
+  if (avatarStyle) {
+    if (!AVATAR_STYLES.includes(avatarStyle as AvatarStyle)) return { error: "Pick an avatar style." };
+    const icon = formData.get("avatar_icon");
+    if (avatarStyle === "icon" && !isAvatarIcon(icon)) return { error: "Pick an icon for your avatar." };
+    update.avatar_style = avatarStyle;
+    update.avatar_icon = avatarStyle === "icon" ? icon : null;
+  }
+
+  const { error } = await supabase.from("profiles").update(update).eq("id", user.id);
+  if (error) return { error: handleErrorMessage(error) };
+
+  // Saving Settings with the auto-derived handle untouched counts as choosing
+  // it, so the "pick a handle" nudge goes away (doesn't start the 30-day clock).
+  if (!handle.changed && !before.username_changed_at) {
+    await supabase.rpc("confirm_current_handle");
+  }
+
+  revalidatePath(`/u/${before.username}`);
+  if (handle.changed) revalidatePath(`/u/${handle.value}`);
   revalidatePath("/settings");
   revalidatePath("/feed");
   return { ok: true };
+}
+
+/** Reads the `username` field; unchanged (case-insensitively) = no update. */
+function parseHandleField(
+  formData: FormData,
+  current: string,
+): { value: string; changed: boolean } | { error: string } {
+  const raw = formData.get("username");
+  if (raw === null) return { value: current, changed: false };
+  const value = String(raw).trim();
+  const formatError = handleFormatError(value);
+  if (formatError) return { error: `Handle: ${HANDLE_STATUS_COPY[formatError]}` };
+  return { value, changed: value !== current };
+}
+
+function parseDisplayPreference(
+  formData: FormData,
+): { value: DisplayPreference } | { error: string } {
+  const raw = String(formData.get("display_preference") ?? "handle");
+  if (!DISPLAY_PREFS.includes(raw as DisplayPreference)) {
+    return { error: "Pick how your name should appear." };
+  }
+  return { value: raw as DisplayPreference };
 }
 
 /**
@@ -445,20 +566,39 @@ export async function completeOnboarding(
     return { error: "Years in the trade should be a number between 0 and 70." };
   }
 
+  const { data: before } = await supabase
+    .from("profiles")
+    .select("username, username_changed_at")
+    .eq("id", user.id)
+    .single();
+  if (!before) return { error: "Profile not found." };
+
+  const handle = parseHandleField(formData, before.username);
+  if ("error" in handle) return { error: handle.error };
+  const pref = parseDisplayPreference(formData);
+  if ("error" in pref) return { error: pref.error };
+
   const update: Record<string, unknown> = {
     role,
     trade: nullableTrade(formData.get("trade")),
     region: String(formData.get("region") ?? "").trim() || null,
     title: String(formData.get("title") ?? "").trim() || null,
     years_experience: years,
+    display_preference: pref.value,
     onboarded_at: new Date().toISOString(),
   };
   // Only overwrite the name if they actually typed one — Google already gave us
   // a good value and we don't want a blank field wiping it.
   if (fullName) update.full_name = fullName;
+  if (handle.changed) update.username = handle.value;
 
   const { error } = await supabase.from("profiles").update(update).eq("id", user.id);
-  if (error) return { error: error.message };
+  if (error) return { error: handleErrorMessage(error) };
+
+  // Keeping the suggested/auto handle in this step is still a choice.
+  if (!handle.changed && !before.username_changed_at) {
+    await supabase.rpc("confirm_current_handle");
+  }
 
   revalidatePath("/feed");
   revalidatePath("/settings");
@@ -539,6 +679,13 @@ export async function requestMentorship(
   if (!seniorId) return { error: "Missing mentor." };
   if (seniorId === user.id) return { error: "You can't mentor yourself." };
 
+  const mentor = await contactTarget(supabase, seniorId);
+  if (!mentor || mentor.role !== "senior") return { error: "Missing mentor." };
+  if (mentor.is_founding_member) return { error: FOUNDING_CONTACT_MESSAGE };
+  if (mentor.mentor_availability === "not_accepting") {
+    return { error: "This mentor isn't taking new mentees right now." };
+  }
+
   // Upsert to (re)open a request. RLS lets a user write rows where they are the
   // junior; the unique (junior_id, senior_id) constraint makes this idempotent.
   const { error } = await supabase
@@ -547,7 +694,7 @@ export async function requestMentorship(
       { junior_id: user.id, senior_id: seniorId, status: "pending" },
       { onConflict: "junior_id,senior_id" },
     );
-  if (error) return { error: error.message };
+  if (error) return { error: contactErrorMessage(error) };
 
   if (username) revalidatePath(`/u/${username}`);
   revalidatePath("/mentorships");

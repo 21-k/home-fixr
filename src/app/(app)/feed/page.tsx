@@ -9,11 +9,10 @@ import { ProfilePrompt } from "@/components/ProfilePrompt";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { profileHeadline } from "@/lib/format";
+import { UserName } from "@/components/UserName";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, Post, Profile, TradeType } from "@/lib/types";
-
-const AUTHOR_COLS =
-  "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 const TRADE_FILTERS: { key: TradeType; label: string }[] = [
   { key: "electrical", label: "Electrical" },
@@ -95,17 +94,18 @@ export default async function FeedPage({
       ) : (
         <div className="mb-6 flex flex-col gap-1">
           {connections.map((c) => (
-            <Link
+            <div
               key={c.id}
-              href={`/u/${c.username}`}
               className="flex items-center gap-2.5 rounded-md p-1.5 hover:bg-zinc-50"
             >
-              <Avatar initials={c.avatar_initials} size="sm" />
+              <Avatar person={c} size="sm" href={`/u/${c.username}`} />
               <div>
-                <div className="text-sm font-semibold">{c.full_name}</div>
+                <div className="text-sm">
+                  <UserName person={c} />
+                </div>
                 <div className="text-xs text-zinc-600">{profileHeadline(c)}</div>
               </div>
-            </Link>
+            </div>
           ))}
         </div>
       )}
@@ -137,7 +137,7 @@ export default async function FeedPage({
     <AppBody sidebar={sidebar} right={right}>
       {profile && <ProfilePrompt profile={profile} />}
       {profile ? (
-        <PostComposer initials={profile.avatar_initials} />
+        <PostComposer me={profile} />
       ) : (
         <div className="rounded-xl border border-zinc-200 bg-white p-5 text-sm text-zinc-600">
           <Link href="/join" className="font-medium text-brand-600 hover:underline">

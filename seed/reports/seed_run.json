@@ -1,0 +1,54 @@
+{
+  "before": {
+    "profiles": 9,
+    "posts": 5,
+    "replies": 4,
+    "job_collabs": 3,
+    "collab_interests": 4,
+    "mentorships": 3,
+    "follows": 0,
+    "notifications": 11,
+    "messages": 0,
+    "auth.users": 9
+  },
+  "after": {
+    "profiles": 145,
+    "posts": 25,
+    "replies": 103,
+    "job_collabs": 3,
+    "collab_interests": 4,
+    "mentorships": 3,
+    "follows": 0,
+    "notifications": 11,
+    "messages": 0,
+    "auth.users": 145
+  },
+  "batch_counts": {
+    "profiles": 136,
+    "posts": 20,
+    "replies": 99,
+    "job_collabs": 0,
+    "collab_interests": 0,
+    "mentorships": 0,
+    "follows": 0,
+    "auth.users": 136
+  },
+  "checks": {
+    "posts with missing author": 0,
+    "replies with missing post/author": 0,
+    "seeded replies on non-seeded posts": 0,
+    "seeded posts by non-seeded authors": 0,
+    "reply_count mismatches": 0,
+    "posts without slug": 0,
+    "replies before their post": 0,
+    "content before author joined": 0,
+    "seeded seniors accepting mentees": 0,
+    "seeded profiles open to messages": 0,
+    "seeded profiles not founding": 0,
+    "notifications involving seeded profiles": 0,
+    "seeded auth users with a password": 0
+  },
+  "batch": "fm-2026-10",
+  "dry_run": false,
+  "ran_at": "2026-10-06T01:01:49+00:00"
+}

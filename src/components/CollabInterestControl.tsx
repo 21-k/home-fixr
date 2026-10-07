@@ -9,6 +9,7 @@ import {
   type ExistingApplication,
 } from "@/components/CollabApplyForm";
 import { toggleCollabInterest } from "@/lib/actions";
+import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import type { CollabInterestStatus, TradeType } from "@/lib/types";
 
 /**
@@ -27,6 +28,7 @@ export function CollabInterestControl({
   trade,
   defaultYears,
   posterUsername,
+  posterIsFounding = false,
 }: {
   collabId: string;
   userId: string;
@@ -38,6 +40,8 @@ export function CollabInterestControl({
   trade: TradeType | null;
   defaultYears: number | null;
   posterUsername: string | null;
+  /** Seeded postings can't be applied to — nobody would read the pitch. */
+  posterIsFounding?: boolean;
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -50,6 +54,14 @@ export function CollabInterestControl({
       <MessageSquare className="size-3.5" /> Message
     </Link>
   ) : null;
+
+  if (posterIsFounding) {
+    return (
+      <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] leading-relaxed text-zinc-500">
+        {FOUNDING_CONTACT_MESSAGE}
+      </p>
+    );
+  }
 
   if (isOwnPosting) {
     return (

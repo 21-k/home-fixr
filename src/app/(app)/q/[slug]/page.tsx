@@ -4,6 +4,8 @@ import { Star } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { ReplyComposer } from "@/components/ReplyComposer";
+import { RichText } from "@/components/RichText";
+import { UserName } from "@/components/UserName";
 import {
   acceptReply,
   deletePost,
@@ -13,11 +15,9 @@ import {
 } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo, tradeLabel } from "@/lib/format";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, Post, Reply } from "@/lib/types";
-
-const AUTHOR_COLS =
-  "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 type ReplyWithAuthor = Reply & { author: AuthorLite | null };
 
@@ -91,17 +91,16 @@ export default async function ThreadPage({
         <h1 className="text-xl font-semibold tracking-tight">{post.title}</h1>
         <p className="mt-2 mb-4 text-[13px] text-zinc-600">
           Asked by{" "}
-          <Link
-            href={post.author ? `/u/${post.author.username}` : "#"}
+          <UserName
+            person={post.author}
             className="font-medium text-zinc-900 hover:text-brand-500"
-          >
-            {post.author?.full_name ?? "Unknown"}
-          </Link>{" "}
+          />{" "}
           · {timeAgo(post.created_at)}
         </p>
-        <p className="whitespace-pre-line text-sm leading-relaxed text-zinc-700">
-          {post.body}
-        </p>
+        <RichText
+          text={post.body}
+          className="whitespace-pre-line text-sm leading-relaxed text-zinc-700"
+        />
         {profile && (
           <div className="mt-4 flex items-center gap-2">
             <form action={markPostHelpful}>
@@ -143,17 +142,15 @@ export default async function ThreadPage({
           >
             <div className="mb-2 flex items-center gap-2.5">
               <Avatar
-                initials={reply.author?.avatar_initials ?? "??"}
+                person={reply.author}
                 size="md"
                 href={reply.author ? `/u/${reply.author.username}` : undefined}
               />
               <div>
-                <Link
-                  href={reply.author ? `/u/${reply.author.username}` : "#"}
+                <UserName
+                  person={reply.author}
                   className="text-sm font-semibold hover:text-brand-500"
-                >
-                  {reply.author?.full_name ?? "Unknown"}
-                </Link>
+                />
                 <div className="text-xs text-zinc-600">
                   {reply.author ? profileHeadline(reply.author) : ""}
                 </div>
@@ -169,9 +166,10 @@ export default async function ThreadPage({
                 </span>
               )}
             </div>
-            <p className="whitespace-pre-line text-sm leading-relaxed text-zinc-700">
-              {reply.body}
-            </p>
+            <RichText
+              text={reply.body}
+              className="whitespace-pre-line text-sm leading-relaxed text-zinc-700"
+            />
             <div className="mt-3 flex items-center gap-3 text-xs text-zinc-500">
               <span className="inline-flex items-center gap-1.5">
                 <Star className="size-3.5" /> {reply.helpful_count} helpful ·{" "}

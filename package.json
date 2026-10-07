@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "test": "node --test \"tests/*.test.mjs\"",
+    "test:db": "uv run tests/db_rules_test.py"
   },
   "dependencies": {
     "@supabase/ssr": "^0.12.3",

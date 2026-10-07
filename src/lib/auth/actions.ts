@@ -14,10 +14,18 @@ function initialsFrom(name: string): string {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
+/**
+ * A provisional handle from the email's local part. The member picks a real
+ * one at /welcome; the signup trigger re-sanitises and dedupes this anyway
+ * (migration 0009), so it only has to be a reasonable starting point.
+ */
 function usernameFrom(email: string): string {
   return (email.split("@")[0] || "member")
     .toLowerCase()
-    .replace(/[^a-z0-9._-]/g, "");
+    .replace(/-/g, "_")
+    .replace(/[^a-z0-9._]/g, "")
+    .slice(0, 18)
+    .replace(/^\.+|\.+$/g, "");
 }
 
 export async function signIn(

@@ -1,0 +1,1022 @@
+{
+  "window": [
+    "2026-07-24",
+    "2026-10-04"
+  ],
+  "threads": [
+    {
+      "id": "T01",
+      "category": "A",
+      "topic": "A1_union_vs_school_vs_shop",
+      "type": "question",
+      "trade": "electrical",
+      "author": "threeway_02",
+      "title": "36 and switching to electrical: union apprenticeship, trade school, or just find a shop?",
+      "body": "I'm 36, been in insurance claims for 11 years and I'm done with it. I want to get into electrical. I've read a lot and I keep going in circles on the three options:\n\n1. Apply to the IBEW apprenticeship (I'm in Irvington, so I think that's 102?)\n2. Do a night program somewhere first\n3. Just call shops and try to get hired as a helper\n\nI have some savings but not a ton. Which of these actually gets me working and learning soonest? I'd appreciate honest answers, including \"you're too late for X\" if that's the case.\n",
+      "replies": [
+        {
+          "author": "mbell_wireman",
+          "accepted": true,
+          "body": "Not too late for any of them. We've had first-years in their late 30s and they tend to be the ones who show up.\n\nOn the union side: I can't give you dates, the application window and the aptitude test schedule are posted by the apprenticeship itself, so go to their site or call and ask. When I applied it was an aptitude test (math and reading), then an interview, then a ranked list. Could be different now. Irvington, I'd check whether you fall under 102 or another local before you apply; jurisdiction lines are not always where you'd guess.\n\nWhile you wait, get hired by a shop. Hours on a job never hurt an application. Stay safe.\n",
+          "helpful_count": 21,
+          "created_at": "2026-08-18T01:37:14+00:00"
+        },
+        {
+          "author": "thiago_sparks",
+          "body": "Honestly I'd do 2 and 3 at the same time. Night school while you work as a helper. The list can take a while and you're 36, you want to be earning something now.\n\nI went the trade school route and got hired faster than any of my buddies on the list. That was me though, and it was a long time ago. Your mileage may vary.\n",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-18T01:53:11+00:00"
+        },
+        {
+          "author": "JerseyTomatoWires",
+          "body": "4th year in 164. applied at 24, got in the second time I took the test. worth it for me... but go work somewhere while you wait, the guys who come in with some hours are way ahead day one",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-08-18T09:35:26+00:00"
+        },
+        {
+          "author": "rui_t_kearny",
+          "body": "Different trade but same question I get from every kid who walks in my shop. I was in the union a few years before I came back to my father's business. The school and the benefits were the best part and I won't pretend otherwise. My father used to say the union teaches you the trade and a good shop teaches you the customer. You want both eventually.\n",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-18T23:48:07+00:00"
+        },
+        {
+          "author": "threeway_02",
+          "body": "This is really helpful, thank you. Sounds like the answer is \"apply, and get a helper job now regardless.\"\n\nedit: thanks everyone. Called two shops today, one wants me to come in Monday.\n",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-19T10:06:58+00:00"
+        }
+      ],
+      "region": "Essex County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 16,
+      "created_at": "2026-08-18T00:20:11+00:00"
+    },
+    {
+      "id": "T02",
+      "category": "A",
+      "topic": "A2_ranked_low_is_it_over",
+      "type": "question",
+      "trade": "electrical",
+      "author": "Edison.volts",
+      "title": "Ranked way down the list after the interview. Is it over?",
+      "body": "Did the aptitude test and the interview this summer. Got my ranking and I'm way down, like 180-something. Vo-tech grad, no family in the trade. Is it basically over for this year? Should I just retest? Working nights at a warehouse right now so I can pay for my car.",
+      "replies": [
+        {
+          "author": "mbell_wireman",
+          "body": "Not over. Lists move: people take other jobs, move, don't show up. How far a list moves in a year depends on how much work there is, and I can't speak for how your local runs theirs.\n\nCall the apprenticeship office and ask, politely, how retesting works and whether a retest replaces your score. Then go get a job in the meantime.\n",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-08-02T01:55:52+00:00"
+        },
+        {
+          "author": "ThreeWayConfusion",
+          "body": "I was ranked bad my first time too. Kept working at a shop in Lakewood, retook it, did way better on the interview because I could actually talk about work I'd done. 2nd year now.",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-08-02T09:42:02+00:00"
+        },
+        {
+          "author": "thiago_sparks",
+          "body": "Plenty of non-union shops in Middlesex would hire a vo-tech grad tomorrow. Your hours count for something either way.",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-02T13:36:41+00:00"
+        },
+        {
+          "author": "Edison.volts",
+          "body": "update: got hired as a helper at a shop out of New Brunswick, started last week. still going to retest. thanks",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-02T16:33:53+00:00"
+        }
+      ],
+      "region": "Middlesex County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 6,
+      "created_at": "2026-08-02T00:36:13+00:00"
+    },
+    {
+      "id": "T03",
+      "category": "A",
+      "topic": "A4_career_switch_too_old",
+      "type": "discussion",
+      "trade": "other",
+      "author": "TryingAllThree",
+      "title": "40 and haven't even picked a trade yet. Am I kidding myself?",
+      "body": "So I'm 40, Piscataway, been managing a call center for a long time. I like working with my hands, I fix everything at home, and I'm tired of spreadsheets about other people's work.\n\nProblem is I can't decide between electrical, HVAC, and plumbing, and every week I change my mind. Also the money: I make decent now and I know the first year or two is a big cut. And my knees aren't 20 anymore.\n\nFor anyone who switched later in life, how did you decide, and how bad was the first year really?\n",
+      "replies": [
+        {
+          "author": "joyd_plumbing",
+          "body": "What's your actual question? Because I see three: which trade, can I afford it, will my body hold up.\n\nWhich trade: go ride along for a day in each if you can. You'll know within an hour which one you hate.\nAfford it: only you know. Write down your real monthly number before you quit anything.\nBody: plumbing is hard on knees and backs, I won't lie to you.\n\nI came in at 26 from restaurant management. Different age, same fear. It was the right call for me.\n",
+          "helpful_count": 6,
+          "accepted": false,
+          "created_at": "2026-08-20T19:06:17+00:00"
+        },
+        {
+          "author": "Kash_sing",
+          "body": "Pay-cut math I'd do before deciding:\n- Your take-home now vs a helper's hourly rate times realistic hours (not 60/week, assume 45)\n- Months of savings that covers the gap for 2 years, not 1\n- Whether the shop pays for school, tools, a van, overtime\n- Health insurance: who covers it and what it costs you\n\nIf the numbers work for 2 years, the age part is the easy part.\n",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-20T22:30:22+00:00"
+        },
+        {
+          "author": "big_zach_hvac",
+          "body": "did it at 40 last year, hvac. first winter was rough, knees are fine so far. pick one and go, you'll never feel ready",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-21T00:39:56+00:00"
+        },
+        {
+          "author": "haddad_mech",
+          "body": "Here's what I look for when I hire, for what it's worth: shows up on time, listens, doesn't need to be told twice. Age isn't on that list. Some of my best guys started in their 30s and 40s.",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-22T14:27:09+00:00"
+        },
+        {
+          "author": "QuickChekCrew",
+          "body": "I'd look at the night program at the county vo-tech before anything... I'm 33 and doing the HVAC one twice a week. Cheap compared to the private schools... not sure about electrical though",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-22T15:39:15+00:00"
+        },
+        {
+          "author": "TryingAllThree",
+          "body": "Appreciate all of this. The ride-along idea is the one I didn't think of. Going to ask around and try to do one in each before the end of the year.",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-22T17:17:46+00:00"
+        }
+      ],
+      "region": "Middlesex County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 14,
+      "created_at": "2026-08-20T16:25:51+00:00"
+    },
+    {
+      "id": "T04",
+      "category": "A",
+      "topic": "A6_nyc_local3_application",
+      "type": "question",
+      "trade": "electrical",
+      "nyc": true,
+      "author": "Flushing.sparks",
+      "title": "How does the Local 3 apprenticeship application actually work now?",
+      "body": "In a trade program in Queens, graduating soon. Teachers keep telling me different things about Local 3: one says it's a lottery, one says there's a test, my uncle says you need to know someone. Anyone actually go through it recently? What should I be doing now, while I'm still in school, so I'm ready when it opens?",
+      "replies": [
+        {
+          "author": "dreb_jman",
+          "accepted": true,
+          "body": "Brother, the only answer that matters is the one on the official apprenticeship site, because it's changed more than once since I got in 21 years ago. When I applied there was a test and an interview. Don't trust anybody's uncle on this, including mine.\n\nWhat you do now: finish your program, keep your grades and attendance clean, get any job near the work, and check the site every week for when they open applications.\n",
+          "helpful_count": 8,
+          "created_at": "2026-09-21T21:15:00+00:00"
+        },
+        {
+          "author": "groundrod_05",
+          "body": "Apex grad here. I applied last year. I'm not going to say how the process works because I'm honestly not sure what's the same this year. Follow the official site and don't miss the window. I'm working non-union in the Bronx while I wait.",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-21T21:43:41+00:00"
+        },
+        {
+          "author": "bklyn_arkady",
+          "body": "In the city it's different from Jersey in a lot of ways, but one thing is the same: plenty of people build good careers non-union too. Apply, and don't put your life on hold waiting.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-21T23:11:50+00:00"
+        },
+        {
+          "author": "elecny85",
+          "body": "non union apprentice in brooklyn here... applied to 3 twice. still working, still learning, still waiting lol",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-22T01:38:42+00:00"
+        }
+      ],
+      "region": "Queens, NY",
+      "starter_role": "junior",
+      "helpful_count": 15,
+      "created_at": "2026-09-21T16:45:30+00:00"
+    },
+    {
+      "id": "T05",
+      "category": "B",
+      "topic": "B1_what_am_i_after_four_years",
+      "type": "question",
+      "trade": "plumbing",
+      "author": "BergenPlumber",
+      "title": "What license do I actually have when I top out?",
+      "body": "3rd year apprentice. guys on the job say different things. when I finish, what am I? journeyman? do I need a license to work? when can I go for master? NJ. trying to plan ahead instead of finding out at the end.",
+      "replies": [
+        {
+          "author": "oldsteam_zig",
+          "body": "Kid, this confuses everybody. NJ is built around the master license: that's the one that lets you pull permits and run work. There's a journeyman license too, and last I checked whether you need it depends on who you work for and what you're doing.\n\nDon't take my word or anybody's on the job. Go to the state board of master plumbers' page and read the requirements, or call them. It's changed since I took mine.\n",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-14T16:58:21+00:00"
+        },
+        {
+          "author": "rui_t_kearny",
+          "body": "From what I remember you need five years as a journeyman before you can sit for the master. Took me forever.",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-08-14T17:33:21+00:00"
+        },
+        {
+          "author": "oldsteam_zig",
+          "body": "I don't think that's right anymore, and I'm not sure it was right when we did it either. Rules have moved around. That's exactly why he should call the board instead of listening to two old guys.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-14T19:15:46+00:00"
+        },
+        {
+          "author": "rui_t_kearny",
+          "body": "Fair. He's right, call the board. Ignore me on the number.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-15T23:41:03+00:00"
+        },
+        {
+          "author": "dhollis61",
+          "body": "call the board. keep a log of your hours from day one, dates and who you worked under. you will need it.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-16T09:41:12+00:00"
+        }
+      ],
+      "region": "Bergen County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 8,
+      "created_at": "2026-08-14T01:40:11+00:00"
+    },
+    {
+      "id": "T06",
+      "category": "B",
+      "topic": "B2_epa608",
+      "type": "tip",
+      "trade": "hvac",
+      "author": "ms_almonte",
+      "title": "EPA 608: what my students get wrong every year",
+      "body": "Every fall somebody in my class assumes the 608 is a formality. Here's what actually trips people up, in order.\n\nFirst, they skip the Core section because it \"isn't technical.\" Core is where people fail. It's rules, dates, recovery requirements, and it's all memorization.\n\nSecond, they cram the night before. You need to know the rules, not just recognize answers.\n\nThird, they don't ask how their specific test is given. The format depends on which type and who's proctoring it, so ask the testing organization before you show up.\n\nGo for Universal if you can. Ask me how I know you'll want it later.\n",
+      "replies": [
+        {
+          "author": "ExRetail_NowHVAC",
+          "body": "Starting my first HVAC job next month (came from retail, 35). Boss said get the 608 before I start. Is Universal realistic for someone with zero background or should I do Type II first?",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-14T09:42:06+00:00"
+        },
+        {
+          "author": "ms_almonte",
+          "accepted": true,
+          "body": "Realistic if you study. Plenty of my 17-year-olds pass it. Do the practice tests until Core is boring.",
+          "helpful_count": 7,
+          "created_at": "2026-09-14T10:17:29+00:00"
+        },
+        {
+          "author": "hec_does_ac",
+          "body": "So this one time in AC... I had a guy on my crew who failed Core three times because he kept saying it was common sense lol. It isn't. Study the dates.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-15T01:41:29+00:00"
+        },
+        {
+          "author": "tnguyen_refrig",
+          "body": "universal. dont overthink it, just dont skip core",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-09-16T02:36:20+00:00"
+        },
+        {
+          "author": "dahvacnj",
+          "body": "Type 1 I did open book online back in school, the rest was proctored. At least that's how mine was, ask whoever's giving yours",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-16T02:52:55+00:00"
+        }
+      ],
+      "region": "Passaic County, NJ",
+      "starter_role": "senior",
+      "helpful_count": 14,
+      "created_at": "2026-09-14T01:59:44+00:00"
+    },
+    {
+      "id": "T07",
+      "category": "B",
+      "topic": "B3_failed_rough_in",
+      "type": "question",
+      "trade": "electrical",
+      "author": "LiveFrontLessons",
+      "title": "failed rough-in, boss says the inspector is wrong. who do i believe",
+      "body": "1st year out of vo-tech, working for a small shop near asbury. we failed a rough in on a bathroom remodel today. inspector wrote up \"physical protection\" on a couple runs where the cable goes through studs, and something about the box by the vanity being too full.\n\nboss says the inspector is being picky and he's done it this way for years. i don't want to say anything dumb but i also want to understand it. who's right\n\nedit: it was nail plates on two studs where the holes were close to the edge. boss fixed it, passed on reinspection. thanks for explaining instead of just dunking on me\n",
+      "replies": [
+        {
+          "author": "codebook_dale",
+          "accepted": true,
+          "body": "Not legal advice, just how I'd look at it. When cable runs through a hole close to the edge of a stud, it needs protection so a drywall screw doesn't find it. That's what a nail plate is for, and it's one of the most common write-ups I see. Box fill is counting conductors, devices and clamps against the box's volume; a small box with a GFCI and a couple of cables fills up fast.\n\nThe inspector is enforcing whatever code edition is in effect for that permit. Next time, ask politely for the section number. Most inspectors will give it to you and respect you more for asking.\n",
+          "helpful_count": 12,
+          "created_at": "2026-09-30T00:28:00+00:00"
+        },
+        {
+          "author": "thiago_sparks",
+          "body": "Honestly nail plates are the number one thing I see guys skip on remodels down here. Your boss knows better, he just didn't want to hear it in front of you.",
+          "helpful_count": 13,
+          "accepted": false,
+          "created_at": "2026-09-30T02:58:20+00:00"
+        },
+        {
+          "author": "Passaic_Sparky",
+          "body": "your boss is wrong lol. 9 times out of 10 when somebody says the inspector is picky, it's nail plates",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-30T03:26:33+00:00"
+        },
+        {
+          "author": "LiveFrontLessons",
+          "body": "thanks both. going to buy my own box of nail plates so it's never my fault again",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-30T03:40:03+00:00"
+        }
+      ],
+      "region": "Monmouth County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 3,
+      "created_at": "2026-09-29T23:57:15+00:00"
+    },
+    {
+      "id": "T08",
+      "category": "B",
+      "topic": "B5_nyc_dob_vs_nj",
+      "type": "question",
+      "trade": "plumbing",
+      "nyc": true,
+      "author": "LateStartPlumber",
+      "title": "starting plumbing at 42 on staten island. is a master license even realistic?",
+      "body": "career change at 42, about to start as a helper. long term i'd want my own small business. how does the master plumber license work in the city vs nj? my brother in law in toms river says it's easier over there. is it even realistic to get there starting this late",
+      "replies": [
+        {
+          "author": "bklyn_arkady",
+          "accepted": true,
+          "body": "In the city it's different. Last I checked the master plumber license wants years of documented experience working under a licensed master (I remember it as seven, but read the DOB's licensing page for the current rules), and the documentation is a real thing: affidavits from the masters you worked for. So start keeping records now. Every employer, dates, what you did.\n\nRealistic at 42? If you stay with it, yes. You'd be in your 50s with a license, and plenty of guys run shops into their 60s.\n",
+          "helpful_count": 7,
+          "created_at": "2026-10-05T03:51:52+00:00"
+        },
+        {
+          "author": "plumbguy917",
+          "body": "do the work first, worry about the license in 5 years. half the guys i know who talk about their own shop at year 1 are gone by year 3",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-10-05T03:59:00+00:00"
+        },
+        {
+          "author": "oldsteam_zig",
+          "body": "Jersey side isn't 'easier,' kid, it's just a different board with different rules. Pick where you want to work for the next 10 years and follow that one.",
+          "helpful_count": 6,
+          "accepted": false,
+          "created_at": "2026-10-05T03:59:30+00:00"
+        }
+      ],
+      "region": "Staten Island, NY",
+      "starter_role": "junior",
+      "helpful_count": 19,
+      "created_at": "2026-10-04T23:40:21+00:00"
+    },
+    {
+      "id": "T09",
+      "category": "C",
+      "topic": "C1_am_i_a_laborer",
+      "type": "question",
+      "trade": "plumbing",
+      "author": "Kearny_Pipefitter",
+      "title": "6 months of demo and carrying water heaters. am I being used as a laborer?",
+      "body": "Six months in at a small shop out of Bayonne. 90% of my day is demo, carrying material, cleaning up, and running to the supply house. I've sweated maybe 10 fittings total. The other helper has been there a year and says it was the same for him.\n\nIs this normal or am I being used as cheap labor? Don't want to quit too early and look like a flake.\n",
+      "replies": [
+        {
+          "author": "oldsteam_zig",
+          "accepted": true,
+          "body": "Six months of demo and material is normal, kid. Everybody carries water heaters. That's the job.\n\nRed flags are different: no one explaining anything when you ask, still nothing but demo at a year, no talk about school, getting paid cash with no paperwork. If none of those are true, keep your head down a little longer and start asking for one new thing a week.\n",
+          "helpful_count": 16,
+          "created_at": "2026-09-07T01:05:40+00:00"
+        },
+        {
+          "author": "joyd_plumbing",
+          "body": "What's your actual question: is it normal, or how do you get more? It's normal. To get more, ask your lead the night before: 'Can I do the fittings on tomorrow's job while you watch?' Specific asks get yeses.",
+          "helpful_count": 9,
+          "accepted": false,
+          "created_at": "2026-09-07T01:47:00+00:00"
+        },
+        {
+          "author": "big_paulie_plumb",
+          "body": "i carried water heaters up 3rd floor walkups in north bergen for a year. hated it. it's also why i know how every tank in that town is piped lol",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-07T02:15:39+00:00"
+        },
+        {
+          "author": "haddad_mech",
+          "body": "Here's what I look for when I hire, and it applies to the helper who wants more: the guy who's already standing next to the work, watching, when the demo's done. Make it easy for them to teach you.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-07T10:12:38+00:00"
+        },
+        {
+          "author": "sweatjoint200amp",
+          "body": "same boat here... 4 months, mostly cleanup. this thread makes me feel better",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-07T12:56:37+00:00"
+        },
+        {
+          "author": "Kearny_Pipefitter",
+          "body": "update: asked to do the fittings on a repipe friday like Joy said. boss let me do the whole manifold while he watched. leaked one. fixed it. best day so far",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-07T13:12:11+00:00"
+        }
+      ],
+      "region": "Hudson County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 9,
+      "created_at": "2026-09-06T14:57:06+00:00"
+    },
+    {
+      "id": "T10",
+      "category": "C",
+      "topic": "C2_boss_pays_cash",
+      "type": "question",
+      "trade": "plumbing",
+      "author": "Dev_H",
+      "title": "3 years, all cash, no school. When do I leave?",
+      "body": "Three years at the same shop in Deptford. Paid cash every Friday. He won't send me to school, says I'll learn more on the job. I mostly get PEX on new construction, boilers in the winter if they're short a guy. Good guy, but I'm not going anywhere. How do I leave without burning it?",
+      "replies": [
+        {
+          "author": "rui_t_kearny",
+          "accepted": true,
+          "body": "Cash every Friday usually means no workers comp if you get hurt and no paperwork showing three years of experience when you want a license someday. That's the part that would worry me more than the PEX.\n\nMy father used to say never quit angry and never quit without the next job lined up. Small state. Everybody knows everybody. Line up the next shop, give him notice, thank him for the three years. That's it.\n",
+          "helpful_count": 6,
+          "created_at": "2026-09-13T14:26:17+00:00"
+        },
+        {
+          "author": "codebook_dale",
+          "body": "Not legal advice, but on the licensing side: start writing down every job, date, and who supervised you, now. If you ever go for a license you'll need to show experience, and cash with no records makes that hard.",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-14T00:22:18+00:00"
+        },
+        {
+          "author": "hec_does_ac",
+          "body": "Gloucester County has plenty of shops that do service and repipes, not just new construction... ask around at the supply house, the counter guys know who's hiring and who's a nightmare lol",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-09-14T01:22:28+00:00"
+        },
+        {
+          "author": "plumbnj77",
+          "body": "leave. i did the same thing in brick for 2 years. new shop sent me to school in month 3",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-14T09:15:39+00:00"
+        },
+        {
+          "author": "joe.plumb",
+          "body": "i'm in cherry hill and my shop is hiring... not going to post the name here but the supply house thing is real",
+          "helpful_count": 6,
+          "accepted": false,
+          "created_at": "2026-09-14T10:58:09+00:00"
+        },
+        {
+          "author": "Dev_H",
+          "body": "Appreciate it. Going to start applying this week and keep my mouth shut until I have something.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-14T19:03:39+00:00"
+        }
+      ],
+      "region": "Gloucester County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 12,
+      "created_at": "2026-09-11T02:50:39+00:00"
+    },
+    {
+      "id": "T11",
+      "category": "C",
+      "topic": "C3_first_no_heat_winter",
+      "type": "question",
+      "trade": "hvac",
+      "author": "DinerCoffeeHVAC",
+      "title": "On call this winter for the first time. Lots of old steam in Bayonne. Tips?",
+      "body": "Shop is putting me on the on-call rotation this winter. Two years in, mostly forced air so far. Half our customers in Bayonne and JC have old one-pipe steam and I've only been on maybe five steam calls with my lead. What should I check first on a no-heat steam call so I don't look lost at 2am?",
+      "replies": [
+        {
+          "author": "oldsteam_zig",
+          "accepted": true,
+          "body": "Steam's simpler than people make it, kid, but it'll punish you for rushing.\n\nLook at the sight glass first. Low water is the most common no-heat I see on old steam. If the glass is empty and the boiler's been firing, do NOT feed cold water into it hot. Shut it down, let it cool, then figure out why it's low. Then check the low-water cutoff, the pressuretrol, and whether the burner's even trying.\n\nAnd call your lead. Nobody expects a 2-year guy to know everything on steam at 2am. That's the job.\n",
+          "helpful_count": 17,
+          "created_at": "2026-08-07T03:08:20+00:00"
+        },
+        {
+          "author": "ms_almonte",
+          "body": "Second thing my students forget: the house usually has a story. Ask the homeowner when it stopped, whether anyone added water, whether it's been banging. Two questions save you an hour.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-10T00:12:28+00:00"
+        },
+        {
+          "author": "hec_does_ac",
+          "body": "So this one time in AC... ok not AC, Pennsauken, first no-heat call on my own I spent 40 minutes on the burner and the switch at the top of the basement stairs was off lol. Check the switch.",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-08-10T23:37:15+00:00"
+        },
+        {
+          "author": "HeatwaveOnCall",
+          "body": "saving this thread. i'm on call for the first time this winter too, clifton",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-11T01:53:07+00:00"
+        }
+      ],
+      "region": "Hudson County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 22,
+      "created_at": "2026-08-07T01:24:55+00:00"
+    },
+    {
+      "id": "T12",
+      "category": "D",
+      "topic": "D1_second_year_pay",
+      "type": "question",
+      "trade": "plumbing",
+      "author": "benplumb79",
+      "title": "What should a 2nd-year non-union plumber make in Central Jersey?",
+      "body": "Two years in at a non-union shop near Manville. Service and some remodel work. I'm at $21/hr, no overtime most weeks, I drive my own car to jobs. A guy I went to school with says I'm getting robbed, another says that's normal.\n\nNot trying to start a fight, just want to know if I should ask for a raise and what's reasonable to ask for.\n",
+      "replies": [
+        {
+          "author": "Kash_sing",
+          "body": "Rates swing a lot by shop and trade, so look at the whole package, not just the hourly:\n- Do they pay for school or your license prep?\n- Overtime: how often, and is it paid at time and a half?\n- Mileage or a van: you driving your own car is a real cost\n- Health insurance, PTO, tools\n\n$21 with your own car and no benefits is on the low side for 2 years in, from what I see around here. Ask for a review, come with what you've learned to do on your own.\n",
+          "helpful_count": 6,
+          "accepted": false,
+          "created_at": "2026-09-23T12:10:16+00:00"
+        },
+        {
+          "author": "Woodbridge.ducts",
+          "body": "my buddy is 2nd year and makes $40/hr. you're getting robbed",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-23T13:26:24+00:00"
+        },
+        {
+          "author": "haddad_mech",
+          "body": "Careful with numbers like that. A 2nd-year non-union helper at $40 an hour in Central Jersey isn't typical. Either your buddy's in the union and you're hearing the total package, or he's on a prevailing-wage job, or it's a story. Comparing a cash rate to a union package isn't apples to apples.\n",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-27T03:54:52+00:00"
+        },
+        {
+          "author": "mbell_wireman",
+          "body": "He's right. The locals usually publish their wage and benefit package, so look that up on the local's site if you want a real comparison, and remember the benefits are a big piece of the number.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-27T16:35:26+00:00"
+        },
+        {
+          "author": "CondensateOverflow",
+          "body": "3rd year hvac non-union in bound brook, i make a little more than you but i have a van. the van matters more than people think",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-27T17:10:54+00:00"
+        },
+        {
+          "author": "benplumb79",
+          "body": "Thanks. Going to ask for a review next month and bring up mileage. Will report back.",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-27T17:48:24+00:00"
+        }
+      ],
+      "region": "Somerset County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 27,
+      "created_at": "2026-09-23T10:05:28+00:00"
+    },
+    {
+      "id": "T13",
+      "category": "D",
+      "topic": "D2_side_work",
+      "type": "question",
+      "trade": "electrical",
+      "author": "WawaRunWired",
+      "title": "neighbors keep asking me to do outlets and ceiling fans. worth it?",
+      "body": "1 yr in, non union shop in bergen. word got around the block that i do electrical and now 3 neighbors want outlets swapped and fans hung. cash. easy money right? or bad idea",
+      "replies": [
+        {
+          "author": "codebook_dale",
+          "accepted": true,
+          "body": "Not legal advice, just how I'd look at it: in NJ, electrical work for pay is supposed to be done by or under a licensed electrical contractor, with a permit where one's required. If you do it on your own and something goes wrong (a fire, a shock), you have no insurance and no license behind you, and the homeowner's insurance company is going to ask who did the work.\n\nEasy money until it isn't.\n",
+          "helpful_count": 6,
+          "created_at": "2026-09-21T01:12:49+00:00"
+        },
+        {
+          "author": "thiago_sparks",
+          "body": "Honestly I did side work at your age. Got lucky. One of my buddies didn't, and a small job turned into a very expensive year for him. Also your boss will fire you if he hears about it, and he will hear about it.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-09-21T01:59:52+00:00"
+        },
+        {
+          "author": "Exit145Electric",
+          "body": "charge like $75 a fan and $25 an outlet. more if it's a high ceiling",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-21T10:12:43+00:00"
+        },
+        {
+          "author": "thiago_sparks",
+          "body": "He asked whether he should, not what to charge. Answer's no.",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-26T23:26:44+00:00"
+        },
+        {
+          "author": "oldsteam_zig",
+          "body": "You're not licensed, kid. Tell them to call your boss. If your boss gets the job, you look good. That's the job.",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-09-27T00:04:52+00:00"
+        }
+      ],
+      "region": "Bergen County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 9,
+      "created_at": "2026-09-20T00:57:05+00:00"
+    },
+    {
+      "id": "T14",
+      "category": "D",
+      "topic": "D3_going_out_on_own",
+      "type": "tip",
+      "trade": "hvac",
+      "author": "Kash_sing",
+      "title": "Before you go out on your own: what nobody tells you about year one",
+      "body": "I get asked about this every week, so here's my list from 25 years, the last 14 running my own company:\n- Get your license first. As I understand NJ's rules, registering as a home improvement contractor is not the same as holding a trade license, and it doesn't let you do licensed work. Check with Consumer Affairs.\n- Insurance will cost more than you think, and you need it before your first job, not after.\n- Price for callbacks. If you don't, every callback comes out of your pocket.\n- Your first truck doesn't need to be new. It needs to start every morning in January.\n- Keep your books from day one, or pay someone who will.\n- Most new owners undercharge for the first two years. I did.\n\nAsk questions below, I'll answer what I can.\n",
+      "replies": [
+        {
+          "author": "haddad_mech",
+          "body": "I'd add: decide early whether you want public work. Prevailing-wage jobs mean certified payroll and a lot of paperwork, at least on every one we've done. Good money, different business.",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-10-02T09:44:31+00:00"
+        },
+        {
+          "author": "rui_t_kearny",
+          "body": "And if you're taking over a family shop instead of starting one, it's all the same plus your father second-guessing every price you quote. Ask me how that's going.",
+          "helpful_count": 11,
+          "accepted": false,
+          "created_at": "2026-10-02T10:50:01+00:00"
+        },
+        {
+          "author": "CondensateOverflow",
+          "body": "question on the first one, so if i register as a home improvement contractor i still can't do hvac work on my own? thought that was the whole point",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-10-02T12:40:19+00:00"
+        },
+        {
+          "author": "Kash_sing",
+          "body": "Short answer as I understand it:\n- Home improvement registration is for general home improvement work\n- HVACR work needs the HVACR license (or working under someone who has it)\n- Check with Consumer Affairs for your situation; don't take a contractor's word for legal stuff, including mine\n",
+          "helpful_count": 14,
+          "accepted": false,
+          "created_at": "2026-10-03T14:14:54+00:00"
+        },
+        {
+          "author": "leadfree98",
+          "body": "saving this. 'start every morning in January' is going on the wall",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-10-03T17:48:34+00:00"
+        }
+      ],
+      "region": "Middlesex County, NJ",
+      "starter_role": "senior",
+      "helpful_count": 28,
+      "created_at": "2026-10-02T00:37:58+00:00"
+    },
+    {
+      "id": "T15",
+      "category": "E",
+      "topic": "E1_sweat_vs_press",
+      "type": "question",
+      "trade": "plumbing",
+      "author": "Exit117Plumber",
+      "title": "Why did my sweat joint leak? Should I just learn press?",
+      "body": "Vo-tech senior, helping my uncle on weekends. Sweated a 3/4 tee on Saturday, cleaned it, fluxed it, looked perfect. Turned the water on and it dripped. Redid it and it dripped again. Uncle says just buy a press tool and stop wasting solder lol. Is sweating even worth learning anymore?",
+      "replies": [
+        {
+          "author": "oldsteam_zig",
+          "accepted": true,
+          "body": "Learn to sweat, kid. Press is great and I own the tools, but you'll be on jobs where you can't press, and you need to know why joints fail.\n\nNine out of ten times a joint that looks perfect and drips has water in the line. Water in the pipe pulls the heat away and the solder never flows all the way in. Was there a valve or a low spot near that tee?\n",
+          "helpful_count": 8,
+          "created_at": "2026-08-11T03:44:25+00:00"
+        },
+        {
+          "author": "rui_t_kearny",
+          "body": "Agree with Ziggy. And heat the fitting, not the solder. When the solder gets pulled in on its own, you're there.",
+          "helpful_count": 29,
+          "accepted": false,
+          "created_at": "2026-08-11T10:24:08+00:00"
+        },
+        {
+          "author": "joyd_plumbing",
+          "body": "What size torch tip and how long were you heating it? 3/4 takes more than people think, especially next to a valve body.",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-11T22:57:04+00:00"
+        },
+        {
+          "author": "FluxOnMyBoots",
+          "body": "guy in my night class showed us the white bread trick for water in the line. felt dumb, works",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-12T12:17:01+00:00"
+        },
+        {
+          "author": "Exit117Plumber",
+          "body": "There was a valve about a foot away that was weeping a little. So yeah, probably water.",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-08-12T14:11:33+00:00"
+        },
+        {
+          "author": "oldsteam_zig",
+          "body": "There's your water. Fix the valve or get the water out first, then sweat it. You'll never forget this one.",
+          "helpful_count": 7,
+          "accepted": false,
+          "created_at": "2026-08-13T01:07:51+00:00"
+        }
+      ],
+      "region": "Middlesex County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 8,
+      "created_at": "2026-08-11T00:40:25+00:00"
+    },
+    {
+      "id": "T16",
+      "category": "E",
+      "topic": "E4_superheat_subcool",
+      "type": "question",
+      "trade": "hvac",
+      "author": "epa60812_2",
+      "title": "superheat vs subcool, when do i use which",
+      "body": "helper at a residential hvac shop in paterson, started this summer. my lead checks superheat on some systems and subcool on others and when i ask why he says 'it depends.' depends on what?? trying to actually understand it not just memorize",
+      "replies": [
+        {
+          "author": "hec_does_ac",
+          "accepted": true,
+          "body": "Depends on the metering device... fixed orifice/piston, you're looking at superheat. TXV or EEV, you're looking at subcool. Your lead isn't being difficult, it really does depend lol. Look at what's on the indoor coil.",
+          "helpful_count": 27,
+          "created_at": "2026-08-27T22:42:00+00:00"
+        },
+        {
+          "author": "tnguyen_refrig",
+          "body": "and before any of that check airflow. dirty filter, dirty coil, blower speed. charge it with bad airflow and youre chasing ghosts",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-28T00:19:34+00:00"
+        },
+        {
+          "author": "Kash_sing",
+          "body": "Both right. Two things I'd add:\n- Use the manufacturer's charging chart or label when there is one; it beats rules of thumb\n- Write down what you measured every time, so you learn what normal looks like\n",
+          "helpful_count": 3,
+          "accepted": false,
+          "created_at": "2026-08-28T00:50:29+00:00"
+        },
+        {
+          "author": "epa60812_2",
+          "body": "ok that actually makes sense. going to look at the coil on every job now",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-08-28T09:29:56+00:00"
+        }
+      ],
+      "region": "Passaic County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 7,
+      "created_at": "2026-08-27T22:04:11+00:00"
+    },
+    {
+      "id": "T17",
+      "category": "E",
+      "topic": "E2_three_way_switch",
+      "type": "question",
+      "trade": "electrical",
+      "author": "RainDayRestock",
+      "title": "3-way switches are breaking my brain",
+      "body": "First month as a helper in Brick. Boss had me watch him wire a pair of 3-ways in a hallway and I nodded like I got it. I didn't. Which wire goes on the dark screw and why are there two travelers? Is there a simple way to think about it?",
+      "replies": [
+        {
+          "author": "thiago_sparks",
+          "accepted": true,
+          "body": "Honestly everybody's brain breaks on 3-ways once. Think of it like this: the common (dark screw) on one switch is where power comes in, the common on the other switch is where it goes out to the light. The two travelers just run between the two switches, and flipping either switch picks which traveler is live.\n\nDraw it on a piece of cardboard on the job. Seriously.\n",
+          "helpful_count": 9,
+          "created_at": "2026-09-21T01:24:24+00:00"
+        },
+        {
+          "author": "codebook_dale",
+          "body": "And test, don't guess. Turn the breaker off, verify it's dead with a tester before you touch anything, then check your work with the power back on.",
+          "helpful_count": 10,
+          "accepted": false,
+          "created_at": "2026-09-21T09:59:36+00:00"
+        },
+        {
+          "author": "JerseyTomatoWires",
+          "body": "drew it on a 2x4 my first year... still have the 2x4",
+          "helpful_count": 0,
+          "accepted": false,
+          "created_at": "2026-09-21T10:47:04+00:00"
+        }
+      ],
+      "region": "Ocean County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 11,
+      "created_at": "2026-09-18T17:56:42+00:00"
+    },
+    {
+      "id": "T18",
+      "category": "E",
+      "topic": "E6_heat_pump_nj_winter",
+      "type": "question",
+      "trade": "hvac",
+      "author": "TaylorHamHVAC",
+      "title": "do heat pumps actually work in a north jersey winter?",
+      "body": "new to hvac, came from an office job. customers in secaucus keep asking me if a heat pump will keep up in january and i don't know what to tell them. my boss says 'depends on the house.' what does it depend on?",
+      "replies": [],
+      "region": "Hudson County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 7,
+      "created_at": "2026-08-31T00:54:52+00:00"
+    },
+    {
+      "id": "T19",
+      "category": "F",
+      "topic": "F1_passed_608",
+      "type": "discussion",
+      "trade": "hvac",
+      "author": "ExRetail_NowHVAC",
+      "title": "Passed my 608 Universal!",
+      "body": "Took the advice in the 608 thread, did practice tests until Core was boring. Passed Universal on the first try. Six months ago I was managing a store in Deptford. Start the new job Monday. Bought my own gauges this weekend like a kid at Christmas.",
+      "replies": [
+        {
+          "author": "ms_almonte",
+          "body": "That's how it's done. Congratulations. Now go learn everything the test didn't cover.",
+          "helpful_count": 12,
+          "accepted": false,
+          "created_at": "2026-09-27T01:43:03+00:00"
+        },
+        {
+          "author": "hec_does_ac",
+          "body": "Nice!! Welcome to the club... first summer is going to be a lot lol",
+          "helpful_count": 7,
+          "accepted": false,
+          "created_at": "2026-09-27T02:40:52+00:00"
+        },
+        {
+          "author": "big_ben_tools",
+          "body": "congrats!! taking mine in the spring",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-27T03:58:39+00:00"
+        },
+        {
+          "author": "tnguyen_refrig",
+          "body": "nice. now the real learning starts",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-09-28T01:57:29+00:00"
+        }
+      ],
+      "region": "Camden County, NJ",
+      "starter_role": "junior",
+      "helpful_count": 10,
+      "created_at": "2026-09-26T14:25:04+00:00"
+    },
+    {
+      "id": "T20",
+      "category": "F",
+      "topic": "F5_pork_roll_taylor_ham",
+      "type": "discussion",
+      "trade": "other",
+      "author": "hec_does_ac",
+      "title": "Settle this once and for all: pork roll or Taylor ham?",
+      "body": "Had a new guy from Bergen on my crew this week call it Taylor ham at the Wawa and the whole counter went quiet lol. I'm from Gloucester County, it's pork roll, I'll die on this hill. Winter's coming and we need this settled before the on-call rotation starts. Go.",
+      "replies": [
+        {
+          "author": "oldsteam_zig",
+          "body": "Taylor ham. Been calling it that for 50 years. Not changing now.",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-09-02T01:33:43+00:00"
+        },
+        {
+          "author": "tnguyen_refrig",
+          "body": "pork roll. anything south of the raritan, it's pork roll",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-09-02T03:03:51+00:00"
+        },
+        {
+          "author": "TaylorHamHVAC",
+          "body": "I think my handle answers this",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-02T10:06:32+00:00"
+        },
+        {
+          "author": "joe.plumb",
+          "body": "pork roll egg and cheese... salt pepper ketchup. cherry hill born",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-02T11:23:20+00:00"
+        },
+        {
+          "author": "peteplumb80",
+          "body": "taylor ham egg and cheese on a hard roll from a montclair deli, nothing else comes close",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-02T17:53:20+00:00"
+        },
+        {
+          "author": "thiago_sparks",
+          "body": "Monmouth here and honestly we're the DMZ. I say pork roll at the shore and Taylor ham when I'm working up north so nobody throws anything at me.",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-09-03T01:20:44+00:00"
+        },
+        {
+          "author": "joyd_plumbing",
+          "body": "Taylor ham. And it's QuickChek, not Wawa, up here. Don't start that one too.",
+          "helpful_count": 6,
+          "accepted": false,
+          "created_at": "2026-09-03T01:52:48+00:00"
+        },
+        {
+          "author": "hec_does_ac",
+          "body": "QuickChek... ok now I know you're all lost up there lol",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-09-04T00:43:26+00:00"
+        },
+        {
+          "author": "dahvacnj",
+          "body": "toms river. pork roll. wawa. sorry not sorry",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-04T01:03:44+00:00"
+        },
+        {
+          "author": "rui_t_kearny",
+          "body": "My father called it Taylor ham, I call it Taylor ham, my nephew in Hamilton calls it pork roll and we don't talk about it at Thanksgiving.",
+          "helpful_count": 7,
+          "accepted": false,
+          "created_at": "2026-09-04T01:09:29+00:00"
+        },
+        {
+          "author": "dhollis61",
+          "body": "same thing. eat it.",
+          "helpful_count": 5,
+          "accepted": false,
+          "created_at": "2026-09-04T02:42:11+00:00"
+        },
+        {
+          "author": "Kearny_Pipefitter",
+          "body": "^ the most steamfitter answer possible",
+          "helpful_count": 2,
+          "accepted": false,
+          "created_at": "2026-09-04T03:28:10+00:00"
+        },
+        {
+          "author": "HeatwaveOnCall",
+          "body": "clifton. taylor ham. this is the only thread on here i'm qualified to answer",
+          "helpful_count": 4,
+          "accepted": false,
+          "created_at": "2026-09-04T10:14:20+00:00"
+        },
+        {
+          "author": "big_nicole_plumb",
+          "body": "Burlington County and I've heard both my whole life. It's pork roll on the sign and Taylor ham out of my uncle's mouth.",
+          "helpful_count": 1,
+          "accepted": false,
+          "created_at": "2026-09-04T11:45:54+00:00"
+        }
+      ],
+      "region": "Camden County, NJ",
+      "starter_role": "senior",
+      "helpful_count": 40,
+      "created_at": "2026-09-01T23:57:00+00:00"
+    }
+  ]
+}

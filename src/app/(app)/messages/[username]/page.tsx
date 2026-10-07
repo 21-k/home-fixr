@@ -4,7 +4,10 @@ import { FileText } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { MarkRead } from "@/components/MarkRead";
 import { MessageComposer } from "@/components/MessageComposer";
+import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
+import { findProfileByHandle } from "@/lib/profile-lookup";
 import { profileHeadline, timeAgo } from "@/lib/format";
 import {
   CV_SIGNED_URL_SECONDS,
@@ -12,7 +15,6 @@ import {
   isImageType,
 } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
-import type { Profile } from "@/lib/types";
 
 type Message = {
   id: string;
@@ -35,13 +37,11 @@ export default async function ConversationPage({
   if (!me) redirect("/login");
 
   const supabase = await createClient();
-  const { data: otherData } = await supabase
-    .from("profiles")
-    .select("*")
-    .eq("username", username)
-    .maybeSingle();
-  if (!otherData) notFound();
-  const other = otherData as Profile;
+  const other = await findProfileByHandle(supabase, username);
+  if (!other) notFound();
+  if (other.username !== decodeURIComponent(username)) {
+    redirect(`/messages/${other.username}`);
+  }
 
   const { data: msgData } = await supabase
     .from("messages")
@@ -79,11 +79,9 @@ export default async function ConversationPage({
 
       <div className="flex flex-1 flex-col overflow-hidden rounded-xl border border-zinc-200 bg-white">
         <div className="flex items-center gap-3 border-b border-zinc-200 p-4">
-          <Avatar initials={other.avatar_initials} size="md" href={`/u/${other.username}`} />
+          <Avatar person={other} size="md" href={`/u/${other.username}`} />
           <div>
-            <Link href={`/u/${other.username}`} className="font-semibold hover:text-brand-500">
-              {other.full_name}
-            </Link>
+            <UserName person={other} className="font-semibold hover:text-brand-500" />
             <div className="text-xs text-zinc-600">{profileHeadline(other)}</div>
           </div>
         </div>
@@ -131,11 +129,20 @@ export default async function ConversationPage({
           )}
         </div>
 
-        <MessageComposer
-          senderId={me.id}
-          recipientId={other.id}
-          username={other.username}
-        />
+        {other.is_founding_member ? (
+          <p className="border-t border-zinc-200 bg-amber-50 p-4 text-[13px] leading-relaxed text-amber-900">
+            {FOUNDING_CONTACT_MESSAGE}{" "}
+            <Link href="/about#founding-community" className="font-medium underline">
+              Learn more
+            </Link>
+          </p>
+        ) : (
+          <MessageComposer
+            senderId={me.id}
+            recipientId={other.id}
+            username={other.username}
+          />
+        )}
       </div>
     </div>
   );

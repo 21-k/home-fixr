@@ -2,8 +2,11 @@
 
 import { useActionState, useState } from "react";
 import { GraduationCap, Wrench, type LucideIcon } from "lucide-react";
+import { DisplayPreferenceField } from "@/components/DisplayPreferenceField";
+import { HandleField } from "@/components/HandleField";
 import { completeOnboarding, skipOnboarding, type FormState } from "@/lib/actions";
-import type { Profile, UserRole } from "@/lib/types";
+import { suggestHandles } from "@/lib/handles";
+import type { Profile, TradeType, UserRole } from "@/lib/types";
 
 const initial: FormState = {};
 const inputCls =
@@ -12,6 +15,15 @@ const inputCls =
 export function WelcomeForm({ profile }: { profile: Profile }) {
   const [state, formAction, pending] = useActionState(completeOnboarding, initial);
   const [role, setRole] = useState<UserRole>(profile.role);
+  // Tracked so handle ideas can follow what the member types below.
+  const [trade, setTrade] = useState<string>(profile.trade ?? "");
+  const [region, setRegion] = useState<string>(profile.region ?? "");
+  const [name, setName] = useState<string>(profile.full_name);
+  const suggestions = suggestHandles({
+    fullName: name,
+    trade: (trade || null) as TradeType | null,
+    region,
+  });
 
   return (
     <>
@@ -41,6 +53,26 @@ export function WelcomeForm({ profile }: { profile: Profile }) {
         </div>
 
         <div className="rounded-xl border border-zinc-200 bg-white p-6">
+          <h2 className="mb-1 text-base font-semibold">Pick a handle</h2>
+          <p className="mb-4 text-[13px] text-zinc-500">
+            This is how you&apos;ll appear on the Feed. Your full name stays private
+            unless you share it.
+          </p>
+          <div className="grid gap-5 sm:grid-cols-2">
+            <HandleField
+              defaultValue={profile.username}
+              currentHandle={profile.username}
+              suggestions={suggestions}
+            />
+            <DisplayPreferenceField
+              defaultValue={profile.display_preference}
+              handle={profile.username}
+              fullName={name}
+            />
+          </div>
+        </div>
+
+        <div className="rounded-xl border border-zinc-200 bg-white p-6">
           <h2 className="mb-1 text-base font-semibold">A bit about your work</h2>
           <p className="mb-4 text-[13px] text-zinc-500">
             All optional — but trade and region are what let people find you.
@@ -49,7 +81,12 @@ export function WelcomeForm({ profile }: { profile: Profile }) {
           <div className="grid gap-4 sm:grid-cols-2">
             <label className="flex flex-col gap-1.5">
               <span className="text-sm font-medium">Trade</span>
-              <select name="trade" defaultValue={profile.trade ?? ""} className={`${inputCls} bg-white`}>
+              <select
+                name="trade"
+                value={trade}
+                onChange={(e) => setTrade(e.target.value)}
+                className={`${inputCls} bg-white`}
+              >
                 <option value="">Choose a trade…</option>
                 <option value="plumbing">Plumbing</option>
                 <option value="hvac">HVAC</option>
@@ -62,7 +99,8 @@ export function WelcomeForm({ profile }: { profile: Profile }) {
               <span className="text-sm font-medium">Region</span>
               <input
                 name="region"
-                defaultValue={profile.region ?? ""}
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
                 placeholder="Newark, NJ"
                 className={inputCls}
               />
@@ -94,10 +132,13 @@ export function WelcomeForm({ profile }: { profile: Profile }) {
             </label>
 
             <label className="flex flex-col gap-1.5 sm:col-span-2">
-              <span className="text-sm font-medium">Your name</span>
+              <span className="text-sm font-medium">
+                Your name <span className="font-normal text-zinc-500">(private unless you choose to show it)</span>
+              </span>
               <input
                 name="full_name"
-                defaultValue={profile.full_name}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Marcus Johnson"
                 className={inputCls}
               />

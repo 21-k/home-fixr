@@ -1,0 +1,660 @@
+{
+  "threeway_02": {
+    "claims": [
+      "electrical",
+      "career switcher",
+      "from around Irvington, Essex",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T01"
+    ]
+  },
+  "mbell_wireman": {
+    "claims": [
+      "19 yrs",
+      "IBEW Local 102 journeyman, foreman 6 yrs",
+      "Morris County, lives near Parsippany",
+      "data center / commercial work in Secaucus & Piscataway",
+      "big on safety"
+    ],
+    "appears_in": [
+      "T01",
+      "T02",
+      "T12"
+    ]
+  },
+  "thiago_sparks": {
+    "claims": [
+      "22 yrs",
+      "NJ Electrical Contractor, non-union shop",
+      "Monmouth County (Long Branch)",
+      "shore renovations, raised houses post-Sandy",
+      "went to trade school"
+    ],
+    "appears_in": [
+      "T01",
+      "T02",
+      "T07",
+      "T13",
+      "T17",
+      "T20"
+    ]
+  },
+  "JerseyTomatoWires": {
+    "claims": [
+      "electrical",
+      "union apprentice",
+      "from around Hackensack, Bergen",
+      "4 yrs in",
+      "IBEW Local 164 4th year"
+    ],
+    "appears_in": [
+      "T01",
+      "T17"
+    ]
+  },
+  "rui_t_kearny": {
+    "claims": [
+      "23 yrs",
+      "second-gen shop owner, took over father's business",
+      "Hudson/Bergen border (Kearny)",
+      "was in the union a few years, left",
+      "NJ Master Plumber"
+    ],
+    "appears_in": [
+      "T01",
+      "T05",
+      "T10",
+      "T14",
+      "T15",
+      "T20"
+    ]
+  },
+  "Edison.volts": {
+    "claims": [
+      "electrical",
+      "votech grad",
+      "from around New Brunswick, Middlesex",
+      "0 yrs in",
+      "Middlesex County vo-tech '25"
+    ],
+    "appears_in": [
+      "T02"
+    ]
+  },
+  "ThreeWayConfusion": {
+    "claims": [
+      "electrical",
+      "union apprentice",
+      "from around Jackson, Ocean",
+      "2 yrs in",
+      "IBEW Local 400 2nd year"
+    ],
+    "appears_in": [
+      "T02"
+    ]
+  },
+  "TryingAllThree": {
+    "claims": [
+      "general",
+      "career switcher",
+      "from around Piscataway, Middlesex",
+      "1 yrs in"
+    ],
+    "appears_in": [
+      "T03"
+    ]
+  },
+  "joyd_plumbing": {
+    "claims": [
+      "17 yrs",
+      "NJ Master Plumber",
+      "switched in at 26 from restaurant management",
+      "Jersey City / Hoboken multifamily, co-ops",
+      "3-person crew"
+    ],
+    "appears_in": [
+      "T03",
+      "T09",
+      "T15",
+      "T20"
+    ]
+  },
+  "Kash_sing": {
+    "claims": [
+      "25 yrs",
+      "owns HVAC company, Middlesex County (Edison)",
+      "oil-to-gas, heat pumps, rebates",
+      "NJ Master HVACR Contractor + EPA 608 Universal",
+      "uses bullet points"
+    ],
+    "appears_in": [
+      "T03",
+      "T12",
+      "T14",
+      "T16"
+    ]
+  },
+  "big_zach_hvac": {
+    "claims": [
+      "hvac",
+      "career switcher",
+      "from around Elizabeth, Union",
+      "1 yrs in"
+    ],
+    "appears_in": [
+      "T03"
+    ]
+  },
+  "haddad_mech": {
+    "claims": [
+      "24 yrs",
+      "owns mechanical (HVAC+plumbing) company",
+      "Burlington County (Mount Laurel)",
+      "warehouses, schools, prevailing wage",
+      "both licenses"
+    ],
+    "appears_in": [
+      "T03",
+      "T09",
+      "T12",
+      "T14"
+    ]
+  },
+  "QuickChekCrew": {
+    "claims": [
+      "general",
+      "career switcher",
+      "from around Cherry Hill, Camden",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T03"
+    ]
+  },
+  "Flushing.sparks": {
+    "claims": [
+      "electrical",
+      "votech student",
+      "from around Ridgewood, Queens",
+      "0 yrs in",
+      "trade program in Queens"
+    ],
+    "appears_in": [
+      "T04"
+    ]
+  },
+  "dreb_jman": {
+    "claims": [
+      "21 yrs",
+      "IBEW Local 3 journeyman",
+      "Manhattan high-rise",
+      "lives in Astoria, Queens",
+      "apprentices commute from NJ"
+    ],
+    "appears_in": [
+      "T04"
+    ]
+  },
+  "groundrod_05": {
+    "claims": [
+      "electrical",
+      "votech grad",
+      "from around Throggs Neck, Bronx",
+      "2 yrs in",
+      "Apex grad (NYC)"
+    ],
+    "appears_in": [
+      "T04"
+    ]
+  },
+  "bklyn_arkady": {
+    "claims": [
+      "26 yrs",
+      "NYC Licensed Master Plumber, non-union shop",
+      "Brooklyn (Bay Ridge)",
+      "brownstones/multifamily gas, DOB inspections",
+      "grew up in NJ"
+    ],
+    "appears_in": [
+      "T04",
+      "T08"
+    ]
+  },
+  "elecny85": {
+    "claims": [
+      "electrical",
+      "nonunion apprentice",
+      "from around Flatbush, Brooklyn",
+      "1 yrs in"
+    ],
+    "appears_in": [
+      "T04"
+    ]
+  },
+  "BergenPlumber": {
+    "claims": [
+      "plumbing",
+      "union apprentice",
+      "from around Hackensack, Bergen",
+      "3 yrs in",
+      "UA Local 24 3rd year"
+    ],
+    "appears_in": [
+      "T05"
+    ]
+  },
+  "oldsteam_zig": {
+    "claims": [
+      "28 yrs in",
+      "owns shop, 4 trucks",
+      "Bergen County, works around Hackensack/Lodi/Garfield",
+      "boilers + steam specialist",
+      "NJ Master Plumber"
+    ],
+    "appears_in": [
+      "T05",
+      "T08",
+      "T09",
+      "T11",
+      "T13",
+      "T15",
+      "T20"
+    ]
+  },
+  "dhollis61": {
+    "claims": [
+      "30 yrs",
+      "UA Local 9",
+      "hospitals and pharma plants along Route 1",
+      "Central NJ (South Brunswick)",
+      "near retirement"
+    ],
+    "appears_in": [
+      "T05",
+      "T20"
+    ]
+  },
+  "ms_almonte": {
+    "claims": [
+      "20 yrs field + 8 teaching",
+      "county tech school, Passaic County (never names it)",
+      "plumbing & HVAC",
+      "keeps HVACR license active"
+    ],
+    "appears_in": [
+      "T06",
+      "T11",
+      "T19"
+    ]
+  },
+  "ExRetail_NowHVAC": {
+    "claims": [
+      "hvac",
+      "career switcher",
+      "from around Gloucester Township, Camden",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T06",
+      "T19"
+    ]
+  },
+  "hec_does_ac": {
+    "claims": [
+      "15 yrs",
+      "service lead, Camden County (Cherry Hill)",
+      "casino/hotel chillers & AC in Atlantic City earlier",
+      "residential in Gloucester County now",
+      "EPA 608 Universal"
+    ],
+    "appears_in": [
+      "T06",
+      "T10",
+      "T11",
+      "T16",
+      "T19",
+      "T20"
+    ]
+  },
+  "tnguyen_refrig": {
+    "claims": [
+      "18 yrs",
+      "commercial refrigeration",
+      "Atlantic/Cape May shore",
+      "seasonal boom/bust"
+    ],
+    "appears_in": [
+      "T06",
+      "T16",
+      "T19",
+      "T20"
+    ]
+  },
+  "dahvacnj": {
+    "claims": [
+      "hvac",
+      "votech grad",
+      "from around Toms River, Ocean",
+      "0 yrs in",
+      "Ocean County vo-tech '24"
+    ],
+    "appears_in": [
+      "T06",
+      "T20"
+    ]
+  },
+  "LiveFrontLessons": {
+    "claims": [
+      "electrical",
+      "votech grad",
+      "from around Asbury Park, Monmouth",
+      "1 yrs in",
+      "Monmouth County vo-tech '25"
+    ],
+    "appears_in": [
+      "T07"
+    ]
+  },
+  "codebook_dale": {
+    "claims": [
+      "26 yrs",
+      "former contractor (~15 yrs), now inspector",
+      "Ocean County / shore",
+      "never names his towns or employer"
+    ],
+    "appears_in": [
+      "T07",
+      "T10",
+      "T13",
+      "T17"
+    ]
+  },
+  "Passaic_Sparky": {
+    "claims": [
+      "electrical",
+      "service tech",
+      "from around Little Falls, Passaic",
+      "4 yrs in"
+    ],
+    "appears_in": [
+      "T07"
+    ]
+  },
+  "LateStartPlumber": {
+    "claims": [
+      "plumbing",
+      "career switcher",
+      "from around New Dorp, Staten Island",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T08"
+    ]
+  },
+  "plumbguy917": {
+    "claims": [
+      "plumbing",
+      "union apprentice",
+      "from around Bay Ridge, Brooklyn",
+      "1 yrs in",
+      "Plumbers Local 1 1st year"
+    ],
+    "appears_in": [
+      "T08"
+    ]
+  },
+  "Kearny_Pipefitter": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Bayonne, Hudson",
+      "1 yrs in"
+    ],
+    "appears_in": [
+      "T09",
+      "T20"
+    ]
+  },
+  "big_paulie_plumb": {
+    "claims": [
+      "plumbing",
+      "service tech",
+      "from around North Bergen, Hudson",
+      "4 yrs in"
+    ],
+    "appears_in": [
+      "T09"
+    ]
+  },
+  "sweatjoint200amp": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Little Falls, Passaic",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T09"
+    ]
+  },
+  "Dev_H": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Deptford, Gloucester",
+      "3 yrs in"
+    ],
+    "appears_in": [
+      "T10"
+    ]
+  },
+  "plumbnj77": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Brick, Ocean",
+      "3 yrs in"
+    ],
+    "appears_in": [
+      "T10"
+    ]
+  },
+  "joe.plumb": {
+    "claims": [
+      "plumbing",
+      "votech grad",
+      "from around Cherry Hill, Camden",
+      "2 yrs in",
+      "Camden County vo-tech '24"
+    ],
+    "appears_in": [
+      "T10",
+      "T20"
+    ]
+  },
+  "DinerCoffeeHVAC": {
+    "claims": [
+      "hvac",
+      "votech grad",
+      "from around Bayonne, Hudson",
+      "2 yrs in",
+      "Hudson County vo-tech '24"
+    ],
+    "appears_in": [
+      "T11"
+    ]
+  },
+  "HeatwaveOnCall": {
+    "claims": [
+      "hvac",
+      "nonunion apprentice",
+      "from around Clifton, Passaic",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T11",
+      "T20"
+    ]
+  },
+  "benplumb79": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Manville, Somerset",
+      "2 yrs in"
+    ],
+    "appears_in": [
+      "T12"
+    ]
+  },
+  "Woodbridge.ducts": {
+    "claims": [
+      "hvac",
+      "nonunion apprentice",
+      "from around Woodbridge, Middlesex",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T12"
+    ]
+  },
+  "CondensateOverflow": {
+    "claims": [
+      "hvac",
+      "nonunion apprentice",
+      "from around Bound Brook, Somerset",
+      "3 yrs in"
+    ],
+    "appears_in": [
+      "T12",
+      "T14"
+    ]
+  },
+  "WawaRunWired": {
+    "claims": [
+      "electrical",
+      "nonunion apprentice",
+      "from around Fair Lawn, Bergen",
+      "1 yrs in"
+    ],
+    "appears_in": [
+      "T13"
+    ]
+  },
+  "Exit145Electric": {
+    "claims": [
+      "electrical",
+      "nonunion apprentice",
+      "from around Garfield, Bergen",
+      "3 yrs in"
+    ],
+    "appears_in": [
+      "T13"
+    ]
+  },
+  "leadfree98": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Long Branch, Monmouth",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T14"
+    ]
+  },
+  "Exit117Plumber": {
+    "claims": [
+      "plumbing",
+      "votech student",
+      "from around Piscataway, Middlesex",
+      "0 yrs in",
+      "Middlesex County vo-tech, class of '26"
+    ],
+    "appears_in": [
+      "T15"
+    ]
+  },
+  "FluxOnMyBoots": {
+    "claims": [
+      "plumbing",
+      "career switcher",
+      "from around Ewing, Mercer",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T15"
+    ]
+  },
+  "epa60812_2": {
+    "claims": [
+      "hvac",
+      "nonunion apprentice",
+      "from around Paterson, Passaic",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T16"
+    ]
+  },
+  "RainDayRestock": {
+    "claims": [
+      "electrical",
+      "nonunion apprentice",
+      "from around Brick, Ocean",
+      "0 yrs in"
+    ],
+    "appears_in": [
+      "T17"
+    ]
+  },
+  "TaylorHamHVAC": {
+    "claims": [
+      "hvac",
+      "career switcher",
+      "from around Secaucus, Hudson",
+      "1 yrs in"
+    ],
+    "appears_in": [
+      "T18",
+      "T20"
+    ]
+  },
+  "big_ben_tools": {
+    "claims": [
+      "hvac",
+      "votech student",
+      "from around Glassboro, Gloucester",
+      "0 yrs in",
+      "Gloucester County vo-tech, class of '26"
+    ],
+    "appears_in": [
+      "T19"
+    ]
+  },
+  "peteplumb80": {
+    "claims": [
+      "plumbing",
+      "union apprentice",
+      "from around Montclair, Essex",
+      "1 yrs in",
+      "UA Local 24 1st year"
+    ],
+    "appears_in": [
+      "T20"
+    ]
+  },
+  "big_nicole_plumb": {
+    "claims": [
+      "plumbing",
+      "nonunion apprentice",
+      "from around Burlington, Burlington",
+      "3 yrs in"
+    ],
+    "appears_in": [
+      "T20"
+    ]
+  }
+}

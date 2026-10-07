@@ -1,0 +1,273 @@
+# ---------------------------------------------------------------------------
+# Home Fixr Founding Community: conversation themes (plan §4/§5)
+#
+# Built from the plan's own §4 taxonomy plus general knowledge of how trades
+# forums talk. NO Reddit (or any forum) text, usernames or images were fetched
+# or stored for this file; the §5 "browse Reddit" research step was skipped on
+# purpose. Because there is no reference corpus, the §8 plagiarism scan has
+# nothing external to compare against; qa.py instead checks the generated
+# content for internal near-duplicates (8-gram overlap between threads).
+#
+# Each topic: id, category (A–F), share of threads, typical framing (how the
+# starter asks), typical pushback (what replies argue about), who usually
+# answers, and fact_risk (claims that must be hedged in-character and listed
+# for human verification).
+# ---------------------------------------------------------------------------
+
+target_threads: 190
+target_replies: 1200
+nyc_share: 0.10
+reply_depth:            # share of threads by reply count
+  zero: 0.08
+  "2-5": 0.60
+  "6-12": 0.30          # (plan: the 60/30/10 split covers threads that get replies)
+  "13-25": 0.10
+starter_mix: { junior: 0.85, senior: 0.15 }
+
+categories:
+  A: { name: "Getting in", share: 0.22 }
+  B: { name: "Licensing & exams", share: 0.14 }
+  C: { name: "On the job", share: 0.20 }
+  D: { name: "Pay & business", share: 0.14 }
+  E: { name: "Technical 'dumb questions'", share: 0.18 }
+  F: { name: "Culture, venting, wins", share: 0.12 }
+
+topics:
+  # ------------------------------------------------------------- A: Getting in
+  - id: A1_union_vs_school_vs_shop
+    category: A
+    framing: "Union apprenticeship vs trade school vs just finding a shop: which one actually gets me working soonest?"
+    pushback: ["union list can take a year+ but pay/benefits/school are built in", "school isn't required to get hired as a helper", "non-union shops vary wildly; vet the shop not the label"]
+    answered_by: [S02, S03, S11, S12]
+    fact_risk: ["application windows", "aptitude test content", "ranking/interview process"]
+  - id: A2_ranked_low_is_it_over
+    category: A
+    framing: "Got ranked way down the list after the interview. Is it over?"
+    pushback: ["lists move, people drop", "call the hall, keep working somewhere meanwhile", "retest rules vary by local"]
+    answered_by: [S02, S14]
+    fact_risk: ["how lists move", "retest timing"]
+  - id: A3_votech_worth_it
+    category: A
+    framing: "Is a county vo-tech / private trade school program worth the money and time?"
+    pushback: ["county vo-tech is cheap/free for high schoolers; private programs cost real money", "employers care about attitude and showing up more than the certificate", "some programs have great shop time, some don't"]
+    answered_by: [S09, S03, S12]
+    fact_risk: ["tuition figures", "program lengths", "school names/campuses"]
+  - id: A4_career_switch_too_old
+    category: A
+    framing: "Switching at 28/34/41 from an office/retail job. Too old? Pay cut math?"
+    pushback: ["plenty start in their 30s", "first year pay cut is real; plan for it", "your body is the real question, not age"]
+    answered_by: [S08, S04, S11]
+    fact_risk: []
+  - id: A5_day_one_tools_boots
+    category: A
+    framing: "Starting as a helper Monday. What do I buy now vs wait on? Boots?"
+    pushback: ["buy basics, let the shop tell you the rest", "don't buy a huge kit before day one", "good boots and glasses before anything"]
+    answered_by: [S09, S01, S02]
+    fact_risk: []
+  - id: A6_nyc_local3_application
+    category: A
+    nyc: true
+    framing: "How does the Local 3 apprenticeship application actually work? Lottery? Test?"
+    pushback: ["process has changed over the years", "check the official site, don't trust old posts", "keep working while you wait"]
+    answered_by: [S14]
+    fact_risk: ["lottery vs test", "application timing", "age/education requirements"]
+
+  # ------------------------------------------------------- B: Licensing & exams
+  - id: B1_what_am_i_after_four_years
+    category: B
+    framing: "Wait, so what license do I actually have after my apprenticeship in NJ?"
+    pushback: ["NJ is contractor/master-centric for pulling permits", "journeyman-level credentials exist for some trades and confuse people", "read the board's own page, call them"]
+    answered_by: [S07, S01, S04]
+    fact_risk: ["which boards license what", "experience hours", "journeyman license status per trade"]
+  - id: B2_epa608
+    category: B
+    framing: "EPA 608: which type do I need, is it hard, open book?"
+    pushback: ["Universal covers it all", "Core trips people up", "know the rules, not just the answers"]
+    answered_by: [S06, S13, S09]
+    fact_risk: ["open-book vs proctored rules per type", "test format"]
+  - id: B3_failed_rough_in
+    category: B
+    framing: "Failed my rough-in inspection, inspector says X, my boss says inspector is wrong. Who's right?"
+    pushback: ["inspector interprets the adopted code edition", "towns vary", "ask for the code section politely"]
+    answered_by: [S07, S03]
+    fact_risk: ["code edition adopted in NJ", "specific code requirements"]
+  - id: B4_hvacr_license_nj
+    category: B
+    framing: "Do I need an NJ HVACR license to do residential HVAC? My boss doesn't have one?"
+    pushback: ["licensing began mid-2010s", "working under a licensed contractor vs running work", "rules differ for employees vs contractors"]
+    answered_by: [S04, S11]
+    fact_risk: ["year licensing began", "experience requirements", "who must be licensed"]
+  - id: B5_nyc_dob_vs_nj
+    category: B
+    nyc: true
+    framing: "NYC Master Plumber/Electrician vs NJ: how different is it, what's the experience requirement?"
+    pushback: ["NYC requires documented years under a licensed master", "affidavits are a pain", "different exam, different body"]
+    answered_by: [S15, S14]
+    fact_risk: ["7-year experience requirement", "affidavit process", "DOB exam details"]
+
+  # --------------------------------------------------------------- C: On the job
+  - id: C1_am_i_a_laborer
+    category: C
+    framing: "Six months in and all I do is demo and material runs. Am I being used?"
+    pushback: ["normal for a while", "red flags: no school, no tools, no progression after a year", "ask for one new task a week"]
+    answered_by: [S01, S08, S11]
+    fact_risk: []
+  - id: C2_boss_pays_cash
+    category: C
+    framing: "Boss pays cash, won't send me to school, only lets me do PEX. When do I leave?"
+    pushback: ["cash = no workers comp, no hours documented", "leave clean, small state, everyone knows everyone", "line up the next job first"]
+    answered_by: [S12, S01, S03]
+    fact_risk: ["documenting hours for licensing"]
+  - id: C3_first_no_heat_winter
+    category: C
+    framing: "First on-call winter. First no-heat call. Steam systems in old houses scare me."
+    pushback: ["check the basics first", "steam is different from hot water; respect the water line", "call your lead, nobody expects you to know it all"]
+    answered_by: [S01, S09, S06]
+    fact_risk: []
+  - id: C4_safety_near_miss
+    category: C
+    framing: "Near miss today (arc flash / ladder / attic heat). Shaken up."
+    pushback: ["report it", "nobody gets paid enough to skip LOTO", "hydrate; attic in July is no joke"]
+    answered_by: [S02, S07, S13]
+    fact_risk: []
+  - id: C5_commute_tolls_parking
+    category: C
+    framing: "Turnpike tolls / Hoboken parking / company van policy eating my check."
+    pushback: ["ask about tolls/parking reimbursement before taking the job", "van home is a perk with strings", "take the job closer if pay is close"]
+    answered_by: [S08, S12, S14]
+    fact_risk: ["toll amounts"]
+
+  # ----------------------------------------------------------- D: Pay & business
+  - id: D1_second_year_pay
+    category: D
+    framing: "What should a 2nd-year non-union make in Central Jersey?"
+    pushback: ["ranges vary a lot by shop and trade", "union package vs cash rate isn't apples to apples", "both lowballs and fantasy numbers get called out"]
+    answered_by: [S04, S11, S03, S02]
+    fact_risk: ["any specific wage numbers (keep as ranges, hedged)"]
+  - id: D2_side_work
+    category: D
+    framing: "People keep asking me to do side jobs. Is it worth it?"
+    pushback: ["unlicensed work is real exposure in NJ", "insurance and liability", "your employer may fire you for it"]
+    answered_by: [S07, S01, S12]
+    fact_risk: ["penalties for unlicensed work"]
+  - id: D3_going_out_on_own
+    category: D
+    framing: "Thinking about going out on my own eventually. Insurance, HIC registration vs trade license, first truck?"
+    pushback: ["HIC registration isn't a trade license", "get the license first", "insurance costs more than you think"]
+    answered_by: [S04, S11, S12]
+    fact_risk: ["HIC registration vs licensed trade exemption"]
+  - id: D4_prevailing_wage
+    category: D
+    framing: "What's a prevailing wage job and why does everyone want on them?"
+    pushback: ["public jobs, certified payroll", "rates set by the state", "not every shop does them"]
+    answered_by: [S11, S05]
+    fact_risk: ["how rates are set"]
+
+  # ------------------------------------------------------ E: Technical questions
+  - id: E1_sweat_vs_press
+    category: E
+    framing: "Why did my sweat joint leak? Should I just learn press fittings?"
+    pushback: ["clean, flux, heat the fitting not the solder", "press is great but learn to sweat anyway", "old water in the line kills joints"]
+    answered_by: [S01, S12, S08]
+    fact_risk: []
+  - id: E2_three_way_switch
+    category: E
+    framing: "3-way switch wiring is breaking my brain."
+    pushback: ["common vs travelers", "draw it out", "test, don't guess"]
+    answered_by: [S03, S02, S07]
+    fact_risk: []
+  - id: E3_afci_nuisance
+    category: E
+    framing: "AFCI keeps tripping in a bedroom circuit. Bad breaker or something real?"
+    pushback: ["shared neutrals", "loose connections", "don't just swap it out"]
+    answered_by: [S07, S03]
+    fact_risk: []
+  - id: E4_superheat_subcool
+    category: E
+    framing: "Superheat vs subcool: when do I use which?"
+    pushback: ["metering device decides", "measure airflow first", "don't charge by pressure alone"]
+    answered_by: [S06, S13, S04]
+    fact_risk: []
+  - id: E5_condensate_sizing
+    category: E
+    framing: "Sizing a condensate line / where to drain it in a basement."
+    pushback: ["pitch", "trap it", "pump vs gravity"]
+    answered_by: [S09, S04]
+    fact_risk: []
+  - id: E6_heat_pump_nj_winter
+    category: E
+    framing: "Do heat pumps actually work in a North Jersey winter?"
+    pushback: ["cold-climate units do", "sizing and install matter more than brand", "keep backup heat in some houses"]
+    answered_by: [S04, S11, S06]
+    fact_risk: ["rebate programs and amounts"]
+  - id: E7_minisplit_vs_ducted_cape
+    category: E
+    framing: "Mini-split vs ducted for a Cape Cod with no ductwork upstairs?"
+    pushback: ["knee walls", "ductless heads in every bedroom vs one ducted air handler", "customers hate the look sometimes"]
+    answered_by: [S04, S06]
+    fact_risk: []
+  - id: E8_oil_to_gas
+    category: E
+    framing: "What's involved in an oil-to-gas conversion?"
+    pushback: ["utility gas service availability", "tank abandonment/removal", "chimney liner"]
+    answered_by: [S04, S01]
+    fact_risk: ["tank removal rules"]
+
+  # --------------------------------------------------- F: Culture, venting, wins
+  - id: F1_passed_608
+    category: F
+    framing: "Passed my 608 Universal!"
+    pushback: []
+    answered_by: [S06, S13]
+    fact_risk: []
+  - id: F2_got_the_call
+    category: F
+    framing: "Got the call from the Local!"
+    pushback: []
+    answered_by: [S02, S14]
+    fact_risk: []
+  - id: F3_quit_bad_shop
+    category: F
+    framing: "Quit the bad shop today."
+    pushback: ["leave clean", "don't trash them publicly"]
+    answered_by: [S12, S08]
+    fact_risk: []
+  - id: F4_yelled_at_by_gc
+    category: F
+    framing: "Got chewed out by a GC in front of the whole site."
+    pushback: ["it happens", "learn the lesson, ignore the tone", "talk to your foreman"]
+    answered_by: [S11, S02]
+    fact_risk: []
+  - id: F5_pork_roll_taylor_ham
+    category: F
+    framing: "Taylor ham or pork roll? (one thread, let it run)"
+    pushback: ["North vs South", "it's the same thing", "Wawa vs QuickChek tangent"]
+    answered_by: [S01, S06, S13]
+    fact_risk: []
+  - id: F6_regional_rollcall
+    category: F
+    framing: "Anyone else from Ocean/Hudson County on here?"
+    pushback: []
+    answered_by: [S07, S08, S13]
+    fact_risk: []
+  - id: F7_nyc_commute_from_nj
+    category: F
+    nyc: true
+    framing: "NJ apprentice working NYC jobs: parking, tolls, should I just move?"
+    pushback: ["PATH + train vs driving", "parking near jobsites is brutal", "don't move until you're sure you're staying"]
+    answered_by: [S14, S15]
+    fact_risk: ["toll amounts"]
+
+style_rules:   # plan §5, applied by hand to the sample threads
+  - inconsistent capitalization across users
+  - typos <= 1 per 100 words, never in Senior answers about code
+  - occasional "edit: thanks everyone"
+  - quoting a previous reply
+  - a reply that misreads the question
+  - a Senior correcting another Senior politely
+  - a Junior posting "update:" later
+  - no marketing language, nobody praises Home Fixr
+  - nobody writes in bullet points except S04 (Kash_sing)
+  - thread bodies 40-250 words, replies 10-160 words, right-skewed
+  - local texture in some posts (towns, roads, weather, housing stock, utilities, Wawa vs QuickChek)
+  - facts about licensing/unions/schools hedged in character ("last I checked", "call the board/Local")

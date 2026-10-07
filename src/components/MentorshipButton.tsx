@@ -2,7 +2,7 @@
 
 import { useActionState } from "react";
 import { requestMentorship, type FormState } from "@/lib/actions";
-import type { MentorshipStatus } from "@/lib/types";
+import type { MentorAvailability, MentorshipStatus } from "@/lib/types";
 
 const initial: FormState = {};
 
@@ -14,10 +14,12 @@ export function MentorshipButton({
   seniorId,
   username,
   status,
+  availability = "accepting",
 }: {
   seniorId: string;
   username: string;
   status: MentorshipStatus | null;
+  availability?: MentorAvailability;
 }) {
   const [state, formAction, pending] = useActionState(requestMentorship, initial);
 
@@ -33,6 +35,14 @@ export function MentorshipButton({
     return (
       <span className="rounded-lg border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium text-zinc-500">
         Request sent
+      </span>
+    );
+  }
+
+  if (availability === "not_accepting") {
+    return (
+      <span className="rounded-lg border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium text-zinc-500">
+        Not taking mentees right now
       </span>
     );
   }

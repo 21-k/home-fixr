@@ -12,9 +12,11 @@ import {
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { CollabIcon } from "@/components/icons";
+import { UserName } from "@/components/UserName";
 import { respondToCollabInterest, toggleCollabInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { ageRangeLabel } from "@/lib/skills";
 import { CV_BUCKET, CV_SIGNED_URL_SECONDS } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
@@ -25,8 +27,6 @@ import type {
   JobCollab,
 } from "@/lib/types";
 
-const AUTHOR_COLS =
-  "id, username, full_name, avatar_initials, title, role, trade, region, years_experience";
 
 const STATUS_BADGE: Record<CollabInterestStatus, { label: string; className: string }> = {
   interested: {
@@ -205,18 +205,16 @@ export default async function MyJobsPage() {
                         return (
                           <div key={i.id} className="flex gap-3 py-3">
                             <Avatar
-                              initials={person?.avatar_initials ?? "??"}
+                              person={person}
                               size="md"
                               href={person ? `/u/${person.username}` : undefined}
                             />
                             <div className="min-w-0 flex-1">
                               <div className="flex flex-wrap items-center gap-x-2">
-                                <Link
-                                  href={person ? `/u/${person.username}` : "#"}
+                                <UserName
+                                  person={person}
                                   className="text-sm font-semibold hover:text-brand-500"
-                                >
-                                  {person?.full_name ?? "Unknown"}
-                                </Link>
+                                />
                                 <span className="text-xs text-zinc-500">
                                   {timeAgo(i.created_at)}
                                 </span>
@@ -305,12 +303,10 @@ export default async function MyJobsPage() {
                     <Badge status={i.status} />
                     <span className="text-[13px] text-zinc-600">
                       Posted by{" "}
-                      <Link
-                        href={poster ? `/u/${poster.username}` : "#"}
+                      <UserName
+                        person={poster}
                         className="font-medium text-brand-600 hover:underline"
-                      >
-                        {poster?.full_name ?? "Unknown"}
-                      </Link>
+                      />
                       {" · you applied "}
                       {timeAgo(i.created_at)}
                     </span>

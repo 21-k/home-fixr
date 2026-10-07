@@ -1,6 +1,6 @@
 "use client";
 
-import { useActionState, useEffect, useRef, useState } from "react";
+import { useActionState, useRef, useState } from "react";
 import { createCollab, type FormState } from "@/lib/actions";
 
 const initial: FormState = {};
@@ -8,16 +8,21 @@ const inputCls =
   "rounded-lg border border-zinc-300 px-3 py-2 text-sm outline-none focus:border-brand-500";
 
 export function CollabComposer() {
-  const [state, formAction, pending] = useActionState(createCollab, initial);
   const [open, setOpen] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
-
-  useEffect(() => {
-    if (state.ok) {
-      formRef.current?.reset();
-      setOpen(false);
-    }
-  }, [state.ok]);
+  // Close + clear on success inside the action itself rather than in an
+  // effect watching state.ok (react-hooks/set-state-in-effect).
+  const [state, formAction, pending] = useActionState(
+    async (prev: FormState, formData: FormData) => {
+      const result = await createCollab(prev, formData);
+      if (result.ok) {
+        formRef.current?.reset();
+        setOpen(false);
+      }
+      return result;
+    },
+    initial,
+  );
 
   if (!open) {
     return (
