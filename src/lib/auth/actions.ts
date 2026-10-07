@@ -2,6 +2,7 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { safeNext } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 import type { UserRole } from "@/lib/types";
 
@@ -37,10 +38,18 @@ export async function signIn(
   if (!email || !password) return { error: "Email and password are required." };
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
   if (error) return { error: error.message };
 
-  redirect("/feed");
+  // Members who never finished /welcome go there first; everyone else goes
+  // back to the page that sent them to login (?next=), or the feed.
+  const { data: profile } = await supabase
+    .from("profiles")
+    .select("onboarded_at")
+    .eq("id", data.user.id)
+    .maybeSingle();
+  if (profile && !profile.onboarded_at) redirect("/welcome");
+  redirect(safeNext(String(formData.get("next") ?? "")) ?? "/feed");
 }
 
 /**
@@ -98,7 +107,7 @@ export async function signUp(
  * Requires the Google provider to be enabled in Supabase → Authentication →
  * Sign In / Providers, with a Google Cloud OAuth client's ID and secret.
  */
-export async function signInWithGoogle(): Promise<AuthState> {
+export async function signInWithGoogle(next?: string | null): Promise<AuthState> {
   const supabase = await createClient();
 
   // Derive the origin from the request so this works on localhost, Vercel
@@ -111,7 +120,9 @@ export async function signInWithGoogle(): Promise<AuthState> {
   const { data, error } = await supabase.auth.signInWithOAuth({
     provider: "google",
     options: {
-      redirectTo: `${origin}/auth/callback`,
+      redirectTo: `${origin}/auth/callback${
+        safeNext(next) ? `?next=${encodeURIComponent(safeNext(next)!)}` : ""
+      }`,
       queryParams: { prompt: "select_account" },
     },
   });

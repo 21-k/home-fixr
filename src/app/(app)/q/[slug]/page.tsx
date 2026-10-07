@@ -1,5 +1,6 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Star } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
@@ -14,6 +15,7 @@ import {
   markReplyHelpful,
 } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo, tradeLabel } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -23,6 +25,21 @@ type ReplyWithAuthor = Reply & { author: AuthorLite | null };
 
 const UUID_RE =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const supabase = await createClient();
+  const { data } = await supabase
+    .from("posts")
+    .select("title")
+    .eq(UUID_RE.test(slug) ? "id" : "slug", slug)
+    .maybeSingle();
+  return { title: data?.title ?? "Thread not found" };
+}
 
 export default async function ThreadPage({
   params,
@@ -50,6 +67,8 @@ export default async function ThreadPage({
 
   if (!postData) notFound();
   const post = postData as unknown as Post & { author: AuthorLite | null };
+  // One canonical URL per thread: id links (e.g. from notifications) -> slug.
+  if (post.slug && slug !== post.slug) redirect(`/q/${post.slug}`);
 
   const { data: repliesData } = await supabase
     .from("replies")
@@ -66,19 +85,19 @@ export default async function ThreadPage({
     <nav>
       <SideSection>Thread</SideSection>
       <SideLink active>Question</SideLink>
-      <SideLink>{post.reply_count} replies</SideLink>
+      <SideLink>
+        {post.reply_count} {post.reply_count === 1 ? "reply" : "replies"}
+      </SideLink>
       <SideLink>
         <Star className="size-4" /> {post.helpful_count} helpful
       </SideLink>
       <SideSection>Back</SideSection>
-      <Link href="/feed">
-        <SideLink>← Back to feed</SideLink>
-      </Link>
+      <SideLink href="/feed">← Back to feed</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Thread">
       <article className="mb-4 rounded-xl border border-zinc-200 bg-white p-6">
         <div className="mb-3 flex items-center gap-2.5">
           <span className="rounded bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">
@@ -88,7 +107,7 @@ export default async function ThreadPage({
             <span className="text-[13px] text-zinc-500">{tradeLabel(post.trade)}</span>
           )}
         </div>
-        <h1 className="text-xl font-semibold tracking-tight">{post.title}</h1>
+        <h1 className="text-xl font-semibold tracking-tight wrap-anywhere">{post.title}</h1>
         <p className="mt-2 mb-4 text-[13px] text-zinc-600">
           Asked by{" "}
           <UserName
@@ -216,7 +235,10 @@ export default async function ThreadPage({
         <ReplyComposer postId={post.id} />
       ) : (
         <div className="rounded-xl border border-zinc-200 bg-white p-5 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link
+            href={loginHref(`/q/${post.slug ?? post.id}`)}
+            className="font-medium text-brand-600 hover:underline"
+          >
             Sign in
           </Link>{" "}
           to add your reply.

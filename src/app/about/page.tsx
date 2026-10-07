@@ -4,7 +4,7 @@ import { FoundingBadge } from "@/components/FoundingBadge";
 import { FOUNDING_ABOUT_SENTENCE } from "@/lib/founding";
 
 export const metadata: Metadata = {
-  title: "About · Home Fixr",
+  title: "About",
   description:
     "What Home Fixr is, and what the Founding Community badge on some accounts means.",
 };

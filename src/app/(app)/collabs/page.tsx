@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   Banknote,
@@ -23,6 +24,7 @@ import {
   parseCollabStatusFilter,
   sortCollabsOpenFirst,
 } from "@/lib/collabs";
+import { loginHref } from "@/lib/next-path";
 import { COLLAB_TYPE_LABEL } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -54,6 +56,8 @@ const TYPE_BADGE: Record<CollabType, string> = {
 };
 
 type CollabWithPoster = JobCollab & { poster: AuthorLite | null };
+
+export const metadata: Metadata = { title: "Job collabs" };
 
 export default async function CollabsPage({
   searchParams,
@@ -109,42 +113,32 @@ export default async function CollabsPage({
   const sidebar = (
     <nav>
       <SideSection>Type</SideSection>
-      <Link href={collabsHref({ status })}>
-        <SideLink active={!type}>All collabs</SideLink>
-      </Link>
+      <SideLink href={collabsHref({ status })} active={!type}>All collabs</SideLink>
       {TYPE_FILTERS.map((t) => (
-        <Link key={t.key} href={collabsHref({ type: t.key, status })}>
-          <SideLink active={type === t.key}>
-            <CollabIcon type={t.key} /> {t.label}
-          </SideLink>
-        </Link>
+        <SideLink key={t.key} href={collabsHref({ type: t.key, status })} active={type === t.key}>
+          <CollabIcon type={t.key} /> {t.label}
+        </SideLink>
       ))}
       <SideSection>Status</SideSection>
-      <Link href={collabsHref({ type })}>
-        <SideLink active={status === "all"}>
-          <ListFilter className="size-4" /> All, open first
-        </SideLink>
-      </Link>
-      <Link href={collabsHref({ type, status: "open" })}>
-        <SideLink active={status === "open"}>
-          <CircleDot className="size-4" /> Open only
-        </SideLink>
-      </Link>
+      <SideLink href={collabsHref({ type })} active={status === "all"}>
+        <ListFilter className="size-4" /> All, open first
+      </SideLink>
+      <SideLink href={collabsHref({ type, status: "open" })} active={status === "open"}>
+        <CircleDot className="size-4" /> Open only
+      </SideLink>
       {profile && (
         <>
           <SideSection>Yours</SideSection>
-          <Link href="/collabs/mine">
-            <SideLink>
-              <ClipboardList className="size-4" /> My jobs
-            </SideLink>
-          </Link>
+          <SideLink href="/collabs/mine">
+            <ClipboardList className="size-4" /> My jobs
+          </SideLink>
         </>
       )}
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Filter jobs">
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
           <h1 className="text-xl font-semibold">Job collabs</h1>
@@ -157,7 +151,7 @@ export default async function CollabsPage({
           <CollabComposer />
         ) : (
           <Link
-            href="/login"
+            href={loginHref("/collabs")}
             className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium hover:bg-zinc-100"
           >
             Sign in to post
@@ -211,7 +205,7 @@ export default async function CollabsPage({
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className={`font-semibold ${filled ? "text-zinc-600" : ""}`}>{c.title}</h3>
+                  <h3 className={`font-semibold wrap-anywhere ${filled ? "text-zinc-600" : ""}`}>{c.title}</h3>
                   <p className="mt-0.5 text-[13px] text-zinc-600">
                     Posted by{" "}
                     <UserName
@@ -232,7 +226,7 @@ export default async function CollabsPage({
                 </div>
               </div>
 
-              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-zinc-700">{c.body}</p>
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-zinc-700 wrap-anywhere">{c.body}</p>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-zinc-600">
                 {c.location && (

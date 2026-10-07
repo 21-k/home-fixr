@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -14,6 +15,7 @@ import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { AVAILABILITY_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { findProfileByHandle } from "@/lib/profile-lookup";
+import { loginHref } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, MentorshipStatus, Post } from "@/lib/types";
 
@@ -23,8 +25,17 @@ type ReplyWithPost = {
   is_accepted: boolean;
   helpful_count: number;
   created_at: string;
-  post: { id: string; title: string } | null;
+  post: { id: string; slug: string | null; title: string } | null;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}): Promise<Metadata> {
+  const profile = await findProfileByHandle(await createClient(), (await params).username);
+  return { title: profile ? `${displayName(profile)} (@${profile.username})` : "Member not found" };
+}
 
 export default async function ProfilePage({
   params,
@@ -87,7 +98,7 @@ export default async function ProfilePage({
         .limit(5),
       supabase
         .from("replies")
-        .select("id, body, is_accepted, helpful_count, created_at, post:posts ( id, title )")
+        .select("id, body, is_accepted, helpful_count, created_at, post:posts ( id, slug, title )")
         .eq("author_id", profile.id)
         .order("created_at", { ascending: false })
         .limit(5),
@@ -110,17 +121,13 @@ export default async function ProfilePage({
   const sidebar = (
     <nav>
       <SideSection>Back</SideSection>
-      <Link href="/mentors">
-        <SideLink>← All mentors</SideLink>
-      </Link>
-      <Link href="/feed">
-        <SideLink>← Back to feed</SideLink>
-      </Link>
+      <SideLink href="/mentors">← All mentors</SideLink>
+      <SideLink href="/feed">← Back to feed</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Back">
       <section className="mb-4 flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-6 sm:flex-row">
         <Avatar person={profile} size="xl" />
         <div className="flex-1">
@@ -136,7 +143,7 @@ export default async function ProfilePage({
             </p>
           )}
           {profile.bio && (
-            <p className="mt-3 text-sm leading-relaxed text-zinc-700">
+            <p className="mt-3 text-sm leading-relaxed text-zinc-700 wrap-anywhere">
               {profile.bio}
             </p>
           )}
@@ -165,7 +172,7 @@ export default async function ProfilePage({
               </>
             ) : !viewer ? (
               <Link
-                href="/login"
+                href={loginHref(`/u/${profile.username}`)}
                 className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
               >
                 Sign in to connect
@@ -230,7 +237,7 @@ export default async function ProfilePage({
                   Replied to{" "}
                   {a.post ? (
                     <Link
-                      href={`/q/${a.post.id}`}
+                      href={`/q/${a.post.slug ?? a.post.id}`}
                       className="font-medium text-zinc-900 hover:text-brand-500"
                     >
                       “{a.post.title}”
@@ -245,7 +252,8 @@ export default async function ProfilePage({
                   </span>
                 )}
               </div>
-              <p className="line-clamp-3 text-sm leading-relaxed text-zinc-700">
+              {/* pre-line keeps bullet lists on their own lines; clamp the preview. */}
+              <p className="line-clamp-5 whitespace-pre-line text-sm wrap-anywhere leading-relaxed text-zinc-700">
                 {a.body}
               </p>
               <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-zinc-500">

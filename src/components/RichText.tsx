@@ -26,7 +26,8 @@ export function RichText({ text, className }: { text: string; className?: string
   }
   nodes.push(text.slice(last));
   return (
-    <p className={className}>
+    // wrap-anywhere: a long unbroken URL wraps instead of widening the page.
+    <p className={`wrap-anywhere ${className ?? ""}`}>
       {nodes.map((n, i) => (
         <Fragment key={i}>{n}</Fragment>
       ))}

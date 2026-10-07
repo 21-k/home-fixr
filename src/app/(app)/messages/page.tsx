@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Paperclip } from "lucide-react";
@@ -6,6 +7,7 @@ import { getCurrentProfile } from "@/lib/auth/session";
 import { displayName } from "@/lib/display";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { timeAgo } from "@/lib/format";
+import { loginHref } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite } from "@/lib/types";
 
@@ -29,9 +31,11 @@ function preview(m: Message): string {
   return "";
 }
 
+export const metadata: Metadata = { title: "Messages" };
+
 export default async function MessagesPage() {
   const me = await getCurrentProfile();
-  if (!me) redirect("/login");
+  if (!me) redirect(loginHref("/messages"));
 
   const supabase = await createClient();
   const { data: msgData } = await supabase

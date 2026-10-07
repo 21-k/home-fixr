@@ -40,17 +40,18 @@ export function PostCard({
       </div>
 
       <Link href={`/q/${post.slug ?? post.id}`} className="group block">
-        <h3 className="font-semibold leading-snug group-hover:text-brand-600">
+        <h3 className="font-semibold leading-snug wrap-anywhere group-hover:text-brand-600">
           {post.title}
         </h3>
-        <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-zinc-700">
+        <p className="mt-1 line-clamp-3 text-sm leading-relaxed text-zinc-700 wrap-anywhere">
           {post.body}
         </p>
       </Link>
 
       <div className="mt-2 flex gap-4 text-[13px] text-zinc-500">
         <span className="inline-flex items-center gap-1.5">
-          <MessageSquare className="size-3.5" /> {post.reply_count} replies
+          <MessageSquare className="size-3.5" /> {post.reply_count}{" "}
+          {post.reply_count === 1 ? "reply" : "replies"}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <Star className="size-3.5" /> {post.helpful_count} helpful

@@ -18,7 +18,7 @@ const ALLOWED = new Set([
   "src/components/DisplayPreferenceField.tsx", // the "full_name" preference value, own settings
   "src/components/WelcomeForm.tsx", // own name, private
   "src/app/welcome/page.tsx", // "Welcome, <first name>" to the member themself
-  "src/app/join/page.tsx", // signup form field
+  "src/app/join/join-form.tsx", // signup form field
 ]);
 
 function walk(dir) {

@@ -1,14 +1,25 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { GoogleButton } from "@/components/GoogleButton";
+import { getCurrentProfile } from "@/lib/auth/session";
+import { safeNext } from "@/lib/next-path";
 import { LoginForm } from "./login-form";
+
+export const metadata: Metadata = { title: "Sign in" };
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string }>;
+  searchParams: Promise<{ error?: string; next?: string }>;
 }) {
   // /auth/callback redirects here with ?error=… when OAuth fails.
-  const { error } = await searchParams;
+  const { error, next: rawNext } = await searchParams;
+  const next = safeNext(rawNext);
+
+  // Already signed in: carry on to where they were going.
+  const profile = await getCurrentProfile();
+  if (profile) redirect(profile.onboarded_at ? (next ?? "/feed") : "/welcome");
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center bg-zinc-100 px-4 py-12">
@@ -34,7 +45,7 @@ export default async function LoginPage({
           </p>
         )}
 
-        <GoogleButton label="Sign in with Google" />
+        <GoogleButton label="Sign in with Google" next={next} />
 
         <div className="my-5 flex items-center gap-3">
           <span className="h-px flex-1 bg-zinc-200" />
@@ -42,12 +53,15 @@ export default async function LoginPage({
           <span className="h-px flex-1 bg-zinc-200" />
         </div>
 
-        <LoginForm />
+        <LoginForm next={next} />
       </div>
 
       <p className="mt-6 text-sm text-zinc-600">
         New here?{" "}
-        <Link href="/join" className="font-medium text-brand-600 hover:underline">
+        <Link
+          href={next ? `/join?next=${encodeURIComponent(next)}` : "/join"}
+          className="font-medium text-brand-600 hover:underline"
+        >
           Join the community
         </Link>
       </p>

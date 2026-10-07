@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -18,6 +19,7 @@ import { respondToCollabInterest, toggleCollabInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { isCollabFilled, shouldOfferMarkFilled } from "@/lib/collabs";
 import { displayName } from "@/lib/display";
+import { loginHref } from "@/lib/next-path";
 import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { ageRangeLabel } from "@/lib/skills";
@@ -46,6 +48,8 @@ const STATUS_BADGE: Record<CollabInterestStatus, { label: string; className: str
   },
 };
 
+export const metadata: Metadata = { title: "My jobs" };
+
 export default async function MyJobsPage() {
   const me = await getCurrentProfile();
   const supabase = await createClient();
@@ -53,24 +57,24 @@ export default async function MyJobsPage() {
   const sidebar = (
     <nav>
       <SideSection>Jobs</SideSection>
-      <Link href="/collabs">
-        <SideLink>
-          <Briefcase className="size-4" /> All collabs
-        </SideLink>
-      </Link>
-      <Link href="/collabs/mine">
-        <SideLink active>
-          <ClipboardList className="size-4" /> My jobs
-        </SideLink>
-      </Link>
+      <SideLink href="/collabs">
+        <Briefcase className="size-4" /> All collabs
+      </SideLink>
+      <SideLink href="/collabs/mine" active>
+        <ClipboardList className="size-4" /> My jobs
+      </SideLink>
     </nav>
   );
 
   if (!me) {
     return (
-      <AppBody sidebar={sidebar}>
+      <AppBody sidebar={sidebar} mobileLabel="Jobs">
+        <h1 className="mb-4 text-xl font-semibold">My jobs</h1>
         <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link
+            href={loginHref("/collabs/mine")}
+            className="font-medium text-brand-600 hover:underline"
+          >
             Sign in
           </Link>{" "}
           to track the jobs you&apos;ve posted and applied to.
@@ -165,7 +169,7 @@ export default async function MyJobsPage() {
     applicants.filter((i) => i.collab_id === collabId);
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Jobs">
       <h1 className="mb-1 text-xl font-semibold">My jobs</h1>
       <p className="mb-5 text-[13px] text-zinc-600">
         Jobs you posted and who&apos;s interested, plus the ones you&apos;ve put
@@ -256,7 +260,7 @@ export default async function MyJobsPage() {
                                 {person ? profileHeadline(person) : ""}
                               </div>
                               {i.note && (
-                                <p className="mt-1.5 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700">
+                                <p className="mt-1.5 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700 wrap-anywhere">
                                   {i.note}
                                 </p>
                               )}
@@ -322,7 +326,7 @@ export default async function MyJobsPage() {
                 >
                   <CollabHeading collab={c} />
                   {i.note && (
-                    <p className="mt-2 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700">
+                    <p className="mt-2 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700 wrap-anywhere">
                       {i.note}
                     </p>
                   )}

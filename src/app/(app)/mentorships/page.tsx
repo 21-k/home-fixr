@@ -1,10 +1,13 @@
+import type { Metadata } from "next";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { UserName } from "@/components/UserName";
 import { respondToMentorship } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -18,6 +21,8 @@ type Row = {
   created_at: string;
 };
 
+export const metadata: Metadata = { title: "Mentorships" };
+
 export default async function MentorshipsPage() {
   const me = await getCurrentProfile();
   const supabase = await createClient();
@@ -25,36 +30,19 @@ export default async function MentorshipsPage() {
   const sidebar = (
     <nav>
       <SideSection>Community</SideSection>
-      <Link href="/feed">
-        <SideLink>
-          <Home className="size-4" /> Feed
-        </SideLink>
-      </Link>
-      <Link href="/mentors">
-        <SideLink>
-          <Users className="size-4" /> Find mentors
-        </SideLink>
-      </Link>
-      <Link href="/mentorships">
-        <SideLink active>
-          <Handshake className="size-4" /> My mentorships
-        </SideLink>
-      </Link>
+      <SideLink href="/feed">
+        <Home className="size-4" /> Feed
+      </SideLink>
+      <SideLink href="/mentors">
+        <Users className="size-4" /> Find mentors
+      </SideLink>
+      <SideLink href="/mentorships" active>
+        <Handshake className="size-4" /> My mentorships
+      </SideLink>
     </nav>
   );
 
-  if (!me) {
-    return (
-      <AppBody sidebar={sidebar}>
-        <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
-            Sign in
-          </Link>{" "}
-          to manage your mentorships.
-        </p>
-      </AppBody>
-    );
-  }
+  if (!me) redirect(loginHref("/mentorships"));
 
   const { data: rowsData } = await supabase
     .from("mentorships")
@@ -84,7 +72,7 @@ export default async function MentorshipsPage() {
   const sent = rows.filter((r) => r.junior_id === me.id && r.status === "pending");
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Community">
       <h1 className="mb-1 text-xl font-semibold">Mentorships</h1>
       <p className="mb-5 text-[13px] text-zinc-600">
         Requests, mentors, and mentees — all in one place.
