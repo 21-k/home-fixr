@@ -24,7 +24,7 @@ type ReplyWithPost = {
   is_accepted: boolean;
   helpful_count: number;
   created_at: string;
-  post: { id: string; title: string } | null;
+  post: { id: string; slug: string | null; title: string } | null;
 };
 
 export default async function ProfilePage({
@@ -88,7 +88,7 @@ export default async function ProfilePage({
         .limit(5),
       supabase
         .from("replies")
-        .select("id, body, is_accepted, helpful_count, created_at, post:posts ( id, title )")
+        .select("id, body, is_accepted, helpful_count, created_at, post:posts ( id, slug, title )")
         .eq("author_id", profile.id)
         .order("created_at", { ascending: false })
         .limit(5),
@@ -229,7 +229,7 @@ export default async function ProfilePage({
                   Replied to{" "}
                   {a.post ? (
                     <Link
-                      href={`/q/${a.post.id}`}
+                      href={`/q/${a.post.slug ?? a.post.id}`}
                       className="font-medium text-zinc-900 hover:text-brand-500"
                     >
                       “{a.post.title}”
@@ -244,7 +244,8 @@ export default async function ProfilePage({
                   </span>
                 )}
               </div>
-              <p className="line-clamp-3 text-sm leading-relaxed text-zinc-700">
+              {/* pre-line keeps bullet lists on their own lines; clamp the preview. */}
+              <p className="line-clamp-5 whitespace-pre-line text-sm leading-relaxed text-zinc-700">
                 {a.body}
               </p>
               <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-zinc-500">
