@@ -7,6 +7,8 @@ Thread/reply generator keyed to persona voices (plan §5).
 
     uv run seed/scripts/gen_threads.py sample            # validate + build threads.sample.json
     uv run seed/scripts/gen_threads.py briefs --n 190    # cast briefs for the full set (next pass)
+    uv run seed/scripts/gen_threads.py check FILE...     # validate authored file(s), alone or merged
+    uv run seed/scripts/gen_threads.py full              # the 20 live samples + every draft -> threads.json
 
 `sample`  reads content/threads.sample.authored.yaml (20 threads written by
           hand for the tone review), validates it against the personas and
@@ -14,6 +16,17 @@ Thread/reply generator keyed to persona voices (plan §5).
           higher; then rebalanced so accepted / substantive Senior answers
           lead, see rebalance_helpful) and writes content/threads.sample.json plus
           content/persona_memory.json (claims each persona has made).
+`check`   validates any authored file(s), merged with the 20 live samples
+          unless --alone: everything `validate` checks plus unique ids and
+          titles, `when` hints, topics present in themes.yaml.
+`full`    the full set: the 20 LIVE sample threads exactly as seeded
+          (content/threads.sample.scheduled.json: text, helpful counts,
+          accepted flags and timestamps are pinned) plus every
+          content/drafts/threads.*.authored.yaml. Validates the merge, gives
+          the new threads helpful counts with the same rules (log-normal, then
+          rebalance_helpful), writes content/threads.json, refreshes
+          content/persona_memory.json for all 213, and writes
+          reports/fact_checklist.md from every thread's fact_risk.
 `briefs`  plans the remaining threads: category by the §4 shares, a topic
           from themes.yaml, a starter (85% Juniors, weighted by activity) and
           3–8 repliers chosen by trade/region/activity, each with its voice
@@ -186,6 +199,155 @@ def build_sample(src: str, out: str) -> None:
     print(f"wrote {SEED_DIR / out}")
 
 
+DRAFTS_GLOB = "content/drafts/threads.*.authored.yaml"
+LIVE_SAMPLE = "content/threads.sample.scheduled.json"
+WHEN = {"early", "mid", "late"}
+
+
+def load_authored(paths: list[str]) -> list[dict]:
+    out = []
+    for p in paths:
+        path = Path(p) if Path(p).is_absolute() else (SEED_DIR / p if (SEED_DIR / p).exists() else Path(p))
+        for t in yaml.safe_load(path.read_text())["threads"]:
+            t["_src"] = path.name
+            out.append(t)
+    return out
+
+
+def validate_full(threads: list[dict], people: dict[str, dict]) -> tuple[list[str], list[str]]:
+    """validate() plus what only matters once files are merged."""
+    clean = [{k: v for k, v in t.items() if not k.startswith("_")} for t in threads]
+    errors, warnings = validate(clean, people)
+    ids = Counter(t["id"] for t in threads)
+    errors += [f"duplicate thread id {i}" for i, n in ids.items() if n > 1]
+    titles = Counter(t["title"].strip().lower() for t in threads)
+    errors += [f"duplicate title {x!r}" for x, n in titles.items() if n > 1]
+    topics = {tp["id"] for tp in yaml.safe_load((SEED_DIR / "themes.yaml").read_text())["topics"]}
+    for t in threads:
+        if t.get("when") and t["when"] not in WHEN:
+            errors.append(f"{t['id']}: when={t['when']!r} (early|mid|late)")
+        if t.get("topic") and t["topic"] not in topics:
+            errors.append(f"{t['id']}: topic {t['topic']} missing from themes.yaml")
+        if t.get("category") not in set("ABCDEF"):
+            errors.append(f"{t['id']}: category {t.get('category')}")
+    return errors, warnings
+
+
+def cmd_check(paths: list[str], alone: bool) -> None:
+    people = personas()
+    threads = ([] if alone else load_authored(["content/threads.sample.authored.yaml"])) + load_authored(paths)
+    errors, warnings = validate_full(threads, people)
+    for w in warnings:
+        print("warn:", w)
+    for e in errors:
+        print("ERROR:", e)
+    print(f"{len(threads)} threads, {sum(len(t.get('replies', [])) for t in threads)} replies: "
+          f"{len(errors)} errors, {len(warnings)} warnings")
+    raise SystemExit(1 if errors else 0)
+
+
+def fact_checklist(threads: list[dict]) -> str:
+    themes = yaml.safe_load((SEED_DIR / "themes.yaml").read_text())
+    tname = {tp["id"]: tp for tp in themes["topics"]}
+    cname = {k: v["name"] for k, v in themes["categories"].items()}
+    by_topic: dict[str, dict[str, list[str]]] = {}
+    for t in threads:
+        risks = list(t.get("fact_risk") or [])
+        if not risks and t.get("topic") in tname and t.get("live"):
+            risks = list(tname[t["topic"]].get("fact_risk") or [])
+        for r in risks:
+            text = re.sub(r"\s+", " ", r.strip().rstrip("."))
+            topic = by_topic.setdefault(t.get("topic", "?"), {})
+            key = next((k for k in topic if k.lower() == text.lower()), text)  # dedupe ignoring case
+            topic.setdefault(key, [])
+            if t["id"] not in topic[key]:
+                topic[key].append(t["id"])
+    n_claims = sum(len(v) for v in by_topic.values())
+    lines = [
+        "# Fact checklist: claims to verify before the full thread set goes live", "",
+        f"Every thread's `fact_risk` from the writers ({n_claims} distinct claims across {len(by_topic)} topics), "
+        "deduplicated and grouped by topic, with the threads that make the claim. Live sample threads (T01-T20) "
+        "had no per-thread fact_risk, so their topic's fact_risk from themes.yaml stands in. A human checks each "
+        "against the official source (NJ Division of Consumer Affairs board pages, NYC DOB, the locals', "
+        "schools' and agencies' own sites), then either confirms it or edits the thread to hedge or drop it.",
+        "",
+        "Sentence-level flags are in `seed/reports/fact_lint.md` (every sentence that touches licensing, unions, "
+        "schools, codes, pay or programs, marked hedged or not), and the 23 claims already listed in "
+        "`seed/REPORT.md` §5 still apply.", "",
+    ]
+    for cat in "ABCDEF":
+        tops = sorted(k for k in by_topic if (tname.get(k, {}).get("category") or k[:1]) == cat)
+        if not tops:
+            continue
+        lines += [f"## {cat}. {cname[cat]}", ""]
+        for tp in tops:
+            lines.append(f"### {tp}")
+            for claim, tids in sorted(by_topic[tp].items(), key=lambda kv: kv[0].lower()):
+                lines.append(f"- [ ] {claim} ({', '.join(sorted(tids))})")
+            lines.append("")
+    return "\n".join(lines) + "\n"
+
+
+def build_full(drafts: list[str], out: str) -> None:
+    people = personas()
+    live = load_json(LIVE_SAMPLE)["threads"]
+    authored_sample = load_authored(["content/threads.sample.authored.yaml"])
+    new = load_authored(drafts)
+    errors, warnings = validate_full(authored_sample + new, people)
+    for w in warnings:
+        print("warn:", w)
+    if errors:
+        print("\n".join("ERROR: " + e for e in errors))
+        raise SystemExit(1)
+    live_ids = {t["id"] for t in live}
+    if live_ids != {t["id"] for t in authored_sample}:
+        raise SystemExit("the live sample and threads.sample.authored.yaml disagree on ids")
+
+    rng = random.Random(RNG_SEED + 17)  # the samples used +11; new threads get their own stream
+    rebalanced = []
+    out_new = []
+    for t in sorted(new, key=lambda x: x["id"]):
+        t = {k: v for k, v in t.items() if not k.startswith("_") and k != "brief"}
+        starter = people[t["author"]]
+        t["region"] = starter["public_region"]
+        t["starter_role"] = starter["role"]
+        n_rep = len(t.get("replies", []))
+        t["helpful_count"] = lognormal_int(rng, 2.0 + (0.4 if starter["role"] == "senior" else 0) + 0.05 * n_rep, 0.6, 2, 40)
+        for r in t.get("replies", []):
+            mu = 1.5 if people[r["author"]]["role"] == "senior" else 0.5
+            if r.get("accepted"):
+                mu += 1.0
+            r["helpful_count"] = lognormal_int(rng, mu, 0.55, 0, 45)
+            r["accepted"] = bool(r.get("accepted"))
+            r["_role"] = people[r["author"]]["role"]
+        for i, old, newv in rebalance_helpful(t.get("replies", [])):
+            rebalanced.append(f"{t['id']}/r{i}: {old} -> {newv}")
+        for r in t.get("replies", []):
+            del r["_role"]
+            r["body"] = r["body"].strip() if isinstance(r["body"], str) else r["body"]
+        out_new.append(t)
+    for t in live:
+        t["live"] = True
+    threads = live + out_new
+
+    memory: dict[str, dict] = {}
+    for t in threads:
+        for author in [t["author"]] + [r["author"] for r in t.get("replies", [])]:
+            m = memory.setdefault(author, {"claims": people[author]["claims"], "appears_in": []})
+            if t["id"] not in m["appears_in"]:
+                m["appears_in"].append(t["id"])
+    write_json(out, {"batch_id": BATCH_ID, "sources": [LIVE_SAMPLE] + drafts, "threads": threads})
+    write_json("content/persona_memory.json", dict(sorted(memory.items(), key=lambda kv: kv[0].lower())))
+    (SEED_DIR / "reports").mkdir(exist_ok=True)
+    (SEED_DIR / "reports" / "fact_checklist.md").write_text(fact_checklist(threads))
+    reps = [len(t.get("replies", [])) for t in threads]
+    print(f"threads: {len(threads)} ({len(live)} live pinned + {len(out_new)} new)  replies: {sum(reps)}  zero-reply: {sum(r == 0 for r in reps)}")
+    print("categories:", dict(sorted(Counter(t["category"] for t in threads).items())))
+    print("nyc:", sum(bool(t.get("nyc")) for t in threads), " senior starters:", sum(t["starter_role"] == "senior" for t in threads))
+    print(f"helpful rebalanced on new threads: {len(rebalanced)} replies")
+    print(f"wrote {SEED_DIR / out}, content/persona_memory.json, reports/fact_checklist.md")
+
+
 def build_briefs(n: int, out: str) -> None:
     people = list(personas().values())
     themes = yaml.safe_load((SEED_DIR / "themes.yaml").read_text())
@@ -240,12 +402,23 @@ def main() -> None:
     s = sub.add_parser("sample")
     s.add_argument("--src", default="content/threads.sample.authored.yaml")
     s.add_argument("--out", default="content/threads.sample.json")
+    c = sub.add_parser("check")
+    c.add_argument("files", nargs="+")
+    c.add_argument("--alone", action="store_true", help="don't merge with the 20 live samples")
+    f = sub.add_parser("full")
+    f.add_argument("--drafts", nargs="*", default=None, help=f"authored files (default {DRAFTS_GLOB})")
+    f.add_argument("--out", default="content/threads.json")
     b = sub.add_parser("briefs")
     b.add_argument("--n", type=int, default=190)
     b.add_argument("--out", default="content/thread_briefs.json")
     args = ap.parse_args()
     if args.cmd == "sample":
         build_sample(args.src, args.out)
+    elif args.cmd == "check":
+        cmd_check(args.files, args.alone)
+    elif args.cmd == "full":
+        drafts = args.drafts or sorted(str(p.relative_to(SEED_DIR)) for p in SEED_DIR.glob(DRAFTS_GLOB))
+        build_full(drafts, args.out)
     else:
         build_briefs(args.n, args.out)
 

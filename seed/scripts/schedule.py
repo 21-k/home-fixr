@@ -7,6 +7,9 @@ Timestamp distribution (plan §6). Library + CLI.
 
     uv run seed/scripts/schedule.py            # schedule the sample threads
     uv run seed/scripts/schedule.py --plan     # print the day-by-day thread plan
+    uv run seed/scripts/schedule.py --full --end 2026-10-04
+        # all 213: the 20 live samples keep their exact timestamps (pinned),
+        # the new threads fill the remaining daily_plan slots
 
 Rules implemented
   * Window: --start .. --end (default 2026-07-24, the site's launch, ..
@@ -124,6 +127,9 @@ class Scheduler:
     def __init__(self, start: date = DEFAULT_START, end: date = DEFAULT_END):
         self.start, self.end = start, end
         self.days = [start + timedelta(days=i) for i in range((end - start).days + 1)]
+        # The full-set pass also keeps "bumped" replies out of 0-4am (the
+        # sample was scheduled without this and is pinned as live).
+        self.strict_night = False
 
     # -------------------------------------------------------------- helpers
     def at(self, d: date, hour: int, rng: random.Random) -> datetime:
@@ -176,7 +182,7 @@ class Scheduler:
         for i, r in enumerate(repliers):
             if i == 0:
                 gap = timedelta(minutes=rng.uniform(20, 360))
-            elif rng.random() < 0.06:
+            elif rng.random() < 0.06 and not (self.strict_night and post_at > self.end_dt() - timedelta(days=12)):
                 gap = timedelta(days=rng.uniform(3, 9))  # long tail
             else:
                 gap = timedelta(minutes=rng.expovariate(1 / 150) + 5)
@@ -201,6 +207,10 @@ class Scheduler:
                     t = self.at(local.date() + timedelta(days=1), _pick(rng, {8: 1, 9: 1, 10: 1, 11: 1}), rng)
             if i == 0:
                 t = max(t, post_at + timedelta(minutes=20))  # first reply >= 20 min
+            if self.strict_night and t > self.end_dt() - timedelta(minutes=30):
+                # Running into the end of the window: take a slice of what's left
+                # instead of everyone landing at 11:59pm.
+                t = prev + (self.end_dt() - prev) * rng.uniform(0.1, 0.35)
             t = self._clamp(t)
             if t <= prev:
                 t = prev + timedelta(minutes=rng.randint(3, 40))
@@ -208,6 +218,11 @@ class Scheduler:
                     # Bunched up against the end of the window: split the gap
                     # that's left instead of spilling past it.
                     t = prev + max((self.end_dt() - prev) / 2, timedelta(seconds=30))
+            if self.strict_night and t.astimezone(NY).hour < 5:
+                # A bump past midnight: nobody's up, so it lands with the 5-6am commute.
+                nxt = self.at(t.astimezone(NY).date(), _pick(rng, {5: 3, 6: 2}), rng)
+                t = nxt if nxt > prev else prev + timedelta(minutes=rng.randint(3, 20))
+                t = self._clamp(t)
             out.append(t)
             prev = t
         return out
@@ -256,6 +271,186 @@ def schedule_threads(threads: list[dict], personas: dict[str, dict], sch: Schedu
     return threads
 
 
+# ------------------------------------------------------------- full set
+WHEN_WINDOWS = {  # the writers' optional `when` hints (America/New_York dates, inclusive)
+    "early": (date(2026, 7, 24), date(2026, 8, 15)),
+    "mid": (date(2026, 8, 16), date(2026, 9, 15)),
+    "late": (date(2026, 9, 16), date(2026, 10, 4)),
+}
+WHEN_SLACK = timedelta(days=7)
+# Threads that follow up an earlier one (the starter refers back to it): post
+# at least FOLLOW_GAP after the earlier thread was posted.
+FOLLOWS = {"T021": "T12", "T042": "T03", "T049": "T10", "T099": "T04", "T131": "T12"}
+FOLLOW_GAP = timedelta(days=4)
+# Fixed windows the writers flagged (ET dates, inclusive).
+FIXED = {
+    "T125": (None, date(2026, 8, 16)),   # dreb_jman answers groundrod_05 before their Aug 17 mentorship request
+    "T124": (date(2026, 9, 28), None),   # LateStartPlumber "starts next week" (T08, Oct 4, has him about to start)
+}
+# Names a Junior may use for a Senior in text (handles always count).
+NICKNAMES = {
+    "oldsteam_zig": ["ziggy", "zig"], "mbell_wireman": ["marcus", "mbell"], "thiago_sparks": ["thiago"],
+    "Kash_sing": ["kash"], "dhollis61": ["dwayne", "hollis"], "hec_does_ac": ["hec"], "codebook_dale": ["dale"],
+    "joyd_plumbing": ["joy"], "ms_almonte": ["almonte", "ms. a"], "wchen_controls": ["wei"],
+    "haddad_mech": ["haddad", "sami"], "rui_t_kearny": ["rui"], "tnguyen_refrig": ["tuan"], "dreb_jman": ["dre", "dreb"],
+    "bklyn_arkady": ["arkady"],
+}
+
+
+def mentions(text: str, senior: str) -> bool:
+    import re
+    names = [senior.lower()] + NICKNAMES.get(senior, [])
+    return any(re.search(rf"(?<![\w.]){re.escape(n)}(?![\w])", text.lower()) for n in names)
+
+
+def mentor_links(t: dict, ments: list[dict]) -> dict[str, list]:
+    """How this thread touches mentorship pairs.
+
+    credit:   a Junior names their (active) mentor without the mentor having
+              spoken earlier in the thread, or says "my mentor": the thread
+              must come after the mentorship started (decided_at).
+    stranger: the Junior started the thread and their ACTIVE mentor replies
+              without the Junior ever naming them: the mentor is answering as a
+              stranger, so every reply of theirs must come before the request.
+    """
+    posts = [(t["author"], t["body"])] + [(r["author"], r["body"]) for r in t.get("replies", [])]
+    out = {"credit": [], "stranger": []}
+    for m in ments:
+        j, sn = m["junior"], m["senior"]
+        cast = {a for a, _ in posts}
+        if j not in cast:
+            continue
+        spoke = False
+        named = False
+        for a, body in posts:
+            if a == sn:
+                spoke = True
+            if a == j and (mentions(body, sn) or ("my mentor" in body.lower() and m["status"] == "active")):
+                named = True
+                if m["status"] == "active" and (not spoke or "my mentor" in body.lower()):
+                    out["credit"].append(m)
+        # Only an ACTIVE mentor answering as a stranger is wrong; a Senior who
+        # hasn't answered (pending) or said no (declined) can reply to anyone.
+        if t["author"] == j and sn in cast and not named and m["status"] == "active":
+            out["stranger"].append(m)
+    return out
+
+
+def schedule_full(threads: list[dict], personas: dict[str, dict], ments: list[dict], sch: "Scheduler") -> list[dict]:
+    """Pinned (live) threads keep their timestamps; the rest fill the remaining daily_plan slots.
+
+    Each new thread gets a window [lo, hi] (dates, ET): after its whole cast
+    joined, inside its `when` hint, after a followed-up thread, after the
+    mentorship start of any mentor a Junior credits, before the request of a
+    mentor who answers as a stranger, inside any FIXED window. Slots are then
+    filled in date order, earliest deadline first (deterministic tie-break),
+    and reply times come from reply_times() with each replier's join time
+    (and, for a stranger mentor, the request) as bounds. A thread whose replies
+    still break a bound is moved earlier and the pass repeats."""
+    by_id = {t["id"]: t for t in threads}
+    pinned = [t for t in threads if t.get("created_at")]
+    new = [t for t in threads if not t.get("created_at")]
+    slots = [d for d in sorted(daily_plan(sch.start, sch.end)) for _ in range(daily_plan(sch.start, sch.end)[d])]
+    for t in pinned:  # each live thread uses up the slot on its own day (or the nearest one)
+        d = datetime.fromisoformat(t["created_at"]).astimezone(NY).date()
+        slots.remove(min(slots, key=lambda x: (abs((x - d).days), x)))
+    if len(slots) < len(new):
+        raise SystemExit(f"daily_plan has {len(slots) + len(pinned)} slots for {len(threads)} threads")
+    slots = slots[: len(new)] if len(slots) > len(new) else slots
+    dt = datetime.fromisoformat
+
+    def window(t: dict, extra_hi: date | None = None) -> tuple[date, date, list[str]]:
+        notes = []
+        cast = [t["author"]] + [r["author"] for r in t.get("replies", [])]
+        ready = max(dt(personas[a]["joined_at"]) for a in cast) + timedelta(hours=1)
+        lo, hi = ready.astimezone(NY).date(), sch.end
+        if t.get("when"):
+            # Hints are soft by WHEN_SLACK days at each edge, so the plan's
+            # day-by-day shape survives the writers' lean toward "late".
+            wlo, whi = WHEN_WINDOWS[t["when"]]
+            lo, hi = max(lo, wlo - WHEN_SLACK), min(hi, whi + WHEN_SLACK)
+        if t["id"] in FOLLOWS:
+            lo = max(lo, (dt(by_id[FOLLOWS[t["id"]]]["created_at"]) + FOLLOW_GAP).astimezone(NY).date())
+        links = mentor_links(t, ments)
+        for m in links["credit"]:
+            lo = max(lo, (dt(m["decided_at"]) + timedelta(hours=12)).astimezone(NY).date() + timedelta(days=1))
+        for m in links["stranger"]:
+            hi = min(hi, (dt(m["requested_at"]) - timedelta(days=1)).astimezone(NY).date())
+        # Room for the replies before the window closes (no 40 replies at 11:59pm Oct 4).
+        n = len(t.get("replies", []))
+        hi = min(hi, sch.end - timedelta(days=0 if n <= 2 else 1 if n <= 5 else 2 if n <= 10 else 4))
+        flo, fhi = FIXED.get(t["id"], (None, None))
+        lo, hi = max(lo, flo or lo), min(hi, fhi or hi)
+        if extra_hi:
+            hi = min(hi, extra_hi)
+        if lo > hi and t.get("when"):
+            notes.append(f"{t['id']}: when={t['when']} can't hold with its cast/mentorship bounds; relaxed")
+            t2 = dict(t)
+            t2.pop("when")
+            return window(t2, extra_hi)
+        return lo, hi, notes
+
+    extra: dict[str, date] = {}
+    for _round in range(8):
+        wins = {t["id"]: window(t, extra.get(t["id"])) for t in new}
+        bad = [tid for tid, (lo, hi, _) in wins.items() if lo > hi]
+        if bad:
+            raise SystemExit(f"no feasible date for {bad}: " + "; ".join(f"{b} {wins[b][:2]}" for b in bad))
+        order = list(new)
+        _rng("order-full").shuffle(order)
+        remaining = order
+        placed: dict[str, date] = {}
+        load: Counter = Counter(datetime.fromisoformat(t["created_at"]).astimezone(NY).date() for t in pinned)
+        for d in slots:
+            cands = [t for t in remaining if wins[t["id"]][0] <= d <= wins[t["id"]][1]]
+            if not cands:
+                continue  # nobody can post that day; the slot moves (below)
+            hot = any(a <= d <= b for a, b in HEAT_STRETCHES)
+            pick = min(cands, key=lambda t: (wins[t["id"]][1], (t.get("trade") != "hvac") if hot else 0))
+            remaining.remove(pick)
+            placed[pick["id"]] = d
+            load[d] += 1
+        # Threads left over (their windows had fewer slots than threads): put
+        # each on the least-loaded day of its window relative to the plan.
+        plan = daily_plan(sch.start, sch.end)
+        for t in sorted(remaining, key=lambda t: ((wins[t["id"]][1] - wins[t["id"]][0]).days, t["id"])):
+            lo, hi = wins[t["id"]][:2]
+            days = [lo + timedelta(days=i) for i in range((hi - lo).days + 1)]
+            d = min(days, key=lambda x: ((load[x] + 1) / (plan.get(x, 0) + 1), x))
+            placed[t["id"]] = d
+            load[d] += 1
+        moved = []
+        for t in new:
+            d = placed[t["id"]]
+            cast = [t["author"]] + [r["author"] for r in t.get("replies", [])]
+            ready = max(dt(personas[a]["joined_at"]) for a in cast) + timedelta(hours=1)
+            post_at = sch.thread_time_on(t["id"], d, ready)
+            links = mentor_links(t, ments)
+            floor = {}
+            for m in links["credit"]:
+                floor[m["junior"]] = max(floor.get(m["junior"], post_at), dt(m["decided_at"]))
+            reps = t.get("replies", [])
+            rts = sch.reply_times(t["id"], post_at, [
+                {"role": personas[r["author"]]["role"],
+                 "not_before": max(dt(personas[r["author"]]["joined_at"]), floor.get(r["author"], dt(personas[r["author"]]["joined_at"])))}
+                for r in reps])
+            t["created_at"] = to_utc_iso(post_at)
+            for r, rt in zip(reps, rts):
+                r["created_at"] = to_utc_iso(rt)
+            late = [m for m in links["stranger"] for r in reps
+                    if r["author"] == m["senior"] and dt(r["created_at"]) >= dt(m["requested_at"])]
+            if late:
+                moved.append(t["id"])
+                extra[t["id"]] = d - timedelta(days=3)
+        if not moved:
+            return threads
+        for t in new:
+            t.pop("created_at", None)
+            for r in t.get("replies", []):
+                r.pop("created_at", None)
+    raise SystemExit(f"stranger-mentor bounds still broken after 8 passes: {moved}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--start", type=date.fromisoformat, default=DEFAULT_START)
@@ -263,7 +458,14 @@ def main() -> None:
     ap.add_argument("--threads", default="content/threads.sample.json")
     ap.add_argument("--out", default="content/threads.sample.scheduled.json")
     ap.add_argument("--plan", action="store_true", help="print the day-by-day thread plan and exit")
+    ap.add_argument("--full", action="store_true",
+                    help="schedule content/threads.json (live samples pinned) -> content/threads.scheduled.json")
     args = ap.parse_args()
+    if args.full:
+        if args.threads == "content/threads.sample.json":
+            args.threads = "content/threads.json"
+        if args.out == "content/threads.sample.scheduled.json":
+            args.out = "content/threads.scheduled.json"
 
     if args.plan:
         plan = daily_plan(args.start, args.end)
@@ -275,7 +477,17 @@ def main() -> None:
     sch = Scheduler(args.start, args.end)
     personas = {p["handle"]: p for p in load_json("personas/seniors.json") + load_json("personas/juniors.json")}
     threads = load_json(args.threads)["threads"]
-    schedule_threads(threads, personas, sch)
+    if args.full:
+        live = {t["id"]: t for t in load_json("content/threads.sample.scheduled.json")["threads"]}
+        for t in threads:  # the live samples must arrive with their exact live timestamps
+            if t["id"] in live and (t.get("created_at") != live[t["id"]]["created_at"] or
+                                    [r.get("created_at") for r in t.get("replies", [])] != [r["created_at"] for r in live[t["id"]].get("replies", [])]):
+                raise SystemExit(f"{t['id']} is live but its timestamps differ from threads.sample.scheduled.json")
+        ments = load_json("content/mentorships.json")["mentorships"]
+        sch.strict_night = True
+        schedule_full(threads, personas, ments, sch)
+    else:
+        schedule_threads(threads, personas, sch)
     write_json(args.out, {"window": [str(args.start), str(args.end)], "threads": threads})
 
     times = [datetime.fromisoformat(t["created_at"]) for t in threads]

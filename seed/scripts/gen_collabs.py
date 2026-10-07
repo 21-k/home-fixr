@@ -254,6 +254,9 @@ def build(authored: list[dict], people: dict[str, dict], ments: list[dict]) -> t
             except ValueError as ex:
                 e(f"{h} can't apply in time: {ex}")
                 continue
+            # Licences held when they applied (license_since dates one earned in the window).
+            since = j.get("license_since") or {}
+            held = [x for x in j["licenses"] if x not in since or date.fromisoformat(since[x]) <= applied.astimezone(NY).date()]
             built.append({
                 "applicant": h,
                 "status": p["status"],
@@ -262,8 +265,8 @@ def build(authored: list[dict], people: dict[str, dict], ments: list[dict]) -> t
                 "graduation_year": graduation_year(j),
                 "age_range": age_range(j.get("age")),
                 "skills": list(p.get("skills", [])) or None,
-                "is_licensed": bool(j["licenses"]),
-                "license_note": ", ".join(j["licenses"]) or None,
+                "is_licensed": bool(held),
+                "license_note": ", ".join(held) or None,
                 "has_own_tools": bool(p.get("tools")),
                 "has_transport": bool(p.get("transport")),
                 "applied_at": applied,

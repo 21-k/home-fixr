@@ -99,6 +99,27 @@ def check_personas(people, allow_unverified):
 YEARS_RE = re.compile(r"\b(\d{1,2})\s*(?:years|yrs|year)\b(?!\s*(?:ago|old|later|from))", re.I)
 
 
+def ngram_overlaps(texts: list[tuple[str, str]]) -> tuple[list[tuple[str, str, str]], list[tuple[str, str, str]]]:
+    """Shared 8-grams and 12-grams between different texts (inverted index, so 1,450 texts stay fast).
+    Returns (pairs sharing an 8-gram, pairs sharing a 12-gram), one example gram per pair."""
+    def grams(text, k):
+        w = re.findall(r"[a-z0-9']+", text.lower())
+        return {" ".join(w[i:i + k]) for i in range(len(w) - k + 1)}
+    out = []
+    for k in (8, 12):
+        index: dict[str, list[int]] = {}
+        for i, (_, t) in enumerate(texts):
+            for g in grams(t, k):
+                index.setdefault(g, []).append(i)
+        pairs = {}
+        for g, ids in index.items():
+            for a in range(len(ids)):
+                for b in range(a + 1, len(ids)):
+                    pairs.setdefault((ids[a], ids[b]), g)
+        out.append(sorted((texts[a][0], texts[b][0], g) for (a, b), g in pairs.items()))
+    return out[0], out[1]
+
+
 def check_threads(threads, people):
     by = {p["handle"]: p for p in people}
     n = len(threads)
@@ -142,19 +163,20 @@ def check_threads(threads, people):
 
     # Plagiarism: no external reference corpus exists (Reddit step skipped), so
     # check internal 8-gram overlap; any shared run of 12+ words fails.
-    def grams(text, k):
-        w = re.findall(r"[a-z0-9']+", text.lower())
-        return {" ".join(w[i:i + k]) for i in range(len(w) - k + 1)}
-    texts = [(where, text) for _, text, where in all_texts(threads)]
-    hits12 = []
-    hits8 = 0
-    for i, (wa, ta) in enumerate(texts):
-        ga8, ga12 = grams(ta, 8), grams(ta, 12)
-        for wb, tb in texts[i + 1:]:
-            hits8 += len(ga8 & grams(tb, 8))
-            if ga12 & grams(tb, 12):
-                hits12.append(f"{wa}~{wb}")
-    record("plagiarism: no 12-word overlap (internal; no external corpus)", not hits12, f"8-gram overlaps: {hits8}; 12+: {hits12[:5]}")
+    who = {where: author for author, _, where in all_texts(threads)}
+    hits8, hits12 = ngram_overlaps([(where, text) for _, text, where in all_texts(threads)])
+    cross8 = [h for h in hits8 if who[h[0]] != who[h[1]]]
+    record("plagiarism: no 12-word overlap (internal; no external corpus)", not hits12,
+           f"pairs sharing an 8-gram: {len(hits8)}, {len(hits8) - len(cross8)} of them the same persona repeating a tic; "
+           f"12+: {[f'{a}~{b}' for a, b, _ in hits12[:5]]}")
+    record("plagiarism: 8-gram overlap between different people ~0 (pairs ≤ 8% of the thread count; what's left is stock phrases and quotes)",
+           len(cross8) <= max(2, 0.08 * len(threads)),
+           f"{len(cross8)}: " + "; ".join(f"{a}~{b}: {g!r}" for a, b, g in cross8[:6]))
+    live_ids = {t["id"] for t in threads if t.get("live")}
+    lower_j = [where for author, text, where in all_texts(threads)
+               if where.split("/")[0] not in live_ids and by[author]["voice"]["punctuation"] == "lowercase_minimal" and by[author]["role"] == "junior"
+               and re.search(r"(^|[.!?]\s+)[A-Z][a-z]", text.split("\n", 1)[-1] if "/r" not in where else text)]
+    record("lowercase-voice Juniors stay lowercase (new threads; T06/r4 is live)", not lower_j, str(lower_j[:5]))
 
     times = [datetime.fromisoformat(t["created_at"]) for t in threads if "created_at" in t]
     times += [datetime.fromisoformat(r["created_at"]) for t in threads for r in t.get("replies", []) if "created_at" in r]
@@ -290,12 +312,12 @@ def check_social(people, threads, ments, follows):
     n_anchor = sum(bool(m.get("anchor_thread")) for m in ments)
     record("social: thread-implied pairs (thanks / 'update: did what X said') are in the graph, after the exchange",
            n_anchor >= 6 and not anchor_bad, f"{n_anchor} anchored; {anchor_bad[:3]}")
+    from schedule import mentor_links
     answered_first = []
     for t in threads:
-        for r in t.get("replies", []):
-            for m in ments:
-                if m["junior"] == t["author"] and m["senior"] == r["author"] and \
-                        datetime.fromisoformat(m["requested_at"]) < datetime.fromisoformat(r["created_at"]):
+        for m in mentor_links(t, ments)["stranger"]:  # active mentor, and the Junior never names them
+            for r in t.get("replies", []):
+                if r["author"] == m["senior"] and datetime.fromisoformat(m["requested_at"]) < datetime.fromisoformat(r["created_at"]):
                     answered_first.append(f"{t['id']}: {r['author']} answers own mentee {t['author']} like a stranger")
     record("social: no mentor answers their mentee's later thread as a stranger", not answered_first, str(answered_first[:3]))
 
@@ -332,10 +354,14 @@ def check_social(people, threads, ments, follows):
     s_to_j = Counter(by[b]["activity_level"] for a, b in pairs_f if by[a]["role"] == "senior" and by[b]["role"] == "junior")
     record("social: Seniors follow only the occasional standout Junior (regular/heavy)",
            set(s_to_j) <= {"heavy", "regular"} and sum(s_to_j.values()) <= 15, str(dict(s_to_j)))
-    acc_pairs = {(t["author"], r["author"]) for t in threads for r in t.get("replies", []) if r["accepted"] and by[r["author"]]["role"] == "senior"
+    # The follow graph was built from the 20 live threads (gen_social.py); it isn't regenerated for
+    # the full set (it's live / packaged in PR #8), so this check stays on those threads.
+    graph_threads = [t for t in threads if t.get("live", True) and t["id"] in {f"T{i:02d}" for i in range(1, 21)}]
+    acc_pairs = {(t["author"], r["author"]) for t in graph_threads for r in t.get("replies", []) if r["accepted"] and by[r["author"]]["role"] == "senior"
                  and by[t["author"]]["role"] == "junior"}
     acc_f = sum(pr in fset for pr in acc_pairs)
-    record("social: Juniors mostly follow the Senior whose answer they accepted (>= 50%)", acc_f >= 0.5 * len(acc_pairs), f"{acc_f}/{len(acc_pairs)}")
+    record("social: Juniors mostly follow the Senior whose answer they accepted (>= 50%; the 20 threads the graph was built from)",
+           acc_f >= 0.5 * len(acc_pairs), f"{acc_f}/{len(acc_pairs)}")
     bad_ft = [f"{f['follower']}->{f['following']}" for f in follows
               if not (max(joined[f["follower"]], joined[f["following"]]) < datetime.fromisoformat(f["created_at"]) <= WINDOW_END)]
     record("social: every follow is after both joined and inside the window", not bad_ft, str(bad_ft[:5]))
@@ -381,6 +407,324 @@ def check_social(people, threads, ments, follows):
     record("answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted)", True, info)
     return {"active_by_senior": per, "followers": ind}
 
+
+# ------------------------------------------------------------ full thread set
+PLAN_SHARES = {"A": 22, "B": 14, "C": 20, "D": 14, "E": 18, "F": 12}
+OWNERS = {"oldsteam_zig", "thiago_sparks", "Kash_sing", "joyd_plumbing", "haddad_mech", "rui_t_kearny", "bklyn_arkady"}
+UNION_SENIORS = {"mbell_wireman", "dhollis61", "dreb_jman"}
+TRADE_WORDS = {"plumber": "plumbing", "pipefitter": "plumbing", "steamfitter": "plumbing", "electrician": "electrical",
+               "sparky": "electrical", "wireman": "electrical", "hvac tech": "hvac", "hvac guy": "hvac", "refrigeration tech": "hvac"}
+# Activity caps (plan §2) are written for posts per persona. Lurkers keep the absolute cap
+# of 2 (the brief: "no lurker posts more than ~1-2 times"); the other caps scale with the
+# Junior post volume the full set actually has (see junior_cap_scale).
+PLAN_CAPS = {"lurker": (0, 1), "occasional": (1, 3), "regular": (4, 8), "heavy": (9, 15)}
+PLAN_MID = {"lurker": 0.5, "occasional": 2, "regular": 6, "heavy": 12}
+
+
+def post_counts(threads):
+    c = Counter()
+    for t in threads:
+        c[t["author"]] += 1
+        for r in t.get("replies", []):
+            c[r["author"]] += 1
+    return c
+
+
+def junior_cap_scale(people, counts) -> float:
+    juniors = [p for p in people if p["role"] == "junior"]
+    expected = sum(PLAN_MID[p["activity_level"]] for p in juniors)
+    return sum(counts[p["handle"]] for p in juniors) / expected
+
+
+def persona_findings(threads, people, ments):
+    """Self-statements that contradict the persona record or each other, across every thread."""
+    from common import COUNTIES
+    by = {p["handle"]: p for p in people}
+    county_of = {}
+    for region, cs in COUNTIES.items():
+        for county, towns in cs.items():
+            for town in towns:
+                county_of[town.lower()] = county
+            county_of[county.lower()] = county
+    active = {m["junior"]: m["senior"] for m in ments if m["status"] == "active"}
+    found = {k: [] for k in ("years", "age", "town", "trade", "union", "license", "mentor", "school", "employer")}
+    ages: dict[str, set] = {}
+    dts = {}
+    for t in threads:
+        dts[t["id"]] = datetime.fromisoformat(t["created_at"]).astimezone(NY).date().isoformat()
+        for i, r in enumerate(t.get("replies", [])):
+            dts[f"{t['id']}/r{i}"] = datetime.fromisoformat(r["created_at"]).astimezone(NY).date().isoformat()
+    for author, text, where in all_texts(threads):
+        p = by[author]
+        low = text.lower()
+        jr = p["role"] == "junior"
+        # years in the trade
+        for m in re.finditer(r"\b(\d{1,2})\s*(?:years|yrs|year)\s+(?:in\b|into\b|of (?:this|experience|plumbing|hvac|electrical|doing))", low):
+            ctx = low[max(0, m.start() - 30): m.start()]
+            after = low[m.end(): m.end() + 30]
+            if any(w in ctx for w in ("he's", "she's", "he has", "his ", "my boss", "guy", "they", "you", "your", "foreman", "teaching", "dad", "father", "put ")):
+                continue
+            if any(w in m.group(0) + after for w in ("insurance", "claims", "retail", "restaurant", "bank", "warehouse", "call center",
+                                                      "army", "navy", "military", "help desk", "office", "college", "the wrong", "bartend")):
+                continue
+            n = int(m.group(1))
+            ok = (abs(n - p["years_in"]) <= 1) if jr else (n == p["years_in"] or (author == "ms_almonte" and n in (20, 28, 8)) or n <= 6)
+            if not ok:
+                found["years"].append(f"{where} {author}: '{m.group(0)}' vs years_in {p['years_in']}")
+        for m in re.finditer(r"\b(?:i'?m|i am|as) (?:a |an |in my )?(\d)(?:st|nd|rd|th)[- ]year\b", low):
+            n = int(m.group(1))
+            if jr and p["path"] == "union_apprentice" and n not in (p["years_in"], p["years_in"] + 1):
+                found["years"].append(f"{where} {author}: '{m.group(0)}' vs years_in {p['years_in']}")
+        # age
+        for m in re.finditer(r"(?:^|\bi'?m |\bi am )(\d{2})\b(?![\d%]|\s*(?:min|mins|minutes|miles|hours|hrs|yrs|years in|degrees|amps?\b|a\b|bucks|dollars|an hour|/hr|k\b|ft|feet|psi|inches|percent|of\b|out of|th\b))", low):
+            n = int(m.group(1))
+            if 16 <= n <= 70:
+                ages.setdefault(author, set()).add((n, where))
+        # town: strong self-location only
+        for m in re.finditer(r"\b(?:i'?m (?:in|from|out of|based in)|i live in|here in|living in|i'm over in)\s+([a-z]+(?: [a-z]+)?)", low):
+            words2 = m.group(1)
+            for cand in (words2, words2.split()[0]):
+                c = county_of.get(cand)
+                if c:
+                    if c != p["county"] and cand != p["town_hint"].lower():
+                        found["town"].append(f"{where} {author}: '{m.group(0)}' ({c}) vs {p['town_hint']}, {p['county']}")
+                    break
+        # trade
+        if p["trade"] != "general":
+            for m in re.finditer(r"\bi'?m (?:a|an) (?:\w+ ){0,2}?(plumber|pipefitter|steamfitter|electrician|sparky|wireman|hvac tech|hvac guy|refrigeration tech)\b", low):
+                if TRADE_WORDS[m.group(1)] != p["trade"] and not (author in ("ms_almonte", "haddad_mech") and TRADE_WORDS[m.group(1)] in ("plumbing", "hvac")):
+                    found["trade"].append(f"{where} {author}: '{m.group(0)}' vs {p['trade']}")
+        # union / non-union
+        if jr:
+            union_self = re.search(r"\b(?:my|our) (?:local(?!\s*\d)|steward|jatc|hall|union)\b|\bi'?m (?:in the union|union)\b|\bthe hall (?:called|sent)", low)
+            nonunion_self = re.search(r"\bi'?m non-?union\b|\bmy non-?union (?:shop|job|boss)", low)
+            if union_self and p["path"] != "union_apprentice":
+                found["union"].append(f"{where} {author}: '{union_self.group(0)}' but path {p['path']}")
+            if nonunion_self and p["path"] == "union_apprentice":
+                found["union"].append(f"{where} {author}: '{nonunion_self.group(0)}' but union apprentice")
+        elif author in UNION_SENIORS and re.search(r"\bmy (?:trucks|shop|customers)\b", low):
+            found["employer"].append(f"{where} {author}: talks about 'my trucks/shop/customers' but is a union {p['path']}")
+        elif author not in OWNERS and re.search(r"\bmy trucks\b|\bi own (?:a|the|my) (?:shop|company)", low):
+            found["employer"].append(f"{where} {author}: talks like an owner but is a {p['path']}")
+        # licenses
+        has608 = any("608" in x for x in p["licenses"])
+        claim608 = re.search(r"\b(?:i have|i've got|got|passed|with|show) my 608\b|\bmy 608 (?:card|universal|type)|\bi'?m 608\b|\bpassed (?:the |my )?(?:608 )?(?:universal|type ii|608)\b", low)
+        since608 = next((v for k, v in (p.get("license_since") or {}).items() if "608" in k), None)
+        if claim608 and "fail" in low[max(0, claim608.start() - 40): claim608.end() + 40]:
+            claim608 = None  # "passed type II, failed core": not certified yet, and not a claim to be
+        if claim608 and (not has608 or (since608 and dts[where] < since608)):
+            found["license"].append(f"{where} {author}: '{claim608.group(0)}', persona licenses {p['licenses']} (since {since608})")
+        if not jr and re.search(r"\bmy master(?:'s)? (?:license|plumber|card)", low) and not any("Master" in x for x in p["licenses"]):
+            found["license"].append(f"{where} {author}: claims a master license, persona {p['licenses']}")
+        # mentor
+        if jr:
+            for m in re.finditer(r"\bmy mentor(?: on here)?(?:,? ([a-z_.0-9]+))?", low):
+                if author not in active:
+                    found["mentor"].append(f"{where} {author}: says 'my mentor' but has no active mentor")
+        # school year
+        if jr and p["path"] == "votech_student":
+            aff = (p.get("affiliation_hint") or "").lower()
+            if re.search(r"\bjunior year\b|\bsophomore\b", low) and "'27" in aff:
+                found["school"].append(f"{where} {author}: says junior year/sophomore but class of '27")
+            for m in re.finditer(r"class of '(\d\d)", low):
+                if f"'{m.group(1)}" not in aff:
+                    found["school"].append(f"{where} {author}: says class of '{m.group(1)}, persona {aff}")
+            if re.search(r"graduat(?:ed|ing) (?:in )?(?:june )?2026|class of '26", low):
+                found["school"].append(f"{where} {author}: a current student 'graduating 2026'")
+    for a, st in ages.items():
+        vals = {n for n, _ in st}
+        want = by[a].get("age")
+        if (want is not None and any(abs(n - want) > 1 for n in vals)) or (want is None and len(vals) > 1 and max(vals) - min(vals) > 1):
+            found["age"].append(f"{a}: states {sorted(st)} vs persona age {want}")
+    return found
+
+
+def check_full(threads, people, ments, follows):
+    """The full 213-thread set: plan distributions, persona consistency, schedule bounds, activity."""
+    import sys as _s
+    _s.path.insert(0, str(Path(__file__).parent))
+    from schedule import FIXED, FOLLOWS, WHEN_SLACK, WHEN_WINDOWS, daily_plan, mentor_links
+    by = {p["handle"]: p for p in people}
+    dt = datetime.fromisoformat
+    n = len(threads)
+    cats = Counter(t["category"] for t in threads)
+    off = {c: round(100 * cats[c] / n - PLAN_SHARES[c], 1) for c in PLAN_SHARES}
+    record("full: category mix within ±3 pts of plan §4", all(abs(v) <= 3 for v in off.values()),
+           ", ".join(f"{c} {cats[c]} ({100 * cats[c] / n:.1f}% vs {PLAN_SHARES[c]})" for c in PLAN_SHARES))
+    nyc = sum(bool(t.get("nyc")) for t in threads)
+    record("full: ~10% NYC threads (8-12%)", 0.08 <= nyc / n <= 0.12, f"{nyc}/{n} = {100 * nyc / n:.1f}%")
+    reps = [len(t.get("replies", [])) for t in threads]
+    zero = sum(r == 0 for r in reps)
+    record("full: ≥8% zero-reply threads", zero / n >= 0.08, f"{zero}/{n} = {100 * zero / n:.1f}%")
+    w = [r for r in reps if r]
+    b1, b2, b3 = (sum(lo <= r <= hi for r in w) / len(w) for lo, hi in ((2, 5), (6, 12), (13, 25)))
+    record("full: reply depth 60/30/10 (2-5 / 6-12 / 13-25, ±10/±10/±5 pts), none with 1 or >25",
+           abs(b1 - .6) <= .10 and abs(b2 - .3) <= .10 and abs(b3 - .1) <= .05 and not any(r == 1 or r > 25 for r in reps),
+           f"{100 * b1:.0f}/{100 * b2:.0f}/{100 * b3:.0f}% of {len(w)} threads with replies; max {max(reps)}; total replies {sum(reps)}")
+    bl = [len(t["body"].split()) for t in threads]
+    rl = [len(r["body"].split()) for t in threads for r in t.get("replies", [])]
+    record("full: lengths right-skewed (bodies and replies median < mean)",
+           statistics.median(bl) < statistics.mean(bl) and statistics.median(rl) < statistics.mean(rl),
+           f"bodies median {statistics.median(bl)} mean {statistics.mean(bl):.0f}; replies median {statistics.median(rl)} mean {statistics.mean(rl):.0f}")
+    pork = [t["id"] for t in threads if re.search(r"pork roll|taylor ham", t["title"], re.I) and not re.search(r"pork roll thread", t["title"], re.I)]
+    record("full: exactly one pork roll vs taylor ham thread (T20; T165 is the Wawa/QuickChek follow-up)", pork == ["T20"], str(pork))
+    titles = Counter(t["title"].strip().lower() for t in threads)
+    record("full: thread ids and titles unique", len({t["id"] for t in threads}) == n and max(titles.values()) == 1,
+           str([x for x, c in titles.items() if c > 1][:3]))
+
+    # ---- live samples pinned
+    live = {t["id"]: t for t in load_json("content/threads.sample.scheduled.json")["threads"]}
+    drift = []
+    for t in threads:
+        if t["id"] in live:
+            L = live[t["id"]]
+            if (t["created_at"], t["body"], t["helpful_count"]) != (L["created_at"], L["body"], L["helpful_count"]) or \
+                    [(r["created_at"], r["body"], r["helpful_count"], r["accepted"]) for r in t["replies"]] != \
+                    [(r["created_at"], r["body"], r["helpful_count"], r["accepted"]) for r in L["replies"]]:
+                drift.append(t["id"])
+    record("full: the 20 live sample threads are byte-for-byte as live (text, helpful, timestamps)",
+           not drift and len(live) == 20 and all(i in {t["id"] for t in threads} for i in live), str(drift))
+
+    # ---- schedule bounds
+    plan = daily_plan()
+    per_day = Counter(dt(t["created_at"]).astimezone(NY).date() for t in threads)
+    offd = [(d, plan[d], per_day[d]) for d in sorted(plan) if abs(plan[d] - per_day[d]) >= 2]
+    spike = [(d, plan[d], per_day[d]) for d in sorted(plan) if per_day[d] > plan[d] + 3]
+    record("full: thread volume follows daily_plan (≤15 days off by 2+, none 4+ over)",
+           sum(per_day.values()) == n and len(offd) <= 15 and not spike and not set(per_day) - set(plan),
+           f"{sum(plan.values())} slots; {sum(plan[d] == per_day[d] for d in plan)}/{len(plan)} days exact; off by 2+: "
+           + ", ".join(f"{d:%m-%d} {a}->{b}" for d, a, b in offd))
+    bad = []
+    for t in threads:
+        post = dt(t["created_at"])
+        if dt(by[t["author"]]["joined_at"]) >= post:
+            bad.append(f"{t['id']}: before {t['author']} joined")
+        cast = [t["author"]] + [r["author"] for r in t["replies"]]
+        if not t.get("live") and max(dt(by[a]["joined_at"]) for a in cast) >= post:
+            bad.append(f"{t['id']}: posted before its whole cast joined")
+        prev = post
+        for i, r in enumerate(t["replies"]):
+            rt = dt(r["created_at"])
+            if rt <= prev or rt <= dt(by[r["author"]]["joined_at"]):
+                bad.append(f"{t['id']}/r{i}: out of order or before {r['author']} joined")
+            prev = rt
+        if not WINDOW_START <= post or prev > WINDOW_END:
+            bad.append(f"{t['id']}: outside the window")
+    record("full: every post after its author joined (new threads: whole cast), replies in order, inside Jul 24 - Oct 4",
+           not bad, f"{len(bad)}: {bad[:5]}")
+    hint, impossible = [], []
+    for t in threads:
+        if not t.get("when") or t.get("live"):
+            continue
+        lo, hi = WHEN_WINDOWS[t["when"]]
+        d = dt(t["created_at"]).astimezone(NY).date()
+        if lo - WHEN_SLACK <= d <= hi + WHEN_SLACK:
+            continue
+        cast = [t["author"]] + [r["author"] for r in t["replies"]]
+        last_join = max(dt(by[a]["joined_at"]) for a in cast).astimezone(NY).date()
+        (impossible if last_join > hi + WHEN_SLACK else hint).append(f"{t['id']} {t['when']} -> {d:%m-%d}" + (f" (cast complete {last_join:%m-%d})" if last_join > hi + WHEN_SLACK else ""))
+    inside = sum(1 for t in threads if t.get("when") and WHEN_WINDOWS[t["when"]][0] <= dt(t["created_at"]).astimezone(NY).date() <= WHEN_WINDOWS[t["when"]][1])
+    nh = sum(1 for t in threads if t.get("when"))
+    record(f"full: writers' when hints held (within {WHEN_SLACK.days} days) wherever the cast's join dates allow", not hint,
+           f"{inside}/{nh} strictly inside; misses {hint[:5]}; hints the cast's join dates rule out (placed after the last join): {impossible}")
+    tmap = {t["id"]: t for t in threads}
+    fol = [f"{a} after {b}" for a, b in FOLLOWS.items() if dt(tmap[a]["created_at"]) < dt(tmap[b]["created_at"]) + timedelta(days=4)]
+    fx = []
+    for tid, (lo, hi) in FIXED.items():
+        d = dt(tmap[tid]["created_at"]).astimezone(NY).date()
+        if (lo and d < lo) or (hi and d > hi):
+            fx.append(f"{tid} on {d}")
+    t125 = tmap["T125"]
+    req = next(m for m in ments if m["junior"] == "groundrod_05" and m["senior"] == "dreb_jman")
+    dreb_late = [r["created_at"] for r in t125["replies"] if r["author"] == "dreb_jman" and dt(r["created_at"]) >= dt(req["requested_at"])]
+    t04_last = dt(tmap["T04"]["replies"][-1]["created_at"])
+    record("full: writer-flagged order holds (T125 before Aug 17 incl. dreb_jman's replies; T124 Sep 28 - Oct 4; T099 after T04; follow-ups 4+ days after the thread they follow)",
+           not fol and not fx and not dreb_late and dt(tmap["T099"]["created_at"]) > t04_last,
+           f"T125 {dt(t125['created_at']).astimezone(NY):%m-%d}, T124 {dt(tmap['T124']['created_at']).astimezone(NY):%m-%d}, "
+           f"T099 {dt(tmap['T099']['created_at']).astimezone(NY):%m-%d} (T04 last reply {t04_last.astimezone(NY):%m-%d}); {fol + fx}")
+    cred, strg = [], []
+    for t in threads:
+        L = mentor_links(t, ments)
+        for m in L["credit"]:
+            for a, ts in [(t["author"], t["created_at"])] + [(r["author"], r["created_at"]) for r in t["replies"]]:
+                if a == m["junior"] and dt(ts) < dt(m["decided_at"]):
+                    cred.append(f"{t['id']}: {a} credits {m['senior']} before the mentorship started")
+        for m in L["strg"] if False else L["stranger"]:
+            for r in t["replies"]:
+                if r["author"] == m["senior"] and dt(r["created_at"]) >= dt(m["requested_at"]):
+                    strg.append(f"{t['id']}: {m['senior']} answers mentee {m['junior']} as a stranger after the request")
+    record("full: mentees credit/quote their mentor only after the mentorship started", not cred, str(cred[:4]))
+    record("full: no active mentor answers their mentee's thread as a stranger", not strg, str(strg[:4]))
+
+    # ---- people
+    counts = post_counts(threads)
+    zero_users = sum(counts[h] == 0 for h in by)
+    record("full: ≥20% of users have zero posts", zero_users / len(by) >= 0.20, f"{zero_users}/{len(by)} = {100 * zero_users / len(by):.1f}%")
+    juniors = [p for p in people if p["role"] == "junior"]
+    scale = junior_cap_scale(people, counts)
+    # The plan's absolute caps (occasional ≤3, regular ≤8, heavy ≤15) can't all hold at this volume: the
+    # caps' midpoints add up to ~325 Junior posts, the threads have ~790. So: lurkers keep the absolute
+    # cap (≤2), heavy keeps it scaled by that ratio, and the levels must be ordered by what people post
+    # (no one at a lower level posts more than anyone above it). The level mix stays 49/42/24/6.
+    order = ["lurker", "occasional", "regular", "heavy"]
+    rng_ = {a: (min(counts[p["handle"]] for p in juniors if p["activity_level"] == a),
+                max(counts[p["handle"]] for p in juniors if p["activity_level"] == a)) for a in order}
+    over = [f"{p['handle']}(lurker):{counts[p['handle']]}" for p in juniors if p["activity_level"] == "lurker" and counts[p["handle"]] > 2]
+    over += [f"{p['handle']}(heavy):{counts[p['handle']]}" for p in juniors if p["activity_level"] == "heavy" and counts[p["handle"]] > round(15 * scale)]
+    overlap = [f"{a}>{b}" for a, b in zip(order, order[1:]) if rng_[a][1] > rng_[b][0]]
+    mix = Counter(p["activity_level"] for p in juniors)
+    record("full: activity levels fit the posts (lurkers ≤2; heavy ≤15 × volume ratio; each level's range sits below the next; mix 49/42/24/6)",
+           not over and not overlap and mix == Counter({"lurker": 49, "occasional": 42, "regular": 24, "heavy": 6}),
+           f"Junior volume ×{scale:.2f} the plan caps' midpoints; posts per level: " + ", ".join(f"{a} {rng_[a][0]}-{rng_[a][1]}" for a in order)
+           + f"; over {over}; overlaps {overlap}")
+    sen = {p["handle"]: counts[p["handle"]] for p in people if p["role"] == "senior"}
+    pillars = [h for h in sen if by[h]["activity_level"] == "heavy"]
+    regs = [h for h in sen if by[h]["activity_level"] != "heavy"]
+    record("full: Senior pillars (heavy) post more than the median regular Senior; every Senior posts",
+           min(sen[h] for h in pillars) > statistics.median([sen[h] for h in regs]) and min(sen.values()) > 0,
+           " ".join(f"{h}:{c}" for h, c in sorted(sen.items(), key=lambda kv: -kv[1])))
+    found = persona_findings(threads, people, ments)
+    live_ids = {t["id"] for t in threads if t.get("live")}
+    live_found = []
+    for k, v in found.items():
+        mine = [x for x in v if x.split()[0].split("/")[0].rstrip(":") not in live_ids]
+        live_found += [f"{k}: {x}" for x in v if x not in mine]
+        record(f"full: persona consistency across all threads: {k}", not mine, f"{len(mine)}: " + " | ".join(mine[:4]))
+    record("full: persona notes in the LIVE threads (can't be edited here; listed for the owner)", True, " | ".join(live_found) or "none")
+
+    # ---- helpful / accepted
+    acc_bad = []
+    for t in threads:
+        a = [r for r in t["replies"] if r["accepted"]]
+        if len(a) > 1:
+            acc_bad.append(f"{t['id']}: {len(a)} accepted")
+        for r in a:
+            if not (by[r["author"]]["role"] == "senior" or by[r["author"]]["years_in"] >= 2):
+                acc_bad.append(f"{t['id']}: accepted {r['author']}")
+            if r["author"] == t["author"] and not t.get("live"):
+                acc_bad.append(f"{t['id']}: starter accepted their own reply")
+    three = [t for t in threads if len(t["replies"]) >= 3]
+    share = sum(any(r["accepted"] for r in t["replies"]) for t in three) / len(three)
+    rng_bad = [t["id"] for t in threads if not 2 <= t["helpful_count"] <= 40] + \
+        [f"{t['id']}/r{i}" for t in threads for i, r in enumerate(t["replies"]) if not 0 <= r["helpful_count"] <= 45]
+    record("full: accepted answers: ≤1 per thread, by a Senior or a 2+ year Junior, not the starter; ~55% of 3+ reply threads (45-65%)",
+           not acc_bad and 0.45 <= share <= 0.65, f"{100 * share:.0f}% of {len(three)}; {acc_bad[:4]}")
+    record("full: helpful counts in range (threads 2-40, replies 0-45)", not rng_bad, str(rng_bad[:5]))
+    gaps = []
+    span = {"a week": 6, "one week": 6, "two weeks": 13, "2 weeks": 13, "three weeks": 20, "a few weeks": 13,
+            "a couple weeks": 11, "a couple of weeks": 11, "a month": 26, "last week": 4, "all week": 4}
+    for t in threads:
+        if t.get("live"):
+            continue
+        for i, r in enumerate(t["replies"]):
+            if r["author"] == t["author"] and re.search(r"\b(?:update|edit)\b", r["body"], re.I):
+                need = max([v for k, v in span.items() if re.search(rf"\b{k}\b", r["body"], re.I)], default=0)
+                if (dt(r["created_at"]) - dt(t["created_at"])).days < need:
+                    gaps.append(f"{t['id']}/r{i}: says ~{need}+ days, posted {(dt(r['created_at']) - dt(t['created_at'])).days} days later")
+    record("full: 'update:'/'edit:' replies come at least as late as the time they say has passed", not gaps, str(gaps[:4]))
+    hrs = Counter(dt(x).astimezone(NY).hour for t in threads for x in [t["created_at"]] + [r["created_at"] for r in t["replies"]])
+    record("full: posting-hour histogram (ET)", True, " ".join(f"{h}:{hrs[h]}" for h in range(24)))
+    return counts
 
 # ---------------------------------------------------------------- collabs
 ADDRESS_RE = re.compile(
@@ -464,7 +808,9 @@ def check_collabs(people, ments, collabs, threads):
     det = []
     for c, b in pitches:
         p = by[b["applicant"]]
-        if b["years_experience"] != p["years_in"] or b["is_licensed"] != bool(p["licenses"]) or (b["license_note"] or "") != ", ".join(p["licenses"]):
+        since = p.get("license_since") or {}
+        held = [x for x in p["licenses"] if x not in since or since[x] <= dt(b["applied_at"]).astimezone(NY).date().isoformat()]
+        if b["years_experience"] != p["years_in"] or b["is_licensed"] != bool(held) or (b["license_note"] or "") != ", ".join(held):
             det.append(f"{c['id']}/{b['applicant']}")
         if b.get("graduation_year") and str(b["graduation_year"])[2:] not in (p.get("affiliation_hint") or ""):
             det.append(f"{c['id']}/{b['applicant']}: grad year")
@@ -847,6 +1193,8 @@ def main() -> None:
     follows = load_json(args.follows)["follows"] if (SEED_DIR / args.follows).exists() else []
     if ments:
         check_social(people, threads, ments, follows)
+    if len(threads) > 20:
+        check_full(threads, people, ments, follows)
     collabs = load_json(args.collabs)["collabs"] if (SEED_DIR / args.collabs).exists() else []
     if collabs:
         check_collabs(people, ments, collabs, threads)

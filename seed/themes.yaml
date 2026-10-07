@@ -257,6 +257,204 @@ topics:
     pushback: ["PATH + train vs driving", "parking near jobsites is brutal", "don't move until you're sure you're staying"]
     answered_by: [S14, S15]
     fact_risk: ["toll amounts"]
+  # ---- added in the full-content pass (topics the writers introduced; framing = a representative title)
+  - id: A10_drug_test_background
+    category: A
+    framing: "Do union apprenticeships drug test now that weed is legal in Jersey?"
+    pushback: []
+    fact_risk: ["union apprenticeship drug testing policies", "NJ cannabis law vs employer and site safety policies"]
+    used_in: [T060]
+  - id: A11_no_car_no_license
+    category: A
+    framing: "No car and no license yet. Can I still get hired as a helper?"
+    pushback: []
+    fact_risk: []
+    used_in: [T059]
+  - id: A14_parents_want_college
+    category: A
+    framing: "How do I explain to my parents that the trades aren't a step down?"
+    pushback: []
+    fact_risk: ["college credit arrangements for apprenticeship coursework", "apprentices paid while training"]
+    used_in: [T061]
+  - id: A15_hvac_union_route
+    category: A
+    framing: "is there even a union route for residential hvac in nj?"
+    pushback: []
+    fact_risk: ["union HVAC routes in NJ (UA, sheet metal)", "UA Local 9 HVAC service work", "HVACR license experience requirement"]
+    used_in: [T062]
+  - id: A16_pre_apprenticeship
+    category: A
+    framing: "pre-apprenticeship programs: worth it or a waste of 10 weeks?"
+    pushback: []
+    fact_risk: ["pre-apprenticeship programs' links to union apprenticeships", "OSHA 10 included in such programs"]
+    used_in: [T063]
+  - id: A1_pick_the_shop_big_vs_small
+    category: A
+    framing: "Two HVAC offers: big company with a sales quota or a 3-truck shop. Which one?"
+    pushback: []
+    fact_risk: []
+    used_in: [T027]
+  - id: A1_which_local_jurisdiction
+    category: A
+    framing: "perth amboy: which ibew local am i even supposed to apply to"
+    pushback: []
+    fact_risk: ["IBEW Local 456 jurisdiction covers Perth Amboy", "applying to multiple locals in one cycle", "residency vs workplace rules"]
+    used_in: [T028]
+  - id: A2_apply_now_or_wait
+    category: A
+    framing: "Apply right out of high school, or wait a year so I don't tank the ranking?"
+    pushback: []
+    fact_risk: ["application fees", "whether programs keep notes from prior interviews", "eligibility age"]
+    used_in: [T034]
+  - id: A2_does_nonunion_time_count
+    category: A
+    framing: "does my non-union time count for anything when i apply to the union?"
+    pushback: []
+    fact_risk: ["credit for prior experience", "how interview and ranking are scored"]
+    used_in: [T030]
+  - id: A2_how_ranking_is_scored
+    category: A
+    framing: "How does the apprenticeship ranking actually get scored? Test, interview, both?"
+    pushback: []
+    fact_risk: ["how UA Local 24 scored its ranking", "whether programs publish their scoring"]
+    used_in: [T031]
+  - id: A4_pick_trade_by_pay
+    category: A
+    framing: "Is it dumb to pick electrical just because it's supposed to pay the most?"
+    pushback: []
+    fact_risk: ["union wage scales roughly similar across trades in North NJ", "locals publish wage and benefit packages"]
+    used_in: [T040]
+  - id: A4_resume_no_trade_hours
+    category: A
+    framing: "How do I put together a resume for a helper job when it's all bartending?"
+    pushback: []
+    fact_risk: []
+    used_in: [T044]
+  - id: A4_switcher_ama
+    category: A
+    framing: "Came in at 26 from restaurant management. Career switchers, ask me."
+    pushback: []
+    fact_risk: []
+    used_in: [T043]
+  - id: A4_test_drive_part_time
+    category: A
+    framing: "can i try a trade part time on weekends before i quit my day job?"
+    pushback: []
+    fact_risk: []
+    used_in: [T046]
+  - id: A4_too_young_under_18
+    category: A
+    framing: "17 and every shop says come back when I'm 18. Is that a real rule?"
+    pushback: []
+    fact_risk: ["NJ restrictions on minors on construction sites", "co-op / work-based learning programs at county vo-techs", "insurance age requirements"]
+    used_in: [T039]
+  - id: A4_women_switching_in
+    category: A
+    framing: "28, woman, calling plumbing shops in Gloucester County. Two hung up on me."
+    pushback: []
+    fact_risk: []
+    used_in: [T045]
+  - id: A6_nyc_aptitude_test_prep
+    category: A
+    nyc: true
+    framing: "What kind of math is on the aptitude test, and how did you study?"
+    pushback: []
+    fact_risk: ["Local 3 aptitude test content", "official practice materials"]
+    used_in: [T055]
+  - id: A6_nyc_city_tech_vs_union
+    category: A
+    nyc: true
+    framing: "Parents want college. Would City Tech's electrical program count for anything with Local 3?"
+    pushback: []
+    fact_risk: ["NYC College of Technology program offerings and location", "whether a college degree affects a Local 3 application"]
+    used_in: [T052]
+  - id: A6_nyc_local3_interview
+    category: A
+    nyc: true
+    framing: "Got called for the Local 3 interview after a year of waiting. What do they look for?"
+    pushback: []
+    fact_risk: ["Local 3 interview format", "how applicants are notified"]
+    used_in: [T051]
+  - id: A6_nyc_locals_roll_call
+    category: A
+    nyc: true
+    framing: "Local 1, Local 3, Local 638: how did you actually get in? Roll call"
+    pushback: []
+    fact_risk: ["Local 3 application and age requirements", "Local 1 and Local 638 application processes"]
+    used_in: [T053]
+  - id: A6_nyc_or_nj_local
+    category: A
+    nyc: true
+    framing: "Could I apply to a Jersey IBEW local instead of Local 3? Aunt lives in North Bergen"
+    pushback: []
+    fact_risk: ["IBEW Local 164 covers Hudson County", "residency proof requirements", "transferring an apprenticeship between locals"]
+    used_in: [T054]
+  - id: A7_low_voltage_way_in
+    category: A
+    framing: "low voltage is a way in, and nobody at the vo-tech ever mentions it"
+    pushback: []
+    fact_risk: ["NJ fire alarm licensing requirements", "controls integrators hiring from line-voltage shops"]
+    used_in: [T057]
+  - id: A8_hiring_ama
+    category: A
+    framing: "Hiring two first-year apprentices this fall. Ask me what I look for."
+    pushback: []
+    fact_risk: ["background checks and certified payroll on public school work"]
+    used_in: [T056]
+  - id: A9_application_paperwork
+    category: A
+    framing: "Before application season: get your paperwork together now, not the week it opens"
+    pushback: []
+    fact_risk: ["typical apprenticeship application documents", "transcript turnaround times"]
+    used_in: [T058]
+  - id: D5_shop_economics
+    category: D
+    framing: "Where the money from a $189 service call actually goes"
+    pushback: []
+    fact_risk: ["service call fee ($189) and tech wage ($22/hr) are one shop's", "paid drive time for employees"]
+    used_in: [T153]
+  - id: D6_benefits_health_insurance
+    category: D
+    framing: "Left a job with benefits. How do helpers handle health insurance?"
+    pushback: []
+    fact_risk: ["marketplace (Get Covered NJ) subsidies depend on household income"]
+    used_in: [T154]
+  - id: D7_1099_misclassification
+    category: D
+    framing: "new shop wants me on a 1099 with my own van. red flag or normal"
+    pushback: []
+    fact_risk: ["NJ independent-contractor test (ABC test) / misclassification", "1099 self-employment tax obligations"]
+    used_in: [T155]
+  - id: D8_tools_spend
+    category: D
+    framing: "How much did you actually spend on tools your first two years?"
+    pushback: []
+    fact_risk: []
+    used_in: [T156]
+  - id: F10_back_to_school
+    category: F
+    framing: "First week of the fall semester: 22 new faces, three have held a torch"
+    pushback: []
+    fact_risk: []
+    used_in: [T158]
+  - id: F11_small_wins_culture
+    category: F
+    framing: "Homeowner tried to hand me a $20 tip. Do you take it?"
+    pushback: []
+    fact_risk: []
+    used_in: [T174, T175, T176, T177]
+  - id: F8_first_solo_calls
+    category: F
+    framing: "first week running calls solo. no callbacks yet"
+    pushback: []
+    fact_risk: []
+    used_in: [T161, T168]
+  - id: F9_weather_rant
+    category: F
+    framing: "Rain rant: nine days of mud on an underground job in Jackson"
+    pushback: []
+    fact_risk: []
+    used_in: [T172, T173, T178]
 
 style_rules:   # plan §5, applied by hand to the sample threads
   - inconsistent capitalization across users
