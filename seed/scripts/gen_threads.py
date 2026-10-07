@@ -313,6 +313,12 @@ def build_full(drafts: list[str], out: str) -> None:
         t["starter_role"] = starter["role"]
         n_rep = len(t.get("replies", []))
         t["helpful_count"] = lognormal_int(rng, 2.0 + (0.4 if starter["role"] == "senior" else 0) + 0.05 * n_rep, 0.6, 2, 40)
+        if not n_rep:
+            # Nobody answered: a question gets a few "me too" votes at most; a Senior's
+            # tip can still be found useful on its own. (Capped after the draw, so the
+            # random stream, and every other thread's counts, stay unchanged.)
+            cap = 12 if starter["role"] == "senior" and t.get("type") == "tip" else 4
+            t["helpful_count"] = min(t["helpful_count"], cap)
         for r in t.get("replies", []):
             mu = 1.5 if people[r["author"]]["role"] == "senior" else 0.5
             if r.get("accepted"):

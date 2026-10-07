@@ -739,6 +739,11 @@ def check_full(threads, people, ments, follows):
     record("full: accepted answers: ≤1 per thread, by a Senior or a 2+ year Junior, not the starter; ~55% of 3+ reply threads (45-65%)",
            not acc_bad and 0.45 <= share <= 0.65, f"{100 * share:.0f}% of {len(three)}; {acc_bad[:4]}")
     record("full: helpful counts in range (threads 2-40, replies 0-45)", not rng_bad, str(rng_bad[:5]))
+    # A thread nobody answered shouldn't look popular: questions <=4, Senior tips <=12 (live ones exempt).
+    unanswered_hot = [f"{t['id']}={t['helpful_count']}" for t in threads if not t.get("live") and not t.get("replies")
+                      and t["helpful_count"] > (12 if t.get("starter_role") == "senior" and t.get("type") == "tip" else 4)]
+    record("full: unanswered threads don't outvote answered ones (questions <=4, Senior tips <=12)",
+           not unanswered_hot, str(unanswered_hot[:5]))
     gaps = []
     span = {"a week": 6, "one week": 6, "two weeks": 13, "2 weeks": 13, "three weeks": 20, "a few weeks": 13,
             "a couple weeks": 11, "a couple of weeks": 11, "a month": 26, "last week": 4, "all week": 4}
