@@ -44,13 +44,30 @@ export default async function SearchPage({
       <h1 className="mb-1 text-xl font-semibold">
         {q ? `Results for “${q}”` : "Search"}
       </h1>
-      <p className="mb-6 text-[13px] text-zinc-600">
+      <p className="mb-4 text-[13px] text-zinc-600">
         Search posts and members across the community.
       </p>
+      {/* Its own box: on phones the header's search lives behind the menu. */}
+      <form action="/search" role="search" className="mb-6 flex gap-2">
+        <input
+          type="search"
+          name="q"
+          defaultValue={q}
+          aria-label="Search posts and members"
+          placeholder="Search posts & members…"
+          className="min-w-0 flex-1 rounded-lg border border-zinc-300 bg-white px-3 py-2 text-sm outline-none focus:border-brand-500 focus-visible:ring-2 focus-visible:ring-brand-200"
+        />
+        <button
+          type="submit"
+          className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"
+        >
+          Search
+        </button>
+      </form>
 
       {!q ? (
         <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500">
-          Type a query in the search box above.
+          Search for a topic, a tool, or a member&apos;s handle.
         </p>
       ) : (
         <>
