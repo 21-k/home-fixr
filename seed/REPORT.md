@@ -401,3 +401,88 @@ Seniors.
     dedupe. Fine as-is?
 12. **Next pass:** the remaining ~170 threads from `content/thread_briefs.json`, collabs with pitches,
     mentor requests (status only), follows, real heat-wave dates, and images (§5a).
+
+---
+
+## 9. Social layer (mentorships + follows), branch `feat/seed-social`
+
+The live batch `fm-2026-10` (136 Founding accounts, 20 threads) showed 0 followers and 0 mentees
+everywhere. This pass adds the social graph, fixes the helpful-vote oddities, and ships both to
+production as one additions-only SQL file.
+
+### What was built
+- **`seed/scripts/gen_social.py`** (deterministic, `common.RNG_SEED + 29`; two runs give byte-identical
+  files) → `seed/content/mentorships.json` and `seed/content/follows.json`.
+- **`gen_threads.py` `rebalance_helpful()`**: accepted answers and substantive Senior answers (40+
+  words) now lead on helpful votes. It swaps counts with the reply that outranks them (any reply when the
+  leader is accepted, only short ones under 25 words otherwise), so the thread keeps the same numbers;
+  a tie bumps the leader by 1. 11 replies in 6 threads changed (T02, T05, T07, T10, T15, T17), e.g. T15:
+  Ziggy's accepted answer 8 → 29, Rui's 21-word "Agree with Ziggy" 29 → 8. Timestamps and everything
+  else are byte-identical. **These rows are already live**, so the production file corrects them.
+- **`seed.py`** inserts mentorships and follows in the same transaction and batch (`seed_batch_id`,
+  `homefixr.seeding = 'on'`) for local seeding and for `--emit-sql`, with new checks (seeded-to-seeded
+  only, junior → senior, one active mentor per Junior, every mentee follows their mentor, nothing outside
+  the window or before both people joined). New **`--emit-additions-sql PATH`** (see below).
+  `--no-social` seeds the batch as it went live.
+- **`wipe.py`** needed no change: it already deletes `follows` and `mentorships` by `seed_batch_id`
+  before replies/posts/users, and its dependent-row refusal only counts rows *not* tagged with the batch.
+- **`qa.py`**: 34 new checks (pure data, DB, rendered pages), listed under QA results.
+- `seed/content/live_helpful_fm-2026-10.json`: the helpful counts as seeded to production (from
+  `e3b036e`, confirmed on the live T15 page on Oct 7: 8 on the accepted answer, 29 on Rui's reply). The
+  additions file applies the difference from these, so real members' votes since then are kept.
+
+### How the graph was made
+**Mentorships (36: 22 active = 61%, 11 pending, 3 declined)**
+- Active mentees per Senior are set by hand: three pillars with 3–5 (ms_almonte 5, the vo-tech
+  instructor; oldsteam_zig 4; Kash_sing 3), six with 1–2, six with 0. Two of the four "not taking
+  mentees" Seniors carry actives (dreb_jman 2, codebook_dale 1), which is why they're full.
+- Pairs the threads imply come first (10 rows): threeway_02 → mbell_wireman (T01, thanked the accepted
+  answer), Edison.volts → thiago_sparks (T02, "update: got hired" at the kind of shop Thiago pointed to),
+  TryingAllThree → joyd_plumbing (T03, "the ride-along idea"), Kearny_Pipefitter → joyd_plumbing (T09,
+  "like Joy said"), Exit117Plumber → oldsteam_zig (T15), ExRetail_NowHVAC → ms_almonte (T06 + T19),
+  Flushing.sparks → dreb_jman (T04, NYC); pending: Dev_H → rui_t_kearny (T10), LiveFrontLessons →
+  thiago_sparks (T07; he thanked Dale too, but Dale isn't taking mentees), epa60812_2 → hec_does_ac (T16).
+  Every request is dated after the thread exchange.
+- The rest are drawn: Juniors weighted by path (career switcher 2.6, vo-tech 2.0, non-union 1.0, union
+  0.45) × activity (heavy 3.2, regular 2.2, occasional 0.8, lurker 0.1); matched by trade first
+  (ms_almonte and haddad_mech also take plumbing), then region; NYC Juniors only to the NYC Seniors.
+  Pending and declined requests go only to "limited" Seniors (the app hides the request button on "Not
+  taking mentees" profiles), pending ones mostly in the last three weeks. A Senior never answers their own
+  mentee's later thread as if they were strangers (the request always follows the exchange).
+- `mentorships` stores only `created_at`, so it is the request time. The accept/decline time is kept in
+  the JSON (`decided_at`) for QA: 2 h to 6 days, median about a day.
+- Result: 8/24 career switchers and 7/32 vo-tech Juniors have a mentor vs 7/65 others; regular 11/24,
+  heavy 1/6 (two more heavy Juniors have a pending request), occasional 9/42, lurkers 1/49. All 22
+  actives are in the mentor's trade; 14/22 in the same region; NYC 4/4.
+
+**Follows (389)**
+- 28/136 accounts (21%) follow nobody, mostly lurkers. Every mentee follows their mentor (22), most
+  requesters follow the Senior they asked (9), Juniors follow the Seniors who answered their threads,
+  usually within hours (23), Seniors who argued in the same thread follow each other (28 thread-prompted
+  in all), the rest by popularity × trade × region (307). Seniors follow other Seniors (49 follows) and
+  only a few standout Juniors (heavy/regular, 7).
+- Followers: pillars 22–40 (oldsteam_zig 40, Kash_sing 31, mbell_wireman 26, codebook_dale 22,
+  ms_almonte 22); other Seniors 6–14; heavy Juniors 2–8; regular 0–8 (median 3); occasional 0–3;
+  lurkers 0–1. 231/389 follows are within the same trade, 158 within the same region.
+- No follow or request is before both people joined, at 0–4 am, or after Oct 4 23:59 ET.
+
+### Per-Senior
+| handle | availability | active mentees | pending | declined | followers | follows |
+|---|---|---|---|---|---|---|
+| oldsteam_zig | limited | 4 | 1 | 0 | 40 | 4 |
+| mbell_wireman | limited | 2 | 1 | 0 | 26 | 4 |
+| thiago_sparks | limited | 1 | 3 | 0 | 14 | 4 |
+| Kash_sing | limited | 3 | 0 | 1 | 31 | 4 |
+| dhollis61 | not accepting | 0 | 0 | 0 | 12 | 5 |
+| hec_does_ac | limited | 0 | 1 | 0 | 10 | 4 |
+| codebook_dale | not accepting | 1 | 0 | 0 | 22 | 3 |
+| joyd_plumbing | limited | 2 | 0 | 0 | 11 | 2 |
+| ms_almonte | limited | 5 | 2 | 1 | 22 | 3 |
+| wchen_controls | limited | 0 | 1 | 1 | 13 | 3 |
+| haddad_mech | limited | 0 | 1 | 0 | 13 | 2 |
+| rui_t_kearny | limited | 0 | 1 | 0 | 14 | 5 |
+| tnguyen_refrig | not accepting | 0 | 0 | 0 | 11 | 6 |
+| dreb_jman | not accepting | 2 | 0 | 0 | 6 | 5 |
+| bklyn_arkady | limited | 2 | 0 | 0 | 6 | 3 |
+
+<!-- SOCIAL-RESULTS -->
