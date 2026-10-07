@@ -642,6 +642,35 @@ def check_full(threads, people, ments, follows):
            not fol and not fx and not dreb_late and dt(tmap["T099"]["created_at"]) > t04_last,
            f"T125 {dt(t125['created_at']).astimezone(NY):%m-%d}, T124 {dt(tmap['T124']['created_at']).astimezone(NY):%m-%d}, "
            f"T099 {dt(tmap['T099']['created_at']).astimezone(NY):%m-%d} (T04 last reply {t04_last.astimezone(NY):%m-%d}); {fol + fx}")
+    # Text that only holds on certain dates (reports/integration_edits.md, persona review).
+    dated = [  # (thread, author, phrase, earliest ET date, latest ET date)
+        ("T030", "threeway_02", "helper job in Irvington Monday", None, "2026-08-23"),
+        ("T143", "threeway_02", "haven't even started yet", None, "2026-08-23"),
+        ("T190", "threeway_02", "just starting out", None, "2026-08-23"),
+        ("T091", "threeway_02", "six weeks into", "2026-09-28", None),
+        ("T203", "ExRetail_NowHVAC", "Haven't started yet", None, "2026-09-27"),
+        ("T194", "ExRetail_NowHVAC", "End of my first week", "2026-10-02", None),
+        ("T069", "RainDayRestock", "six weeks into", "2026-09-28", None),
+        ("T099", "groundrod_05", "the Queens one starts next week", "2026-09-20", "2026-10-04"),
+        ("T053", "groundrod_05", "interview last week", None, None),
+    ]
+    dbad = []
+    for tid, who, phrase, lo, hi in dated:
+        t = tmap[tid]
+        hits = [x for a, b, x in [(t["author"], t["body"], t["created_at"])] + [(r["author"], r["body"], r["created_at"]) for r in t["replies"]]
+                if a == who and phrase.lower() in b.lower()]
+        if len(hits) != 1:
+            dbad.append(f"{tid}: '{phrase}' not found once")
+            continue
+        d = dt(hits[0]).astimezone(NY).date().isoformat()
+        if (lo and d < lo) or (hi and d > hi):
+            dbad.append(f"{tid} {who} '{phrase}' on {d}")
+    t051 = next(dt(r["created_at"]) for r in tmap["T051"]["replies"] if r["author"] == "groundrod_05" and "had it" in r["body"])
+    t053 = next(dt(r["created_at"]) for r in tmap["T053"]["replies"] if r["author"] == "groundrod_05")
+    if not (dt(tmap["T051"]["created_at"]) + timedelta(days=2) <= t051 <= dt(tmap["T051"]["created_at"]) + timedelta(days=8) and
+            timedelta(days=3) <= t053 - t051 <= timedelta(days=13)):
+        dbad.append("groundrod_05's interview timeline (T051 'Monday' -> 'had it' -> T053 'last week')")
+    record("full: date-bound statements land on dates that make them true", not dbad, str(dbad))
     cred, strg = [], []
     for t in threads:
         L = mentor_links(t, ments)

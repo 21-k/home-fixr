@@ -655,3 +655,179 @@ warn, 0 fail** (the two existing warnings). `npm run lint` clean, `npm run build
 
 The collabs file refuses unless 0013 is in, all 136 batch profiles match, and the social additions are
 in (it checks the 7 mentee pitches' mentorships); it refuses a second run; notifications unchanged.
+
+
+---
+
+## 11. Full thread set: 213 threads (branch `feat/seed-content`)
+
+The five writer drafts (`seed/content/drafts/threads.{A,B,C,DF,E}.authored.yaml`, T021-T213) merged with the
+20 live threads. Every change to a draft is logged with the original text in
+`seed/reports/integration_edits.md`.
+
+### Pipeline
+```bash
+uv run seed/scripts/gen_threads.py check seed/content/drafts/threads.E.authored.yaml   # any file, alone (--alone) or with the samples
+uv run seed/scripts/gen_threads.py full            # 20 live (pinned) + all drafts -> content/threads.json, persona_memory, fact_checklist
+uv run seed/scripts/relabel_activity.py            # Juniors' activity_level by posts (49/42/24/6 kept)
+uv run seed/scripts/schedule.py --full --end 2026-10-04   # -> content/threads.scheduled.json (live timestamps pinned)
+uv run seed/scripts/qa.py --threads content/threads.scheduled.json [--db --app http://localhost:3000 --member-cookie ...]
+uv run seed/scripts/seed.py --emit-threads-sql seed/out/additions-threads-fm-2026-10.sql --threads content/threads.scheduled.json
+```
+- **gen_threads.py**: `check` validates any authored file, either alone or merged (it covers authors, lengths, voice rules, unique ids and titles, `when`, and topics present in themes.yaml). `full` keeps the live threads byte-for-byte (text, helpful counts, accepted flags and timestamps all come from `threads.sample.scheduled.json`). New threads get helpful counts by the same rules as before: log-normal draws, then `rebalance_helpful` so that accepted answers and substantive Senior answers lead. That moved 63 replies. themes.yaml gained the writers' 32 new topic ids.
+- **schedule.py --full**: each live thread uses up its own day's slot, and the 193 new threads fill the rest of `daily_plan`. Each new thread gets a date window built from these limits:
+  - its whole cast has joined;
+  - its `when` hint (soft by 7 days at each edge);
+  - follow-ups land 4+ days after the thread they follow (T021 and T131 after T12, T042 after T03, T049 after T10, T099 after T04);
+  - the writer-flagged windows (T125 by Aug 16, T124 from Sep 28);
+  - a Junior who names their mentor posts after the mentorship started;
+  - an active mentor answering their mentee like a stranger must do it before the request;
+  - long threads stay clear of the last days, so nothing piles up at 11:59pm on Oct 4.
+
+  The schedule fills the windows earliest deadline first, then spreads any leftovers onto the least-loaded days. Bumped replies also stay out of 0-4am.
+- **relabel_activity.py**: see "Activity caps" below.
+- **seed.py --emit-threads-sql**: see "Production".
+
+### Merged totals and distributions (QA output, `seed/reports/full_qa_local.txt`)
+- **213 threads, 1,224 replies** (193 new with 1,125 replies; the drafts had 1,139, and the integration removed 14). Senior starters: 32 (15%).
+- Category mix against plan §4: A 47 (22.1% vs 22), B 30 (14.1 vs 14), C 43 (20.2 vs 20), D 30 (14.1 vs 14), E 38 (17.8 vs 18), F 25 (11.7 vs 12).
+- NYC: 23/213 = 10.8%. Zero-reply threads: 18 = 8.5%.
+- Reply depth: 62/29/10% of threads with replies fall in 2-5/6-12/13-25, with a max of 24. Lengths are right-skewed: bodies median 90 / mean 92 words, replies median 31 / mean 37.
+- Posting hours: 80% in the §6 windows, none at 0-4am, 2 on Friday nights. Thread volume follows `daily_plan`: 40 of 73 days exact, 11 off by 2-3 (writers' hints lean late September).
+- Overlap: no 12-word overlaps across all 213 threads. 227 pairs share an 8-gram. 214 of them are the same persona repeating a catchphrase (haddad_mech's "here's what I look for when I hire", for example). The 13 cross-person ones are stock phrases ("sorry if this is a dumb question but").
+- Helpful/accepted: 56% of the 177 threads with 3+ replies have an accepted answer. Every accepted answer leads its thread. No short reply outvotes a substantive Senior answer. Accepted answers come only from Seniors or Juniors with 2+ years.
+- `when` hints: 120 of 169 fall strictly inside their window and the rest within 7 days. Seven hints are impossible because the cast hadn't all joined yet (T065, T070, T073, T074, T075, T083, T084); those threads land just after the last join.
+- Only one pork roll thread (T20). T165 is the Wawa/QuickChek follow-up.
+
+Per-persona posts (threads + replies), top 15:
+
+| # | persona | role / activity | threads | replies | total |
+|---|---|---|---|---|---|
+| 1 | Kash_sing | senior / heavy | 5 | 71 | 76 |
+| 2 | oldsteam_zig | senior / heavy | 3 | 62 | 65 |
+| 3 | mbell_wireman | senior / heavy | 3 | 60 | 63 |
+| 4 | codebook_dale | senior / heavy | 3 | 58 | 61 |
+| 5 | thiago_sparks | senior / regular | 1 | 49 | 50 |
+| 6 | hec_does_ac | senior / regular | 3 | 44 | 47 |
+| 7 | haddad_mech | senior / regular | 2 | 42 | 44 |
+| 8 | rui_t_kearny | senior / regular | 2 | 40 | 42 |
+| 9 | ms_almonte | senior / heavy | 3 | 39 | 42 |
+| 10 | joyd_plumbing | senior / regular | 1 | 40 | 41 |
+| 11 | dreb_jman | senior / regular | 4 | 30 | 34 |
+| 12 | tnguyen_refrig | senior / regular | 1 | 32 | 33 |
+| 13 | benplumb79 | junior / heavy | 9 | 23 | 32 |
+| 14 | bklyn_arkady | senior / regular | 0 | 26 | 26 |
+| 15 | JerseyTomatoWires | junior / heavy | 4 | 21 | 25 |
+
+Top Juniors: benplumb79 32, JerseyTomatoWires 25, plumbguy917 24, peteplumb80 24, neutral_bar_99 24, JunctionBoxJunkie 23, Dev_H 21, HeatwaveOnCall 19
+
+### Activity caps (deviation, by arithmetic)
+The plan's caps (occasional ≤3, regular ≤8, heavy ≤15) can't all hold at this volume. The caps' midpoints
+add up to ~330 Junior posts, but the threads have ~790 (×2.4). Juniors already write 55% of the posts; meeting the
+caps would need Seniors to write about 75%. So:
+- **Lurkers:** at most 2 posts each, as asked.
+- **Zero posts:** ≥20% of users have none, 28/136. Getting there removed 8 one-line me-too replies (logged).
+- **Heavy:** the cap is ×2.4. benplumb79's 32 is the top.
+- **Levels re-ranked:** `relabel_activity.py` hands out levels by post count, keeping the plan mix of 49/42/24/6. 22 Juniors changed level. The ranges are now lurker 0-2, occasional 3-10, regular 10-21, heavy 23-32. `activity_level` is seed-only: there is no column and nothing renders it. The social graph QA still passes with the new levels.
+- **Pillars:** the heavy Seniors post more than the median regular Senior. ms_almonte (42) is the quietest pillar; thiago_sparks (50) and hec_does_ac (47) are busier regulars.
+
+### QA added for the full set (all PASS)
+- Plan distributions as above.
+- The live threads are unchanged.
+- Every post comes after its author joined (new threads: after the whole cast), and replies are in order inside the window.
+- Hints, follow-ups and the writer-flagged windows (T125 before Aug 17, including dreb_jman's replies; T124 Sep 28 - Oct 4; T099 after T04's last reply).
+- Mentees credit a mentor only after the mentorship started. No active mentor answers their mentee like a stranger; this rule is now active-only, since a "pending" or "declined" Senior can answer anyone.
+- "update:"/"edit:" replies come at least as late as the time they say has passed.
+- Date-bound statements from the persona review land on true dates.
+- Persona consistency across ALL threads (regex checks on self-statements): years, age, town, trade, union vs non-union, licences (EPA 608 claims against the persona's licences and `license_since`), "my mentor", school year, and employer type.
+- Lowercase voices stay lowercase.
+- Activity, zero-post users, Senior pillars, and the helpful/accepted rules.
+- A posting-hour histogram.
+
+The follow-graph check "Juniors follow the Senior they accepted" stays on the 20 threads the graph was built from. The graph is in PR #8 and wasn't regenerated.
+
+Persona review: a second pass read every first-person sentence of 95 personas against their records. It found 13 contradictions, all fixed with minimal draft edits:
+- threeway_02 hadn't started his job yet in August;
+- ExRetail_NowHVAC's job starts Sep 28;
+- groundrod_05: 2 years in, the interview timeline, and the Bronx→Queens move;
+- JunctionBoxJunkie: school was out in summer;
+- peteq75;
+- RainDayRestock;
+- TryingAllThree's ride-along story;
+- hudson_conduit's commute;
+- Flushing.sparks' weekend job;
+- big_hector_plumb;
+- HeatwaveOnCall's 608 test;
+- OpenNeutralBlues;
+- emt_bender_200amp.
+
+Left for the owner (live, so not editable here):
+- T20: hec_does_ac says "I'm from Gloucester County" against his Camden/Cherry Hill profile. This could be read as where he grew up.
+- In live T06/T19, ExRetail "starts next month" (Sep 14) and then "Monday" (Sep 26).
+- T06/r4 isn't lowercase for a lowercase voice.
+- In T06, ms_almonte accepts her own reply.
+- `years_experience` (live) looks off for two Juniors: chris.plumb (2, vo-tech '25) and epa608_672 (0, vo-tech '24 with a first job).
+
+### Persona changes (`seed/personas/juniors.json`)
+- **Class of '26 → '27** (they are current students and seniors in fall 2026, as the live T15 "vo-tech senior" in August already implies). Affected: UndecidedTradesKid, OpenNeutralBlues, BentConduitClub, Raritan.airside, Exit117Plumber, JunctionBoxJunkie, GSP_Exit82 and big_ben_tools. The change is in `affiliation_hint` and `claims` (seed-only).
+- **Rendered on live profiles: 2 bios.** The threads SQL updates both, guarded: only where the bio is still the seeded text.
+  - Exit117Plumber: "…county vo-tech. Graduating 2026. Trying…" → "…Graduating 2027. Trying…"
+  - GSP_Exit82: "…county vo-tech, graduating 2026. trying…" → "…graduating 2027. trying…"
+- **Licences earned in the content** (seed-only):
+  - ExRetail_NowHVAC: EPA 608 Universal since 2026-09-26 (live T19).
+  - plumbguy917: Type II since 2026-09-29 (T086).
+  - CentralJersey_Coils: Universal since 2026-10-03 (T167).
+
+  gen_collabs.py now dates the licences, so a pitch only shows a licence held when it was sent.
+- **activity_level:** 22 Juniors re-ranked (listed in integration_edits.md).
+- In draft T093, neutral_bar_99's "junior year" became "senior year" (he's class of '27).
+
+### Collab notes changed to agree with the threads
+- C19 ExRetail_NowHVAC: "testing next month" → "testing for my 608 this week". He passes Sep 26 in live T19.
+- C08 briplumb87: "the drain company" → "the shop". He works for a small plumbing shop in T087 and T053.
+
+The collabs SQL was re-emitted.
+
+### Also fixed in the app
+`/mentors` counted "answered" by selecting every reply and tallying. That silently stopped at the API's 1,000-row
+`max_rows` cap once the site had more than 1,000 replies: oldsteam_zig showed 0 instead of 62. It now runs an
+exact count per listed mentor. Production has the same 1,000-row default, so after the threads go live the
+directory would have shown wrong counts without this fix.
+
+### Fact checklist
+`seed/reports/fact_checklist.md` holds 307 distinct claims, grouped by topic with their thread ids, deduplicated. They
+come from the writers' `fact_risk` (and themes.yaml for the live threads). The sentence-level flags are in
+`seed/reports/fact_lint.md`, which covers all 213 threads; 341 of its sentences are marked not hedged. The §5 list still applies.
+
+### Local cycle (`seed/reports/full_local_cycle.txt`)
+The sequence was:
+1. `db reset`
+2. 0001-0011 + demo seed (baseline 9/5/4)
+3. The batch as live: threads from e3b036e, no social, live bios
+4. Social additions SQL
+5. 0012
+6. 0013
+7. Collabs SQL: COMMIT
+8. **Threads SQL: COMMIT.** 213 threads and 1,224 replies; notifications stayed at 11; both bios updated.
+
+**Running the threads file again refused** ("some of the new threads already exist", exit 3, nothing changed).
+
+The checks against that state:
+- `qa.py --threads content/threads.scheduled.json --db --app http://localhost:3000 --allow-unverified-handles --member-cookie …`: **164 pass, 1 warn (Reddit 404s), 0 fail**. All 213 thread pages render with badges, and all 136 profiles' follower, mentee and answer counts match the DB.
+- `npm run test:app`: 19/19.
+- `wipe.py`: back to baseline (9/5/4/3/0/3/0/4/11/0/9).
+- The full state was restored afterwards.
+- `npm run lint` clean, `npm run build` OK, `npm test` 20/20, `npm run test:db` 24/24.
+
+Screenshots: `seed/reports/screens/feed/feed-{desktop,mobile}.png` and `seed/reports/screens/collabs/*`. Locally,
+the 5 demo posts (created at seed time, "1m ago") sit above the seeded ones.
+
+### Production (whole pass), in order
+0. PR #8 (social): 0012 + `additions-social-fm-2026-10.sql`, if not already applied.
+1. **0013 on production** (db push / SQL editor), before the merge, because the app selects `filled_at`.
+2. **Merge this PR** (deploy).
+3. **Collabs:** `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/additions-collabs-fm-2026-10.sql`
+4. **Threads:** `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/additions-threads-fm-2026-10.sql`
+
+Each file is one transaction that checks itself and refuses a second run. The threads file needs only the live batch, and it
+updates the two bios. Re-run `qa.py` against production pages afterwards if a read-only check is wanted.

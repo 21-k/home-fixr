@@ -1,0 +1,32 @@
+Full-set local cycle, 2026-10-07 (local Supabase, project home-fixr). Columns: label profiles posts replies mentorships follows job_collabs filled collab_interests notifications messages auth.users
+
+== db reset
+{"target":"local","version":"","message":"Reset local database."}
+setup exit 0
+baseline 9 5 4 3 0 3 0 4 11 0 9
+base seed exit 0
+Exit117Plumber|Senior in the plumbing program at the county vo-tech. Graduating 2026. Trying to figure out union vs going straight to a shop.
+GSP_Exit82|senior in the the trades program at the county vo-tech, graduating 2026. trying to figure out union vs going straight to a shop
+live batch (as in production) 145 25 103 3 0 3 0 4 11 0 145
+social additions exit 0
++ social 145 25 103 39 389 3 0 4 11 0 145
+0012 exit 0
+0013 exit 0
+
+collabs exit 0
++ 0013 + collabs 145 25 103 39 389 23 20 65 11 0 145
+
+threads exit 0
++ threads 145 218 1228 39 389 23 20 65 11 0 145
+Exit117Plumber|Senior in the plumbing program at the county vo-tech. Graduating 2027. Trying to figure out union vs going straight to a shop.
+GSP_Exit82|senior in the the trades program at the county vo-tech, graduating 2027. trying to figure out union vs going straight to a shop
+== threads file again
+ERROR:  batch fm-2026-10: some of the new threads already exist: these additions were already applied
+CONTEXT:  PL/pgSQL function inline_code_block line 146 at RAISE
+threads again exit 3
+after refused rerun 145 218 1228 39 389 23 20 65 11 0 145
+QA (qa.py --threads content/threads.scheduled.json --db --app ... --member-cookie): 164 pass, 1 warn, 0 fail (full_qa_local.txt)
+node tests/app/collabs-filled.mjs --screens: 19/19
+before wipe (full state) 145 218 1228 39 389 23 20 65 11 0 145
+wipe.py deleted: {'collab_interests': 61, 'follows': 389, 'mentorships': 36, 'replies': 1224, 'posts': 213, 'job_collabs': 20, 'notifications': 0, 'auth.users (+profiles)': 136, 'auth.users (orphans)': 0}
+after wipe (= baseline) 9 5 4 3 0 3 0 4 11 0 9

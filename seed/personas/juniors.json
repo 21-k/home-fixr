@@ -402,7 +402,7 @@
       "find a shop that teaches",
       "get on the books"
     ],
-    "activity_level": "occasional",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -453,7 +453,7 @@
       "top out",
       "get my journeyman card"
     ],
-    "activity_level": "regular",
+    "activity_level": "heavy",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -593,7 +593,7 @@
     "title": "Vo-tech student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Essex County vo-tech, class of '26",
+    "affiliation_hint": "Essex County vo-tech, class of '27",
     "licenses": [],
     "bio": "Vo-tech student. Shop class is the only class I actually like lol.",
     "voice": {
@@ -618,7 +618,7 @@
       "votech student",
       "from around Newark, Essex",
       "0 yrs in",
-      "Essex County vo-tech, class of '26"
+      "Essex County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "initials",
@@ -799,7 +799,7 @@
     "title": "electrical student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Essex County vo-tech, class of '26",
+    "affiliation_hint": "Essex County vo-tech, class of '27",
     "licenses": [],
     "bio": "In the electrical program at the county vo-tech. Looking for a helper job on weekends.",
     "voice": {
@@ -823,7 +823,7 @@
       "votech student",
       "from around Nutley, Essex",
       "0 yrs in",
-      "Essex County vo-tech, class of '26"
+      "Essex County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "initials",
@@ -1069,7 +1069,7 @@
       "get real school hours",
       "eventually get licensed"
     ],
-    "activity_level": "occasional",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -1119,7 +1119,7 @@
       "get real school hours",
       "eventually get licensed"
     ],
-    "activity_level": "occasional",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -1169,7 +1169,7 @@
       "learn commercial",
       "get a raise"
     ],
-    "activity_level": "occasional",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -1220,7 +1220,7 @@
       "top out",
       "get my journeyman card"
     ],
-    "activity_level": "lurker",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -1361,7 +1361,7 @@
     "title": "electrical student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Hudson County vo-tech, class of '26",
+    "affiliation_hint": "Hudson County vo-tech, class of '27",
     "licenses": [],
     "bio": "",
     "voice": {
@@ -1386,7 +1386,7 @@
       "votech student",
       "from around North Bergen, Hudson",
       "0 yrs in",
-      "Hudson County vo-tech, class of '26"
+      "Hudson County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "none",
@@ -1580,7 +1580,7 @@
       "learn commercial",
       "get a raise"
     ],
-    "activity_level": "occasional",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -2289,7 +2289,7 @@
     "title": "HVAC student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Middlesex County vo-tech, class of '26",
+    "affiliation_hint": "Middlesex County vo-tech, class of '27",
     "licenses": [],
     "bio": "",
     "voice": {
@@ -2314,7 +2314,7 @@
       "votech student",
       "from around Sayreville, Middlesex",
       "0 yrs in",
-      "Middlesex County vo-tech, class of '26"
+      "Middlesex County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "none",
@@ -2356,7 +2356,7 @@
     "goals": [
       "learn service, not just new construction"
     ],
-    "activity_level": "regular",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -2489,9 +2489,9 @@
     "title": "plumbing student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Middlesex County vo-tech, class of '26",
+    "affiliation_hint": "Middlesex County vo-tech, class of '27",
     "licenses": [],
-    "bio": "Senior in the plumbing program at the county vo-tech. Graduating 2026. Trying to figure out union vs going straight to a shop.",
+    "bio": "Senior in the plumbing program at the county vo-tech. Graduating 2027. Trying to figure out union vs going straight to a shop.",
     "voice": {
       "register": "chatty",
       "punctuation": "normal",
@@ -2513,7 +2513,7 @@
       "votech student",
       "from around Piscataway, Middlesex",
       "0 yrs in",
-      "Middlesex County vo-tech, class of '26"
+      "Middlesex County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "initials",
@@ -2557,7 +2557,7 @@
       "get a foot in the door",
       "not go broke the first year"
     ],
-    "activity_level": "regular",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": 36,
     "claims": [
@@ -2708,7 +2708,7 @@
       "figure out which trade",
       "find a pre-apprenticeship"
     ],
-    "activity_level": "heavy",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": 40,
     "claims": [
@@ -2794,7 +2794,9 @@
     "years_in": 0,
     "path": "votech_student",
     "affiliation_hint": "Monmouth County vo-tech, class of '27",
-    "licenses": [],
+    "licenses": [
+      "EPA 608 Universal"
+    ],
     "bio": "In the HVAC program at the county vo-tech. Looking for a helper job on weekends.",
     "voice": {
       "register": "formal",
@@ -2818,7 +2820,8 @@
       "votech student",
       "from around Asbury Park, Monmouth",
       "0 yrs in",
-      "Monmouth County vo-tech, class of '27"
+      "Monmouth County vo-tech, class of '27",
+      "passed EPA 608 Universal Oct 3 2026 (T167)"
     ],
     "fact_flags": [],
     "avatar_style": "none",
@@ -2826,7 +2829,10 @@
     "joined_at": "2026-08-15T14:38:39-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
-    "seed_batch_id": "fm-2026-10"
+    "seed_batch_id": "fm-2026-10",
+    "license_since": {
+      "EPA 608 Universal": "2026-10-03"
+    }
   },
   {
     "slot_id": "J056",
@@ -2965,7 +2971,7 @@
     "goals": [
       "learn service, not just new construction"
     ],
-    "activity_level": "regular",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -3066,7 +3072,7 @@
       "figure out which trade",
       "find a pre-apprenticeship"
     ],
-    "activity_level": "occasional",
+    "activity_level": "lurker",
     "mentor_availability": null,
     "age": 31,
     "claims": [
@@ -3322,7 +3328,7 @@
       "find a shop that teaches",
       "get on the books"
     ],
-    "activity_level": "lurker",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -3373,7 +3379,7 @@
       "figure out which trade",
       "find a pre-apprenticeship"
     ],
-    "activity_level": "occasional",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": 40,
     "claims": [
@@ -3528,7 +3534,7 @@
       "land a real apprenticeship",
       "get my 608"
     ],
-    "activity_level": "occasional",
+    "activity_level": "lurker",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -3579,7 +3585,7 @@
     "goals": [
       "get on with a shop that sends me to school"
     ],
-    "activity_level": "occasional",
+    "activity_level": "lurker",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -3665,7 +3671,7 @@
     "title": "electrical student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Mercer County vo-tech, class of '26",
+    "affiliation_hint": "Mercer County vo-tech, class of '27",
     "licenses": [],
     "bio": "In the electrical program at the county vo-tech. Looking for a helper job on weekends.",
     "voice": {
@@ -3689,7 +3695,7 @@
       "votech student",
       "from around Hamilton, Mercer",
       "0 yrs in",
-      "Mercer County vo-tech, class of '26"
+      "Mercer County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "none",
@@ -4181,9 +4187,9 @@
     "title": "Vo-tech student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Ocean County vo-tech, class of '26",
+    "affiliation_hint": "Ocean County vo-tech, class of '27",
     "licenses": [],
-    "bio": "senior in the the trades program at the county vo-tech, graduating 2026. trying to figure out union vs going straight to a shop",
+    "bio": "senior in the the trades program at the county vo-tech, graduating 2027. trying to figure out union vs going straight to a shop",
     "voice": {
       "register": "chatty",
       "punctuation": "lowercase_minimal",
@@ -4206,7 +4212,7 @@
       "votech student",
       "from around Manahawkin, Ocean",
       "0 yrs in",
-      "Ocean County vo-tech, class of '26"
+      "Ocean County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "initials",
@@ -4699,7 +4705,9 @@
     "years_in": 0,
     "path": "career_switcher",
     "affiliation_hint": null,
-    "licenses": [],
+    "licenses": [
+      "EPA 608 Universal"
+    ],
     "bio": "35, left retail management, trying to get into HVAC. Scared of the pay cut, more scared of staying.",
     "voice": {
       "register": "salty",
@@ -4713,14 +4721,15 @@
     "goals": [
       "make the switch stick"
     ],
-    "activity_level": "regular",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": 35,
     "claims": [
       "hvac",
       "career switcher",
       "from around Gloucester Township, Camden",
-      "0 yrs in"
+      "0 yrs in",
+      "passed EPA 608 Universal Sep 26 2026 (T19)"
     ],
     "fact_flags": [],
     "avatar_style": "none",
@@ -4728,7 +4737,10 @@
     "joined_at": "2026-09-13T20:40:33-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
-    "seed_batch_id": "fm-2026-10"
+    "seed_batch_id": "fm-2026-10",
+    "license_since": {
+      "EPA 608 Universal": "2026-09-26"
+    }
   },
   {
     "slot_id": "J093",
@@ -5303,7 +5315,7 @@
     "title": "HVAC student",
     "years_in": 0,
     "path": "votech_student",
-    "affiliation_hint": "Gloucester County vo-tech, class of '26",
+    "affiliation_hint": "Gloucester County vo-tech, class of '27",
     "licenses": [],
     "bio": "Vo-tech student, HVAC. Shop class is the only class I actually like lol.",
     "voice": {
@@ -5327,7 +5339,7 @@
       "votech student",
       "from around Glassboro, Gloucester",
       "0 yrs in",
-      "Gloucester County vo-tech, class of '26"
+      "Gloucester County vo-tech, class of '27"
     ],
     "fact_flags": [],
     "avatar_style": "initials",
@@ -5371,7 +5383,7 @@
       "get real school hours",
       "eventually get licensed"
     ],
-    "activity_level": "heavy",
+    "activity_level": "regular",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -5573,7 +5585,7 @@
       "figure out which trade",
       "find a pre-apprenticeship"
     ],
-    "activity_level": "regular",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": 36,
     "claims": [
@@ -5777,7 +5789,7 @@
       "get a foot in the door",
       "not go broke the first year"
     ],
-    "activity_level": "regular",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": 35,
     "claims": [
@@ -5826,7 +5838,7 @@
     "goals": [
       "get on with a shop that sends me to school"
     ],
-    "activity_level": "lurker",
+    "activity_level": "occasional",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -5864,7 +5876,9 @@
     "years_in": 1,
     "path": "union_apprentice",
     "affiliation_hint": "Plumbers Local 1 1st year",
-    "licenses": [],
+    "licenses": [
+      "EPA 608 Type II"
+    ],
     "bio": "1st yr in Local 1. Water heaters all day. Here to ask the dumb questions before I ask them on the job.",
     "voice": {
       "register": "salty",
@@ -5879,7 +5893,7 @@
       "top out",
       "get my journeyman card"
     ],
-    "activity_level": "regular",
+    "activity_level": "heavy",
     "mentor_availability": null,
     "age": null,
     "claims": [
@@ -5887,7 +5901,8 @@
       "union apprentice",
       "from around Bay Ridge, Brooklyn",
       "1 yrs in",
-      "Plumbers Local 1 1st year"
+      "Plumbers Local 1 1st year",
+      "passed EPA 608 Type II (core retaken) late Sep 2026 (T086)"
     ],
     "fact_flags": [
       "affiliation 'Plumbers Local 1 1st year'"
@@ -5897,7 +5912,10 @@
     "joined_at": "2026-09-20T19:12:14-04:00",
     "handle_reddit_status": "unverified",
     "is_founding_member": true,
-    "seed_batch_id": "fm-2026-10"
+    "seed_batch_id": "fm-2026-10",
+    "license_since": {
+      "EPA 608 Type II": "2026-09-29"
+    }
   },
   {
     "slot_id": "J116",
