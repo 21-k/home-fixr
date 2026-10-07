@@ -9,7 +9,6 @@
 export function safeNext(next: string | null | undefined): string | null {
   if (!next || typeof next !== "string") return null;
   if (!next.startsWith("/") || next.startsWith("//") || next.startsWith("/\\")) return null;
-  // eslint-disable-next-line no-control-regex
   if (/[\x00-\x1f\\]/.test(next)) return null;
   // Never bounce back into the auth screens themselves.
   if (/^\/(login|join|auth)(\/|\?|$)/.test(next)) return null;
