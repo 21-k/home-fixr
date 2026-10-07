@@ -4,10 +4,11 @@ import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { SettingsForm } from "@/components/SettingsForm";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { HANDLE_CHANGE_DAYS } from "@/lib/handles";
+import { loginHref } from "@/lib/next-path";
 
 export default async function SettingsPage() {
   const profile = await getCurrentProfile();
-  if (!profile) redirect("/login");
+  if (!profile) redirect(loginHref("/settings"));
 
   const nextHandleChange = nextHandleChangeAt(profile.username_changed_at);
 

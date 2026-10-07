@@ -8,6 +8,7 @@ import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { findProfileByHandle } from "@/lib/profile-lookup";
+import { loginHref } from "@/lib/next-path";
 import { profileHeadline, timeAgo } from "@/lib/format";
 import {
   CV_SIGNED_URL_SECONDS,
@@ -34,7 +35,7 @@ export default async function ConversationPage({
 }) {
   const { username } = await params;
   const me = await getCurrentProfile();
-  if (!me) redirect("/login");
+  if (!me) redirect(loginHref(`/messages/${username}`));
 
   const supabase = await createClient();
   const other = await findProfileByHandle(supabase, username);

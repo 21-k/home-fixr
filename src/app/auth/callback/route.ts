@@ -1,4 +1,5 @@
 import { NextResponse, type NextRequest } from "next/server";
+import { safeNext } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 
 /**
@@ -12,7 +13,9 @@ import { createClient } from "@/lib/supabase/server";
 export async function GET(request: NextRequest) {
   const { searchParams, origin } = new URL(request.url);
   const code = searchParams.get("code");
-  const next = searchParams.get("next") ?? "/feed";
+  // Only ever a same-site path: `${origin}${next}` with next="@evil.example"
+  // would otherwise leave the site.
+  const next = safeNext(searchParams.get("next")) ?? "/feed";
 
   // Supabase reports a refused consent screen or misconfigured provider here.
   const oauthError = searchParams.get("error_description") ?? searchParams.get("error");

@@ -14,6 +14,7 @@ import {
   markReplyHelpful,
 } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo, tradeLabel } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -214,7 +215,10 @@ export default async function ThreadPage({
         <ReplyComposer postId={post.id} />
       ) : (
         <div className="rounded-xl border border-zinc-200 bg-white p-5 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link
+            href={loginHref(`/q/${post.slug ?? post.id}`)}
+            className="font-medium text-brand-600 hover:underline"
+          >
             Sign in
           </Link>{" "}
           to add your reply.

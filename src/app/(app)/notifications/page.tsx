@@ -6,6 +6,7 @@ import { getCurrentProfile } from "@/lib/auth/session";
 import { displayName } from "@/lib/display";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { timeAgo } from "@/lib/format";
+import { loginHref } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite } from "@/lib/types";
 
@@ -65,7 +66,7 @@ function describe(n: Notif): { text: string; href: string } {
 
 export default async function NotificationsPage() {
   const me = await getCurrentProfile();
-  if (!me) redirect("/login");
+  if (!me) redirect(loginHref("/notifications"));
 
   const supabase = await createClient();
   const { data } = await supabase

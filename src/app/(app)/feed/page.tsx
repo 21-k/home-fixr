@@ -8,6 +8,7 @@ import { PostComposer } from "@/components/PostComposer";
 import { ProfilePrompt } from "@/components/ProfilePrompt";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { profileHeadline } from "@/lib/format";
 import { UserName } from "@/components/UserName";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
@@ -134,7 +135,7 @@ export default async function FeedPage({
             Join the community
           </Link>{" "}
           or{" "}
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link href={loginHref("/feed")} className="font-medium text-brand-600 hover:underline">
             sign in
           </Link>{" "}
           to ask the pros a question.

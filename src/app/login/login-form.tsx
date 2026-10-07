@@ -5,11 +5,12 @@ import { signIn, type AuthState } from "@/lib/auth/actions";
 
 const initial: AuthState = {};
 
-export function LoginForm() {
+export function LoginForm({ next }: { next?: string | null }) {
   const [state, formAction, pending] = useActionState(signIn, initial);
 
   return (
     <form action={formAction} className="flex flex-col gap-4">
+      {next && <input type="hidden" name="next" value={next} />}
       <label className="flex flex-col gap-1.5">
         <span className="text-sm font-medium">Email</span>
         <input

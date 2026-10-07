@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { UserName } from "@/components/UserName";
 import { respondToMentorship } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -37,18 +39,7 @@ export default async function MentorshipsPage() {
     </nav>
   );
 
-  if (!me) {
-    return (
-      <AppBody sidebar={sidebar} mobileLabel="Community">
-        <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
-            Sign in
-          </Link>{" "}
-          to manage your mentorships.
-        </p>
-      </AppBody>
-    );
-  }
+  if (!me) redirect(loginHref("/mentorships"));
 
   const { data: rowsData } = await supabase
     .from("mentorships")

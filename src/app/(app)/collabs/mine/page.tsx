@@ -15,6 +15,7 @@ import { CollabIcon } from "@/components/icons";
 import { UserName } from "@/components/UserName";
 import { respondToCollabInterest, toggleCollabInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { ageRangeLabel } from "@/lib/skills";
@@ -63,7 +64,10 @@ export default async function MyJobsPage() {
     return (
       <AppBody sidebar={sidebar} mobileLabel="Jobs">
         <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link
+            href={loginHref("/collabs/mine")}
+            className="font-medium text-brand-600 hover:underline"
+          >
             Sign in
           </Link>{" "}
           to track the jobs you&apos;ve posted and applied to.

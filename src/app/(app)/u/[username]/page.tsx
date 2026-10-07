@@ -14,6 +14,7 @@ import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { AVAILABILITY_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { findProfileByHandle } from "@/lib/profile-lookup";
+import { loginHref } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, MentorshipStatus, Post } from "@/lib/types";
 
@@ -163,7 +164,7 @@ export default async function ProfilePage({
               </>
             ) : !viewer ? (
               <Link
-                href="/login"
+                href={loginHref(`/u/${profile.username}`)}
                 className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
               >
                 Sign in to connect

@@ -6,6 +6,7 @@ import { CollabIcon } from "@/components/icons";
 import { CollabInterestControl } from "@/components/CollabInterestControl";
 import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { loginHref } from "@/lib/next-path";
 import { COLLAB_TYPE_LABEL } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -120,7 +121,7 @@ export default async function CollabsPage({
           <CollabComposer />
         ) : (
           <Link
-            href="/login"
+            href={loginHref("/collabs")}
             className="rounded-lg border border-zinc-300 bg-white px-4 py-2 text-sm font-medium hover:bg-zinc-100"
           >
             Sign in to post

@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { WelcomeForm } from "@/components/WelcomeForm";
 import { firstNameInitial } from "@/lib/display";
+import { loginHref } from "@/lib/next-path";
 
 /**
  * The post-signup step. Signup asks only for the essentials, so this is where
@@ -11,7 +12,7 @@ import { firstNameInitial } from "@/lib/display";
  */
 export default async function WelcomePage() {
   const profile = await getCurrentProfile();
-  if (!profile) redirect("/login");
+  if (!profile) redirect(loginHref("/welcome"));
 
   // Already done? Nothing to ask.
   if (profile.onboarded_at) redirect("/feed");
