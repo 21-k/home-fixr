@@ -77,7 +77,7 @@ export default async function ProfilePage({
     .eq("following_id", profile.id);
   const followerCount = followerCountRaw ?? 0;
 
-  const [{ data: postsData }, { data: repliesData }, { count: menteeCount }, { count: collabCount }, { count: answeredCount }] =
+  const [{ data: postsData }, { data: repliesData }, { data: menteeRows }, { count: collabCount }, { count: answeredCount }] =
     await Promise.all([
       supabase
         .from("posts")
@@ -91,11 +91,8 @@ export default async function ProfilePage({
         .eq("author_id", profile.id)
         .order("created_at", { ascending: false })
         .limit(5),
-      supabase
-        .from("mentorships")
-        .select("*", { count: "exact", head: true })
-        .eq("senior_id", profile.id)
-        .eq("status", "active"),
+      // Count only: mentorship rows are private to the two people involved (0012).
+      supabase.rpc("active_mentee_counts", { p_senior_ids: [profile.id] }),
       supabase
         .from("job_collabs")
         .select("*", { count: "exact", head: true })
@@ -105,6 +102,7 @@ export default async function ProfilePage({
         .select("*", { count: "exact", head: true })
         .eq("author_id", profile.id),
     ]);
+  const menteeCount = ((menteeRows ?? []) as { mentees: number }[])[0]?.mentees ?? 0;
 
   const posts = (postsData ?? []) as unknown as (Post & { author: AuthorLite | null })[];
   const answers = (repliesData ?? []) as unknown as ReplyWithPost[];

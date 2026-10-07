@@ -55,14 +55,13 @@ export default async function MentorsPage({
   });
   const mentors = (data ?? []) as Profile[];
 
-  // Real "mentees" counts, tallied from active mentorships in one query.
-  const { data: mentorships } = await supabase
-    .from("mentorships")
-    .select("senior_id")
-    .eq("status", "active");
+  // Real "mentees" counts. RLS hides mentorship rows from everyone but the two
+  // people involved, so the counts come from a function that returns numbers
+  // only (migration 0012), never who mentors whom.
+  const { data: menteeRows } = await supabase.rpc("active_mentee_counts");
   const menteeCount = new Map<string, number>();
-  for (const m of mentorships ?? [])
-    menteeCount.set(m.senior_id, (menteeCount.get(m.senior_id) ?? 0) + 1);
+  for (const m of (menteeRows ?? []) as { senior_id: string; mentees: number }[])
+    menteeCount.set(m.senior_id, m.mentees);
 
   // Real "answered" counts, tallied from replies in one query.
   const { data: replies } = await supabase.from("replies").select("author_id");
