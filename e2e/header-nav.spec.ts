@@ -1,6 +1,6 @@
 import type { Page } from "@playwright/test";
 import { test, expect, visit, expectFitsViewport } from "./support/fixtures";
-import { isMobile, mainNav, sideNav } from "./support/nav";
+import { isMobile, mainNav, menuScope, sideNav } from "./support/nav";
 import { FOUNDING, discoverThreads } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
 
@@ -46,8 +46,7 @@ test.describe("header navigation, logged out @public", () => {
   test("sign in / join are reachable from the header on every app page", async ({ page }) => {
     for (const route of ["/feed", "/mentors", "/collabs", `/u/${FOUNDING.senior}`]) {
       await visit(page, route);
-      const nav = await mainNav(page);
-      const scope = isMobile(page) ? nav : page.locator("header");
+      const scope = await menuScope(page);
       await expect(scope.getByRole("link", { name: "Sign in" })).toBeVisible();
       await expect(scope.getByRole("link", { name: "Join" })).toBeVisible();
       if (isMobile(page)) await page.keyboard.press("Escape");
@@ -108,8 +107,7 @@ test.describe("header navigation, logged out @public", () => {
 
   test("search is reachable from the header", async ({ page }) => {
     await visit(page, "/feed");
-    const scope = isMobile(page) ? await mainNav(page) : page.locator("header");
-    const box = scope.getByRole("searchbox");
+    const box = (await menuScope(page)).getByRole("searchbox");
     await expect(box).toBeVisible();
     await box.fill("pex");
     await box.press("Enter");
@@ -143,13 +141,15 @@ test.describe("header navigation, logged in", () => {
 
   test("account links are reachable from the header", async ({ page }) => {
     await visit(page, "/feed");
-    const nav = await mainNav(page);
-    const scope = isMobile(page) ? nav : page.locator("header");
+    const scope = await menuScope(page);
     await expect(scope.getByRole("link", { name: /Notifications/ })).toBeVisible();
     await scope.getByRole("link", { name: /Notifications/ }).click();
     await expect(page).toHaveURL(/\/notifications$/);
-    const scope2 = isMobile(page) ? await mainNav(page) : page.locator("header");
+    const scope2 = await menuScope(page);
     await expect(scope2.getByRole("button", { name: "Log out" })).toBeVisible();
+    for (const name of ["My mentorships", "Settings"]) {
+      if (isMobile(page)) await expect(scope2.getByRole("link", { name })).toBeVisible();
+    }
   });
 
   test("settings and messages back links", async ({ page }) => {

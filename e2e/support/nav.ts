@@ -31,3 +31,10 @@ export async function sideNav(page: Page): Promise<Locator> {
   }
   return page.locator("aside").first();
 }
+
+/** Where the header's account / search controls live: the open mobile menu, or the header. */
+export async function menuScope(page: Page): Promise<Locator> {
+  if (!isMobile(page)) return page.locator("header");
+  await mainNav(page);
+  return page.locator("#mobile-menu");
+}
