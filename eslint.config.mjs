@@ -15,6 +15,8 @@ const eslintConfig = defineConfig([
     // Playwright output.
     "e2e/.report/**",
     "e2e/.results/**",
+    "e2e/.results-live/**",
+    "e2e/.report-live/**",
   ]),
 ]);
 

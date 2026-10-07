@@ -12,13 +12,15 @@ const mobile = { viewport: MOBILE, isMobile: true, hasTouch: true };
 
 export default defineConfig({
   testDir: "./e2e",
-  outputDir: "./e2e/.results",
+  // Separate dirs so a live run and a local run can go at the same time
+  // (each wipes its outputDir on start).
+  outputDir: IS_LIVE ? "./e2e/.results-live" : "./e2e/.results",
   timeout: IS_LIVE ? 30 * 60_000 : 90_000,
   expect: { timeout: 10_000 },
   fullyParallel: !IS_LIVE,
   workers: IS_LIVE ? 1 : process.env.CI ? 2 : 4,
   retries: 0,
-  reporter: [["list"], ["html", { outputFolder: "e2e/.report", open: "never" }]],
+  reporter: [["list"], ["html", { outputFolder: IS_LIVE ? "e2e/.report-live" : "e2e/.report", open: "never" }]],
   grep: IS_LIVE ? /@public|@live/ : undefined,
   // The crawl (@live) runs locally only when asked for (CRAWL=1); the
   // screenshot pass (@screens) only with SHOTS=<dir>.

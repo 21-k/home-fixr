@@ -50,7 +50,9 @@ __pycache__/
 # playwright
 /e2e/.auth/
 /e2e/.results/
+/e2e/.results-live/
 /e2e/.report/
+/e2e/.report-live/
 /e2e/reports/local-crawl/
 /e2e/reports/live/desktop/
 /e2e/reports/live/mobile/
