@@ -83,7 +83,7 @@ export async function overflowingElements(page: Page): Promise<string[]> {
   return page.evaluate(() => {
     const vw = document.documentElement.clientWidth;
     const out: string[] = [];
-    const clipped = (el: Element) => {
+    const clipped = (el: Node) => {
       for (let p = el.parentElement; p; p = p.parentElement) {
         const o = getComputedStyle(p).overflowX;
         if (o === "auto" || o === "scroll" || o === "hidden" || o === "clip") return true;
@@ -100,6 +100,21 @@ export async function overflowingElements(page: Page): Promise<string[]> {
         const cls = typeof el.className === "string" ? "." + el.className.split(/\s+/).slice(0, 3).join(".") : "";
         const text = (el.textContent ?? "").trim().slice(0, 40);
         out.push(`${el.tagName.toLowerCase()}${id}${cls} right=${Math.round(r.right)} vw=${vw} "${text}"`);
+      }
+    }
+    // Text that overflows its own box (a long unbroken URL) doesn't widen the
+    // element, so check text nodes too.
+    const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let n = walker.nextNode(); n; n = walker.nextNode()) {
+      if (!n.textContent?.trim() || !n.parentElement) continue;
+      const range = document.createRange();
+      range.selectNodeContents(n);
+      const r = range.getBoundingClientRect();
+      if (r.width === 0 || r.right <= vw + 1) continue;
+      const style = getComputedStyle(n.parentElement);
+      if (style.visibility === "hidden" || style.display === "none") continue;
+      if (!clipped(n) && !n.parentElement.closest("[hidden]")) {
+        out.push(`text "${n.textContent.trim().slice(0, 40)}" right=${Math.round(r.right)} vw=${vw}`);
       }
     }
     // Only report the outermost offenders.

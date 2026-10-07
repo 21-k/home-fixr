@@ -104,7 +104,10 @@ export default async function ConversationPage({
                 ? attachmentUrls.get(m.attachment_path)
                 : undefined;
               return (
-                <div key={m.id} className={mine ? "self-end text-right" : "self-start"}>
+                <div
+                  key={m.id}
+                  className={`max-w-[85%] ${mine ? "self-end text-right" : "self-start"}`}
+                >
                   {m.attachment_path && (
                     <div className="mb-1">
                       <Attachment
@@ -117,7 +120,7 @@ export default async function ConversationPage({
                   )}
                   {m.body && (
                     <div
-                      className={`inline-block max-w-md rounded-2xl px-3.5 py-2 text-sm ${
+                      className={`inline-block max-w-md whitespace-pre-wrap rounded-2xl px-3.5 py-2 text-left text-sm wrap-anywhere ${
                         mine
                           ? "bg-brand-500 text-white"
                           : "bg-zinc-100 text-zinc-900"

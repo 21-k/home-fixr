@@ -83,7 +83,9 @@ export default async function ThreadPage({
     <nav>
       <SideSection>Thread</SideSection>
       <SideLink active>Question</SideLink>
-      <SideLink>{post.reply_count} replies</SideLink>
+      <SideLink>
+        {post.reply_count} {post.reply_count === 1 ? "reply" : "replies"}
+      </SideLink>
       <SideLink>
         <Star className="size-4" /> {post.helpful_count} helpful
       </SideLink>
@@ -103,7 +105,7 @@ export default async function ThreadPage({
             <span className="text-[13px] text-zinc-500">{tradeLabel(post.trade)}</span>
           )}
         </div>
-        <h1 className="text-xl font-semibold tracking-tight">{post.title}</h1>
+        <h1 className="text-xl font-semibold tracking-tight wrap-anywhere">{post.title}</h1>
         <p className="mt-2 mb-4 text-[13px] text-zinc-600">
           Asked by{" "}
           <UserName

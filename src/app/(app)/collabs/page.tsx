@@ -145,7 +145,7 @@ export default async function CollabsPage({
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-semibold">{c.title}</h3>
+                  <h3 className="font-semibold wrap-anywhere">{c.title}</h3>
                   <p className="mt-0.5 text-[13px] text-zinc-600">
                     Posted by{" "}
                     <UserName
@@ -163,7 +163,7 @@ export default async function CollabsPage({
                 </span>
               </div>
 
-              <p className="mt-3 text-sm leading-relaxed text-zinc-700">{c.body}</p>
+              <p className="mt-3 text-sm leading-relaxed text-zinc-700 wrap-anywhere">{c.body}</p>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-zinc-600">
                 {c.location && (

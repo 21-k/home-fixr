@@ -23,6 +23,11 @@ test.describe("public routes render healthy @public", () => {
     });
   }
 
+  test("reply counts are pluralised correctly", async ({ page }) => {
+    await visit(page, "/feed");
+    await expect(page.locator("main span", { hasText: /^\s*1 replies\s*$/ })).toHaveCount(0);
+  });
+
   test("thread pages (discovered from the feed)", async ({ page }) => {
     const threads = await discoverThreads(page, 5);
     expect(threads.length).toBeGreaterThanOrEqual(3);

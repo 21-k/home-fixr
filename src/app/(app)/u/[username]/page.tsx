@@ -145,7 +145,7 @@ export default async function ProfilePage({
             </p>
           )}
           {profile.bio && (
-            <p className="mt-3 text-sm leading-relaxed text-zinc-700">
+            <p className="mt-3 text-sm leading-relaxed text-zinc-700 wrap-anywhere">
               {profile.bio}
             </p>
           )}
@@ -255,7 +255,7 @@ export default async function ProfilePage({
                 )}
               </div>
               {/* pre-line keeps bullet lists on their own lines; clamp the preview. */}
-              <p className="line-clamp-5 whitespace-pre-line text-sm leading-relaxed text-zinc-700">
+              <p className="line-clamp-5 whitespace-pre-line text-sm wrap-anywhere leading-relaxed text-zinc-700">
                 {a.body}
               </p>
               <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-zinc-500">

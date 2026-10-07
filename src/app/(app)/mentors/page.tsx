@@ -128,7 +128,7 @@ export default async function MentorsPage({
                   </div>
                 </div>
                 {m.bio && (
-                  <p className="mb-3 line-clamp-3 text-[13px] leading-5 text-zinc-700">
+                  <p className="mb-3 line-clamp-3 text-[13px] leading-5 text-zinc-700 wrap-anywhere">
                     {m.bio}
                   </p>
                 )}

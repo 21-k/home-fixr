@@ -1,4 +1,4 @@
-import { test, expect, visit } from "./support/fixtures";
+import { test, expect, visit, expectFitsViewport } from "./support/fixtures";
 import { profileId, rest } from "./support/db";
 import { FOUNDING } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
@@ -91,5 +91,27 @@ test.describe("real members' contact buttons work (local)", () => {
       `mentorships?select=status&junior_id=eq.${junior}&senior_id=eq.${senior}`,
     );
     expect(rows).toEqual([{ status: "pending" }]);
+  });
+
+  test("a long unbroken message wraps inside the bubble", async ({ page }) => {
+    const long = `https://example.com/${"x".repeat(160)}-${test.info().project.name}`;
+    await visit(page, `/messages/${USERS.senior.handle}`);
+    await page.getByPlaceholder("Write a message…").fill(long);
+    await page.getByRole("button", { name: "Send" }).click();
+    await expect(page.getByText(long)).toBeVisible();
+    await page.reload();
+    const bubble = page.getByText(long);
+    await expect(bubble).toBeVisible();
+    await expectFitsViewport(page);
+    // The message list scrolls, so overflow hides inside it: check the list
+    // itself doesn't scroll sideways and the bubble sits inside it.
+    const fit = await bubble.evaluate((el) => {
+      let list = el.parentElement!;
+      while (list && getComputedStyle(list).overflowY !== "auto") list = list.parentElement!;
+      const r = el.getBoundingClientRect();
+      const c = list.getBoundingClientRect();
+      return { sideScroll: list.scrollWidth > list.clientWidth + 1, inside: r.left >= c.left - 1 && r.right <= c.right + 1 };
+    });
+    expect(fit).toEqual({ sideScroll: false, inside: true });
   });
 });

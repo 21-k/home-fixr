@@ -50,6 +50,27 @@ test.describe("logged-in routes render healthy", () => {
   });
 });
 
+test.describe("member content layout", () => {
+  test.use({ storageState: storageStatePath("junior") });
+
+  test("a post with a long unbroken URL doesn't push the page sideways", async ({ page }) => {
+    const tag = test.info().project.name;
+    const title = `Long link check ${tag}`;
+    const body = `See https://example.com/${"y".repeat(150)}/${tag} for the spec sheet.`;
+    await visit(page, "/feed");
+    await page.getByPlaceholder("Got a question for the pros?").fill(title);
+    await page.getByPlaceholder("Share the details so people can actually help…").fill(body);
+    await page.getByRole("button", { name: "Post", exact: true }).click();
+    const card = page.locator("main").getByRole("link", { name: new RegExp(title) });
+    await expect(card).toBeVisible();
+    await expectFitsViewport(page);
+    await card.click();
+    await expect(page).toHaveURL(/\/q\/long-link-check/);
+    await expect(page.getByRole("heading", { level: 1, name: title })).toBeVisible();
+    await expectFitsViewport(page);
+  });
+});
+
 test.describe("empty states", () => {
   test.use({ storageState: storageStatePath("empty") });
 

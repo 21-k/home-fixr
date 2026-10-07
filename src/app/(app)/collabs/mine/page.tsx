@@ -227,7 +227,7 @@ export default async function MyJobsPage() {
                                 {person ? profileHeadline(person) : ""}
                               </div>
                               {i.note && (
-                                <p className="mt-1.5 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700">
+                                <p className="mt-1.5 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700 wrap-anywhere">
                                   {i.note}
                                 </p>
                               )}
@@ -293,7 +293,7 @@ export default async function MyJobsPage() {
                 >
                   <CollabHeading collab={c} />
                   {i.note && (
-                    <p className="mt-2 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700">
+                    <p className="mt-2 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700 wrap-anywhere">
                       {i.note}
                     </p>
                   )}
