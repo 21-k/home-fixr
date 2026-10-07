@@ -246,5 +246,7 @@ try {
   if (!flag("--keep")) await cleanup();
 }
 const bad = results.filter((r) => !r.ok);
-console.log(`\n${results.length - bad.length}/${results.length} passed`);
+// A crash or an empty run is a failure, not "0/0 passed" (e.g. no app at --app).
+if (!results.length) failed = true;
+console.log(`\n${results.length - bad.length}/${results.length} passed${failed ? " - FAILED: the run stopped early (is the app running at " + APP + "?)" : ""}`);
 process.exit(failed || bad.length ? 1 : 0);
