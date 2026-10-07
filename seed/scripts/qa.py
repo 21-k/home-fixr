@@ -24,7 +24,7 @@ import statistics
 import sys
 import urllib.request
 from collections import Counter
-from datetime import datetime
+from datetime import datetime, timedelta
 from pathlib import Path
 from zoneinfo import ZoneInfo
 
@@ -168,6 +168,205 @@ def check_threads(threads, people):
         record("Friday nights quiet", fri / len(times) <= 0.05, f"{fri} posts Fri after 6pm")
 
 
+# ------------------------------------------------------------ social layer
+WINDOW_START = datetime(2026, 7, 24, 0, 0, tzinfo=NY)
+WINDOW_END = datetime(2026, 10, 4, 23, 59, 59, tzinfo=NY)
+DUAL_TRADE = {"ms_almonte": {"hvac", "plumbing"}, "haddad_mech": {"hvac", "plumbing"}}
+
+
+def follower_kind(p):
+    if p["role"] == "senior":
+        return "pillar" if p["activity_level"] == "heavy" else "senior"
+    return p["activity_level"]
+
+
+def check_social(people, threads, ments, follows):
+    by = {p["handle"]: p for p in people}
+    joined = {h: datetime.fromisoformat(p["joined_at"]) for h, p in by.items()}
+    seniors = [p for p in people if p["role"] == "senior"]
+    st = Counter(m["status"] for m in ments)
+    n = len(ments)
+
+    # ---- mentorship shape
+    record("social: ~35 mentorships (30-40)", 30 <= n <= 40, f"{n}: " + ", ".join(f"{k} {v}" for k, v in sorted(st.items())))
+    record("social: ~60% active (50-70%)", 0.5 <= st["active"] / n <= 0.7, f"{100 * st['active'] / n:.0f}% active")
+    record("social: a few declined (2-5), rest pending", 2 <= st["declined"] <= 5 and st["pending"] == n - st["active"] - st["declined"],
+           f"declined {st['declined']}, pending {st['pending']}")
+    bad_role = [f"{m['junior']}->{m['senior']}" for m in ments
+                if by.get(m["junior"], {}).get("role") != "junior" or by.get(m["senior"], {}).get("role") != "senior"]
+    record("social: every mentorship is junior -> senior", not bad_role, str(bad_role[:5]))
+    pairs = Counter((m["junior"], m["senior"]) for m in ments)
+    record("social: no duplicate mentorship pairs", max(pairs.values()) == 1, str([k for k, v in pairs.items() if v > 1][:3]))
+    act_per_j = Counter(m["junior"] for m in ments if m["status"] == "active")
+    two = [j for j, c in act_per_j.items() if c > 1]
+    record("social: no Junior has two active mentors", not two, str(two))
+    second = [j for j in act_per_j if any(m["junior"] == j and m["status"] == "pending" for m in ments)]
+    record("social: a second, pending request is rare (<= 2 Juniors)", len(second) <= 2, str(second))
+    pend = [m for m in ments if m["status"] == "pending"]
+    to_lim = sum(by[m["senior"]]["mentor_availability"] == "limited" for m in pend)
+    record("social: pending requests mostly to 'limited' Seniors (>= 70%)", to_lim >= 0.7 * len(pend), f"{to_lim}/{len(pend)}")
+    asked_closed = [f"{m['junior']}->{m['senior']}" for m in ments
+                    if m["status"] in ("pending", "declined") and by[m["senior"]]["mentor_availability"] == "not_accepting"]
+    record("social: no pending/declined request to a 'not taking mentees' Senior (the app hides the button)",
+           not asked_closed, str(asked_closed))
+
+    act_s = Counter(m["senior"] for m in ments if m["status"] == "active")
+    per = {p["handle"]: act_s[p["handle"]] for p in seniors}
+    pillars = sum(3 <= v <= 5 for v in per.values())
+    middle = sum(1 <= v <= 2 for v in per.values())
+    zero = sum(v == 0 for v in per.values())
+    record("social: active mentees per Senior vary (>=2 with 3-5, >=3 with 1-2, >=2 with 0, none >5)",
+           pillars >= 2 and middle >= 3 and zero >= 2 and max(per.values()) <= 5,
+           f"3-5: {pillars}, 1-2: {middle}, 0: {zero}; " + " ".join(f"{h}:{v}" for h, v in per.items() if v))
+    na = {p["handle"]: per[p["handle"]] for p in seniors if p["mentor_availability"] == "not_accepting"}
+    record("social: 'not taking mentees' Seniors carry 0-2 actives (some 1-2: that's why they're full)",
+           all(v <= 2 for v in na.values()) and any(v >= 1 for v in na.values()), str(na))
+    shown_accepting = [p["handle"] for p in seniors if p["mentor_availability"] == "accepting" and per[p["handle"]] >= 3]
+    record("social: no full Senior shown as 'Accepting mentees'", not shown_accepting, str(shown_accepting))
+
+    def trade_ok(j, s):
+        return j["trade"] == s["trade"] or j["trade"] == "general" or j["trade"] in DUAL_TRADE.get(s["handle"], ())
+    act = [m for m in ments if m["status"] == "active"]
+    tmatch = sum(trade_ok(by[m["junior"]], by[m["senior"]]) for m in act)
+    record("social: actives matched by trade (>= 80%)", tmatch >= 0.8 * len(act), f"{tmatch}/{len(act)}")
+    rmatch = sum(by[m["junior"]]["region"] == by[m["senior"]]["region"] for m in act)
+    record("social: actives often in the same region (>= 40%)", rmatch >= 0.4 * len(act), f"{rmatch}/{len(act)}")
+    nyc_j = [m for m in act if by[m["junior"]]["region"] == "NYC"]
+    nyc_ok = sum(by[m["senior"]]["region"] == "NYC" for m in nyc_j)
+    nj_to_nyc = sum(by[m["junior"]]["region"] != "NYC" and by[m["senior"]]["region"] == "NYC" for m in act)
+    record("social: NYC Juniors' mentors mostly the NYC Seniors; NJ Juniors' almost never",
+           (not nyc_j or nyc_ok >= 0.66 * len(nyc_j)) and nj_to_nyc <= 1, f"NYC {nyc_ok}/{len(nyc_j)}; NJ->NYC {nj_to_nyc}")
+
+    juniors = [p for p in people if p["role"] == "junior"]
+    has = {m["junior"] for m in act}
+
+    def rate(group):
+        g = [p for p in juniors if group(p)]
+        return (sum(p["handle"] in has for p in g) / len(g)) if g else 0.0, len(g)
+    leaning = rate(lambda p: p["path"] in ("career_switcher", "votech_grad", "votech_student"))
+    other = rate(lambda p: p["path"] not in ("career_switcher", "votech_grad", "votech_student"))
+    record("social: career switchers / vo-tech more likely to have a mentor", leaning[0] > other[0],
+           f"{100 * leaning[0]:.0f}% of {leaning[1]} vs {100 * other[0]:.0f}% of {other[1]}")
+    by_act = {a: rate(lambda p, a=a: p["activity_level"] == a) for a in ("heavy", "regular", "occasional", "lurker")}
+    active_j = rate(lambda p: p["activity_level"] in ("heavy", "regular"))
+    record("social: regular+heavy > occasional > lurker for having a mentor; lurkers rarely (<= 10%)",
+           active_j[0] > by_act["occasional"][0] > by_act["lurker"][0] and by_act["lurker"][0] <= 0.10,
+           f"regular+heavy {100 * active_j[0]:.0f}% (" + ", ".join(f"{a} {100 * r:.0f}%" for a, (r, _) in by_act.items()) + ")")
+
+    bad_t = []
+    lat = []
+    for m in ments:
+        req = datetime.fromisoformat(m["requested_at"])
+        dec = datetime.fromisoformat(m["decided_at"]) if m.get("decided_at") else None
+        where = f"{m['junior']}->{m['senior']}"
+        if not (WINDOW_START <= req <= WINDOW_END) or (dec and not dec <= WINDOW_END):
+            bad_t.append(f"{where}: outside window")
+        if req < joined[m["senior"]] or req < joined[m["junior"]] + timedelta(days=2):
+            bad_t.append(f"{where}: before both joined (+2 days for the Junior)")
+        if (m["status"] == "pending") != (dec is None):
+            bad_t.append(f"{where}: decided_at inconsistent with {m['status']}")
+        if dec:
+            lat.append((dec - req).total_seconds() / 3600)
+            if not timedelta(hours=1) <= dec - req <= timedelta(days=7):
+                bad_t.append(f"{where}: accept/decline latency {(dec - req)}")
+    record("social: mentorship times inside the window, after both joined, accepted hours-days later", not bad_t,
+           (f"latency h: min {min(lat):.0f}, median {statistics.median(lat):.0f}, max {max(lat):.0f}; " if lat else "") + "; ".join(bad_t[:4]))
+
+    # The threads and the graph agree.
+    tmap = {t["id"]: t for t in threads}
+    anchor_bad = []
+    for m in ments:
+        tid = m.get("anchor_thread")
+        if not tid:
+            continue
+        t = tmap.get(tid)
+        cast = {t["author"]} | {r["author"] for r in t.get("replies", [])} if t else set()
+        if not t or m["junior"] not in cast or m["senior"] not in cast:
+            anchor_bad.append(f"{tid}: {m['junior']}->{m['senior']} not both in thread")
+            continue
+        last = max(datetime.fromisoformat(r["created_at"]) for r in t["replies"] if r["author"] in (m["junior"], m["senior"]))
+        if datetime.fromisoformat(m["requested_at"]) <= last:
+            anchor_bad.append(f"{tid}: request before the thread exchange")
+    n_anchor = sum(bool(m.get("anchor_thread")) for m in ments)
+    record("social: thread-implied pairs (thanks / 'update: did what X said') are in the graph, after the exchange",
+           n_anchor >= 6 and not anchor_bad, f"{n_anchor} anchored; {anchor_bad[:3]}")
+    answered_first = []
+    for t in threads:
+        for r in t.get("replies", []):
+            for m in ments:
+                if m["junior"] == t["author"] and m["senior"] == r["author"] and \
+                        datetime.fromisoformat(m["requested_at"]) < datetime.fromisoformat(r["created_at"]):
+                    answered_first.append(f"{t['id']}: {r['author']} answers own mentee {t['author']} like a stranger")
+    record("social: no mentor answers their mentee's later thread as a stranger", not answered_first, str(answered_first[:3]))
+
+    # ---- follows
+    pairs_f = [(f["follower"], f["following"]) for f in follows]
+    record("social: no self-follows, no duplicate follows, both ends are personas",
+           all(a != b for a, b in pairs_f) and len(set(pairs_f)) == len(pairs_f) and all(a in by and b in by for a, b in pairs_f),
+           f"{len(pairs_f)} follows")
+    fset = set(pairs_f)
+    missing = [f"{m['junior']}->{m['senior']}" for m in act if (m["junior"], m["senior"]) not in fset]
+    record("social: every mentee follows their mentor", not missing, str(missing))
+    outd = Counter(a for a, _ in pairs_f)
+    ind = Counter(b for _, b in pairs_f)
+    zero_out = sum(1 for h in by if outd[h] == 0)
+    record("social: ~20% of accounts follow nobody (17-23%)", 0.17 <= zero_out / len(by) <= 0.23, f"{zero_out}/{len(by)} = {100 * zero_out / len(by):.0f}%")
+    bands = {"pillar": (15, 40), "senior": (5, 15), "heavy": (0, 8), "regular": (0, 8), "occasional": (0, 5), "lurker": (0, 3)}
+    out_band = []
+    dist = {}
+    for k, (lo, hi) in bands.items():
+        v = sorted(ind[p["handle"]] for p in people if follower_kind(p) == k)
+        dist[k] = v
+        out_band += [f"{p['handle']}({k}):{ind[p['handle']]}" for p in people if follower_kind(p) == k and not lo <= ind[p["handle"]] <= hi]
+    lurk = dist["lurker"]
+    record("social: followers by kind in band (pillars 15-40, Seniors 5-15, active Juniors 0-8, occasional 0-5, lurkers 0-3)",
+           not out_band and sum(x <= 2 for x in lurk) >= 0.8 * len(lurk),
+           "; ".join(f"{k} {v[0]}-{v[-1]} (median {v[len(v) // 2]})" for k, v in dist.items()) + (f"; out of band: {out_band[:4]}" if out_band else ""))
+    record("social: the graph is skewed (top 5 accounts hold >= 25% of follows)",
+           sum(c for _, c in ind.most_common(5)) >= 0.25 * len(pairs_f), f"top 5: {ind.most_common(5)}")
+    nonpillar = [(a, b) for a, b in pairs_f if follower_kind(by[b]) != "pillar"]
+    homo = sum(by[a]["trade"] == by[b]["trade"] or by[a]["region"] == by[b]["region"] for a, b in nonpillar)
+    record("social: follows of non-pillars mostly within trade or region (>= 75%)", homo >= 0.75 * len(nonpillar), f"{homo}/{len(nonpillar)}")
+    s_follow_s = [p["handle"] for p in seniors if outd[p["handle"]] and not any(a == p["handle"] and by[b]["role"] == "senior" for a, b in pairs_f)]
+    record("social: Seniors who follow anyone follow some other Seniors", not s_follow_s, str(s_follow_s), warn=True)
+    s_to_j = Counter(by[b]["activity_level"] for a, b in pairs_f if by[a]["role"] == "senior" and by[b]["role"] == "junior")
+    record("social: Seniors follow only the occasional standout Junior (regular/heavy)",
+           set(s_to_j) <= {"heavy", "regular"} and sum(s_to_j.values()) <= 15, str(dict(s_to_j)))
+    acc_pairs = {(t["author"], r["author"]) for t in threads for r in t.get("replies", []) if r["accepted"] and by[r["author"]]["role"] == "senior"
+                 and by[t["author"]]["role"] == "junior"}
+    acc_f = sum(pr in fset for pr in acc_pairs)
+    record("social: Juniors mostly follow the Senior whose answer they accepted (>= 50%)", acc_f >= 0.5 * len(acc_pairs), f"{acc_f}/{len(acc_pairs)}")
+    bad_ft = [f"{f['follower']}->{f['following']}" for f in follows
+              if not (max(joined[f["follower"]], joined[f["following"]]) < datetime.fromisoformat(f["created_at"]) <= WINDOW_END)]
+    record("social: every follow is after both joined and inside the window", not bad_ft, str(bad_ft[:5]))
+
+    # ---- existing counts: helpful votes and "answered"
+    acc_lead = [t["id"] for t in threads if any(r["accepted"] for r in t.get("replies", []))
+                and max(t["replies"], key=lambda r: (r["helpful_count"], r["accepted"]))["accepted"] is False]
+    record("helpful: the accepted answer has the most helpful votes in its thread", not acc_lead, str(acc_lead))
+    short_lead = []
+    for t in threads:
+        rs = t.get("replies", [])
+        if any(r["accepted"] for r in rs):
+            continue
+        subs = [r for r in rs if by[r["author"]]["role"] == "senior" and len(r["body"].split()) >= 40]
+        if subs:
+            top = max(r["helpful_count"] for r in subs)
+            short_lead += [f"{t['id']}:{r['author']}" for r in rs if len(r["body"].split()) < 25 and r["helpful_count"] >= top]
+    record("helpful: no short reply outvotes the substantive Senior answer", not short_lead, str(short_lead))
+    ans = Counter(r["author"] for t in threads for r in t.get("replies", []))
+    distinct = Counter()
+    own = Counter()
+    for t in threads:
+        for h in {r["author"] for r in t.get("replies", [])}:
+            distinct[h] += 1
+        own[t["author"]] += sum(r["author"] == t["author"] for r in t.get("replies", []))
+    info = " ".join(f"{p['handle']}:{ans[p['handle']]}/{distinct[p['handle']]}" + (f"(+{own[p['handle']]} own)" if own[p["handle"]] else "")
+                    for p in seniors)
+    record("answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted)", True, info)
+    return {"active_by_senior": per, "followers": ind}
+
+
 # ---------------------------------------------------------------- fact lint
 FACT_RE = re.compile(r"(Local \d+|\bIBEW\b|\bUA\b|licen[cs]e|\bboard\b|\bDOB\b|apprenticeship|aptitude|Apex|vo-tech|\b608\b|HVACR|"
                      r"\bmaster\b|journeyman|home improvement|Consumer Affairs|\bpermit|\bcode\b|inspection|prevailing|"
@@ -228,6 +427,69 @@ def check_db(db_url, people):
         record("DB: seeded auth users have no password and are banned", pw == 0, str(pw))
 
 
+def check_db_social(db_url, people, ments, follows, threads) -> dict:
+    """The social rows as written, plus what the pages should show (from the DB)."""
+    import psycopg
+    assert_local_db(db_url)
+    by = {p["handle"]: p for p in people}
+    with psycopg.connect(db_url) as conn, conn.cursor() as cur:
+        def one(sql, *a):
+            cur.execute(sql, a)
+            return cur.fetchone()[0]
+        b = BATCH_ID
+        nm = one("select count(*) from mentorships where seed_batch_id = %s", b)
+        nf = one("select count(*) from follows where seed_batch_id = %s", b)
+        record("DB: batch mentorships / follows match the files", nm == len(ments) and nf == len(follows),
+               f"mentorships {nm}/{len(ments)}, follows {nf}/{len(follows)}")
+        cur.execute("select status::text, count(*) from mentorships where seed_batch_id = %s group by 1", (b,))
+        got = dict(cur.fetchall())
+        want = dict(Counter(m["status"] for m in ments))
+        record("DB: mentorship statuses as generated", got == want, f"{got}")
+        outside = one("""select count(*) from (
+              select junior_id a, senior_id b from mentorships where seed_batch_id = %(b)s
+              union all select follower_id, following_id from follows where seed_batch_id = %(b)s) x
+            join profiles pa on pa.id = x.a join profiles pb on pb.id = x.b
+           where pa.seed_batch_id is distinct from %(b)s or pb.seed_batch_id is distinct from %(b)s""".replace("%(b)s", "%s"), b, b, b, b)
+        record("DB: social rows are seeded-to-seeded only", outside == 0, str(outside))
+        roles = one("""select count(*) from mentorships m join profiles j on j.id = m.junior_id join profiles s on s.id = m.senior_id
+                        where m.seed_batch_id = %s and (j.role <> 'junior' or s.role <> 'senior')""", b)
+        record("DB: every mentorship is junior -> senior", roles == 0, str(roles))
+        two = one("select count(*) from (select junior_id from mentorships where seed_batch_id = %s and status = 'active' group by 1 having count(*) > 1) x", b)
+        record("DB: no Junior with two active mentors", two == 0, str(two))
+        nofollow = one("""select count(*) from mentorships m where m.seed_batch_id = %s and m.status = 'active'
+                           and not exists (select 1 from follows f where f.follower_id = m.junior_id and f.following_id = m.senior_id)""", b)
+        record("DB: every active mentee follows their mentor", nofollow == 0, str(nofollow))
+        late = one("""select count(*) from (
+              select a, b, created_at from (select junior_id a, senior_id b, created_at from mentorships where seed_batch_id = %s
+                                            union all select follower_id, following_id, created_at from follows where seed_batch_id = %s) u) x
+            join profiles pa on pa.id = x.a join profiles pb on pb.id = x.b
+           where x.created_at > '2026-10-04 23:59:59-04' or x.created_at < '2026-07-24 00:00:00-04'
+              or x.created_at < pa.created_at or x.created_at < pb.created_at""", b, b)
+        record("DB: social timestamps inside the window and after both joined", late == 0, str(late))
+        notif = one("select count(*) from notifications n join profiles a on a.id in (n.user_id, n.actor_id) where a.seed_batch_id = %s", b)
+        record("DB: no notifications from the social rows (or anything seeded)", notif == 0, str(notif))
+        # Helpful counts in the DB are the rebalanced ones.
+        cur.execute("""select p.title, r.body, r.helpful_count from replies r join posts p on p.id = r.post_id where r.seed_batch_id = %s""", (b,))
+        db_h = {(t, body): h for t, body, h in cur.fetchall()}
+        diff = [f"{t['id']}/r{i}" for t in threads for i, r in enumerate(t.get("replies", []))
+                if db_h.get((t["title"], r["body"].strip())) != r["helpful_count"]]
+        record("DB: reply helpful counts match the (rebalanced) files", not diff, str(diff[:5]))
+        # Privacy: mentorships stay readable only by the two parties (RLS unchanged).
+        cur.execute("set local role anon")
+        anon_m = one("select count(*) from mentorships where seed_batch_id = %s", b)
+        anon_f = one("select count(*) from follows where seed_batch_id = %s", b)
+        cur.execute("reset role")
+        record("DB: logged-out visitors can read follows but no mentorship rows (RLS unchanged)", anon_m == 0 and anon_f == nf,
+               f"anon sees {anon_m} mentorships, {anon_f} follows")
+        cur.execute("select a.username, count(*) from follows f join profiles a on a.id = f.following_id group by 1")
+        followers = dict(cur.fetchall())
+        cur.execute("select a.username, count(*) from mentorships m join profiles a on a.id = m.senior_id where m.status = 'active' group by 1")
+        mentees = dict(cur.fetchall())
+        cur.execute("select a.username, count(*) from replies r join profiles a on a.id = r.author_id group by 1")
+        answers = dict(cur.fetchall())
+    return {"followers": followers, "mentees": mentees, "answers": answers}
+
+
 def fetch(url: str) -> tuple[int, str]:
     try:
         with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "hf-qa"}), timeout=60) as r:
@@ -236,7 +498,12 @@ def fetch(url: str) -> tuple[int, str]:
         return e.code, e.read().decode("utf-8", "replace")
 
 
-def check_app(app, people, threads):
+def _num(html: str, label: str, tag: str):
+    m = re.search(rf"<{tag}[^>]*>(\d+)</{tag}>\s*(?:<[^>]+>)?\s*{label}\b", html)
+    return int(m.group(1)) if m else None
+
+
+def check_app(app, people, threads, expected=None):
     by = {p["handle"]: p for p in people}
     # Feed: every seeded author shows the badge; no handle-preference full names.
     code, feed = fetch(f"{app}/feed")
@@ -252,15 +519,34 @@ def check_app(app, people, threads):
            f"{len(shown)} shown, {mentors.count('Founding Community')} badges")
     leaks = [p["handle"] for p in seniors if p["display_preference"] == "handle" and p["full_name"] in mentors]
     record("app: no full_name of handle-preference Seniors on /mentors", not leaks, str(leaks))
+    if expected:
+        clean = re.sub(r"<!--.*?-->", "", mentors)
+        cards = {}
+        for chunk in clean.split('href="/u/')[1:]:
+            h = chunk.split('"', 1)[0]
+            if h in by and h not in cards and ("answered" in chunk):
+                cards[h] = (_num(chunk, "answered", "strong"), _num(chunk, "mentees", "strong"))
+        f_ans = [f"{h}: shows {a}, DB {expected['answers'].get(h, 0)}" for h, (a, _) in cards.items() if a != expected["answers"].get(h, 0)]
+        f_men = [f"{h}: shows {m}, DB {expected['mentees'].get(h, 0)}" for h, (_, m) in cards.items() if m != expected["mentees"].get(h, 0)]
+        record("app: /mentors 'answered' counts match the DB", len(cards) == 15 and not f_ans, f"{len(cards)} cards; {f_ans[:4]}")
+        record("app: /mentors 'mentees' counts match the DB", len(cards) == 15 and not f_men,
+               f"{len(f_men)} of {len(cards)} cards differ: {f_men[:6]}")
     code, acc = fetch(f"{app}/mentors?avail=accepting")
     record("app: 'Accepting mentees' filter excludes every Founding account", code == 200 and "Founding Community" not in acc.split("<main", 1)[-1])
     # Every profile page: badge present, handle shown, private name absent.
     missing, leaks, bad = [], [], []
+    stat_bad = {"followers": [], "active mentees": [], "answers": []}
     for p in people:
         code, html = fetch(f"{app}/u/{p['handle']}")
         if code != 200:
             bad.append(f"{p['handle']}:{code}")
             continue
+        if expected:
+            clean = re.sub(r"<!--.*?-->", "", html)
+            for label, key in (("followers", "followers"), ("active mentees", "mentees"), ("answers", "answers")):
+                shown, want = _num(clean, label, "dt"), expected[key].get(p["handle"], 0)
+                if shown != want:
+                    stat_bad[label].append(f"{p['handle']}: shows {shown}, DB {want}")
         if "Founding Community" not in html:
             missing.append(p["handle"])
         if p["display_preference"] == "handle" and p["full_name"] in html:
@@ -268,6 +554,9 @@ def check_app(app, people, threads):
     record("app: all 136 profile pages render (200)", not bad, str(bad[:5]))
     record("app: Founding Community badge on every seeded profile", not missing, str(missing[:5]))
     record("app: no private full_name on handle-preference profiles", not leaks, str(leaks[:5]))
+    if expected:
+        for label, bads in stat_bad.items():
+            record(f"app: /u/<handle> '{label}' match the DB (all 136)", not bads, f"{len(bads)} differ: {bads[:6]}")
     # Threads: replies render with badges.
     code, html = fetch(f"{app}/feed")
     def slugify(x):
@@ -290,6 +579,8 @@ def check_app(app, people, threads):
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--threads", default="content/threads.sample.scheduled.json")
+    ap.add_argument("--mentorships", default="content/mentorships.json")
+    ap.add_argument("--follows", default="content/follows.json")
     ap.add_argument("--db", action="store_true")
     ap.add_argument("--db-url", default=LOCAL_DB_URL)
     ap.add_argument("--app", default="")
@@ -304,10 +595,17 @@ def main() -> None:
     record("fact lint written for human review", True, f"{n_facts} flagged sentences -> seed/reports/fact_lint.md")
     about_src = (REPO_DIR / "src/lib/founding.ts").read_text()
     record("About sentence present in source", "Founding Community accounts are marked." in about_src)
+    ments = load_json(args.mentorships)["mentorships"] if (SEED_DIR / args.mentorships).exists() else []
+    follows = load_json(args.follows)["follows"] if (SEED_DIR / args.follows).exists() else []
+    if ments:
+        check_social(people, threads, ments, follows)
+    expected = None
     if args.db:
         check_db(args.db_url, people)
+        if ments:
+            expected = check_db_social(args.db_url, people, ments, follows, threads)
     if args.app:
-        check_app(args.app.rstrip("/"), people, threads)
+        check_app(args.app.rstrip("/"), people, threads, expected)
 
     width = max(len(r[0]) for r in RESULTS)
     out = ["# QA report", "", f"Run: {datetime.now(NY).isoformat(timespec='seconds')} · threads: `{args.threads}` · "

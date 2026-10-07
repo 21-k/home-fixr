@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-05T21:02:09-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-07T01:11:30-04:00 · threads: `content/threads.sample.scheduled.json` · db: no · app: no
 
 | status | check | detail |
 |---|---|---|
@@ -31,26 +31,40 @@ Run: 2026-10-05T21:02:09-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | bullet points only from Kash_sing | [] |
 | PASS | nobody mentions/praises Home Fixr | [] |
 | PASS | plagiarism: no 12-word overlap (internal; no external corpus) | 8-gram overlaps: 3; 12+: [] |
-| PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 82%, 0-4am 1%; 0:1 5:8 6:11 7:2 8:4 9:3 10:6 11:1 12:5 13:7 15:3 17:2 18:4 19:8 20:14 21:23 22:7 23:10 |
+| PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 82%, 0-4am 0%; 5:8 6:11 7:2 8:4 9:3 10:6 11:1 12:5 13:7 15:3 17:2 18:4 19:8 20:14 21:23 22:7 23:11 |
 | PASS | Friday nights quiet | 0 posts Fri after 6pm |
 | PASS | fact lint written for human review | 56 flagged sentences -> seed/reports/fact_lint.md |
 | PASS | About sentence present in source |  |
-| PASS | DB: 136 seeded profiles | 136 |
-| PASS | DB: every seeded profile is_founding_member |  |
-| PASS | DB: no handle collision with any other member | 0 |
-| PASS | DB: zero notifications involving seeded accounts | 0 |
-| PASS | DB: no seeded Senior accepting mentees | 0 |
-| PASS | DB: seeded avatar fields written and consistent | 0 |
-| PASS | DB: seeded auth users have no password and are banned | 0 |
-| PASS | app: /feed renders | 200 |
-| PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 80 badges for 20 posts |
-| PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
-| PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
-| PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
-| PASS | app: all 136 profile pages render (200) | [] |
-| PASS | app: Founding Community badge on every seeded profile | [] |
-| PASS | app: no private full_name on handle-preference profiles | [] |
-| PASS | app: seeded thread pages render with badges | 20 threads checked; bad: [] |
-| PASS | app: About page carries the §0.3 sentence |  |
-| PASS | app: landing FAQ + footer link to About |  |
+| PASS | social: ~35 mentorships (30-40) | 36: active 22, declined 3, pending 11 |
+| PASS | social: ~60% active (50-70%) | 61% active |
+| PASS | social: a few declined (2-5), rest pending | declined 3, pending 11 |
+| PASS | social: every mentorship is junior -> senior | [] |
+| PASS | social: no duplicate mentorship pairs | [] |
+| PASS | social: no Junior has two active mentors | [] |
+| PASS | social: a second, pending request is rare (<= 2 Juniors) | ['joe.plumb'] |
+| PASS | social: pending requests mostly to 'limited' Seniors (>= 70%) | 11/11 |
+| PASS | social: no pending/declined request to a 'not taking mentees' Senior (the app hides the button) | [] |
+| PASS | social: active mentees per Senior vary (>=2 with 3-5, >=3 with 1-2, >=2 with 0, none >5) | 3-5: 3, 1-2: 6, 0: 6; oldsteam_zig:4 mbell_wireman:2 thiago_sparks:1 Kash_sing:3 codebook_dale:1 joyd_plumbing:2 ms_almonte:5 dreb_jman:2 bklyn_arkady:2 |
+| PASS | social: 'not taking mentees' Seniors carry 0-2 actives (some 1-2: that's why they're full) | {'dhollis61': 0, 'codebook_dale': 1, 'tnguyen_refrig': 0, 'dreb_jman': 2} |
+| PASS | social: no full Senior shown as 'Accepting mentees' | [] |
+| PASS | social: actives matched by trade (>= 80%) | 22/22 |
+| PASS | social: actives often in the same region (>= 40%) | 14/22 |
+| PASS | social: NYC Juniors' mentors mostly the NYC Seniors; NJ Juniors' almost never | NYC 4/4; NJ->NYC 0 |
+| PASS | social: career switchers / vo-tech more likely to have a mentor | 27% of 56 vs 11% of 65 |
+| PASS | social: regular+heavy > occasional > lurker for having a mentor; lurkers rarely (<= 10%) | regular+heavy 40% (heavy 17%, regular 46%, occasional 21%, lurker 2%) |
+| PASS | social: mentorship times inside the window, after both joined, accepted hours-days later | latency h: min 2, median 23, max 143;  |
+| PASS | social: thread-implied pairs (thanks / 'update: did what X said') are in the graph, after the exchange | 10 anchored; [] |
+| PASS | social: no mentor answers their mentee's later thread as a stranger | [] |
+| PASS | social: no self-follows, no duplicate follows, both ends are personas | 402 follows |
+| PASS | social: every mentee follows their mentor | [] |
+| PASS | social: ~20% of accounts follow nobody (17-23%) | 27/136 = 20% |
+| PASS | social: followers by kind in band (pillars 15-40, Seniors 5-15, active Juniors 0-8, occasional 0-5, lurkers 0-3) | pillar 19-35 (median 28); senior 7-15 (median 13); heavy 2-8 (median 4); regular 0-8 (median 3); occasional 0-3 (median 0); lurker 0-1 (median 0) |
+| PASS | social: the graph is skewed (top 5 accounts hold >= 25% of follows) | top 5: [('oldsteam_zig', 35), ('codebook_dale', 34), ('Kash_sing', 28), ('mbell_wireman', 23), ('ms_almonte', 19)] |
+| PASS | social: follows of non-pillars mostly within trade or region (>= 75%) | 213/263 |
+| PASS | social: Seniors who follow anyone follow some other Seniors | [] |
+| PASS | social: Seniors follow only the occasional standout Junior (regular/heavy) | {'heavy': 3, 'regular': 4} |
+| PASS | social: Juniors mostly follow the Senior whose answer they accepted (>= 50%) | 10/11 |
+| PASS | social: every follow is after both joined and inside the window | [] |
+| PASS | helpful: the accepted answer has the most helpful votes in its thread | [] |
+| PASS | helpful: no short reply outvotes the substantive Senior answer | [] |
+| PASS | answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted) | oldsteam_zig:9/7 mbell_wireman:3/3 thiago_sparks:7/6 Kash_sing:4/4(+1 own) dhollis61:2/2 hec_does_ac:6/6(+1 own) codebook_dale:4/4 joyd_plumbing:4/4 ms_almonte:3/3(+1 own) wchen_controls:0/0 haddad_mech:4/4 rui_t_kearny:7/6 tnguyen_refrig:4/4 dreb_jman:1/1 bklyn_arkady:2/2 |

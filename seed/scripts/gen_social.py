@@ -109,7 +109,9 @@ BANDS = {"pillar": (15, 40), "senior": (5, 15), "heavy": (0, 8), "regular": (0, 
 ZERO_OUT_SHARE = 0.20
 # How attractive an account is to follow, by kind (x visibility in the threads).
 POP = {"pillar": 2.6, "senior": 0.9, "heavy": 1.1, "regular": 0.5, "occasional": 0.1, "lurker": 0.025}
-POP_BY_SENIOR = {"pillar": 4.0, "senior": 2.0, "heavy": 0.6, "regular": 0.08, "occasional": 0.0, "lurker": 0.0}
+# Seniors follow other Seniors and the occasional standout (heavy) Junior;
+# a regular Junior only after a thread exchange.
+POP_BY_SENIOR = {"pillar": 4.0, "senior": 2.0, "heavy": 0.6, "regular": 0.0, "occasional": 0.0, "lurker": 0.0}
 
 
 def kind(p: dict) -> str:
@@ -394,8 +396,13 @@ class Social:
                 add(j, s, min(at, req), f"requested mentorship ({r['status']})")
 
         # 3. Thread interactions: follow the Seniors who answered you, soon after.
+        def senior_may_follow(a, b):
+            return a["role"] != "senior" or b["role"] == "senior" or b["activity_level"] in ("heavy", "regular")
+
         for (starter, replier), (at, accepted) in sorted(self.answered.items()):
             a, b = self.people[starter], self.people[replier]
+            if not senior_may_follow(a, b):
+                continue
             if b["role"] == "senior":
                 p = 0.8 if accepted else 0.5
             else:
@@ -404,6 +411,8 @@ class Social:
                 add(starter, replier, at + self.lognormal_td(3, 1.0, 0.1, 48), f"answered their thread")
         for (x, y), at in sorted(self.cothread.items()):
             a, b = self.people[x], self.people[y]
+            if not senior_may_follow(a, b):
+                continue
             if a["role"] == "senior" and b["role"] == "senior":
                 p = 0.3
             elif b["role"] == "senior":
@@ -470,7 +479,8 @@ class Social:
                 tries = 0
                 while indeg()[h] < goal and tries < 200:
                     tries += 1
-                    cands = [a for a in people if a["handle"] not in zero and a["handle"] != h and (a["handle"], h) not in edges]
+                    cands = [a for a in people if a["handle"] not in zero and a["handle"] != h and (a["handle"], h) not in edges
+                             and (a["role"] == "junior" or p["role"] == "senior")]
                     a = rng.choices(cands, weights=[trade_w(x, p, 3.0, 0.5) * region_w(x, p, 2.5, 0.3) for x in cands])[0]
                     add(a["handle"], h, generic_time(a["handle"], h), "trade/region")
 
