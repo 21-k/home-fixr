@@ -382,6 +382,126 @@ def check_social(people, threads, ments, follows):
     return {"active_by_senior": per, "followers": ind}
 
 
+# ---------------------------------------------------------------- collabs
+ADDRESS_RE = re.compile(
+    r"\b\d{1,5}\s+(?:[A-Z][a-z]+\s+){1,3}(?:St|Street|Ave|Avenue|Rd|Road|Blvd|Lane|Ln|Dr|Drive|Pl|Place|Ct|Court|Terrace|Way)\b"
+    r"|\b\d{3}[-. )]\s?\d{3}[-.]\d{4}\b|[\w.]+@[\w-]+\.\w+")
+
+
+def check_collabs(people, ments, collabs, threads):
+    """The job collabs file (content/collabs.json), independent of gen_collabs.py's own checks."""
+    from common import COUNTIES
+    region_of = {c: r for r, cs in COUNTIES.items() for c in cs}
+    by = {p["handle"]: p for p in people}
+    dt = datetime.fromisoformat
+    n = len(collabs)
+    pitches = [(c, b) for c in collabs for b in c["pitches"]]
+    record("collabs: ~20 job collabs (18-22), all posted by seeded Seniors",
+           18 <= n <= 22 and all(by.get(c["poster"], {}).get("role") == "senior" for c in collabs),
+           f"{n} collabs by {len({c['poster'] for c in collabs})} Seniors: " + ", ".join(f"{h} {k}" for h, k in Counter(c["poster"] for c in collabs).most_common()))
+    sizes = Counter(len(c["pitches"]) for c in collabs)
+    record("collabs: 2-4 pitches each, from seeded Juniors, one per Junior per collab",
+           set(sizes) <= {2, 3, 4} and all(by.get(b["applicant"], {}).get("role") == "junior" for _, b in pitches)
+           and all(len({b["applicant"] for b in c["pitches"]}) == len(c["pitches"]) for c in collabs),
+           f"{len(pitches)} pitches; sizes {dict(sorted(sizes.items()))}")
+    one = [c["id"] for c in collabs if sum(b["status"] == "accepted" for b in c["pitches"]) != 1]
+    other = [f"{c['id']}/{b['applicant']}:{b['status']}" for c, b in pitches if b["status"] not in ("accepted", "declined", "interested")]
+    st = Counter(b["status"] for _, b in pitches)
+    record("collabs: exactly 1 accepted per collab; the rest declined or pending ('interested')", not one and not other,
+           f"{dict(st)}; bad: {one + other}")
+    types = Counter(c["type"] for c in collabs)
+    record("collabs: types extra_hand / ride_along / specialist all used; pay_type per schema",
+           set(types) == {"extra_hand", "ride_along", "specialist"} and all(c["pay_type"] in ("day_rate", "unpaid", "trade", "flexible") for c in collabs),
+           f"{dict(types)}; pay {dict(Counter(c['pay_type'] for c in collabs))}")
+    bad_fill = []
+    for c in collabs:
+        last = max(dt(b["applied_at"]) for b in c["pitches"])
+        acc = next((b for b in c["pitches"] if b["status"] == "accepted"), None)
+        job = datetime.combine(datetime.fromisoformat(c["scheduled_date"]).date(), datetime.min.time(), NY)
+        if not c.get("filled_at") or dt(c["filled_at"]) <= last or (acc and dt(c["filled_at"]) <= dt(acc["decided_at"])) or dt(c["filled_at"]) >= job:
+            bad_fill.append(c["id"])
+    record("collabs: every collab filled_at after its last application and its accept, before the job day", not bad_fill, str(bad_fill))
+    stamps = [(c["id"], dt(c["posted_at"])) for c in collabs] + [(c["id"], dt(c["filled_at"])) for c in collabs]
+    stamps += [(f"{c['id']}/{b['applicant']}", dt(b["applied_at"])) for c, b in pitches]
+    stamps += [(f"{c['id']}/{b['applicant']}", dt(b["decided_at"])) for c, b in pitches if b.get("decided_at")]
+    out_w = [w for w, t in stamps if not WINDOW_START <= t <= WINDOW_END]
+    night = [w for w, t in stamps if t.astimezone(NY).hour < 5]
+    dates = [c["id"] for c in collabs if not "2026-08-01" <= c["scheduled_date"] <= "2026-10-03"]
+    record("collabs: job dates Aug 1 - Oct 3; every timestamp inside the window, none at 0-4 am",
+           not out_w and not night and not dates, f"{len(stamps)} timestamps; window {out_w[:3]} night {night[:3]} dates {dates}")
+    order = []
+    for c in collabs:
+        if dt(c["posted_at"]) <= dt(by[c["poster"]]["joined_at"]):
+            order.append(f"{c['id']}: posted before {c['poster']} joined")
+        for b in c["pitches"]:
+            if dt(b["applied_at"]) <= max(dt(c["posted_at"]), dt(by[b["applicant"]]["joined_at"])):
+                order.append(f"{c['id']}/{b['applicant']}: applied before posting/joining")
+            if b.get("decided_at") and dt(b["decided_at"]) <= dt(b["applied_at"]):
+                order.append(f"{c['id']}/{b['applicant']}: decided before applying")
+            if (b["status"] == "interested") != (not b.get("decided_at")):
+                order.append(f"{c['id']}/{b['applicant']}: decided_at vs status")
+    record("collabs: poster joined before posting; applicants joined before applying, after posting; decisions after pitches",
+           not order, str(order[:4]))
+    dual = {"ms_almonte": {"hvac", "plumbing"}, "haddad_mech": {"hvac", "plumbing"}}
+    tr = [f"{c['id']}/{b['applicant']}" for c, b in pitches if by[b["applicant"]]["trade"] != c["trade"]]
+    tr += [c["id"] for c in collabs if c["trade"] not in ({by[c["poster"]]["trade"]} | dual.get(c["poster"], set()))]
+    record("collabs: trade match (applicants' trade = the job's; the poster works that trade)", not tr, str(tr[:5]))
+    rg = [c["id"] for c in collabs if region_of.get(c["county"]) != by[c["poster"]]["region"]]
+    rg += [f"{c['id']}/{b['applicant']}" for c, b in pitches if by[b["applicant"]]["region"] != region_of.get(c["county"])]
+    record("collabs: region match (job county in the poster's region; every applicant lives in it)", not rg, str(rg[:5]))
+    active = {(m["junior"], m["senior"]): dt(m["decided_at"]) for m in ments if m["status"] == "active"}
+    mentee_acc = [(c, b) for c, b in pitches if b["status"] == "accepted" and (b["applicant"], c["poster"]) in active]
+    early = [f"{c['id']}/{b['applicant']}" for c, b in pitches
+             if (b["applicant"], c["poster"]) in active and dt(b["applied_at"]) <= active[(b["applicant"], c["poster"])]]
+    flag = [f"{c['id']}/{b['applicant']}" for c, b in pitches if bool(b.get("mentee_of_poster")) != ((b["applicant"], c["poster"]) in active)]
+    record("collabs: some accepted pitches are the poster's mentee (3-10), each sent after the mentorship was accepted",
+           3 <= len(mentee_acc) <= 10 and not early and not flag,
+           f"{len(mentee_acc)} of {n}: " + ", ".join(f"{c['id']} {b['applicant']}->{c['poster']}" for c, b in mentee_acc) + (f"; early {early}" if early else ""))
+    loc = [c["id"] for c in collabs if not re.fullmatch(r"[A-Z][A-Za-z .'-]+, (NJ|Brooklyn|Queens|Bronx|Staten Island)", c["location"])]
+    addr = [c["id"] for c in collabs if ADDRESS_RE.search(c["title"] + "\n" + c["body"] + "\n" + c["location"])]
+    addr += [f"{c['id']}/{b['applicant']}" for c, b in pitches if ADDRESS_RE.search(b["note"])]
+    record("collabs: town-level locations only; no street address, phone or email anywhere", not loc and not addr, f"{loc} {addr}")
+    det = []
+    for c, b in pitches:
+        p = by[b["applicant"]]
+        if b["years_experience"] != p["years_in"] or b["is_licensed"] != bool(p["licenses"]) or (b["license_note"] or "") != ", ".join(p["licenses"]):
+            det.append(f"{c['id']}/{b['applicant']}")
+        if b.get("graduation_year") and str(b["graduation_year"])[2:] not in (p.get("affiliation_hint") or ""):
+            det.append(f"{c['id']}/{b['applicant']}: grad year")
+        if b.get("cv_path") or b.get("cv_name"):
+            det.append(f"{c['id']}/{b['applicant']}: CV")
+        for m in re.finditer(r"\b(\d{1,2})\s*(?:years|yrs|year)\b", b["note"], re.I):
+            if int(m.group(1)) != p["years_in"]:
+                det.append(f"{c['id']}/{b['applicant']}: says {m.group(0)}, persona {p['years_in']}")
+    record("collabs: application detail and stated years match each persona; no CV files", not det, str(det[:5]))
+    voice = []
+    for c in collabs:
+        txt = c["title"] + "\n" + c["body"]
+        if re.search(r"^\s*[-*•]\s", c["body"], re.M) and c["poster"] != "Kash_sing":
+            voice.append(f"{c['id']}: bullets")
+        if by[c["poster"]]["voice"]["punctuation"] == "lowercase_minimal" and re.search(r"(^|[.!?]\s+|\n\s*)[A-Z][a-z]", txt):
+            voice.append(f"{c['id']}: {c['poster']} not lowercase")
+    for c, b in pitches:
+        if by[b["applicant"]]["voice"]["punctuation"] == "lowercase_minimal" and re.search(r"(^|[.!?]\s+)[A-Z][a-z]", b["note"]):
+            voice.append(f"{c['id']}/{b['applicant']}: not lowercase")
+    praise = [c["id"] for c in collabs if re.search(r"home ?fixr", c["body"] + " ".join(b["note"] for b in c["pitches"]), re.I)]
+    record("collabs: persona voice (lowercase voices stay lowercase, bullets only from Kash_sing, nobody mentions Home Fixr)",
+           not voice and not praise, str(voice[:5] + praise))
+
+    def grams(text, k):
+        w = re.findall(r"[a-z0-9']+", text.lower())
+        return {" ".join(w[i:i + k]) for i in range(len(w) - k + 1)}
+    texts = [(c["id"], c["body"]) for c in collabs] + [(f"{c['id']}/{b['applicant']}", b["note"]) for c, b in pitches]
+    texts += [(w, t) for _, t, w in all_texts(threads)]
+    hits = []
+    for i, (wa, ta) in enumerate(texts[: n + len(pitches)]):
+        ga = grams(ta, 12)
+        for wb, tb in texts[i + 1:]:
+            if ga & grams(tb, 12):
+                hits.append(f"{wa}~{wb}")
+    record("collabs: no 12-word overlap with each other or with the threads", not hits, str(hits[:5]))
+
+
 # ---------------------------------------------------------------- fact lint
 FACT_RE = re.compile(r"(Local \d+|\bIBEW\b|\bUA\b|licen[cs]e|\bboard\b|\bDOB\b|apprenticeship|aptitude|Apex|vo-tech|\b608\b|HVACR|"
                      r"\bmaster\b|journeyman|home improvement|Consumer Affairs|\bpermit|\bcode\b|inspection|prevailing|"
@@ -505,9 +625,118 @@ def check_db_social(db_url, people, ments, follows, threads) -> dict:
     return {"followers": followers, "mentees": mentees, "answers": answers}
 
 
-def fetch(url: str) -> tuple[int, str]:
+def check_db_collabs(db_url, collabs):
+    import psycopg
+    assert_local_db(db_url)
+    b = BATCH_ID
+    with psycopg.connect(db_url) as conn, conn.cursor() as cur:
+        def one(sql, *a):
+            cur.execute(sql, a)
+            return cur.fetchone()[0]
+        nc = one("select count(*) from job_collabs where seed_batch_id = %s", b)
+        ni = one("select count(*) from collab_interests where seed_batch_id = %s", b)
+        n_p = sum(len(c["pitches"]) for c in collabs)
+        record("DB: batch job collabs / pitches match the file", nc == len(collabs) and ni == n_p, f"collabs {nc}/{len(collabs)}, pitches {ni}/{n_p}")
+        cur.execute("select status::text, count(*) from collab_interests where seed_batch_id = %s group by 1", (b,))
+        got = dict(cur.fetchall())
+        want = dict(Counter(x["status"] for c in collabs for x in c["pitches"]))
+        record("DB: pitch statuses as generated", got == want, str(got))
+        one_acc = one("""select count(*) from job_collabs j where j.seed_batch_id = %s and
+                          (select count(*) from collab_interests ci where ci.collab_id = j.id and ci.status = 'accepted') <> 1""", b)
+        record("DB: exactly one accepted pitch per batch collab", one_acc == 0, str(one_acc))
+        unfilled = one("""select count(*) from job_collabs j where j.seed_batch_id = %s and (j.filled_at is null or
+                          j.filled_at <= (select max(created_at) from collab_interests ci where ci.collab_id = j.id))""", b)
+        record("DB: every batch collab filled, after its last pitch", unfilled == 0, str(unfilled))
+        cnt = one("""select count(*) from job_collabs j where j.seed_batch_id = %s and
+                     j.interested_count <> (select count(*) from collab_interests ci where ci.collab_id = j.id)""", b)
+        record("DB: interested_count matches the pitches (trigger)", cnt == 0, str(cnt))
+        outside = one("""select count(*) from (select poster_id a from job_collabs where seed_batch_id = %s
+                         union all select user_id from collab_interests where seed_batch_id = %s) x
+                         join profiles p on p.id = x.a where p.seed_batch_id is distinct from %s""", b, b, b)
+        record("DB: collab rows are seeded-to-seeded only", outside == 0, str(outside))
+        cv = one("select count(*) from collab_interests where seed_batch_id = %s and (cv_path is not null or cv_name is not null)", b)
+        record("DB: no CV files on seeded pitches", cv == 0, str(cv))
+        notif = one("""select count(*) from notifications n where n.type::text in ('collab_interest', 'collab_accepted')
+                       and n.entity_id in (select id from job_collabs where seed_batch_id = %s)""", b)
+        record("DB: no collab notifications from the seeded collabs", notif == 0, str(notif))
+        cur.execute("set local role anon")
+        anon_c = one("select count(*) from job_collabs where seed_batch_id = %s and filled_at is not null", b)
+        anon_i = one("select count(*) from collab_interests where seed_batch_id = %s", b)
+        cur.execute("reset role")
+        record("DB: logged-out visitors see the filled collabs but no pitches (RLS)", anon_c == nc and anon_i == 0,
+               f"anon sees {anon_c} filled collabs, {anon_i} pitches")
+        # A real member can't apply to a seeded collab (filled first, then founding), all rolled back.
+        cur.execute("savepoint qa_apply")
+        msgs = []
+        try:
+            uid_ = "0a0a0a0a-0000-4000-8000-00000000c011"  # throwaway, rolled back
+            cur.execute("""insert into auth.users (id, instance_id, aud, role, email, raw_user_meta_data, created_at, updated_at)
+                           values (%s, '00000000-0000-0000-0000-000000000000', 'authenticated', 'authenticated',
+                           'qa-apply@example.test', '{}'::jsonb, now(), now())""", (uid_,))
+            cur.execute("select id from job_collabs where seed_batch_id = %s order by created_at", (b,))
+            cids = [r[0] for r in cur.fetchall()]
+            cur.execute("set local role authenticated")
+            cur.execute("select set_config('request.jwt.claims', %s, true)", ('{"sub": "%s", "role": "authenticated"}' % uid_,))
+            for cid in cids:
+                cur.execute("savepoint one")
+                try:
+                    cur.execute("insert into collab_interests (collab_id, user_id, note) values (%s, %s, 'qa')", (cid, uid_))
+                    msgs.append("ACCEPTED")
+                except psycopg.Error as e:
+                    msgs.append(e.diag.message_primary or "")
+                cur.execute("rollback to savepoint one")
+        finally:
+            cur.execute("rollback to savepoint qa_apply")
+            cur.execute("reset role")
+        record("DB: a real member applying to any seeded collab is refused with 'position has been filled'",
+               bool(msgs) and all("position has been filled" in m.lower() for m in msgs), f"{len(msgs)} tries: {Counter(msgs)}")
+
+
+def check_app_collabs(app, collabs, cookie: str | None = None):
+    """The Jobs board as a visitor (and, with a cookie, as a signed-in real member)."""
+    import html as htmllib
+    for who, hdr in (("logged out", None), ("signed-in member", cookie)):
+        if who != "logged out" and not hdr:
+            continue
+        code, page = fetch(f"{app}/collabs", cookie=hdr)
+        cards = re.split(r'(?=<div[^>]*data-testid="collab-card")', page)[1:]
+        by_title = {}
+        for ch in cards:
+            m = re.search(r"<h3[^>]*>(.*?)</h3>", ch, re.S)
+            if m:
+                by_title[htmllib.unescape(re.sub(r"<[^>]+>", "", m.group(1))).strip()] = ch
+        missing = [c["id"] for c in collabs if c["title"] not in by_title]
+        bad = []
+        for c in collabs:
+            ch = by_title.get(c["title"])
+            if ch is None:
+                continue
+            if 'data-filled="true"' not in ch or "Position filled" not in ch:
+                bad.append(f"{c['id']}: no Position filled")
+            if re.search(r"I(&#x27;|&apos;|')m interested|Edit application|<form[^>]*>\s*<input[^>]*name=\"note\"", ch):
+                bad.append(f"{c['id']}: has an apply control")
+        flags = [('data-filled="true"' in ch) for ch in cards]
+        open_first = flags == sorted(flags)
+        record(f"app ({who}): /collabs shows 'Position filled' and no apply control on every seeded collab",
+               code == 200 and not missing and not bad, f"{code}; {len(cards)} cards; missing {missing[:3]}; {bad[:4]}")
+        record(f"app ({who}): open collabs listed before filled ones", code == 200 and open_first,
+               f"{flags.count(False)} open, {flags.count(True)} filled")
+        if who == "signed-in member":
+            fm = sum("Founding Community account, set up by" in by_title.get(c["title"], "") for c in collabs)
+            signed = 'href="/collabs/mine"' in page
+            record("app (signed-in member): seeded collabs also keep the Founding notice, under Position filled",
+                   signed and fm == len(collabs), f"signed in: {signed}; founding notice on {fm}/{len(collabs)}")
+        code, op = fetch(f"{app}/collabs?status=open", cookie=hdr)
+        shown = [c["id"] for c in collabs if htmllib.escape(c["title"], quote=False) in op or c["title"] in op]
+        record(f"app ({who}): 'Open only' hides every seeded (filled) collab", code == 200 and not shown, f"{code}; shown: {shown[:3]}")
+
+
+def fetch(url: str, cookie: str | None = None) -> tuple[int, str]:
+    headers = {"User-Agent": "hf-qa"}
+    if cookie:
+        headers["Cookie"] = cookie
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers={"User-Agent": "hf-qa"}), timeout=60) as r:
+        with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=60) as r:
             return r.status, r.read().decode("utf-8", "replace")
     except urllib.error.HTTPError as e:
         return e.code, e.read().decode("utf-8", "replace")
@@ -600,6 +829,10 @@ def main() -> None:
     ap.add_argument("--db-url", default=LOCAL_DB_URL)
     ap.add_argument("--app", default="")
     ap.add_argument("--allow-unverified-handles", action="store_true")
+    ap.add_argument("--collabs", default="content/collabs.json")
+    ap.add_argument("--member-cookie", default="",
+                    help="Cookie header of a signed-in REAL local member, for the signed-in Jobs board check "
+                         "(tests/app/collabs-filled.mjs --print-cookie makes one)")
     args = ap.parse_args()
 
     people = load_json("personas/seniors.json") + load_json("personas/juniors.json")
@@ -614,13 +847,20 @@ def main() -> None:
     follows = load_json(args.follows)["follows"] if (SEED_DIR / args.follows).exists() else []
     if ments:
         check_social(people, threads, ments, follows)
+    collabs = load_json(args.collabs)["collabs"] if (SEED_DIR / args.collabs).exists() else []
+    if collabs:
+        check_collabs(people, ments, collabs, threads)
     expected = None
     if args.db:
         check_db(args.db_url, people)
         if ments:
             expected = check_db_social(args.db_url, people, ments, follows, threads)
+        if collabs:
+            check_db_collabs(args.db_url, collabs)
     if args.app:
         check_app(args.app.rstrip("/"), people, threads, expected)
+        if collabs:
+            check_app_collabs(args.app.rstrip("/"), collabs, args.member_cookie or None)
 
     width = max(len(r[0]) for r in RESULTS)
     out = ["# QA report", "", f"Run: {datetime.now(NY).isoformat(timespec='seconds')} · threads: `{args.threads}` · "

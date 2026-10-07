@@ -232,7 +232,7 @@ export default async function CollabsPage({
                 </div>
               </div>
 
-              <p className="mt-3 text-sm leading-relaxed text-zinc-700">{c.body}</p>
+              <p className="mt-3 whitespace-pre-line text-sm leading-relaxed text-zinc-700">{c.body}</p>
 
               <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-zinc-600">
                 {c.location && (

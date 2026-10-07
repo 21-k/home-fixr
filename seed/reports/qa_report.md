@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-07T07:11:54-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-07T08:59:57-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -70,6 +70,20 @@ Run: 2026-10-07T07:11:54-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | helpful: the accepted answer has the most helpful votes in its thread | [] |
 | PASS | helpful: no short reply outvotes the substantive Senior answer | [] |
 | PASS | answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted) | oldsteam_zig:9/7 mbell_wireman:3/3 thiago_sparks:7/6 Kash_sing:4/4(+1 own) dhollis61:2/2 hec_does_ac:6/6(+1 own) codebook_dale:4/4 joyd_plumbing:4/4 ms_almonte:3/3(+1 own) wchen_controls:0/0 haddad_mech:4/4 rui_t_kearny:7/6 tnguyen_refrig:4/4 dreb_jman:1/1 bklyn_arkady:2/2 |
+| PASS | collabs: ~20 job collabs (18-22), all posted by seeded Seniors | 20 collabs by 12 Seniors: oldsteam_zig 2, haddad_mech 2, thiago_sparks 2, hec_does_ac 2, joyd_plumbing 2, Kash_sing 2, rui_t_kearny 2, ms_almonte 2, bklyn_arkady 1, mbell_wireman 1, wchen_controls 1, tnguyen_refrig 1 |
+| PASS | collabs: 2-4 pitches each, from seeded Juniors, one per Junior per collab | 61 pitches; sizes {2: 4, 3: 11, 4: 5} |
+| PASS | collabs: exactly 1 accepted per collab; the rest declined or pending ('interested') | {'declined': 25, 'accepted': 20, 'interested': 16}; bad: [] |
+| PASS | collabs: types extra_hand / ride_along / specialist all used; pay_type per schema | {'extra_hand': 12, 'ride_along': 6, 'specialist': 2}; pay {'day_rate': 12, 'unpaid': 5, 'flexible': 3} |
+| PASS | collabs: every collab filled_at after its last application and its accept, before the job day | [] |
+| PASS | collabs: job dates Aug 1 - Oct 3; every timestamp inside the window, none at 0-4 am | 146 timestamps; window [] night [] dates [] |
+| PASS | collabs: poster joined before posting; applicants joined before applying, after posting; decisions after pitches | [] |
+| PASS | collabs: trade match (applicants' trade = the job's; the poster works that trade) | [] |
+| PASS | collabs: region match (job county in the poster's region; every applicant lives in it) | [] |
+| PASS | collabs: some accepted pitches are the poster's mentee (3-10), each sent after the mentorship was accepted | 7 of 20: C06 big_zach_hvac->Kash_sing, C08 briplumb87->bklyn_arkady, C09 DinerCoffeeHVAC->ms_almonte, C10 threeway_02->mbell_wireman, C13 Kearny_Pipefitter->joyd_plumbing, C15 Edison.volts->thiago_sparks, C17 sweatjoint200amp->oldsteam_zig |
+| PASS | collabs: town-level locations only; no street address, phone or email anywhere | [] [] |
+| PASS | collabs: application detail and stated years match each persona; no CV files | [] |
+| PASS | collabs: persona voice (lowercase voices stay lowercase, bullets only from Kash_sing, nobody mentions Home Fixr) | [] |
+| PASS | collabs: no 12-word overlap with each other or with the threads | [] |
 | PASS | DB: 136 seeded profiles | 136 |
 | PASS | DB: every seeded profile is_founding_member |  |
 | PASS | DB: no handle collision with any other member | 0 |
@@ -87,9 +101,19 @@ Run: 2026-10-07T07:11:54-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | DB: no notifications from the social rows (or anything seeded) | 0 |
 | PASS | DB: reply helpful counts match the (rebalanced) files | [] |
 | PASS | DB: logged-out visitors can read follows but no mentorship rows (RLS unchanged) | anon sees 0 mentorships, 389 follows |
+| PASS | DB: batch job collabs / pitches match the file | collabs 20/20, pitches 61/61 |
+| PASS | DB: pitch statuses as generated | {'declined': 25, 'interested': 16, 'accepted': 20} |
+| PASS | DB: exactly one accepted pitch per batch collab | 0 |
+| PASS | DB: every batch collab filled, after its last pitch | 0 |
+| PASS | DB: interested_count matches the pitches (trigger) | 0 |
+| PASS | DB: collab rows are seeded-to-seeded only | 0 |
+| PASS | DB: no CV files on seeded pitches | 0 |
+| PASS | DB: no collab notifications from the seeded collabs | 0 |
+| PASS | DB: logged-out visitors see the filled collabs but no pitches (RLS) | anon sees 20 filled collabs, 0 pitches |
+| PASS | DB: a real member applying to any seeded collab is refused with 'position has been filled' | 20 tries: Counter({'This position has been filled': 20}) |
 | PASS | app: /feed renders | 200 |
 | PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 80 badges for 20 posts |
+| PASS | app: Founding Community badge on /feed | 92 badges for 20 posts |
 | PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
 | PASS | app: /mentors 'answered' counts match the DB | 15 cards; [] |
@@ -104,3 +128,10 @@ Run: 2026-10-07T07:11:54-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | app: seeded thread pages render with badges | 20 threads checked; bad: [] |
 | PASS | app: About page carries the §0.3 sentence |  |
 | PASS | app: landing FAQ + footer link to About |  |
+| PASS | app (logged out): /collabs shows 'Position filled' and no apply control on every seeded collab | 200; 23 cards; missing []; [] |
+| PASS | app (logged out): open collabs listed before filled ones | 3 open, 20 filled |
+| PASS | app (logged out): 'Open only' hides every seeded (filled) collab | 200; shown: [] |
+| PASS | app (signed-in member): /collabs shows 'Position filled' and no apply control on every seeded collab | 200; 23 cards; missing []; [] |
+| PASS | app (signed-in member): open collabs listed before filled ones | 3 open, 20 filled |
+| PASS | app (signed-in member): seeded collabs also keep the Founding notice, under Position filled | signed in: True; founding notice on 20/20 |
+| PASS | app (signed-in member): 'Open only' hides every seeded (filled) collab | 200; shown: [] |

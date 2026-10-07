@@ -551,3 +551,107 @@ npx supabase --workdir ~/home-fixr/.prod db query --linked -f ~/home-fixr-social
 ```
 (Path as in this worktree; use wherever the branch is checked out.) Without the mentee-count fix above,
 production will show followers but still 0 mentees.
+
+
+---
+
+## 10. Job collabs: "Position filled" (branch `feat/seed-content`)
+
+The seeded collabs show as filled jobs, so the Jobs board looks active without dead ends for real
+members (owner-approved).
+
+### The feature (for real members too)
+- **Migration `0013_collab_filled.sql`**: `job_collabs.filled_at timestamptz null` (null = open). The
+  poster marks their own collab filled or reopens it through the existing RLS policy "posters can
+  update their own collabs" (checked: `using (auth.uid() = poster_id)`, which also checks the new row).
+  For API users a new `filled_at` is always stamped `now()` (no backdating) and `seed_batch_id` can't be
+  set or changed. A trigger refuses new applications, and applicant edits, on a filled collab
+  (`This position has been filled`, hint `collab_filled`); the poster can still accept/decline and an
+  applicant can still withdraw. It sorts before the Founding guard, so a filled seeded job says
+  "position has been filled" first. Staff/seed roles are not restricted.
+- **Hole closed:** `express_collab_interest()` (0004) is SECURITY DEFINER, so the triggers it fires saw
+  the owner role and skipped the API-only Founding guard: a real member could register interest on a
+  Founding collab through the RPC (the new DB test failed on the base branch). It now applies the founding
+  and filled rules itself.
+- **UI**: filled collabs show a **Position filled** badge, a muted card and "This position has been
+  filled, so it isn't taking applications." (logged in or out). No apply / "I'm interested" control; the
+  viewer's own status (You're in / Not this time) still shows. On Founding collabs the Founding notice
+  stays, in smaller text under the filled line. The board lists open collabs first, then filled (each
+  newest first), with **All, open first** (default) / **Open only** chips in the page (the sidebar is
+  hidden on phones) and in the sidebar, combinable with the type filter. The poster gets **Mark as
+  filled / Reopen** on their own card and in My jobs; right after accepting someone My jobs shows
+  "You accepted X. Is the position filled now? [Mark as filled]". Filling stays manual. Server actions
+  `applyToCollab` / `toggleCollabInterest` refuse filled jobs (before the Founding check);
+  `setCollabFilled` updates only the caller's own collab. Collab bodies keep their line breaks.
+- Screenshots (`seed/reports/screens/collabs/`): `collabs-desktop.png`, `collabs-mobile.png`,
+  `filled-collab-card.png` (logged out), `filled-collab-card-signed-in.png`, `collabs-open-only.png`,
+  `my-jobs-offer-mark-filled.png`.
+
+### Content: 20 collabs, 61 pitches
+`seed/content/collabs.authored.yaml` (hand-written in the persona voices) → `gen_collabs.py` (validates,
+fills application detail from each persona, adds timestamps) → `seed/content/collabs.json`.
+- 12 Seniors post (the union foreman-type and inspector personas who wouldn't hire, dhollis61,
+  codebook_dale, dreb_jman, don't). Types: 12 extra_hand, 6 ride_along, 2 specialist; pay 12 day_rate,
+  5 unpaid, 3 flexible. Town level only ("Clifton, NJ", "Bay Ridge, Brooklyn").
+- 2-4 pitches each from Juniors in the job's trade and region; union apprentices are left out of paid
+  side work. Exactly one accepted per collab; 25 declined, 16 still pending (`interested`). 7 accepted
+  pitches are from the poster's active mentee, each sent after the mentorship was accepted.
+- Pitch detail comes from the persona: years in = `years_in`, graduation year from a vo-tech grad's
+  affiliation, age band from a stated age, licence = EPA 608 where the persona holds it. No CV files.
+- Dates: jobs Aug 3 - Oct 1; posted 6-9 days before; pitches between posting and the night before;
+  accept/decline after the pitch; `filled_at` after every pitch and the accept, before the job day. All
+  inside Jul 24 - Oct 4 ET, none at 0-4 am; posters and applicants joined first. Cross-collab arcs stay in
+  order (ParkwayPipes' "third time pitching", hector.hvac's "shadow week last month").
+- Hedged facts: certified payroll + district background check on a public school job (haddad_mech); an
+  EPA 608 card is needed to handle refrigerant (C19, C20); the NYC gas inspector sets the day (C08).
+
+| id | poster | title | type | date | applicants | accepted |
+|---|---|---|---|---|---|---|
+| C01 | oldsteam_zig | Extra set of hands Sat for a boiler swap in Clifton. 8 hrs, day rate, you learn | extra_hand | 2026-08-15 | 3: big_hector_plumb (declined), ParkwayPipes (declined) | big_paulie_plumb |
+| C02 | haddad_mech | One helper for a week on a school unit-ventilator job, Willingboro | extra_hand | 2026-08-03 | 2: Ryan.N (declined) | Dev.R |
+| C03 | thiago_sparks | Extra hand Saturday: rewire on a raised house in Long Branch, day rate | extra_hand | 2026-08-15 | 3: PullingWireAgain (pending), JunctionBoxJunkie (declined) | RookieWireman |
+| C04 | hec_does_ac | Shadow a service tech for a week, Camden County (week of Aug 17) | ride_along | 2026-08-17 | 3: Ryan.N (pending), dahvacnj (declined) | hector.hvac |
+| C05 | joyd_plumbing | Helper for 3 days on a riser job in Jersey City | extra_hand | 2026-08-19 | 2: ParkwayPipes (declined) | big_hector_plumb |
+| C06 | Kash_sing | Helper needed: heat pump install, Edison, 2 days | extra_hand | 2026-08-18 | 4: condensate_3way (pending), zghvacnj (declined), GreenhornHVAC (declined) | big_zach_hvac (mentee) |
+| C07 | rui_t_kearny | Saturday of water heater swaps around Kearny, need an extra hand | extra_hand | 2026-08-22 | 2: big_paulie_plumb (declined) | ParkwayPipes |
+| C08 | bklyn_arkady | Helper for a gas test + inspection day, Bay Ridge brownstone | extra_hand | 2026-08-27 | 3: BayRidge.traps (declined), LateStartPlumber (pending) | briplumb87 (mentee) |
+| C09 | ms_almonte | Saturday mini-split install in Wayne, one helper | extra_hand | 2026-08-29 | 4: deshawn.hvac (declined), Bergen_Ducts (declined), epa608_672 (pending) | DinerCoffeeHVAC (mentee) |
+| C10 | mbell_wireman | Ride-along for a Junior interested in commercial: Secaucus fit-out, 2 days | ride_along | 2026-09-01 | 4: hudson_conduit (pending), WawaRunWired (declined), panelchanger_200amp (declined) | threeway_02 (mentee) |
+| C11 | wchen_controls | shadow a controls tech for a day, bms service calls around bridgewater | ride_along | 2026-09-10 | 3: WiremanFromPiscataway (declined), JunctionBoxJunkie (pending) | PullingWireAgain |
+| C12 | haddad_mech | Extra hand Saturday: restroom rough-in at a warehouse, Mount Laurel | extra_hand | 2026-09-12 | 3: codyplumb83 (declined), emeka.plumb (pending) | big_nicole_plumb |
+| C13 | joyd_plumbing | Saturday helper, boiler room cleanup and new feed in a Hoboken co-op | extra_hand | 2026-09-19 | 3: sweatjoint200amp (declined), EssexPipes (pending) | Kearny_Pipefitter (mentee) |
+| C14 | tnguyen_refrig | ride along on walk-in calls, atlantic city, end of season | ride_along | 2026-09-15 | 3: dahvacnj (pending), hector.hvac (declined) | Ryan.N |
+| C15 | thiago_sparks | Helper for a service upgrade on a raised house in Sea Bright | extra_hand | 2026-09-21 | 3: WiremanFromPiscataway (pending), DripLoopDays (declined) | Edison.volts (mentee) |
+| C16 | ms_almonte | Ride-along Sunday: load calc and duct survey on a Clifton Cape | ride_along | 2026-09-20 | 3: JerseyDuctwork (declined), deshawn.hvac (pending) | epa60812_2 |
+| C17 | oldsteam_zig | Steam job in Garfield Saturday: need someone who isn't afraid of a basement | extra_hand | 2026-09-26 | 4: big_hector_plumb (declined), EssexPipes (declined), NorthJersey_Plumber (pending) | sweatjoint200amp (mentee) |
+| C18 | rui_t_kearny | Ride-along week at a small shop in Kearny, for a vo-tech grad | ride_along | 2026-09-28 | 2: EssexPipes (declined) | NorthJersey_Plumber |
+| C19 | hec_does_ac | Need someone with their 608 for a rooftop PM day in AC | specialist | 2026-09-29 | 4: ExRetail_NowHVAC (declined), sam2214 (pending), big_ben_tools (pending) | dahvacnj |
+| C20 | Kash_sing | Need a 608-certified helper for recovery on two changeouts, South Brunswick | specialist | 2026-10-01 | 3: Raritan.airside (pending), middlesex_coils (declined) | matt_the_hvac |
+
+### QA
+`qa.py` gained 14 file checks, 10 DB checks and 7 rendered-page checks for collabs (counts, one accepted,
+filled after the last pitch, dates and window, joined-before, trade/region, mentee timing, town-level,
+persona detail, voice, 12-gram overlap; DB counts/statuses/filled/interested_count/seeded-only/no CV/no
+notifications/RLS, and a simulated real member refused on all 20; the Jobs page logged out and signed
+in). The Playwright suite is only on `fix/ui-navigation` (PR #7), so the app flow is a script instead:
+`npm run test:app` (`tests/app/collabs-filled.mjs`, needs `npm run dev` + local Supabase). It signs up
+throwaway local members and drives the real app: every seeded collab filled with no apply control,
+open first, Open only; then a real poster's flow (post, apply, accept, My jobs offers Mark as filled,
+the real server action fills it, the applicant and others see Position filled, a new application and
+the old RPC are refused, Reopen via the server action, someone else can't fill it). 19/19.
+
+Local cycle (`seed/reports/collabs_local_cycle.txt`, QA output `seed/reports/collabs_qa_local.txt`):
+`qa.py --db --app http://localhost:3000 --allow-unverified-handles --member-cookie …`: **129 pass, 2
+warn, 0 fail** (the two existing warnings). `npm run lint` clean, `npm run build` OK, `npm test` 20/20
+(one pre-existing failure fixed: the About-sentence test still expected the pre-9935b23 wording),
+`npm run test:db` 24/24 (8 new).
+
+### Production order (collabs)
+0. Prerequisite: PR #8's social layer is live (0012 + `additions-social-fm-2026-10.sql`); the collabs
+   file checks for the mentorships it builds on.
+1. Migration first (before the merge, since the app selects `filled_at`): `0013_collab_filled.sql` on production (db push / SQL editor). It is idempotent.
+2. Merge the PR (the app reads `filled_at`; deploy).
+3. `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/additions-collabs-fm-2026-10.sql`
+
+The collabs file refuses unless 0013 is in, all 136 batch profiles match, and the social additions are
+in (it checks the 7 mentee pitches' mentorships); it refuses a second run; notifications unchanged.
