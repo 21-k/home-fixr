@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-07T01:29:35-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-07T07:11:54-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -93,13 +93,13 @@ Run: 2026-10-07T01:29:35-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
 | PASS | app: /mentors 'answered' counts match the DB | 15 cards; [] |
-| FAIL | app: /mentors 'mentees' counts match the DB | 9 of 15 cards differ: ['oldsteam_zig: shows 0, DB 4', 'ms_almonte: shows 0, DB 5', 'codebook_dale: shows 0, DB 1', 'bklyn_arkady: shows 0, DB 2', 'Kash_sing: shows 0, DB 3', 'thiago_sparks: shows 0, DB 1'] |
+| PASS | app: /mentors 'mentees' counts match the DB | 0 of 15 cards differ: [] |
 | PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
 | PASS | app: all 136 profile pages render (200) | [] |
 | PASS | app: Founding Community badge on every seeded profile | [] |
 | PASS | app: no private full_name on handle-preference profiles | [] |
 | PASS | app: /u/<handle> 'followers' match the DB (all 136) | 0 differ: [] |
-| FAIL | app: /u/<handle> 'active mentees' match the DB (all 136) | 9 differ: ['oldsteam_zig: shows 0, DB 4', 'mbell_wireman: shows 0, DB 2', 'thiago_sparks: shows 0, DB 1', 'Kash_sing: shows 0, DB 3', 'codebook_dale: shows 0, DB 1', 'joyd_plumbing: shows 0, DB 2'] |
+| PASS | app: /u/<handle> 'active mentees' match the DB (all 136) | 0 differ: [] |
 | PASS | app: /u/<handle> 'answers' match the DB (all 136) | 0 differ: [] |
 | PASS | app: seeded thread pages render with badges | 20 threads checked; bad: [] |
 | PASS | app: About page carries the §0.3 sentence |  |
