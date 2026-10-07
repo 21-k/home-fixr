@@ -31,6 +31,7 @@ function fileName(path: string) {
 }
 
 test("crawl every internal link, logged out @live", async ({ page, health }, testInfo) => {
+  test.setTimeout(45 * 60_000);
   const dir = `e2e/reports/${IS_LIVE ? "live" : "local-crawl"}`;
   const shotDir = `${dir}/${testInfo.project.name}`;
   mkdirSync(shotDir, { recursive: true });
@@ -70,7 +71,8 @@ test("crawl every internal link, logged out @live", async ({ page, health }, tes
     for (const href of hrefs) {
       const u = new URL(href);
       if (u.origin !== origin) continue;
-      const key = u.pathname + u.search;
+      // Every page's "Sign in" carries its own ?next=; crawl the auth pages once.
+      const key = /^\/(login|join)$/.test(u.pathname) ? u.pathname : u.pathname + u.search;
       if (SKIP.some((re) => re.test(u.pathname)) || seen.has(key)) continue;
       seen.add(key);
       queue.push(key);
