@@ -78,11 +78,11 @@ test("Founding Community badge is wired into profile header, post cards, replies
   assert.match(cols, /is_founding_member/);
 });
 
-test("About page carries the §0.3 disclosure sentence verbatim", () => {
+test("About page carries the disclosure sentence verbatim (wording as revised in 9935b23)", () => {
   const founding = readFileSync(join(ROOT, "src/lib/founding.ts"), "utf8");
   assert.ok(
     founding.includes(
-      "Our earliest discussions were seeded by the Home Fixr team, with help from NJ tradespeople, to show how the community works. Founding Community accounts are marked.",
+      "Our earliest discussions were written by the Home Fixr team, with AI assistance, to show how the community works. Founding Community accounts are marked.",
     ),
   );
   const about = readFileSync(join(ROOT, "src/app/about/page.tsx"), "utf8");
