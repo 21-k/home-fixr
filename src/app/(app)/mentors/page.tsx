@@ -63,11 +63,20 @@ export default async function MentorsPage({
   for (const m of (menteeRows ?? []) as { senior_id: string; mentees: number }[])
     menteeCount.set(m.senior_id, m.mentees);
 
-  // Real "answered" counts, tallied from replies in one query.
-  const { data: replies } = await supabase.from("replies").select("author_id");
-  const answeredCount = new Map<string, number>();
-  for (const r of replies ?? [])
-    answeredCount.set(r.author_id, (answeredCount.get(r.author_id) ?? 0) + 1);
+  // Real "answered" counts: one exact count per listed mentor. (Selecting
+  // every reply and tallying here silently stopped at the API's 1,000-row
+  // cap once the site had more replies than that.)
+  const answeredCount = new Map<string, number>(
+    await Promise.all(
+      mentors.map(async (m) => {
+        const { count } = await supabase
+          .from("replies")
+          .select("*", { count: "exact", head: true })
+          .eq("author_id", m.id);
+        return [m.id, count ?? 0] as [string, number];
+      }),
+    ),
+  );
 
   const sidebar = (
     <nav>
