@@ -11,6 +11,8 @@ import { USERS, storageStatePath } from "./support/users";
 const CHROME = "header a[href], nav a[href], aside a[href], footer a[href]";
 
 async function checkChromeLinks(page: Page, routes: string[]) {
+  // ~40 pages + ~70 link targets: slow on a busy dev server.
+  if (!IS_LIVE) test.setTimeout(300_000);
   const targets = new Map<string, string>(); // href -> first page it was seen on
   const badHashes: string[] = [];
 
