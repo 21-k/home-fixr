@@ -53,7 +53,6 @@ NS = uuid.UUID("6f1d3c3e-6a4b-4f0e-9d51-6f6d2b1e0a10")
 TABLES = ["profiles", "posts", "replies", "job_collabs", "collab_interests", "mentorships", "follows"]
 WINDOW_END_SQL = "2026-10-04 23:59:59-04"   # schedule.DEFAULT_END, America/New_York
 WINDOW_START_SQL = "2026-07-24 00:00:00-04"  # schedule.DEFAULT_START
-EXPECTED_MEMBERS = 136
 
 # Checks on the social rows that must all return 0. `{b}` is the batch.
 SOCIAL_ZERO = {

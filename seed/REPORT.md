@@ -458,8 +458,8 @@ production as one additions-only SQL file.
 **Follows (389)**
 - 28/136 accounts (21%) follow nobody, mostly lurkers. Every mentee follows their mentor (22), most
   requesters follow the Senior they asked (9), Juniors follow the Seniors who answered their threads,
-  usually within hours (23), Seniors who argued in the same thread follow each other (28 thread-prompted
-  in all), the rest by popularity × trade × region (307). Seniors follow other Seniors (49 follows) and
+  usually within hours (23), people who replied in the same thread (Seniors who argued there, mostly)
+  follow each other (28), and the rest go by popularity × trade × region (307). Seniors follow other Seniors (49 follows) and
   only a few standout Juniors (heavy/regular, 7).
 - Followers: pillars 22–40 (oldsteam_zig 40, Kash_sing 31, mbell_wireman 26, codebook_dale 22,
   ms_almonte 22); other Seniors 6–14; heavy Juniors 2–8; regular 0–8 (median 3); occasional 0–3;
