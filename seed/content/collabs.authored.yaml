@@ -1,0 +1,712 @@
+# ---------------------------------------------------------------------------
+# ~20 job collabs posted by seeded Seniors, with 2-4 pitches each from seeded
+# Juniors (plan §4 "Collabs / ride-alongs"). Written by hand from the persona
+# voice blocks. Fictional people and jobs; town level only, never an address.
+#
+# gen_collabs.py validates this file (poster/applicant exist, trade + region
+# match, joined before posting/applying, exactly one accepted pitch, voice
+# rules, skills from the app's list), fills the application-detail fields from
+# each applicant's persona, adds timestamps, and writes content/collabs.json.
+#
+#   posted:      the day the Senior posted it (time of day is generated)
+#   county:      the job's county (QA checks it's in the poster's region and
+#                every applicant's region)
+#   status:      accepted | declined | interested (= still pending)
+#   skills/tools/transport: what the applicant ticked on the form
+# ---------------------------------------------------------------------------
+collabs:
+
+- id: C01
+  poster: oldsteam_zig
+  type: extra_hand
+  trade: plumbing
+  title: "Extra set of hands Sat for a boiler swap in Clifton. 8 hrs, day rate, you learn"
+  body: |
+    Swapping an old cast iron boiler in a two-family in Clifton Saturday. Rigging the old one out of the basement is the worst part, so I need a strong back first and a brain second. 7am start, figure 8 hours, maybe 9. Day rate, paid at the end of the day, and I'll show you how the near-boiler piping goes together while we do it.
+
+    You don't need to know boilers, kid. You need to show up on time with boots and gloves and not be on your phone. That's the job.
+  location: "Clifton, NJ"
+  county: Passaic
+  scheduled_date: 2026-08-15
+  pay_type: day_rate
+  posted: 2026-08-09
+  pitches:
+    - applicant: big_paulie_plumb
+      status: accepted
+      note: "4 yrs in, i run residential service calls on my own now but i've only ever helped on one boiler swap and i want more of that. north bergen so clifton's easy, i can be there before 7. sorry if this is a dumb question but should i bring my own press tool or just hand tools"
+      skills: ["Water heaters", "Drain cleaning", "Soldering / press fit", "Fixture install"]
+      tools: true
+      transport: true
+    - applicant: ParkwayPipes
+      status: declined
+      note: "Belleville, 3 years doing service. I can lift, I don't mind basements, and I want to get off drain calls for a day. Is it cash or check, and do you want me there 6:45 or right at 7?"
+      skills: ["Drain cleaning", "Water heaters", "Fixture install"]
+      tools: true
+      transport: true
+    - applicant: big_hector_plumb
+      status: declined
+      note: "4 years in, run my own service calls in Hudson. Never done a boiler. Strong, on time, quiet lol."
+      skills: ["Water heaters", "Fixture install", "Soldering / press fit"]
+      tools: true
+      transport: true
+
+- id: C02
+  poster: haddad_mech
+  type: extra_hand
+  trade: hvac
+  title: "One helper for a week on a school unit-ventilator job, Willingboro"
+  body: |
+    We are replacing classroom unit ventilators in a school in Willingboro the week of August 3, while the building is empty. I need one helper for the week: carrying, demo, cleaning up, staging the new units. 6:00 start, and I mean 6:00.
+
+    Here's what I look for when I hire: you show up, you listen, you don't need to be told twice. This is a public job, so you would be on our certified payroll for the week at the rate set for the classification, and the district requires a background check before you set foot in the building. I'll walk whoever I pick through both.
+  location: "Willingboro, NJ"
+  county: Burlington
+  scheduled_date: 2026-08-03
+  pay_type: day_rate
+  posted: 2026-07-27
+  pitches:
+    - applicant: Dev.R
+      status: accepted
+      note: "3 yrs in, mostly installs, i have my 608 type II and my own van this year. pemberton so willingboro is 20 min. no problem with a background check or 6am. never done unit ventilators, want to see it. thanks in advance"
+      skills: ["Split systems", "Ductwork", "Charging & recovery", "Controls / thermostats"]
+      tools: true
+      transport: true
+    - applicant: Ryan.N
+      status: declined
+      note: "1 yr in non-union down in atlantic county, i can drive up every day brother. background check is fine, 6am is fine. mostly been doing installs and carrying for my boss so the demo and staging stuff i can do"
+      skills: ["Ductwork", "Split systems"]
+      tools: false
+      transport: true
+
+- id: C03
+  poster: thiago_sparks
+  type: extra_hand
+  trade: electrical
+  title: "Extra hand Saturday: rewire on a raised house in Long Branch, day rate"
+  body: |
+    Honestly this one is a classic shore job. House got raised after Sandy, the electrical got "temporarily" reconnected by somebody years ago, and now we're doing it right. Saturday, all day. I need a helper to pull wire, drill, and keep the job clean while I do the panel side.
+
+    Day rate. You'll be up and down ladders and in a crawlspace that's more of a crawl than a space. If you've only done new construction, that's fine, this is a good look at what remodel work actually is.
+  location: "Long Branch, NJ"
+  county: Monmouth
+  scheduled_date: 2026-08-15
+  pay_type: day_rate
+  posted: 2026-08-09
+  pitches:
+    - applicant: RookieWireman
+      status: accepted
+      note: "1 yr in at a shop out of middletown, it's all new construction townhouses so i've never seen an old house opened up and i really want to. i pull wire all day so that part i'm good at. 15 min away, free saturday"
+      skills: ["Rough-in wiring", "Conduit bending"]
+      tools: true
+      transport: true
+    - applicant: JunctionBoxJunkie
+      status: declined
+      note: "I'm in the electrical program at the Mercer vo-tech, so I'm a student, not a helper yet, but I've been looking for weekend work for exactly this reason. We've done rough-in in the shop booths and I'm good on a ladder. Hamilton to Long Branch is about 45 minutes and I'd leave early."
+      skills: ["Rough-in wiring", "Ladder / heights work"]
+      tools: false
+      transport: true
+    - applicant: PullingWireAgain
+      status: interested
+      note: "Vo-tech grad, about a year at a shop in Union... still the new guy. Saturdays are free. Can bring hand tools."
+      skills: ["Rough-in wiring", "Conduit bending"]
+      tools: true
+      transport: true
+
+- id: C04
+  poster: hec_does_ac
+  type: ride_along
+  trade: hvac
+  title: "Shadow a service tech for a week, Camden County (week of Aug 17)"
+  body: |
+    So this one time in AC... I spent my whole first summer carrying condensers and never once saw anybody actually diagnose anything lol. Not doing that to the next guy.
+
+    I've got a week of service calls around Cherry Hill, Voorhees and Pennsauken starting Monday the 17th. Ride along, watch how a no-cool call goes from the door to the invoice, ask questions in the van not in front of the customer... You'll carry stuff too, that's the deal. Unpaid, it's a shadow week, but I'll buy the Wawa.
+  location: "Cherry Hill, NJ"
+  county: Camden
+  scheduled_date: 2026-08-17
+  pay_type: unpaid
+  posted: 2026-08-10
+  pitches:
+    - applicant: hector.hvac
+      status: accepted
+      note: "i'm a helper at a small shop near lakewood, we do installs mostly and i barely see service. can i take the week off for this? yes, already asked my boss. is it every day or can i do 4 of the 5?"
+      skills: ["Split systems", "Ductwork"]
+      tools: false
+      transport: true
+    - applicant: dahvacnj
+      status: declined
+      note: "vo-tech grad, have my 608 universal. doing duct work and changeouts in toms river right now, want to see service before the apprenticeship calls. thanks in advance"
+      skills: ["Ductwork", "Split systems", "Charging & recovery"]
+      tools: true
+      transport: true
+    - applicant: Ryan.N
+      status: interested
+      note: "1 yr non-union from egg harbor township, i'd drive up for this brother. my boss doesn't really let me near diagnosing yet so this is what i'm missing"
+      skills: ["Ductwork", "Split systems"]
+      tools: false
+      transport: true
+
+- id: C05
+  poster: joyd_plumbing
+  type: extra_hand
+  trade: plumbing
+  title: "Helper for 3 days on a riser job in Jersey City"
+  body: |
+    Replacing a section of domestic water riser in a six-story co-op, Jersey City. Three days starting Wednesday the 19th. You'd be carrying, cutting, staging, and dealing with residents who want to know when their water comes back. Day rate.
+
+    Tell me in two lines what you've done and whether you can be there at 7. That's all I need to know.
+  location: "Jersey City, NJ"
+  county: Hudson
+  scheduled_date: 2026-08-19
+  pay_type: day_rate
+  posted: 2026-08-12
+  pitches:
+    - applicant: big_hector_plumb
+      status: accepted
+      note: "4 years, residential service, I work alone most days. Never done a riser. Union City, there by 7."
+      skills: ["Soldering / press fit", "Repipes", "Water heaters"]
+      tools: true
+      transport: true
+    - applicant: ParkwayPipes
+      status: declined
+      note: "3 years of service out of Belleville, lots of copper. Want to see commercial. All three days or can I split it with someone? And is parking a nightmare there?"
+      skills: ["Soldering / press fit", "Repipes", "Drain cleaning"]
+      tools: true
+      transport: true
+
+- id: C06
+  poster: Kash_sing
+  type: extra_hand
+  trade: hvac
+  title: "Helper needed: heat pump install, Edison, 2 days"
+  body: |
+    Ducted heat pump replacing an old oil furnace, Edison split-level. Two days, Tuesday and Wednesday.
+    - Day 1: removal, pad, line set, air handler
+    - Day 2: wiring with the electrician, startup, cleanup
+    - Day rate, start 7:30
+    - You will carry a lot and you will clean up more than you think
+    - I explain the rebate paperwork at lunch for anyone who wants it
+
+    Callbacks cost me more than labor does, so I care more about careful than fast.
+  location: "Edison, NJ"
+  county: Middlesex
+  scheduled_date: 2026-08-18
+  pay_type: day_rate
+  posted: 2026-08-10
+  pitches:
+    - applicant: big_zach_hvac
+      status: accepted
+      note: "i'm in if you'll have me. been on two heat pump jobs since i started, both with somebody else's crew. can i ride in with you from edison or meet at the house? what time should i stop for coffee lol"
+      skills: ["Ductwork", "Heat pumps"]
+      tools: true
+      transport: true
+    - applicant: zghvacnj
+      status: declined
+      note: "about a year in at a non-union shop in new brunswick. mostly furnaces and carrying, idk much about heat pumps yet which is why i'm asking"
+      skills: ["Ductwork"]
+      tools: false
+      transport: true
+    - applicant: GreenhornHVAC
+      status: declined
+      note: "I have about a year at a small shop in Trenton, boilers and furnaces mostly. My foreman says I'm careful, which sounds like what you want. Both days work. Thanks in advance."
+      skills: ["Ductwork", "Controls / thermostats"]
+      tools: true
+      transport: true
+    - applicant: condensate_3way
+      status: interested
+      note: "switched from a call center last year, asbury park. i'm slow but i'm careful lol. both days are fine"
+      skills: ["Ductwork", "Customer-facing"]
+      tools: false
+      transport: true
+
+- id: C07
+  poster: rui_t_kearny
+  type: extra_hand
+  trade: plumbing
+  title: "Saturday of water heater swaps around Kearny, need an extra hand"
+  body: |
+    Three water heaters booked for one Saturday, Kearny and Harrison. My father used to say you can tell a plumber by how he leaves a basement, so the job is half install, half cleanup. Draining, carrying the old tanks up, hauling, and I'll let you do a connection or two if you've done them before.
+
+    Day rate. I was a helper like this once and I remember who treated me right. I try to be that guy.
+  location: "Kearny, NJ"
+  county: Hudson
+  scheduled_date: 2026-08-22
+  pay_type: day_rate
+  posted: 2026-08-16
+  pitches:
+    - applicant: ParkwayPipes
+      status: accepted
+      note: "Third time pitching on here, so let me be quick. 3 years of service out of Belleville, I've done more water heaters than I can count, gas and electric. I carry tanks, I clean up. Can I start at the first house or meet you at the shop?"
+      skills: ["Water heaters", "Gas lines", "Soldering / press fit"]
+      tools: true
+      transport: true
+    - applicant: big_paulie_plumb
+      status: declined
+      note: "running service calls in hudson for 4 yrs, water heaters are like half my week. sorry if i'm late to this, saturday's open"
+      skills: ["Water heaters", "Gas lines", "Drain cleaning"]
+      tools: true
+      transport: true
+
+- id: C08
+  poster: bklyn_arkady
+  type: extra_hand
+  trade: plumbing
+  title: "Helper for a gas test + inspection day, Bay Ridge brownstone"
+  body: |
+    In the city it's different: on a gas job the inspection day is its own day. We finished a new gas line in a Bay Ridge brownstone and I need a helper on Thursday the 27th for the pressure test, tagging, and standing around while we wait on the inspector. Plus cleanup in the cellar. The inspector decides when he shows up, not me, so bring patience.
+
+    Paid by the day or swap it for a Saturday on my next job if you want more hours with me. Your choice.
+  location: "Bay Ridge, Brooklyn"
+  county: Brooklyn
+  scheduled_date: 2026-08-27
+  pay_type: flexible
+  posted: 2026-08-20
+  pitches:
+    - applicant: briplumb87
+      status: accepted
+      note: "I'll take the inspection day if you'll have me. Coming from the Bronx so I'll leave early. My foreman at the drain company won't let me near gas, so this is the part I most want to see."
+      skills: ["Gas lines", "Drain cleaning"]
+      tools: false
+      transport: false
+    - applicant: BayRidge.traps
+      status: declined
+      note: "Apex grad, service and drain calls for a shop out of Canarsie. My foreman says I need to see gas work before the apprenticeship calls. Thursday works."
+      skills: ["Drain cleaning", "Fixture install", "Camera inspection"]
+      tools: true
+      transport: true
+    - applicant: LateStartPlumber
+      status: interested
+      note: "42, switched from IT help desk this year, staten island. sorry, i don't have much to offer yet besides showing up and taking notes. i'm fine waiting around if it means watching a gas test"
+      skills: ["Customer-facing"]
+      tools: false
+      transport: true
+
+- id: C09
+  poster: ms_almonte
+  type: extra_hand
+  trade: hvac
+  title: "Saturday mini-split install in Wayne, one helper"
+  body: |
+    Doing a two-zone ductless install on a Cape in Wayne on Saturday, the 29th. One helper. First, you'll help me plan the line set route, because that's where every bad install starts. Second, you'll do the core drilling with me, and third you'll watch the vacuum and the startup, not just hand me tools.
+
+    Day rate. Ask me how I know a helper who's never seen a micron gauge learns more in one Saturday than a week of slides.
+  location: "Wayne, NJ"
+  county: Passaic
+  scheduled_date: 2026-08-29
+  pay_type: day_rate
+  posted: 2026-08-23
+  pitches:
+    - applicant: DinerCoffeeHVAC
+      status: accepted
+      note: "Two years in at a shop in Hudson, mostly ducted changeouts. Have my 608 Type II. Sorry if it's obvious, but I've never pulled a vacuum on a mini split myself and I want to."
+      skills: ["Split systems", "Brazing", "Charging & recovery"]
+      tools: true
+      transport: true
+    - applicant: Bergen_Ducts
+      status: declined
+      note: "2 years non-union out of Hackensack... mostly ductwork, a couple of mini splits. Saturday's good, I'll grab coffees at the Wawa on the way."
+      skills: ["Ductwork", "Split systems"]
+      tools: true
+      transport: true
+    - applicant: epa608_672
+      status: interested
+      note: "Vo-tech grad, new guy at a shop in Morris, I have my 608 Universal. I'm only about 20 minutes from Wayne. I'd love to see a full install start to finish."
+      skills: ["Split systems", "Brazing"]
+      tools: true
+      transport: true
+    - applicant: deshawn.hvac
+      status: declined
+      note: "vo-tech grad, morristown, 608 type II. waiting on the union so i'm with a shop for now. sorry brother if this is late, saturday is open"
+      skills: ["Split systems", "Ductwork"]
+      tools: false
+      transport: true
+
+- id: C10
+  poster: mbell_wireman
+  type: ride_along
+  trade: electrical
+  title: "Ride-along for a Junior interested in commercial: Secaucus fit-out, 2 days"
+  body: |
+    We are in the middle of a large commercial fit-out in Secaucus and I can bring one Junior along for two days (Tuesday and Wednesday) to see how a commercial job runs: the morning huddle, lockout/tagout on a live building, how a crew splits up the work.
+
+    You will watch, carry, and ask questions on breaks. You will not work on anything energized. Hard hat, safety glasses, gloves and boots are required; the GC also needs your name a few days ahead for a site badge, so I can only take someone who answers quickly. Stay safe.
+  location: "Secaucus, NJ"
+  county: Hudson
+  scheduled_date: 2026-09-01
+  pay_type: unpaid
+  posted: 2026-08-26
+  pitches:
+    - applicant: threeway_02
+      status: accepted
+      note: "I started as a helper at a residential shop a few weeks ago and I'd like to see the commercial side before I go much further. I have boots, glasses and gloves, and I'll buy a hard hat. I can take both days off. I'll stop at the Wawa on the way and be early."
+      skills: ["Customer-facing", "Reading blueprints"]
+      tools: false
+      transport: true
+    - applicant: WawaRunWired
+      status: declined
+      note: "about a year at a shop out of fair lawn, lots of emt. sorry if this is a dumb question but do i need my own hard hat or does the site give one. thanks in advance"
+      skills: ["Conduit bending", "Rough-in wiring"]
+      tools: true
+      transport: true
+    - applicant: panelchanger_200amp
+      status: declined
+      note: "Pulling wire in warehouses off 8A for a Nutley shop, so I've been near commercial but never on a real fit-out. I'd love the two days. I'll get my name in for the badge the same night."
+      skills: ["Rough-in wiring", "Conduit bending"]
+      tools: true
+      transport: true
+    - applicant: hudson_conduit
+      status: interested
+      note: "I'm with a shop in Union City, service calls and panel swaps. Secaucus is 10 min lol. Would love to see how a big crew runs."
+      skills: ["Panel upgrades", "Troubleshooting"]
+      tools: true
+      transport: true
+
+- id: C11
+  poster: wchen_controls
+  type: ride_along
+  trade: electrical
+  title: "shadow a controls tech for a day, bms service calls around bridgewater"
+  body: |
+    my company's ok with me bringing someone along for a day of building automation service, thursday the 10th. two or three office buildings around bridgewater and somerville: chasing a dead bacnet trunk, swapping a controller, some front-end work on the laptop.
+
+    fwiw low voltage is a real trade and a lot of people only find out it exists when they're 10 years into something else. unpaid, it's a look-see day. bring a notebook, not a tool bag
+  location: "Bridgewater, NJ"
+  county: Somerset
+  scheduled_date: 2026-09-10
+  pay_type: unpaid
+  posted: 2026-09-02
+  pitches:
+    - applicant: PullingWireAgain
+      status: accepted
+      note: "Vo-tech grad, about a year at a shop in Union... Never seen controls. Thursday works, I'll take the day."
+      skills: ["Low voltage / data", "Troubleshooting"]
+      tools: false
+      transport: true
+    - applicant: WiremanFromPiscataway
+      status: declined
+      note: "i'm 33 and switching from delivery driving, still figuring out where i fit in electrical. low voltage keeps coming up and i'd like to see what the day actually looks like. appreciate it"
+      skills: ["Customer-facing"]
+      tools: false
+      transport: true
+    - applicant: JunctionBoxJunkie
+      status: interested
+      note: "I'm in the electrical program at the Mercer vo-tech and our instructor mentioned BMS once and then moved on, so I have no idea what it is beyond the name. I'd be missing a class day, which I'd clear with the school first."
+      skills: ["Low voltage / data"]
+      tools: false
+      transport: true
+
+- id: C12
+  poster: haddad_mech
+  type: extra_hand
+  trade: plumbing
+  title: "Extra hand Saturday: restroom rough-in at a warehouse, Mount Laurel"
+  body: |
+    Private job this time, no certified payroll: a warehouse adding a restroom group in Mount Laurel. Saturday the 12th, 6:30 start. We will be laying out and roughing in the waste and vent, so you will be cutting, carrying, and holding a level for a while.
+
+    Day rate. Here's what I look for when I hire: shows up on time, listens, doesn't need to be told twice. If you have a few years in and want to see commercial rough-in, say so in your pitch.
+  location: "Mount Laurel, NJ"
+  county: Burlington
+  scheduled_date: 2026-09-12
+  pay_type: day_rate
+  posted: 2026-09-03
+  pitches:
+    - applicant: big_nicole_plumb
+      status: accepted
+      note: "3 years non-union in Burlington, residential mostly. I've done rough-in on additions, never a restroom group. I'm 10 minutes away and I'm never late."
+      skills: ["Repipes", "Fixture install", "Soldering / press fit", "Reading blueprints"]
+      tools: true
+      transport: true
+    - applicant: codyplumb83
+      status: declined
+      note: "35, came over from a bank branch this year. medford, so close. i can carry, cut and hold a level all day. happy to stop at the wawa for the crew"
+      skills: ["Customer-facing"]
+      tools: false
+      transport: true
+    - applicant: emeka.plumb
+      status: interested
+      note: "About a year in, Voorhees. Sorry, I've only done residential, but I want to see commercial lol. Saturday works."
+      skills: ["Fixture install", "Drain cleaning"]
+      tools: true
+      transport: true
+
+- id: C13
+  poster: joyd_plumbing
+  type: extra_hand
+  trade: plumbing
+  title: "Saturday helper, boiler room cleanup and new feed in a Hoboken co-op"
+  body: |
+    Co-op building in Hoboken. Saturday the 19th. We're cleaning up a boiler room nobody has touched in years and running a new feed line. Dirty, hot, and you'll carry everything down a narrow stairwell. Day rate.
+
+    What I need to know: what you've done, and can you be there at 7. Parking is your problem, sorry.
+  location: "Hoboken, NJ"
+  county: Hudson
+  scheduled_date: 2026-09-19
+  pay_type: day_rate
+  posted: 2026-09-13
+  pitches:
+    - applicant: Kearny_Pipefitter
+      status: accepted
+      note: "Helper at a small shop in Bayonne, a year in, mostly commercial bathrooms. Never been in a boiler room that wasn't new. I'll take the PATH and be there at 7, brother."
+      skills: ["Soldering / press fit", "Fixture install", "Boilers / hydronics"]
+      tools: true
+      transport: false
+    - applicant: sweatjoint200amp
+      status: declined
+      note: "Helper at a small shop near Little Falls... commercial bathrooms mostly. Sorry, is Little Falls too far for you? And is it ok if I'm still kind of slow with a torch?"
+      skills: ["Fixture install", "Soldering / press fit"]
+      tools: true
+      transport: true
+    - applicant: EssexPipes
+      status: interested
+      note: "Vo-tech grad out of Bloomfield, my first job is mostly demo so a boiler room cleanup is right up my alley. Do you want me at 7 or earlier to unload? And is it one day or does it spill into Sunday?"
+      skills: ["Boilers / hydronics", "Fixture install"]
+      tools: true
+      transport: true
+
+- id: C14
+  poster: tnguyen_refrig
+  type: ride_along
+  trade: hvac
+  title: "ride along on walk-in calls, atlantic city, end of season"
+  body: |
+    boardwalk's winding down so the walk-ins and reach-ins that limped through july are finally getting fixed. tuesday the 15th, three or four restaurant calls in ac. you watch, you hold the light, you learn why a walk-in ices up. winter is when you learn, but september's not bad either.
+
+    unpaid. no sandals. its going to smell like a dumpster at least once
+  location: "Atlantic City, NJ"
+  county: Atlantic
+  scheduled_date: 2026-09-15
+  pay_type: unpaid
+  posted: 2026-09-08
+  pitches:
+    - applicant: Ryan.N
+      status: accepted
+      note: "egg harbor township brother, i'm 10 minutes from you. 1 yr in non-union, never touched refrigeration, my boss only does resi. i'll hold the light all day"
+      skills: ["Ductwork", "Split systems"]
+      tools: false
+      transport: true
+    - applicant: hector.hvac
+      status: declined
+      note: "helper out of lakewood, did a shadow week with a service tech last month and want to see the commercial side next. is it all day? and should i bring gloves or will it be mostly watching?"
+      skills: ["Split systems", "Ductwork"]
+      tools: false
+      transport: true
+    - applicant: dahvacnj
+      status: interested
+      note: "vo-tech grad with my 608 universal, toms river. never seen a walk-in up close. thanks in advance"
+      skills: ["Refrigeration", "Charging & recovery"]
+      tools: true
+      transport: true
+
+- id: C15
+  poster: thiago_sparks
+  type: extra_hand
+  trade: electrical
+  title: "Helper for a service upgrade on a raised house in Sea Bright"
+  body: |
+    Another shore one. Raised house in Sea Bright, the meter and service got moved up after Sandy and now the owner wants a real panel and a generator inlet. Monday, all day, maybe a few hours Tuesday. Honestly it's a good one to see if you've never watched a service upgrade from start to finish.
+
+    Day rate. Ladders, a lot of them. Bring a harness if you have one, I have a spare if you don't.
+  location: "Sea Bright, NJ"
+  county: Monmouth
+  scheduled_date: 2026-09-21
+  pay_type: day_rate
+  posted: 2026-09-14
+  pitches:
+    - applicant: Edison.volts
+      status: accepted
+      note: "I can get Monday off from the shop. Never seen a service upgrade start to finish, brother, only the inside half."
+      skills: ["Rough-in wiring", "Panel upgrades"]
+      tools: true
+      transport: true
+    - applicant: DripLoopDays
+      status: declined
+      note: "2 years non-union in Lawrence, service calls and panel swaps. Done a couple of upgrades. Monday works, I'll grab Wawa on the way down lol."
+      skills: ["Panel upgrades", "Service entrance", "Troubleshooting"]
+      tools: true
+      transport: true
+    - applicant: WiremanFromPiscataway
+      status: interested
+      note: "still trying to land a full-time helper spot. i'm careful on ladders and i'll do whatever you need. perth amboy, i'd leave early. appreciate it"
+      skills: ["Ladder / heights work"]
+      tools: false
+      transport: true
+
+- id: C16
+  poster: ms_almonte
+  type: ride_along
+  trade: hvac
+  title: "Ride-along Sunday: load calc and duct survey on a Clifton Cape"
+  body: |
+    Sunday the 20th I'm doing a heat-loss calc and a duct survey on a Cape in Clifton, for a homeowner who wants to know if a heat pump will keep up in January. Bring a notebook. First, we measure every room. Second, we look at the ductwork in the attic, which will be ugly. Third, I'll show you how the numbers turn into equipment size.
+
+    Unpaid, it's a learning day, but it's the part of HVAC nobody teaches you on the job. Ask me how I know.
+  location: "Clifton, NJ"
+  county: Passaic
+  scheduled_date: 2026-09-20
+  pay_type: unpaid
+  posted: 2026-09-13
+  pitches:
+    - applicant: epa60812_2
+      status: accepted
+      note: "i'm in paterson so clifton is right there brother. less than a year in, non-union, my boss just says 'put a 3 ton in' every time so i want to see how you actually figure it out"
+      skills: ["Ductwork", "Load calculations"]
+      tools: false
+      transport: true
+    - applicant: JerseyDuctwork
+      status: declined
+      note: "2 yrs in jersey city, ductwork mostly. can i come for the attic part only? or do you want the whole day. appreciate it"
+      skills: ["Ductwork"]
+      tools: true
+      transport: true
+    - applicant: deshawn.hvac
+      status: interested
+      note: "vo-tech grad, morristown. they taught us manual j for like a week and i forgot all of it, sorry. sunday's open"
+      skills: ["Load calculations", "Split systems"]
+      tools: false
+      transport: true
+
+- id: C17
+  poster: oldsteam_zig
+  type: extra_hand
+  trade: plumbing
+  title: "Steam job in Garfield Saturday: need someone who isn't afraid of a basement"
+  body: |
+    One-pipe steam system in a Garfield two-family that hasn't heated right since the owner's father died. We're replacing vents, skimming the boiler, and fixing pitch on a couple of runs in a basement with 6 feet of headroom on a good day. Saturday, 7am.
+
+    Day rate. If you've never seen steam, this is how you learn it, kid: in a dirty basement with somebody who's done it for 28 years. That's the job.
+  location: "Garfield, NJ"
+  county: Bergen
+  scheduled_date: 2026-09-26
+  pay_type: day_rate
+  posted: 2026-09-17
+  pitches:
+    - applicant: sweatjoint200amp
+      status: accepted
+      note: "I'd really like this one... I've never seen steam at all. Little Falls, so Garfield's close. Do I need anything besides my hand tools? And is 6:45 ok so I'm not late?"
+      skills: ["Boilers / hydronics", "Soldering / press fit"]
+      tools: true
+      transport: true
+    - applicant: EssexPipes
+      status: declined
+      note: "Bloomfield, vo-tech grad, first job is mostly demo. Steam is the thing I most want to learn. Do I need my own respirator? And is it all day or half?"
+      skills: ["Boilers / hydronics"]
+      tools: true
+      transport: true
+    - applicant: NorthJersey_Plumber
+      status: interested
+      note: "bergen vo-tech grad, hackensack. never done steam. saturday works"
+      skills: ["Boilers / hydronics", "Fixture install"]
+      tools: true
+      transport: true
+    - applicant: big_hector_plumb
+      status: declined
+      note: "4 years of service in Hudson, did a couple of steam vents on my own. Saturday's good. I'm not great with customers but fine in a basement lol."
+      skills: ["Boilers / hydronics", "Water heaters"]
+      tools: true
+      transport: true
+
+- id: C18
+  poster: rui_t_kearny
+  type: ride_along
+  trade: plumbing
+  title: "Ride-along week at a small shop in Kearny, for a vo-tech grad"
+  body: |
+    I hire out of the county vo-techs and I've learned the hard way that a kid doesn't know if he wants a small shop until he's done a week in one. So: ride along with my trucks Monday the 28th through Friday. Service calls, a water heater, a repipe if it holds. You'll see the phone ring and the schedule fall apart by 10am, which is the real lesson.
+
+    Paid for the days you work, or count it as a tryout. My father hired me this way. I want to do it right.
+  location: "Kearny, NJ"
+  county: Hudson
+  scheduled_date: 2026-09-28
+  pay_type: flexible
+  posted: 2026-09-22
+  pitches:
+    - applicant: NorthJersey_Plumber
+      status: accepted
+      note: "bergen vo-tech grad, about 2 yrs since school. at a shop in hackensack now but the job is teaching me more than school did and i want to see how a small shop runs. can do the full week"
+      skills: ["Fixture install", "Drain cleaning", "Water heaters"]
+      tools: true
+      transport: true
+    - applicant: EssexPipes
+      status: declined
+      note: "Essex vo-tech grad, Bloomfield. My first job is mostly demo and I want a shop that'll send me to school. Is this a real tryout or just the week? And do you take people who aren't from Hudson?"
+      skills: ["Fixture install", "Repipes"]
+      tools: true
+      transport: true
+
+- id: C19
+  poster: hec_does_ac
+  type: specialist
+  trade: hvac
+  title: "Need someone with their 608 for a rooftop PM day in AC"
+  body: |
+    Fall PM day on rooftop units at a hotel in Atlantic City, Tuesday the 29th. I need a second set of hands who can legally handle refrigerant, so you need your 608 card, Type II or Universal. Filters, belts, coil cleaning, and checking charge on a couple that are acting up...
+
+    So this one time in AC I had a helper show up without his card and I had to send him back down to sit in the van lol. Bring the card. Paid by the day, or trade for a day on a no-heat call this winter if you'd rather learn than earn.
+  location: "Atlantic City, NJ"
+  county: Atlantic
+  scheduled_date: 2026-09-29
+  pay_type: flexible
+  posted: 2026-09-24
+  pitches:
+    - applicant: dahvacnj
+      status: accepted
+      note: "i have my 608 universal. vo-tech grad, doing changeouts in toms river. never done rooftops but i'm fine with heights. sorry for applying twice in a month, thanks in advance"
+      skills: ["Rooftop units", "Charging & recovery", "Refrigeration", "Ladder / heights work"]
+      tools: true
+      transport: true
+    - applicant: ExRetail_NowHVAC
+      status: declined
+      note: "I don't have my 608 yet, sorry, testing next month. I'll carry filters all day and stay out of the way if that helps. 35, came over from retail, Gloucester Township."
+      skills: ["Customer-facing", "Ladder / heights work"]
+      tools: false
+      transport: true
+    - applicant: sam2214
+      status: interested
+      note: "1 yr in, glassboro. do you need a universal or is type II ok? and is parking at the hotel covered? stopping at wawa either way"
+      skills: ["Rooftop units", "Ductwork"]
+      tools: true
+      transport: true
+    - applicant: big_ben_tools
+      status: interested
+      note: "I'm an HVAC student at the Gloucester County vo-tech, so I don't have my 608 yet, but I'd love to see rooftop work. I can carry and clean coils."
+      skills: ["Rooftop units"]
+      tools: false
+      transport: true
+
+- id: C20
+  poster: Kash_sing
+  type: specialist
+  trade: hvac
+  title: "Need a 608-certified helper for recovery on two changeouts, South Brunswick"
+  body: |
+    Two heat pump changeouts on the same street in South Brunswick, Thursday October 1. I need someone who can handle recovery while my lead does the installs.
+    - EPA 608 required (Type II or Universal)
+    - Recovery machine and tanks provided; bring your gauges if you have them
+    - Day rate, 7:30 start
+    - I'll check your card before you touch a valve
+
+    Paperwork matters on these: recovered pounds go on the job sheet, every time.
+  location: "South Brunswick, NJ"
+  county: Middlesex
+  scheduled_date: 2026-10-01
+  pay_type: day_rate
+  posted: 2026-09-24
+  pitches:
+    - applicant: matt_the_hvac
+      status: accepted
+      note: "608 universal, somerset vo-tech grad. bound brook so not far. first job is mostly demo but i've done recovery at school lol. have my own gauges"
+      skills: ["Charging & recovery", "Heat pumps", "Brazing"]
+      tools: true
+      transport: true
+    - applicant: middlesex_coils
+      status: declined
+      note: "sorry, i should say up front i don't have my 608 yet. switched from bartending at 35, woodbridge. is there a helper spot that doesn't touch refrigerant? or should i wait for the next one"
+      skills: ["Customer-facing", "Ductwork"]
+      tools: false
+      transport: true
+    - applicant: Raritan.airside
+      status: interested
+      note: "vo-tech student, sayreville. no 608 yet idk if that rules me out"
+      skills: ["Ductwork"]
+      tools: false
+      transport: true
