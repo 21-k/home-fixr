@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-07T01:16:00-04:00 · threads: `content/threads.sample.scheduled.json` · db: no · app: no
+Run: 2026-10-07T01:29:35-04:00 · threads: `content/threads.sample.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -70,3 +70,37 @@ Run: 2026-10-07T01:16:00-04:00 · threads: `content/threads.sample.scheduled.jso
 | PASS | helpful: the accepted answer has the most helpful votes in its thread | [] |
 | PASS | helpful: no short reply outvotes the substantive Senior answer | [] |
 | PASS | answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted) | oldsteam_zig:9/7 mbell_wireman:3/3 thiago_sparks:7/6 Kash_sing:4/4(+1 own) dhollis61:2/2 hec_does_ac:6/6(+1 own) codebook_dale:4/4 joyd_plumbing:4/4 ms_almonte:3/3(+1 own) wchen_controls:0/0 haddad_mech:4/4 rui_t_kearny:7/6 tnguyen_refrig:4/4 dreb_jman:1/1 bklyn_arkady:2/2 |
+| PASS | DB: 136 seeded profiles | 136 |
+| PASS | DB: every seeded profile is_founding_member |  |
+| PASS | DB: no handle collision with any other member | 0 |
+| PASS | DB: zero notifications involving seeded accounts | 0 |
+| PASS | DB: no seeded Senior accepting mentees | 0 |
+| PASS | DB: seeded avatar fields written and consistent | 0 |
+| PASS | DB: seeded auth users have no password and are banned | 0 |
+| PASS | DB: batch mentorships / follows match the files | mentorships 36/36, follows 389/389 |
+| PASS | DB: mentorship statuses as generated | {'declined': 3, 'active': 22, 'pending': 11} |
+| PASS | DB: social rows are seeded-to-seeded only | 0 |
+| PASS | DB: every mentorship is junior -> senior | 0 |
+| PASS | DB: no Junior with two active mentors | 0 |
+| PASS | DB: every active mentee follows their mentor | 0 |
+| PASS | DB: social timestamps inside the window and after both joined | 0 |
+| PASS | DB: no notifications from the social rows (or anything seeded) | 0 |
+| PASS | DB: reply helpful counts match the (rebalanced) files | [] |
+| PASS | DB: logged-out visitors can read follows but no mentorship rows (RLS unchanged) | anon sees 0 mentorships, 389 follows |
+| PASS | app: /feed renders | 200 |
+| PASS | app: no full_name of handle-preference users on /feed | [] |
+| PASS | app: Founding Community badge on /feed | 80 badges for 20 posts |
+| PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
+| PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
+| PASS | app: /mentors 'answered' counts match the DB | 15 cards; [] |
+| FAIL | app: /mentors 'mentees' counts match the DB | 9 of 15 cards differ: ['oldsteam_zig: shows 0, DB 4', 'ms_almonte: shows 0, DB 5', 'codebook_dale: shows 0, DB 1', 'bklyn_arkady: shows 0, DB 2', 'Kash_sing: shows 0, DB 3', 'thiago_sparks: shows 0, DB 1'] |
+| PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
+| PASS | app: all 136 profile pages render (200) | [] |
+| PASS | app: Founding Community badge on every seeded profile | [] |
+| PASS | app: no private full_name on handle-preference profiles | [] |
+| PASS | app: /u/<handle> 'followers' match the DB (all 136) | 0 differ: [] |
+| FAIL | app: /u/<handle> 'active mentees' match the DB (all 136) | 9 differ: ['oldsteam_zig: shows 0, DB 4', 'mbell_wireman: shows 0, DB 2', 'thiago_sparks: shows 0, DB 1', 'Kash_sing: shows 0, DB 3', 'codebook_dale: shows 0, DB 1', 'joyd_plumbing: shows 0, DB 2'] |
+| PASS | app: /u/<handle> 'answers' match the DB (all 136) | 0 differ: [] |
+| PASS | app: seeded thread pages render with badges | 20 threads checked; bad: [] |
+| PASS | app: About page carries the §0.3 sentence |  |
+| PASS | app: landing FAQ + footer link to About |  |

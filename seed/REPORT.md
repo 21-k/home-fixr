@@ -426,7 +426,7 @@ production as one additions-only SQL file.
   `--no-social` seeds the batch as it went live.
 - **`wipe.py`** needed no change: it already deletes `follows` and `mentorships` by `seed_batch_id`
   before replies/posts/users, and its dependent-row refusal only counts rows *not* tagged with the batch.
-- **`qa.py`**: 34 new checks (pure data, DB, rendered pages), listed under QA results.
+- **`qa.py`**: 50 new checks (35 on the files, 10 on the DB, 5 on rendered pages), listed under QA results.
 - `seed/content/live_helpful_fm-2026-10.json`: the helpful counts as seeded to production (from
   `e3b036e`, confirmed on the live T15 page on Oct 7: 8 on the accepted answer, 29 on Rui's reply). The
   additions file applies the difference from these, so real members' votes since then are kept.
@@ -485,4 +485,69 @@ production as one additions-only SQL file.
 | dreb_jman | not accepting | 2 | 0 | 0 | 6 | 5 |
 | bklyn_arkady | limited | 2 | 0 | 0 | 6 | 3 |
 
-<!-- SOCIAL-RESULTS -->
+### Blocker: mentee counts can't show publicly (needs an owner decision)
+The directory card ("N mentees") and the profile ("N active mentees") count `mentorships` rows through the
+viewer's own Supabase client, but RLS on `mentorships` (schema.sql: "visible to junior or senior") lets
+only the two people involved read a row. Every other viewer, and every logged-out visitor, counts 0. So
+**the 36 seeded mentorships are in the database but every Senior will still show 0 mentees**, on local
+and in production, until the app has a way to read the count. That's true for real members too.
+Followers do show (follows are public). The fix I drafted, a `SECURITY DEFINER` function that returns
+only active-mentee *counts*, was blocked in this session as a security-weakening change, so it is **not**
+in this branch. Options for the owner: such a count-only function (row visibility unchanged), a
+`mentee_count` column kept by a trigger, or a narrower select policy on `status = 'active'` rows (which
+would expose who mentors whom). Until one ships, `qa.py --app` reports the two mentee-count checks as FAIL.
+
+### QA results (all run in this pass)
+- `uv run seed/scripts/qa.py --allow-unverified-handles` (files only): **64 pass, 2 warn, 0 fail**.
+  The 2 warnings are the existing ones (no Reddit 404s; 1 of 20 threads without replies).
+- Local cycle (`seed/reports/social_local_cycle.txt`, full output in `seed/reports/social_qa_local.txt`):
+  `qa.py --db --app http://localhost:3000 --allow-unverified-handles`: **96 pass, 2 warn, 2 fail**.
+  - The DB matches the files (36 mentorships 22/11/3, 389 follows, rebalanced helpful counts), social
+    rows are seeded-to-seeded only, every mentee follows their mentor, no Junior has two active mentors,
+    nothing falls outside the window or before a join, and seeding created no notifications. A logged-out
+    visitor sees 389 follows and 0 mentorship rows (RLS unchanged).
+  - Rendered: followers on all 136 `/u/<handle>` pages match the DB, and so do "answers" on all 136
+    profiles and "answered" on all 15 directory cards.
+  - **FAIL** `app: /mentors 'mentees' counts match the DB`: 9 of 15 cards differ, e.g. `oldsteam_zig: shows 0, DB 4`,
+    `ms_almonte: shows 0, DB 5`, `Kash_sing: shows 0, DB 3`.
+  - **FAIL** `app: /u/<handle> 'active mentees' match the DB (all 136)`: 9 differ, e.g. `oldsteam_zig: shows 0, DB 4`,
+    `mbell_wireman: shows 0, DB 2`. Both are the RLS blocker above, not data errors.
+- The local stack already held 0001–0011, the demo seed and batch `fm-2026-10` as it went live (left by the
+  other worktree), so it was **not reset**. The sequence: `seed.py --replace` with social (all checks 0);
+  wipe back to baseline; the full `--emit-sql` file through psql (136 / 20 / 99 / 36 / 389, notifications
+  unchanged); wipe; the batch exactly as live (`--no-social`, threads from `e3b036e`); **the additions file
+  through `docker exec -i supabase_db_home-fixr psql -U postgres -d postgres -v ON_ERROR_STOP=1`: COMMIT**;
+  QA; **the additions file again: refused** (`ERROR: batch fm-2026-10 already has mentorships or follows:
+  these additions were already applied`, exit 3, nothing changed); `wipe.py`: counts back to baseline
+  (13 / 5 / 4 / 3 / 0 / 11); wipe refused while a real follow pointed at a seeded account. At the end the
+  DB was restored to the state it was found in.
+- Screenshots (`seed/reports/screens/social/`): `mentors.png`, `profile-oldsteam_zig.png` (40 followers,
+  0 active mentees shown), `profile-hec_does_ac.png` (10 followers, 0 mentees).
+
+### Existing counts checked
+- **Helpful votes**: fixed as above. After the fix, every accepted answer leads its thread and no short
+  reply outvotes a substantive Senior answer (both checked by qa.py).
+- **"answered"**: the directory's "answered" and the profile's "answers" are each Senior's reply count,
+  and they match the DB. Three Seniors' counts include a reply in their own thread (Kash_sing, hec_does_ac,
+  ms_almonte), and oldsteam_zig (9 replies in 7 threads), thiago_sparks and rui_t_kearny (7 in 6 each)
+  count a second reply in the same thread. That's app semantics, not data, so it was left as is.
+- **"Accepting mentees" while full**: no seeded Senior is "accepting". The four "not taking mentees" Seniors
+  carry 0–2 actives, and nobody sent a pending or declined request to them (the app hides the button).
+
+### Production
+`seed/out/additions-social-fm-2026-10.sql` (committed; fictional data only) is one transaction. It:
+- aborts unless all 136 batch profiles are present with the expected ids and handles;
+- aborts if the batch already has mentorships or follows, or any follow or mentorship exists between two
+  batch accounts (so a second run refuses);
+- inserts 36 mentorships and 389 follows tagged `fm-2026-10`, with `homefixr.seeding = 'on'`;
+- **updates 11 already-live replies' `helpful_count`** (T02/r0, T02/r2, T05/r0, T05/r1, T07/r0, T07/r1,
+  T10/r0, T15/r0, T15/r1, T17/r0, T17/r1) by the difference from the seeded value, so votes real members
+  cast since then are kept;
+- then checks the counts by status, the totals (before + added), that notifications are unchanged, and the
+  social invariants. Any failure rolls everything back.
+
+```bash
+npx supabase --workdir ~/home-fixr/.prod db query --linked -f ~/home-fixr-social/seed/out/additions-social-fm-2026-10.sql
+```
+(Path as in this worktree; use wherever the branch is checked out.) Without the mentee-count fix above,
+production will show followers but still 0 mentees.
