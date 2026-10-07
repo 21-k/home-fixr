@@ -86,6 +86,8 @@ export type JobCollab = {
   scheduled_date: string | null;
   pay_type: string | null;
   interested_count: number;
+  // When the poster marked the position filled (migration 0013); null = open.
+  filled_at: string | null;
   created_at: string;
 };
 

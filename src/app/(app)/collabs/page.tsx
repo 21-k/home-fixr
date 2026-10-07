@@ -1,11 +1,28 @@
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { Banknote, CalendarDays, ClipboardList, MapPin, Users } from "lucide-react";
+import {
+  Banknote,
+  CalendarDays,
+  CircleDot,
+  ClipboardList,
+  ListFilter,
+  MapPin,
+  Users,
+} from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { CollabComposer } from "@/components/CollabComposer";
+import { CollabFilledBadge } from "@/components/CollabFilled";
 import { CollabIcon } from "@/components/icons";
 import { CollabInterestControl } from "@/components/CollabInterestControl";
 import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
+import {
+  COLLAB_FILLED_MESSAGE,
+  collabsHref,
+  isCollabFilled,
+  parseCollabStatusFilter,
+  sortCollabsOpenFirst,
+} from "@/lib/collabs";
 import { COLLAB_TYPE_LABEL } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -41,9 +58,10 @@ type CollabWithPoster = JobCollab & { poster: AuthorLite | null };
 export default async function CollabsPage({
   searchParams,
 }: {
-  searchParams: Promise<{ type?: string }>;
+  searchParams: Promise<{ type?: string; status?: string }>;
 }) {
-  const { type } = await searchParams;
+  const { type, status: rawStatus } = await searchParams;
+  const status = parseCollabStatusFilter(rawStatus);
   const profile = await getCurrentProfile();
   const supabase = await createClient();
 
@@ -52,9 +70,11 @@ export default async function CollabsPage({
     .select(`*, poster:profiles ( ${AUTHOR_COLS} )`)
     .order("created_at", { ascending: false });
   if (type) query = query.eq("type", type);
+  if (status === "open") query = query.is("filled_at", null);
 
   const { data } = await query;
-  const collabs = (data ?? []) as unknown as CollabWithPoster[];
+  // Open jobs first, then filled ones (each newest first).
+  const collabs = sortCollabsOpenFirst((data ?? []) as unknown as CollabWithPoster[]);
 
   // Which of these have I already applied to, and with what? RLS only returns
   // my own rows here, so this is safe to query wholesale. Pulling the full
@@ -89,16 +109,27 @@ export default async function CollabsPage({
   const sidebar = (
     <nav>
       <SideSection>Type</SideSection>
-      <Link href="/collabs">
+      <Link href={collabsHref({ status })}>
         <SideLink active={!type}>All collabs</SideLink>
       </Link>
       {TYPE_FILTERS.map((t) => (
-        <Link key={t.key} href={`/collabs?type=${t.key}`}>
+        <Link key={t.key} href={collabsHref({ type: t.key, status })}>
           <SideLink active={type === t.key}>
             <CollabIcon type={t.key} /> {t.label}
           </SideLink>
         </Link>
       ))}
+      <SideSection>Status</SideSection>
+      <Link href={collabsHref({ type })}>
+        <SideLink active={status === "all"}>
+          <ListFilter className="size-4" /> All, open first
+        </SideLink>
+      </Link>
+      <Link href={collabsHref({ type, status: "open" })}>
+        <SideLink active={status === "open"}>
+          <CircleDot className="size-4" /> Open only
+        </SideLink>
+      </Link>
       {profile && (
         <>
           <SideSection>Yours</SideSection>
@@ -134,20 +165,53 @@ export default async function CollabsPage({
         )}
       </div>
 
+      {/* The sidebar is hidden on small screens, so the status filter also
+          lives here. */}
+      <div
+        className="mb-3 flex flex-wrap items-center gap-2 text-[13px]"
+        role="group"
+        aria-label="Filter by status"
+      >
+        <FilterChip href={collabsHref({ type })} active={status === "all"}>
+          All, open first
+        </FilterChip>
+        <FilterChip href={collabsHref({ type, status: "open" })} active={status === "open"}>
+          Open only
+        </FilterChip>
+      </div>
+
       {collabs.length === 0 ? (
         <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500">
-          No collabs posted yet.
+          {status === "open" ? (
+            <>
+              No open collabs right now.{" "}
+              <Link href={collabsHref({ type })} className="font-medium text-brand-600 hover:underline">
+                See filled ones
+              </Link>
+            </>
+          ) : (
+            "No collabs posted yet."
+          )}
         </p>
       ) : (
         <div className="flex flex-col gap-3">
-          {collabs.map((c) => (
+          {collabs.map((c) => {
+            const filled = isCollabFilled(c);
+            return (
             <div
               key={c.id}
-              className="rounded-xl border border-zinc-200 bg-white p-5 transition-colors hover:border-brand-500"
+              id={`collab-${c.id}`}
+              data-testid="collab-card"
+              data-filled={filled ? "true" : "false"}
+              className={`rounded-xl border p-5 transition-colors ${
+                filled
+                  ? "border-zinc-200 bg-zinc-50"
+                  : "border-zinc-200 bg-white hover:border-brand-500"
+              }`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  <h3 className="font-semibold">{c.title}</h3>
+                  <h3 className={`font-semibold ${filled ? "text-zinc-600" : ""}`}>{c.title}</h3>
                   <p className="mt-0.5 text-[13px] text-zinc-600">
                     Posted by{" "}
                     <UserName
@@ -157,12 +221,15 @@ export default async function CollabsPage({
                     {c.poster?.title ? ` · ${c.poster.title}` : ""}
                   </p>
                 </div>
-                <span
-                  className={`inline-flex shrink-0 items-center gap-1 rounded px-2 py-0.5 text-xs font-medium ${TYPE_BADGE[c.type]}`}
-                >
-                  <CollabIcon type={c.type} className="size-3.5" />
-                  {COLLAB_TYPE_LABEL[c.type]}
-                </span>
+                <div className="flex shrink-0 flex-col items-end gap-1.5">
+                  {filled && <CollabFilledBadge />}
+                  <span
+                    className={`inline-flex shrink-0 items-center gap-1 rounded px-2 py-0.5 text-xs font-medium ${TYPE_BADGE[c.type]}`}
+                  >
+                    <CollabIcon type={c.type} className="size-3.5" />
+                    {COLLAB_TYPE_LABEL[c.type]}
+                  </span>
+                </div>
               </div>
 
               <p className="mt-3 text-sm leading-relaxed text-zinc-700">{c.body}</p>
@@ -192,7 +259,7 @@ export default async function CollabsPage({
                 </span>
               </div>
 
-              {profile && (
+              {profile ? (
                 <CollabInterestControl
                   collabId={c.id}
                   userId={profile.id}
@@ -203,13 +270,44 @@ export default async function CollabsPage({
                   defaultYears={profile.years_experience}
                   posterUsername={c.poster?.username ?? null}
                   posterIsFounding={!!c.poster?.is_founding_member}
+                  filled={filled}
                 />
+              ) : (
+                filled && (
+                  <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] leading-relaxed text-zinc-600">
+                    {COLLAB_FILLED_MESSAGE}
+                  </p>
+                )
               )}
             </div>
-          ))}
+            );
+          })}
         </div>
       )}
     </AppBody>
   );
 }
 
+function FilterChip({
+  href,
+  active,
+  children,
+}: {
+  href: string;
+  active: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      aria-current={active ? "page" : undefined}
+      className={`rounded-full border px-3 py-1 font-medium ${
+        active
+          ? "border-brand-500 bg-brand-50 text-brand-700"
+          : "border-zinc-300 bg-white text-zinc-600 hover:bg-zinc-100"
+      }`}
+    >
+      {children}
+    </Link>
+  );
+}

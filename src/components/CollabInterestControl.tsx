@@ -8,7 +8,9 @@ import {
   CollabApplyForm,
   type ExistingApplication,
 } from "@/components/CollabApplyForm";
+import { CollabFilledToggle } from "@/components/CollabFilled";
 import { toggleCollabInterest } from "@/lib/actions";
+import { applyBlockReason, COLLAB_FILLED_MESSAGE } from "@/lib/collabs";
 import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import type { CollabInterestStatus, TradeType } from "@/lib/types";
 
@@ -17,7 +19,9 @@ import type { CollabInterestStatus, TradeType } from "@/lib/types";
  * message the poster directly.
  *
  * Posters see a link to their applicants rather than a button they can't press
- * — Storage and table RLS both reject interest in your own posting.
+ * — Storage and table RLS both reject interest in your own posting — plus
+ * Mark as filled / Reopen. A filled job (migration 0013) shows no apply
+ * control to anyone; the viewer's own application status still shows.
  */
 export function CollabInterestControl({
   collabId,
@@ -29,6 +33,7 @@ export function CollabInterestControl({
   defaultYears,
   posterUsername,
   posterIsFounding = false,
+  filled = false,
 }: {
   collabId: string;
   userId: string;
@@ -42,6 +47,8 @@ export function CollabInterestControl({
   posterUsername: string | null;
   /** Seeded postings can't be applied to — nobody would read the pitch. */
   posterIsFounding?: boolean;
+  /** The poster marked the position filled. */
+  filled?: boolean;
 }) {
   const router = useRouter();
   const [open, setOpen] = useState(false);
@@ -55,15 +62,9 @@ export function CollabInterestControl({
     </Link>
   ) : null;
 
-  if (posterIsFounding) {
-    return (
-      <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] leading-relaxed text-zinc-500">
-        {FOUNDING_CONTACT_MESSAGE}
-      </p>
-    );
-  }
+  const block = applyBlockReason({ isOwnPosting, filled, posterIsFounding });
 
-  if (isOwnPosting) {
+  if (block === "own") {
     return (
       <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-zinc-100 pt-3">
         <Link
@@ -72,7 +73,44 @@ export function CollabInterestControl({
         >
           Your posting — see who&apos;s interested
         </Link>
+        <div className="ml-auto">
+          <CollabFilledToggle collabId={collabId} filled={filled} />
+        </div>
       </div>
+    );
+  }
+
+  if (block === "filled") {
+    return (
+      <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-zinc-100 pt-3">
+        {status === "accepted" && (
+          <span className="rounded bg-success-bg px-2 py-1 text-xs font-medium text-success-fg">
+            ✓ You&apos;re in
+          </span>
+        )}
+        {status === "declined" && (
+          <span className="rounded border border-zinc-300 px-2 py-1 text-xs font-medium text-zinc-500">
+            Not this time
+          </span>
+        )}
+        <p className="text-[13px] leading-relaxed text-zinc-600">
+          {COLLAB_FILLED_MESSAGE}
+          {posterIsFounding && (
+            <span className="mt-1 block text-[12px] text-zinc-500">
+              {FOUNDING_CONTACT_MESSAGE}
+            </span>
+          )}
+        </p>
+        {!posterIsFounding && <div className="ml-auto">{messageLink}</div>}
+      </div>
+    );
+  }
+
+  if (block === "founding") {
+    return (
+      <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] leading-relaxed text-zinc-500">
+        {FOUNDING_CONTACT_MESSAGE}
+      </p>
     );
   }
 

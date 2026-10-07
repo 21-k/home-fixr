@@ -11,10 +11,13 @@ import {
 } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { CollabFilledBadge, CollabFilledToggle } from "@/components/CollabFilled";
 import { CollabIcon } from "@/components/icons";
 import { UserName } from "@/components/UserName";
 import { respondToCollabInterest, toggleCollabInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { isCollabFilled, shouldOfferMarkFilled } from "@/lib/collabs";
+import { displayName } from "@/lib/display";
 import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { ageRangeLabel } from "@/lib/skills";
@@ -187,12 +190,42 @@ export default async function MyJobsPage() {
           <div className="flex flex-col gap-3">
             {posted.map((c) => {
               const rows = byCollab(c.id);
+              const filled = isCollabFilled(c);
+              const accepted = rows.filter((i) => i.status === "accepted");
               return (
                 <div
                   key={c.id}
+                  id={`collab-${c.id}`}
+                  data-testid="my-posted-collab"
+                  data-filled={filled ? "true" : "false"}
                   className="rounded-xl border border-zinc-200 bg-white p-5"
                 >
                   <CollabHeading collab={c} />
+
+                  {shouldOfferMarkFilled(c, rows.map((i) => i.status)) ? (
+                    <div
+                      data-testid="offer-mark-filled"
+                      className="mt-3 flex flex-wrap items-center gap-2 rounded-lg bg-success-bg px-3 py-2 text-[13px] text-success-fg"
+                    >
+                      <span className="mr-auto">
+                        You accepted{" "}
+                        {accepted
+                          .map((i) => displayName(peopleById.get(i.user_id) ?? null))
+                          .join(", ")}
+                        . Is the position filled now?
+                      </span>
+                      <CollabFilledToggle collabId={c.id} filled={false} emphasis />
+                    </div>
+                  ) : (
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span className="mr-auto text-[13px] text-zinc-600">
+                        {filled
+                          ? "Marked filled: it shows as Position filled and takes no new applications."
+                          : "Open: taking applications."}
+                      </span>
+                      <CollabFilledToggle collabId={c.id} filled={filled} />
+                    </div>
+                  )}
 
                   {rows.length === 0 ? (
                     <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] text-zinc-500">
@@ -300,7 +333,11 @@ export default async function MyJobsPage() {
                     </div>
                   )}
                   <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-zinc-100 pt-3">
-                    <Badge status={i.status} />
+                    {isCollabFilled(c) && i.status === "interested" ? (
+                      <CollabFilledBadge />
+                    ) : (
+                      <Badge status={i.status} />
+                    )}
                     <span className="text-[13px] text-zinc-600">
                       Posted by{" "}
                       <UserName
@@ -338,14 +375,17 @@ function CollabHeading({ collab }: { collab: JobCollab }) {
     <>
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-semibold">
-          <Link href="/collabs" className="hover:text-brand-500">
+          <Link href={`/collabs#collab-${collab.id}`} className="hover:text-brand-500">
             {collab.title}
           </Link>
         </h3>
-        <span className="inline-flex shrink-0 items-center gap-1 rounded bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
-          <CollabIcon type={collab.type} className="size-3.5" />
-          {COLLAB_TYPE_LABEL[collab.type]}
-        </span>
+        <div className="flex shrink-0 flex-col items-end gap-1.5">
+          {isCollabFilled(collab) && <CollabFilledBadge />}
+          <span className="inline-flex shrink-0 items-center gap-1 rounded bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
+            <CollabIcon type={collab.type} className="size-3.5" />
+            {COLLAB_TYPE_LABEL[collab.type]}
+          </span>
+        </div>
       </div>
       <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-zinc-600">
         {collab.location && (
