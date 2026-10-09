@@ -7,7 +7,7 @@ import { USERS, storageStatePath } from "./support/users";
 const NAV_ITEMS = [
   { label: "Feed", path: "/feed" },
   { label: "Mentors", path: "/mentors" },
-  { label: "Jobs", path: "/collabs" },
+  { label: "Ride-alongs", path: "/collabs" },
 ];
 
 async function expectActive(page: Page, label: string | null) {
@@ -55,7 +55,7 @@ test.describe("header navigation, logged out @public", () => {
 
   test("sub-routes keep their section active", async ({ page }) => {
     await visit(page, "/collabs/mine");
-    await expectActive(page, "Jobs");
+    await expectActive(page, "Ride-alongs");
     await visit(page, "/mentors?trade=plumbing");
     await expectActive(page, "Mentors");
     await visit(page, `/u/${FOUNDING.senior}`);
@@ -96,12 +96,12 @@ test.describe("header navigation, logged out @public", () => {
     await expect(page).toHaveURL((u) => !u.searchParams.has("trade") && u.searchParams.get("region") === "NJ");
   });
 
-  test("feed trade filters and job type filters are reachable", async ({ page }) => {
+  test("feed trade filters and ride-along type filters are reachable", async ({ page }) => {
     await visit(page, "/feed");
     await (await sideNav(page)).getByRole("link", { name: "HVAC" }).click();
     await expect(page).toHaveURL(/\/feed\?trade=hvac/);
     await visit(page, "/collabs");
-    await (await sideNav(page)).getByRole("link", { name: /Junior ride-along/ }).click();
+    await (await sideNav(page)).getByRole("link", { name: /Apprentice ride-along/ }).click();
     await expect(page).toHaveURL(/\/collabs\?type=ride_along/);
   });
 
@@ -163,7 +163,7 @@ test.describe("header navigation, logged in", () => {
     await page.getByRole("link", { name: /All messages/ }).click();
     await expect(page).toHaveURL(/\/messages$/);
     await visit(page, "/collabs/mine");
-    await (await sideNav(page)).getByRole("link", { name: /All collabs/ }).click();
+    await (await sideNav(page)).getByRole("link", { name: /All opportunities/ }).click();
     await expect(page).toHaveURL(/\/collabs$/);
   });
 });

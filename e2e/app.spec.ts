@@ -59,7 +59,7 @@ test.describe("member content layout", () => {
     const title = `Long link check ${tag}`;
     const body = `See https://example.com/${"y".repeat(150)}/${tag} for the spec sheet.`;
     await visit(page, "/feed");
-    await page.getByPlaceholder("Got a question for the pros?").fill(title);
+    await page.getByPlaceholder("Got a question? Ask the community.").fill(title);
     await page.getByPlaceholder("Share the details so people can actually help…").fill(body);
     await page.getByRole("button", { name: "Post", exact: true }).click();
     const card = page.locator("main").getByRole("link", { name: new RegExp(title) });
@@ -104,7 +104,7 @@ test.describe("empty states", () => {
     await expectFitsViewport(page);
   });
 
-  test("no jobs", async ({ page }) => {
+  test("no ride-alongs or collaborations", async ({ page }) => {
     await visit(page, "/collabs/mine");
     await expect(page.locator("h1").first()).toBeVisible();
     await expectFitsViewport(page);

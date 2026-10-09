@@ -18,3 +18,20 @@ export async function profileId(handle: string): Promise<string> {
   if (!rows[0]) throw new Error(`no profile ${handle}`);
   return rows[0].id;
 }
+
+/** PATCH LOCAL rows with the service role; returns the updated rows. */
+export async function restPatch<T = unknown>(path: string, body: Record<string, unknown>): Promise<T> {
+  if (IS_LIVE) throw new Error("restPatch() is local-only");
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${path}`, {
+    method: "PATCH",
+    headers: {
+      apikey: SUPABASE_SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
+      "Content-Type": "application/json",
+      Prefer: "return=representation",
+    },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error(`PATCH ${path} -> ${res.status} ${await res.text()}`);
+  return (await res.json()) as T;
+}

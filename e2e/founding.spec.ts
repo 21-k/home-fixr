@@ -3,7 +3,7 @@ import { profileId, rest } from "./support/db";
 import { FOUNDING } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
 
-const NOTICE = /This is a Founding Community account/;
+const NOTICE = /This is an example profile prepared by the Home Fixr team/;
 
 async function expectNoContactControls(page: import("@playwright/test").Page) {
   const main = page.locator("main");
@@ -27,7 +27,7 @@ test.describe("Founding accounts, logged out @public", () => {
     await expect(card.getByRole("link", { name: /^Message$/ })).toHaveCount(0);
   });
 
-  test("the Accepting mentees filter never lists a founding account", async ({ page }) => {
+  test("the Accepting mentorship requests filter never lists a founding account", async ({ page }) => {
     await visit(page, "/mentors?avail=accepting");
     await expect(page.locator("main").getByRole("link", { name: "Founding Community" })).toHaveCount(0);
   });

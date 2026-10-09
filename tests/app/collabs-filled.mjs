@@ -171,7 +171,7 @@ async function posterFlow(poster, applicant, other) {
   const { error: rerr } = await poster.client.from("collab_interests").update({ status: "accepted" }).eq("id", app?.id);
   check("poster: accepts the applicant", !rerr, rerr?.message);
   const mine = await page("/collabs/mine", poster);
-  check("poster: My jobs offers Mark as filled right after the accept", mine.html.includes('data-testid="offer-mark-filled"') && mine.html.includes('data-testid="collab-mark-filled"'));
+  check("poster: My opportunities offers Mark as filled right after the accept", mine.html.includes('data-testid="offer-mark-filled"') && mine.html.includes('data-testid="collab-mark-filled"'));
   const sub = await submitActionForm("/collabs/mine", poster, "collab-mark-filled");
   const { data: row } = await poster.client.from("job_collabs").select("filled_at").eq("id", col.id).single();
   check("poster: the Mark as filled server action fills the collab", sub.ok && row?.filled_at, `${sub.why}; filled_at ${row?.filled_at}`);

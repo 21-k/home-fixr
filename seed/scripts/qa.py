@@ -1102,13 +1102,22 @@ def check_app_collabs(app, collabs, cookie: str | None = None):
         record(f"app ({who}): open collabs listed before filled ones", code == 200 and open_first,
                f"{flags.count(False)} open, {flags.count(True)} filled")
         if who == "signed-in member":
-            fm = sum("Founding Community account, set up by" in by_title.get(c["title"], "") for c in collabs)
+            fm = sum("posted from a Founding Community profile" in by_title.get(c["title"], "") for c in collabs)
             signed = 'href="/collabs/mine"' in page
             record("app (signed-in member): seeded collabs also keep the Founding notice, under Position filled",
                    signed and fm == len(collabs), f"signed in: {signed}; founding notice on {fm}/{len(collabs)}")
         code, op = fetch(f"{app}/collabs?status=open", cookie=hdr)
         shown = [c["id"] for c in collabs if htmllib.escape(c["title"], quote=False) in op or c["title"] in op]
         record(f"app ({who}): 'Open only' hides every seeded (filled) collab", code == 200 and not shown, f"{code}; shown: {shown[:3]}")
+
+
+# Disclosure copy (src/lib/founding.ts), checked verbatim on the rendered pages.
+TEAM_LABEL = "Team-written example \u2022 AI-assisted"
+ABOUT_SENTENCE = ("Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance "
+                  "to show how the community works. Those posts are labeled \u201cTeam-written example \u2022 AI-assisted\u201d, "
+                  "and example profiles carry a Founding Community badge. Founding Community profiles are not real members "
+                  "and can't be messaged.")
+PROFILE_NOTICE = "This is an example profile prepared by the Home Fixr team"
 
 
 def fetch(url: str, cookie: str | None = None) -> tuple[int, str]:
@@ -1136,6 +1145,14 @@ def check_app(app, people, threads, expected=None):
     record("app: no full_name of handle-preference users on /feed", not leaks, str(leaks[:5]))
     record("app: Founding Community badge on /feed", feed.count("Founding Community") >= len(threads),
            f"{feed.count('Founding Community')} badges for {len(threads)} posts")
+    # Every team-written post card carries the label; no real member's card does.
+    cards = re.split(r'(?=<article[^>]*data-testid="post-card")', feed)[1:]
+    labeled = [('data-testid="team-written-label"' in ch and TEAM_LABEL in ch) for ch in cards]
+    founding = ["Founding Community</a>" in ch for ch in cards]
+    wrong = [i for i, (lab, fm) in enumerate(zip(labeled, founding)) if lab != fm]
+    record("app: /feed labels every team-written post 'Team-written example \u2022 AI-assisted', and only those",
+           bool(cards) and sum(labeled) >= len(threads) and not wrong,
+           f"{sum(labeled)} labeled of {len(cards)} cards ({sum(founding)} by Founding profiles); mismatched cards: {wrong[:5]}")
     code, mentors = fetch(f"{app}/mentors")
     seniors = [p for p in people if p["role"] == "senior"]
     shown = [p["handle"] for p in seniors if p["handle"] in mentors or (p["display_name"] and p["display_name"] in mentors)]
@@ -1156,7 +1173,7 @@ def check_app(app, people, threads, expected=None):
         record("app: /mentors 'mentees' counts match the DB", len(cards) == 15 and not f_men,
                f"{len(f_men)} of {len(cards)} cards differ: {f_men[:6]}")
     code, acc = fetch(f"{app}/mentors?avail=accepting")
-    record("app: 'Accepting mentees' filter excludes every Founding account", code == 200 and "Founding Community" not in acc.split("<main", 1)[-1])
+    record("app: 'Accepting mentorship requests' filter excludes every Founding account", code == 200 and "Founding Community" not in acc.split("<main", 1)[-1])
     # Every profile page: badge present, handle shown, private name absent.
     missing, leaks, bad = [], [], []
     stat_bad = {"followers": [], "active mentees": [], "answers": []}
@@ -1171,12 +1188,12 @@ def check_app(app, people, threads, expected=None):
                 shown, want = _num(clean, label, "dt"), expected[key].get(p["handle"], 0)
                 if shown != want:
                     stat_bad[label].append(f"{p['handle']}: shows {shown}, DB {want}")
-        if "Founding Community" not in html:
+        if "Founding Community" not in html or PROFILE_NOTICE not in html:
             missing.append(p["handle"])
         if p["display_preference"] == "handle" and p["full_name"] in html:
             leaks.append(p["handle"])
     record("app: all 136 profile pages render (200)", not bad, str(bad[:5]))
-    record("app: Founding Community badge on every seeded profile", not missing, str(missing[:5]))
+    record("app: Founding Community badge + example-profile notice on every seeded profile", not missing, str(missing[:5]))
     record("app: no private full_name on handle-preference profiles", not leaks, str(leaks[:5]))
     if expected:
         for label, bads in stat_bad.items():
@@ -1187,15 +1204,20 @@ def check_app(app, people, threads, expected=None):
         return re.sub(r"[^a-z0-9]+", "-", x.lower()).strip("-")[:40]
     seeded_prefixes = [slugify(t["title"]) for t in threads]
     slugs = [s for s in re.findall(r'href="/q/([^"]+)"', html) if any(s.startswith(pfx) for pfx in seeded_prefixes)]
-    thread_bad = []
+    thread_bad, label_bad = [], []
     for s in sorted(set(slugs)):
         c, h = fetch(f"{app}/q/{s}")
         if c != 200 or "Founding Community" not in h:
             thread_bad.append(f"{s}:{c}")
+        # The post plus every reply carries the label (all seeded authors).
+        n_replies = h.count('data-testid="reply"')
+        n_labels = h.count('data-testid="team-written-label"')
+        if n_labels != 1 + n_replies or TEAM_LABEL not in h:
+            label_bad.append(f"{s}: {n_labels} labels for 1 post + {n_replies} replies")
     record("app: seeded thread pages render with badges", bool(slugs) and not thread_bad, f"{len(set(slugs))} threads checked; bad: {thread_bad[:3]}")
+    record("app: seeded thread pages label the post and every reply", bool(slugs) and not label_bad, f"{len(set(slugs))} threads; bad: {label_bad[:3]}")
     code, about = fetch(f"{app}/about")
-    sentence = "Our earliest discussions were written by the Home Fixr team, with AI assistance, to show how the community works. Founding Community accounts are marked."
-    record("app: About page carries the §0.3 sentence", code == 200 and sentence in about.replace("&#x27;", "'"))
+    record("app: About page carries the §0.3 sentence", code == 200 and ABOUT_SENTENCE in about.replace("&#x27;", "'"))
     code, landing = fetch(f"{app}/")
     record("app: landing FAQ + footer link to About", code == 200 and 'href="/about"' in landing and "Founding Community" in landing)
 
@@ -1222,7 +1244,7 @@ def main() -> None:
     n_facts = fact_lint(threads, people)
     record("fact lint written for human review", True, f"{n_facts} flagged sentences -> seed/reports/fact_lint.md")
     about_src = (REPO_DIR / "src/lib/founding.ts").read_text()
-    record("About sentence present in source", "Founding Community accounts are marked." in about_src)
+    record("About sentence present in source", ABOUT_SENTENCE in about_src)
     ments = load_json(args.mentorships)["mentorships"] if (SEED_DIR / args.mentorships).exists() else []
     follows = load_json(args.follows)["follows"] if (SEED_DIR / args.follows).exists() else []
     if ments:
