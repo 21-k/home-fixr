@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 const DESCRIPTION =
-  "Home Fixr connects new plumbers, HVAC techs, and electricians with senior tradespeople who mentor them. Ask questions, find a mentor, team up on jobs. Community, not a marketplace.";
+  "Home Fixr connects apprentices and early-career electricians, plumbers, and HVAC technicians with experienced tradespeople. Find a mentor, explore ride-along opportunities, and ask questions in the community. Community, not a marketplace.";
 
 // metadataBase makes the relative OG/Twitter image URLs below absolute, which
 // is what Reddit, Facebook, and iMessage need to render a link preview.
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "plumbing apprentice",
     "HVAC apprentice",
     "electrician apprentice",
-    "vocational graduates",
+    "early-career tradespeople",
     "skilled trades community",
   ],
   openGraph: {

@@ -9,13 +9,14 @@ export const metadata: Metadata = { title: "Join" };
 export default async function JoinPage({
   searchParams,
 }: {
-  searchParams: Promise<{ next?: string }>;
+  searchParams: Promise<{ next?: string; role?: string }>;
 }) {
-  const next = safeNext((await searchParams).next);
+  const sp = await searchParams;
+  const next = safeNext(sp.next);
 
   // Already a member: no second account; carry on instead.
   const profile = await getCurrentProfile();
   if (profile) redirect(profile.onboarded_at ? (next ?? "/feed") : "/welcome");
 
-  return <JoinForm next={next} />;
+  return <JoinForm next={next} initialRole={sp.role === "mentor" ? "senior" : "junior"} />;
 }

@@ -8,11 +8,17 @@ import { FoundingBadge } from "@/components/FoundingBadge";
 import { FollowButton } from "@/components/FollowButton";
 import { MentorshipButton } from "@/components/MentorshipButton";
 import { PostCard } from "@/components/PostCard";
+import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { displayName } from "@/lib/display";
-import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
-import { AVAILABILITY_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import { FOUNDING_CONTACT_MESSAGE, isTeamWritten } from "@/lib/founding";
+import {
+  AVAILABILITY_LABEL,
+  SELF_REPORTED_NOTE,
+  profileHeadline,
+  timeAgo,
+} from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { findProfileByHandle } from "@/lib/profile-lookup";
 import { loginHref } from "@/lib/next-path";
@@ -25,6 +31,7 @@ type ReplyWithPost = {
   is_accepted: boolean;
   helpful_count: number;
   created_at: string;
+  seed_batch_id: string | null;
   post: { id: string; slug: string | null; title: string } | null;
 };
 
@@ -98,7 +105,7 @@ export default async function ProfilePage({
         .limit(5),
       supabase
         .from("replies")
-        .select("id, body, is_accepted, helpful_count, created_at, post:posts ( id, slug, title )")
+        .select("id, body, is_accepted, helpful_count, created_at, seed_batch_id, post:posts ( id, slug, title )")
         .eq("author_id", profile.id)
         .order("created_at", { ascending: false })
         .limit(5),
@@ -139,9 +146,12 @@ export default async function ProfilePage({
           <p className="mt-0.5 text-sm text-zinc-600">{profileHeadline(profile)}</p>
           {profile.role === "senior" && (
             <p className="mt-1 text-[13px] text-zinc-500">
-              Mentoring: {AVAILABILITY_LABEL[profile.mentor_availability]}
+              {AVAILABILITY_LABEL[profile.mentor_availability]}
             </p>
           )}
+          <p className="mt-1 text-xs text-zinc-500" data-testid="self-reported-note">
+            {SELF_REPORTED_NOTE}
+          </p>
           {profile.bio && (
             <p className="mt-3 text-sm leading-relaxed text-zinc-700 wrap-anywhere">
               {profile.bio}
@@ -167,7 +177,7 @@ export default async function ProfilePage({
                   <Link href="/mentors?avail=accepting" className="font-medium underline">
                     mentor directory
                   </Link>{" "}
-                  by &ldquo;Accepting mentees&rdquo;.
+                  by &ldquo;{AVAILABILITY_LABEL.accepting}&rdquo;.
                 </p>
               </>
             ) : !viewer ? (
@@ -220,7 +230,7 @@ export default async function ProfilePage({
             <Stat value={answeredCount ?? 0} label="answers" />
             <Stat value={followerCount} label="followers" />
             <Stat value={menteeCount ?? 0} label="active mentees" />
-            <Stat value={collabCount ?? 0} label="collabs posted" />
+            <Stat value={collabCount ?? 0} label="opportunities posted" />
           </dl>
         </div>
       </section>
@@ -231,7 +241,7 @@ export default async function ProfilePage({
             Recent answers from {name}
           </h2>
           {answers.map((a) => (
-            <div key={a.id} className="border-b border-zinc-200 py-3 last:border-b-0">
+            <div key={a.id} data-testid="profile-answer" className="border-b border-zinc-200 py-3 last:border-b-0">
               <div className="mb-1 flex items-center gap-2 text-[13px] text-zinc-600">
                 <span>
                   Replied to{" "}
@@ -252,6 +262,7 @@ export default async function ProfilePage({
                   </span>
                 )}
               </div>
+              {isTeamWritten(a, profile) && <TeamWrittenLabel className="mb-1.5" />}
               {/* pre-line keeps bullet lists on their own lines; clamp the preview. */}
               <p className="line-clamp-5 whitespace-pre-line text-sm wrap-anywhere leading-relaxed text-zinc-700">
                 {a.body}

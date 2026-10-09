@@ -15,17 +15,20 @@ import { CollabComposer } from "@/components/CollabComposer";
 import { CollabFilledBadge } from "@/components/CollabFilled";
 import { CollabIcon } from "@/components/icons";
 import { CollabInterestControl } from "@/components/CollabInterestControl";
+import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
 import {
   COLLAB_FILLED_MESSAGE,
+  COLLABS_EMPTY_MESSAGE,
   collabsHref,
   isCollabFilled,
   parseCollabStatusFilter,
   sortCollabsOpenFirst,
 } from "@/lib/collabs";
 import { loginHref } from "@/lib/next-path";
-import { COLLAB_TYPE_LABEL } from "@/lib/format";
+import { isTeamWritten } from "@/lib/founding";
+import { COLLAB_TYPE_LABEL, COLLABS_TITLE } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type {
@@ -38,7 +41,7 @@ import type {
 
 const TYPE_FILTERS: { key: CollabType; label: string }[] = [
   { key: "extra_hand", label: "Need an extra hand" },
-  { key: "ride_along", label: "Junior ride-along" },
+  { key: "ride_along", label: "Apprentice ride-along" },
   { key: "specialist", label: "Need a specialist" },
 ];
 
@@ -57,7 +60,7 @@ const TYPE_BADGE: Record<CollabType, string> = {
 
 type CollabWithPoster = JobCollab & { poster: AuthorLite | null };
 
-export const metadata: Metadata = { title: "Job collabs" };
+export const metadata: Metadata = { title: COLLABS_TITLE };
 
 export default async function CollabsPage({
   searchParams,
@@ -113,7 +116,7 @@ export default async function CollabsPage({
   const sidebar = (
     <nav>
       <SideSection>Type</SideSection>
-      <SideLink href={collabsHref({ status })} active={!type}>All collabs</SideLink>
+      <SideLink href={collabsHref({ status })} active={!type}>All types</SideLink>
       {TYPE_FILTERS.map((t) => (
         <SideLink key={t.key} href={collabsHref({ type: t.key, status })} active={type === t.key}>
           <CollabIcon type={t.key} /> {t.label}
@@ -130,7 +133,7 @@ export default async function CollabsPage({
         <>
           <SideSection>Yours</SideSection>
           <SideLink href="/collabs/mine">
-            <ClipboardList className="size-4" /> My jobs
+            <ClipboardList className="size-4" /> My opportunities
           </SideLink>
         </>
       )}
@@ -138,13 +141,13 @@ export default async function CollabsPage({
   );
 
   return (
-    <AppBody sidebar={sidebar} mobileLabel="Filter jobs">
+    <AppBody sidebar={sidebar} mobileLabel="Filter opportunities">
       <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-xl font-semibold">Job collabs</h1>
+          <h1 className="text-xl font-semibold">{COLLABS_TITLE}</h1>
           <p className="mt-0.5 text-[13px] text-zinc-600">
-            Need help on a job, or want to learn by tagging along? Post or browse
-            below.
+            Mentors post ride-along opportunities, and tradespeople find
+            collaborators for a job. Post or browse below.
           </p>
         </div>
         {profile ? (
@@ -175,17 +178,11 @@ export default async function CollabsPage({
       </div>
 
       {collabs.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500">
-          {status === "open" ? (
-            <>
-              No open collabs right now.{" "}
-              <Link href={collabsHref({ type })} className="font-medium text-brand-600 hover:underline">
-                See filled ones
-              </Link>
-            </>
-          ) : (
-            "No collabs posted yet."
-          )}
+        <p
+          data-testid="collabs-empty"
+          className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500"
+        >
+          {COLLABS_EMPTY_MESSAGE}
         </p>
       ) : (
         <div className="flex flex-col gap-3">
@@ -205,6 +202,7 @@ export default async function CollabsPage({
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
+                  {isTeamWritten(c, c.poster) && <TeamWrittenLabel className="mb-1.5" />}
                   <h3 className={`font-semibold wrap-anywhere ${filled ? "text-zinc-600" : ""}`}>{c.title}</h3>
                   <p className="mt-0.5 text-[13px] text-zinc-600">
                     Posted by{" "}

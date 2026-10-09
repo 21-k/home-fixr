@@ -62,6 +62,8 @@ export type Post = {
   region: string | null;
   helpful_count: number;
   reply_count: number;
+  /** Set on rows the team seeded (migration 0009); drives the post label. */
+  seed_batch_id?: string | null;
   created_at: string;
 };
 
@@ -72,6 +74,7 @@ export type Reply = {
   body: string;
   is_accepted: boolean;
   helpful_count: number;
+  seed_batch_id?: string | null;
   created_at: string;
 };
 
@@ -88,6 +91,7 @@ export type JobCollab = {
   interested_count: number;
   // When the poster marked the position filled (migration 0013); null = open.
   filled_at: string | null;
+  seed_batch_id?: string | null;
   created_at: string;
 };
 

@@ -5,7 +5,7 @@ import { Avatar } from "@/components/Avatar";
 import { FoundingBadge } from "@/components/FoundingBadge";
 import { TradeIcon } from "@/components/icons";
 import { displayName } from "@/lib/display";
-import { AVAILABILITY_LABEL, profileHeadline } from "@/lib/format";
+import { AVAILABILITY_LABEL, SELF_REPORTED_NOTE, profileHeadline } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, TradeType } from "@/lib/types";
 
@@ -32,7 +32,7 @@ function buildHref(current: Search, patch: Search): string {
   return qs ? `/mentors?${qs}` : "/mentors";
 }
 
-export const metadata: Metadata = { title: "Mentors" };
+export const metadata: Metadata = { title: "Find a mentor" };
 
 export default async function MentorsPage({
   searchParams,
@@ -47,7 +47,7 @@ export default async function MentorsPage({
   if (sp.region) query = query.ilike("region", `%${sp.region}%`);
   if (sp.avail === "messages") query = query.eq("is_open_to_messages", true);
   if (sp.avail === "ride_alongs") query = query.eq("is_open_to_ride_alongs", true);
-  // "Accepting mentees" only lists mentors a real person will answer for:
+  // "Accepting mentorship requests" only lists mentors a real person will answer for:
   // Founding Community accounts never qualify (plan §4 / §6).
   if (sp.avail === "accepting")
     query = query.eq("mentor_availability", "accepting").eq("is_founding_member", false);
@@ -96,19 +96,27 @@ export default async function MentorsPage({
         <SideLink key={r.value} href={buildHref(sp, { region: r.value })} active={sp.region === r.value}>{r.label}</SideLink>
       ))}
       <SideSection>Availability</SideSection>
-      <SideLink href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })} active={sp.avail === "accepting"}>Accepting mentees</SideLink>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })} active={sp.avail === "accepting"}>{AVAILABILITY_LABEL.accepting}</SideLink>
       <SideLink href={buildHref(sp, { avail: sp.avail === "messages" ? undefined : "messages" })} active={sp.avail === "messages"}>Open to messages</SideLink>
-      <SideLink href={buildHref(sp, { avail: sp.avail === "ride_alongs" ? undefined : "ride_alongs" })} active={sp.avail === "ride_alongs"}>Open to ride-alongs</SideLink>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "ride_alongs" ? undefined : "ride_alongs" })} active={sp.avail === "ride_alongs"}>Open to hosting ride-alongs</SideLink>
     </nav>
   );
 
   return (
     <AppBody sidebar={sidebar} mobileLabel="Filter mentors">
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-xl font-semibold">Senior pros in the community</h1>
-        <span className="text-[13px] text-zinc-500">
-          Showing {mentors.length} mentor{mentors.length === 1 ? "" : "s"}
-        </span>
+      <div className="mb-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+          <h1 className="text-xl font-semibold">Find a mentor</h1>
+          <span className="text-[13px] text-zinc-500">
+            Showing {mentors.length} mentor{mentors.length === 1 ? "" : "s"}
+          </span>
+        </div>
+        <p className="mt-1 text-[13px] text-zinc-600">
+          Browse mentors and send a mentorship request. Mentors choose whether to accept.
+        </p>
+        <p className="mt-1 text-xs text-zinc-500" data-testid="self-reported-note">
+          {SELF_REPORTED_NOTE}
+        </p>
       </div>
 
       {mentors.length === 0 ? (

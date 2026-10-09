@@ -7,13 +7,14 @@ import { Bell, Menu, X } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
 import { signOut } from "@/lib/auth/actions";
 import { displayName } from "@/lib/display";
+import { COLLABS_NAV } from "@/lib/format";
 import { loginHref } from "@/lib/next-path";
 import type { Profile } from "@/lib/types";
 
 const NAV = [
   { href: "/feed", label: "Feed" },
   { href: "/mentors", label: "Mentors" },
-  { href: "/collabs", label: "Jobs" },
+  { href: "/collabs", label: COLLABS_NAV },
   { href: "/messages", label: "Messages" },
 ];
 

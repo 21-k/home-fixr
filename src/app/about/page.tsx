@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FoundingBadge } from "@/components/FoundingBadge";
+import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { FOUNDING_ABOUT_SENTENCE } from "@/lib/founding";
+import { AVAILABILITY_LABEL } from "@/lib/format";
 
 export const metadata: Metadata = {
   title: "About",
   description:
-    "What Home Fixr is, and what the Founding Community badge on some accounts means.",
+    "What Home Fixr is, what the Founding Community badge on some profiles means, and why some posts are labeled as team-written examples.",
 };
 
 /**
@@ -31,10 +33,10 @@ export default function AboutPage() {
       <main className="mx-auto max-w-2xl px-6 py-12">
         <h1 className="text-3xl font-semibold tracking-tight">About Home Fixr</h1>
         <p className="mt-3 text-[15px] leading-7 text-zinc-700">
-          Home Fixr is a community where senior plumbers, HVAC techs and
-          electricians answer questions and mentor people coming into the trades.
-          It&apos;s free, and it&apos;s not a marketplace: no leads, no fees, no
-          commission.
+          Home Fixr is a community where experienced plumbers, HVAC technicians
+          and electricians answer questions and mentor apprentices and
+          early-career tradespeople. It&apos;s free, and it&apos;s not a
+          marketplace: no leads, no fees, no commission.
         </p>
 
         <section
@@ -42,29 +44,31 @@ export default function AboutPage() {
           className="mt-10 scroll-mt-20 rounded-xl border border-amber-200 bg-white p-6"
         >
           <div className="mb-3 flex items-center gap-2">
-            <h2 className="text-lg font-semibold">Founding Community accounts</h2>
+            <h2 className="text-lg font-semibold">Team-written examples and Founding Community profiles</h2>
             <FoundingBadge size="md" />
           </div>
           <p className="text-[15px] leading-7 text-zinc-800">{FOUNDING_ABOUT_SENTENCE}</p>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-[14px] leading-6 text-zinc-700">
             <li>
-              Every one of these accounts shows the badge above next to its name,
-              on its profile and on everything it posts.
+              Every example profile shows the Founding Community badge next to
+              its name, and every post, reply and ride-along it shows carries
+              the label <TeamWrittenLabel className="align-middle" />.
             </li>
             <li>
-              They don&apos;t take direct messages, mentorship requests or job
-              applications, and they never message members. If you want a
-              mentor who&apos;ll answer, use{" "}
+              Example profiles don&apos;t take direct messages, mentorship
+              requests or applications, and they never message members. Their
+              reply, helpful and mentee counts come from the examples too. If
+              you want a mentor who&apos;ll answer, use{" "}
               <Link href="/mentors?avail=accepting" className="font-medium text-brand-600 hover:underline">
-                Accepting mentees
+                {AVAILABILITY_LABEL.accepting}
               </Link>{" "}
               in the mentor directory.
             </li>
             <li>
-              Their posts are examples of the kinds of questions people bring
-              here. Anything they say about licensing, unions or schools is
-              general and can be out of date. Check with the licensing board,
-              the Local or the school directly before you act on it.
+              The example posts show the kinds of questions people bring here.
+              Anything they say about licensing, unions or schools is general
+              and can be out of date. Check with the licensing board, the Local
+              or the school directly before you act on it.
             </li>
           </ul>
         </section>
@@ -78,8 +82,8 @@ export default function AboutPage() {
                 a: "No. There's no fee to join, no lead charges, and no commission.",
               },
               {
-                q: "Do you verify licences?",
-                a: "No. Your licence is between you and your state board. Use your judgement before working alongside anyone, same as you would off-platform.",
+                q: "Do you verify licenses?",
+                a: "No. Licenses, credentials and experience on profiles are self-reported, and Home Fixr doesn't verify them. Your license is between you and your state board. Use your judgment before working alongside anyone, same as you would off-platform.",
               },
               {
                 q: "Why do people post under handles?",

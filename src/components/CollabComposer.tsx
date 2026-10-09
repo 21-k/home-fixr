@@ -31,7 +31,7 @@ export function CollabComposer() {
         onClick={() => setOpen(true)}
         className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600"
       >
-        + Post a collab
+        + Post a ride-along or collaboration
       </button>
     );
   }
@@ -42,7 +42,7 @@ export function CollabComposer() {
       action={formAction}
       className="w-full rounded-xl border border-zinc-200 bg-white p-5"
     >
-      <h3 className="mb-3 font-semibold">Post a collab</h3>
+      <h3 className="mb-3 font-semibold">Post a ride-along or collaboration</h3>
       <div className="flex flex-col gap-3">
         <input name="title" required placeholder="Title (e.g. Need a 2nd hand Saturday)" className={inputCls} />
         <textarea
@@ -55,7 +55,7 @@ export function CollabComposer() {
         <div className="grid gap-3 sm:grid-cols-2">
           <select name="type" defaultValue="extra_hand" className={`${inputCls} bg-white`}>
             <option value="extra_hand">Need an extra hand</option>
-            <option value="ride_along">Junior ride-along</option>
+            <option value="ride_along">Apprentice ride-along</option>
             <option value="specialist">Need a specialist</option>
           </select>
           <select name="trade" defaultValue="" className={`${inputCls} bg-white`}>
@@ -90,7 +90,7 @@ export function CollabComposer() {
           disabled={pending}
           className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-medium text-white hover:bg-brand-600 disabled:opacity-60"
         >
-          {pending ? "Posting…" : "Post collab"}
+          {pending ? "Posting…" : "Post"}
         </button>
       </div>
     </form>

@@ -1,10 +1,15 @@
-// "Position filled" rules for job collabs (migration 0013), kept pure so the
-// Jobs board, My jobs, the server actions and the tests all agree.
+// "Position filled" rules for ride-alongs and collaborations (job_collabs,
+// migration 0013), kept pure so the board, My opportunities, the server
+// actions and the tests all agree.
 
 export const COLLAB_FILLED_LABEL = "Position filled";
 
 export const COLLAB_FILLED_MESSAGE =
   "This position has been filled, so it isn't taking applications.";
+
+/** The board's empty state: nothing posted, or nothing open under "Open only". */
+export const COLLABS_EMPTY_MESSAGE =
+  "No active opportunities available. Mentors can post a ride-along or collaboration; apprentices can browse when opportunities become available.";
 
 type Fillable = { filled_at: string | null };
 

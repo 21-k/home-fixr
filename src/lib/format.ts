@@ -32,11 +32,23 @@ export function tradeLabel(trade: TradeType | null): string {
   return trade ? TRADE_LABELS[trade] : "General";
 }
 
-/** A one-line headline like "Master Plumber · 28 yrs · Newark, NJ". */
+/** "1 year", "2 years", "28 years" (0 reads "Less than 1 year"). */
+export function yearsLabel(n: number): string {
+  if (n <= 0) return "Less than 1 year";
+  return n === 1 ? "1 year" : `${n} years`;
+}
+
+/** Interface names for the two roles. The DB values stay junior / senior. */
+export const ROLE_LABEL = {
+  junior: "Apprentice",
+  senior: "Mentor",
+} as const;
+
+/** A one-line headline like "Master Plumber · 28 years · Newark, NJ". */
 export function profileHeadline(p: AuthorLite): string {
   const title = p.title ?? tradeLabel(p.trade);
   const parts = [title];
-  if (p.years_experience != null) parts.push(`${p.years_experience} yrs`);
+  if (p.years_experience != null) parts.push(yearsLabel(p.years_experience));
   if (p.region) parts.push(p.region);
   return parts.join(" · ");
 }
@@ -48,13 +60,22 @@ export const POST_TYPE_LABEL: Record<PostType, string> = {
 };
 
 export const AVAILABILITY_LABEL: Record<MentorAvailability, string> = {
-  accepting: "Accepting mentees",
+  accepting: "Accepting mentorship requests",
   limited: "Limited availability",
-  not_accepting: "Not taking mentees",
+  not_accepting: "Not accepting mentorship requests",
 };
+
+/** The section name for /collabs (the URL and DB names stay "collabs"). */
+export const COLLABS_TITLE = "Ride-alongs and collaborations";
+/** Short form for the top nav. */
+export const COLLABS_NAV = "Ride-alongs";
+
+/** Shown under the mentor directory title and on profiles. */
+export const SELF_REPORTED_NOTE =
+  "Licenses, credentials and experience are self-reported by members and not verified by Home Fixr.";
 
 export const COLLAB_TYPE_LABEL: Record<CollabType, string> = {
   extra_hand: "Extra hand",
-  ride_along: "Junior ride-along",
+  ride_along: "Apprentice ride-along",
   specialist: "Specialist",
 };

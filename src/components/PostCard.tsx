@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { MessageSquare, Star } from "lucide-react";
 import { Avatar } from "@/components/Avatar";
+import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { UserName } from "@/components/UserName";
+import { isTeamWritten } from "@/lib/founding";
 import { POST_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
 import type { AuthorLite, Post } from "@/lib/types";
 
@@ -19,7 +21,7 @@ export function PostCard({
   author: AuthorLite | null;
 }) {
   return (
-    <article className="border-b border-zinc-200 py-4 last:border-b-0">
+    <article data-testid="post-card" className="border-b border-zinc-200 py-4 last:border-b-0">
       <div className="mb-2 flex items-center gap-2.5">
         <Avatar
           person={author}
@@ -38,6 +40,8 @@ export function PostCard({
           {POST_TYPE_LABEL[post.type]}
         </span>
       </div>
+
+      {isTeamWritten(post, author) && <TeamWrittenLabel className="mb-1.5" />}
 
       <Link href={`/q/${post.slug ?? post.id}`} className="group block">
         <h3 className="font-semibold leading-snug wrap-anywhere group-hover:text-brand-600">

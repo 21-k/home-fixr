@@ -18,6 +18,9 @@ import {
 } from "lucide-react";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { FOUNDING_ABOUT_SENTENCE } from "@/lib/founding";
+import { COLLABS_NAV } from "@/lib/format";
+
+const TAGLINE = "Built for people starting out in the skilled trades.";
 
 // ================================================================
 // Landing page. Every section is server-rendered and every "screenshot" is
@@ -93,39 +96,38 @@ export default async function LandingPage() {
           <div className="mx-auto w-full max-w-6xl px-6 py-16 sm:px-10 sm:py-24">
             <span className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-[13px] font-medium text-brand-700 ring-1 ring-brand-200">
               <GraduationCap className="size-3.5" />
-              Built with New Jersey vocational schools
+              {TAGLINE}
             </span>
 
             <h1 className="mt-5 max-w-3xl text-4xl font-semibold leading-tight tracking-tight sm:text-5xl">
-              The trades pass down knowledge one conversation at a time.{" "}
-              <span className="text-brand-500">Now at scale.</span>
+              Find a mentor in your trade.
             </h1>
 
             <p className="mt-5 max-w-2xl text-lg leading-8 text-zinc-600">
-              Home Fixr connects new vocational graduates — future plumbers, HVAC
-              techs, and electricians — with senior tradespeople who&apos;ve been
-              doing the work for decades. Ask questions, find a mentor, and team up
-              on jobs when an extra set of hands matters.
+              Home Fixr connects apprentices and early-career electricians,
+              plumbers, and HVAC technicians with experienced tradespeople. Find a
+              mentor, explore ride-along opportunities, and ask questions in the
+              community.
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap items-center gap-3" data-testid="hero-ctas">
               <Link
-                href="/join"
+                href="/mentors"
                 className="inline-flex items-center gap-2 rounded-lg bg-zinc-900 px-5 py-3 text-sm font-medium text-white hover:bg-zinc-700"
               >
-                I&apos;m new to the trade <ArrowRight className="size-4" />
+                Find a mentor <ArrowRight className="size-4" />
               </Link>
               <Link
-                href="/join"
+                href="/join?role=mentor"
                 className="rounded-lg border border-zinc-300 bg-white px-5 py-3 text-sm font-medium hover:bg-zinc-100"
               >
-                I&apos;m a senior pro
+                Become a mentor
               </Link>
               <Link
                 href="/feed"
-                className="rounded-lg px-5 py-3 text-sm font-medium text-zinc-600 hover:text-zinc-900"
+                className="px-2 py-3 text-sm font-medium text-zinc-600 underline-offset-4 hover:text-zinc-900 hover:underline"
               >
-                Look around first
+                Browse the community
               </Link>
             </div>
 
@@ -178,70 +180,70 @@ export default async function LandingPage() {
         {/* ------------------------------------------------------ Features */}
         <div id="features" className="scroll-mt-16">
           <FeatureSection
-            eyebrow="Community feed & threads"
+            eyebrow="Mentor directory"
+            Icon={Handshake}
+            title="Find a mentor near you, in your trade"
+            body="Browse mentors by trade and region, then send a mentorship request. Mentors choose whether to accept, so nobody's cold-emailing into the void."
+            points={[
+              "See each mentor's trade, region, and self-reported experience up front",
+              "Filter to mentors open to hosting ride-alongs",
+              "Requests are two-sided: mentors accept or decline, so nobody's spammed",
+            ]}
+            cta={{ href: "/mentors", label: "Find a mentor" }}
+            mock={<MentorMock />}
+          />
+
+          <FeatureSection
+            reverse
+            tinted
+            eyebrow="Ride-alongs and collaborations"
+            Icon={Wrench}
+            title="Learn on a real job, or find a hand for one"
+            body="Mentors can post ride-along opportunities, and tradespeople can find collaborators for a job. Apply with a short introduction and attach a resume if you have one."
+            points={[
+              "Posters see every applicant in one place and accept or decline",
+              "Track what you posted and applied to in My opportunities",
+              "Filter by apprentice ride-along, extra hand, or specialist",
+            ]}
+            cta={{ href: "/collabs", label: "Browse ride-alongs and collaborations" }}
+            mock={<CollabMock />}
+          />
+
+          <FeatureSection
+            eyebrow="Community feed"
             Icon={MessageSquare}
             title="Ask the people who've actually done it"
-            body="Post a question, a tip, or a discussion. Answers come from people with twenty and thirty years on the job — not anonymous internet strangers. Filter the feed by trade so you're reading work that looks like yours."
+            body="Post a question, a tip, or a discussion, and get answers from experienced tradespeople. Filter the feed by trade so you're reading work that looks like yours."
             points={[
               "Mark the answer that solved it, so the next person finds it fast",
               "Flag replies as helpful to surface the ones that earned it",
               "Filter by plumbing, HVAC, electrical, or general",
             ]}
-            cta={{ href: "/feed", label: "Browse the feed" }}
+            cta={{ href: "/feed", label: "Browse the community" }}
             mock={<ThreadMock />}
           />
 
           <FeatureSection
-            reverse
-            tinted
-            eyebrow="Mentor directory"
-            Icon={Handshake}
-            title="Find a mentor near you, in your trade"
-            body="Browse senior pros by trade, region, and whether they're open to ride-alongs. Send a mentorship request; they accept or decline. No cold-emailing into the void."
-            points={[
-              "See years of experience, specialty, and region up front",
-              "Filter to people actually open to taking someone along",
-              "Requests are two-sided — mentors opt in, so nobody's spammed",
-            ]}
-            cta={{ href: "/mentors", label: "See the mentors" }}
-            mock={<MentorMock />}
-          />
-
-          <FeatureSection
-            eyebrow="Job collabs"
-            Icon={Wrench}
-            title="Team up when the work calls for it"
-            body="Need a second pair of hands Saturday, or a specialist for one tricky zone? Post a collab. Want to learn by watching a full install start to finish? Apply for a ride-along with a short pitch and your CV."
-            points={[
-              "Apply with a few lines on why you — attach a CV if you have one",
-              "Posters see every applicant in one place and accept or decline",
-              "Track what you posted and what you applied to on My jobs",
-            ]}
-            cta={{ href: "/collabs", label: "Browse open collabs" }}
-            mock={<CollabMock />}
-          />
-
-          <FeatureSection
-            reverse
-            tinted
             eyebrow="Messages, follows & alerts"
             Icon={Bell}
             title="Keep the conversation going after the thread"
-            body="Direct messages for the questions you'd rather not ask in public. Follow the people whose answers you keep learning from. Notifications when someone replies, accepts your answer, or wants you on a job."
+            body="Direct messages for the questions you'd rather not ask in public. Follow the people whose answers you keep learning from. Notifications when someone replies, accepts your answer, or applies to your ride-along."
             points={[
               "1:1 messages with anyone open to them",
-              "Follow senior pros and keep up with what they post",
-              "Alerts for replies, mentorship requests, and job interest",
+              "Follow experienced tradespeople and keep up with what they post",
+              "Alerts for replies, mentorship requests, and applications",
             ]}
             cta={{ href: "/messages", label: "Open messages" }}
             mock={<MessageMock />}
           />
 
           <FeatureSection
+            reverse
+            tinted
             eyebrow="Profiles"
             Icon={Users}
             title="A profile that shows what you know"
-            body="Your trade, your region, your years in, and the answers you've given. For juniors it's a record of what you're learning. For seniors it's proof of the help you've handed down."
+            body="Your trade, your region, your years in, and the answers you've given. For apprentices it's a record of what you're learning. For mentors it's a record of the help you've handed down."
             points={[
               "Recent posts and answers on every profile",
               "Set whether you're open to messages and ride-alongs",
@@ -268,7 +270,7 @@ export default async function LandingPage() {
               {[
                 { t: "No lead fees", d: "Nobody pays to be introduced to anyone here." },
                 { t: "No payment rails", d: "Arrange work between yourselves, the way the trade already does." },
-                { t: "No gatekeeping", d: "We're not a certification body. Your licence is between you and your state." },
+                { t: "No gatekeeping", d: "We're not a certification body. Your license is between you and your state." },
               ].map((x) => (
                 <div key={x.t}>
                   <dt className="flex items-center gap-2 font-medium">
@@ -294,7 +296,7 @@ export default async function LandingPage() {
                 {
                   n: "1",
                   t: "Tell us where you are in the trade",
-                  d: "Pick junior or senior, your trade, and your region. That's the whole signup.",
+                  d: "Pick apprentice or mentor, your trade, and your region. That's the whole signup.",
                 },
                 {
                   n: "2",
@@ -304,7 +306,7 @@ export default async function LandingPage() {
                 {
                   n: "3",
                   t: "Find your people",
-                  d: "Request a mentor, apply for a ride-along, or just follow the pros worth learning from.",
+                  d: "Send a mentorship request, apply for a ride-along, or follow the experienced tradespeople worth learning from.",
                 },
               ].map((s) => (
                 <li key={s.n} className="rounded-xl border border-zinc-200 p-6">
@@ -334,14 +336,14 @@ export default async function LandingPage() {
                 </span>
                 <h3 className="text-lg font-semibold">If you&apos;re starting out</h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-zinc-600">
-                  Apprentices, vocational grads, and career switchers in their first
-                  few years.
+                  Apprentices, early-career tradespeople, and career switchers in
+                  their first few years.
                 </p>
                 <ul className="mt-4 flex flex-col gap-2">
                   {[
                     "Ask the questions you don't want to ask your boss",
                     "Find a mentor who works in your trade and region",
-                    "Get ride-along experience on real job sites",
+                    "Apply for ride-alongs on real job sites",
                     "Learn pricing, customers, and permits from people who've done it",
                   ].map((li) => (
                     <Bullet key={li}>{li}</Bullet>
@@ -351,7 +353,7 @@ export default async function LandingPage() {
                   href="/join"
                   className="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-brand-600"
                 >
-                  Join as a junior <ArrowRight className="size-4" />
+                  Join as an apprentice <ArrowRight className="size-4" />
                 </Link>
               </div>
 
@@ -375,10 +377,10 @@ export default async function LandingPage() {
                   ))}
                 </ul>
                 <Link
-                  href="/join"
+                  href="/join?role=mentor"
                   className="mt-6 inline-flex items-center gap-2 rounded-lg border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium hover:bg-zinc-100"
                 >
-                  Join as a senior pro <ArrowRight className="size-4" />
+                  Become a mentor <ArrowRight className="size-4" />
                 </Link>
               </div>
             </div>
@@ -404,15 +406,15 @@ export default async function LandingPage() {
                   a: "No, and that's deliberate. Home Fixr is for mentorship and collaboration between tradespeople. If you're looking for homeowner leads, this isn't the tool.",
                 },
                 {
-                  q: "Do you verify licences?",
-                  a: "We don't. Verification isn't a platform feature — your licence is between you and your state board. Use your judgement before working alongside anyone, same as you would off-platform.",
+                  q: "Do you verify licenses?",
+                  a: "We don't. Licenses, credentials and experience on profiles are self-reported, and verification isn't a platform feature — your license is between you and your state board. Use your judgment before working alongside anyone, same as you would off-platform.",
                 },
                 {
-                  q: "I'm a senior pro. How much time does this take?",
+                  q: "I'm an experienced tradesperson. How much time does mentoring take?",
                   a: "As little as you want. Answer a question when you've got five minutes. Mentorship requests are opt-in, and you can turn off ride-alongs and messages in your settings.",
                 },
                 {
-                  q: "Who are the Founding Community members?",
+                  q: "What are the Founding Community profiles and team-written examples?",
                   a: FOUNDING_ABOUT_SENTENCE,
                 },
                 {
@@ -450,7 +452,7 @@ export default async function LandingPage() {
                 href="/feed"
                 className="rounded-lg border border-zinc-300 bg-white px-5 py-3 text-sm font-medium hover:bg-zinc-100"
               >
-                Look around first
+                Browse the community
               </Link>
             </div>
           </div>
@@ -467,7 +469,7 @@ export default async function LandingPage() {
               Home Fixr
             </Link>
             <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-zinc-500">
-              A community where senior tradespeople mentor the next generation.
+              A community where experienced tradespeople mentor apprentices.
               Community, not a marketplace.
             </p>
           </div>
@@ -476,7 +478,7 @@ export default async function LandingPage() {
             {[
               { href: "/feed", label: "Feed" },
               { href: "/mentors", label: "Mentors" },
-              { href: "/collabs", label: "Jobs" },
+              { href: "/collabs", label: COLLABS_NAV },
               { href: "/search", label: "Search" },
               { href: "/about", label: "About" },
               { href: "/join", label: "Join" },
@@ -489,7 +491,7 @@ export default async function LandingPage() {
           </nav>
         </div>
         <div className="border-t border-zinc-100 px-6 py-5 text-center text-xs text-zinc-500 sm:px-10">
-          home-fixr.com · Built with New Jersey vocational schools
+          home-fixr.com · {TAGLINE}
         </div>
       </footer>
     </div>
@@ -579,6 +581,7 @@ function MockFrame({ children }: { children: ReactNode }) {
         <span className="size-2.5 rounded-full bg-zinc-300" />
         <span className="size-2.5 rounded-full bg-zinc-300" />
         <span className="size-2.5 rounded-full bg-zinc-300" />
+        <span className="ml-auto text-[11px] font-medium text-zinc-400">Illustration</span>
       </div>
       <div className="p-4">{children}</div>
     </div>
@@ -622,7 +625,7 @@ function ThreadMock() {
         <div className="mt-2 flex gap-3">
           <MockAvatar initials="MR" />
           <div className="min-w-0">
-            <p className="text-[13px] font-medium">Mike Rodriguez · Master Plumber · 28 yrs</p>
+            <p className="text-[13px] font-medium">Mike Rodriguez · Master Plumber · 28 years</p>
             <p className="mt-1 text-[13px] leading-relaxed text-zinc-700">
               Easy script: “outside my license — if something goes wrong your
               insurance won&apos;t cover it. Let me put you in touch with someone I
@@ -640,9 +643,9 @@ function ThreadMock() {
 
 function MentorMock() {
   const mentors = [
-    { i: "LC", n: "Linda Chen", t: "HVAC Technician · 22 yrs", r: "Edison, NJ", ride: true },
-    { i: "TM", n: "Tony Martinez", t: "Master Electrician · 30 yrs", r: "Jersey City, NJ", ride: false },
-    { i: "SW", n: "Sarah Williams", t: "HVAC Specialist · 18 yrs", r: "Trenton, NJ", ride: true },
+    { i: "LC", n: "Linda Chen", t: "HVAC Technician · 22 years", r: "Edison, NJ", ride: true },
+    { i: "TM", n: "Tony Martinez", t: "Master Electrician · 30 years", r: "Jersey City, NJ", ride: false },
+    { i: "SW", n: "Sarah Williams", t: "HVAC Specialist · 18 years", r: "Trenton, NJ", ride: true },
   ];
   return (
     <MockFrame>
@@ -667,7 +670,7 @@ function MentorMock() {
             </div>
             {m.ride && (
               <span className="shrink-0 rounded bg-success-bg px-2 py-0.5 text-[11px] font-medium text-success-fg">
-                Ride-alongs
+                Hosts ride-alongs
               </span>
             )}
           </div>
@@ -683,14 +686,14 @@ function CollabMock() {
       <div className="flex items-start justify-between gap-3">
         <div>
           <p className="text-sm font-semibold">
-            Junior welcome — boiler install ride-along, Saturday
+            Apprentices welcome: boiler install ride-along, Saturday
           </p>
           <p className="mt-0.5 text-[13px] text-zinc-600">
-            Dave Kowalski · Plumber · 25 yrs
+            Dave Kowalski · Plumber · 25 years
           </p>
         </div>
         <span className="shrink-0 rounded bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">
-          Ride-along
+          Apprentice ride-along
         </span>
       </div>
 
@@ -714,7 +717,7 @@ function CollabMock() {
         </p>
         <div className="mt-2.5 flex flex-wrap items-center gap-2">
           <span className="inline-flex items-center gap-1.5 rounded-lg bg-white px-2.5 py-1.5 text-xs text-zinc-700 ring-1 ring-zinc-200">
-            <Paperclip className="size-3" /> emma-reyes-cv.pdf
+            <Paperclip className="size-3" /> emma-reyes-resume.pdf
           </span>
           <span className="rounded bg-success-bg px-2 py-1 text-[11px] font-medium text-success-fg">
             ✓ Accepted
@@ -749,7 +752,7 @@ function MessageMock() {
       <div className="mt-1 flex items-center gap-2 rounded-lg border border-zinc-200 bg-zinc-50 px-3 py-2">
         <Bell className="size-3.5 shrink-0 text-brand-500" />
         <p className="text-xs text-zinc-600">
-          Sarah Williams is interested in your job posting
+          Sarah Williams is interested in your ride-along
         </p>
       </div>
     </MockFrame>
@@ -766,7 +769,7 @@ function ProfileMock() {
         <div className="min-w-0 flex-1">
           <p className="font-semibold">Mike Rodriguez</p>
           <p className="text-[13px] text-zinc-600">
-            Master Plumber · 28 yrs · Newark, NJ
+            Master Plumber · 28 years · Newark, NJ
           </p>
           <div className="mt-2 flex flex-wrap gap-1.5">
             <span className="rounded bg-success-bg px-2 py-0.5 text-[11px] font-medium text-success-fg">

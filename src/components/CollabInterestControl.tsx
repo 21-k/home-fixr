@@ -11,7 +11,7 @@ import {
 import { CollabFilledToggle } from "@/components/CollabFilled";
 import { toggleCollabInterest } from "@/lib/actions";
 import { applyBlockReason, COLLAB_FILLED_MESSAGE } from "@/lib/collabs";
-import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
+import { FOUNDING_COLLAB_MESSAGE } from "@/lib/founding";
 import type { CollabInterestStatus, TradeType } from "@/lib/types";
 
 /**
@@ -97,7 +97,7 @@ export function CollabInterestControl({
           {COLLAB_FILLED_MESSAGE}
           {posterIsFounding && (
             <span className="mt-1 block text-[12px] text-zinc-500">
-              {FOUNDING_CONTACT_MESSAGE}
+              {FOUNDING_COLLAB_MESSAGE}
             </span>
           )}
         </p>
@@ -109,7 +109,7 @@ export function CollabInterestControl({
   if (block === "founding") {
     return (
       <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] leading-relaxed text-zinc-500">
-        {FOUNDING_CONTACT_MESSAGE}
+        {FOUNDING_COLLAB_MESSAGE}
       </p>
     );
   }

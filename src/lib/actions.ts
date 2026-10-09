@@ -16,7 +16,7 @@ import {
 } from "@/lib/handles";
 import { AVATAR_STYLES, isAvatarIcon, type AvatarStyle } from "@/lib/avatar";
 import { COLLAB_FILLED_MESSAGE } from "@/lib/collabs";
-import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
+import { FOUNDING_COLLAB_MESSAGE, FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { CV_BUCKET } from "@/lib/storage";
 import { createClient } from "@/lib/supabase/server";
 import type {
@@ -50,7 +50,7 @@ async function contactTarget(supabase: SupabaseServer, profileId: string) {
 function contactErrorMessage(err: { message: string; hint?: string | null }): string {
   if (err.hint === "founding_member") return FOUNDING_CONTACT_MESSAGE;
   if (err.hint === "collab_filled") return COLLAB_FILLED_MESSAGE;
-  if (err.hint === "mentor_not_accepting") return "This mentor isn't taking new mentees right now.";
+  if (err.hint === "mentor_not_accepting") return "This mentor isn't accepting mentorship requests right now.";
   return err.message;
 }
 
@@ -134,12 +134,12 @@ export async function createCollab(
   formData: FormData,
 ): Promise<FormState> {
   const { supabase, user } = await requireUser();
-  if (!user) return { error: "Please sign in to post a collab." };
+  if (!user) return { error: "Please sign in to post a ride-along or collaboration." };
 
   const title = String(formData.get("title") ?? "").trim();
   const body = String(formData.get("body") ?? "").trim();
   const type = (String(formData.get("type") ?? "extra_hand") as CollabType);
-  if (!title) return { error: "Give your collab a title." };
+  if (!title) return { error: "Give your post a title." };
   if (!body) return { error: "Add some detail about the work." };
 
   const scheduled = String(formData.get("scheduled_date") ?? "").trim();
@@ -260,11 +260,11 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
   if (!user) return { error: "Please sign in to apply." };
 
   const collabId = String(formData.get("collab_id") ?? "");
-  if (!collabId) return { error: "Missing job." };
+  if (!collabId) return { error: "Missing opportunity." };
 
   const note = String(formData.get("note") ?? "").trim();
-  if (!note) return { error: "Add a short note so the poster knows why you." };
-  if (note.length > 1500) return { error: "Keep your note under 1500 characters." };
+  if (!note) return { error: "Add a short introduction so the poster knows who you are." };
+  if (note.length > 1500) return { error: "Keep your introduction under 1500 characters." };
 
   const cvPath = String(formData.get("cv_path") ?? "").trim();
   const cvName = String(formData.get("cv_name") ?? "").trim();
@@ -281,14 +281,14 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
     .select("poster_id, filled_at")
     .eq("id", collabId)
     .maybeSingle();
-  if (!collab) return { error: "That job is no longer posted." };
+  if (!collab) return { error: "That opportunity is no longer posted." };
   if (collab.poster_id === user.id) {
     return { error: "This is your own posting." };
   }
   // Checked before the Founding guard so a filled seeded job says so.
   if (collab.filled_at) return { error: COLLAB_FILLED_MESSAGE };
   const poster = await contactTarget(supabase, collab.poster_id);
-  if (poster?.is_founding_member) return { error: FOUNDING_CONTACT_MESSAGE };
+  if (poster?.is_founding_member) return { error: FOUNDING_COLLAB_MESSAGE };
 
   // --- Optional application detail (migration 0008) ---
 
@@ -328,7 +328,7 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
 
   const licenseNote = String(formData.get("license_note") ?? "").trim();
   if (licenseNote.length > 120) {
-    return { error: "Keep the licence note short." };
+    return { error: "Keep the license note short." };
   }
 
   const { error } = await supabase.from("collab_interests").upsert(
@@ -344,7 +344,7 @@ export async function applyToCollab(formData: FormData): Promise<FormState> {
       license_note: licenseNote || null,
       has_own_tools: formData.get("has_own_tools") === "on",
       has_transport: formData.get("has_transport") === "on",
-      ...(cvPath ? { cv_path: cvPath, cv_name: cvName || "CV" } : {}),
+      ...(cvPath ? { cv_path: cvPath, cv_name: cvName || "Resume" } : {}),
     },
     { onConflict: "collab_id,user_id" },
   );
@@ -586,7 +586,7 @@ export async function completeOnboarding(
 
   const role = String(formData.get("role") ?? "");
   if (role !== "junior" && role !== "senior") {
-    return { error: "Pick whether you're new to the trade or a senior pro." };
+    return { error: "Pick whether you're an apprentice or a mentor." };
   }
 
   const fullName = String(formData.get("full_name") ?? "").trim();
@@ -713,7 +713,7 @@ export async function requestMentorship(
   if (!mentor || mentor.role !== "senior") return { error: "Missing mentor." };
   if (mentor.is_founding_member) return { error: FOUNDING_CONTACT_MESSAGE };
   if (mentor.mentor_availability === "not_accepting") {
-    return { error: "This mentor isn't taking new mentees right now." };
+    return { error: "This mentor isn't accepting mentorship requests right now." };
   }
 
   // Upsert to (re)open a request. RLS lets a user write rows where they are the

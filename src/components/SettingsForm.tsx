@@ -70,9 +70,9 @@ export function SettingsForm({
               defaultValue={profile.mentor_availability}
               className={`${inputCls} bg-white`}
             >
-              <option value="accepting">Accepting mentees</option>
+              <option value="accepting">Accepting mentorship requests</option>
               <option value="limited">Limited availability</option>
-              <option value="not_accepting">Not taking mentees</option>
+              <option value="not_accepting">Not accepting mentorship requests</option>
             </select>
           </label>
         )}
@@ -137,7 +137,7 @@ export function SettingsForm({
       </label>
       <label className="flex items-center gap-2.5 text-sm">
         <input type="checkbox" name="is_open_to_ride_alongs" defaultChecked={profile.is_open_to_ride_alongs} className="size-4" />
-        Open to ride-alongs
+        {profile.role === "senior" ? "Open to hosting ride-alongs" : "Open to ride-alongs"}
       </label>
 
       <div className="flex items-center gap-3">

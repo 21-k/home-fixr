@@ -6,6 +6,7 @@ import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { ReplyComposer } from "@/components/ReplyComposer";
 import { RichText } from "@/components/RichText";
+import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { UserName } from "@/components/UserName";
 import {
   acceptReply,
@@ -15,8 +16,15 @@ import {
   markReplyHelpful,
 } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
+import { isTeamWritten } from "@/lib/founding";
 import { loginHref } from "@/lib/next-path";
-import { POST_TYPE_LABEL, profileHeadline, timeAgo, tradeLabel } from "@/lib/format";
+import {
+  POST_TYPE_LABEL,
+  ROLE_LABEL,
+  profileHeadline,
+  timeAgo,
+  tradeLabel,
+} from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, Post, Reply } from "@/lib/types";
@@ -98,7 +106,7 @@ export default async function ThreadPage({
 
   return (
     <AppBody sidebar={sidebar} mobileLabel="Thread">
-      <article className="mb-4 rounded-xl border border-zinc-200 bg-white p-6">
+      <article data-testid="thread-post" className="mb-4 rounded-xl border border-zinc-200 bg-white p-6">
         <div className="mb-3 flex items-center gap-2.5">
           <span className="rounded bg-brand-50 px-2 py-0.5 text-xs font-medium text-brand-700">
             {POST_TYPE_LABEL[post.type]}
@@ -116,6 +124,7 @@ export default async function ThreadPage({
           />{" "}
           · {timeAgo(post.created_at)}
         </p>
+        {isTeamWritten(post, post.author) && <TeamWrittenLabel className="-mt-2 mb-4" />}
         <RichText
           text={post.body}
           className="whitespace-pre-line text-sm leading-relaxed text-zinc-700"
@@ -153,6 +162,7 @@ export default async function ThreadPage({
         {replies.map((reply) => (
           <div
             key={reply.id}
+            data-testid="reply"
             className={`rounded-xl border p-5 ${
               reply.is_accepted
                 ? "border-success-fg bg-success-bg"
@@ -176,7 +186,7 @@ export default async function ThreadPage({
               </div>
               {reply.author?.role === "senior" && (
                 <span className="rounded bg-brand-100 px-1.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-brand-700">
-                  Senior pro
+                  {ROLE_LABEL.senior}
                 </span>
               )}
               {reply.is_accepted && (
@@ -185,6 +195,7 @@ export default async function ThreadPage({
                 </span>
               )}
             </div>
+            {isTeamWritten(reply, reply.author) && <TeamWrittenLabel className="mb-2" />}
             <RichText
               text={reply.body}
               className="whitespace-pre-line text-sm leading-relaxed text-zinc-700"

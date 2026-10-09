@@ -28,7 +28,7 @@ export type ExistingApplication = Pick<
 
 /**
  * The job application: a short pitch plus what a poster actually screens on —
- * time in the trade, what you can do, licence, tools, transport.
+ * time in the trade, what you can do, license, tools, transport.
  *
  * Everything except the pitch is optional. The CV uploads straight from the
  * browser to the private `cvs` bucket and only the object key reaches the
@@ -148,16 +148,16 @@ export function CollabApplyForm({
       ))}
 
       <h4 className="text-sm font-semibold">
-        {isEditing ? "Update your application" : "Apply for this job"}
+        {isEditing ? "Update your application" : "Apply"}
       </h4>
       <p className="mt-0.5 mb-3 text-[13px] text-zinc-500">
-        Only the person who posted this job can see your application.
+        Only the person who posted this can see your application.
       </p>
 
       {/* --- The pitch: the one required field --- */}
       <label className="flex flex-col gap-1.5">
         <span className="text-[13px] font-medium">
-          Why you <span className="text-zinc-400">(required)</span>
+          Short introduction <span className="text-zinc-400">(required)</span>
         </span>
         <textarea
           name="note"
@@ -165,7 +165,7 @@ export function CollabApplyForm({
           rows={3}
           maxLength={1500}
           defaultValue={existing?.note ?? ""}
-          placeholder="A few lines: where you are in the trade, and why this job."
+          placeholder="A few lines: who you are, where you are in the trade, and why you're interested."
           className={`${inputCls} w-full resize-y`}
         />
       </label>
@@ -261,7 +261,7 @@ export function CollabApplyForm({
       {/* --- Practicalities --- */}
       <div className="mt-3 flex flex-col gap-2 rounded-lg border border-zinc-200 bg-white p-3">
         <Check name="is_licensed" defaultChecked={existing?.is_licensed ?? false}>
-          I hold a licence or certification
+          I hold a license or certification
         </Check>
         <input
           name="license_note"
@@ -278,7 +278,7 @@ export function CollabApplyForm({
         </Check>
       </div>
 
-      {/* --- CV --- */}
+      {/* --- Resume --- */}
       <div className="mt-3 flex flex-wrap items-center gap-2">
         <label
           className={`inline-flex cursor-pointer items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100 ${
@@ -286,7 +286,7 @@ export function CollabApplyForm({
           }`}
         >
           <Paperclip className="size-3.5" />
-          {attachmentLabel ? "Replace CV" : "Attach CV (optional)"}
+          {attachmentLabel ? "Replace resume" : "Attach a resume (optional)"}
           <input
             ref={fileRef}
             type="file"

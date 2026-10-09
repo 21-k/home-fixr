@@ -20,7 +20,14 @@ import { getCurrentProfile } from "@/lib/auth/session";
 import { isCollabFilled, shouldOfferMarkFilled } from "@/lib/collabs";
 import { displayName } from "@/lib/display";
 import { loginHref } from "@/lib/next-path";
-import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import {
+  COLLAB_TYPE_LABEL,
+  COLLABS_NAV,
+  COLLABS_TITLE,
+  profileHeadline,
+  timeAgo,
+  yearsLabel,
+} from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { ageRangeLabel } from "@/lib/skills";
 import { CV_BUCKET, CV_SIGNED_URL_SECONDS } from "@/lib/storage";
@@ -48,7 +55,9 @@ const STATUS_BADGE: Record<CollabInterestStatus, { label: string; className: str
   },
 };
 
-export const metadata: Metadata = { title: "My jobs" };
+const MY_TITLE = "My ride-alongs and collaborations";
+
+export const metadata: Metadata = { title: MY_TITLE };
 
 export default async function MyJobsPage() {
   const me = await getCurrentProfile();
@@ -56,20 +65,20 @@ export default async function MyJobsPage() {
 
   const sidebar = (
     <nav>
-      <SideSection>Jobs</SideSection>
+      <SideSection>{COLLABS_NAV}</SideSection>
       <SideLink href="/collabs">
-        <Briefcase className="size-4" /> All collabs
+        <Briefcase className="size-4" /> All opportunities
       </SideLink>
       <SideLink href="/collabs/mine" active>
-        <ClipboardList className="size-4" /> My jobs
+        <ClipboardList className="size-4" /> My opportunities
       </SideLink>
     </nav>
   );
 
   if (!me) {
     return (
-      <AppBody sidebar={sidebar} mobileLabel="Jobs">
-        <h1 className="mb-4 text-xl font-semibold">My jobs</h1>
+      <AppBody sidebar={sidebar} mobileLabel={COLLABS_NAV}>
+        <h1 className="mb-4 text-xl font-semibold">{MY_TITLE}</h1>
         <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
           <Link
             href={loginHref("/collabs/mine")}
@@ -77,7 +86,8 @@ export default async function MyJobsPage() {
           >
             Sign in
           </Link>{" "}
-          to track the jobs you&apos;ve posted and applied to.
+          to track the ride-alongs and collaborations you&apos;ve posted and
+          applied to.
         </p>
       </AppBody>
     );
@@ -169,18 +179,18 @@ export default async function MyJobsPage() {
     applicants.filter((i) => i.collab_id === collabId);
 
   return (
-    <AppBody sidebar={sidebar} mobileLabel="Jobs">
-      <h1 className="mb-1 text-xl font-semibold">My jobs</h1>
+    <AppBody sidebar={sidebar} mobileLabel={COLLABS_NAV}>
+      <h1 className="mb-1 text-xl font-semibold">{MY_TITLE}</h1>
       <p className="mb-5 text-[13px] text-zinc-600">
-        Jobs you posted and who&apos;s interested, plus the ones you&apos;ve put
-        your hand up for.
+        What you posted and who&apos;s interested, plus the ones you&apos;ve
+        applied to.
       </p>
 
       {posted.length === 0 && myInterests.length === 0 && (
         <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500">
           Nothing here yet.{" "}
           <Link href="/collabs" className="font-medium text-brand-600 hover:underline">
-            Browse collabs
+            Browse {COLLABS_TITLE.toLowerCase()}
           </Link>{" "}
           or post one of your own.
         </p>
@@ -189,7 +199,7 @@ export default async function MyJobsPage() {
       {posted.length > 0 && (
         <section className="mb-5">
           <h2 className="mb-2 text-[13px] font-semibold uppercase tracking-wide text-zinc-500">
-            Jobs you posted ({posted.length})
+            You posted ({posted.length})
           </h2>
           <div className="flex flex-col gap-3">
             {posted.map((c) => {
@@ -312,7 +322,7 @@ export default async function MyJobsPage() {
       {myInterests.length > 0 && (
         <section>
           <h2 className="mb-2 text-[13px] font-semibold uppercase tracking-wide text-zinc-500">
-            Jobs you&apos;re interested in ({myInterests.length})
+            You applied to ({myInterests.length})
           </h2>
           <div className="flex flex-col gap-3">
             {myInterests.map((i) => {
@@ -424,7 +434,7 @@ function ApplicationDetail({ interest: i }: { interest: CollabInterest }) {
   if (i.years_experience != null) {
     facts.push({
       label: "In the trade",
-      value: `${i.years_experience} ${i.years_experience === 1 ? "yr" : "yrs"}`,
+      value: yearsLabel(i.years_experience),
     });
   }
   if (i.graduation_year != null) {
@@ -498,12 +508,12 @@ function ApplicationDetail({ interest: i }: { interest: CollabInterest }) {
 }
 
 /**
- * Download link for an attached CV. `url` is a signed, expiring link — if
+ * Download link for an attached resume. `url` is a signed, expiring link — if
  * signing failed (expired session, deleted object) we show the filename
  * without a dead link rather than a broken download.
  */
 function CvLink({ url, name }: { url: string | undefined; name: string | null }) {
-  const label = name ?? "Attached CV";
+  const label = name ?? "Attached resume";
   if (!url) {
     return (
       <span className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500">

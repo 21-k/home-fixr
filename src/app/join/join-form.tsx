@@ -9,8 +9,15 @@ import type { UserRole } from "@/lib/types";
 
 const initial: AuthState = {};
 
-export function JoinForm({ next }: { next?: string | null }) {
-  const [role, setRole] = useState<UserRole>("junior");
+export function JoinForm({
+  next,
+  initialRole = "junior",
+}: {
+  next?: string | null;
+  /** Preselected by /join?role=mentor (the homepage's "Become a mentor"). */
+  initialRole?: UserRole;
+}) {
+  const [role, setRole] = useState<UserRole>(initialRole);
   const [state, formAction, pending] = useActionState(signUp, initial);
 
   return (
@@ -58,15 +65,15 @@ export function JoinForm({ next }: { next?: string | null }) {
               selected={role === "junior"}
               onSelect={() => setRole("junior")}
               Icon={GraduationCap}
-              title="I'm new to the trade"
-              desc="Recent vocational graduate, apprentice, or junior. Looking for guidance, mentors, and a community of pros who've been there."
+              title="I'm an apprentice"
+              desc="Apprentice, early-career tradesperson, or career switcher. Looking for guidance, a mentor, and a community of experienced tradespeople."
             />
             <RoleCard
               selected={role === "senior"}
               onSelect={() => setRole("senior")}
               Icon={Wrench}
-              title="I'm a senior pro"
-              desc="5+ years in the trades. Want to mentor newcomers, answer questions, and occasionally team up on jobs."
+              title="I'm a mentor"
+              desc="An experienced tradesperson, 5+ years in. Want to mentor apprentices, answer questions, and occasionally team up on a job."
             />
           </div>
 
@@ -102,7 +109,7 @@ export function JoinForm({ next }: { next?: string | null }) {
             <p className="text-sm text-zinc-500">
               Joining as{" "}
               <strong>
-                {role === "junior" ? "a new entrant" : "a senior pro"}
+                {role === "junior" ? "an apprentice" : "a mentor"}
               </strong>
             </p>
             <button
@@ -135,6 +142,7 @@ function RoleCard({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onSelect}
       className={`rounded-xl border-2 p-6 text-left transition-colors ${
         selected
