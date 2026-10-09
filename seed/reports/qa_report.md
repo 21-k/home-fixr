@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-07T09:29:10-04:00 · threads: `content/threads.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-09T19:27:01-04:00 · threads: `content/threads.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -102,6 +102,7 @@ Run: 2026-10-07T09:29:10-04:00 · threads: `content/threads.scheduled.json` · d
 | PASS | full: persona notes in the LIVE threads (can't be edited here; listed for the owner) | town: T20 hec_does_ac: 'i'm from gloucester county' (Gloucester) vs Cherry Hill, Camden |
 | PASS | full: accepted answers: ≤1 per thread, by a Senior or a 2+ year Junior, not the starter; ~55% of 3+ reply threads (45-65%) | 56% of 177; [] |
 | PASS | full: helpful counts in range (threads 2-40, replies 0-45) | [] |
+| PASS | full: unanswered threads don't outvote answered ones (questions <=4, Senior tips <=12) | [] |
 | PASS | full: 'update:'/'edit:' replies come at least as late as the time they say has passed | [] |
 | PASS | full: posting-hour histogram (ET) | 0:0 1:0 2:0 3:0 4:0 5:134 6:122 7:39 8:50 9:42 10:46 11:27 12:55 13:39 14:22 15:18 16:18 17:32 18:61 19:107 20:152 21:178 22:171 23:124 |
 | PASS | collabs: ~20 job collabs (18-22), all posted by seeded Seniors | 20 collabs by 12 Seniors: oldsteam_zig 2, haddad_mech 2, thiago_sparks 2, hec_does_ac 2, joyd_plumbing 2, Kash_sing 2, rui_t_kearny 2, ms_almonte 2, bklyn_arkady 1, mbell_wireman 1, wchen_controls 1, tnguyen_refrig 1 |
@@ -136,7 +137,7 @@ Run: 2026-10-07T09:29:10-04:00 · threads: `content/threads.scheduled.json` · d
 | PASS | DB: reply helpful counts match the (rebalanced) files | [] |
 | PASS | DB: logged-out visitors can read follows but no mentorship rows (RLS unchanged) | anon sees 0 mentorships, 389 follows |
 | PASS | DB: batch job collabs / pitches match the file | collabs 20/20, pitches 61/61 |
-| PASS | DB: pitch statuses as generated | {'accepted': 20, 'declined': 25, 'interested': 16} |
+| PASS | DB: pitch statuses as generated | {'declined': 25, 'interested': 16, 'accepted': 20} |
 | PASS | DB: exactly one accepted pitch per batch collab | 0 |
 | PASS | DB: every batch collab filled, after its last pitch | 0 |
 | PASS | DB: interested_count matches the pitches (trigger) | 0 |
@@ -147,19 +148,21 @@ Run: 2026-10-07T09:29:10-04:00 · threads: `content/threads.scheduled.json` · d
 | PASS | DB: a real member applying to any seeded collab is refused with 'position has been filled' | 20 tries: Counter({'This position has been filled': 20}) |
 | PASS | app: /feed renders | 200 |
 | PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 850 badges for 213 posts |
+| PASS | app: Founding Community badge on /feed | 851 badges for 213 posts |
+| PASS | app: /feed labels every team-written post 'Team-written example • AI-assisted', and only those | 213 labeled of 218 cards (213 by Founding profiles); mismatched cards: [] |
 | PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
 | PASS | app: /mentors 'answered' counts match the DB | 15 cards; [] |
 | PASS | app: /mentors 'mentees' counts match the DB | 0 of 15 cards differ: [] |
-| PASS | app: 'Accepting mentees' filter excludes every Founding account |  |
+| PASS | app: 'Accepting mentorship requests' filter excludes every Founding account |  |
 | PASS | app: all 136 profile pages render (200) | [] |
-| PASS | app: Founding Community badge on every seeded profile | [] |
+| PASS | app: Founding Community badge + example-profile notice on every seeded profile | [] |
 | PASS | app: no private full_name on handle-preference profiles | [] |
 | PASS | app: /u/<handle> 'followers' match the DB (all 136) | 0 differ: [] |
 | PASS | app: /u/<handle> 'active mentees' match the DB (all 136) | 0 differ: [] |
 | PASS | app: /u/<handle> 'answers' match the DB (all 136) | 0 differ: [] |
 | PASS | app: seeded thread pages render with badges | 213 threads checked; bad: [] |
+| PASS | app: seeded thread pages label the post and every reply | 213 threads; bad: [] |
 | PASS | app: About page carries the §0.3 sentence |  |
 | PASS | app: landing FAQ + footer link to About |  |
 | PASS | app (logged out): /collabs shows 'Position filled' and no apply control on every seeded collab | 200; 23 cards; missing []; [] |

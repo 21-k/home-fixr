@@ -616,7 +616,7 @@ fills application detail from each persona, adds timestamps) → `seed/content/c
 | C07 | rui_t_kearny | Saturday of water heater swaps around Kearny, need an extra hand | extra_hand | 2026-08-22 | 2: big_paulie_plumb (declined) | ParkwayPipes |
 | C08 | bklyn_arkady | Helper for a gas test + inspection day, Bay Ridge brownstone | extra_hand | 2026-08-27 | 3: BayRidge.traps (declined), LateStartPlumber (pending) | briplumb87 (mentee) |
 | C09 | ms_almonte | Saturday mini-split install in Wayne, one helper | extra_hand | 2026-08-29 | 4: deshawn.hvac (declined), Bergen_Ducts (declined), epa608_672 (pending) | DinerCoffeeHVAC (mentee) |
-| C10 | mbell_wireman | Ride-along for a Junior interested in commercial: Secaucus fit-out, 2 days | ride_along | 2026-09-01 | 4: hudson_conduit (pending), WawaRunWired (declined), panelchanger_200amp (declined) | threeway_02 (mentee) |
+| C10 | mbell_wireman | Ride-along for an apprentice interested in commercial: Secaucus fit-out, 2 days | ride_along | 2026-09-01 | 4: hudson_conduit (pending), WawaRunWired (declined), panelchanger_200amp (declined) | threeway_02 (mentee) |
 | C11 | wchen_controls | shadow a controls tech for a day, bms service calls around bridgewater | ride_along | 2026-09-10 | 3: WiremanFromPiscataway (declined), JunctionBoxJunkie (pending) | PullingWireAgain |
 | C12 | haddad_mech | Extra hand Saturday: restroom rough-in at a warehouse, Mount Laurel | extra_hand | 2026-09-12 | 3: codyplumb83 (declined), emeka.plumb (pending) | big_nicole_plumb |
 | C13 | joyd_plumbing | Saturday helper, boiler room cleanup and new feed in a Hoboken co-op | extra_hand | 2026-09-19 | 3: sweatjoint200amp (declined), EssexPipes (pending) | Kearny_Pipefitter (mentee) |
@@ -831,3 +831,29 @@ the 5 demo posts (created at seed time, "1m ago") sit above the seeded ones.
 
 Each file is one transaction that checks itself and refuses a second run. The threads file needs only the live batch, and it
 updates the two bios. Re-run `qa.py` against production pages afterwards if a read-only check is wanted.
+
+
+---
+
+## 12. External review: wording, UX and authorship labels (branch `release/founding-launch`)
+
+The founding profiles are team-written personas (121 apprentices, 15 mentors), not real members, so the
+review's "prepared by … approved by [name]" labels were not implemented. Instead:
+- **Post-level label.** Every post, reply and ride-along whose author `is_founding_member` (or whose row has a
+  `seed_batch_id`) shows **"Team-written example • AI-assisted"** (`TeamWrittenLabel`, rule `isTeamWritten()` in
+  `src/lib/founding.ts`): feed cards, search results, profile Recent posts and Recent answers, the thread post and
+  every reply, seeded collab cards. Text + icon + border (not colour-only), 12px, links to About. Notifications
+  show no snippets, so they carry no label. The Founding Community badge stays on accounts.
+- **Disclosure copy.** `FOUNDING_ABOUT_SENTENCE` is the new sentence; the profile/contact notice now reads "This is
+  an example profile prepared by the Home Fixr team…"; seeded collabs say "This is a team-written example posted
+  from a Founding Community profile…".
+- **Vocabulary.** Interface copy only (DB enums unchanged): Apprentice / Mentor (experienced tradesperson outside
+  mentorship flows), "Ride-alongs and collaborations" (nav: "Ride-alongs"), Apprentice ride-along, resume,
+  license/judgment, "1 year"/"N years" (`yearsLabel`). Member and persona text is untouched.
+- **Seeded collab copy.** C10's title/body said "Junior" (team copy, not live): now "apprentice". `collabs.json`
+  regenerated and `additions-collabs-fm-2026-10.sql` re-emitted (one row changed). Local re-apply and refusal of a
+  second run: `seed/reports/review_changes_collabs_cycle.txt`.
+- **Homepage.** No registration/member totals existed; none were added. Mock screenshots are marked "Illustration".
+- QA (`seed/reports/review_changes_qa_local.txt`): 167 pass, 1 warn (Reddit 404s), 0 fail; new checks for the
+  label on /feed (only on team-written cards) and on all 213 thread pages (post + every reply), the example-profile
+  notice on all 136 profiles, and the new About sentence. Screenshots: `e2e/reports/review-changes/{before,after}/`.

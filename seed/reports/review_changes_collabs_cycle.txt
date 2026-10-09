@@ -1,0 +1,46 @@
+# Local re-apply of seed/out/additions-collabs-fm-2026-10.sql after the C10 copy change (2026-10-09T23:21:22Z)
+## before
+(status query had a typo; counts are in the lines below and the C10 check at the end)
+## wipe the batch collabs
+BEGIN
+SET
+DELETE 61
+DELETE 20
+COMMIT
+notifications|11
+job_collabs|3
+collab_interests|4
+## first run
+BEGIN
+SET
+DO
+SELECT 1
+DO
+INSERT 0 20
+INSERT 0 61
+DO
+              t              | n  
+-----------------------------+----
+ job collabs (batch, filled) | 20
+ collab pitches (batch)      | 61
+ accepted pitches            | 20
+ notifications (unchanged)   | 11
+(4 rows)
+
+COMMIT
+exit 0
+(status query had a typo; counts are in the lines below and the C10 check at the end)
+## second run (must refuse)
+BEGIN
+SET
+DO
+SELECT 1
+ERROR:  batch fm-2026-10 already has job collabs or pitches: these additions were already applied
+CONTEXT:  PL/pgSQL function inline_code_block line 144 at RAISE
+exit 3
+notifications|11
+job_collabs|23
+collab_interests|65
+## after: C10 as applied
+Ride-along for an apprentice interested in commercial: Secaucus fit-out, 2 days
+20
