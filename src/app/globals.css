@@ -6,13 +6,15 @@
  * so we only need to register the brand palette + a couple of semantic colors.
  */
 @theme {
-  --color-brand-50: #f7f2ff;
-  --color-brand-100: #f1e6ff;
-  --color-brand-200: #decdff;
-  --color-brand-300: #c4a5f5;
-  --color-brand-500: #8c5de1;
-  --color-brand-600: #6a3ebd;
-  --color-brand-700: #492a7e;
+  /* Brand = blue (Tailwind's blue scale, same steps as before). White text on
+     brand-600 is ~5.2:1, brand-700 on brand-50 ~6.2:1. */
+  --color-brand-50: #eff6ff;
+  --color-brand-100: #dbeafe;
+  --color-brand-200: #bfdbfe;
+  --color-brand-300: #93c5fd;
+  --color-brand-500: #3b82f6;
+  --color-brand-600: #2563eb;
+  --color-brand-700: #1d4ed8;
 
   --color-success-bg: #ecfef3;
   --color-success-fg: #008234;
