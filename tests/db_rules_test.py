@@ -414,6 +414,79 @@ def staff_seeding_can_write_interests_on_filled_collabs_quietly(conn):
     assert cur.fetchone()[0] == before, "seeding must not notify"
 
 
+# --- 0014: "helpful" counts once per member -------------------------------
+
+def _post_and_reply(cur):
+    """A real author's post with one reply, created as staff; returns ids."""
+    author = make_user(cur, f"helpful-author-{uuid.uuid4().hex[:8]}@example.test")
+    replier = make_user(cur, f"helpful-replier-{uuid.uuid4().hex[:8]}@example.test")
+    cur.execute("insert into posts (author_id, type, title, body) values (%s, 'question', 'q', 'b') returning id", (author,))
+    pid = cur.fetchone()[0]
+    cur.execute("insert into replies (post_id, author_id, body) values (%s, %s, 'r') returning id", (pid, replier))
+    rid = cur.fetchone()[0]
+    return pid, rid
+
+
+def _count(cur, table: str, row_id) -> int:
+    cur.execute(f"select helpful_count from {table} where id = %s", (row_id,))
+    return cur.fetchone()[0]
+
+
+@case
+def marking_a_post_helpful_twice_counts_once(conn):
+    cur = conn.cursor()
+    pid, _ = _post_and_reply(cur)
+    voter = make_user(cur, f"helpful-voter-{uuid.uuid4().hex[:8]}@example.test")
+    before = _count(cur, "posts", pid)
+    as_user(cur, voter)
+    cur.execute("select mark_post_helpful(%s)", (pid,))
+    cur.execute("select mark_post_helpful(%s)", (pid,))
+    cur.execute("select mark_post_helpful(%s)", (pid,))
+    as_staff(cur)
+    assert _count(cur, "posts", pid) == before + 1, f"post went {before} -> {_count(cur, 'posts', pid)} after 3 clicks by one member"
+
+
+@case
+def marking_a_reply_helpful_twice_counts_once(conn):
+    cur = conn.cursor()
+    _, rid = _post_and_reply(cur)
+    voter = make_user(cur, f"helpful-voter-{uuid.uuid4().hex[:8]}@example.test")
+    before = _count(cur, "replies", rid)
+    as_user(cur, voter)
+    cur.execute("select mark_reply_helpful(%s)", (rid,))
+    cur.execute("select mark_reply_helpful(%s)", (rid,))
+    as_staff(cur)
+    assert _count(cur, "replies", rid) == before + 1, f"reply went {before} -> {_count(cur, 'replies', rid)} after 2 clicks by one member"
+
+
+@case
+def two_different_members_each_count(conn):
+    cur = conn.cursor()
+    pid, rid = _post_and_reply(cur)
+    a = make_user(cur, f"helpful-a-{uuid.uuid4().hex[:8]}@example.test")
+    b = make_user(cur, f"helpful-b-{uuid.uuid4().hex[:8]}@example.test")
+    p0, r0 = _count(cur, "posts", pid), _count(cur, "replies", rid)
+    for uid in (a, b):
+        as_user(cur, uid)
+        cur.execute("select mark_post_helpful(%s)", (pid,))
+        cur.execute("select mark_reply_helpful(%s)", (rid,))
+        as_staff(cur)
+    assert (_count(cur, "posts", pid), _count(cur, "replies", rid)) == (p0 + 2, r0 + 2)
+
+
+@case
+def members_cannot_write_helpful_votes_directly(conn):
+    cur = conn.cursor()
+    pid, _ = _post_and_reply(cur)
+    voter = make_user(cur, f"helpful-voter-{uuid.uuid4().hex[:8]}@example.test")
+    as_user(cur, voter)
+    expect_error(cur, "insert into helpful_votes (user_id, post_id) values (%s, %s)", (voter, pid), "permission denied")
+    cur.execute("select mark_post_helpful(%s)", (pid,))
+    cur.execute("select count(*) from helpful_votes where post_id = %s", (pid,))
+    assert cur.fetchone()[0] == 1, "a member sees exactly their own vote"
+    expect_error(cur, "delete from helpful_votes where post_id = %s", (pid,), "permission denied")
+
+
 if __name__ == "__main__":
     width = max(len(n) for n, _, _ in RESULTS)
     failed = 0
