@@ -14,8 +14,8 @@ export const size = { width: 1200, height: 630 };
 
 export const contentType = "image/png";
 
-const BRAND = "#8c5de1";
-const BRAND_DEEP = "#492a7e";
+const BRAND = "#3b82f6"; // brand-500 (globals.css)
+const BRAND_DEEP = "#1d4ed8"; // brand-700
 
 export default async function OpengraphImage() {
   return new ImageResponse(

@@ -31,16 +31,16 @@ export function isAvatarIcon(v: unknown): v is AvatarIconKey {
 }
 
 // Muted background / readable foreground pairs that sit next to the brand
-// purple without competing with it. Every fg/bg pair is above 4.5:1 contrast.
+// blue without competing with it. No purples. Every fg/bg pair is above 4.5:1 contrast.
 const PAIRS: { bg: string; fg: string }[] = [
-  { bg: "#ede7fb", fg: "#4c2f8a" }, // lavender
+  { bg: "#dcebfa", fg: "#1e4e79" }, // sky
   { bg: "#e3efe6", fg: "#2f5b3a" }, // sage
   { bg: "#f3eadb", fg: "#6b4a1f" }, // sand
   { bg: "#e2eaf3", fg: "#2d4a6b" }, // slate blue
   { bg: "#f4e3df", fg: "#7a3b2e" }, // clay
   { bg: "#dff0ef", fg: "#1f5c58" }, // teal
   { bg: "#ecefdc", fg: "#4f5a1f" }, // olive
-  { bg: "#f2e4ec", fg: "#6e3354" }, // mauve
+  { bg: "#e1e7f5", fg: "#2b3f6e" }, // denim
 ];
 
 /** Deterministic colour pair for a handle, so a member's avatar never changes colour. */
