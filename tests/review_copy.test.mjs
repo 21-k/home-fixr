@@ -99,3 +99,18 @@ function walk(dir) {
     return statSync(p).isDirectory() ? walk(p) : /\.(tsx?)$/.test(n) ? [p] : [];
   });
 }
+
+test("the HF mark is the LogoMark monogram everywhere, never a typed 'HF' square", () => {
+  const bad = [];
+  for (const f of walk(join(ROOT, "src"))) {
+    const s = readFileSync(f, "utf8");
+    if (/bg-brand-500[^"]*"[^>]*>\s*HF\s*</.test(s) || /^\s*HF\s*$/m.test(s)) bad.push(f.replace(ROOT, ""));
+  }
+  assert.deepEqual(bad, []);
+  for (const f of ["src/components/AppHeader.tsx", "src/app/page.tsx", "src/app/login/page.tsx", "src/app/join/join-form.tsx",
+                   "src/app/welcome/page.tsx", "src/app/about/page.tsx", "src/app/terms/page.tsx", "src/app/not-found.tsx",
+                   "src/components/FoundingBadge.tsx"]) {
+    assert.match(src(f), /<LogoMark /, f);
+  }
+  assert.match(src("src/app/opengraph-image.tsx"), /LOGO_MARK/);
+});

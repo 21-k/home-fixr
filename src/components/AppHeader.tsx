@@ -10,6 +10,7 @@ import { displayName } from "@/lib/display";
 import { COLLABS_NAV } from "@/lib/format";
 import { loginHref } from "@/lib/next-path";
 import type { Profile } from "@/lib/types";
+import { LogoMark } from "@/components/LogoMark";
 
 const NAV = [
   { href: "/feed", label: "Feed" },
@@ -106,9 +107,7 @@ export function AppHeader({
           href="/"
           className="flex shrink-0 items-center gap-2 whitespace-nowrap font-semibold tracking-tight"
         >
-          <span className="grid size-7 place-items-center rounded-md bg-brand-500 text-sm font-semibold text-white">
-            HF
-          </span>
+          <LogoMark className="size-7" />
           Home Fixr
         </Link>
 

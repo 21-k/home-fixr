@@ -5,6 +5,7 @@ import { getCurrentProfile } from "@/lib/auth/session";
 import { WelcomeForm } from "@/components/WelcomeForm";
 import { firstNameInitial } from "@/lib/display";
 import { loginHref } from "@/lib/next-path";
+import { LogoMark } from "@/components/LogoMark";
 
 /**
  * The post-signup step. Signup asks only for the essentials, so this is where
@@ -24,9 +25,7 @@ export default async function WelcomePage() {
     <div className="min-h-dvh bg-zinc-100">
       <header className="flex items-center justify-between border-b border-zinc-200 bg-white px-6 py-3.5">
         <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-          <span className="grid size-7 place-items-center rounded-md bg-brand-500 text-sm font-semibold text-white">
-            HF
-          </span>
+          <LogoMark className="size-7" />
           Home Fixr
         </Link>
         <span className="text-sm text-zinc-500">Step 2 of 2</span>

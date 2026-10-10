@@ -1,11 +1,10 @@
 import Link from "next/link";
+import { LogoMark } from "@/components/LogoMark";
 
 export default function NotFound() {
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-4 bg-zinc-100 px-4 text-center">
-      <span className="grid size-12 place-items-center rounded-xl bg-brand-500 text-lg font-semibold text-white">
-        HF
-      </span>
+      <LogoMark className="size-12" />
       <h1 className="text-2xl font-semibold">Page not found</h1>
       <p className="max-w-sm text-sm text-zinc-600">
         That page doesn&apos;t exist or may have been removed.
