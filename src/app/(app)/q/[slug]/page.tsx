@@ -87,6 +87,22 @@ export default async function ThreadPage({
 
   const isOwner = profile?.id === post.author_id;
 
+  // The viewer's own helpful votes on this thread (RLS returns only theirs), so
+  // the buttons show "Marked helpful" instead of letting them vote again (0014).
+  let votedPost = false;
+  const votedReplies = new Set<string>();
+  if (profile) {
+    const { data: votes } = await supabase
+      .from("helpful_votes")
+      .select("post_id, reply_id")
+      .eq("user_id", profile.id)
+      .or(`post_id.eq.${post.id}${replies.length ? `,reply_id.in.(${replies.map((r) => r.id).join(",")})` : ""}`);
+    for (const v of (votes ?? []) as { post_id: string | null; reply_id: string | null }[]) {
+      if (v.post_id === post.id) votedPost = true;
+      if (v.reply_id) votedReplies.add(v.reply_id);
+    }
+  }
+
   const sidebar = (
     <nav>
       <SideSection>Thread</SideSection>
@@ -128,15 +144,24 @@ export default async function ThreadPage({
         />
         {profile && (
           <div className="mt-4 flex items-center gap-2">
-            <form action={markPostHelpful}>
-              <input type="hidden" name="post_id" value={post.id} />
-              <button
-                type="submit"
-                className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
+            {votedPost ? (
+              <span
+                data-testid="post-helpful-marked"
+                className="inline-flex items-center gap-1.5 rounded-lg border border-brand-200 bg-brand-50 px-3 py-1.5 text-[13px] font-medium text-brand-700"
               >
-                <Star className="size-3.5" /> Helpful ({post.helpful_count})
-              </button>
-            </form>
+                <Star className="size-3.5 fill-current" /> Marked helpful ({post.helpful_count})
+              </span>
+            ) : (
+              <form action={markPostHelpful}>
+                <input type="hidden" name="post_id" value={post.id} />
+                <button
+                  type="submit"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-zinc-300 bg-white px-3 py-1.5 text-[13px] font-medium hover:bg-zinc-100"
+                >
+                  <Star className="size-3.5" /> Helpful ({post.helpful_count})
+                </button>
+              </form>
+            )}
             {isOwner && (
               <form action={deletePost}>
                 <input type="hidden" name="post_id" value={post.id} />
@@ -201,15 +226,20 @@ export default async function ThreadPage({
                 <Star className="size-3.5" /> {reply.helpful_count} helpful ·{" "}
                 {timeAgo(reply.created_at)}
               </span>
-              {profile && (
-                <form action={markReplyHelpful}>
-                  <input type="hidden" name="reply_id" value={reply.id} />
-                  <input type="hidden" name="post_id" value={post.id} />
-                  <button type="submit" className="font-medium text-brand-600 hover:underline">
-                    Mark helpful
-                  </button>
-                </form>
-              )}
+              {profile &&
+                (votedReplies.has(reply.id) ? (
+                  <span data-testid="reply-helpful-marked" className="inline-flex items-center gap-1 font-medium text-brand-700">
+                    <Star className="size-3 fill-current" /> Marked helpful
+                  </span>
+                ) : (
+                  <form action={markReplyHelpful}>
+                    <input type="hidden" name="reply_id" value={reply.id} />
+                    <input type="hidden" name="post_id" value={post.id} />
+                    <button type="submit" className="font-medium text-brand-600 hover:underline">
+                      Mark helpful
+                    </button>
+                  </form>
+                ))}
               {isOwner && !reply.is_accepted && (
                 <form action={acceptReply}>
                   <input type="hidden" name="reply_id" value={reply.id} />
