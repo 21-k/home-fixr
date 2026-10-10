@@ -19,6 +19,7 @@ import {
 import { getCurrentProfile } from "@/lib/auth/session";
 import { FOUNDING_ABOUT_SENTENCE } from "@/lib/founding";
 import { COLLABS_NAV } from "@/lib/format";
+import { LogoMark } from "@/components/LogoMark";
 
 const TAGLINE = "Built for people starting out in the skilled trades.";
 
@@ -44,9 +45,7 @@ export default async function LandingPage() {
       <header className="sticky top-0 z-40 border-b border-zinc-200 bg-white/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 px-6 py-3.5 sm:px-10">
           <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-            <span className="grid size-7 place-items-center rounded-md bg-brand-500 text-sm font-semibold text-white">
-              HF
-            </span>
+            <LogoMark className="size-7" />
             Home Fixr
           </Link>
 
@@ -463,9 +462,7 @@ export default async function LandingPage() {
         <div className="mx-auto flex w-full max-w-6xl flex-col gap-6 px-6 py-10 sm:px-10 md:flex-row md:items-center md:justify-between">
           <div>
             <Link href="/" className="flex items-center gap-2 font-semibold tracking-tight">
-              <span className="grid size-7 place-items-center rounded-md bg-brand-500 text-sm font-semibold text-white">
-                HF
-              </span>
+              <LogoMark className="size-7" />
               Home Fixr
             </Link>
             <p className="mt-2 max-w-sm text-[13px] leading-relaxed text-zinc-500">

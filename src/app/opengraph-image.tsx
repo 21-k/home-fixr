@@ -16,6 +16,10 @@ export const contentType = "image/png";
 
 const BRAND = "#3b82f6"; // brand-500 (globals.css)
 const BRAND_DEEP = "#1d4ed8"; // brand-700
+// The HF monogram (same drawing as src/app/icon.svg and <LogoMark />).
+const LOGO_MARK = `data:image/svg+xml;utf8,${encodeURIComponent(
+  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" rx="14" fill="${BRAND}"/><g fill="#fff"><rect x="15" y="12" width="5" height="40" rx="2.5"/><rect x="31" y="12" width="5" height="12.5" rx="2.5"/><rect x="31" y="12" width="19" height="5" rx="2.5"/><rect x="15" y="27.5" width="30" height="5" rx="2.5"/><rect x="31" y="35.5" width="5" height="16.5" rx="2.5"/></g></svg>`,
+)}`;
 
 export default async function OpengraphImage() {
   return new ImageResponse(
@@ -36,21 +40,7 @@ export default async function OpengraphImage() {
       >
         {/* Wordmark */}
         <div style={{ display: "flex", alignItems: "center" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 56,
-              height: 56,
-              borderRadius: 12,
-              backgroundColor: BRAND,
-              fontSize: 26,
-              fontWeight: 700,
-            }}
-          >
-            HF
-          </div>
+          <img src={LOGO_MARK} width={56} height={56} alt="" />
           <div style={{ marginLeft: 18, fontSize: 32, fontWeight: 600 }}>Home Fixr</div>
         </div>
 

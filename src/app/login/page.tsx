@@ -5,6 +5,7 @@ import { GoogleButton } from "@/components/GoogleButton";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { safeNext } from "@/lib/next-path";
 import { LoginForm } from "./login-form";
+import { LogoMark } from "@/components/LogoMark";
 
 export const metadata: Metadata = { title: "Sign in" };
 
@@ -27,9 +28,7 @@ export default async function LoginPage({
         href="/"
         className="mb-8 flex items-center gap-2 text-lg font-semibold tracking-tight"
       >
-        <span className="grid size-7 place-items-center rounded-md bg-brand-500 text-sm font-semibold text-white">
-          HF
-        </span>
+        <LogoMark className="size-7" />
         Home Fixr
       </Link>
 

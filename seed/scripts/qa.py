@@ -1147,7 +1147,7 @@ def check_app(app, people, threads, expected=None):
     # Post-level labels were removed (Oct 2026): the HF Community badge marks
     # every seeded card, and no "Team-written example" label renders anywhere.
     cards = re.split(r'(?=<article[^>]*data-testid="post-card")', feed)[1:]
-    founding = ["HF Community</span>" in ch for ch in cards]
+    founding = ['data-testid="hf-community-badge"' in ch for ch in cards]
     record("app: /feed marks every seeded post with the HF Community badge, and no post-level label renders",
            bool(cards) and sum(founding) >= len(threads) and TEAM_LABEL not in feed,
            f"{sum(founding)} badged of {len(cards)} cards; label present: {TEAM_LABEL in feed}")
