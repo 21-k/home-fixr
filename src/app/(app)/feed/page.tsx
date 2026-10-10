@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Briefcase, Handshake, Home, Users } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -6,9 +7,9 @@ import { TradeIcon } from "@/components/icons";
 import { PostCard } from "@/components/PostCard";
 import { PostComposer } from "@/components/PostComposer";
 import { ProfilePrompt } from "@/components/ProfilePrompt";
-import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { profileHeadline } from "@/lib/format";
+import { loginHref } from "@/lib/next-path";
+import { COLLABS_NAV, profileHeadline } from "@/lib/format";
 import { UserName } from "@/components/UserName";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -20,7 +21,16 @@ const TRADE_FILTERS: { key: TradeType; label: string }[] = [
   { key: "hvac", label: "HVAC" },
 ];
 
+// Plain searches, not trending claims: each opens /search for its topic.
+const TOPICS: { label: string; q: string }[] = [
+  { label: "Permits and inspections", q: "permit" },
+  { label: "Pricing a service call", q: "service call" },
+  { label: "Mini-split installs", q: "mini-split" },
+];
+
 type PostWithAuthor = Post & { author: AuthorLite | null };
+
+export const metadata: Metadata = { title: "Feed" };
 
 export default async function FeedPage({
   searchParams,
@@ -45,51 +55,51 @@ export default async function FeedPage({
   const sidebar = (
     <nav>
       <SideSection>My Feed</SideSection>
-      <Link href="/feed">
-        <SideLink active={!trade}>
-          <Home className="size-4" /> Home
-        </SideLink>
-      </Link>
+      <SideLink href="/feed" active={!trade}>
+        <Home className="size-4" /> Home
+      </SideLink>
       <SideSection>My Trades</SideSection>
       {TRADE_FILTERS.map((t) => (
-        <Link key={t.key} href={`/feed?trade=${t.key}`}>
-          <SideLink active={trade === t.key}>
-            <TradeIcon trade={t.key} /> {t.label}
-          </SideLink>
-        </Link>
+        <SideLink key={t.key} href={`/feed?trade=${t.key}`} active={trade === t.key}>
+          <TradeIcon trade={t.key} /> {t.label}
+        </SideLink>
       ))}
       <SideSection>Community</SideSection>
-      <Link href="/mentors">
-        <SideLink>
-          <Users className="size-4" /> Mentors
-        </SideLink>
-      </Link>
-      <Link href="/mentorships">
-        <SideLink>
-          <Handshake className="size-4" /> My mentorships
-        </SideLink>
-      </Link>
-      <Link href="/collabs">
-        <SideLink>
-          <Briefcase className="size-4" /> Job collabs
-        </SideLink>
-      </Link>
+      <SideLink href="/mentors">
+        <Users className="size-4" /> Mentors
+      </SideLink>
+      <SideLink href="/mentorships">
+        <Handshake className="size-4" /> My mentorships
+      </SideLink>
+      <SideLink href="/collabs">
+        <Briefcase className="size-4" /> {COLLABS_NAV}
+      </SideLink>
     </nav>
   );
 
   const right = (
     <div>
       <Link
-        href="/mentorships"
+        href={profile ? "/mentorships" : "/mentors"}
         className="mb-3 block text-[13px] font-semibold uppercase tracking-wide text-zinc-500 hover:text-brand-600"
       >
-        {profile?.role === "senior" ? "Your mentees" : "Your mentors"} →
+        {!profile ? "Explore mentors" : profile.role === "senior" ? "Your mentees" : "Your mentors"} →
       </Link>
       {connections.length === 0 ? (
         <p className="mb-6 text-[13px] text-zinc-500">
-          {profile
-            ? "No connections yet — browse mentors to get started."
-            : "Sign in to see your mentors."}
+          {profile ? (
+            <>
+              No connections yet.{" "}
+              <Link href="/mentors" className="font-medium text-brand-600 hover:underline">
+                Find a mentor
+              </Link>{" "}
+              to get started.
+            </>
+          ) : (
+            <Link href="/mentors" className="font-medium text-brand-600 hover:underline">
+              Browse the mentor directory
+            </Link>
+          )}
         </p>
       ) : (
         <div className="mb-6 flex flex-col gap-1">
@@ -111,30 +121,27 @@ export default async function FeedPage({
       )}
 
       <h4 className="mb-3 text-[13px] font-semibold uppercase tracking-wide text-zinc-500">
-        Trending in NJ
+        Topics to explore
       </h4>
       <div className="flex flex-col gap-2.5 text-[13px] leading-5 text-zinc-700">
-        <ToastButton
-          variant="link"
-          label="New 2026 NJ permit rules for water heaters"
-          message="Trending topics aren't wired up yet."
-        />
-        <ToastButton
-          variant="link"
-          label="What guys are charging for service calls right now"
-          message="Trending topics aren't wired up yet."
-        />
-        <ToastButton
-          variant="link"
-          label="Inspectors flagging undersized whips on mini-splits"
-          message="Trending topics aren't wired up yet."
-        />
+        {TOPICS.map((t) => (
+          <Link
+            key={t.q}
+            href={`/search?q=${encodeURIComponent(t.q)}`}
+            className="text-left hover:text-brand-600 hover:underline"
+          >
+            {t.label}
+          </Link>
+        ))}
       </div>
     </div>
   );
 
   return (
-    <AppBody sidebar={sidebar} right={right}>
+    <AppBody sidebar={sidebar} mobileLabel="Trades & community" right={right}>
+      <h1 className="sr-only">
+        {trade ? `${TRADE_FILTERS.find((t) => t.key === trade)?.label ?? "Trade"} feed` : "Community feed"}
+      </h1>
       {profile && <ProfilePrompt profile={profile} />}
       {profile ? (
         <PostComposer me={profile} />
@@ -144,10 +151,10 @@ export default async function FeedPage({
             Join the community
           </Link>{" "}
           or{" "}
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link href={loginHref("/feed")} className="font-medium text-brand-600 hover:underline">
             sign in
           </Link>{" "}
-          to ask the pros a question.
+          to ask a question in the community.
         </div>
       )}
 

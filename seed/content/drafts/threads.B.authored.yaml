@@ -1,0 +1,962 @@
+# ---------------------------------------------------------------------------
+# Category B (Licensing & exams): 26 threads, T064-T089.
+# Written by hand from the 23 category-B briefs in content/thread_briefs.json
+# plus 3 new briefs (NEW-B1..B3). Same format as threads.sample.authored.yaml;
+# gen_threads.py's validator applies. Fictional people, shops and quotes.
+#
+# Extra per-thread keys (ignored by the validator):
+#   brief:     the brief this thread was written from
+#   when:      early (late Jul-mid Aug) | mid (mid Aug-mid Sep) | late (mid Sep-early Oct)
+#   fact_risk: every licensing / code / exam claim in the thread that a human
+#              must check against the official source (NJ Consumer Affairs
+#              board pages, NYC DOB, EPA, the testing company's bulletin).
+# Every such claim is hedged in character ("as I understand it", "last I
+# checked", "read the board's page"); none is stated as settled fact.
+# ---------------------------------------------------------------------------
+threads:
+
+# ----------------------------------------------------------------------------
+- id: T064
+  brief: B009
+  category: B
+  topic: B4_hvacr_license_nj
+  when: mid
+  fact_risk:
+    - "a heat pump / condenser change-out in NJ usually involves more than one subcode permit"
+    - "the mechanical side is permitted by a holder of the NJ HVACR license"
+    - "new disconnect / whip / circuit work is Electrical Contractor work, permitted separately"
+    - "NJ HVACR licensing became required around 2014"
+  type: tip
+  trade: hvac
+  author: codebook_dale
+  title: "From the inspection side: whose license belongs on a heat pump swap"
+  body: |
+    I get some version of this question every week this time of year, so I'll put it in one place. Not legal advice; your local construction office has the final word.
+
+    As I understand the current rules, a condenser or heat pump replacement in NJ usually touches more than one subcode. The mechanical work goes on a permit from a contractor holding the HVACR license. The new disconnect, the whip and any circuit changes are electrical work, which means an Electrical Contractor pulls that permit or the work is done under one. Some companies have both licenses in-house. Plenty don't, and that's where I see trouble: the HVAC crew runs a new circuit because the panel was right there, and nobody pulled the electrical.
+
+    The HVACR license is also newer than a lot of people assume. If I remember right it became required around 2014, so you'll still meet techs who talk like it doesn't exist.
+
+    If you're a helper and you don't know whose license a job is under, it's a fair thing to ask. And find out which edition of the code the permit falls under; it changes what I look for.
+  replies: []
+
+# ----------------------------------------------------------------------------
+- id: T065
+  brief: B017
+  category: B
+  topic: B2_epa608
+  when: early
+  fact_risk:
+    - "EPA 608 is a federal refrigerant-handling certification, not an NJ HVAC license"
+    - "the NJ HVACR license is what covers HVAC work"
+    - "on union jobs, refrigerant work is a jurisdiction question (ask the steward)"
+    - "supply houses ask to see a 608 card before selling refrigerant"
+  type: question
+  trade: hvac
+  author: TwistAndTape
+  title: "electrician here, is the 608 worth getting or is that an hvac thing"
+  body: |
+    164 2nd year. we just wrapped a condo job in weehawken with like 40 mini split heads and the hvac sub was short guys. their foreman asked if any of us had our 608 so we could help with the line sets lol. nobody did.
+
+    is it worth it for an electrician to get? my thinking is more and more of the work is heat pumps and it cant hurt on a resume. but i also dont want to be the guy doing another trade's work and getting a talk from the steward.
+
+    edit: not trying to become an hvac guy, just curious if it opens doors
+  replies:
+    - author: hec_does_ac
+      body: "So this one time in AC... we had an electrician on a hotel job who had his 608 and it saved us a whole afternoon, he could hook up gauges while we were stuck on the roof lol. Cheap test. Never hurts to have."
+    - author: WawaRunWired
+      body: "you need a license for side jobs anyway, there was a whole thread about doing outlets for neighbors"
+    - author: tnguyen_refrig
+      body: "get it if you want. having a card doesn't make you a refrigeration guy. i've cleaned up after plenty of guys with a card and a cheap set of gauges"
+    - author: ms_almonte
+      body: |
+        Two separate things are getting mixed up here.
+
+        First, the 608 is an EPA certification to buy and handle refrigerant. As far as I know it doesn't license you to do HVAC work in New Jersey; that's the HVACR license, and on a union job there's also the question of whose work it is. Second, it doesn't hurt to have. Some of my electrical students take it and none of them have regretted it.
+
+        Ask your steward before you help with line sets, not after.
+    - author: hec_does_ac
+      body: "She's right on the steward thing... I was thinking like a non-union shop where everybody does everything. Different world on a union job."
+    - author: joyd_plumbing
+      body: "Plumber's view: never had it, never needed it. But heat pump water heaters are showing up in my buildings now, so I'm watching this."
+    - author: tnguyen_refrig
+      body: "heat pump water heaters are gonna be a mess for a few years. everybody thinks the other trade is supposed to know them"
+    - author: WawaRunWired
+      body: "my bad, reread it and you meant on the job not side work. my shop does maybe 5 mini splits a year, definately going to ask if they'd pay for the test"
+    - author: ms_almonte
+      body: "Whoever takes it: keep the card somewhere you can find it. The supply house counter will usually ask to see it before they sell you refrigerant."
+    - author: TwistAndTape
+      body: "update: steward said getting the card is fine, touching the line sets on our jobs is not lol. taking it anyway over the winter"
+
+# ----------------------------------------------------------------------------
+- id: T066
+  brief: B018
+  category: B
+  topic: B1_what_am_i_after_four_years
+  when: mid
+  fact_risk:
+    - "NJ master plumber experience has to be under a licensed master plumber, documented"
+    - "the board asks who supervised the applicant"
+    - "a licensee is expected to actually supervise the work (absentee 'license on the van')"
+  type: question
+  trade: plumbing
+  author: big_hector_plumb
+  title: "4 years in and the license on the van isn't my boss's. do my hours count?"
+  body: |
+    Service tech, 4 years, shop in Union City. Found out last month the master license on the trucks belongs to my boss's uncle. Uncle is retired in Florida lol. Boss runs everything.
+
+    Starting to think about the master down the road. Do my 4 years even count if the guy who actually supervised me isn't the licensed one? Not trying to get anybody in trouble. Just don't want to find out in 3 more years that none of it counts.
+  replies:
+    - author: oldsteam_zig
+      accepted: true
+      body: |
+        Kid, this is the question to ask now and not at year eight.
+
+        Last I checked, the board wants your experience under a licensed master, documented, and the application asks who supervised you. If the licensed guy has been in Florida the whole time, you've got a problem proving that, and from what I understand your boss might have a bigger one.
+
+        I'm not going to guess how the board treats your situation. Call them and ask in general terms, no names. Meanwhile keep your own records: dates, jobs, who was on site. That's the job.
+    - author: JerseyTomatoWires
+      body: "electrical side but my instructor says the same thing... get your hours in writing every year while people still remember you"
+    - author: ms_almonte
+      body: "Second the records, and keep every W-2 and pay stub too. When my students apply for anything that asks for experience, the paper trail is always what's missing, never the skill."
+    - author: DinerCoffeeHVAC
+      body: "Sorry to jump in. Following this, because I never once thought to ask whose license my shop in Bayonne runs under."
+
+# ----------------------------------------------------------------------------
+- id: T067
+  brief: B033
+  category: B
+  topic: B2_epa608
+  when: mid
+  fact_risk:
+    - "608 must be taken through an EPA-approved certifying organization (EPA keeps a list)"
+    - "remote proctoring is offered by some organizations, depending on type"
+    - "Type I has different testing rules from the other types"
+    - "PTACs count as small appliances (Type I)"
+  type: question
+  trade: hvac
+  author: groundrod_05
+  title: "Where do people in the city actually sit for the 608?"
+  body: |
+    Two years in, non-union electrical shop in the Bronx. We've started doing a lot of PTAC and through-wall unit replacements in apartment buildings, and my boss wants two of us to have the 608 by the end of the year.
+
+    Searching online gets me a hundred sites and I can't tell which ones are legit. Some say online with a webcam, some say you have to go in person. Is there a supply house or a school in the city people use? Or is the online one fine? Appreciate it.
+  replies:
+    - author: ms_almonte
+      body: |
+        First, make sure whoever you test with is an EPA-approved certifying organization. EPA keeps a list; check it before you pay anybody. Second, how the test is given depends on the organization and the type. Some offer remote proctoring, some only do it in person, and Type I has its own rules. Ask them directly what's proctored.
+
+        Plenty of supply houses host test days too. Call the counter at the one your shop already uses.
+    - author: peteq75
+      body: "sorry to hijack, but does an electrical helper even need it for PTACs? the shop i'm helping at down in Galloway does a few and nobody there has one"
+    - author: groundrod_05
+      body: |
+        Appreciate it. Found one on the list that does remote, booked it for next month.
+
+        edit: update for anyone in the Bronx, passed Core and Type I on the first try. Going for Type II in the spring.
+
+# ----------------------------------------------------------------------------
+- id: T068
+  brief: B040
+  category: B
+  topic: B2_epa608
+  when: mid
+  fact_risk:
+    - "no federal age minimum for the EPA 608"
+    - "608 certification does not expire"
+    - "certifying organizations may set their own policies (age, retakes, fees)"
+  type: question
+  trade: hvac
+  author: emt_bender_200amp
+  title: "Can a 17 year old take the 608, and does it ever expire?"
+  body: |
+    Senior in a trade program in Queens, electrical track. I live in Bay Ridge so it's two trains every morning, which is why I'm typing this at 6am. Our program lets you take the 608 at the end of the semester if you want, it's optional. My shop teacher keeps saying anything that comes with a card is worth having for the union application.
+
+    Two questions. I'm 17, is there an age limit? Someone in my class said you have to be 18. And if I get it now and don't use it for years because I go electrical, does it expire? Don't want to pay for something I have to redo.
+
+    Thanks in advance.
+  replies:
+    - author: hec_does_ac
+      body: "Not that I know of on the age thing... I've had high school kids on ride-alongs who already had theirs. Mine's from forever ago and still good lol."
+    - author: tnguyen_refrig
+      body: "card doesn't expire as far as i know. the rules around refrigerant change though, so don't assume what you learned in school is still the rule when you're 30"
+    - author: emt_bender_200amp
+      body: "Ok that's good to hear. So the guy in my class saying 18 is wrong? He sounded really sure, he said his cousin wasn't allowed to take it."
+    - author: ms_almonte
+      accepted: true
+      body: |
+        First, I'm not aware of any federal age minimum for the 608, and I have students who are 17 sit for it every year. Second, a certifying organization can have its own policies, so ask whoever's giving yours; that might be what happened to the cousin. Third, last I checked the certification itself doesn't expire.
+
+        Keep the card and a photo of it on your phone. Replacing a lost one is a hassle.
+    - author: emt_bender_200amp
+      body: "Thank you, that makes sense. I'll ask my teacher which organization the program uses before I sign up."
+    - author: tnguyen_refrig
+      body: "study the recovery and leak repair stuff. that's what got half my helpers, not the science"
+    - author: hec_does_ac
+      body: "And hey... electrical guys who understand refrigeration are worth a lot on service calls. Half our no-cools are a contactor or a capacitor lol"
+    - author: ms_almonte
+      body: "hec is right about that. The best service techs I've trained could read a wiring diagram before they could braze."
+    - author: emt_bender_200amp
+      body: "update: asked my teacher, no age limit with the one our program uses. Signed up for December. Thanks everyone."
+    - author: tnguyen_refrig
+      body: "good. winter is when you learn, so do the practice tests over break"
+
+# ----------------------------------------------------------------------------
+- id: T069
+  brief: B045
+  category: B
+  topic: B1_what_am_i_after_four_years
+  when: late
+  fact_risk:
+    - "the NJ Electrical Contractor license (Board of Examiners of Electrical Contractors) is the one that pulls permits and runs work"
+    - "whether NJ has a journeyman-level electrician credential, and what it allows"
+    - "'journeyman wireman' is a union classification, not a state license"
+    - "HVACR side: the master/contractor license is what runs work"
+  type: question
+  trade: electrical
+  author: RainDayRestock
+  title: "sorry if this is dumb, but what do you call an electrician after 4 years in NJ?"
+  body: |
+    Sorry if this is a dumb question. About six weeks into my first job as a helper in Brick (non-union). An older guy at my shop says he's a journeyman, the boss is "the contractor," and when I asked what I'll be in 4 years nobody could give me a straight answer. One guy said NJ doesn't have a journeyman license at all, another said it does but nobody bothers.
+
+    So what am I working toward? Is it just the contractor license, or is there something in between? I'd like to know what to keep track of now instead of finding out later.
+  replies:
+    - author: neutral_bar_99
+      body: "I asked my teacher this exact thing last year at the vo-tech. He said the one that matters in NJ is the Electrical Contractor license, because that's the one that pulls permits. He wasn't sure about the journeyman part either, which honestly didn't help me much."
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Good question, not a dumb one.
+
+        In the union you top out as a journeyman wireman, but that's a classification in our agreement, not a state license. On the state side, the license you need to pull permits and run jobs yourself is the Electrical Contractor license, from the Board of Examiners of Electrical Contractors.
+
+        Whether NJ has a journeyman-level state credential for electricians, and what it would do for you, read the board's page or call them. I've never needed one on a union job, so I'm the wrong person to say. What to track now: your hours, who you worked under, and what kind of work it was. Stay safe.
+    - author: Kash_sing
+      body: |
+        Same structure on the HVAC side, which might help it make sense:
+        - The license that runs work is the contractor/master license (HVACR for us, EC for you)
+        - Everything before that is experience you'll have to document
+        - The board's page lists the experience routes; read it yourself, the rules have changed over the years
+
+# ----------------------------------------------------------------------------
+- id: T070
+  brief: B057
+  category: B
+  topic: B4_hvacr_license_nj
+  when: mid
+  fact_risk:
+    - "installing a mini-split (line sets, flaring, vacuum, opening valves) needs the NJ HVACR license"
+    - "the electrical side of a mini-split install needs an Electrical Contractor"
+    - "opening the service valves on a pre-charged set still counts as refrigerant handling (608)"
+  type: question
+  trade: hvac
+  author: ThreeWayConfusion
+  title: "guy in my apprenticeship class does mini-split installs on weekends. is that legal?"
+  body: |
+    Not snitching on anyone, just curious, and I'll probably over-explain this. There's a guy in my 400 class, 2nd year like me, who does mini-split installs on weekends for cash. He says it's fine because the units come pre-charged and he just "hooks them up," and he does the electrical himself because he's "basically an electrician." He makes more on Saturdays than I make all week lol.
+
+    I'm not about to start doing it. But is any of that actually allowed in NJ without a license? I know electrical side work is a no from the other thread, but does the HVAC part need its own license too?
+  replies:
+    - author: mbell_wireman
+      body: |
+        Short version, as I understand it: that's two licenses he doesn't have. The electrical is Electrical Contractor work. The mechanical side of a mini-split, the line sets, flaring, pulling a vacuum, opening the valves, falls under the HVACR license, and handling refrigerant takes a 608 on top of that. Pre-charged doesn't change who's allowed to install it.
+
+        Check with Consumer Affairs if you want it from the source. And he's one bad flare away from a fire or a lawsuit. Stay safe.
+    - author: LiveFrontLessons
+      body: "wait so even the pre charged ones need the hvac license? i figured that was the whole point of pre charged. guess not"
+
+# ----------------------------------------------------------------------------
+- id: T071
+  brief: B062
+  category: B
+  topic: B4_hvacr_license_nj
+  when: late
+  fact_risk:
+    - "NJ HVACR licensing start year: Ziggy says ~2010, Kash corrects to ~2014 (law first, requirement later)"
+    - "an HVACR business needs a licensed Master HVACR Contractor who actually supervises the work"
+    - "the licensee does not have to be the owner"
+    - "experience toward a license has to be documented under that licensee"
+    - "license numbers displayed on vehicles (plumbing; maybe HVACR)"
+  type: question
+  trade: hvac
+  author: epa60812_2
+  title: "my boss doesnt have an hvacr license, is that a problem for me?"
+  body: |
+    few months in as a helper now, same residential shop in paterson. was filling out paperwork for a supply house account and saw the license number on our estimates is under some other guy's name, not my boss. boss is the owner and does all the installs himself, i've never met the other guy.
+
+    is that normal? does the owner have to be the one with the license? and does any of this matter for me brother, like does my time count toward my own license later if the licensed guy is never on the job
+  replies:
+    - author: oldsteam_zig
+      body: "Plumbing side has the same problem, kid. A license holder who never shows up is how shops get in trouble. When HVAC licensing started, around 2010 I think, half the shops up here scrambled to find somebody licensed to put on paper."
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Ziggy, I think it was later than that. The law came first and the license requirement kicked in a few years after; I remember it as around 2014. Check the board's page before anyone quotes either of us.
+
+        To your questions, as I understand NJ's rules:
+        - The business needs a licensed Master HVACR Contractor, and that person is supposed to actually supervise the work
+        - It doesn't have to be the owner
+        - Whether your hours count depends on documenting work under that licensee; ask the board how they want it shown
+    - author: oldsteam_zig
+      body: |
+        > I remember it as around 2014
+
+        Could be. It's your license, not mine, you'd know. Listen to Kash on this one, kid.
+    - author: haddad_mech
+      body: "From the owner side: I hold both licenses partly so nobody ever has to wonder whose name is on a job. When I'm hiring, I tell people up front whose license they'll be working under. If your boss gets uncomfortable when you ask, that tells you something."
+    - author: peteplumb80
+      body: "our contractor's license number is on every truck door. pretty sure plumbing shops have to do that, i think hvac too? if it's not on the van that's weird"
+
+# ----------------------------------------------------------------------------
+- id: T072
+  brief: B068
+  category: B
+  topic: B2_epa608
+  when: mid
+  fact_risk:
+    - "knowingly venting refrigerant is illegal under federal (EPA) rules"
+    - "refrigerant must be recovered by a 608-certified tech before a system is cut out / disposed of"
+  type: tip
+  trade: hvac
+  author: mbell_wireman
+  title: "Don't cut a line set on demo until someone certified has recovered it"
+  body: |
+    Saw this twice this summer on fit-outs, so I'm posting it for the electrical apprentices.
+
+    You're demoing a space, there's an old split system or a rooftop unit coming out, and someone hands a first-year a pair of cutters and points at the copper. Don't. Unless someone with a 608 has recovered the refrigerant and told you it's done, that line set may still be charged. Cutting it vents refrigerant, which as I understand it is illegal, and at close range it can freeze-burn your hands and face.
+
+    Ask the GC or the HVAC sub, "has this been recovered?" and get a name. It's the same as LOTO: you don't assume it's dead because somebody said it probably is. Glasses and gloves either way. Stay safe.
+  replies:
+    - author: WiremanFromPiscataway
+      body: "appreciate this. i was literally handed cutters for this exact thing on a job in edison last month and the hvac guy yelled before i cut. now i know why"
+    - author: codebook_dale
+      body: "Agreed. Not legal advice, but the venting rules are federal, so this is the same in every town. On the electrical side, that same demo is where I find abandoned circuits left live in the ceiling. Verify dead before you cut anything, copper or wire."
+    - author: ms_almonte
+      body: "Adding one for the apprentices: if you're the one who recovered it, tag it with your name and the date. The next person can't see what you did."
+
+# ----------------------------------------------------------------------------
+- id: T073
+  brief: B077
+  category: B
+  topic: B1_what_am_i_after_four_years
+  when: mid
+  fact_risk:
+    - "the NJ plumbing board wants experience under a licensed master, documented"
+    - "what the master plumber application actually requires (signatures, forms)"
+    - "union apprenticeship tracks hours"
+  type: question
+  trade: plumbing
+  author: benplumb79
+  title: "Started an hours log like people said. What should actually be in it?"
+  body: |
+    Sorry if this has been covered. After reading the thread about what license you have when you top out, I started keeping a log. Two years at my shop now, so I already feel behind.
+
+    Right now it's a notebook: date, job, hours, what I did. Is that enough? Do I need my boss to sign something? Should I go back and reconstruct the last two years from my pay stubs, or is that pointless? I'd rather overdo it now than find out later it's useless.
+
+    edit: I mean for a master plumber license someday, in NJ.
+  replies:
+    - author: dhollis61
+      body: "reconstruct it. pay stubs and a calendar get you most of the way. towns, not customer addresses."
+    - author: oldsteam_zig
+      accepted: true
+      body: |
+        Kid, you're ahead of most guys, not behind. The notebook's fine.
+
+        What the board cares about, last I checked, is that the work was under a licensed master and who that was. So write your boss's name and license number in the front. Once a year, ask him to sign a summary while he still remembers you. Keep your W-2s forever.
+
+        What the application actually wants on paper, read it on the board's page. Don't build the whole system off what an old guy says on the internet. That's the job.
+    - author: Kash_sing
+      body: |
+        What I've seen hold up for my techs:
+        - One line per week is enough; daily is nice but people quit
+        - The type of work matters as much as hours (service, rough-in, boilers)
+        - Photograph the pages every month; notebooks die in vans
+    - author: peteplumb80
+      body: "union side the apprenticeship tracks our hours but i keep my own anyway, i do it in the car at the wawa before work. foreman says the union's records are good but yours are better lol"
+    - author: LiveFrontLessons
+      body: "doing this for electrical too after reading this. does it matter if its in an app or does it have to be paper"
+    - author: benplumb79
+      body: "Thank you, this is exactly what I needed. Going through two years of pay stubs this weekend. On the app question, I'm doing both, paper and photos."
+
+# ----------------------------------------------------------------------------
+- id: T074
+  brief: B086
+  category: B
+  topic: B1_what_am_i_after_four_years
+  when: early
+  fact_risk:
+    - "NJ has no separate journeyman HVACR license (Master HVACR Contractor only)"
+    - "Master HVACR experience routes (years under a licensee; apprenticeship/schooling credit)"
+    - "the HVACR exam includes a business and law section"
+  type: question
+  trade: hvac
+  author: epa608_672
+  title: "Got my 608 in school. What's the actual road to an HVACR license?"
+  body: |
+    Morris County vo-tech '24, passed my 608 Universal senior year, first job now at a residential shop out of Parsippany. At school everyone talked about the 608 like it was the finish line, and now my lead says it's basically the entry ticket and the real license is years away.
+
+    So what's the road? Is there a journeyman HVAC license in NJ or is it straight to master? How many years, and does my vo-tech time count for anything? I get coffee at Wawa with my lead every morning and he just says "you'll figure it out."
+  replies:
+    - author: sweatjoint200amp
+      body: "following... same question for plumbing. does school count? does it matter if you're non union?"
+    - author: Kash_sing
+      accepted: true
+      body: |
+        As I understand NJ's setup, and please verify on the board's page:
+        - The license that matters is the Master HVACR Contractor license; I'm not aware of a separate journeyman HVACR license
+        - There are a few experience routes, mostly years working under a licensed contractor, sometimes with an apprenticeship or schooling counting toward it
+        - There's an exam with a business and law section, not just trade questions
+        - I won't quote you the years; they're on the board's page and I'd rather you read them there
+
+        Start documenting now. The 608 was the right first step.
+    - author: oldsteam_zig
+      body: "Plumbing's the same idea, kid, different board. Nobody should be quoting you numbers off the top of their head, including me. Read it yourself, print it, and write the date on the printout."
+    - author: peteplumb80
+      body: "my union school might count toward stuff? not sure honestly, my instructor said ask the board too lol"
+
+# ----------------------------------------------------------------------------
+- id: T075
+  brief: B104
+  category: B
+  topic: B2_epa608
+  when: mid
+  fact_risk:
+    - "608 test content (Core, Type II) and how long it takes to study"
+    - "OSHA 10 as an employer hiring requirement"
+    - "shop policies (608 within 90 days, fee reimbursement) are fictional employer choices, not rules"
+  type: discussion
+  trade: hvac
+  author: Kash_sing
+  title: "I'm not hiring HVAC helpers without a 608 anymore. Fair or not?"
+  body: |
+    Hiring two helpers for the heating season. This year I'm making the 608 a requirement to interview, not something we'll get to after you start. My reasons:
+    - It's cheap and you can study for it on your own time
+    - It shows me you'll finish something without being chased
+    - I can send you to the supply house or put you on a recovery job on day one
+    - The last three helpers I hired who were "planning to take it" never did
+
+    I can see the other side: someone who's never been around equipment doesn't know what half the test is talking about. Tell me if I'm wrong.
+  replies:
+    - author: big_zach_hvac
+      body: "fair. got mine before i applied anywhere, at 40. took two weekends"
+    - author: HeatwaveOnCall
+      body: "kind of chicken and egg though? i'm studying for it now and half of it is stuff i've never seen in person. took my shop 4 months to even let me hold the gauges. how are you supposed to know it before anyone hires you?"
+    - author: ms_almonte
+      body: |
+        I'll take the other side a little.
+
+        First, I agree it shows follow-through. Second, passing the test isn't the same as understanding it; I've had students with a card who couldn't tell you which way the refrigerant flows. Third, you'll lose good career switchers who are working another job and can't study and job hunt at the same time. Make it a 90-day requirement and you get both.
+    - author: Kash_sing
+      body: "Fair point on the switchers. But in my experience the 90-day promise is exactly what doesn't happen."
+    - author: benplumb79
+      body: "Plumbing apprentice, sorry to jump in from another trade. Does anyone do this for plumbing helpers? Require something before you start?"
+    - author: LiveFrontLessons
+      body: "electrical side my first job wanted osha 10 and a license and that was it lol. drivers license i mean"
+    - author: ms_almonte
+      body: "Kash, how many of those three would have stayed anyway? Sometimes the missing card is a symptom, not the cause. I've hired summer help too, ask me how I know."
+    - author: Kash_sing
+      body: "Two left inside six months. One is still with me and is a good tech, card or no card. So you have a point."
+    - author: HeatwaveOnCall
+      body: "so if i pass it by november am i hireable lol. asking for me"
+    - author: Kash_sing
+      body: "Yes. And put it at the top of the resume, not the bottom."
+    - author: big_zach_hvac
+      body: "^ correction to mine, two weekends plus a retake on type 2. still worth it"
+    - author: benplumb79
+      body: "Update on my question: asked my boss, he doesn't require anything, but he said he'd pay for a code class if I asked. So I asked. Starting in October."
+    - author: ms_almonte
+      body: "Good. That's how it works most of the time. You ask."
+    - author: LiveFrontLessons
+      body: "is the 608 worth it for electrical guys? sorry if thats off topic"
+    - author: HeatwaveOnCall
+      body: "theres a whole thread on that one, a 164 guy asked it in the summer"
+    - author: Kash_sing
+      body: "update: I'm going with ms_almonte's version. Card required within 90 days of starting, and we pay the test fee if you pass on the first try."
+    - author: HeatwaveOnCall
+      body: "ok thats actually a good deal. studying tonight, practice tests until core is boring"
+
+# ----------------------------------------------------------------------------
+- id: T076
+  brief: B107
+  category: B
+  topic: B4_hvacr_license_nj
+  when: late
+  fact_risk:
+    - "electrical experience does not count toward NJ HVACR experience"
+    - "partnering with / hiring a licensed Master HVACR Contractor is a common route"
+    - "both the HVACR and EC exams include a business and law section"
+  type: question
+  trade: hvac
+  author: thiago_sparks
+  title: "Honestly thinking about adding an HVACR license to my electrical shop"
+  body: |
+    Honestly didn't think I'd be asking this after 22 years. Half my calls down here involve heat pumps now. A lot of the raised houses went all-electric in the Sandy rebuilds, and I've been doing the circuits and handing the customer off to an HVAC guy I've known forever. He's retiring in the spring.
+
+    So I'm weighing getting the HVACR license myself versus hiring someone who has it. Anyone here hold both an EC and an HVACR? Could I even meet the experience requirement at this point, or am I starting from zero? Kash, I'm looking at you.
+  replies:
+    - author: Kash_sing
+      body: |
+        Happy to help, with the usual caveat that the board's page is the authority, not me:
+        - Your electrical years almost certainly don't count as HVACR experience; as far as I know it's trade-specific
+        - Hiring or partnering with a licensed Master HVACR Contractor is the faster route, and plenty of shops do it
+        - If you go for it yourself, there's a business and law part on the exam, which you've already been through once for your EC
+        - Price the insurance before you decide; adding mechanical work changes your policy
+    - author: TryingAllThree
+      body: "This is interesting to me because I still haven't picked a trade. If a guy who's been an electrician this long is moving toward heat pumps, should someone starting out just pick HVAC? Or is electrical smarter since the heat pumps need it anyway?"
+    - author: thiago_sparks
+      body: "Honestly? Either. The guys who understand both sides are the ones I'd hire tomorrow. Pick the one you'd still like doing in a crawlspace in August."
+    - author: threeway_02
+      body: "Career switcher here too. The shop I'm helping at does the electrical for two HVAC companies, and both of them are always short. I'd assumed the license side was simpler than this."
+    - author: JunctionBoxJunkie
+      body: "our hvac teacher at the mercer vo-tech says the same thing, everything's going heat pump. glad i picked electrical then lol, they can't run without us"
+
+# ----------------------------------------------------------------------------
+- id: T077
+  brief: B110
+  category: B
+  topic: B5_nyc_dob_vs_nj
+  nyc: true
+  when: mid
+  fact_risk:
+    - "NYC Master Electrician needs years under a licensed master electrician (remembered as 'seven and change', i.e. about 7.5)"
+    - "experience is documented with affidavits signed by the masters, plus tax records"
+    - "how the NJ board weighs out-of-state (NYC) experience"
+    - "how NYC DOB weighs NJ experience; NJ has no 'master electrician' title"
+  type: tip
+  trade: electrical
+  author: dreb_jman
+  title: "Jersey guys on city jobs: start your master's paperwork now, not at year ten"
+  body: |
+    Half my crew in Midtown comes through the tunnel from Jersey. Every year one of the older guys decides he wants his NYC master electrician license and then spends months chasing people he worked for ten years ago for signatures.
+
+    From watching them go through it: the DOB wants years under a licensed master electrician, documented with experience affidavits signed by the masters you worked for, plus proof like tax records. I keep hearing seven and change for the years. Don't trust me on the number, read the DOB licensing page.
+
+    Never went for it myself. Happy as a journeyman. But if you think you might, brother, get the paper while people still pick up the phone.
+  replies:
+    - author: JerseyTomatoWires
+      body: "does city time count toward the jersey EC license too... or do you basically have to pick one"
+    - author: mbell_wireman
+      body: "I'll take the Jersey side of that. I can't speak for how the NJ board weighs out-of-state work; that's a question for them directly. What I'd do is document it the same way for both, so you're covered whichever way you go. Stay safe."
+    - author: dreb_jman
+      body: "what he said. keep one set of records, fill out whatever forms each side asks for"
+    - author: fmelecnj
+      body: "1st year in 164, we've done a couple city jobs already through the tunnel (lincoln tunnel at 6am is its own punishment btw). does a 1st year even need to think about this yet or is that way too early"
+    - author: hec_does_ac
+      body: "Never too early... so this one time in AC... had a tech who'd spent six years at a shop that closed, and he couldn't prove a single one of them when he wanted to test. Paperwork is free when it's fresh lol."
+    - author: ms_almonte
+      body: "Same thing I tell my students on the Jersey side. First, keep every W-2. Second, get the name and license number of whoever supervises you. Third, write it down the week it happens, not the year."
+    - author: FirstYearSparky
+      body: "Non-union in Morris County, never worked in the city. Does it go the other way too, would NJ time count for the NYC license? And who signs if your boss is a contractor, not a master?"
+    - author: dreb_jman
+      body: "brother, that's a DOB question, not mine. what I know is they want it signed by masters, and Jersey doesn't call anybody a master electrician. ask them before you count on it"
+
+# ----------------------------------------------------------------------------
+- id: T078
+  brief: B112
+  category: B
+  topic: B1_what_am_i_after_four_years
+  when: mid
+  fact_risk:
+    - "NJ has a journeyman plumber license; what it lets you do without a master on site"
+    - "commercial employers / GCs ask about the journeyman license more than residential"
+    - "journeyman and master exams: testing vendor and fees"
+  type: question
+  trade: plumbing
+  author: big_paulie_plumb
+  title: "is the nj journeyman plumber license worth getting or do people skip to master"
+  body: |
+    sorry if this is basic. 4 years in, service and repipes, north bergen and the walkups around there. my boss says the journeyman license is a waste of money and i should just save up the time for master. a guy at the supply house said he wouldnt hire anybody without at least the journeyman.
+
+    who's right? does the journeyman actually let you do anything you can't do now? i want to move toward commercial eventually if that changes the answer
+  replies:
+    - author: big_manny_plumb
+      body: "my foreman says get it. union side it comes up when you top out. not sure what it does for non union"
+    - author: plumbnj77
+      body: "brother my boss said the same thing as yours. then said it again when i asked for a raise lol. how much is the test even, and is it the same place you take the master?"
+    - author: Kash_sing
+      body: |
+        Not my trade, so take this as general advice from an owner:
+        - Commercial shops and GCs ask about credentials more than residential ones, in my experience
+        - A license your current boss doesn't value can still matter to the next boss
+        - What it lets you do legally is a question for the plumbing board, not the supply house counter, and not me
+    - author: FluxOnMyBoots
+      body: "my night class instructor said the journeyman is what lets you work without a master standing right over you. didnt say it like he was sure though lol"
+
+# ----------------------------------------------------------------------------
+- id: T079
+  brief: B126
+  category: B
+  topic: B3_failed_rough_in
+  when: early
+  fact_risk:
+    - "NJ plumbing subcode (National Standard Plumbing Code) rough-in test methods: water vs air"
+    - "whether an inspector may refuse an air test (local discretion)"
+  type: question
+  trade: plumbing
+  author: benplumb79
+  title: "Failed the DWV rough because we tested with air and the inspector wanted water?"
+  body: |
+    Sorry if this is a basic one. We failed a plumbing rough today on a basement bathroom in Hillsborough. We had the DWV on air, gauge was holding, and the inspector said he wanted a water test and wouldn't look at it. My boss was annoyed but said this town has always been like that, and the next town over takes air with no problem.
+
+    Is that a code thing or an inspector thing? I'd like to understand it before the retest Thursday instead of just doing what I'm told.
+
+    edit: filled the stack, passed Thursday. Still curious about the why if anyone knows.
+  replies: []
+
+# ----------------------------------------------------------------------------
+- id: T080
+  brief: B130
+  category: B
+  topic: B2_epa608
+  when: late
+  fact_risk:
+    - "installing a factory-sealed heat pump water heater does not require a 608"
+    - "repairs that open the sealed refrigerant circuit require certification"
+    - "many HPWHs qualify as small appliances (Type I), depending on charge and construction"
+    - "manufacturers may require a certified tech for warranty work"
+  type: question
+  trade: plumbing
+  author: benplumb79
+  title: "Do plumbers need the 608 for heat pump water heaters?"
+  body: |
+    We installed our first two heat pump water heaters this month, both in basements in Somerset County, and now my boss says we should both get the 608 "just in case." I always thought the 608 was strictly an HVAC thing.
+
+    From what I can tell the units come sealed from the factory and we're just doing the water, the condensate and the venting clearances (an electrician did the circuit). So when would a plumber ever need it? Warranty work? If the compressor side ever needs service? I apologize if this is obvious to the HVAC people here.
+  replies:
+    - author: tnguyen_refrig
+      accepted: true
+      body: "installing a sealed unit, as far as i know you never open the refrigerant side, so no card needed for that. the day it needs a repair on the sealed system, somebody needs the card. probably not you, but your boss isn't wrong either"
+    - author: oldsteam_zig
+      body: "Your boss is smart, kid. These are going in everywhere. Get the card, it's cheap, and you'll be the one he sends."
+    - author: bklyn_arkady
+      body: "In the city it's different in the details but the same in principle. I've put in a handful in Bay Ridge. The plumbing is plumbing. If you ever open the refrigerant circuit you need certification, and some manufacturers want a certified tech for warranty work. The install manual usually says."
+    - author: Dev_H
+      body: "The shop I just started at does these too. Do they count as small appliances for the 608? Is that Type I?"
+    - author: tnguyen_refrig
+      body: "depends on the charge and how it's built. a lot of them are, from what i've seen, but read the nameplate and the manual before you go by me"
+    - author: big_hector_plumb
+      body: "Did two in Union City. Customer asked if it was the AC thing lol. Took 10 minutes to explain."
+    - author: TryingAllThree
+      body: "This is the kind of thing that keeps making me think I should learn plumbing and HVAC both. Is that a thing? A plumber with a 608?"
+    - author: oldsteam_zig
+      body: "It's a thing. Pick one trade first, kid, and get good at it. The card takes a couple of weekends. The trade takes ten years."
+    - author: peteplumb80
+      body: "my union school just mentioned these last week, said they're coming into the curriculum. nobody said anything about the 608 though"
+    - author: bklyn_arkady
+      body: "I'd add the condensate. Most of the problems I've heard about on these are condensate, not refrigerant. Pitch it, trap it if the manual says to, and know where it ends up."
+    - author: benplumb79
+      body: "Thank you all. So: installing doesn't need it, repairing the sealed side does, and it's cheap enough to get anyway. Signing up for Core and Type I."
+    - author: tnguyen_refrig
+      body: "do universal. you'll want it the first time somebody hands you a mini split"
+    - author: Dev_H
+      body: "Same. Signing up for Universal, new boss said he'd cover it. Appreciate it."
+
+# ----------------------------------------------------------------------------
+- id: T081
+  brief: B133
+  category: B
+  topic: B4_hvacr_license_nj
+  when: mid
+  fact_risk:
+    - "scope overlap: hot-water (hydronic) boilers under the master plumber license vs the HVACR license"
+    - "HVACR Act exemptions for licensed master plumbers"
+  type: question
+  trade: plumbing
+  author: NorthJerseyCopper
+  title: "Boilers: plumbing license or HVACR license?"
+  body: |
+    1st year, UA Local 24. My shop does a lot of hot water boiler work in Bergen in the winter. Someone at school said that once the HVACR license came in, boilers became an HVAC thing and plumbers can't touch them. My foreman laughed at that.
+
+    Idk who to believe. Who's allowed to do hydronic heat in NJ: plumbers, HVACR contractors, or both? Short answer is fine.
+  replies:
+    - author: benplumb79
+      body: "I've wondered the same. My boss is a master plumber and does boilers all the time and has never mentioned needing anything else. But I'd ask the board rather than take his word or mine."
+    - author: sweatjoint200amp
+      body: "following... my shop does boilers too and nobody has an hvac license that i know of. is that a problem or no? sorry if dumb q"
+
+# ----------------------------------------------------------------------------
+- id: T082
+  brief: B142
+  category: B
+  topic: B3_failed_rough_in
+  when: early
+  fact_risk:
+    - "the NJ UCC adopts one set of subcodes statewide; enforcement is local"
+    - "permits filed at different times can fall under different code editions (adoption grace period)"
+    - "the town's construction official resolves an inspector disagreement"
+  type: discussion
+  trade: electrical
+  author: JerseyTomatoWires
+  title: "same drawings, two towns... two different answers on the rough"
+  body: |
+    4th year in 164. foreman has us on two retail fit-outs right now, one in hackensack and one a couple towns over in paramus. same drawings, same crew, same everything. one inspector passed our rough no problem... the other wrote up the exact thing the first one signed off on. foreman just shrugged and said every town is its own country.
+
+    isn't the code supposed to be the same everywhere in NJ? how does that even happen
+  replies:
+    - author: codebook_dale
+      body: |
+        The code is statewide; the UCC adopts one set of subcodes for everybody. The people enforcing it are local, and some sections leave room for judgment, so two good inspectors can read the same sentence differently.
+
+        What I'd do: ask the one who wrote it up for the code section, politely, and bring it to your foreman. If it's a real disagreement, the construction official in that town can sort it out. Also look at the permit dates. Permits filed at different times may not be under the same code edition.
+    - author: thiago_sparks
+      body: "Honestly that's every week for me down the shore. Every town has its thing. You learn what each one looks at and you do it that way. Not worth the fight unless it's actually wrong."
+
+# ----------------------------------------------------------------------------
+- id: T083
+  brief: B147
+  category: B
+  topic: B3_failed_rough_in
+  when: mid
+  fact_risk:
+    - "replacing a water heater is not 'ordinary maintenance' under the NJ UCC; generally permit work"
+    - "some towns handle it under a faster category where work starts before inspection ('minor work')"
+    - "gas connection and venting are inspected on a gas water heater swap"
+    - "an electric water heater swap is generally also permit work"
+  type: question
+  trade: plumbing
+  author: benplumb79
+  title: "Does a like-for-like water heater swap need a permit in NJ?"
+  body: |
+    Sorry, another one from me. A customer in Manville asked us to swap a 40-gallon gas water heater, same spot, same venting. My boss said "we'll pull a permit" and she acted like we were trying to pad the bill. Her last plumber never pulled one.
+
+    Is a straight swap actually permit work in NJ, or does it count as maintenance? And if it's a permit, who inspects it, the plumbing inspector or someone for the gas? I want to be able to explain it next time instead of just standing there.
+  replies:
+    - author: codebook_dale
+      accepted: true
+      body: |
+        Not legal advice, and plumbing isn't my subcode, but I can tell you how the UCC generally works. Ordinary maintenance is a short, specific list, and as far as I know replacing a water heater isn't on it. Many construction offices treat a water heater swap as permit work, sometimes under a quicker category where you can start right away and the inspection follows. The gas connection and the venting are part of what gets looked at.
+
+        Call the town's construction office for how they handle it. And your boss is right.
+    - author: joe.plumb
+      body: "my shop pulls one every time... and customers complain every time lol. we tell them the inspection protects them, not us"
+    - author: Kash_sing
+      body: |
+        Same on the HVAC side with furnace swaps. How I explain it to customers:
+        - The permit is about the gas and the venting, not the tank
+        - A bad vent on a gas water heater is a carbon monoxide problem
+        - It's its own line on the invoice so nobody thinks it's padding
+    - author: benplumb79
+      body: |
+        > a carbon monoxide problem
+
+        That's the line I'll use with customers. Thank you.
+    - author: JunctionBoxJunkie
+      body: "my uncle swapped his own in hamilton last year and nobody pulled anything. not saying it's right, just saying most people have no idea this is a thing"
+    - author: LiveFrontLessons
+      body: "does the same go for electric water heaters? since theres no gas or vent"
+    - author: codebook_dale
+      body: "Generally still permit work as far as I know, and the electrical connection gets looked at. Same answer: ask the local office how they handle it."
+
+# ----------------------------------------------------------------------------
+- id: T084
+  brief: B154
+  category: B
+  topic: B3_failed_rough_in
+  when: mid
+  fact_risk:
+    - "NM cable secured within 12 in of a box and at no more than 4.5 ft intervals (NEC 334.30), with exceptions"
+    - "stacking two cables under one staple only if the staple is listed for it"
+  type: question
+  trade: electrical
+  author: FirstYearSparky
+  title: "Failed rough-in for 'cable not secured.' How close to the box is close enough?"
+  body: |
+    First year non-union, Denville. Failed the rough on a basement finish today. Inspector circled a bunch of runs and wrote "cable not secured within required distance of box," plus something about stacking cables under one staple. My lead was out sick so I did most of those runs myself, which is great.
+
+    How close does the staple have to be to the box? And is two cables under one staple really a fail, or did I just get a picky inspector? I want to fix it right before Friday.
+  replies:
+    - author: Bergen_Ducts
+      body: "we failed a rough last month too... ours was the duct sealing at the boots, inspector wanted mastic on every joint. same kind of thing?"
+    - author: OpenNeutralBlues
+      body: "think he means electrical cable not ducts lol. our teacher said 12 inches from the box but idk the exact rule"
+    - author: codebook_dale
+      accepted: true
+      body: |
+        For NM cable, the editions I've enforced want it secured within 12 inches of a box and at intervals of no more than 4 1/2 feet after that, with exceptions for things like fishing through finished walls. Check which code edition is in effect for your permit, but that part hasn't changed in a long time.
+
+        On two cables under one staple: it depends on the staple. Some are listed for two cables stacked flat and some aren't. Look at the box they came in. If the listing doesn't allow it, it's a fair write-up.
+    - author: mbell_wireman
+      body: "Agree with Dale. And since your lead was out: next time, it's fine to ask the shop for someone to look over your runs before the inspector does. A second set of eyes beats a red tag. Stay safe."
+    - author: FirstYearSparky
+      body: "update: restapled everything closer to the boxes, switched to staples rated for two, passed Friday. thanks Dale and Marcus, learned more from this than the whole week"
+
+# ----------------------------------------------------------------------------
+- id: T085
+  brief: B162
+  category: B
+  topic: B5_nyc_dob_vs_nj
+  nyc: true
+  when: late
+  fact_risk:
+    - "NYC master licenses need documented years under a licensed master, with experience affidavits"
+    - "NYC exams are separate from NJ's"
+    - "NJ Electrical Contractor requirements differ from NYC Master Electrician requirements"
+  type: question
+  trade: electrical
+  author: threeway_91
+  title: "staten island, could work nj or the city. which license path makes more sense"
+  body: |
+    live in tottenville. outerbridge is right there so i could work jersey or the city. right now i'm a helper at a small non union shop that does both, boss is licensed in nj and does some city jobs with a guy who has his city license.
+
+    long term i want my own license. brother which one do people go for when they live right on the line. nj contractor or nyc master. is one way easier or is that a myth. not trying to put 7 years into the wrong one
+  replies:
+    - author: bklyn_arkady
+      body: |
+        Grew up in Jersey, licensed in the city, so I've thought about this. I can only speak to plumbing, but in the city it's different: the master license wants years of documented experience under a licensed master, with affidavits, and the exams are their own thing. I'd guess electrical is similar in spirit, but read it. Jersey is a different board with its own rules, and I won't pretend I know their current requirements. Neither side is the easy one.
+
+        Pick where you want to work most of the next ten years, and document every job on both sides in the meantime. Read the DOB's licensing page and the NJ board's page side by side.
+    - author: dreb_jman
+      body: "electrical in the city, same idea. years under a master, affidavits, check the DOB page. and brother, think about the commute. the outerbridge is fine till it isn't"
+    - author: elecny85
+      body: "flatbush non union here... my boss says pick the city if you want commercial and jersey if you want houses. no idea if thats true brother lol"
+
+# ----------------------------------------------------------------------------
+- id: T086
+  brief: B168
+  category: B
+  topic: B2_epa608
+  when: late
+  fact_risk:
+    - "608 sections (Core, Types I-III) are scored separately; you retake only the failed section"
+    - "a passed Type isn't valid certification until Core is also passed"
+    - "retake rules, fees and how long a passing section is held vary by certifying organization"
+  type: question
+  trade: hvac
+  author: plumbguy917
+  title: "Failed Core by a couple questions, passed Type II. Do I retake everything?"
+  body: |
+    plumbing apprentice in brooklyn. took the 608 on a saturday because my uncle does hvac and won't stop saying every card helps. passed type II, failed core by like two questions lol. the proctor said something about only retaking the part i failed but i was too annoyed to listen.
+
+    do i redo the whole thing or just core? does the type II pass count for anything if i don't pass core? kind of salty about it not gonna lie
+  replies:
+    - author: hec_does_ac
+      body: "Been there... well not me, half my crew lol. From what I remember you only retake the section you failed, and the Type II pass doesn't do anything for you until Core is passed too. Ask the organization that tested you how long they hold the passing score."
+    - author: ms_almonte
+      accepted: true
+      body: |
+        hec has it right as far as I know. The sections are scored separately, so you should only need to retake Core, but you aren't certified for Type II until you've passed Core as well. Ask your certifying organization about their retake rules and the fee, because those vary.
+
+        And treat Core like vocabulary, not logic. It's the regulations, the dates, the safety and recovery rules. You either know them or you don't.
+    - author: plumbguy917
+      body: "ok so just core. thats less bad. still salty lol"
+    - author: peteplumb80
+      body: "local 24 1st year, i failed core the first time too!! got it the second time. the practice tests are the move"
+    - author: big_hector_plumb
+      body: "Why's a plumber taking the 608 lol. Serious question, never needed it once."
+    - author: plumbguy917
+      body: "my uncle. long story. also heat pump water heaters, there's a whole thread about it"
+    - author: joe.plumb
+      body: "cherry hill here... my vo tech made us take it senior year and i failed core too lol. it's the dates that get you"
+    - author: plumbnj88
+      body: "bartender brain. i'd fail core too, dates are not my thing"
+    - author: hec_does_ac
+      body: "Quick tip for the retake... read every question twice. Core loves the 'which of these is NOT' questions"
+    - author: ms_almonte
+      body: "Second hec's tip. Most of my students who fail Core miss the NOT questions, not the hard ones."
+    - author: plumbguy917
+      body: "update: retook core this weekend, passed. type II is official now. the NOT questions were exactly it lol"
+
+# ----------------------------------------------------------------------------
+- id: T087
+  brief: NEW-B1
+  category: B
+  topic: B5_nyc_dob_vs_nj
+  nyc: true
+  when: early
+  fact_risk:
+    - "NYC gas work must be done by a Licensed Master Plumber or a DOB gas work qualification holder working for one (Local Law 150 of 2016)"
+    - "the gas work qualification requires an approved training course; there is more than one level"
+    - "time under an LMP counts toward the NYC master license if documented"
+    - "NJ has no separate gas card; gas piping runs under the master plumber (or HVACR) license"
+  type: question
+  trade: plumbing
+  author: briplumb87
+  title: "Helper in the Bronx: what's the DOB gas qualification and do I need it?"
+  body: |
+    I'm 34, switched over from warehouse management this spring, and I'm a helper at a small plumbing shop in the Bronx. A lot of our work is gas lines in old multifamily buildings. My foreman keeps saying I'll "need my gas card" before he can let me do more than carry pipe, and that the boss's master license isn't enough on its own.
+
+    What is the gas qualification exactly? Is it a test, a course, both? Can a helper get it, or do you need years first? And is it part of working toward a master plumber license, or totally separate? Trying to figure out what to do first.
+  replies:
+    - author: bklyn_arkady
+      accepted: true
+      body: |
+        In the city it's different from anything I knew growing up in Jersey. As I understand the current rules, gas work has to be done by a licensed master plumber or by someone working for one who holds a DOB gas work qualification. Getting the qualification means an approved training course, and there's more than one level of it. I won't quote you hours or prerequisites; they've been adjusted since it started, and the DOB's page has the current list.
+
+        It's separate from the master license. The master is years down the road and needs documented experience with affidavits. The gas qualification is what lets you actually work on gas for a licensed master in the meantime. Ask your foreman which course the shop uses.
+    - author: bklyn_arkady
+      body: "One more thing, since you asked what to do first: the time you're putting in now should count toward the master later if it's under a licensed master and you can document it, as far as I know. Start a log this week. Dates, buildings, who supervised you."
+    - author: oldsteam_zig
+      body: "Jersey guy. Never run into a card like that on our side, kid. Over here it's the license, master plumber or HVACR depending on the equipment, as far as I know. Different world over the bridge."
+    - author: dreb_jman
+      body: "electrician, but it's the same story in the city with everything. far as I know DOB wants a card for it, and arkady knows that side better than me. get the card, brother"
+    - author: BayRidge.traps
+      body: "my foreman sent me to the course my second month. a few long saturdays. worth it"
+
+# ----------------------------------------------------------------------------
+- id: T088
+  brief: NEW-B2
+  category: B
+  topic: B1_what_am_i_after_four_years
+  when: late
+  fact_risk:
+    - "the NJ Electrical Contractor exam has a business and law section"
+    - "which sections allow reference books is set in the testing company's candidate bulletin"
+    - "business and law topics: NJ licensing rules, contracts, liens, insurance, payroll/tax, record keeping"
+    - "the NJ HVACR exam also has a business and law section"
+  type: question
+  trade: electrical
+  author: Passaic_Sparky
+  title: "what's actually on the business and law part of the EC exam"
+  body: |
+    4 years doing service and panel swaps out of little falls. not taking the EC exam tomorrow, i know i need my experience squared away first, but i want to start on the business and law side now since that's the part nobody at my shop can tell me anything about. my boss took his like 20 years ago and says "it's common sense, don't worry about it." idk, that's what people said about every test i ever failed.
+
+    what's on it? nj law stuff like contracts and liens, or general business? open book? anyone take it recently
+  replies:
+    - author: thiago_sparks
+      body: "Honestly when I took mine that part was open book and the trade part was the hard one. Bring the reference book, tab it up, you'll be fine."
+    - author: codebook_dale
+      accepted: true
+      body: |
+        I'd be careful with that, Thiago. When I took it, some sections allowed references and some didn't, and I'm sure the format has changed since. The testing company publishes a candidate bulletin that lists what's covered and which references are allowed. That's the only document I'd trust.
+
+        From memory, business and law covered NJ licensing rules, contracts, liens, insurance, payroll and tax basics, and record keeping. Read the bulletin before you buy a single book.
+    - author: thiago_sparks
+      body: "Fair. Dale's right, that was a long time ago for me. Read the bulletin."
+    - author: Kash_sing
+      body: |
+        Ours on the HVACR side had a business and law section too. What helped me:
+        - Read the candidate bulletin first, then buy only the references it lists
+        - Practice tabbing the books; if references are allowed, the clock is the real enemy
+        - The law part is less common sense than people say, especially liens and contracts
+    - author: Passaic_Sparky
+      body: "ok so bulletin first, then books. found the bulletin, it's way longer than i expected lol. thanks"
+
+# ----------------------------------------------------------------------------
+- id: T089
+  brief: NEW-B3
+  category: B
+  topic: B3_failed_rough_in
+  when: late
+  fact_risk:
+    - "NJ homeowner permit: an owner can pull a permit for work they do themselves on their own owner-occupied single-family home"
+    - "a hired contractor pulls the permit under their own license"
+    - "a licensee working under a homeowner's permit still carries license exposure"
+  type: question
+  trade: plumbing
+  author: Dev_H
+  title: "Homeowner pulled his own permit and wants us to do the work under it"
+  body: |
+    Started at a new shop a few weeks ago, Gloucester County, service and repipes. Better place, actually sends me to school. Today a homeowner in Washington Township told my boss he'd already pulled the plumbing permit himself to "save money" and just wanted us to do the work. Boss said no and walked away from a decent job.
+
+    Is that a real rule or is my boss being stubborn? Can a homeowner even pull a plumbing permit in NJ? And if he can, why can't a licensed shop just work under it?
+  replies:
+    - author: rui_t_kearny
+      body: "Your boss isn't being stubborn. My father used to say the permit is your name on the job. As I understand it, a homeowner can pull a permit for work on his own single-family house that he lives in, when he's doing the work himself. Once he hires a contractor, the contractor is supposed to pull it under his own license. Working under the homeowner's permit doesn't take your boss's license off the line if something goes wrong."
+    - author: codebook_dale
+      body: "Not legal advice. That matches how I've seen it handled across the subcodes: the homeowner permit is for a homeowner doing his own work. Call the local construction office if you want it from them; most will explain it in two minutes."
+    - author: joyd_plumbing
+      body: "What's your actual question, whether to be mad at your boss? Don't be. He just kept his license clean."
+    - author: plumbnj77
+      body: "brother my old cash shop used to do exactly this lol. one of the reasons i left. good on your boss"
+    - author: Dev_H
+      body: "Appreciate it. Told my boss what you all said and he laughed and said now you know why I walked."

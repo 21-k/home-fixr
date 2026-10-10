@@ -42,7 +42,7 @@ export function MentorshipButton({
   if (availability === "not_accepting") {
     return (
       <span className="rounded-lg border border-zinc-300 bg-white px-3.5 py-2 text-sm font-medium text-zinc-500">
-        Not taking mentees right now
+        Not accepting mentorship requests
       </span>
     );
   }

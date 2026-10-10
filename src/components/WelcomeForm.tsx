@@ -39,15 +39,15 @@ export function WelcomeForm({ profile }: { profile: Profile }) {
               selected={role === "junior"}
               onSelect={() => setRole("junior")}
               Icon={GraduationCap}
-              title="I'm new to the trade"
-              desc="Apprentice, recent vocational grad, or career switcher. Here to learn."
+              title="I'm an apprentice"
+              desc="Apprentice, early-career tradesperson, or career switcher. Here to learn."
             />
             <RoleCard
               selected={role === "senior"}
               onSelect={() => setRole("senior")}
               Icon={Wrench}
-              title="I'm a senior pro"
-              desc="Years on the job. Happy to answer questions and mentor newcomers."
+              title="I'm a mentor"
+              desc="An experienced tradesperson. Happy to answer questions and mentor apprentices."
             />
           </div>
         </div>
@@ -153,7 +153,7 @@ export function WelcomeForm({ profile }: { profile: Profile }) {
         <div className="flex items-center justify-between gap-3">
           <p className="text-sm text-zinc-500">
             Joining as{" "}
-            <strong>{role === "junior" ? "a new entrant" : "a senior pro"}</strong>
+            <strong>{role === "junior" ? "an apprentice" : "a mentor"}</strong>
           </p>
           <button
             type="submit"
@@ -191,6 +191,7 @@ function RoleCard({
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onSelect}
       className={`rounded-xl border-2 p-5 text-left transition-colors ${
         selected ? "border-brand-500 bg-brand-50" : "border-zinc-200 bg-white hover:border-brand-500"

@@ -401,3 +401,459 @@ Seniors.
     dedupe. Fine as-is?
 12. **Next pass:** the remaining ~170 threads from `content/thread_briefs.json`, collabs with pitches,
     mentor requests (status only), follows, real heat-wave dates, and images (§5a).
+
+---
+
+## 9. Social layer (mentorships + follows), branch `feat/seed-social`
+
+The live batch `fm-2026-10` (136 Founding accounts, 20 threads) showed 0 followers and 0 mentees
+everywhere. This pass adds the social graph, fixes the helpful-vote oddities, and ships both to
+production as one additions-only SQL file.
+
+### What was built
+- **`seed/scripts/gen_social.py`** (deterministic, `common.RNG_SEED + 29`; two runs give byte-identical
+  files) → `seed/content/mentorships.json` and `seed/content/follows.json`.
+- **`gen_threads.py` `rebalance_helpful()`**: accepted answers and substantive Senior answers (40+
+  words) now lead on helpful votes. It swaps counts with the reply that outranks them (any reply when the
+  leader is accepted, only short ones under 25 words otherwise), so the thread keeps the same numbers;
+  a tie bumps the leader by 1. 11 replies in 6 threads changed (T02, T05, T07, T10, T15, T17), e.g. T15:
+  Ziggy's accepted answer 8 → 29, Rui's 21-word "Agree with Ziggy" 29 → 8. Timestamps and everything
+  else are byte-identical. **These rows are already live**, so the production file corrects them.
+- **`seed.py`** inserts mentorships and follows in the same transaction and batch (`seed_batch_id`,
+  `homefixr.seeding = 'on'`) for local seeding and for `--emit-sql`, with new checks (seeded-to-seeded
+  only, junior → senior, one active mentor per Junior, every mentee follows their mentor, nothing outside
+  the window or before both people joined). New **`--emit-additions-sql PATH`** (see below).
+  `--no-social` seeds the batch as it went live.
+- **`wipe.py`** needed no change: it already deletes `follows` and `mentorships` by `seed_batch_id`
+  before replies/posts/users, and its dependent-row refusal only counts rows *not* tagged with the batch.
+- **`qa.py`**: 50 new checks (35 on the files, 10 on the DB, 5 on rendered pages), listed under QA results.
+- `seed/content/live_helpful_fm-2026-10.json`: the helpful counts as seeded to production (from
+  `e3b036e`, confirmed on the live T15 page on Oct 7: 8 on the accepted answer, 29 on Rui's reply). The
+  additions file applies the difference from these, so real members' votes since then are kept.
+
+### How the graph was made
+**Mentorships (36: 22 active = 61%, 11 pending, 3 declined)**
+- Active mentees per Senior are set by hand: three pillars with 3–5 (ms_almonte 5, the vo-tech
+  instructor; oldsteam_zig 4; Kash_sing 3), six with 1–2, six with 0. Two of the four "not taking
+  mentees" Seniors carry actives (dreb_jman 2, codebook_dale 1), which is why they're full.
+- Pairs the threads imply come first (10 rows): threeway_02 → mbell_wireman (T01, thanked the accepted
+  answer), Edison.volts → thiago_sparks (T02, "update: got hired" at the kind of shop Thiago pointed to),
+  TryingAllThree → joyd_plumbing (T03, "the ride-along idea"), Kearny_Pipefitter → joyd_plumbing (T09,
+  "like Joy said"), Exit117Plumber → oldsteam_zig (T15), ExRetail_NowHVAC → ms_almonte (T06 + T19),
+  Flushing.sparks → dreb_jman (T04, NYC); pending: Dev_H → rui_t_kearny (T10), LiveFrontLessons →
+  thiago_sparks (T07; he thanked Dale too, but Dale isn't taking mentees), epa60812_2 → hec_does_ac (T16).
+  Every request is dated after the thread exchange.
+- The rest are drawn: Juniors weighted by path (career switcher 2.6, vo-tech 2.0, non-union 1.0, union
+  0.45) × activity (heavy 3.2, regular 2.2, occasional 0.8, lurker 0.1); matched by trade first
+  (ms_almonte and haddad_mech also take plumbing), then region; NYC Juniors only to the NYC Seniors.
+  Pending and declined requests go only to "limited" Seniors (the app hides the request button on "Not
+  taking mentees" profiles), pending ones mostly in the last three weeks. A Senior never answers their own
+  mentee's later thread as if they were strangers (the request always follows the exchange).
+- `mentorships` stores only `created_at`, so it is the request time. The accept/decline time is kept in
+  the JSON (`decided_at`) for QA: 2 h to 6 days, median about a day.
+- Result: 8/24 career switchers and 7/32 vo-tech Juniors have a mentor vs 7/65 others; regular 11/24,
+  heavy 1/6 (two more heavy Juniors have a pending request), occasional 9/42, lurkers 1/49. All 22
+  actives are in the mentor's trade; 14/22 in the same region; NYC 4/4.
+
+**Follows (389)**
+- 28/136 accounts (21%) follow nobody, mostly lurkers. Every mentee follows their mentor (22), most
+  requesters follow the Senior they asked (9), Juniors follow the Seniors who answered their threads,
+  usually within hours (23), people who replied in the same thread (Seniors who argued there, mostly)
+  follow each other (28), and the rest go by popularity × trade × region (307). Seniors follow other Seniors (49 follows) and
+  only a few standout Juniors (heavy/regular, 7).
+- Followers: pillars 22–40 (oldsteam_zig 40, Kash_sing 31, mbell_wireman 26, codebook_dale 22,
+  ms_almonte 22); other Seniors 6–14; heavy Juniors 2–8; regular 0–8 (median 3); occasional 0–3;
+  lurkers 0–1. 231/389 follows are within the same trade, 158 within the same region.
+- No follow or request is before both people joined, at 0–4 am, or after Oct 4 23:59 ET.
+
+### Per-Senior
+| handle | availability | active mentees | pending | declined | followers | follows |
+|---|---|---|---|---|---|---|
+| oldsteam_zig | limited | 4 | 1 | 0 | 40 | 4 |
+| mbell_wireman | limited | 2 | 1 | 0 | 26 | 4 |
+| thiago_sparks | limited | 1 | 3 | 0 | 14 | 4 |
+| Kash_sing | limited | 3 | 0 | 1 | 31 | 4 |
+| dhollis61 | not accepting | 0 | 0 | 0 | 12 | 5 |
+| hec_does_ac | limited | 0 | 1 | 0 | 10 | 4 |
+| codebook_dale | not accepting | 1 | 0 | 0 | 22 | 3 |
+| joyd_plumbing | limited | 2 | 0 | 0 | 11 | 2 |
+| ms_almonte | limited | 5 | 2 | 1 | 22 | 3 |
+| wchen_controls | limited | 0 | 1 | 1 | 13 | 3 |
+| haddad_mech | limited | 0 | 1 | 0 | 13 | 2 |
+| rui_t_kearny | limited | 0 | 1 | 0 | 14 | 5 |
+| tnguyen_refrig | not accepting | 0 | 0 | 0 | 11 | 6 |
+| dreb_jman | not accepting | 2 | 0 | 0 | 6 | 5 |
+| bklyn_arkady | limited | 2 | 0 | 0 | 6 | 3 |
+
+### Blocker: mentee counts can't show publicly (needs an owner decision)
+The directory card ("N mentees") and the profile ("N active mentees") count `mentorships` rows through the
+viewer's own Supabase client, but RLS on `mentorships` (schema.sql: "visible to junior or senior") lets
+only the two people involved read a row. Every other viewer, and every logged-out visitor, counts 0. So
+**the 36 seeded mentorships are in the database but every Senior will still show 0 mentees**, on local
+and in production, until the app has a way to read the count. That's true for real members too.
+Followers do show (follows are public). The fix I drafted, a `SECURITY DEFINER` function that returns
+only active-mentee *counts*, was blocked in this session as a security-weakening change, so it is **not**
+in this branch. Options for the owner: such a count-only function (row visibility unchanged), a
+`mentee_count` column kept by a trigger, or a narrower select policy on `status = 'active'` rows (which
+would expose who mentors whom). Until one ships, `qa.py --app` reports the two mentee-count checks as FAIL.
+
+### QA results (all run in this pass)
+- `uv run seed/scripts/qa.py --allow-unverified-handles` (files only): **64 pass, 2 warn, 0 fail**.
+  The 2 warnings are the existing ones (no Reddit 404s; 1 of 20 threads without replies).
+- Local cycle (`seed/reports/social_local_cycle.txt`, full output in `seed/reports/social_qa_local.txt`):
+  `qa.py --db --app http://localhost:3000 --allow-unverified-handles`: **96 pass, 2 warn, 2 fail**.
+  - The DB matches the files (36 mentorships 22/11/3, 389 follows, rebalanced helpful counts), social
+    rows are seeded-to-seeded only, every mentee follows their mentor, no Junior has two active mentors,
+    nothing falls outside the window or before a join, and seeding created no notifications. A logged-out
+    visitor sees 389 follows and 0 mentorship rows (RLS unchanged).
+  - Rendered: followers on all 136 `/u/<handle>` pages match the DB, and so do "answers" on all 136
+    profiles and "answered" on all 15 directory cards.
+  - **FAIL** `app: /mentors 'mentees' counts match the DB`: 9 of 15 cards differ, e.g. `oldsteam_zig: shows 0, DB 4`,
+    `ms_almonte: shows 0, DB 5`, `Kash_sing: shows 0, DB 3`.
+  - **FAIL** `app: /u/<handle> 'active mentees' match the DB (all 136)`: 9 differ, e.g. `oldsteam_zig: shows 0, DB 4`,
+    `mbell_wireman: shows 0, DB 2`. Both are the RLS blocker above, not data errors.
+- The local stack already held 0001–0011, the demo seed and batch `fm-2026-10` as it went live (left by the
+  other worktree), so it was **not reset**. The sequence: `seed.py --replace` with social (all checks 0);
+  wipe back to baseline; the full `--emit-sql` file through psql (136 / 20 / 99 / 36 / 389, notifications
+  unchanged); wipe; the batch exactly as live (`--no-social`, threads from `e3b036e`); **the additions file
+  through `docker exec -i supabase_db_home-fixr psql -U postgres -d postgres -v ON_ERROR_STOP=1`: COMMIT**;
+  QA; **the additions file again: refused** (`ERROR: batch fm-2026-10 already has mentorships or follows:
+  these additions were already applied`, exit 3, nothing changed); `wipe.py`: counts back to baseline
+  (13 / 5 / 4 / 3 / 0 / 11); wipe refused while a real follow pointed at a seeded account. At the end the
+  DB was restored to the state it was found in.
+- Screenshots (`seed/reports/screens/social/`): `mentors.png`, `profile-oldsteam_zig.png` (40 followers,
+  0 active mentees shown), `profile-hec_does_ac.png` (10 followers, 0 mentees).
+
+### Existing counts checked
+- **Helpful votes**: fixed as above. After the fix, every accepted answer leads its thread and no short
+  reply outvotes a substantive Senior answer (both checked by qa.py).
+- **"answered"**: the directory's "answered" and the profile's "answers" are each Senior's reply count,
+  and they match the DB. Three Seniors' counts include a reply in their own thread (Kash_sing, hec_does_ac,
+  ms_almonte), and oldsteam_zig (9 replies in 7 threads), thiago_sparks and rui_t_kearny (7 in 6 each)
+  count a second reply in the same thread. That's app semantics, not data, so it was left as is.
+- **"Accepting mentees" while full**: no seeded Senior is "accepting". The four "not taking mentees" Seniors
+  carry 0–2 actives, and nobody sent a pending or declined request to them (the app hides the button).
+
+### Production
+`seed/out/additions-social-fm-2026-10.sql` (committed; fictional data only) is one transaction. It:
+- aborts unless all 136 batch profiles are present with the expected ids and handles;
+- aborts if the batch already has mentorships or follows, or any follow or mentorship exists between two
+  batch accounts (so a second run refuses);
+- inserts 36 mentorships and 389 follows tagged `fm-2026-10`, with `homefixr.seeding = 'on'`;
+- **updates 11 already-live replies' `helpful_count`** (T02/r0, T02/r2, T05/r0, T05/r1, T07/r0, T07/r1,
+  T10/r0, T15/r0, T15/r1, T17/r0, T17/r1) by the difference from the seeded value, so votes real members
+  cast since then are kept;
+- then checks the counts by status, the totals (before + added), that notifications are unchanged, and the
+  social invariants. Any failure rolls everything back.
+
+```bash
+npx supabase --workdir ~/home-fixr/.prod db query --linked -f ~/home-fixr-social/seed/out/additions-social-fm-2026-10.sql
+```
+(Path as in this worktree; use wherever the branch is checked out.) Without the mentee-count fix above,
+production will show followers but still 0 mentees.
+
+
+---
+
+## 10. Job collabs: "Position filled" (branch `feat/seed-content`)
+
+The seeded collabs show as filled jobs, so the Jobs board looks active without dead ends for real
+members (owner-approved).
+
+### The feature (for real members too)
+- **Migration `0013_collab_filled.sql`**: `job_collabs.filled_at timestamptz null` (null = open). The
+  poster marks their own collab filled or reopens it through the existing RLS policy "posters can
+  update their own collabs" (checked: `using (auth.uid() = poster_id)`, which also checks the new row).
+  For API users a new `filled_at` is always stamped `now()` (no backdating) and `seed_batch_id` can't be
+  set or changed. A trigger refuses new applications, and applicant edits, on a filled collab
+  (`This position has been filled`, hint `collab_filled`); the poster can still accept/decline and an
+  applicant can still withdraw. It sorts before the Founding guard, so a filled seeded job says
+  "position has been filled" first. Staff/seed roles are not restricted.
+- **Hole closed:** `express_collab_interest()` (0004) is SECURITY DEFINER, so the triggers it fires saw
+  the owner role and skipped the API-only Founding guard: a real member could register interest on a
+  Founding collab through the RPC (the new DB test failed on the base branch). It now applies the founding
+  and filled rules itself.
+- **UI**: filled collabs show a **Position filled** badge, a muted card and "This position has been
+  filled, so it isn't taking applications." (logged in or out). No apply / "I'm interested" control; the
+  viewer's own status (You're in / Not this time) still shows. On Founding collabs the Founding notice
+  stays, in smaller text under the filled line. The board lists open collabs first, then filled (each
+  newest first), with **All, open first** (default) / **Open only** chips in the page (the sidebar is
+  hidden on phones) and in the sidebar, combinable with the type filter. The poster gets **Mark as
+  filled / Reopen** on their own card and in My jobs; right after accepting someone My jobs shows
+  "You accepted X. Is the position filled now? [Mark as filled]". Filling stays manual. Server actions
+  `applyToCollab` / `toggleCollabInterest` refuse filled jobs (before the Founding check);
+  `setCollabFilled` updates only the caller's own collab. Collab bodies keep their line breaks.
+- Screenshots (`seed/reports/screens/collabs/`): `collabs-desktop.png`, `collabs-mobile.png`,
+  `filled-collab-card.png` (logged out), `filled-collab-card-signed-in.png`, `collabs-open-only.png`,
+  `my-jobs-offer-mark-filled.png`.
+
+### Content: 20 collabs, 61 pitches
+`seed/content/collabs.authored.yaml` (hand-written in the persona voices) → `gen_collabs.py` (validates,
+fills application detail from each persona, adds timestamps) → `seed/content/collabs.json`.
+- 12 Seniors post (the union foreman-type and inspector personas who wouldn't hire, dhollis61,
+  codebook_dale, dreb_jman, don't). Types: 12 extra_hand, 6 ride_along, 2 specialist; pay 12 day_rate,
+  5 unpaid, 3 flexible. Town level only ("Clifton, NJ", "Bay Ridge, Brooklyn").
+- 2-4 pitches each from Juniors in the job's trade and region; union apprentices are left out of paid
+  side work. Exactly one accepted per collab; 25 declined, 16 still pending (`interested`). 7 accepted
+  pitches are from the poster's active mentee, each sent after the mentorship was accepted.
+- Pitch detail comes from the persona: years in = `years_in`, graduation year from a vo-tech grad's
+  affiliation, age band from a stated age, licence = EPA 608 where the persona holds it. No CV files.
+- Dates: jobs Aug 3 - Oct 1; posted 6-9 days before; pitches between posting and the night before;
+  accept/decline after the pitch; `filled_at` after every pitch and the accept, before the job day. All
+  inside Jul 24 - Oct 4 ET, none at 0-4 am; posters and applicants joined first. Cross-collab arcs stay in
+  order (ParkwayPipes' "third time pitching", hector.hvac's "shadow week last month").
+- Hedged facts: certified payroll + district background check on a public school job (haddad_mech); an
+  EPA 608 card is needed to handle refrigerant (C19, C20); the NYC gas inspector sets the day (C08).
+
+| id | poster | title | type | date | applicants | accepted |
+|---|---|---|---|---|---|---|
+| C01 | oldsteam_zig | Extra set of hands Sat for a boiler swap in Clifton. 8 hrs, day rate, you learn | extra_hand | 2026-08-15 | 3: big_hector_plumb (declined), ParkwayPipes (declined) | big_paulie_plumb |
+| C02 | haddad_mech | One helper for a week on a school unit-ventilator job, Willingboro | extra_hand | 2026-08-03 | 2: Ryan.N (declined) | Dev.R |
+| C03 | thiago_sparks | Extra hand Saturday: rewire on a raised house in Long Branch, day rate | extra_hand | 2026-08-15 | 3: PullingWireAgain (pending), JunctionBoxJunkie (declined) | RookieWireman |
+| C04 | hec_does_ac | Shadow a service tech for a week, Camden County (week of Aug 17) | ride_along | 2026-08-17 | 3: Ryan.N (pending), dahvacnj (declined) | hector.hvac |
+| C05 | joyd_plumbing | Helper for 3 days on a riser job in Jersey City | extra_hand | 2026-08-19 | 2: ParkwayPipes (declined) | big_hector_plumb |
+| C06 | Kash_sing | Helper needed: heat pump install, Edison, 2 days | extra_hand | 2026-08-18 | 4: condensate_3way (pending), zghvacnj (declined), GreenhornHVAC (declined) | big_zach_hvac (mentee) |
+| C07 | rui_t_kearny | Saturday of water heater swaps around Kearny, need an extra hand | extra_hand | 2026-08-22 | 2: big_paulie_plumb (declined) | ParkwayPipes |
+| C08 | bklyn_arkady | Helper for a gas test + inspection day, Bay Ridge brownstone | extra_hand | 2026-08-27 | 3: BayRidge.traps (declined), LateStartPlumber (pending) | briplumb87 (mentee) |
+| C09 | ms_almonte | Saturday mini-split install in Wayne, one helper | extra_hand | 2026-08-29 | 4: deshawn.hvac (declined), Bergen_Ducts (declined), epa608_672 (pending) | DinerCoffeeHVAC (mentee) |
+| C10 | mbell_wireman | Ride-along for an apprentice interested in commercial: Secaucus fit-out, 2 days | ride_along | 2026-09-01 | 4: hudson_conduit (pending), WawaRunWired (declined), panelchanger_200amp (declined) | threeway_02 (mentee) |
+| C11 | wchen_controls | shadow a controls tech for a day, bms service calls around bridgewater | ride_along | 2026-09-10 | 3: WiremanFromPiscataway (declined), JunctionBoxJunkie (pending) | PullingWireAgain |
+| C12 | haddad_mech | Extra hand Saturday: restroom rough-in at a warehouse, Mount Laurel | extra_hand | 2026-09-12 | 3: codyplumb83 (declined), emeka.plumb (pending) | big_nicole_plumb |
+| C13 | joyd_plumbing | Saturday helper, boiler room cleanup and new feed in a Hoboken co-op | extra_hand | 2026-09-19 | 3: sweatjoint200amp (declined), EssexPipes (pending) | Kearny_Pipefitter (mentee) |
+| C14 | tnguyen_refrig | ride along on walk-in calls, atlantic city, end of season | ride_along | 2026-09-15 | 3: dahvacnj (pending), hector.hvac (declined) | Ryan.N |
+| C15 | thiago_sparks | Helper for a service upgrade on a raised house in Sea Bright | extra_hand | 2026-09-21 | 3: WiremanFromPiscataway (pending), DripLoopDays (declined) | Edison.volts (mentee) |
+| C16 | ms_almonte | Ride-along Sunday: load calc and duct survey on a Clifton Cape | ride_along | 2026-09-20 | 3: JerseyDuctwork (declined), deshawn.hvac (pending) | epa60812_2 |
+| C17 | oldsteam_zig | Steam job in Garfield Saturday: need someone who isn't afraid of a basement | extra_hand | 2026-09-26 | 4: big_hector_plumb (declined), EssexPipes (declined), NorthJersey_Plumber (pending) | sweatjoint200amp (mentee) |
+| C18 | rui_t_kearny | Ride-along week at a small shop in Kearny, for a vo-tech grad | ride_along | 2026-09-28 | 2: EssexPipes (declined) | NorthJersey_Plumber |
+| C19 | hec_does_ac | Need someone with their 608 for a rooftop PM day in AC | specialist | 2026-09-29 | 4: ExRetail_NowHVAC (declined), sam2214 (pending), big_ben_tools (pending) | dahvacnj |
+| C20 | Kash_sing | Need a 608-certified helper for recovery on two changeouts, South Brunswick | specialist | 2026-10-01 | 3: Raritan.airside (pending), middlesex_coils (declined) | matt_the_hvac |
+
+### QA
+`qa.py` gained 14 file checks, 10 DB checks and 7 rendered-page checks for collabs (counts, one accepted,
+filled after the last pitch, dates and window, joined-before, trade/region, mentee timing, town-level,
+persona detail, voice, 12-gram overlap; DB counts/statuses/filled/interested_count/seeded-only/no CV/no
+notifications/RLS, and a simulated real member refused on all 20; the Jobs page logged out and signed
+in). The Playwright suite is only on `fix/ui-navigation` (PR #7), so the app flow is a script instead:
+`npm run test:app` (`tests/app/collabs-filled.mjs`, needs `npm run dev` + local Supabase). It signs up
+throwaway local members and drives the real app: every seeded collab filled with no apply control,
+open first, Open only; then a real poster's flow (post, apply, accept, My jobs offers Mark as filled,
+the real server action fills it, the applicant and others see Position filled, a new application and
+the old RPC are refused, Reopen via the server action, someone else can't fill it). 19/19.
+
+Local cycle (`seed/reports/collabs_local_cycle.txt`, QA output `seed/reports/collabs_qa_local.txt`):
+`qa.py --db --app http://localhost:3000 --allow-unverified-handles --member-cookie …`: **129 pass, 2
+warn, 0 fail** (the two existing warnings). `npm run lint` clean, `npm run build` OK, `npm test` 20/20
+(one pre-existing failure fixed: the About-sentence test still expected the pre-9935b23 wording),
+`npm run test:db` 24/24 (8 new).
+
+### Production order (collabs)
+0. Prerequisite: PR #8's social layer is live (0012 + `additions-social-fm-2026-10.sql`); the collabs
+   file checks for the mentorships it builds on.
+1. Migration first (before the merge, since the app selects `filled_at`): `0013_collab_filled.sql` on production (db push / SQL editor). It is idempotent.
+2. Merge the PR (the app reads `filled_at`; deploy).
+3. `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/additions-collabs-fm-2026-10.sql`
+
+The collabs file refuses unless 0013 is in, all 136 batch profiles match, and the social additions are
+in (it checks the 7 mentee pitches' mentorships); it refuses a second run; notifications unchanged.
+
+
+---
+
+## 11. Full thread set: 213 threads (branch `feat/seed-content`)
+
+The five writer drafts (`seed/content/drafts/threads.{A,B,C,DF,E}.authored.yaml`, T021-T213) merged with the
+20 live threads. Every change to a draft is logged with the original text in
+`seed/reports/integration_edits.md`.
+
+### Pipeline
+```bash
+uv run seed/scripts/gen_threads.py check seed/content/drafts/threads.E.authored.yaml   # any file, alone (--alone) or with the samples
+uv run seed/scripts/gen_threads.py full            # 20 live (pinned) + all drafts -> content/threads.json, persona_memory, fact_checklist
+uv run seed/scripts/relabel_activity.py            # Juniors' activity_level by posts (49/42/24/6 kept)
+uv run seed/scripts/schedule.py --full --end 2026-10-04   # -> content/threads.scheduled.json (live timestamps pinned)
+uv run seed/scripts/qa.py --threads content/threads.scheduled.json [--db --app http://localhost:3000 --member-cookie ...]
+uv run seed/scripts/seed.py --emit-threads-sql seed/out/additions-threads-fm-2026-10.sql --threads content/threads.scheduled.json
+```
+- **gen_threads.py**: `check` validates any authored file, either alone or merged (it covers authors, lengths, voice rules, unique ids and titles, `when`, and topics present in themes.yaml). `full` keeps the live threads byte-for-byte (text, helpful counts, accepted flags and timestamps all come from `threads.sample.scheduled.json`). New threads get helpful counts by the same rules as before: log-normal draws, then `rebalance_helpful` so that accepted answers and substantive Senior answers lead. That moved 63 replies. themes.yaml gained the writers' 32 new topic ids.
+- **schedule.py --full**: each live thread uses up its own day's slot, and the 193 new threads fill the rest of `daily_plan`. Each new thread gets a date window built from these limits:
+  - its whole cast has joined;
+  - its `when` hint (soft by 7 days at each edge);
+  - follow-ups land 4+ days after the thread they follow (T021 and T131 after T12, T042 after T03, T049 after T10, T099 after T04);
+  - the writer-flagged windows (T125 by Aug 16, T124 from Sep 28);
+  - a Junior who names their mentor posts after the mentorship started;
+  - an active mentor answering their mentee like a stranger must do it before the request;
+  - long threads stay clear of the last days, so nothing piles up at 11:59pm on Oct 4.
+
+  The schedule fills the windows earliest deadline first, then spreads any leftovers onto the least-loaded days. Bumped replies also stay out of 0-4am.
+- **relabel_activity.py**: see "Activity caps" below.
+- **seed.py --emit-threads-sql**: see "Production".
+
+### Merged totals and distributions (QA output, `seed/reports/full_qa_local.txt`)
+- **213 threads, 1,224 replies** (193 new with 1,125 replies; the drafts had 1,139, and the integration removed 14). Senior starters: 32 (15%).
+- Category mix against plan §4: A 47 (22.1% vs 22), B 30 (14.1 vs 14), C 43 (20.2 vs 20), D 30 (14.1 vs 14), E 38 (17.8 vs 18), F 25 (11.7 vs 12).
+- NYC: 23/213 = 10.8%. Zero-reply threads: 18 = 8.5%.
+- Reply depth: 62/29/10% of threads with replies fall in 2-5/6-12/13-25, with a max of 24. Lengths are right-skewed: bodies median 90 / mean 92 words, replies median 31 / mean 37.
+- Posting hours: 80% in the §6 windows, none at 0-4am, 2 on Friday nights. Thread volume follows `daily_plan`: 40 of 73 days exact, 11 off by 2-3 (writers' hints lean late September).
+- Overlap: no 12-word overlaps across all 213 threads. 227 pairs share an 8-gram. 214 of them are the same persona repeating a catchphrase (haddad_mech's "here's what I look for when I hire", for example). The 13 cross-person ones are stock phrases ("sorry if this is a dumb question but").
+- Helpful/accepted: 56% of the 177 threads with 3+ replies have an accepted answer. Every accepted answer leads its thread. No short reply outvotes a substantive Senior answer. Accepted answers come only from Seniors or Juniors with 2+ years.
+- `when` hints: 120 of 169 fall strictly inside their window and the rest within 7 days. Seven hints are impossible because the cast hadn't all joined yet (T065, T070, T073, T074, T075, T083, T084); those threads land just after the last join.
+- Only one pork roll thread (T20). T165 is the Wawa/QuickChek follow-up.
+
+Per-persona posts (threads + replies), top 15:
+
+| # | persona | role / activity | threads | replies | total |
+|---|---|---|---|---|---|
+| 1 | Kash_sing | senior / heavy | 5 | 71 | 76 |
+| 2 | oldsteam_zig | senior / heavy | 3 | 62 | 65 |
+| 3 | mbell_wireman | senior / heavy | 3 | 60 | 63 |
+| 4 | codebook_dale | senior / heavy | 3 | 58 | 61 |
+| 5 | thiago_sparks | senior / regular | 1 | 49 | 50 |
+| 6 | hec_does_ac | senior / regular | 3 | 44 | 47 |
+| 7 | haddad_mech | senior / regular | 2 | 42 | 44 |
+| 8 | rui_t_kearny | senior / regular | 2 | 40 | 42 |
+| 9 | ms_almonte | senior / heavy | 3 | 39 | 42 |
+| 10 | joyd_plumbing | senior / regular | 1 | 40 | 41 |
+| 11 | dreb_jman | senior / regular | 4 | 30 | 34 |
+| 12 | tnguyen_refrig | senior / regular | 1 | 32 | 33 |
+| 13 | benplumb79 | junior / heavy | 9 | 23 | 32 |
+| 14 | bklyn_arkady | senior / regular | 0 | 26 | 26 |
+| 15 | JerseyTomatoWires | junior / heavy | 4 | 21 | 25 |
+
+Top Juniors: benplumb79 32, JerseyTomatoWires 25, plumbguy917 24, peteplumb80 24, neutral_bar_99 24, JunctionBoxJunkie 23, Dev_H 21, HeatwaveOnCall 19
+
+### Activity caps (deviation, by arithmetic)
+The plan's caps (occasional ≤3, regular ≤8, heavy ≤15) can't all hold at this volume. The caps' midpoints
+add up to ~330 Junior posts, but the threads have ~790 (×2.4). Juniors already write 55% of the posts; meeting the
+caps would need Seniors to write about 75%. So:
+- **Lurkers:** at most 2 posts each, as asked.
+- **Zero posts:** ≥20% of users have none, 28/136. Getting there removed 8 one-line me-too replies (logged).
+- **Heavy:** the cap is ×2.4. benplumb79's 32 is the top.
+- **Levels re-ranked:** `relabel_activity.py` hands out levels by post count, keeping the plan mix of 49/42/24/6. 22 Juniors changed level. The ranges are now lurker 0-2, occasional 3-10, regular 10-21, heavy 23-32. `activity_level` is seed-only: there is no column and nothing renders it. The social graph QA still passes with the new levels.
+- **Pillars:** the heavy Seniors post more than the median regular Senior. ms_almonte (42) is the quietest pillar; thiago_sparks (50) and hec_does_ac (47) are busier regulars.
+
+### QA added for the full set (all PASS)
+- Plan distributions as above.
+- The live threads are unchanged.
+- Every post comes after its author joined (new threads: after the whole cast), and replies are in order inside the window.
+- Hints, follow-ups and the writer-flagged windows (T125 before Aug 17, including dreb_jman's replies; T124 Sep 28 - Oct 4; T099 after T04's last reply).
+- Mentees credit a mentor only after the mentorship started. No active mentor answers their mentee like a stranger; this rule is now active-only, since a "pending" or "declined" Senior can answer anyone.
+- "update:"/"edit:" replies come at least as late as the time they say has passed.
+- Date-bound statements from the persona review land on true dates.
+- Persona consistency across ALL threads (regex checks on self-statements): years, age, town, trade, union vs non-union, licences (EPA 608 claims against the persona's licences and `license_since`), "my mentor", school year, and employer type.
+- Lowercase voices stay lowercase.
+- Activity, zero-post users, Senior pillars, and the helpful/accepted rules.
+- A posting-hour histogram.
+
+The follow-graph check "Juniors follow the Senior they accepted" stays on the 20 threads the graph was built from. The graph is in PR #8 and wasn't regenerated.
+
+Persona review: a second pass read every first-person sentence of 95 personas against their records. It found 13 contradictions, all fixed with minimal draft edits:
+- threeway_02 hadn't started his job yet in August;
+- ExRetail_NowHVAC's job starts Sep 28;
+- groundrod_05: 2 years in, the interview timeline, and the Bronx→Queens move;
+- JunctionBoxJunkie: school was out in summer;
+- peteq75;
+- RainDayRestock;
+- TryingAllThree's ride-along story;
+- hudson_conduit's commute;
+- Flushing.sparks' weekend job;
+- big_hector_plumb;
+- HeatwaveOnCall's 608 test;
+- OpenNeutralBlues;
+- emt_bender_200amp.
+
+Left for the owner (live, so not editable here):
+- T20: hec_does_ac says "I'm from Gloucester County" against his Camden/Cherry Hill profile. This could be read as where he grew up.
+- In live T06/T19, ExRetail "starts next month" (Sep 14) and then "Monday" (Sep 26).
+- T06/r4 isn't lowercase for a lowercase voice.
+- In T06, ms_almonte accepts her own reply.
+- `years_experience` (live) looks off for two Juniors: chris.plumb (2, vo-tech '25) and epa608_672 (0, vo-tech '24 with a first job).
+
+### Persona changes (`seed/personas/juniors.json`)
+- **Class of '26 → '27** (they are current students and seniors in fall 2026, as the live T15 "vo-tech senior" in August already implies). Affected: UndecidedTradesKid, OpenNeutralBlues, BentConduitClub, Raritan.airside, Exit117Plumber, JunctionBoxJunkie, GSP_Exit82 and big_ben_tools. The change is in `affiliation_hint` and `claims` (seed-only).
+- **Rendered on live profiles: 2 bios.** The threads SQL updates both, guarded: only where the bio is still the seeded text.
+  - Exit117Plumber: "…county vo-tech. Graduating 2026. Trying…" → "…Graduating 2027. Trying…"
+  - GSP_Exit82: "…county vo-tech, graduating 2026. trying…" → "…graduating 2027. trying…"
+- **Licences earned in the content** (seed-only):
+  - ExRetail_NowHVAC: EPA 608 Universal since 2026-09-26 (live T19).
+  - plumbguy917: Type II since 2026-09-29 (T086).
+  - CentralJersey_Coils: Universal since 2026-10-03 (T167).
+
+  gen_collabs.py now dates the licences, so a pitch only shows a licence held when it was sent.
+- **activity_level:** 22 Juniors re-ranked (listed in integration_edits.md).
+- In draft T093, neutral_bar_99's "junior year" became "senior year" (he's class of '27).
+
+### Collab notes changed to agree with the threads
+- C19 ExRetail_NowHVAC: "testing next month" → "testing for my 608 this week". He passes Sep 26 in live T19.
+- C08 briplumb87: "the drain company" → "the shop". He works for a small plumbing shop in T087 and T053.
+
+The collabs SQL was re-emitted.
+
+### Also fixed in the app
+`/mentors` counted "answered" by selecting every reply and tallying. That silently stopped at the API's 1,000-row
+`max_rows` cap once the site had more than 1,000 replies: oldsteam_zig showed 0 instead of 62. It now runs an
+exact count per listed mentor. Production has the same 1,000-row default, so after the threads go live the
+directory would have shown wrong counts without this fix.
+
+### Fact checklist
+`seed/reports/fact_checklist.md` holds 307 distinct claims, grouped by topic with their thread ids, deduplicated. They
+come from the writers' `fact_risk` (and themes.yaml for the live threads). The sentence-level flags are in
+`seed/reports/fact_lint.md`, which covers all 213 threads; 341 of its sentences are marked not hedged. The §5 list still applies.
+
+### Local cycle (`seed/reports/full_local_cycle.txt`)
+The sequence was:
+1. `db reset`
+2. 0001-0011 + demo seed (baseline 9/5/4)
+3. The batch as live: threads from e3b036e, no social, live bios
+4. Social additions SQL
+5. 0012
+6. 0013
+7. Collabs SQL: COMMIT
+8. **Threads SQL: COMMIT.** 213 threads and 1,224 replies; notifications stayed at 11; both bios updated.
+
+**Running the threads file again refused** ("some of the new threads already exist", exit 3, nothing changed).
+
+The checks against that state:
+- `qa.py --threads content/threads.scheduled.json --db --app http://localhost:3000 --allow-unverified-handles --member-cookie …`: **164 pass, 1 warn (Reddit 404s), 0 fail**. All 213 thread pages render with badges, and all 136 profiles' follower, mentee and answer counts match the DB.
+- `npm run test:app`: 19/19.
+- `wipe.py`: back to baseline (9/5/4/3/0/3/0/4/11/0/9).
+- The full state was restored afterwards.
+- `npm run lint` clean, `npm run build` OK, `npm test` 20/20, `npm run test:db` 24/24.
+
+Screenshots: `seed/reports/screens/feed/feed-{desktop,mobile}.png` and `seed/reports/screens/collabs/*`. Locally,
+the 5 demo posts (created at seed time, "1m ago") sit above the seeded ones.
+
+### Production (whole pass), in order
+0. PR #8 (social): 0012 + `additions-social-fm-2026-10.sql`, if not already applied.
+1. **0013 on production** (db push / SQL editor), before the merge, because the app selects `filled_at`.
+2. **Merge this PR** (deploy).
+3. **Collabs:** `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/additions-collabs-fm-2026-10.sql`
+4. **Threads:** `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/additions-threads-fm-2026-10.sql`
+
+Each file is one transaction that checks itself and refuses a second run. The threads file needs only the live batch, and it
+updates the two bios. Re-run `qa.py` against production pages afterwards if a read-only check is wanted.
+
+
+---
+
+## 12. External review: wording, UX and authorship labels (branch `release/founding-launch`)
+
+The founding profiles are team-written personas (121 apprentices, 15 mentors), not real members, so the
+review's "prepared by … approved by [name]" labels were not implemented. Instead:
+- **Post-level label.** Every post, reply and ride-along whose author `is_founding_member` (or whose row has a
+  `seed_batch_id`) shows **"Team-written example • AI-assisted"** (`TeamWrittenLabel`, rule `isTeamWritten()` in
+  `src/lib/founding.ts`): feed cards, search results, profile Recent posts and Recent answers, the thread post and
+  every reply, seeded collab cards. Text + icon + border (not colour-only), 12px, links to About. Notifications
+  show no snippets, so they carry no label. The Founding Community badge stays on accounts.
+- **Disclosure copy.** `FOUNDING_ABOUT_SENTENCE` is the new sentence; the profile/contact notice now reads "This is
+  an example profile prepared by the Home Fixr team…"; seeded collabs say "This is a team-written example posted
+  from a Founding Community profile…".
+- **Vocabulary.** Interface copy only (DB enums unchanged): Apprentice / Mentor (experienced tradesperson outside
+  mentorship flows), "Ride-alongs and collaborations" (nav: "Ride-alongs"), Apprentice ride-along, resume,
+  license/judgment, "1 year"/"N years" (`yearsLabel`). Member and persona text is untouched.
+- **Seeded collab copy.** C10's title/body said "Junior" (team copy, not live): now "apprentice". `collabs.json`
+  regenerated and `additions-collabs-fm-2026-10.sql` re-emitted (one row changed). Local re-apply and refusal of a
+  second run: `seed/reports/review_changes_collabs_cycle.txt`.
+- **Homepage.** No registration/member totals existed; none were added. Mock screenshots are marked "Illustration".
+- QA (`seed/reports/review_changes_qa_local.txt`): 167 pass, 1 warn (Reddit 404s), 0 fail; new checks for the
+  label on /feed (only on team-written cards) and on all 213 thread pages (post + every reply), the example-profile
+  notice on all 136 profiles, and the new About sentence. Screenshots: `e2e/reports/review-changes/{before,after}/`.

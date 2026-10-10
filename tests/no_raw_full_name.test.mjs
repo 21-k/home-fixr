@@ -18,7 +18,7 @@ const ALLOWED = new Set([
   "src/components/DisplayPreferenceField.tsx", // the "full_name" preference value, own settings
   "src/components/WelcomeForm.tsx", // own name, private
   "src/app/welcome/page.tsx", // "Welcome, <first name>" to the member themself
-  "src/app/join/page.tsx", // signup form field
+  "src/app/join/join-form.tsx", // signup form field
 ]);
 
 function walk(dir) {
@@ -78,12 +78,11 @@ test("Founding Community badge is wired into profile header, post cards, replies
   assert.match(cols, /is_founding_member/);
 });
 
-test("About page carries the §0.3 disclosure sentence verbatim", () => {
-  const founding = readFileSync(join(ROOT, "src/lib/founding.ts"), "utf8");
-  assert.ok(
-    founding.includes(
-      "Our earliest discussions were seeded by the Home Fixr team, with help from NJ tradespeople, to show how the community works. Founding Community accounts are marked.",
-    ),
+test("About page carries the disclosure sentence verbatim (review-changes wording)", async () => {
+  const { FOUNDING_ABOUT_SENTENCE } = await import("../src/lib/founding.ts");
+  assert.equal(
+    FOUNDING_ABOUT_SENTENCE,
+    "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Those posts are labeled \u201cTeam-written example \u2022 AI-assisted\u201d, and example profiles carry a Founding Community badge. Founding Community profiles are not real members and can't be messaged.",
   );
   const about = readFileSync(join(ROOT, "src/app/about/page.tsx"), "utf8");
   assert.match(about, /FOUNDING_ABOUT_SENTENCE/);

@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { FileText } from "lucide-react";
@@ -8,6 +9,7 @@ import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { findProfileByHandle } from "@/lib/profile-lookup";
+import { loginHref } from "@/lib/next-path";
 import { profileHeadline, timeAgo } from "@/lib/format";
 import {
   CV_SIGNED_URL_SECONDS,
@@ -27,6 +29,8 @@ type Message = {
   created_at: string;
 };
 
+export const metadata: Metadata = { title: "Messages" };
+
 export default async function ConversationPage({
   params,
 }: {
@@ -34,7 +38,7 @@ export default async function ConversationPage({
 }) {
   const { username } = await params;
   const me = await getCurrentProfile();
-  if (!me) redirect("/login");
+  if (!me) redirect(loginHref(`/messages/${username}`));
 
   const supabase = await createClient();
   const other = await findProfileByHandle(supabase, username);
@@ -81,7 +85,9 @@ export default async function ConversationPage({
         <div className="flex items-center gap-3 border-b border-zinc-200 p-4">
           <Avatar person={other} size="md" href={`/u/${other.username}`} />
           <div>
-            <UserName person={other} className="font-semibold hover:text-brand-500" />
+            <h1 className="text-base">
+              <UserName person={other} className="font-semibold hover:text-brand-500" />
+            </h1>
             <div className="text-xs text-zinc-600">{profileHeadline(other)}</div>
           </div>
         </div>
@@ -98,7 +104,10 @@ export default async function ConversationPage({
                 ? attachmentUrls.get(m.attachment_path)
                 : undefined;
               return (
-                <div key={m.id} className={mine ? "self-end text-right" : "self-start"}>
+                <div
+                  key={m.id}
+                  className={`max-w-[85%] ${mine ? "self-end text-right" : "self-start"}`}
+                >
                   {m.attachment_path && (
                     <div className="mb-1">
                       <Attachment
@@ -111,7 +120,7 @@ export default async function ConversationPage({
                   )}
                   {m.body && (
                     <div
-                      className={`inline-block max-w-md rounded-2xl px-3.5 py-2 text-sm ${
+                      className={`inline-block max-w-md whitespace-pre-wrap rounded-2xl px-3.5 py-2 text-left text-sm wrap-anywhere ${
                         mine
                           ? "bg-brand-500 text-white"
                           : "bg-zinc-100 text-zinc-900"

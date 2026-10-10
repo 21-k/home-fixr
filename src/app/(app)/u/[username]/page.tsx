@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
@@ -7,13 +8,20 @@ import { FoundingBadge } from "@/components/FoundingBadge";
 import { FollowButton } from "@/components/FollowButton";
 import { MentorshipButton } from "@/components/MentorshipButton";
 import { PostCard } from "@/components/PostCard";
+import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { displayName } from "@/lib/display";
-import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
-import { AVAILABILITY_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import { FOUNDING_CONTACT_MESSAGE, isTeamWritten } from "@/lib/founding";
+import {
+  AVAILABILITY_LABEL,
+  SELF_REPORTED_NOTE,
+  profileHeadline,
+  timeAgo,
+} from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { findProfileByHandle } from "@/lib/profile-lookup";
+import { loginHref } from "@/lib/next-path";
 import { createClient } from "@/lib/supabase/server";
 import type { AuthorLite, MentorshipStatus, Post } from "@/lib/types";
 
@@ -23,8 +31,18 @@ type ReplyWithPost = {
   is_accepted: boolean;
   helpful_count: number;
   created_at: string;
-  post: { id: string; title: string } | null;
+  seed_batch_id: string | null;
+  post: { id: string; slug: string | null; title: string } | null;
 };
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ username: string }>;
+}): Promise<Metadata> {
+  const profile = await findProfileByHandle(await createClient(), (await params).username);
+  return { title: profile ? `${displayName(profile)} (@${profile.username})` : "Member not found" };
+}
 
 export default async function ProfilePage({
   params,
@@ -77,7 +95,7 @@ export default async function ProfilePage({
     .eq("following_id", profile.id);
   const followerCount = followerCountRaw ?? 0;
 
-  const [{ data: postsData }, { data: repliesData }, { count: menteeCount }, { count: collabCount }, { count: answeredCount }] =
+  const [{ data: postsData }, { data: repliesData }, { data: menteeRows }, { count: collabCount }, { count: answeredCount }] =
     await Promise.all([
       supabase
         .from("posts")
@@ -87,15 +105,12 @@ export default async function ProfilePage({
         .limit(5),
       supabase
         .from("replies")
-        .select("id, body, is_accepted, helpful_count, created_at, post:posts ( id, title )")
+        .select("id, body, is_accepted, helpful_count, created_at, seed_batch_id, post:posts ( id, slug, title )")
         .eq("author_id", profile.id)
         .order("created_at", { ascending: false })
         .limit(5),
-      supabase
-        .from("mentorships")
-        .select("*", { count: "exact", head: true })
-        .eq("senior_id", profile.id)
-        .eq("status", "active"),
+      // Count only: mentorship rows are private to the two people involved (0012).
+      supabase.rpc("active_mentee_counts", { p_senior_ids: [profile.id] }),
       supabase
         .from("job_collabs")
         .select("*", { count: "exact", head: true })
@@ -105,6 +120,7 @@ export default async function ProfilePage({
         .select("*", { count: "exact", head: true })
         .eq("author_id", profile.id),
     ]);
+  const menteeCount = ((menteeRows ?? []) as { mentees: number }[])[0]?.mentees ?? 0;
 
   const posts = (postsData ?? []) as unknown as (Post & { author: AuthorLite | null })[];
   const answers = (repliesData ?? []) as unknown as ReplyWithPost[];
@@ -112,17 +128,13 @@ export default async function ProfilePage({
   const sidebar = (
     <nav>
       <SideSection>Back</SideSection>
-      <Link href="/mentors">
-        <SideLink>← All mentors</SideLink>
-      </Link>
-      <Link href="/feed">
-        <SideLink>← Back to feed</SideLink>
-      </Link>
+      <SideLink href="/mentors">← All mentors</SideLink>
+      <SideLink href="/feed">← Back to feed</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
+    <AppBody sidebar={sidebar} mobileLabel="Back">
       <section className="mb-4 flex flex-col gap-5 rounded-xl border border-zinc-200 bg-white p-6 sm:flex-row">
         <Avatar person={profile} size="xl" />
         <div className="flex-1">
@@ -134,11 +146,14 @@ export default async function ProfilePage({
           <p className="mt-0.5 text-sm text-zinc-600">{profileHeadline(profile)}</p>
           {profile.role === "senior" && (
             <p className="mt-1 text-[13px] text-zinc-500">
-              Mentoring: {AVAILABILITY_LABEL[profile.mentor_availability]}
+              {AVAILABILITY_LABEL[profile.mentor_availability]}
             </p>
           )}
+          <p className="mt-1 text-xs text-zinc-500" data-testid="self-reported-note">
+            {SELF_REPORTED_NOTE}
+          </p>
           {profile.bio && (
-            <p className="mt-3 text-sm leading-relaxed text-zinc-700">
+            <p className="mt-3 text-sm leading-relaxed text-zinc-700 wrap-anywhere">
               {profile.bio}
             </p>
           )}
@@ -162,12 +177,12 @@ export default async function ProfilePage({
                   <Link href="/mentors?avail=accepting" className="font-medium underline">
                     mentor directory
                   </Link>{" "}
-                  by &ldquo;Accepting mentees&rdquo;.
+                  by &ldquo;{AVAILABILITY_LABEL.accepting}&rdquo;.
                 </p>
               </>
             ) : !viewer ? (
               <Link
-                href="/login"
+                href={loginHref(`/u/${profile.username}`)}
                 className="rounded-lg bg-brand-500 px-3.5 py-2 text-sm font-medium text-white hover:bg-brand-600"
               >
                 Sign in to connect
@@ -215,7 +230,7 @@ export default async function ProfilePage({
             <Stat value={answeredCount ?? 0} label="answers" />
             <Stat value={followerCount} label="followers" />
             <Stat value={menteeCount ?? 0} label="active mentees" />
-            <Stat value={collabCount ?? 0} label="collabs posted" />
+            <Stat value={collabCount ?? 0} label="opportunities posted" />
           </dl>
         </div>
       </section>
@@ -226,13 +241,13 @@ export default async function ProfilePage({
             Recent answers from {name}
           </h2>
           {answers.map((a) => (
-            <div key={a.id} className="border-b border-zinc-200 py-3 last:border-b-0">
+            <div key={a.id} data-testid="profile-answer" className="border-b border-zinc-200 py-3 last:border-b-0">
               <div className="mb-1 flex items-center gap-2 text-[13px] text-zinc-600">
                 <span>
                   Replied to{" "}
                   {a.post ? (
                     <Link
-                      href={`/q/${a.post.id}`}
+                      href={`/q/${a.post.slug ?? a.post.id}`}
                       className="font-medium text-zinc-900 hover:text-brand-500"
                     >
                       “{a.post.title}”
@@ -247,7 +262,9 @@ export default async function ProfilePage({
                   </span>
                 )}
               </div>
-              <p className="line-clamp-3 text-sm leading-relaxed text-zinc-700">
+              {isTeamWritten(a, profile) && <TeamWrittenLabel className="mb-1.5" />}
+              {/* pre-line keeps bullet lists on their own lines; clamp the preview. */}
+              <p className="line-clamp-5 whitespace-pre-line text-sm wrap-anywhere leading-relaxed text-zinc-700">
                 {a.body}
               </p>
               <div className="mt-1 inline-flex items-center gap-1.5 text-xs text-zinc-500">

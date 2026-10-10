@@ -1,0 +1,17 @@
+Social layer local cycle, 2026-10-07 (local Supabase stack, project home-fixr; DB found already at
+0011 + demo seed + batch fm-2026-10 as live, so no reset; the state found was restored at the end).
+
+label                  profiles posts replies mentorships follows notifications messages auth.users helpful_sum(batch replies)
+start (found)          149      25    103     3           0       11            0        149        479
+seed.py --replace      149      25    103     39          389     11            0        149        481   (full seed incl. social: all checks 0)
+wipe -> baseline       13       5     4       3           0       11            0        13         0
+--emit-sql file        +136 members, 20 posts, 99 replies, 36 mentorships, 389 follows, notifications 11 (unchanged)
+wipe; seed --no-social --threads <live e3b036e threads>  (= production today)
+live-equivalent base   149      25    103     3           0       11            0        149        479   (T15/r0 = 8, T15/r1 = 29)
+additions SQL (psql)   149      25    103     39          389     11            0        149        481   COMMIT, exit 0
+additions SQL again    exit 3: ERROR: batch fm-2026-10 already has mentorships or follows: these additions were already applied
+qa.py --db --app http://localhost:3000 --allow-unverified-handles: 96 pass, 2 warn, 2 fail (see social_qa_local.txt)
+wipe.py                deleted follows 389, mentorships 36, replies 99, posts 20, auth.users 136; left all 0
+after wipe             13       5     4       3           0       11            0        13         0     (= baseline)
+wipe refusal           a real (untagged) follow on oldsteam_zig -> wipe --dry-run refused ("real follows involving seeded accounts: 1"); test row + its notification removed
+restored               149      25    103     3           0       11            0        149        479   (= start)

@@ -1,0 +1,1332 @@
+# ---------------------------------------------------------------------------
+# Category A (Getting in): 43 threads, T021-T063. Written by hand from the
+# 29 category-A briefs in content/thread_briefs.json (brief id noted above
+# each thread) plus 14 new threads on fresh §4 A topics. Fictional people,
+# shops and quotes; real unions, schools and boards appear only as background.
+#
+# Same format as threads.sample.authored.yaml, validated by gen_threads.py.
+# Extra per-thread fields:
+#   when: early|mid|late   -> scheduling hint (early = late Jul-mid Aug,
+#                             mid = mid Aug-mid Sep, late = mid Sep-early Oct),
+#                             set where join dates, mentorships or an earlier
+#                             thread make the timing matter.
+#   fact_risk: [...]       -> claims about unions, applications, schools,
+#                             licensing or costs that a human must verify.
+# Per-reply flags: accepted: true -> replies.is_accepted (Senior or a Junior
+# with 2+ years only). Helpful counts are left to the builder.
+# ---------------------------------------------------------------------------
+threads:
+
+# ================ A1. Union vs school vs shop (and picking a shop) ================
+# brief B029
+- id: T021
+  category: A
+  topic: A1_union_vs_school_vs_shop
+  type: question
+  trade: plumbing
+  author: benplumb79
+  when: late
+  title: "Two years non-union in Somerset. Too late to try for the UA apprenticeship?"
+  body: |
+    Sorry if this has been asked a hundred times. I posted a while back about making $21 an hour near Manville. I did ask for the review. I got fifty cents and a "we'll see in the spring."
+
+    I like the work and the guys, but I keep thinking about the union apprenticeship. I'm two years in. Would I be starting over at zero? Is there any credit for time already worked, or do they not care? I'd also be risking a paycheck I count on for something I might not get.
+
+    Not trying to trash my shop, they've been fair in other ways. I just want to know if this is a smart move or a step backward.
+  fact_risk: ["whether UA programs credit prior non-union experience", "UA Local 9 covers the Manville area", "application periods"]
+  replies:
+    - author: dhollis61
+      body: "call local 9 and ask how they treat prior experience. nobody on here can tell you that for sure."
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Not a step backward. Different trade from mine, so take this as general.
+
+        Time you've already worked counts for something in the interview, because you can talk about real jobs. Whether it shortens the apprenticeship itself is a question for that program, not for me. Some programs have a way to evaluate prior experience and some don't, and those rules change.
+
+        What I'd do: apply while you keep the paycheck. Filling out an application doesn't require quitting anything. If you get called, then you decide. Stay safe.
+    - author: rui_t_kearny
+      body: |
+        I'll give you the other side. I went union for a few years and then came back to my father's shop. The benefits were real and the school was better than anything I got on the job. What I didn't like was having no say in where I went.
+
+        My father used to say a man who takes the first offer never learns what he's worth. Ask the union your questions, ask your shop what their plan for you is, then compare.
+    - author: Kearny_Pipefitter
+      body: "brother you're 2 years in and they gave you 50 cents. apply. worst case they say no and you still have the job"
+    - author: thiago_sparks
+      body: "Honestly 50 cents after two years would bug me too. But don't hear 'we'll see' as a no, small shops get squeezed in the fall. Ask him straight what you'd need to show by spring to get a real bump. If he can't answer, that's your answer."
+    - author: haddad_mech
+      body: "Here's what I look for when I hire, from the other side of the table: someone two years in who can explain what they did on a job, start to finish. That's worth more than a certificate. Union or not, keep a record of your work with dates and who supervised you. Whoever you talk to next will ask."
+    - author: oldsteam_zig
+      body: "Kid, the guys who regret it are the ones who never applied. A form costs you nothing. Keep showing up to the shop until somebody hands you something better. That's the job."
+    - author: breakerbox_884
+      body: "Local 456, 3rd year, different trade, but I did a year non-union in Linden first. My interview went way better because I actually knew what a box was. Grabbed a Wawa coffee on the way and almost spilled it on my paperwork lol."
+    - author: CondensateOverflow
+      body: "saw your raise thread. fifty cents is rough. idk about plumbing but the hvac guys I know who switched said the first year pay hurt and then it didn't"
+    - author: benplumb79
+      body: |
+        Thank you all, this is more than I expected. I'm going to call Local 9 this week and ask how prior experience works before I do anything else.
+
+        edit: called and left a message, waiting on a callback. Started writing down my last two years of jobs from my phone calendar in the meantime.
+
+# ----------------------------------------------------------------------------
+# brief B146
+- id: T022
+  category: A
+  topic: A1_union_vs_school_vs_shop
+  type: question
+  trade: electrical
+  author: JunctionBoxJunkie
+  when: mid
+  title: "My shop teacher won't stop pushing the union application. Why is he so sure?"
+  body: |
+    Some context first because it matters. I'm in the electrical program at the Mercer County vo-tech, I've been doing weekend helper stuff for a guy in Hamilton since June (mostly carrying, some pulling wire), and my shop teacher brings up the IBEW application basically every class. Like every single class. He hands out the flyer, he talks about the pension, he tells us non-union is a dead end.
+
+    The guy I work weekends for is non-union and he's doing fine. Owns two vans, takes his family to Wildwood every August.
+
+    So who's right? I'm not against the union. I just don't like being told there's one answer when I can see with my own eyes there's at least two.
+  fact_risk: ["union apprenticeship features (wage scale, benefits, school)", "IBEW Local 400 jurisdiction for Manahawkin"]
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Your teacher has probably watched what the apprenticeship did for students before you, and that's a fair reason to push it. Structured school, a wage scale that steps up on a schedule, benefits, safety training built in. Those are real.
+
+        "Dead end" is too strong, though. Plenty of non-union electricians do well, and your weekend guy is proof. The honest version: the union path is a known path, and a good non-union shop can also be a good path. Apply, keep working weekends, and decide with real offers in front of you. Stay safe.
+    - author: thiago_sparks
+      body: "Honestly I'm the non-union guy your teacher is warning you about. Own my shop in Long Branch, went to trade school, did fine. But I'll admit the union guys my age have a pension I don't. Both things are true. Don't let either side tell you the other one's a scam."
+    - author: peteq75
+      body: "Former teacher here (middle school, not shop). Teachers push the thing they've watched work for their students. Doesn't make it the only thing, but he's not trying to scam you. Sorry, I know that's not a real answer."
+    - author: JunctionBoxJunkie
+      body: |
+        > he's not trying to scam you
+
+        Fair. I didn't mean he's scamming anybody. It's the "dead end" thing that gets me, because my weekend guy clearly isn't one.
+    - author: rui_t_kearny
+      body: "I left the union and I half regret it, so take that for what it is. What I miss most is the training. What I don't miss is sitting by the phone between jobs some years. My father used to say every road has tolls, you just have to know which ones you're paying."
+    - author: haddad_mech
+      body: "Here's what I look for when I hire a kid out of vo-tech: shows up, has some hours, can pass a background check. Whether he applied to the union doesn't come into it. If you end up non-union, ask about school and how raises work before you take the job."
+    - author: Flushing.sparks
+      body: "Same thing at my school in Queens, except it's Local 3 every class. The foreman at my weekend job says the same thing yours does."
+    - author: HelperForNow
+      body: "non-union in manahawkin, 1 year. i put in for 400 anyway just to see what happens. no harm in having options"
+    - author: JerseyTomatoWires
+      body: "4th year in 164... your teacher isn't wrong and neither is your weekend guy. my foreman says some of the best apprentices he gets came from shops like that... apply and keep the weekend job"
+
+# ----------------------------------------------------------------------------
+# brief B150 (NYC starter, NJ-centred question)
+- id: T023
+  category: A
+  topic: A1_union_vs_school_vs_shop
+  type: question
+  trade: plumbing
+  author: plumbguy917
+  when: late
+  title: "Cousin in Gloucester County asked me union vs school vs shop. I only know how it works in the city"
+  body: |
+    So my cousin is 18, lives in Williamstown, just finished high school and wants to do plumbing. He asked me what to do because I'm the "plumber" in the family now lol.
+
+    Problem is I'm a first year in Local 1 in Brooklyn and everything I know is how it works in the city. I told him apply to the union and he asked which one, and I realized I have no idea what covers South Jersey. Also no idea if the county vo-tech down there does adult programs or if he should just call shops. I'd drive down the Turnpike and walk him around myself but I'm on at 6 every day.
+
+    Help me not give my cousin bad advice. He's a good kid, works at a Wawa on the Black Horse Pike right now and hates it.
+  fact_risk: ["UA Local 322 covers South Jersey", "Gloucester County vo-tech adult night programs", "background check requirements on public school jobs", "OSHA 10 cost and availability"]
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: |
+        Here's what I'd tell him, from Burlington County. There's a UA local that covers South Jersey. I believe it's 322, but have him look it up and confirm; don't go off a contractor's memory.
+
+        Separately, plenty of shops down here hire helpers straight out of high school, especially commercial and service. Tell him to have a driver's license and be ready for a background check. Those two things get kids hired more than anything on paper.
+    - author: Dev_H
+      body: "Deptford here, 15 minutes away. Plenty of shops. Does he want benefits from day one, or is he okay with cash to start? I did three years of cash and wouldn't do it again. Appreciate you looking out for him."
+    - author: oldsteam_zig
+      body: "Kid, the best thing you can tell him is to stop working at Wawa and start carrying pipe for somebody, anybody, while he figures out the rest. He'll know in a month whether he even likes it."
+    - author: joe.plumb
+      body: "Camden County vo-tech grad here... I think the county schools down here have some adult night programs but I don't know Gloucester's specifically. worth a phone call. edit: my old teacher says call the adult ed office directly, not the main number"
+    - author: plumbguy917
+      body: "Appreciate it. 322 sounds right, I'll have him check. What's the deal with the background check thing though, is that a union thing or a shop thing"
+    - author: haddad_mech
+      body: "Both, depending. A lot of our public work is in schools, so anyone on those sites has to clear whatever the district requires. Shops that don't do schools may not care. Tell him to keep his record clean and he'll never have to think about it."
+    - author: rui_t_kearny
+      body: "One thing nobody's said: tell him to keep a notebook from the first day. Every job, every date, every boss. My father kept one his whole career, and when I took over the shop it was the most useful thing he left me besides the trucks."
+    - author: thiago_sparks
+      body: "Honestly I'd put trade school on the list too, even though I'm biased. I think there's a private technical school or two around Blackwood. Costs real money though, so he should get a helper job first and find out if he likes it before signing anything."
+    - author: big_nicole_plumb
+      body: "Burlington County, 3 yrs non-union. Agree on the license and background check. Also tell him to buy a decent pair of boots before day one, my first shop sent a kid home for wearing sneakers."
+    - author: mbell_wireman
+      body: "Good on you for asking instead of guessing. One practical thing: whichever way he goes, he should get his OSHA 10 if he can find a class. It's cheap or even free in some places, it shows initiative, and it teaches him what not to do on a site. Stay safe."
+    - author: hec_does_ac
+      body: "Ha... I had a helper from Williamstown once, best kid I ever trained lol. Came from a pizza place. Tell your cousin attitude beats everything down here, and there are shops all along the Black Horse Pike that need helpers."
+    - author: plumbguy917
+      body: "update: he called two shops near Glassboro and one wants him to come in Thursday. Also told him about the notebook. Thanks everybody, this was way more than I would've known to tell him."
+
+# ----------------------------------------------------------------------------
+# brief B155
+- id: T024
+  category: A
+  topic: A1_union_vs_school_vs_shop
+  type: question
+  trade: electrical
+  author: JunctionBoxJunkie
+  when: late
+  title: "Do any non-union shops actually pay for night school?"
+  body: |
+    Follow-up to my shop teacher thread. Assume I go non-union. Everyone keeps saying "find a shop that pays for school." Okay, but do those actually exist around Mercer, or is that just something people say?
+
+    The guy I work weekends for told me he'd "think about it" when I asked. I'm not expecting a free ride. I'd just like to know what's normal to ask for before I graduate and start applying for real jobs, so I don't ask for something crazy or settle for nothing.
+  fact_risk: []
+  replies:
+    - author: thiago_sparks
+      accepted: true
+      body: "Honestly they exist, I'm one of them. I pay for night classes for my helpers once they've been with me a while, because I'd rather pay for school than keep training new guys. Not every shop does it. Ask in the interview: 'Do you help with school, and when does that start?' A shop that gets weird about the question just told you something."
+    - author: benplumb79
+      body: "Mine doesn't, for what it's worth, and I didn't ask before I took the job. I wish I had. Sorry, that's more of a warning than an answer."
+    - author: neutral_bar_99
+      body: "My cousin's shop in Totowa reimburses you after you pass the class, not before, so he had to pay up front and wait. It might be worth asking how they pay, not only whether they pay. I'm still in school myself, so this is secondhand."
+
+# ----------------------------------------------------------------------------
+# brief B164 (added ThreeWayConfusion: brief cast had 2 for 3 replies)
+- id: T025
+  category: A
+  topic: A1_union_vs_school_vs_shop
+  type: question
+  trade: hvac
+  author: dahvacnj
+  when: mid
+  title: "hvac grad here, is it dumb to apply to the ibew too"
+  body: "sorry if this is a dumb question. finished the hvac program at the ocean county vo-tech in 24, doing duct work and changeouts around toms river now, applied to the apprenticeship and waiting. my buddy says apply to the electricians too so i have two shots. is that weird to do? would they hold it against me that my schooling is hvac? thanks in advance"
+  fact_risk: ["applying to more than one apprenticeship program"]
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: "Not dumb and not weird. People apply to more than one program all the time. In the interview, be honest: say you went to school for HVAC, say what draws you to electrical, and show you've thought about it. What hurts people is looking like they'd take anything. HVAC is a good background anyway; you've already been around controls and disconnects. Stay safe."
+    - author: ThreeWayConfusion
+      body: "Local 400 2nd year here, Jackson. A guy in my class did HVAC at a vo-tech before this and he's honestly the best at controls in the room. Nobody held it against him."
+    - author: codebook_dale
+      body: "Not legal advice, just how I'd look at it: the HVAC side and the electrical side meet at the disconnect and the thermostat wire, and I write up plenty of jobs at exactly that spot. Someone who understands both sides is useful in either trade."
+
+# ----------------------------------------------------------------------------
+# brief B012
+- id: T026
+  category: A
+  topic: A1_union_vs_school_vs_shop
+  type: question
+  trade: electrical
+  author: Flushing.sparks
+  when: mid
+  title: "Weekend helper job is cutting into my program. Worth it?"
+  body: "Senior in an electrical program at a trade high school in Queens. Got a weekend helper job with a small shop in Ridgewood, Saturdays and some Sundays. Good money for me, and the foreman lets me do a little more every week. Problem is my grades slipped and my mom is on me about it. Do the hours matter more than grades if I want an apprenticeship? Or am I screwing myself."
+  fact_risk: ["whether apprenticeship applications weigh school records"]
+  replies:
+    - author: groundrod_05
+      body: "Both matter. When I applied they asked about school and about work, so I would not let either one go. Drop Sundays and keep Saturdays. You still get the experience and your mother calms down. Appreciate you asking before it got worse."
+    - author: auelecny
+      body: "Brother, I did the Army before this. Idk anything about the high school side, but I've never met anybody who regretted finishing what they started. Finish the program."
+
+# ----------------------------------------------------------------------------
+# new
+- id: T027
+  category: A
+  topic: A1_pick_the_shop_big_vs_small
+  type: question
+  trade: hvac
+  author: blowerwheel_91
+  when: late
+  title: "Two HVAC offers: big company with a sales quota or a 3-truck shop. Which one?"
+  body: |
+    Apologies if this is not the right place. Morris County vo-tech, HVAC, class of '24. I have been doing boilers and furnaces at a small place, but they are slowing down and I'm looking.
+
+    Two offers. One is a big residential company with a lot of trucks and ads everywhere. The pay is a little higher, but the techs I talked to said they are expected to sell maintenance plans and equipment, and there is a number every month. It's also down 287 every morning. The other is a small shop in Dover, three trucks, the owner still goes on calls, a bit less money, fifteen minutes from me.
+
+    I want to learn the trade properly. Which one would you take at my stage? Thanks in advance.
+  fact_risk: []
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Speaking as someone who runs a company and has no patience for quota culture:
+        - At two years in, who teaches you matters more than the extra dollar
+        - Ask the big company how much of the pay is commission or spiffs; the base is what you can count on
+        - Ask the small shop if the owner will put you on installs and service, not just maintenance
+        - Either way, ask what happens to you in January when the phones are busy and you're the junior guy
+
+        If the small shop answers those well, I'd take it.
+    - author: hec_does_ac
+      body: "I worked for a big outfit for a year early on, out of Cherry Hill. Learned a lot about talking to customers, not a lot about troubleshooting lol. Small shop if you want to fix things."
+    - author: DinerCoffeeHVAC
+      body: "Sorry if this is obvious, but my buddy works for one of those big outfits and he's stressed every month about his number. He does make good money though. Depends what you want."
+    - author: TaylorHamHVAC
+      body: "came from a call center with quotas. would not do quotas again for an extra dollar. is the small shop offering any school or 608 help? that would decide it for me"
+    - author: blowerwheel_91
+      body: "Thank you, this is helpful. I asked the small shop about installs and January, and the owner said I would be on installs with him through the winter. I'm going to take it."
+
+# ----------------------------------------------------------------------------
+# new
+- id: T028
+  category: A
+  topic: A1_which_local_jurisdiction
+  type: question
+  trade: electrical
+  author: WiremanFromPiscataway
+  when: mid
+  title: "perth amboy: which ibew local am i even supposed to apply to"
+  body: "33, left delivery driving this summer, helper at a small shop now. i want to apply to the ibew apprenticeship this year. i live in perth amboy. my coworker says 456, a guy at the supply house says i can apply anywhere i want, and someone online said you have to apply where you live. can i apply to two different locals in the same year? does it matter where i live or where i work? appreciate it"
+  fact_risk: ["IBEW Local 456 jurisdiction covers Perth Amboy", "applying to multiple locals in one cycle", "residency vs workplace rules"]
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Jurisdiction is set by each local and it isn't always obvious from a map, so call the apprenticeship office for the local you think covers Perth Amboy and ask them directly whether you're in their area.
+
+        Whether you can apply to more than one program in the same cycle, and whether it's where you live or where you work that counts, can differ from program to program. Ask each one. Write down who you talked to and when. Stay safe.
+    - author: threeway_02
+      body: "I had the same confusion in Irvington. I ended up just calling. It took five minutes and they were helpful. Much faster than asking around at the Wawa like I was doing."
+    - author: JughandleJourneyman
+      body: "I'm pretty sure you can reapply every year if you don't get in... that's what a guy in my 164 class did, took him three tries... don't give up after one. Thanks in advance for posting how it goes"
+    - author: WiremanFromPiscataway
+      body: "appreciate it. i meant two different locals at the same time, not applying twice. called this morning anyway, left my number, waiting on a callback. writing down the date like marcus said"
+
+# ======================== A2. Rankings, lists, waiting ========================
+# brief B026
+- id: T029
+  category: A
+  topic: A2_ranked_low_is_it_over
+  type: discussion
+  trade: plumbing
+  author: NorthJerseyCopper
+  when: late
+  title: "Ranked low twice, got in on the third try. Ask me whatever"
+  body: "UA Local 24, first year. I ranked low my first two times. Third time I got the call. I see a lot of people on here worried about their ranking, so ask me what you want. I can only tell you what happened to me. I don't know how anyone else's local runs. Between tries I worked for a service and drain shop in Fair Lawn."
+  fact_risk: ["retest and rescoring rules", "time between application cycles"]
+  replies:
+    - author: chris.plumb
+      body: "what changed between the 2nd and 3rd try? was it the test or the interview"
+    - author: NorthJerseyCopper
+      body: "The interview. I had real jobs to talk about the third time. Before that I had nothing."
+    - author: Bergen_Ducts
+      body: "did you retake the test every time or does the score carry over... asking for me, I'm hvac but thinking about it"
+    - author: NorthJerseyCopper
+      body: "I retook it. Idk if that's required everywhere. Ask the program directly."
+    - author: oldsteam_zig
+      body: "Good for you, kid. Third try means you wanted it. Most people quit after one. That's the job."
+    - author: ginaj75
+      body: "how long between tries? i applied in the spring down in atlantic county and it feels like forever"
+    - author: NorthJerseyCopper
+      body: "About a year each time. It felt like forever to me too."
+    - author: mbell_wireman
+      body: "This is the most useful kind of post. One thing for everyone reading: his third interview went better because he had specifics. Bring two or three real jobs you can describe start to finish, including something you got wrong and fixed. Panels remember that. Stay safe."
+    - author: Exit117Plumber
+      body: "My foreman on weekends says nobody looks at your grades in the interview. True? Or is he just saying that because his were bad lol"
+    - author: NorthJerseyCopper
+      body: "Idk about grades. Nobody asked me about mine in any of the three."
+    - author: dreb_jman
+      body: "Brother, congrats. Different local, different city, same lesson. Most of the guys I know who got in late are better for it. They showed up already knowing how to work."
+    - author: BackflowBlues
+      body: "applied in mercer, waiting. foreman says im wasting my time doing pex and should just stay put. this thread helps lol"
+    - author: plumbguy917
+      body: "Local 1 first year here. Got in my first try but I'll be honest, a lot of luck in that lol. Respect for going three times."
+    - author: DinerCoffeeHVAC
+      body: "Sorry if this is a dumb question, did you tell the interviewers it was your third try or do they already know?"
+    - author: NorthJerseyCopper
+      body: "They knew. I said it before they could. Then I said what I did differently each year."
+    - author: PlumbFromMorris
+      body: "Fourth year in 24, also not first try (second). Sorry to jump in, but the 'say it before they do' thing is good advice, people respect owning it. Congrats, and get ready for school nights, grab a big Wawa coffee for those."
+    - author: rui_t_kearny
+      body: "Good post. My father used to say the second time you knock, they know your face. The third time they know your name."
+    - author: dhollis61
+      body: "good. write your hours down every week starting now. you'll want them later."
+    - author: NorthJerseyCopper
+      body: "Will do. Thanks everyone, didn't expect this many questions tonight."
+
+# ----------------------------------------------------------------------------
+# brief B049
+- id: T030
+  category: A
+  topic: A2_does_nonunion_time_count
+  type: question
+  trade: hvac
+  author: epa60812_2
+  when: mid
+  title: "does my non-union time count for anything when i apply to the union?"
+  body: "started at a non-union hvac shop in paterson in june, paid hourly, no benefits yet. been thinking about applying to a union apprenticeship next time one opens, maybe even electrical, i haven't decided. question for anyone who's been through it, brother: does the time i've already put in count for anything? like does it get you ranked higher, or skip a year, or nothing? i keep hearing alot of totally different answers. one guy at the supply house said it hurts you because you picked up bad habits lol"
+  fact_risk: ["credit for prior experience", "how interview and ranking are scored"]
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        In my experience it helps you in the interview, because you can talk about real work and it shows you'll show up at 6 a.m. Whether it earns credit toward the apprenticeship or changes your score is up to each program's rules, and those get updated, so ask the one you're applying to.
+
+        As for "bad habits": nobody holds that against a first-year. We retrain everybody. Stay safe.
+    - author: oldsteam_zig
+      body: "Bad habits. Ha. The kid who's carried water heaters for a year has better habits than the kid who hasn't carried anything. That supply house guy is full of it."
+    - author: fmelecnj
+      body: "took me 2 tries to get on at 164. my first interview i had zero work experience and it showed. second time i'd been at a shop in hackensack for a year and it was a completely different conversation, they asked about jobs and i actually had answers. so for me it counted, just not on paper"
+    - author: threeway_02
+      body: "Same question here. I start a helper job in Irvington Monday. Following this one."
+    - author: dreb_jman
+      body: "Brother, it counts where it matters, in the room. Paperwork is paperwork. Ask the program about credit."
+    - author: dahvacnj
+      body: "sorry to hijack but does it matter if the non-union time is in a different trade? i'm hvac and thinking about applying electrical. thanks in advance"
+    - author: hec_does_ac
+      body: "Not a hijack... the stuff transfers more than people think. Reading a wiring diagram on a furnace is reading a wiring diagram. I've seen HVAC guys go electrical and electricians come over to us, both ways work lol"
+    - author: epa60812_2
+      body: "ok so it counts in the interview, not on paper. makes sense. gonna keep a list of jobs i've done so i have stuff to talk about. thanks brother"
+
+# ----------------------------------------------------------------------------
+# brief B065
+- id: T031
+  category: A
+  topic: A2_how_ranking_is_scored
+  type: question
+  trade: plumbing
+  author: leadfree98
+  when: late
+  title: "How does the apprenticeship ranking actually get scored? Test, interview, both?"
+  body: |
+    Less than a year in at a non-union plumbing shop near Long Branch. Thinking about applying to the UA next round. Every thread I read says "I ranked low" or "I ranked 180th" but nobody says how the number actually gets made.
+
+    Is it the test score plus the interview? Do they add points for experience or school? Idk if it's the same everywhere or if every local does it different. I just want to know what I can actually work on between now and then instead of stressing about a number I don't understand.
+  fact_risk: ["how UA Local 24 scored its ranking", "whether programs publish their scoring"]
+  replies:
+    - author: PlumbFromMorris
+      accepted: true
+      body: "Sorry if this is long. For me in 24 it was the test first, then an interview, then a ranked list, and from what I understood the score was some mix of those. I never got a breakdown of exact points. What you can work on: the math for the test (practice it), and having real jobs to talk about in the interview. Ask the local you're applying to whether they explain how they score it. Mine didn't, at least not that I saw."
+    - author: chris.plumb
+      body: "somerset vo-tech grad, applied, waiting. my foreman says the interview counts more than the test but not sure he really knows. did anybody here ever get a breakdown? also is it the same for hvac"
+    - author: mbell_wireman
+      body: "I'd rather you ask the program than trust a forum on this. When I went through, the aptitude test got you to the interview, and the interview had a big effect on where you landed. That was a long time ago. Each program sets its own scoring, and they're the only ones who can tell you what's current. Stay safe."
+    - author: oldsteam_zig
+      body: "Kid, stop trying to game a number. Get good at the work and the number takes care of itself. That's the job."
+
+# ----------------------------------------------------------------------------
+# brief B085 (Senior tip, zero replies)
+- id: T032
+  category: A
+  topic: A2_ranked_low_is_it_over
+  type: tip
+  trade: plumbing
+  author: oldsteam_zig
+  when: mid
+  title: "To the kids who ranked low this summer"
+  body: |
+    Saw a few of you beating yourselves up over a number. Here's what I tell my own helpers.
+
+    A ranking is one morning of your life. It doesn't know whether you show up, whether you listen, or whether you can carry a 50-gallon heater up a split-level's stairs without banging the drywall.
+
+    Go get a job with somebody who'll teach you. Learn to solder, learn to read a boiler, learn to talk to a homeowner without making her nervous. Then apply again with something to say. I've hired plenty of kids who never got into anything, and they're running service calls on their own now.
+
+    Don't quit on it. That's the job.
+  fact_risk: []
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B135 (cast extended: NorthJerseyCopper, BergenPlumber, joyd_plumbing)
+- id: T033
+  category: A
+  topic: A2_ranked_low_is_it_over
+  type: question
+  trade: plumbing
+  author: peteplumb80
+  when: late
+  title: "Buddy from my vo-tech class ranked low and says he's done trying. What do I tell him?"
+  body: |
+    Kind of a different one. I'm a 1st year in Local 24, got in my first try, and I know that's partly luck. My best friend from school applied the same time, ranked way down, and now he's saying he's done. He's going to keep working at the Wawa in Montclair and "figure it out."
+
+    He's better with his hands than me, honestly. I don't want to be the guy who got in lecturing him, but I also don't want him to waste a year. What would you have wanted someone to say to you? Or is it better to just leave him alone for a while?
+  fact_risk: []
+  replies:
+    - author: JerseyTomatoWires
+      body: "I was your buddy... took me two tries. what helped was a guy at my shop saying 'you're working here anyway, apply again, what's it cost you.' no speech, just that"
+    - author: dreb_jman
+      body: "Don't lecture him, brother. Get him a job carrying something. Ask your foreman if anybody's looking for a helper. That does more than any pep talk."
+    - author: peteplumb80
+      body: "That's a good idea. My foreman knows half the shops in Essex County."
+    - author: Dev_H
+      body: "Did he say why he's done, or is he just embarrassed? Those are different. I'd let him be embarrassed for a week, then ask him to come help on something."
+    - author: mbell_wireman
+      body: "The useful thing you can do is make the next step small. Not 'reapply,' just 'come with me Saturday, a buddy's shop needs a hand.' Once he's working near the trade again, the application stops feeling like a verdict on him. Stay safe."
+    - author: BergenPlumber
+      body: "Took me two tries at the test too. The second time is easier because you know what's coming. Tell him that."
+    - author: dhollis61
+      body: "tell him once, plainly. then leave it alone and let him decide."
+    - author: NorthJerseyCopper
+      body: "Ranked low twice before I got in. Tell him it's not the end of anything."
+    - author: joyd_plumbing
+      body: "What's your actual question: what to say, or whether to say anything? Say one thing, once, and make it an offer instead of advice. Then go back to being his friend."
+    - author: peteplumb80
+      body: "update: brought him to a Saturday side thing with my foreman's buddy, a basement bathroom in Bloomfield. He was better at it than me lol. Says he'll 'think about' reapplying. I'll take it."
+
+# ----------------------------------------------------------------------------
+# brief B161
+- id: T034
+  category: A
+  topic: A2_apply_now_or_wait
+  type: question
+  trade: electrical
+  author: JunctionBoxJunkie
+  when: late
+  title: "Apply right out of high school, or wait a year so I don't tank the ranking?"
+  body: |
+    Third time posting about this stuff, sorry, the shop teacher thread got me thinking. If I apply to the IBEW the first chance I get after I graduate, I'll walk into the interview with one summer job, weekend helper hours and nothing else. If I wait a year and work full time at a shop, I'd have a full year of real work to talk about.
+
+    Logic says wait. My teacher says apply right away, every time, because "you can't get picked if you're not in the pile." I see his point, but I also don't want my first impression to be a weak one if it follows me. Does a bad first interview stick with you, or is every year a fresh start?
+  fact_risk: ["application fees", "whether programs keep notes from prior interviews", "eligibility age"]
+  replies:
+    - author: mbell_wireman
+      body: "Your teacher has the stronger argument. I can't tell you whether any program keeps notes from a previous interview; ask them. But I've never heard anyone say they regret applying early. Apply when you're eligible, work full time while the process runs, and if you need a second try you'll have the year of experience anyway. You get both. Stay safe."
+    - author: TryingAllThree
+      body: "From the other end of the age range: I wish I'd applied to anything at 18. Two questions back at you though. What's the actual downside of applying? And would you take it if they called?"
+    - author: Kash_sing
+      body: |
+        Different trade, but here's how I'd weigh it:
+        - Applying costs you a morning and maybe an application fee
+        - Waiting costs you a year of possible apprenticeship time
+        - A weak interview at 18 is expected; nobody expects an 18-year-old to sound like a foreman
+        Apply.
+    - author: auelecny
+      body: "Brother, I waited eleven years to start because I thought I wasn't ready. Idk your situation, but don't wait for ready."
+    - author: threeway_91
+      body: "same advice my boss gave me in tottenville, he said apply every year until theyre sick of you. i'm non-union for now and that's fine, but i applied anyway brother"
+
+# ======================== A3. Vo-tech and trade school ========================
+# brief B015
+- id: T035
+  category: A
+  topic: A3_votech_worth_it
+  type: question
+  trade: plumbing
+  author: Exit117Plumber
+  when: mid
+  title: "Do my vo-tech shop hours count toward anything after I graduate?"
+  body: "In the plumbing program at the Middlesex County vo-tech. We do a lot of shop time, plus I help my uncle on weekends (he jokes I'm basically his foreman now lol, I'm not). Ziggy's been answering my questions on here and he said to ask the people who actually run the programs, which I will, but I want to know what others found. Do the hours in a vo-tech program count toward an apprenticeship or a license later? Or is it just a diploma and a head start?"
+  fact_risk: ["whether vo-tech hours count toward a UA apprenticeship", "whether schooling counts toward NJ plumbing license experience"]
+  replies:
+    - author: ms_almonte
+      accepted: true
+      body: "Speaking as someone who teaches in one: first, ask your program's coordinator directly, because whatever arrangements exist are specific to your school and to the apprenticeship you apply to. Second, assume nothing transfers automatically. Some apprenticeships may look favorably on a program, and some licensing paths may count certain schooling, but you'll want it in writing either way. Third, keep every certificate and transcript. Ask me how I know you'll need them years later."
+    - author: BergenPlumber
+      body: "My vo-tech didn't count as hours in 24 as far as I know, but it helped a lot in the interview. Thanks in advance if anyone knows different."
+    - author: rui_t_kearny
+      body: "It counts in the way that matters most: you'll know which end of a torch is hot on your first day. My father used to hire the vo-tech kids over everyone else for exactly that reason. I still do."
+
+# ----------------------------------------------------------------------------
+# brief B058 (zero replies)
+- id: T036
+  category: A
+  topic: A3_votech_worth_it
+  type: question
+  trade: hvac
+  author: Woodbridge.ducts
+  when: late
+  title: "Private HVAC night program while I'm already working. Worth the money?"
+  body: "Less than a year in at a non-union HVAC shop in Woodbridge. Hourly, no benefits yet. A buddy is doing the evening HVAC program at one of the private tech schools and says I should too. He told me they quoted him something like the price of a used car. My boss says I'll learn more on the truck. Is a private program worth that kind of money if I already have the job? Or should I look at the county school's adult classes first. Honest answers, brother."
+  fact_risk: ["private trade school evening program cost", "county adult HVAC classes in Middlesex"]
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B143 (Senior tip; cast extended: QuickChekCrew, WhichTradeTho)
+- id: T037
+  category: A
+  topic: A3_votech_worth_it
+  type: tip
+  trade: other
+  author: Kash_sing
+  when: mid
+  title: "Before you sign a private trade school loan, ask these questions"
+  body: |
+    Every few weeks a new hire tells me what they owe on a private trade school program, and some of them didn't need to owe it. I'm not against private schools. Some are good. But ask these before you sign anything:
+    - What's the total cost, including tools, books and fees, not the monthly payment
+    - How many hours are hands-on shop time versus classroom
+    - What share of graduates are working in the trade a year later, and how do they count that
+    - Does the county vo-tech or community college near you have an adult program for less
+    - Would an employer pay for it if you got hired first
+
+    If the admissions person gets pushy when you ask, that's an answer too.
+  fact_risk: ["private school vs county adult program cost difference"]
+  replies:
+    - author: ms_almonte
+      body: "All good questions. I'd add one from my side: ask to sit in on a shop class before you enroll, on a normal night. You'll see in ten minutes whether students are working or watching. Ask me how I know some programs don't love that request."
+    - author: haddad_mech
+      body: "Here's what I look for when I hire, since it's related: I don't check where someone went to school. I check whether they can do the work and whether they show up. A certificate helps you get the interview, not the job."
+    - author: QuickChekCrew
+      body: "I'm doing the county night HVAC program twice a week... it was a fraction of what the private school quoted me... thanks in advance to anyone who knows if the county ones are any good for electrical too"
+    - author: thiago_sparks
+      body: "Honestly I'm the guy who went to a private trade school and it worked for me. But I was 19, lived with my parents and had no bills. It's different math if you're 35 with rent. I'd push back a little on making it sound like a trap."
+    - author: Kash_sing
+      body: |
+        Fair point, Thiago, and I'm not saying skip them:
+        - If the cost works and you learn better in a classroom, it can be worth it
+        - If you can get hired as a helper first, try that before you borrow
+    - author: rui_t_kearny
+      body: "My father used to say never borrow for something you can get paid to learn. He wasn't always right, but he was right about that one."
+    - author: tnguyen_refrig
+      body: "refrigeration side, nobody ever asked where i went to school. they asked if i could find a leak on a walk-in in july. winter is when you learn, and you can learn it for free if you're on somebody's truck"
+    - author: WhichTradeTho
+      body: "I'm taking one night class at the community college to test the waters before I commit to anything. Cheaper than any program and I'll know by December if I hate it."
+
+# ======================== A4. Age, switching, picking a trade ========================
+# brief B004
+- id: T038
+  category: A
+  topic: A4_career_switch_too_old
+  type: question
+  trade: hvac
+  author: big_ben_tools
+  when: late
+  title: "My dad is 45 and wants to do the HVAC night program. Too old?"
+  body: |
+    Kind of a weird one. I'm in the HVAC program at the Gloucester County vo-tech, and my dad has been helping me study for the 608 at the kitchen table. Now he's into it. He's 45, works in a warehouse in Swedesboro, back's okay, and he's asking if he's too old to do the adult night program and switch.
+
+    I told him I'd ask people who actually do this. Is 45 too late to start in HVAC? Would anyone hire him as a helper at that age?
+
+    edit: he says thanks in advance and that he's "not that old" lol
+  fact_risk: ["county vo-tech adult night HVAC program"]
+  replies:
+    - author: haddad_mech
+      body: "Tell your father this, from someone who hires every year: here's what I look for when I hire, and age isn't on the list. Reliability, listening, and a clean driving record. Warehouse guys usually have the first two down. The real question is his body in an attic in July, so have him ride along on a hot day before he quits anything."
+    - author: Kash_sing
+      body: |
+        From my side:
+        - 45 is not too late; he'd have 20 working years in the trade
+        - The pay cut is the real issue, so he should know his monthly number first
+        - The adult night program lets him keep the warehouse job while he finds out
+        Good on him for studying with you.
+
+# ----------------------------------------------------------------------------
+# brief B080 (codebook_dale, rui_t_kearny, Exit117Plumber added to reach 5)
+- id: T039
+  category: A
+  topic: A4_too_young_under_18
+  type: question
+  trade: electrical
+  author: OpenNeutralBlues
+  when: late
+  title: "17 and every shop says come back when I'm 18. Is that a real rule?"
+  body: "Electrical program at the Essex County vo-tech. Trying to get a weekend helper job. Called five shops around Nutley and Belleville. Three said call back when I'm 18. One said insurance. One hung up. I turn 18 in March. Is that an actual law, or just shops not wanting to deal with a kid? Right now I work Sundays at a Wawa on Franklin Ave. Would rather be on a job."
+  fact_risk: ["NJ restrictions on minors on construction sites", "co-op / work-based learning programs at county vo-techs", "insurance age requirements"]
+  replies:
+    - author: codebook_dale
+      body: "Not legal advice, just how I'd look at it: there are labor rules about what minors can do on certain kinds of sites and with certain equipment, and insurance carriers can add their own requirements on top. Ask your school whether it runs a co-op or work-based placement; that's often how students get onto a site properly before 18."
+    - author: Exit117Plumber
+      body: "Same spot here but plumbing. I only get work because it's my uncle's shop lol. My shop teacher says the co-op thing is how most of the seniors get placed."
+    - author: Kash_sing
+      body: |
+        A few things that may help:
+        - Ask your program about co-op or work-based learning placements
+        - Supply houses sometimes hire 17-year-olds for the counter or the warehouse; you'll learn every part by name
+        - In March, call the same five shops back. They'll remember you called
+    - author: blowerwheel_91
+      body: "Apologies if this is off topic, but I worked the counter at a supply house in Morristown at 17 before my first shop job. It helped more than I expected. I knew what everything was called on day one."
+    - author: rui_t_kearny
+      body: "Call those three back the week of your birthday. I mean it. Persistence is half of why my father let me on the trucks young. The one that hung up, forget them."
+
+# ----------------------------------------------------------------------------
+# brief B127
+- id: T040
+  category: A
+  topic: A4_pick_trade_by_pay
+  type: question
+  trade: electrical
+  author: OpenNeutralBlues
+  when: late
+  title: "Is it dumb to pick electrical just because it's supposed to pay the most?"
+  body: "Everybody at my school says electrical pays the best, so that's why I signed up for it. Honestly I like the plumbing kids' projects better. Is the pay difference between the trades actually big in North Jersey? Or is that just something people say at the Wawa? Don't want to pick the wrong one for the wrong reason and be stuck."
+  fact_risk: ["union wage scales roughly similar across trades in North NJ", "locals publish wage and benefit packages"]
+  replies:
+    - author: peteplumb80
+      body: "Plumber obviously, so I'm biased lol. From what I see on the union side the scales are pretty close between the trades, at least up here. Pick the one where you don't watch the clock. And the Wawa guys don't know anything, I say that as a Wawa guy."
+    - author: NorthJerseyCopper
+      body: "Same as him. Pick what you like doing. Idk anyone who stayed in a trade they hated just for the money."
+    - author: Kash_sing
+      body: |
+        How I'd compare them:
+        - Look up the wage and benefit packages for the locals near you; most post them
+        - Non-union pay varies more by shop than by trade
+        - Long term, the money follows whoever gets good and runs work, in any trade
+        - You'll get good faster at the one you like
+
+# ----------------------------------------------------------------------------
+# brief B138
+- id: T041
+  category: A
+  topic: A4_career_switch_too_old
+  type: question
+  trade: plumbing
+  author: EssexPipes
+  when: late
+  title: "Career switchers keep getting hired over us vo-tech kids. What gives?"
+  body: "Not trying to start a war. Two years out of the Essex County vo-tech, plumbing, still mostly doing demo at a shop near Bloomfield. My shop just hired a 35-year-old guy who used to sell cars, and he's already on fittings while I'm still breaking up cast iron. Second time I've seen this. Is it because they think older guys are more reliable? Or am I doing something wrong? Kind of burns, I went to school for this for four years."
+  fact_risk: []
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: "I'll be straight with you: a car salesman knows how to talk to a homeowner, and he usually knows how to ask for what he wants. That's often why he moves up faster. It isn't age, it's that he probably asked. Go to your lead tomorrow and say, 'I'd like to do the fittings on the next job.' Your four years of school will show the minute they let you."
+    - author: DinerCoffeeHVAC
+      body: "Sorry, maybe a dumb take, but the same thing happened at my shop in Bayonne and it turned out the new guy just kept asking. I never asked. Started asking, it got better."
+    - author: plumbguy917
+      body: "the car salesman guy probably talks to the boss at lunch lol. your gonna have to do that too, it's half the job"
+    - author: Kash_sing
+      body: |
+        From the owner side:
+        - Older hires often come in asking about the path, so owners see them as long-term
+        - Younger hires sometimes look like they're passing through, even when they aren't
+        - Tell your boss your plan; owners invest in people who say they're staying
+    - author: leadfree98
+      body: "wait so is it a good idea to just tell your boss you want more? I've been scared to, idk if it makes you look pushy, or is that only at some shops"
+    - author: EssexPipes
+      body: "Fair, I never actually asked. Asked today if I could do the fittings on a vanity swap Monday. He said yes. Kind of annoyed it was that easy honestly. Is that how it works everywhere?"
+
+# ----------------------------------------------------------------------------
+# brief B169 (follow-up to sample T03; cast extended to 17)
+- id: T042
+  category: A
+  topic: A4_career_switch_too_old
+  type: discussion
+  trade: other
+  author: TryingAllThree
+  when: late
+  title: "Update: did a ride-along in all three trades. Here's what happened"
+  body: |
+    A while back I posted about being 40 and unable to pick a trade. Joy suggested ride-alongs, and she's been mentoring me since, so here's the report.
+
+    Plumbing: a day on a repipe in an old Colonial in Metuchen. Loved the problem-solving, hated my knees by 2pm.
+    HVAC: a changeout in a split-level in Edison in August. The attic was brutal, but the diagnosis part was interesting.
+    Electrical: a service upgrade in Highland Park, panel swap, PSE&G had to come out to pull the meter. That was the one where I lost track of time.
+
+    So I'm leaning electrical, and maybe the low-voltage side later because of my knees. Two questions: did anyone else pick partly because of their body? And is it crazy to plan around knees at 40?
+  fact_risk: []
+  replies:
+    - author: joyd_plumbing
+      body: "Proud of you for doing all three. What's your actual question, though? You already picked. You lost track of time on the panel job. That's the answer."
+    - author: TryingAllThree
+      body: "Ha. Fair. I think I wanted someone to tell me it's okay that it's not plumbing, after you set the whole thing up."
+    - author: joyd_plumbing
+      body: "It's more than okay. I'd rather you pick the right one than mine."
+    - author: wchen_controls
+      body: "fwiw low voltage is a real trade and your knees will thank you. i've been doing bms and fire alarm for 14 years, most of my day is a laptop, a ladder and a ceiling tile. don't let anyone tell you it isn't real electrical work"
+    - author: haddad_mech
+      body: "Planning around your body at 40 isn't crazy, it's smart. When I hire someone in their 40s, the ones I keep know their limits and tell me up front. That's worth more to me than someone who says yes to every attic and gets hurt in a month."
+    - author: GSP_Exit82
+      body: "this is really cool to read. im in the trades program at the ocean county vo-tech and my foreman at my summer job said the same thing, you know which one when you lose track of time. appreciate it"
+    - author: big_zach_hvac
+      body: "did hvac at 40 too. attics in august are no joke. knees ok, back less ok. electrical makes sense, good luck"
+    - author: JunctionBoxJunkie
+      body: "As a vo-tech kid who thinks about this way too much: a panel swap was the best day of my whole summer too, and the meter pull part is wild the first time you see it."
+    - author: QuickChekCrew
+      body: "Congrats... I'm still doing the HVAC night classes, I'm 33 and my knees already complain... thanks in advance for posting the follow-up when you start"
+    - author: Kash_sing
+      body: |
+        Good process. If you go electrical and later want low voltage:
+        - Get your OSHA 10 early
+        - Ask every shop you interview with whether they do any controls or fire alarm work
+        - Keep notes on every panel and service you touch
+    - author: WhichTradeTho
+      body: "40 here too, bartending, same three-way choice. This is the most useful thing I've read on here. Doing my own ride-along next month because of it."
+    - author: ms_almonte
+      body: "Love this. One thing my older students tell me: the first year is harder on the body than any year after, because you're doing everything the slow way. It gets easier as you get efficient. So don't judge your knees by one day on a repipe."
+    - author: peteq75
+      body: "Career switcher too (36, used to teach middle school). Did basically the same thing and electrical won. Sorry for the dumb question, but did they let you actually do anything on the ride-alongs or just watch?"
+    - author: TryingAllThree
+      body: "Mostly watching. On the electrical one he had me land a couple of breakers with the power off, after he tested it, him standing right there. Probably why I liked it lol."
+    - author: hec_does_ac
+      body: "Ha, 'the attic was brutal' is every HVAC guy's August... respect for trying all three, most people never do lol"
+    - author: middlesex_coils
+      body: "35, woodbridge, ex-bartender, hvac helper now. reading this made me feel better about how i picked. the attic part is very real"
+    - author: TryingAllThree
+      body: |
+        Appreciate everyone. Not deciding yet: the HVAC startup day last Saturday threw me, more on that in its own post, and I'll look at the low-voltage side once I know what I'm doing.
+
+        edit: two interviews set up already.
+
+# ----------------------------------------------------------------------------
+# new (Senior AMA)
+- id: T043
+  category: A
+  topic: A4_switcher_ama
+  type: discussion
+  trade: plumbing
+  author: joyd_plumbing
+  when: mid
+  title: "Came in at 26 from restaurant management. Career switchers, ask me."
+  body: "I get the same five questions from switchers, so I'll take them here. Background: ran a restaurant for a few years, quit at 26, got hired as a helper by a plumber in Jersey City who needed someone who could handle customers. 17 years later I'm a master plumber with a three-person crew doing multifamily and co-ops in Hudson County. I'm not going to tell you it was easy or that it'll work for you. I'll tell you what happened to me. Ask."
+  fact_risk: []
+  replies:
+    - author: plumbnj88
+      body: "36, bartending, woodbridge. how did you handle the pay cut the first year? that's the whole thing for me"
+    - author: joyd_plumbing
+      body: "Badly at first. I'd saved about six months of rent and burned through it in four. What saved me was picking up two shifts a week at a restaurant that first year. Know your number before you quit. Not after."
+    - author: LateStartPlumber
+      body: "sorry if this is a dumb question but did anyone treat you differently for starting late? i'm 42 on staten island and i worry about that more than the work"
+    - author: joyd_plumbing
+      body: "Some did. Mostly younger guys who felt competition. The masters who hired me cared that I could talk to a building super without starting a fight. Your age is a skill there. Use it."
+    - author: FluxOnMyBoots
+      body: "how long before you stopped feeling like the dumbest person on the job lol"
+
+# ----------------------------------------------------------------------------
+# new
+- id: T044
+  category: A
+  topic: A4_resume_no_trade_hours
+  type: question
+  trade: other
+  author: WhichTradeTho
+  when: mid
+  title: "How do I put together a resume for a helper job when it's all bartending?"
+  body: |
+    40, Perth Amboy, bartending most of my adult life, managed a bar in South Amboy for six years. Taking a night class to test the waters before I quit.
+
+    When I start applying for helper jobs, what do I even put on a resume? I've got nothing trade-related except fixing stuff at the bar: replaced a few faucets, cleared the floor drains more times than I want to remember, helped the beer guy run new lines to the taps. Do shops even want a resume? Or do you just show up?
+
+    edit: thanks everyone, printing one page tonight.
+  fact_risk: []
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: "Here's what I look for when I hire a switcher, and a resume is a small part of it. One page. Put the bar management job first and say what you were responsible for: opening and closing, staff, cash, handling problems. That tells me you're reliable and can deal with people. Then one short line about the hands-on work. Bring it in person if you can, early morning, and ask for the owner. A lot of small shops don't read email."
+    - author: plumbnj88
+      body: "ex bartender too. i just walked in with a printed page at 7am. got hired at the second place. dont overthink it"
+    - author: rui_t_kearny
+      body: "Bartenders make good helpers, I've had two. You already know how to keep a crowd calm and stay on your feet for ten hours. Say that. My father used to say the trade can be taught and the attitude can't."
+    - author: carlosu88
+      body: "call center to trades here. had the same question last month. one page, in person, worked for me."
+
+# ----------------------------------------------------------------------------
+# new
+- id: T045
+  category: A
+  topic: A4_women_switching_in
+  type: question
+  trade: plumbing
+  author: jess2093
+  when: late
+  title: "28, woman, calling plumbing shops in Gloucester County. Two hung up on me."
+  body: "Left insurance claims a few weeks ago. Want to do plumbing. Have been calling shops around Glassboro and Pitman for a helper job. Two hung up after I said my name. One said they don't really have a bathroom on the jobs, hon. One was nice and said call back in October. I know some of this is just shops being shops, but it's hard not to take it personally. Any women here who got in this way? What worked? Should I just show up in person instead? Appreciate it."
+  fact_risk: []
+  replies:
+    - author: joyd_plumbing
+      accepted: true
+      body: "Show up in person. Early, in work clothes, with a one-page sheet. It's harder to hang up on someone standing at your counter. I got the same comments at 26. The ones who said dumb things weren't shops I wanted to work for anyway. The one who hired me cared that I came back twice. Call the nice one back in October like they said, and mention that you called before."
+    - author: big_nicole_plumb
+      body: |
+        Burlington County, 3 years. The bathroom thing is so dumb, every job has a porta john or a Wawa down the road. Keep calling. There are good shops down here that hire women, mine's one of them, they just don't advertise it.
+
+        edit: also ask at the supply house counter. They know which shops are decent.
+    - author: ginaj75
+      body: "plumbing, pleasantville, vo-tech grad. only girl in my class. got hired by the 4th shop i walked into. the first 3 were weird about it. keep going"
+    - author: Dev_H
+      body: "Deptford here. Appreciate you posting this. Were the ones that hung up small one-man outfits or bigger shops? Not asking for names. The bigger ones around here are usually better about it."
+    - author: rui_t_kearny
+      body: "When you walk in, ask for the owner by name if it's on the truck or the sign. My father hired two of his best people because they came in and asked for him, not for 'whoever's hiring.'"
+
+# ----------------------------------------------------------------------------
+# new (zero replies)
+- id: T046
+  category: A
+  topic: A4_test_drive_part_time
+  type: question
+  trade: other
+  author: Turnpike_Tech
+  when: mid
+  title: "can i try a trade part time on weekends before i quit my day job?"
+  body: "34, voorhees, wife is supportive but honestly nervous about me taking a pay cut with a kid on the way. i work a desk job monday to friday that pays the bills. is there any way to do helper work on saturdays for a couple months to see if i even like it before i quit? or do shops not want part time guys? i'd do anything, carry stuff, clean up, whatever. not really looking for money, more like a test drive. thanks in advance"
+  fact_risk: []
+  replies: []
+
+# ======================== A5. Tools, boots, day one ========================
+# brief B006 (cast extended: big_paulie_plumb, Kearny_Pipefitter)
+- id: T047
+  category: A
+  topic: A5_day_one_tools_boots
+  type: question
+  trade: plumbing
+  author: peteplumb80
+  when: mid
+  title: "First real paycheck in the apprenticeship. What tools are actually worth buying now?"
+  body: "1st year in Local 24, mostly commercial bathrooms so far. Got the tool list at the start and bought the basics. Now I've got a couple real paychecks and I'm tempted to go nuts at the big box store. What did you actually end up using every day in your first year that wasn't on the list? And what's a waste of money until later? I spend enough at Wawa already, trying to be smart about this."
+  fact_risk: []
+  replies:
+    - author: oldsteam_zig
+      accepted: true
+      body: "Kid, buy what you reach for, and borrow twice before you buy anything else. First year, you want good channel locks in two sizes, a decent tubing cutter, a level that isn't junk, and a headlamp. Anything with a battery can wait until you know what your shop doesn't supply. And put your initials on all of it. Things walk on commercial jobs. That's the job."
+    - author: ms_almonte
+      body: "First, a good headlamp. Second, knee pads you'll actually wear. Third, a tape measure you like holding. Students always skip the knee pads and regret it by 30. Ask me how I know."
+    - author: mbell_wireman
+      body: "Different trade, same rule: buy safety glasses you'll actually keep on your face. If they fog or pinch, you'll take them off, and that's when something finds your eye. Spend money there first. Stay safe."
+    - author: big_paulie_plumb
+      body: "4 yrs in, my biggest waste was a fancy cordless set i bought my first year when the shop already had everything on the trucks. dont do that lol"
+    - author: Kearny_Pipefitter
+      body: "brother get a decent bucket organizer and stop carrying stuff in your pockets. took me 6 months to learn that one"
+    - author: peteplumb80
+      body: "Okay so headlamp, knee pads, glasses, initials on everything, and no battery stuff yet. My wallet thanks you guys."
+
+# ----------------------------------------------------------------------------
+# brief B084 (cast extended: tnguyen_refrig, HeatwaveOnCall, Passaic_Sparky)
+- id: T048
+  category: A
+  topic: A5_day_one_tools_boots
+  type: question
+  trade: hvac
+  author: Bergen_Ducts
+  when: late
+  title: "New kid at my shop showed up in running sneakers. What boots do I tell him to get?"
+  body: "So we hired a new helper last week... nice kid, 18, straight out of school... and he shows up to a basement in Hackensack in white running sneakers. Boss sent him to buy boots on his lunch and he came back with the cheapest pair in the store, which I get, he doesn't have money yet. I'm two years in so the boss told me to 'help him out.' What do you all tell a brand new guy about boots? Steel toe vs composite, waterproof, do they need to be 8 inch... and is there a budget pair that won't wreck his feet by October? I already bought him a Wawa coffee, I'm not buying him boots lol"
+  fact_risk: ["EH (electrical hazard) boot rating", "safety-toe requirements on commercial sites"]
+  replies:
+    - author: oldsteam_zig
+      body: "Waterproof, safety toe, good sole, and comfortable enough that he doesn't take them off at lunch. The cheap ones are fine for a month while he figures out what his feet hate. Then he buys a real pair. Tell him to try them on at the end of the day when his feet are swollen."
+    - author: mbell_wireman
+      body: "If he'll be anywhere near electrical work, look for the EH (electrical hazard) rating on the label, and check whether your shop or the GC has a site rule on safety toes; commercial sites usually do. Composite toe is lighter and doesn't get as cold in winter. Beyond that, fit matters more than brand. A boot that's half a size wrong ruins a ten-hour day. Stay safe."
+    - author: neutral_bar_99
+      body: "I'm still in school so I can't speak to brands, but our shop teacher made everybody buy boots the first week and said the same thing about trying them on at the end of the day. I got mine at a store on Route 23 in Wayne. Sorry, I'm over-explaining again, it's a habit."
+    - author: ms_almonte
+      body: "First, safety toe. Second, a sole that grips a wet basement floor, because that's where he'll live all winter. Third, wool-blend socks, two pairs. Students blame the boot when it's really the cotton socks. Ask me how I know."
+    - author: tnguyen_refrig
+      body: "waterproof. he will stand in a walk-in drain pan at some point. july or january, doesn't matter, wet feet all day is the worst"
+    - author: dahvacnj
+      body: "sorry if this is dumb but do the 8 inch ones actually matter or is 6 fine? i got 6 and my ankles are fine so far. thanks in advance"
+    - author: peteplumb80
+      body: "8 inch if he's on ladders or uneven ground a lot. 6 is fine for bathrooms. That's just what my journeyman told me."
+    - author: HeatwaveOnCall
+      body: "clifton, under a year in. i got the cheap ones at first like your kid and my feet were destroyed by the end of august. switched to a better pair and it was definately like a different job. tell him to save up for it, it's the first thing worth spending on"
+    - author: Passaic_Sparky
+      body: "idk why everyone sleeps on insoles. cheap boots plus a good insole gets you through till payday"
+    - author: Bergen_Ducts
+      body: "This is great... sending him the thread lol. Insoles plus the cheap ones for now, real pair by October... thanks all"
+
+# ----------------------------------------------------------------------------
+# brief B144 (follow-up to sample T10)
+- id: T049
+  category: A
+  topic: A5_day_one_tools_boots
+  type: question
+  trade: plumbing
+  author: Dev_H
+  when: late
+  title: "Starting at a new shop Monday after 3 years at the cash place. What should I bring?"
+  body: "Took Rui's advice from my cash-pay thread. Lined up a new shop in Pitman before I gave notice, left on good terms, start Monday. Real payroll, they do service and boilers, five minutes off 55. Three years in, but I've never started somewhere new as anything but a kid. What do I bring day one? My own tools or wait and see? And how do I handle it if they treat me like a first-year when I'm not?"
+  fact_risk: []
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: "Congratulations on doing it the right way. Bring your hand tools, clean and organized, and your PPE. Leave the big stuff home until you see what's on the trucks. On the first-year thing: expect it for a week or two. They need to see how you work before they hand you anything. Show them, don't tell them. Ask on day one who you report to and what they expect by the end of the first month. Stay safe."
+    - author: FluxOnMyBoots
+      body: "congrats. also pack a lunch the first week, you never know where you'll end up lol"
+    - author: QuickChekCrew
+      body: "Congrats... I'm way behind you but this is the kind of update I like reading... good luck Monday"
+    - author: plumbguy917
+      body: "same thing when I started in Local 1 after doing non-union stuff for a summer. they made me prove it for a couple weeks then it was fine. don't get offended, just be good lol"
+
+# ----------------------------------------------------------------------------
+# brief B156 (cast extended to 14)
+- id: T050
+  category: A
+  topic: A5_day_one_tools_boots
+  type: discussion
+  trade: electrical
+  author: JerseyTomatoWires
+  when: late
+  title: "Worst tool you ever bought as an apprentice?"
+  body: "4th year in 164... cleaning out my tool bag this weekend and found a 'professional' 47-piece screwdriver set I bought my first month. Used two of them. Ever. My foreman laughed at me then and he's still laughing. What's the worst tool you bought when you were starting out... so the first-years reading this don't make the same mistake. Appreciate it"
+  fact_risk: []
+  replies:
+    - author: oldsteam_zig
+      body: "A pipe threader I bought used from a guy in Lodi my second year. Weighed more than me, I used it twice, and it sat in my mother's garage for a decade. Kid, rent the big stuff."
+    - author: codebook_dale
+      body: "A cheap non-contact voltage tester. It told me a circuit was dead when it wasn't. I learned to test with a meter I trust, and to check the tester on a known live source before and after. That one isn't funny; buy the good meter."
+    - author: JerseyTomatoWires
+      body: "that's the one my foreman yells about too... test the tester first"
+    - author: DinerCoffeeHVAC
+      body: "Sorry if this is a dumb one, but a 'universal' refrigerant gauge set from an online deal. The hoses leaked from day one."
+    - author: ms_almonte
+      body: "First place goes to the students who buy the giant rolling toolbox before they've had one day on a job. Second place, anything with 'kit' in the name. Ask me how I know: I bought both."
+    - author: epa60812_2
+      body: "a 'contractor grade' drill from a discount bin. smoked in a week drilling a joist in paterson, brother. never again"
+    - author: fmelecnj
+      body: "a big fancy wire stripper with like eight functions because a video said it was the only one you'd ever need, and my journeyman just uses a basic pair and a knife, and now i do too"
+    - author: WawaRunWired
+      body: "sorry if this is dumb but is a conduit bender worth buying yourself or does the shop always have them? mine always does but i keep seeing guys with their own. thanks in advance"
+    - author: JerseyTomatoWires
+      body: "shop should have benders... buy your own once you know which size you bend the most. appreciate it"
+    - author: hudson_conduit
+      body: "a headlamp so bright it blinded the guy I was working with every time I looked at him lol. Union City basements are dark but not that dark"
+    - author: thiago_sparks
+      body: "Honestly a $300 laser level my first year, to hang a few fixtures straight in Asbury. A $15 torpedo level did the same job. Learn on the cheap version first."
+    - author: wchen_controls
+      body: "a label maker. kidding, the label maker is the best tool i own. fwiw every low voltage guy will tell you that"
+    - author: big_hector_plumb
+      body: "A 'pro' drain snake from the big box store. Kinked the first day lol. Now I use the shop machine."
+    - author: Exit145Electric
+      body: "this thread is going to save me money. was literally about to buy a 40 piece screwdriver set. appreciate it, thanks in advance for more"
+
+# ============================ A6. NYC ============================
+# brief B014
+- id: T051
+  category: A
+  topic: A6_nyc_local3_interview
+  type: question
+  trade: electrical
+  nyc: true
+  author: groundrod_05
+  when: mid
+  title: "Got called for the Local 3 interview after a year of waiting. What do they look for?"
+  body: |
+    Apex grad, working non-union in the Bronx for two years while I waited. I got the letter this week: I have an interview. I have been preparing with my mentor here, but I want to hear from more people.
+
+    What did your interview look like? What do they want to hear from someone who already has some field experience? I do not want to sound like I know everything, but I also do not want to undersell the two years I put in. Appreciate any advice.
+
+    edit: interview is Monday, not next week. I misread the letter.
+  fact_risk: ["Local 3 interview format", "how applicants are notified"]
+  replies:
+    - author: dreb_jman
+      accepted: true
+      body: |
+        Brother, you already know what I think, but for everyone else reading: the format changes, so I'm talking about what matters, not what the room looks like.
+
+        Be on time. Dress clean and simple. Answer the question they asked. When they ask about your year, give one real job start to finish and one mistake you made and what you learned. Don't trash your current shop. And leave an hour early, the trains have been a disaster.
+    - author: Flushing.sparks
+      body: "Good luck. Please post how it goes, I'm a year or two behind you."
+    - author: wchen_controls
+      body: "fwiw i interviewed for a different program years ago and the thing that helped most was having a couple of questions for them at the end. shows you care what happens after you get in"
+    - author: WawaRunWired
+      body: "sorry if this is dumb but do they ask technical questions or just about you? asking for when i apply in jersey. thanks in advance"
+    - author: groundrod_05
+      body: "From what people told me, mostly about you and your work, but I am not sure. I will report back after."
+    - author: bklyn_arkady
+      body: "In the city it's different in a lot of ways, but an interview is an interview everywhere. I hire helpers for my shop, and what I always remember is whether they could explain something simple clearly. Practice explaining a job out loud to someone who isn't in the trade."
+    - author: auelecny
+      body: "Army guy here, interviews are just inspections with chairs. Clean shoes, short answers. Idk if that translates but it worked for every job interview I've had."
+    - author: groundrod_05
+      body: "update: had it. Mine felt like mostly questions about my work and why electrical. I talked about a service change we did in Throggs Neck and the time I mislabeled a panel. Felt okay. Now I wait again. Appreciate everyone here, and dreb especially."
+
+# ----------------------------------------------------------------------------
+# brief B064 (zero replies; starter changed from Flushing.sparks to emt_bender_200amp)
+- id: T052
+  category: A
+  topic: A6_nyc_city_tech_vs_union
+  type: question
+  trade: electrical
+  nyc: true
+  author: emt_bender_200amp
+  when: early
+  title: "Parents want college. Would City Tech's electrical program count for anything with Local 3?"
+  body: "So, some background so this makes sense. I'm in the electrical program at a trade high school in Queens (I live in Bay Ridge, so it's a long ride every morning). My shop teacher keeps pushing the union application. My parents want me to go to college, period. I found out City Tech in downtown Brooklyn has electrical-type associate degrees, and I'm wondering if that's a middle ground that makes everybody happy. Would a degree like that help a Local 3 application, or would I just be two years older applying with the same chances? Has anyone done City Tech and then gone union? Thanks in advance."
+  fact_risk: ["NYC College of Technology program offerings and location", "whether a college degree affects a Local 3 application"]
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B066 (cast extended to 19)
+- id: T053
+  category: A
+  topic: A6_nyc_locals_roll_call
+  type: discussion
+  trade: other
+  nyc: true
+  author: plumbguy917
+  when: late
+  title: "Local 1, Local 3, Local 638: how did you actually get in? Roll call"
+  body: "Since everybody keeps asking me how I got into Local 1 like I'm some expert lol. I'm a first year. I got in, I don't fully know why, and I'm not going to pretend I know how it works this year. So let's just do a roll call. If you're in Local 1, Local 3, Local 638, or you tried and didn't get in, say how it went for you: how many tries, what you were doing before, what you'd tell somebody applying now. Non-union people welcome too, half of Brooklyn is non-union and doing fine. No 'my uncle said' stories, only what happened to you."
+  fact_risk: ["Local 3 application and age requirements", "Local 1 and Local 638 application processes"]
+  replies:
+    - author: dreb_jman
+      body: "Local 3, 21 years. Got in on my first try after two years with a small contractor in Queens. Different world back then. What I'd tell anyone now: follow the official site and nobody else, and keep working while you wait."
+    - author: elecny85
+      body: "non union apprentice in flatbush... applied to 3 twice, didn't get in either time... still at it, brother. thanks in advance to anyone with tips for a third try"
+    - author: groundrod_05
+      body: "Apex grad, working non-union in the Bronx, and I had my Local 3 interview last week. Waiting on results. Appreciate the roll call idea."
+    - author: plumbguy917
+      body: "good luck man, post when you hear, we're all rooting for you"
+    - author: bklyn_arkady
+      body: "In the city it's different from what people assume: a lot of the gas and brownstone work in Brooklyn is done by non-union shops like mine. 26 years, never union, licensed master, no regrets. The union is a great path. It isn't the only one."
+    - author: peteplumb80
+      body: "Jersey side but same idea: UA Local 24, first year, first try. I think timing and luck were a big part of it. Commercial bathrooms all day lol"
+    - author: NorthJerseyCopper
+      body: "Local 24 first year, third try. Ranked low the first two times."
+    - author: BayRidge.traps
+      body: "Apex grad, plumbing. Applied to Local 1, waiting. Working service and drain calls out of Canarsie meanwhile. My foreman says don't hold my breath."
+    - author: auelecny
+      body: "Army, then a non-union helper job in Ozone Park, 35 now. Haven't applied yet. Idk if I'm too old for the list, brother."
+    - author: dreb_jman
+      body: "Not too old. We've had plenty of guys start in their 30s. Check the age rules on the official site, don't guess."
+    - author: briplumb87
+      body: "34, Bronx, left a desk job. Working for a non-union plumber in Fordham. My mentor on here says non-union in the city can be a good career too, and so far he's right."
+    - author: threeway_91
+      body: "staten island, non-union helper out of tottenville. applied to 3 once, didn't get the call. trying again. boss says the ferry commute would kill me anyway lol brother"
+    - author: JerseyTomatoWires
+      body: "Jersey guy reading along... 164, got in on the second try. same lesson as everyone, keep working while you wait"
+    - author: LateStartPlumber
+      body: "42, staten island, helper at a non-union shop. wasn't even going to try the union at my age, but this thread has me wondering if i should. sorry if that's a dumb thing to say"
+    - author: plumbguy917
+      body: "not dumb. guys in my class are all ages. call and ask, worst case they say no lol"
+    - author: emt_bender_200amp
+      body: "Trade high school kid from Bay Ridge here, haven't applied to anything yet, just reading every single one of these and taking notes, sorry for over-explaining, but it's really useful to see how different everyone's path was. Thanks in advance to everyone who posted."
+    - author: Flushing.sparks
+      body: "Same as the Bay Ridge kid. Still in school in Queens, reading all of this. There's a Local 3 guy on here who answers everybody, so I'm getting a lot of good advice already."
+    - author: Kearny_Pipefitter
+      body: "Bayonne, non-union helper, about a year in. Haven't applied anywhere yet. Reading every one of these before I do, brother."
+    - author: plumbguy917
+      body: "This blew up lol. Thanks everybody. Short version from all of you: keep working, apply anyway, check the official site, and non-union is real too."
+
+# ----------------------------------------------------------------------------
+# brief B073
+- id: T054
+  category: A
+  topic: A6_nyc_or_nj_local
+  type: question
+  trade: electrical
+  nyc: true
+  author: Flushing.sparks
+  when: late
+  title: "Could I apply to a Jersey IBEW local instead of Local 3? Aunt lives in North Bergen"
+  body: |
+    Queens kid, still in an electrical program. Local 3 is the dream but everybody knows how hard it is. My aunt lives in North Bergen and said I could stay with her after I graduate.
+
+    Dreb already told me jurisdiction is a "call them and ask" thing, which I will. But for the Jersey people: if I moved to Hudson County, would I just apply to whatever local covers there like anybody else? Is it dumb to move states for an apprenticeship? My foreman on weekends says I'm overthinking it.
+
+    edit: not trying to skip the line anywhere, just want options.
+  fact_risk: ["IBEW Local 164 covers Hudson County", "residency proof requirements", "transferring an apprenticeship between locals"]
+  replies:
+    - author: JughandleJourneyman
+      body: "164 2nd year, Teaneck... I'm pretty sure Hudson is 164 too but please call and check, don't go off me. A couple of guys in my class moved here from out of state... it's not dumb if you're actually going to live here. Thanks in advance for updating us"
+    - author: BentConduitClub
+      body: "I'm in the Hudson County vo-tech and I live in North Bergen, so this is my town lol. Your aunt's neighborhood is fine, close to the buses into the city too if you change your mind, sorry I'm over-explaining, but parking is terrible here, don't bring a car."
+    - author: bklyn_arkady
+      body: "I grew up in Jersey and work in Brooklyn, so I've lived both sides. In the city it's different on licensing, on unions, on everything down to the permits. If you move, commit to Jersey for the long run. As far as I know apprenticeships don't move easily between locals, and your career grows where you train."
+    - author: dreb_jman
+      body: "What I said before, brother: call and ask. And whichever side you pick, half my guys come through the tunnels every day and complain about it every day. You'll be fine."
+    - author: JunctionBoxJunkie
+      body: "Mercer kid, totally different part of the state, but my cousin moved from Philly to Trenton for the same reason, and he said the local wanted proof he actually lived here, a lease or bills in his name or something like that, I don't remember exactly. So if you do it, do it for real and keep your paperwork."
+    - author: OpenNeutralBlues
+      body: "Nutley, Essex vo-tech. Same boat but the other way around, I keep thinking about Local 3. Grass is greener I guess."
+    - author: Flushing.sparks
+      body: "Makes sense. Going to call both and ask about residency before I say anything to my aunt. Thanks all."
+
+# ----------------------------------------------------------------------------
+# brief B157
+- id: T055
+  category: A
+  topic: A6_nyc_aptitude_test_prep
+  type: question
+  trade: electrical
+  nyc: true
+  author: Flushing.sparks
+  when: late
+  title: "What kind of math is on the aptitude test, and how did you study?"
+  body: "Getting ready for the Local 3 application whenever it opens next. I'm okay at math but not great. What was actually on the aptitude test when you took it? Algebra? Reading? Mechanical stuff? And what did you use to study? My shop teacher has an old practice packet but it's from like 2015 and half the pages are photocopies of photocopies."
+  fact_risk: ["Local 3 aptitude test content", "official practice materials"]
+  replies:
+    - author: dreb_jman
+      accepted: true
+      body: "Brother, mine was math and reading, 21 years ago, so don't plan around my memory. Look at what the official site says the test covers now, and if they name a test or a practice guide, use that one. Then do algebra and fractions until it's boring. Work on reading speed too; people run out of time."
+    - author: neutral_bar_99
+      body: "I'm in New Jersey and haven't taken one yet, but our shop teacher in Wayne had us do practice algebra and reading comprehension out of a library book for civil service and apprenticeship tests. I'm over-explaining, but the library route is free, which my parents appreciated."
+    - author: Passaic_Sparky
+      body: "never took one, went straight to a shop. idk if that helps but you dont need the test to have a career lol"
+    - author: emt_bender_200amp
+      body: "The shop teacher down the hall from mine has a newer packet I think, I'll ask him which room and tell you, sorry if that's over-explaining, thanks in advance"
+
+# ======================== A7. Other ways in, paperwork, life logistics ========================
+# new (Senior AMA)
+- id: T056
+  category: A
+  topic: A8_hiring_ama
+  type: discussion
+  trade: hvac
+  author: haddad_mech
+  when: early
+  title: "Hiring two first-year apprentices this fall. Ask me what I look for."
+  body: "I run a mechanical company in Burlington County: HVAC and plumbing, mostly schools and warehouses, a lot of it prevailing-wage public work. I hire apprentices every year and this fall I need two. I'm not posting a job here, and I won't take applications through this site. But I get asked the same questions every time I interview, so ask them here and I'll answer honestly. Fair warning: our jobs are on public schools, so there's certified payroll, background checks, and early starts. That isn't for everyone, and that's fine."
+  fact_risk: ["background checks and certified payroll on public school work"]
+  replies:
+    - author: joe.plumb
+      body: "Camden County vo-tech grad, 2 years in... what's the biggest reason you don't hire someone after the interview? edit: or don't keep them after the first month"
+    - author: haddad_mech
+      body: "Interview: they can't tell me why they want this trade, or they badmouth their last boss. First month: lateness. I'll teach anybody who's there at 6. I can't teach someone who isn't."
+    - author: QuickChekCrew
+      body: "33, Cherry Hill, left a warehouse... doing the county HVAC night classes but no field experience at all... would you even look at someone like me? Thanks in advance"
+    - author: haddad_mech
+      body: "Yes. Warehouse people know how to work a shift and follow a safety rule. Get your driver's license squared away if it isn't, take an OSHA 10 if you can, and apply. That's more than a lot of applicants bring."
+    - author: big_nicole_plumb
+      body: "Burlington County here too. Can confirm the 6am thing is real, I've driven past school job sites around Mount Laurel at 5:45 and the trucks are already there lol"
+
+# ----------------------------------------------------------------------------
+# new (Senior rant/tip)
+- id: T057
+  category: A
+  topic: A7_low_voltage_way_in
+  type: discussion
+  trade: electrical
+  author: wchen_controls
+  when: late
+  title: "low voltage is a way in, and nobody at the vo-tech ever mentions it"
+  body: |
+    small rant, then useful info. every year i meet vo-tech kids who've only heard about two options: line-voltage electrician, union or non-union. nobody tells them about building automation, fire alarm, security, data.
+
+    i've been in bms and fire alarm 14 years, somerset and middlesex mostly. it's a real trade. you still need to understand electricity, you still work under codes and permits, and in nj fire alarm work has its own licensing as far as i know, so check what applies to the work you'd be doing.
+
+    the pay is fine, a lot of the work is indoors, and your knees last longer. fwiw if you like troubleshooting more than pulling wire, look at it. ask me anything.
+  fact_risk: ["NJ fire alarm licensing requirements", "controls integrators hiring from line-voltage shops"]
+  replies:
+    - author: Exit145Electric
+      body: "this is me, 3 years non-union in garfield doing emt and bending and i like the troubleshooting part way more. how do you even get hired into controls with no controls experience? appreciate it"
+    - author: wchen_controls
+      body: "a lot of integrators hire installers from line-voltage shops because you already know how to be on a site. call the controls companies near you and ask if they take apprentices or installers. fwiw the first year is a lot of pulling cable and labeling, same as anywhere"
+    - author: mbell_wireman
+      body: "Agree it's a real trade, and plenty of our journeymen end up in controls. One gentle correction for the kids reading, though: don't skip the line-voltage fundamentals to get there. The best controls people I've worked with could also wire a motor starter. Learn both if you can. Stay safe."
+    - author: wchen_controls
+      body: "fair, marcus, i agree with that. the best ones can do both"
+    - author: HelperForNow
+      body: "residential remodels in manahawkin, 1 year. never heard of bms until this post. is there any of that work down the shore or is it all up north"
+
+# ----------------------------------------------------------------------------
+# new (Senior tip)
+- id: T058
+  category: A
+  topic: A9_application_paperwork
+  type: tip
+  trade: electrical
+  author: mbell_wireman
+  when: early
+  title: "Before application season: get your paperwork together now, not the week it opens"
+  body: |
+    Every year I watch people scramble for documents the week an application opens. Don't be that person.
+
+    I can't tell you what any specific program requires; each apprenticeship posts its own list, and you should go by that. But in my experience the usual suspects are proof of age, your high school diploma or equivalent, sometimes a transcript, a driver's license, and for veterans, discharge paperwork. Some of those take weeks to get.
+
+    Request your transcript now. Find your birth certificate now. If your license is suspended, deal with it now. None of this is exciting. All of it has cost people a year. Stay safe.
+  fact_risk: ["typical apprenticeship application documents", "transcript turnaround times"]
+  replies:
+    - author: threeway_02
+      body: "This is timely. I had no idea where my high school diploma was. I graduated in 2008. Requested a copy this morning."
+    - author: MonmouthPlumber
+      body: "UA Local 9, 3rd year. Agree on the transcript, mine took almost a month to come from my old school. Thanks in advance to whoever reads this and starts now."
+    - author: PullingWireAgain
+      body: "sorry, dumb question... does a vo-tech certificate count as the diploma or is that separate"
+    - author: mbell_wireman
+      body: "Not dumb. They're usually separate; the diploma is the high school credential, and the vo-tech certificate is extra. Bring both. Check the program's list to be sure."
+
+# ----------------------------------------------------------------------------
+# new
+- id: T059
+  category: A
+  topic: A11_no_car_no_license
+  type: question
+  trade: other
+  author: UndecidedTradesKid
+  when: early
+  title: "No car and no license yet. Can I still get hired as a helper?"
+  body: "Vo-tech student in Newark, haven't picked a trade yet. Want a summer and weekend helper job. Problem: I don't have my license yet (road test is in September) and I don't have a car. Every listing says valid driver's license required. Is that a dealbreaker? Could I get to a shop on the bus and ride with the crew? My friend's dad is a foreman for a builder and he says no shop will take me. I work at a Wawa right now so I need to know if it's worth trying."
+  fact_risk: []
+  replies:
+    - author: oldsteam_zig
+      body: "Kid, a lot of shops want the license because you'll drive the van eventually, and their insurance cares. But if you show up at the shop at 6:30 every day on the bus, somebody will notice. Get the license in September. That's the job."
+    - author: rui_t_kearny
+      body: "I hired a kid once who took two buses from Newark to Kearny every morning for a year before he got his license. Best helper I had that decade. My father would have hired him on the spot too. Ask shops near a bus line, and tell them your road test date."
+    - author: hudson_conduit
+      body: "no car here either my first 4 months in union city lol. boss picked me up at the light rail some days. it works if you're close to the shop"
+
+# ----------------------------------------------------------------------------
+# new
+- id: T060
+  category: A
+  topic: A10_drug_test_background
+  type: question
+  trade: electrical
+  author: hudson_conduit
+  when: early
+  title: "Do union apprenticeships drug test now that weed is legal in Jersey?"
+  body: "Asking for real, not trying to be funny lol. I'm at a non-union shop in Union City, nobody's ever tested me. Thinking about applying to the IBEW next year. I smoke sometimes on weekends, it's legal now. Do they test before you start? Random? Does legal even matter for that? Not looking for a lecture, just want to know what I'm walking into so I'm not dumb about it."
+  fact_risk: ["union apprenticeship drug testing policies", "NJ cannabis law vs employer and site safety policies"]
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Fair question, no lecture. I can't speak to any program's current policy; ask them directly or read their application materials.
+
+        From the job side: a lot of the sites we work on, especially big commercial and data centers, have their own testing rules regardless of state law, and contractors follow the site's rules. Legal at home doesn't mean allowed on a site. If you want the job, plan as if you'll be tested. You're working around energized equipment. Stay safe.
+    - author: codebook_dale
+      body: "Not legal advice, just how I'd look at it: state law on cannabis and an employer's safety policy are two different questions, and the second one is the one that decides whether you work on Monday."
+    - author: big_hector_plumb
+      body: "Union City too. My shop tested me at hiring four years ago. Just depends on the shop lol."
+    - author: Passaic_Sparky
+      body: "idk about the union but every gc site i've been on in passaic county had a policy posted in the trailer. read it"
+
+# ----------------------------------------------------------------------------
+# new
+- id: T061
+  category: A
+  topic: A14_parents_want_college
+  type: question
+  trade: electrical
+  author: neutral_bar_99
+  when: late
+  title: "How do I explain to my parents that the trades aren't a step down?"
+  body: |
+    This needs some background. I'm in the electrical program at the Passaic County vo-tech, and I'm good at it. My parents are both accountants in Wayne and they want me to go to a four-year college. They're not mean about it, they just think trades are what you do if college doesn't work out.
+
+    I want to apply to an apprenticeship and work. I've tried explaining, but I end up sounding like a kid who doesn't want to study. How did any of you have this conversation with your parents? What actually convinced them, if anything did?
+
+    I'm writing this from the Wawa parking lot on Hamburg Turnpike because I didn't want to have this argument again tonight.
+  fact_risk: ["college credit arrangements for apprenticeship coursework", "apprentices paid while training"]
+  replies:
+    - author: ms_almonte
+      body: "I have this conversation with parents every semester at open house. First, show them a plan, not a feeling: the apprenticeship, the school hours, the pay scale, the license at the end. Accountants love a plan. Second, point out that apprentices are generally paid while they train, which a lot of parents don't realize. Third, invite them to talk to someone in the trade. Ask me how I know that last one works."
+    - author: thiago_sparks
+      body: "Honestly my parents wanted college too. What changed it was my first paycheck, and then my second year when I was already ahead of my cousin who had loans. I'm not saying college is bad. I'm saying show them the numbers and give it a year."
+    - author: JunctionBoxJunkie
+      body: "I've got a version of this with my grandmother, who thinks electricians are 'just labor,' and what finally got her was when I fixed the hallway light that two handymen couldn't figure out, and I explained how a three-way works while I did it, which is maybe a lot, but she stopped saying 'just labor.'"
+    - author: CentralJersey_Coils
+      body: "Same here, brother. Asbury Park, HVAC program. My parents want Rutgers. Bookmarking this for the next time it comes up at dinner."
+    - author: wchen_controls
+      body: "fwiw my parents wanted college too and i did two semesters before switching. if yours like degrees, some colleges may give credit for apprenticeship coursework, check what exists near you. it can make the conversation easier"
+    - author: Exit117Plumber
+      body: "my parents were the opposite lol, they were happy I wasn't going to college. but my foreman (well, my uncle) told my mom about the pension stuff and that's what she cared about"
+    - author: rui_t_kearny
+      body: "My father used to say there's no shame in any work you do well. Show them you're going to do it well. Parents mostly want to know you'll be okay."
+
+# ----------------------------------------------------------------------------
+# new
+- id: T062
+  category: A
+  topic: A15_hvac_union_route
+  type: question
+  trade: hvac
+  author: middlesex_coils
+  when: mid
+  title: "is there even a union route for residential hvac in nj?"
+  body: "sorry if this is a dumb one. 35, left bartending, started as a helper at an hvac shop in woodbridge this year. everyone talks about the ibew and the plumbers union but i never hear about an hvac union. is there one for residential service in nj, or is it all commercial? and would i be better off just staying non-union and getting my hours and my 608?"
+  fact_risk: ["union HVAC routes in NJ (UA, sheet metal)", "UA Local 9 HVAC service work", "HVACR license experience requirement"]
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        As I understand it:
+        - There are union routes into HVAC in NJ, mostly through the pipe trades and the sheet metal side, and they lean commercial
+        - Residential service in NJ is mostly non-union shops like mine
+        - Either way, get your 608 now and track your hours; the HVACR license has experience requirements, so check the board for details
+        Call the locals directly if commercial interests you.
+    - author: dhollis61
+      body: "local 9 has hvac service guys. commercial mostly. call them."
+    - author: ThirdYearTinknocker
+      body: "3rd year non-union in asbury park, rooftops on strip malls along 35. i looked at the union stuff and decided to stay put for now, my boss says he'll help with license prep when i'm closer. appreciate it, good question"
+    - author: tnguyen_refrig
+      body: "refrigeration down the shore is mostly non-union shops too. if you like the cold side, a restaurant refrigeration guy will take a helper in the winter. winter is when you learn"
+
+# ----------------------------------------------------------------------------
+# new
+- id: T063
+  category: A
+  topic: A16_pre_apprenticeship
+  type: question
+  trade: other
+  author: carlosu88
+  when: mid
+  title: "pre-apprenticeship programs: worth it or a waste of 10 weeks?"
+  body: "31, voorhees, left a call center last year. general labor right now. a nonprofit in camden runs a free 10-week pre-apprenticeship program, construction basics, osha 10, some math, and they say they help with union applications. free is good. but 10 weeks without a paycheck is not. anyone done one? did it actually help?"
+  fact_risk: ["pre-apprenticeship programs' links to union apprenticeships", "OSHA 10 included in such programs"]
+  replies:
+    - author: hec_does_ac
+      accepted: true
+      body: "So this one time in AC... I worked with a kid who came out of a program like that, and he was ahead of the other helpers on safety and math from day one lol. Not every program is the same though. Ask them how many people from the last class got hired and where. If they can't answer, skip it."
+    - author: QuickChekCrew
+      body: "Cherry Hill here... I looked at the same kind of thing before I did the county night HVAC classes... couldn't do 10 weeks unpaid either... thanks in advance if anyone knows a weekend version"
+    - author: codebook_dale
+      body: "Not legal advice, just how I'd look at it: the OSHA 10 alone is worth having, and a structured program can help with the math on aptitude tests. Whether it gets you into an apprenticeship faster depends on whether the program actually works with the apprenticeship programs. Ask for specifics."

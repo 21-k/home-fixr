@@ -1,4 +1,10 @@
-export default function Loading() {
+/**
+ * The loading skeleton for app pages. Each route segment that wants it has its
+ * own loading.tsx re-exporting this. Deliberately NOT at the (app)/ group level:
+ * a loading boundary there makes every page stream, so /u/[handle] and
+ * /q/[slug] could never answer a missing handle or thread with a real 404.
+ */
+export function PageSkeleton() {
   return (
     <div className="mx-auto w-full max-w-2xl flex-1 px-4 py-8">
       <div className="mb-4 h-6 w-40 animate-pulse rounded bg-zinc-200" />

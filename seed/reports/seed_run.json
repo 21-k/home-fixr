@@ -46,9 +46,14 @@
     "seeded profiles open to messages": 0,
     "seeded profiles not founding": 0,
     "notifications involving seeded profiles": 0,
-    "seeded auth users with a password": 0
+    "seeded auth users with a password": 0,
+    "social rows touching a non-seeded profile": 0,
+    "mentorships that aren't junior -> senior": 0,
+    "juniors with two active mentors": 0,
+    "active mentees not following their mentor": 0,
+    "social rows outside the window or before both joined": 0
   },
   "batch": "fm-2026-10",
   "dry_run": false,
-  "ran_at": "2026-10-06T01:01:49+00:00"
+  "ran_at": "2026-10-07T13:30:27+00:00"
 }

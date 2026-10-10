@@ -1,0 +1,2346 @@
+{
+  "batch_id": "fm-2026-10",
+  "generated_by": "seed/scripts/gen_social.py",
+  "rng_seed": 20261034,
+  "window": [
+    "2026-07-24",
+    "2026-10-04"
+  ],
+  "threads": "content/threads.sample.scheduled.json",
+  "follows": [
+    {
+      "follower": "tnguyen_refrig",
+      "following": "haddad_mech",
+      "created_at": "2026-07-26T13:45:04+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "UndecidedTradesKid",
+      "following": "hudson_conduit",
+      "created_at": "2026-07-27T00:33:06+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "nate_640",
+      "following": "Kash_sing",
+      "created_at": "2026-07-29T01:29:28+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "codebook_dale",
+      "created_at": "2026-07-29T02:57:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev.R",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-07-29T16:08:27+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "NorthJerseyCopper",
+      "following": "benplumb79",
+      "created_at": "2026-07-29T22:32:02+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "HeatwaveOnCall",
+      "following": "ms_almonte",
+      "created_at": "2026-07-30T00:01:27+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "PullingWireAgain",
+      "following": "Kash_sing",
+      "created_at": "2026-07-30T01:25:58+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dreb_jman",
+      "following": "ms_almonte",
+      "created_at": "2026-07-30T09:21:04+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_paulie_plumb",
+      "following": "bklyn_arkady",
+      "created_at": "2026-07-30T09:44:50+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "bklyn_arkady",
+      "following": "dreb_jman",
+      "created_at": "2026-07-30T10:26:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "PullingWireAgain",
+      "following": "oldsteam_zig",
+      "created_at": "2026-07-30T23:31:58+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "briplumb87",
+      "following": "joyd_plumbing",
+      "created_at": "2026-07-31T01:57:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "GreenhornHVAC",
+      "following": "Raritan.airside",
+      "created_at": "2026-07-31T02:29:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LateStartPlumber",
+      "following": "bklyn_arkady",
+      "created_at": "2026-07-31T09:33:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BackflowBlues",
+      "following": "JunctionBoxJunkie",
+      "created_at": "2026-07-31T09:34:48+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "tnguyen_refrig",
+      "following": "ms_almonte",
+      "created_at": "2026-07-31T10:13:26+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_manny_plumb",
+      "following": "joyd_plumbing",
+      "created_at": "2026-07-31T10:14:33+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "jose6079",
+      "following": "codebook_dale",
+      "created_at": "2026-07-31T16:04:32+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dreb_jman",
+      "following": "codebook_dale",
+      "created_at": "2026-08-01T12:02:53+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LateStartPlumber",
+      "following": "dreb_jman",
+      "created_at": "2026-08-01T14:31:36+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joyd_plumbing",
+      "following": "Kash_sing",
+      "created_at": "2026-08-01T14:56:20+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "tnguyen_refrig",
+      "following": "hec_does_ac",
+      "created_at": "2026-08-01T15:53:35+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ms_almonte",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-01T18:40:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joyd_plumbing",
+      "following": "dhollis61",
+      "created_at": "2026-08-01T23:22:39+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Ryan.N",
+      "following": "Kash_sing",
+      "created_at": "2026-08-02T01:44:23+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Edison.volts",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-02T10:08:36+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "groundrod_05",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-02T20:58:14+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ms_almonte",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-08-03T00:03:57+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "ms_almonte",
+      "created_at": "2026-08-03T01:45:53+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Passaic_Sparky",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-03T09:00:56+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BackflowBlues",
+      "following": "Kash_sing",
+      "created_at": "2026-08-03T10:25:44+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-03T22:33:50+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Ryan.N",
+      "following": "codebook_dale",
+      "created_at": "2026-08-03T23:22:44+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LateStartPlumber",
+      "following": "joyd_plumbing",
+      "created_at": "2026-08-03T23:23:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "codebook_dale",
+      "following": "JunctionBoxJunkie",
+      "created_at": "2026-08-03T23:36:23+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "hudson_conduit",
+      "following": "wchen_controls",
+      "created_at": "2026-08-04T00:00:32+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BackflowBlues",
+      "following": "codebook_dale",
+      "created_at": "2026-08-04T00:17:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-04T02:06:14+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_nicole_plumb",
+      "following": "benplumb79",
+      "created_at": "2026-08-04T02:10:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "MonmouthPlumber",
+      "following": "Kash_sing",
+      "created_at": "2026-08-04T02:23:17+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "bklyn_arkady",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-04T09:42:40+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-04T10:11:06+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dreb_jman",
+      "following": "Kash_sing",
+      "created_at": "2026-08-04T21:26:36+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ThirdYearTinknocker",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-04T22:10:19+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Bergen_Ducts",
+      "following": "ms_almonte",
+      "created_at": "2026-08-04T23:16:06+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "tnguyen_refrig",
+      "following": "codebook_dale",
+      "created_at": "2026-08-05T00:11:46+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "panelchanger_200amp",
+      "following": "wchen_controls",
+      "created_at": "2026-08-05T00:25:49+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "codebook_dale",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-05T01:46:46+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ThirdYearTinknocker",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-08-05T02:42:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "ms_almonte",
+      "created_at": "2026-08-06T01:09:59+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "tnguyen_refrig",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-06T02:02:56+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_zach_hvac",
+      "following": "Kash_sing",
+      "created_at": "2026-08-06T09:24:16+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "Kash_sing",
+      "created_at": "2026-08-06T22:20:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LateStartPlumber",
+      "following": "ms_almonte",
+      "created_at": "2026-08-07T00:07:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dreb_jman",
+      "following": "wchen_controls",
+      "created_at": "2026-08-07T00:17:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LateStartPlumber",
+      "following": "Kash_sing",
+      "created_at": "2026-08-07T00:49:07+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ThirdYearTinknocker",
+      "following": "codebook_dale",
+      "created_at": "2026-08-07T01:45:36+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FluxOnMyBoots",
+      "following": "dhollis61",
+      "created_at": "2026-08-07T09:00:36+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteplumb80",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-07T09:02:01+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "WawaRunWired",
+      "created_at": "2026-08-07T09:44:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "DinerCoffeeHVAC",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-07T10:19:53+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "dhollis61",
+      "created_at": "2026-08-07T16:03:13+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_nicole_plumb",
+      "following": "Exit117Plumber",
+      "created_at": "2026-08-07T16:12:00+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "mbell_wireman",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-07T16:12:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "oldsteam_zig",
+      "following": "peteplumb80",
+      "created_at": "2026-08-07T16:14:04+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "threeway_02",
+      "created_at": "2026-08-07T16:20:27+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Exit117Plumber",
+      "following": "Kash_sing",
+      "created_at": "2026-08-07T16:57:18+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "tnguyen_refrig",
+      "following": "Kash_sing",
+      "created_at": "2026-08-07T17:58:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-08T12:07:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Passaic_Sparky",
+      "following": "Exit117Plumber",
+      "created_at": "2026-08-08T12:12:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Edison.volts",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-08T12:54:40+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "emeka.plumb",
+      "following": "Kash_sing",
+      "created_at": "2026-08-08T15:00:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joe.plumb",
+      "following": "benplumb79",
+      "created_at": "2026-08-08T15:04:16+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FluxOnMyBoots",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-08T15:48:47+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "rui_t_kearny",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-08T18:49:57+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteplumb80",
+      "following": "Edison.volts",
+      "created_at": "2026-08-08T23:38:53+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "DinerCoffeeHVAC",
+      "following": "ms_almonte",
+      "created_at": "2026-08-09T13:33:18+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "Kash_sing",
+      "created_at": "2026-08-09T15:02:21+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "carlosu88",
+      "following": "benplumb79",
+      "created_at": "2026-08-09T16:29:15+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FluxOnMyBoots",
+      "following": "joe.plumb",
+      "created_at": "2026-08-09T16:31:00+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "MonmouthPlumber",
+      "following": "dhollis61",
+      "created_at": "2026-08-09T16:38:00+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "JunctionBoxJunkie",
+      "created_at": "2026-08-09T19:28:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Exit117Plumber",
+      "following": "wchen_controls",
+      "created_at": "2026-08-09T23:24:39+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ms_almonte",
+      "following": "peteplumb80",
+      "created_at": "2026-08-10T00:11:01+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "mbell_wireman",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-08-10T00:13:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "QueensWireman",
+      "following": "emt_bender_200amp",
+      "created_at": "2026-08-10T01:24:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "hec_does_ac",
+      "created_at": "2026-08-10T01:33:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dhollis61",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-10T01:34:49+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "carlosu88",
+      "following": "dahvacnj",
+      "created_at": "2026-08-10T01:35:06+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteplumb80",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-10T02:36:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "WawaRunWired",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-10T11:47:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "carlosu88",
+      "following": "codyplumb83",
+      "created_at": "2026-08-10T17:59:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbnj88",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-10T23:11:47+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "Dev.R",
+      "created_at": "2026-08-10T23:21:47+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa608_672",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-11T02:13:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "HeatwaveOnCall",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-11T02:45:23+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "DinerCoffeeHVAC",
+      "following": "hec_does_ac",
+      "created_at": "2026-08-11T09:25:02+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "hec_does_ac",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-11T10:08:42+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "WhichTradeTho",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-11T16:34:49+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "breakerbox_884",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-11T17:17:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbnj77",
+      "following": "HeatwaveOnCall",
+      "created_at": "2026-08-11T22:29:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_paulie_plumb",
+      "following": "peteplumb80",
+      "created_at": "2026-08-11T23:12:16+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "codyplumb83",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-12T00:26:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "shutoff200amp",
+      "following": "dhollis61",
+      "created_at": "2026-08-12T01:29:45+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Exit117Plumber",
+      "following": "QuickChekCrew",
+      "created_at": "2026-08-12T09:16:23+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "dahvacnj",
+      "created_at": "2026-08-12T09:57:26+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "chris.plumb",
+      "following": "ms_almonte",
+      "created_at": "2026-08-12T09:58:21+00:00",
+      "why": "requested mentorship (declined)"
+    },
+    {
+      "follower": "middlesex_coils",
+      "following": "big_zach_hvac",
+      "created_at": "2026-08-12T16:45:02+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dreb_jman",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-12T16:58:35+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Exit117Plumber",
+      "following": "joyd_plumbing",
+      "created_at": "2026-08-12T20:48:02+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "QuickChekCrew",
+      "following": "chris.plumb",
+      "created_at": "2026-08-12T22:30:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "groundrod_05",
+      "following": "dreb_jman",
+      "created_at": "2026-08-12T22:39:54+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "fmelecnj",
+      "following": "codebook_dale",
+      "created_at": "2026-08-12T23:47:00+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "breakerbox_884",
+      "following": "wchen_controls",
+      "created_at": "2026-08-13T00:10:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_manny_plumb",
+      "following": "ms_almonte",
+      "created_at": "2026-08-13T16:30:50+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "middlesex_coils",
+      "following": "hec_does_ac",
+      "created_at": "2026-08-13T16:39:47+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "emt_bender_200amp",
+      "following": "dreb_jman",
+      "created_at": "2026-08-13T22:58:09+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "NorthJerseyCopper",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-13T23:12:45+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "haddad_mech",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-13T23:19:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FluxOnMyBoots",
+      "following": "plumbnj88",
+      "created_at": "2026-08-14T02:40:08+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteplumb80",
+      "following": "PlumbFromMorris",
+      "created_at": "2026-08-14T09:02:42+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-14T10:28:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joe.plumb",
+      "following": "BackflowBlues",
+      "created_at": "2026-08-14T16:01:56+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ThirdYearTinknocker",
+      "following": "Kash_sing",
+      "created_at": "2026-08-14T16:19:13+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "breakerbox_884",
+      "following": "JunctionBoxJunkie",
+      "created_at": "2026-08-14T16:25:48+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "codebook_dale",
+      "created_at": "2026-08-14T17:07:39+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BergenPlumber",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-14T20:01:12+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "joe.plumb",
+      "following": "codebook_dale",
+      "created_at": "2026-08-14T22:44:10+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "middlesex_coils",
+      "following": "HeatwaveOnCall",
+      "created_at": "2026-08-15T12:03:08+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "HelperForNow",
+      "following": "codebook_dale",
+      "created_at": "2026-08-15T12:06:17+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Edison.volts",
+      "following": "big_paulie_plumb",
+      "created_at": "2026-08-15T12:13:34+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Exit117Plumber",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-15T14:25:50+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "Elizabeth.traps",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-15T15:40:23+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "briplumb87",
+      "following": "bklyn_arkady",
+      "created_at": "2026-08-15T23:36:41+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "NewarkSparks",
+      "following": "ms_almonte",
+      "created_at": "2026-08-15T23:46:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BergenPlumber",
+      "following": "dhollis61",
+      "created_at": "2026-08-16T11:13:38+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "carlosu88",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-16T12:23:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "Kash_sing",
+      "created_at": "2026-08-16T12:57:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "oldsteam_zig",
+      "following": "dhollis61",
+      "created_at": "2026-08-16T13:15:21+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "chris.plumb",
+      "following": "Kash_sing",
+      "created_at": "2026-08-16T15:23:02+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbnj77",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-16T19:14:32+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "wchen_controls",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-16T19:48:58+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "middlesex_coils",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-17T00:33:53+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "DinerCoffeeHVAC",
+      "following": "dhollis61",
+      "created_at": "2026-08-17T01:09:50+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-08-17T17:40:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "mselecnj",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-18T00:27:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "CentralJersey_Coils",
+      "following": "Kash_sing",
+      "created_at": "2026-08-18T01:05:00+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "breakerbox_884",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-18T11:52:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "mbell_wireman",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-08-18T15:12:12+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "PlumbFromMorris",
+      "following": "dhollis61",
+      "created_at": "2026-08-18T21:20:23+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Edison.volts",
+      "following": "NightClassSparky",
+      "created_at": "2026-08-18T23:05:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "rui_t_kearny",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-19T00:34:14+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "JerseyTomatoWires",
+      "following": "wchen_controls",
+      "created_at": "2026-08-19T01:38:57+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-19T02:23:24+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "PlumberFromRahway",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-19T02:43:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "wchen_controls",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-08-19T09:19:21+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Passaic_Sparky",
+      "following": "peteq75",
+      "created_at": "2026-08-19T09:23:42+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_manny_plumb",
+      "following": "benplumb79",
+      "created_at": "2026-08-19T16:41:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "shutoff200amp",
+      "following": "joyd_plumbing",
+      "created_at": "2026-08-19T23:33:41+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "wchen_controls",
+      "created_at": "2026-08-20T01:00:32+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "thiago_sparks",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-20T01:44:11+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "QuickChekCrew",
+      "following": "JunctionBoxJunkie",
+      "created_at": "2026-08-20T02:09:35+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "middlesex_coils",
+      "created_at": "2026-08-20T10:05:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_nicole_plumb",
+      "following": "joe.plumb",
+      "created_at": "2026-08-20T10:21:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Ryan.N",
+      "following": "HeatwaveOnCall",
+      "created_at": "2026-08-21T00:44:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "essex_plumber",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-21T01:08:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "Kash_sing",
+      "created_at": "2026-08-21T01:39:42+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "WhichTradeTho",
+      "created_at": "2026-08-21T02:30:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "mbell_wireman",
+      "following": "wchen_controls",
+      "created_at": "2026-08-21T09:20:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "oldsteam_zig",
+      "following": "rui_t_kearny",
+      "created_at": "2026-08-21T10:08:18+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JerseyTomatoWires",
+      "following": "TryingAllThree",
+      "created_at": "2026-08-21T10:10:26+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JerseyTomatoWires",
+      "following": "codebook_dale",
+      "created_at": "2026-08-21T10:23:44+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BergenPlumber",
+      "following": "benplumb79",
+      "created_at": "2026-08-21T16:39:28+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "plumbnj88",
+      "created_at": "2026-08-21T17:08:15+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Passaic_Sparky",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-08-22T14:33:39+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "big_zach_hvac",
+      "following": "haddad_mech",
+      "created_at": "2026-08-22T22:49:45+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "NewarkSparks",
+      "following": "HelperForNow",
+      "created_at": "2026-08-22T23:43:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BackflowBlues",
+      "following": "dahvacnj",
+      "created_at": "2026-08-23T00:22:17+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "NightClassSparky",
+      "following": "JughandleJourneyman",
+      "created_at": "2026-08-23T01:21:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "DinerCoffeeHVAC",
+      "following": "Exit117Plumber",
+      "created_at": "2026-08-23T12:37:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-23T13:36:33+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-23T14:16:52+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "wchen_controls",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-23T16:05:52+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-08-23T17:53:06+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "CentralJersey_Coils",
+      "following": "ms_almonte",
+      "created_at": "2026-08-23T18:31:23+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "Kash_sing",
+      "following": "haddad_mech",
+      "created_at": "2026-08-24T01:17:18+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "plumbnj88",
+      "following": "ms_almonte",
+      "created_at": "2026-08-24T23:08:22+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-25T01:25:29+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "codebook_dale",
+      "created_at": "2026-08-25T09:19:23+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "haddad_mech",
+      "created_at": "2026-08-25T09:40:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Flushing.sparks",
+      "following": "codebook_dale",
+      "created_at": "2026-08-25T10:07:40+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "sweatjoint200amp",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-26T16:27:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "WiremanFromPiscataway",
+      "following": "Kash_sing",
+      "created_at": "2026-08-26T23:05:56+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Exit117Plumber",
+      "following": "ms_almonte",
+      "created_at": "2026-08-27T00:03:21+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "deshawn.hvac",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-27T00:59:59+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "joyd_plumbing",
+      "created_at": "2026-08-27T01:04:05+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "middlesex_coils",
+      "created_at": "2026-08-27T01:34:29+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "QuickChekCrew",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-27T16:57:47+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "fmelecnj",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-28T00:29:44+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "WiremanFromPiscataway",
+      "following": "wchen_controls",
+      "created_at": "2026-08-28T01:22:02+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-28T02:29:08+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-08-28T03:12:19+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "Kash_sing",
+      "created_at": "2026-08-28T03:15:03+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "briplumb87",
+      "following": "TryingAllThree",
+      "created_at": "2026-08-28T09:10:37+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "ms_almonte",
+      "created_at": "2026-08-28T09:38:59+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "CentralJersey_Coils",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-28T10:22:19+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "JughandleJourneyman",
+      "created_at": "2026-08-28T10:30:03+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Kash_sing",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-08-28T11:49:00+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "QuickChekCrew",
+      "following": "RookieWireman",
+      "created_at": "2026-08-28T16:52:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "WiremanFromPiscataway",
+      "following": "JunctionBoxJunkie",
+      "created_at": "2026-08-28T21:08:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "mbell_wireman",
+      "created_at": "2026-08-29T13:33:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "HeatwaveOnCall",
+      "following": "Kash_sing",
+      "created_at": "2026-08-29T13:48:09+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "BackflowBlues",
+      "following": "oldsteam_zig",
+      "created_at": "2026-08-29T14:45:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "PullingWireAgain",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-29T18:41:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FluxOnMyBoots",
+      "following": "HelperForNow",
+      "created_at": "2026-08-29T23:19:37+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "UndecidedTradesKid",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-08-29T23:45:59+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbnj88",
+      "following": "TryingAllThree",
+      "created_at": "2026-08-30T00:16:02+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BergenPlumber",
+      "following": "briplumb87",
+      "created_at": "2026-08-30T14:03:48+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "fmelecnj",
+      "following": "peteq75",
+      "created_at": "2026-08-30T16:27:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "thiago_sparks",
+      "created_at": "2026-08-30T16:37:28+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "NorthJerseyCopper",
+      "following": "peteplumb80",
+      "created_at": "2026-08-30T23:50:18+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "DinerCoffeeHVAC",
+      "following": "HeatwaveOnCall",
+      "created_at": "2026-08-31T02:48:37+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TaylorHamHVAC",
+      "following": "Kash_sing",
+      "created_at": "2026-08-31T10:17:57+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-08-31T21:41:57+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteplumb80",
+      "following": "NorthJerseyCopper",
+      "created_at": "2026-08-31T22:22:26+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "NightClassSparky",
+      "following": "bklyn_arkady",
+      "created_at": "2026-09-01T09:11:33+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "fmelecnj",
+      "following": "wchen_controls",
+      "created_at": "2026-09-01T09:19:41+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JerseyTomatoWires",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-01T09:58:33+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JerseyTomatoWires",
+      "following": "Exit117Plumber",
+      "created_at": "2026-09-02T01:34:46+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "Kash_sing",
+      "created_at": "2026-09-02T10:11:04+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TaylorHamHVAC",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-02T15:32:55+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "TaylorHamHVAC",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-09-02T15:44:08+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "bklyn_arkady",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-02T23:33:28+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joe.plumb",
+      "following": "haddad_mech",
+      "created_at": "2026-09-03T01:59:03+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "hec_does_ac",
+      "following": "joyd_plumbing",
+      "created_at": "2026-09-03T09:34:24+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "thiago_sparks",
+      "following": "joe.plumb",
+      "created_at": "2026-09-03T10:14:05+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "thiago_sparks",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-09-03T11:30:09+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "CentralJersey_Coils",
+      "following": "TaylorHamHVAC",
+      "created_at": "2026-09-03T21:58:56+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "deshawn.hvac",
+      "following": "haddad_mech",
+      "created_at": "2026-09-03T22:26:58+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "EssexPipes",
+      "created_at": "2026-09-03T23:13:27+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "hec_does_ac",
+      "following": "rui_t_kearny",
+      "created_at": "2026-09-04T01:26:14+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "WiremanFromPiscataway",
+      "following": "hudson_conduit",
+      "created_at": "2026-09-04T02:41:59+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dhollis61",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-09-04T03:49:02+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "BentConduitClub",
+      "following": "codebook_dale",
+      "created_at": "2026-09-04T03:53:27+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Kearny_Pipefitter",
+      "following": "dahvacnj",
+      "created_at": "2026-09-04T03:55:31+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "HeatwaveOnCall",
+      "following": "dhollis61",
+      "created_at": "2026-09-04T13:11:14+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "HeatwaveOnCall",
+      "following": "joyd_plumbing",
+      "created_at": "2026-09-04T13:48:18+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "dhollis61",
+      "following": "thiago_sparks",
+      "created_at": "2026-09-04T15:21:02+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "hec_does_ac",
+      "following": "dhollis61",
+      "created_at": "2026-09-04T17:44:06+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "big_nicole_plumb",
+      "following": "peteplumb80",
+      "created_at": "2026-09-04T20:12:57+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "dhollis61",
+      "following": "joyd_plumbing",
+      "created_at": "2026-09-04T21:31:28+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "ms_almonte",
+      "created_at": "2026-09-05T15:44:46+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joe.plumb",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-07T01:30:14+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "Kearny_Pipefitter",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-07T02:40:16+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "Kearny_Pipefitter",
+      "following": "haddad_mech",
+      "created_at": "2026-09-07T12:19:51+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "oldsteam_zig",
+      "following": "haddad_mech",
+      "created_at": "2026-09-07T13:03:54+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "Kearny_Pipefitter",
+      "following": "sweatjoint200amp",
+      "created_at": "2026-09-07T14:43:41+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "Kearny_Pipefitter",
+      "following": "joyd_plumbing",
+      "created_at": "2026-09-07T22:53:10+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "CondensateOverflow",
+      "following": "haddad_mech",
+      "created_at": "2026-09-09T01:30:29+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "sweatjoint200amp",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-10T10:27:03+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "WawaHoagieFuel",
+      "following": "threeway_02",
+      "created_at": "2026-09-11T09:06:40+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "peteq75",
+      "created_at": "2026-09-11T09:07:20+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TaylorHamHVAC",
+      "following": "JerseyDuctwork",
+      "created_at": "2026-09-11T10:09:09+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TaylorHamHVAC",
+      "following": "ms_almonte",
+      "created_at": "2026-09-11T16:07:51+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "auelecny",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-12T12:41:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dhollis61",
+      "following": "TryingAllThree",
+      "created_at": "2026-09-12T12:42:17+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "threeway883",
+      "following": "codebook_dale",
+      "created_at": "2026-09-12T18:37:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "plumbnj88",
+      "created_at": "2026-09-13T00:10:20+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "NorthJerseyCopper",
+      "following": "TorchAndFlux",
+      "created_at": "2026-09-14T00:40:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "CentralJersey_Coils",
+      "following": "Dev_H",
+      "created_at": "2026-09-14T09:20:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "hec_does_ac",
+      "created_at": "2026-09-14T10:00:59+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "CondensateOverflow",
+      "following": "Kash_sing",
+      "created_at": "2026-09-14T10:14:45+00:00",
+      "why": "requested mentorship (declined)"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "QuickChekCrew",
+      "created_at": "2026-09-14T16:37:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbnj77",
+      "following": "codebook_dale",
+      "created_at": "2026-09-15T09:03:46+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "ginaj75",
+      "following": "plumbnj88",
+      "created_at": "2026-09-15T16:20:42+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FirstYearSparky",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-16T00:26:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "plumbnj77",
+      "created_at": "2026-09-16T00:32:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "groundrod_05",
+      "following": "auelecny",
+      "created_at": "2026-09-17T00:16:34+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FirstYearSparky",
+      "following": "JughandleJourneyman",
+      "created_at": "2026-09-17T16:39:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-17T23:35:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "BackflowBlues",
+      "created_at": "2026-09-18T00:32:21+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "sweatjoint200amp",
+      "following": "rui_t_kearny",
+      "created_at": "2026-09-18T01:00:04+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "ExRetail_NowHVAC",
+      "created_at": "2026-09-18T03:13:29+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "BentConduitClub",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-18T16:30:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "benplumb79",
+      "created_at": "2026-09-18T17:01:44+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "hec_does_ac",
+      "created_at": "2026-09-19T13:52:04+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "ExRetail_NowHVAC",
+      "following": "Kash_sing",
+      "created_at": "2026-09-19T18:39:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "TryingAllThree",
+      "following": "ExRetail_NowHVAC",
+      "created_at": "2026-09-19T23:18:36+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "DripLoopDays",
+      "following": "threeway_02",
+      "created_at": "2026-09-19T23:20:40+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "codebook_dale",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-20T00:12:28+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FirstYearSparky",
+      "following": "haddad_mech",
+      "created_at": "2026-09-20T19:39:45+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "TryingAllThree",
+      "created_at": "2026-09-20T23:22:15+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "epa60812_2",
+      "following": "CondensateOverflow",
+      "created_at": "2026-09-20T23:49:18+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "GSP_Exit82",
+      "created_at": "2026-09-21T01:17:49+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbnj77",
+      "following": "plumbguy917",
+      "created_at": "2026-09-21T02:46:59+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "WawaRunWired",
+      "following": "codebook_dale",
+      "created_at": "2026-09-21T09:06:53+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-21T09:08:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "RainDayRestock",
+      "following": "thiago_sparks",
+      "created_at": "2026-09-21T09:45:10+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "GreenhornHVAC",
+      "following": "TryingAllThree",
+      "created_at": "2026-09-21T23:45:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Flushing.sparks",
+      "following": "bklyn_arkady",
+      "created_at": "2026-09-22T00:04:48+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "PlumbFromMorris",
+      "following": "rui_t_kearny",
+      "created_at": "2026-09-22T00:52:10+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "Dev_H",
+      "created_at": "2026-09-22T01:52:40+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-22T10:05:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "wchen_controls",
+      "created_at": "2026-09-22T22:08:29+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JughandleJourneyman",
+      "following": "Exit145Electric",
+      "created_at": "2026-09-23T00:02:45+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Flushing.sparks",
+      "following": "dreb_jman",
+      "created_at": "2026-09-23T00:20:25+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "dhollis61",
+      "created_at": "2026-09-23T01:00:14+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "auelecny",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-09-23T09:22:16+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "tnguyen_refrig",
+      "created_at": "2026-09-23T10:10:21+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "elecny85",
+      "following": "emt_bender_200amp",
+      "created_at": "2026-09-23T16:03:35+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ExRetail_NowHVAC",
+      "following": "hec_does_ac",
+      "created_at": "2026-09-23T17:29:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "dahvacnj",
+      "following": "Woodbridge.ducts",
+      "created_at": "2026-09-23T23:29:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "ThirdYearTinknocker",
+      "created_at": "2026-09-24T01:07:04+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "bklyn_arkady",
+      "created_at": "2026-09-24T02:02:13+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "GSP_Exit82",
+      "following": "hec_does_ac",
+      "created_at": "2026-09-24T02:14:31+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FirstYearSparky",
+      "following": "codebook_dale",
+      "created_at": "2026-09-24T10:01:53+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "haddad_mech",
+      "created_at": "2026-09-24T17:21:37+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "joe.plumb",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-25T00:25:46+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "FirstYearSparky",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-25T01:19:43+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "RainDayRestock",
+      "following": "codebook_dale",
+      "created_at": "2026-09-25T03:24:57+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "ms_almonte",
+      "created_at": "2026-09-25T10:10:28+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "OpenNeutralBlues",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-25T16:25:35+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "OpenNeutralBlues",
+      "following": "HelperForNow",
+      "created_at": "2026-09-25T16:25:46+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "Kash_sing",
+      "created_at": "2026-09-25T16:29:53+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-25T16:33:21+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "PlumbFromMorris",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-25T16:37:38+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "auelecny",
+      "following": "nate_640",
+      "created_at": "2026-09-25T16:51:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "OpenNeutralBlues",
+      "created_at": "2026-09-25T21:05:17+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "OpenNeutralBlues",
+      "created_at": "2026-09-25T22:33:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ExRetail_NowHVAC",
+      "following": "epa60812_2",
+      "created_at": "2026-09-26T14:37:19+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "leadfree98",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-26T18:08:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "Edison.volts",
+      "created_at": "2026-09-26T18:41:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "haddad_mech",
+      "created_at": "2026-09-27T09:16:48+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "OpenNeutralBlues",
+      "following": "JughandleJourneyman",
+      "created_at": "2026-09-27T13:31:55+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "TryingAllThree",
+      "created_at": "2026-09-27T17:04:14+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-27T18:38:45+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "thiago_sparks",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-27T19:38:35+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "rui_t_kearny",
+      "created_at": "2026-09-27T20:30:08+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "JughandleJourneyman",
+      "created_at": "2026-09-27T20:53:45+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "haddad_mech",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-27T21:09:06+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "Kash_sing",
+      "following": "mbell_wireman",
+      "created_at": "2026-09-27T21:16:44+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-27T23:54:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "flarenut3way",
+      "following": "big_ben_tools",
+      "created_at": "2026-09-28T00:14:53+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "leadfree98",
+      "following": "hec_does_ac",
+      "created_at": "2026-09-28T00:57:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-28T10:16:50+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "benplumb79",
+      "following": "leadfree98",
+      "created_at": "2026-09-28T10:17:52+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "peteq75",
+      "following": "LiveFrontLessons",
+      "created_at": "2026-09-28T11:02:11+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "fmelecnj",
+      "following": "OpenNeutralBlues",
+      "created_at": "2026-09-28T16:14:05+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "HelperForNow",
+      "following": "wchen_controls",
+      "created_at": "2026-09-29T00:31:38+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "WhichTradeTho",
+      "following": "leadfree98",
+      "created_at": "2026-09-29T00:53:29+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "elecny85",
+      "following": "jose6079",
+      "created_at": "2026-09-29T02:20:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "epa60812_2",
+      "created_at": "2026-09-29T02:32:50+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "leadfree98",
+      "following": "joyd_plumbing",
+      "created_at": "2026-09-29T02:44:41+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "OpenNeutralBlues",
+      "following": "dreb_jman",
+      "created_at": "2026-09-29T09:32:18+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "oldsteam_zig",
+      "created_at": "2026-09-29T10:09:26+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "leadfree98",
+      "following": "joe.plumb",
+      "created_at": "2026-09-29T22:55:22+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LiveFrontLessons",
+      "following": "thiago_sparks",
+      "created_at": "2026-09-30T00:41:07+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "threeway_02",
+      "following": "neutral_bar_99",
+      "created_at": "2026-09-30T00:55:24+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "LiveFrontLessons",
+      "following": "codebook_dale",
+      "created_at": "2026-09-30T03:52:50+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "ThirdYearTinknocker",
+      "following": "ms_almonte",
+      "created_at": "2026-09-30T09:04:29+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "wchen_controls",
+      "created_at": "2026-09-30T09:30:47+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "middlesex_coils",
+      "following": "big_ben_tools",
+      "created_at": "2026-09-30T23:55:51+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "GSP_Exit82",
+      "following": "leadfree98",
+      "created_at": "2026-10-01T01:11:40+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "ExRetail_NowHVAC",
+      "following": "ms_almonte",
+      "created_at": "2026-10-01T01:58:22+00:00",
+      "why": "mentee follows mentor"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "thiago_sparks",
+      "created_at": "2026-10-01T09:30:29+00:00",
+      "why": "requested mentorship (pending)"
+    },
+    {
+      "follower": "rui_t_kearny",
+      "following": "neutral_bar_99",
+      "created_at": "2026-10-01T11:05:34+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "kofihvac87",
+      "following": "hec_does_ac",
+      "created_at": "2026-10-02T02:59:34+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Dev_H",
+      "following": "codebook_dale",
+      "created_at": "2026-10-02T09:07:35+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "CentralJerseyHeat",
+      "following": "ms_almonte",
+      "created_at": "2026-10-02T09:26:25+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "elecny85",
+      "following": "JerseyTomatoWires",
+      "created_at": "2026-10-02T09:30:01+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "OpenNeutralBlues",
+      "following": "mbell_wireman",
+      "created_at": "2026-10-02T10:17:27+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "leadfree98",
+      "following": "Kash_sing",
+      "created_at": "2026-10-02T10:29:08+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Kash_sing",
+      "following": "rui_t_kearny",
+      "created_at": "2026-10-02T15:28:32+00:00",
+      "why": "answered their thread"
+    },
+    {
+      "follower": "kofihvac87",
+      "following": "Kash_sing",
+      "created_at": "2026-10-02T16:06:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "rui_t_kearny",
+      "following": "haddad_mech",
+      "created_at": "2026-10-02T16:20:47+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "OpenNeutralBlues",
+      "following": "leadfree98",
+      "created_at": "2026-10-02T17:01:08+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "JunctionBoxJunkie",
+      "following": "LiveFrontLessons",
+      "created_at": "2026-10-02T17:11:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "kofihvac87",
+      "following": "oldsteam_zig",
+      "created_at": "2026-10-02T21:55:07+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "kofihvac87",
+      "following": "ms_almonte",
+      "created_at": "2026-10-03T12:05:42+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Passaic_Sparky",
+      "following": "LiveFrontLessons",
+      "created_at": "2026-10-03T13:02:54+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Woodbridge.ducts",
+      "following": "big_ben_tools",
+      "created_at": "2026-10-03T14:41:12+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "Flushing.sparks",
+      "following": "auelecny",
+      "created_at": "2026-10-03T23:11:52+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "epa60812_2",
+      "created_at": "2026-10-04T14:04:41+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "sam2214",
+      "following": "Kash_sing",
+      "created_at": "2026-10-04T16:20:52+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "rui_t_kearny",
+      "following": "Kash_sing",
+      "created_at": "2026-10-04T18:34:00+00:00",
+      "why": "same thread"
+    },
+    {
+      "follower": "plumbguy917",
+      "following": "joe.plumb",
+      "created_at": "2026-10-04T23:04:43+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "leadfree98",
+      "following": "rui_t_kearny",
+      "created_at": "2026-10-04T23:06:30+00:00",
+      "why": "trade/region"
+    },
+    {
+      "follower": "neutral_bar_99",
+      "following": "LiveFrontLessons",
+      "created_at": "2026-10-05T02:25:00+00:00",
+      "why": "trade/region"
+    }
+  ]
+}

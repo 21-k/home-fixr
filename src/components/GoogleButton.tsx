@@ -29,9 +29,16 @@ function GoogleMark() {
   );
 }
 
-export function GoogleButton({ label = "Continue with Google" }: { label?: string }) {
+export function GoogleButton({
+  label = "Continue with Google",
+  next,
+}: {
+  label?: string;
+  /** Same-site path to return to after sign-in. */
+  next?: string | null;
+}) {
   const [state, formAction, pending] = useActionState(
-    async () => signInWithGoogle(),
+    async () => signInWithGoogle(next),
     initial,
   );
 

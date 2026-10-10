@@ -1,0 +1,17 @@
+Collabs local cycle, 2026-10-07 (local Supabase stack, project home-fixr). `npx supabase db reset`, then
+replayed production's order. Columns: profiles posts replies mentorships follows job_collabs filled
+collab_interests notifications messages auth.users
+
+baseline (schema + 0001-0011 + demo seed)       9   5   4    3   0    3  0  4  11 0   9
+live batch (seed.py --no-social --no-collabs,
+  threads as live from e3b036e)                 145 25  103  3   0    3  0  4  11 0   145
++ additions-social-fm-2026-10.sql (COMMIT)      145 25  103  39  389  3  0  4  11 0   145
++ 0012_public_mentee_counts.sql                 145 25  103  39  389  3  0  4  11 0   145
+additions-collabs file BEFORE 0013              exit 3: ERROR: job_collabs.filled_at is missing: apply migration 0013_collab_filled.sql first (nothing changed)
++ 0013_collab_filled.sql                        145 25  103  39  389  3  0  4  11 0   145
++ additions-collabs-fm-2026-10.sql (COMMIT)     145 25  103  39  389  23 20 65 11 0   145   (20 collabs filled, 61 pitches, 20 accepted, notifications 11 unchanged)
+additions-collabs file AGAIN                    exit 3: ERROR: batch fm-2026-10 already has job collabs or pitches: these additions were already applied (nothing changed)
+node tests/app/collabs-filled.mjs --screens     19/19 passed (throwaway @hf-check.test members deleted afterwards)
+qa.py --db --app http://localhost:3000 --allow-unverified-handles --member-cookie <throwaway member>
+                                                129 pass, 2 warn, 0 fail (seed/reports/collabs_qa_local.txt)
+wipe.py                                         9   5   4    3   0    3  0  4  11 0   9     (= baseline)

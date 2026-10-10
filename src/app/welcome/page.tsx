@@ -1,17 +1,21 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { WelcomeForm } from "@/components/WelcomeForm";
 import { firstNameInitial } from "@/lib/display";
+import { loginHref } from "@/lib/next-path";
 
 /**
  * The post-signup step. Signup asks only for the essentials, so this is where
  * trade, region, and experience get collected — after the user is already in,
  * where a few questions read as setup rather than as a barrier.
  */
+export const metadata: Metadata = { title: "Welcome" };
+
 export default async function WelcomePage() {
   const profile = await getCurrentProfile();
-  if (!profile) redirect("/login");
+  if (!profile) redirect(loginHref("/welcome"));
 
   // Already done? Nothing to ask.
   if (profile.onboarded_at) redirect("/feed");

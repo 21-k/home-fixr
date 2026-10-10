@@ -1,0 +1,1482 @@
+# ---------------------------------------------------------------------------
+# Threads T130-T179: category D (Pay & business, 27) and F (Culture, venting,
+# wins, 23). Written by hand from thread_briefs.json (all 23 D + 23 F briefs,
+# several re-cast or re-topiced, see the brief comment on each thread) plus 4
+# new D threads. Same format as threads.sample.authored.yaml. Fictional
+# people, shops and quotes.
+#
+# Extra optional per-thread fields:
+#   when: early|mid|late   early = late Jul-mid Aug, mid = mid Aug-mid Sep,
+#                          late = mid Sep-early Oct 2026 (only where timing
+#                          matters: heat waves, Labor Day, back to school,
+#                          first heating calls, late joiners, follow-ups).
+#   fact_risk: [...]       checkable claims, hedged in character; for the
+#                          human fact-lint pass (plan §8).
+# Per-reply flag: accepted: true -> replies.is_accepted (Senior or Junior
+# with 2+ years only).
+# ---------------------------------------------------------------------------
+threads:
+
+# ============================ D. Pay & business =============================
+# brief B013
+- id: T130
+  category: D
+  topic: D1_second_year_pay
+  type: question
+  trade: hvac
+  when: mid
+  fact_risk: ["helper wage figure ($17/hr) is one person's offer; keep as a hedged range"]
+  author: CentralJersey_Coils
+  title: "Weekend helper offer at $17/hr while I finish vo-tech. Fair or lowball?"
+  body: |
+    I'm in the HVAC program at the county vo-tech, graduating next year. A residential shop near Neptune offered me Saturdays plus some days over winter break at $17 an hour, mostly carrying equipment and cleaning up after installs. My cousin says that's a lowball. My teacher says take anything that gets me hours.
+
+    I care more about the experience than the money, but I also don't want to get taken advantage of. Is $17 reasonable for a student with zero hours?
+
+    edit: I first wrote that it was cash. It's on the books, I misread the text.
+  replies:
+    - author: dhollis61
+      body: "the rate matters less than whether anyone teaches you. on the books is the right answer."
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        From what I hear around here, that's within the normal range for a student doing weekend helper work. I'd care more about three other things: that it's on the books (it is), that someone gives you a real safety talk before they put you in an attic, and that someone explains what you're carrying and why. If you get those, you're being paid twice.
+
+        Attics on a Saturday in summer are no joke. Stay safe.
+    - author: chris.plumb
+      body: "i started at about that out of school, got bumped after 3 months when my foreman told the boss i was worth it. did they say anything about a raise once you graduate? and do they do service or only installs"
+    - author: CentralJersey_Coils
+      body: "Installs mostly, some maintenance in the fall. Didn't ask about a raise yet, I'll ask when I go in Saturday. Thanks brother."
+
+# ----------------------------------------------------------------------------
+# brief B021 (re-cast: Senior NYC starter -> benplumb79 following up his T12 question)
+- id: T131
+  category: D
+  topic: D1_second_year_pay
+  type: discussion
+  trade: plumbing
+  when: late
+  fact_risk: ["specific wage numbers ($21 -> $23/hr) are one person's; hedged"]
+  author: benplumb79
+  title: "Update on my $21/hr question: had the review"
+  body: |
+    Sorry, this is long. A while back I asked whether $21/hr was low for a 2nd-year non-union plumber near Manville. I had my review on Friday.
+
+    I brought a written list of what I can do alone now: water heaters, toilets, most drain calls, two small repipes. I asked for $24 plus mileage. I got $23 and mileage at a set rate per mile, which is less than I asked for but more than I had. My boss said we'd "talk again in the spring."
+
+    Is it normal to land in the middle like that, or did I leave money on the table?
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: |
+        Here's what I look for when I give a raise, and you did most of it: you came in with what you can do on your own, not what you think you deserve. Landing in the middle is normal; most owners expect to.
+
+        The part I'd lock down is "talk again in the spring." Ask him what specifically he wants to see by then, and write it down while you're still in the room.
+    - author: Kash_sing
+      body: |
+        Good outcome. Two things to check now that it's settled:
+        - Is the mileage on your pay stub, or cash in an envelope? It should be on paper
+        - Get the new rate in writing, even a text
+        The $2 matters, but the mileage is the part most guys forget to ask for.
+    - author: thiago_sparks
+      body: "Honestly that's a solid review. I've had guys walk in asking for five dollars more with nothing to show me. You showed up with a list. Keep adding to it every month and spring takes care of itself."
+    - author: joe.plumb
+      body: "nice... i asked for a raise in june with no list and got 'we'll see'. doing the list thing next time"
+    - author: Woodbridge.ducts
+      body: "fair brother. the $40 number I threw out in your other thread was my buddy counting his whole union package, found out after. $23 and mileage sounds right from what I've heard since"
+    - author: benplumb79
+      body: "edit: thanks all. I texted him asking for the spring goals like haddad_mech said and he actually sent them back. Two items. Writing them on the inside of my truck visor."
+
+# ----------------------------------------------------------------------------
+# brief B038 (re-cast: Senior starter -> Exit145Electric; union package vs non-union cash)
+- id: T132
+  category: D
+  topic: D1_second_year_pay
+  type: question
+  trade: electrical
+  when: late
+  fact_risk: ["union apprentice pay as a % of journeyman scale (varies by local)", "credit for prior experience on applying", "specific wage number ($25/hr) is one person's"]
+  author: Exit145Electric
+  title: "3 years non-union. would applying to 164 mean taking a pay cut?"
+  body: "so i'm 3 years in at a small non-union shop near garfield. decent boss, no school though. been thinking about applying to the IBEW apprenticeship but from what i can tell a first year apprentice makes less per hour than i do now. i'm at $25 on the books, no benefits, no retirement. is the cut worth it? do they give you credit for the years you already have or do i start at zero? not trying to start a union vs non-union fight, just trying to do the math. thanks in advance"
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Fair question, and you're doing the math the right way. Compare the whole package, not the hourly. Apprentice wages usually step up each year as a percentage of the journeyman rate, and on top of the check there's health coverage, pension and annuity contributions, and the schooling, none of which you have now.
+
+        Whether they credit prior experience is a question for the apprenticeship office directly. I won't guess for 164. Some programs have ways to place experienced applicants, but don't count on it. Stay safe.
+    - author: Kash_sing
+      body: |
+        If you want the math to be honest, price out what you have now:
+        - Health insurance you'd buy on your own: get a real quote
+        - Retirement: $0 now, so that's a real gap
+        - School: what night classes would cost you out of pocket
+        Add those to your $25 and then compare. Sometimes the cut is smaller than it looks. Sometimes it isn't.
+    - author: thiago_sparks
+      body: "Honestly, three years in a good non-union shop isn't nothing. If your boss will sign off on your experience toward a license someday, that's a path too. I went that way and it worked for me. But no school and no retirement at year 3 is the part I'd want fixed one way or the other."
+    - author: Bergen_Ducts
+      body: "don't quit before you get in, the list can take forever... wait you didn't say you were quitting lol. ignore me. but still, don't quit early"
+    - author: haddad_mech
+      body: "One thing from the hiring side: three years with nothing on paper is the weak spot either way. Start keeping a log of your work now and ask your boss to put your hours in writing. If you stay non-union and want a license someday, you'll need it. If you apply, it helps at the interview."
+    - author: JughandleJourneyman
+      body: "2nd year in 164 here... I took a cut too, came from a non-union shop in Teaneck where I was making a little more. Year one was tight. Year two the check caught up and the benefits are real. That's just me though"
+    - author: Exit145Electric
+      body: "appreciate it. the health insurance quote is a good point, never priced it. would a 1st year rate be like half of what a journeyman makes?"
+    - author: mbell_wireman
+      body: "Roughly in that neighborhood for a first-year, from what I've seen, but each program sets its own percentages and steps. The local publishes its wage sheet. Look at the actual numbers instead of guessing, and ask the apprenticeship office."
+    - author: fmelecnj
+      body: "1st year 164 here, i came straight from vo-tech so i didn't take a cut. but the night school alone would cost real money if you paid for it yourself. also the raises come on a schedule so you never have to go ask for one"
+    - author: Passaic_Sparky
+      body: "idk man, i'm 4 years non-union and i make more than my cousin does as a union apprentice. but he has a pension and i have a 2011 silverado so"
+    - author: Exit145Electric
+      body: "lol. ok, getting a health insurance quote this week and looking up the wage sheet before i decide anything. edit: priced it. way more than i thought."
+
+# ----------------------------------------------------------------------------
+# brief B063
+- id: T133
+  category: D
+  topic: D1_second_year_pay
+  type: question
+  trade: hvac
+  when: late
+  fact_risk: ["benefit waiting periods (anecdotal)", "NJ employers' workers' comp requirement"]
+  author: Woodbridge.ducts
+  title: "first year helper, no health insurance, no PTO. normal?"
+  body: "started at a residential hvac shop in woodbridge this summer. $18/hr on the books, no health insurance, no paid days off, and they said maybe benefits after a year. owner says that's how every small shop does it. is that true or is he just saying it? not complaining about the hourly, just want to know what's normal before I think about looking around brother"
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Common for small shops, not universal. What I see around Middlesex:
+        - Some shops start health insurance at 60 or 90 days
+        - Some never offer it and pay a bit more instead
+        - Paid time off for first-years is often a few days, if any
+        A one-year wait isn't unusual. "Maybe" is the word I'd ask about. Ask him what the policy actually is and whether it's written down anywhere.
+    - author: hec_does_ac
+      body: "Lol my first shop in Pennsauken said benefits 'after a year' and then I found out nobody had ever made it to a year... Ask how many guys are on the plan right now. That tells you more than the policy does"
+    - author: mbell_wireman
+      body: "Also confirm he's carrying workers' comp for you. As far as I know NJ employers are supposed to, and being on the books usually means yes, but ask. If you get hurt in an attic, that's the coverage that matters first."
+    - author: HeatwaveOnCall
+      body: "same at my shop in clifton, no insurance first year. but they're paying for my 608 test and the practice tests and i get the van on call weeks, which i guess is worth something? did yours say anything about the 608? or tools"
+    - author: Woodbridge.ducts
+      body: "608 yes, they paid for it. tools no. ok, I'll ask him how many guys are actually on the plan. thanks brother"
+    - author: CondensateOverflow
+      body: "3rd year in bound brook, mine kicked in at 90 days. so it really varies by shop. ask around at the supply house"
+    - author: Woodbridge.ducts
+      body: "update: asked. 4 out of 6 guys are on the plan, all of them past a year. so I guess it's real. staying for now"
+
+# ----------------------------------------------------------------------------
+# brief B096 (re-cast: Senior starter -> HeatwaveOnCall; overtime in the heat wave)
+- id: T134
+  category: D
+  topic: D1_second_year_pay
+  type: question
+  trade: hvac
+  when: early
+  fact_risk: ["NJ overtime rule (time and a half over 40 for most hourly workers)", "salaried/exempt status rules", "paid drive time"]
+  author: HeatwaveOnCall
+  title: "worked 58 hours during the heat wave, check came back all straight time"
+  body: "so last week was the heat wave and we were running no-cool calls from 6am til like 10 at night. i'm a helper at a small residential shop in clifton, i ride with the lead tech. i counted 58 hours. my check came back 58 hours at my regular rate, no overtime. when i asked the office she said the owner 'doesn't do overtime for helpers, it evens out in the winter.' is that a thing? is that even legal? i don't want to get fired over this but thats 18 hours of time and a half i didn't get"
+  replies:
+    - author: codebook_dale
+      body: "Not legal advice, just how I'd look at it: as far as I know, most hourly employees in NJ are owed time and a half over 40 hours in a workweek, and \"it evens out in the winter\" isn't how that works. Code is my area, not wage law, so check the NJ Department of Labor's wage and hour pages or call them before you take my word for it."
+    - author: haddad_mech
+      accepted: true
+      body: |
+        Here's how it works at my shop, and at every shop I'd put my name on: hourly helpers get time and a half after 40, period. Our payroll company wouldn't let us do it any other way.
+
+        The state labor department is the place to check, like he said. Before you go there, ask the owner directly and calmly, in person, with your hours written down. Sometimes it's an office mistake. Sometimes it isn't, and then you know what kind of shop it is.
+    - author: Kash_sing
+      body: |
+        Agree with both. Keep your own record from now on:
+        - Start and end times every day, written down that day
+        - Which calls, which truck
+        - Screenshots of any texts about hours
+        If it ever turns into a dispute, notes you made at the time carry weight.
+    - author: JughandleJourneyman
+      body: "my old non-union shop in teneck did 'comp time' in the winter instead of OT... it never added up. one of the reasons I left"
+    - author: mbell_wireman
+      body: "On our side the contract spells out overtime, so it isn't a conversation. Whatever shop you're in, your stub should show how your hours were paid. And 58 hours in attics in that heat: water, breaks, and come down if you feel off. Stay safe."
+    - author: Bergen_Ducts
+      body: "my boss pays OT but caps us at 50 in the summer... honestly i was mad about the cap until july happened"
+    - author: condensate_3way
+      body: "sorry if this is dumb but does the same thing apply if you're salaried? my buddy at another shop is 'salary' as a helper and works 60 a week lol"
+    - author: Kash_sing
+      body: |
+        Not a dumb question.
+        - Calling someone salaried doesn't automatically mean no overtime
+        - There are rules about which jobs can be exempt, and a helper on a truck usually isn't what people mean by that, as far as I understand it
+        Same answer: the Department of Labor, not me.
+    - author: HeatwaveOnCall
+      body: "update: asked the owner in person with my hours on paper like haddad_mech said. he said the office 'set it up wrong' and it'll be on the next check. not sure i believe the wrong part but ill take it"
+
+# ----------------------------------------------------------------------------
+# brief B128
+- id: T135
+  category: D
+  topic: D1_second_year_pay
+  type: question
+  trade: plumbing
+  nyc: true
+  when: late
+  fact_risk: ["NYC helper pay ($20/hr) is one person's", "NYC master plumber experience documentation", "Local 1 wage sheet is published"]
+  author: BayRidge.traps
+  title: "brooklyn non-union helper pay vs local 1, what's normal?"
+  body: "Apex grad, working for a small non-union shop out of Canarsie, mostly service and drain calls. Applied to Local 1 and waiting. I'm at $20 an hour on the books. My foreman says that's good for the city for a first year helper. A guy I graduated with says he makes more at a shop in Queens doing new construction. What's normal in the city for year one non-union? And is it worth waiting on the union or should I just stay put."
+  replies:
+    - author: bklyn_arkady
+      accepted: true
+      body: |
+        In the city it's different, and pay is all over the place. From what I see, and what I pay, a first-year helper at a small Brooklyn service shop is somewhere around where you are, give or take a couple of dollars. New construction sometimes pays more per hour, and it's steady until it isn't.
+
+        Don't compare the hourly alone. Ask about overtime, transit or parking, and whether they'll document your experience. If you ever want a license here, documented years under a licensed master are the whole game.
+    - author: plumbguy917
+      body: "local 1 first year here. not posting my rate but look up the wage sheet, it's public. the benefits are the big part. took me 2 tries to get in lol"
+    - author: Kash_sing
+      body: |
+        I'm in Jersey, so I can't speak to city numbers, but the same checklist applies:
+        - Hourly
+        - Overtime, and how often
+        - Health insurance
+        - Travel: tolls, parking, transit
+        - School
+        The Queens guy might be ahead on one line and behind on three.
+    - author: peteplumb80
+      body: "jersey side, local 24 first year. i'll just say my package looked way better on paper than my hourly did, which is kind of the point. don't sit around waiting though, keep working"
+    - author: haddad_mech
+      body: "On 'should I wait': you don't have to choose. Keep working and keep the application alive. Here's what I look for when I hire, union or not: somebody who kept working while they waited. A waiting list never trained anybody."
+    - author: bklyn_arkady
+      body: "One more thing on documenting: keep your own copy of everything, even if your foreman is good about it. Shops close, masters retire, and you don't want your years depending on someone answering the phone in 2032."
+    - author: plumbguy917
+      body: "^ this. my uncle lost 3 years of paperwork when his old boss retired to florida lol"
+
+# ----------------------------------------------------------------------------
+# brief B139
+- id: T136
+  category: D
+  topic: D1_second_year_pay
+  type: question
+  trade: hvac
+  when: mid
+  author: Ryan.N
+  title: "anyone else's hours get cut after labor day down the shore?"
+  body: "1 yr in at a residential/light commercial hvac shop in egg harbor twp. all summer we were doing 55-60 hours. labor day hit and now i'm getting maybe 32 a week, some days they send me home at noon. boss says it picks back up when heating starts. is this normal for shore shops or is it just mine? trying to figure out if i need a second job for oct and nov brother"
+  replies:
+    - author: tnguyen_refrig
+      body: "normal down here. summer you work, winter you learn. the shops that keep you at 40 in october are the ones with heating service and maintenance contracts. ask your boss if theres a fall tune-up push and volunteer for it. thats how i stayed busy my first few years"
+    - author: haddad_mech
+      body: "Same pattern in Burlington, just less extreme. Next year, bank some of the summer overtime; that's the real lesson. If you take a second job for a couple of months, tell your boss. Better than him finding out when he calls you in on a cold morning and you can't come."
+
+# ----------------------------------------------------------------------------
+# brief B042 (Senior business-side post)
+- id: T137
+  category: D
+  topic: D2_side_work
+  type: tip
+  trade: hvac
+  fact_risk: ["EPA 608 required to handle refrigerant", "permits for mini-split installs", "liability for unpermitted work"]
+  author: Kash_sing
+  title: "Side jobs, from the owner's side: what happens when yours calls my office"
+  body: |
+    Happened again this month, so I'll write it down. A homeowner called us for a no-cool on a mini-split installed last year. Not our install. A helper from another shop put it in on weekends, cash. No permit, no proper evacuation, flare connections leaking. The homeowner wanted to know who to call about it, and the answer was nobody.
+
+    What it looks like from my side:
+    - The homeowner pays twice, once to him and once to us
+    - If your own boss gets that call, you're probably done there
+    - Handling refrigerant without your 608 is its own problem, and having the card doesn't make an unpermitted install legal
+    - You have no insurance, so whatever goes wrong is on you
+
+    I'm not telling anyone what to do on their own time. I'm telling you what it costs when it goes wrong.
+  replies:
+    - author: codebook_dale
+      body: "Not legal advice, just how I'd look at it. On the electrical side of these, I see the disconnect and the circuit done wrong more than anything else. When unpermitted work turns up later, at a sale or after a problem, the homeowner is usually the one left holding the bill. Check which code edition is in effect and what the town requires before anyone touches a line set."
+    - author: dahvacnj
+      body: "sorry if this is dumb but what about stuff with no refrigerant, like cleaning coils and changing filters for neighbors? my neighbor keeps asking. thanks in advance"
+    - author: Kash_sing
+      body: |
+        Smaller exposure, same basic problem:
+        - You're still uninsured if you fall off a ladder or break something
+        - "Just cleaning coils" turns into "while you're here, can you look at this" fast
+        - Your boss may see it as taking his customers
+        Ask your boss if the shop wants the maintenance work. Usually they do, and you get the hours.
+
+# ----------------------------------------------------------------------------
+# brief B069 (zero replies)
+- id: T138
+  category: D
+  topic: D2_side_work
+  type: question
+  trade: electrical
+  fact_risk: ["NJ homeowner permit rules (owner-occupant doing own work)"]
+  author: HelperForNow
+  title: "uncle wants me to wire his basement under a homeowner permit. is that allowed"
+  body: |
+    my uncle in barnegat is finishing his basement and wants me to do the wiring on weekends. he says he can pull a homeowner permit and i'd just be helping him, and he'd pay me in pizza and gas money basically. i work for a remodel shop in manahawkin so i know how to do it, but i'm not licensed. is this actually allowed in nj or is the homeowner permit only if he does the work himself? would rather ask here than ask my boss.
+
+    edit: he owns the house and lives there, if that matters
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B148
+- id: T139
+  category: D
+  topic: D2_side_work
+  type: question
+  trade: electrical
+  when: late
+  fact_risk: ["permit requirements apply to licensed contractors too", "workers' comp coverage for off-book work"]
+  author: RainDayRestock
+  title: "Boss wants me on his Saturday cash jobs. Is that the same as side work?"
+  body: "Sorry if this is a dumb question. I'm a first-year helper at a small shop in Brick. My boss has started asking me to come out Saturdays on 'his' jobs, which as far as I can tell are jobs that don't go through the company. Cash, no paperwork, and he tells the customer not to worry about a permit. It's $150 for the day, which is a lot for me right now. He's licensed, so is it fine because it's under him? Or is this the thing everyone warns about?"
+  replies:
+    - author: codebook_dale
+      accepted: true
+      body: |
+        Not legal advice, just how I'd look at it: his license doesn't make skipping the permit fine. A licensed contractor is still supposed to pull permits where they're required, and a job done off the company's books probably isn't on the company's insurance either.
+
+        If you get hurt on a Saturday that officially didn't happen, workers' comp becomes a hard conversation. I'd say no politely. "I've got something on Saturdays" is enough.
+    - author: thiago_sparks
+      body: "Honestly I've seen this go bad both ways. Somebody gets hurt, or the house sells and the buyer's inspection turns up work with no permit, and suddenly everyone remembers who was there. $150 is real money at year one, I get it. Still not worth it."
+    - author: auelecny
+      body: "In the Army we'd say off the books means off the record, and nobody covers you off the record. I'd pass, brother."
+    - author: ThreeWayConfusion
+      body: "Ocean County is small. You think the inspectors don't know whose truck that is? Say no and keep the job. How long have you been there?"
+    - author: RainDayRestock
+      body: "About 4 months. Ok. Told him I have a family thing on Saturdays for now. He didn't seem mad. Thanks for explaining instead of just yelling at me lol"
+
+# ----------------------------------------------------------------------------
+# brief B108 (NYC)
+- id: T140
+  category: D
+  topic: D2_side_work
+  type: question
+  trade: electrical
+  nyc: true
+  when: late
+  fact_risk: ["NYC electrical work for pay requires a licensed master electrician", "permit requirements for rental units"]
+  author: Flushing.sparks
+  title: "Landlord on my block wants me to do his apartments' outlets. I'm a student"
+  body: "Trade program in Queens, graduating soon. My uncle's friend owns a couple of 2-family houses in Ridgewood and found out I'm in the electrical program. He wants me to swap outlets, put in some GFCIs and replace a few fixtures before new tenants move in. Says he'll pay $400 cash and \"nobody checks.\" My foreman at my weekend job told me absolutely not but didn't really say why. Is it really that bad if it's small stuff?"
+  replies:
+    - author: dreb_jman
+      accepted: true
+      body: |
+        Brother, your foreman's right, and I'll tell you why. Here in the city, getting paid to do electrical means a licensed master electrician is behind the job, and permits get pulled where they're required. Rental apartments make it worse, not better.
+
+        A fire in a tenant's unit gets traced back to your GFCI, and you're the kid with no license and no insurance. Don't.
+    - author: auelecny
+      body: "I'll ask the dumb question for him: what if it's only swapping a light fixture? That seems like nothing"
+    - author: bklyn_arkady
+      body: "In the city it's different, but not on this. Small stuff is where people get comfortable. And a landlord who says nobody checks is telling you exactly how he'll treat you if something goes wrong. He'll say he hired a professional and that you told him you were licensed."
+    - author: Flushing.sparks
+      body: "I never said I was licensed though. Never would either."
+    - author: bklyn_arkady
+      body: "Doesn't matter what you said. It matters what he says later, to an insurance adjuster."
+    - author: codebook_dale
+      body: "Not legal advice, and I'm on the Jersey side. When I see a fixture swap gone wrong, it's almost never the fixture. It's the box that wasn't secured, the backstabbed device, the neutral that wasn't where someone assumed. Small jobs fail the same ways big ones do, just with fewer people looking."
+    - author: HelperForNow
+      body: "different state but i asked almost the same thing about my uncle's basement a while back and nobody answered, so i'm reading this whole thread lol"
+    - author: oldsteam_zig
+      body: "Kid, $400 cash is the most expensive money you'll ever make if it goes bad. 28 years in and I still pull permits on jobs I could do in my sleep. That's the job."
+    - author: auelecny
+      body: "Ok so the fixture is a no too. Noted. Asking for me as much as him honestly"
+    - author: groundrod_05
+      body: "Apex grad, working non-union in the Bronx. When I was in school a guy in my class did this exact thing for a landlord and got stiffed on the money. He couldn't exactly complain to anyone. Just something to think about."
+    - author: elecny85
+      body: "everybody in my building's family asks me too... i just say my boss would fire me, which is true lol"
+    - author: Flushing.sparks
+      body: "That's a good line, stealing it. My uncle's going to be annoyed though"
+    - author: dreb_jman
+      body: "Your uncle will get over it. Tell the landlord to hire a licensed electrician and ask if you can shadow the job. That's how you turn this into something."
+    - author: Flushing.sparks
+      body: "update: told him no. Asked him who he's hiring instead and he gave me the guy's number. Calling him Saturday."
+    - author: dreb_jman
+      body: "Good. That's the right move. Let me know how the call goes, brother."
+
+# ----------------------------------------------------------------------------
+# brief B008
+- id: T141
+  category: D
+  topic: D3_going_out_on_own
+  type: question
+  trade: plumbing
+  when: late
+  fact_risk: ["types of business insurance for a contractor (no figures given)"]
+  author: NorthJerseyCopper
+  title: "Long-term question: what does insurance run for a one-truck plumbing shop?"
+  body: "1st year in Local 24, so this is years away. idk if it's weird to ask this early. My long-term plan is to top out, get my master, and eventually run a small service shop in Bergen. Everyone says insurance is the thing that kills new shops. What kinds do you need, and roughly what does it cost? Ballpark is fine. Just planning."
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Not too early. Ballparks are hard because it depends on trade, payroll, claims history and carrier, so get real quotes when you're close. The kinds you'll deal with:
+        - General liability
+        - Workers' comp once you have employees
+        - Commercial auto for the truck
+        - Tools and equipment coverage
+        For a one-truck shop, expect the total to be one of your bigger fixed costs, not a rounding error. Talk to a broker who works with contractors, not your car insurance guy.
+    - author: neutral_bar_99
+      body: "I'm in the electrical program at the vo-tech, and our teacher had us do a small-business project on this last spring. What surprised everyone was that the truck insurance alone came out higher than most people's rent. Not plumbing specific, but probably similar."
+    - author: JerseyTomatoWires
+      body: "my foreman ran his own shop for 6 years before he came in... he says insurance and chasing payments are the two reasons he came back"
+
+# ----------------------------------------------------------------------------
+# brief B075
+- id: T142
+  category: D
+  topic: D3_going_out_on_own
+  type: question
+  trade: electrical
+  when: late
+  fact_risk: ["HIC registration vs licensed trade work (NJ Contractors' Registration Act)", "electrical work for pay requires a licensed EC", "what an LLC does and doesn't do"]
+  author: LiveFrontLessons
+  title: "me and a buddy want to start an LLC doing handyman + small electrical. is HIC enough?"
+  body: "ok so hear me out. my buddy is a carpenter, i'm a year out of vo-tech working for an electrical shop near asbury. we want to start an LLC on the side, register as a home improvement contractor with the state, and do bathroom refreshes, decks, and the \"small electrical\" like fixtures, outlets, fans. he says the HIC registration covers all of it as long as it's under the LLC. is that right? and what insurance would we even need for something like that? we're not trying to do panels or anything crazy"
+  replies:
+    - author: codebook_dale
+      accepted: true
+      body: |
+        Not legal advice, just how I'd look at it: as I understand NJ's rules, home improvement contractor registration is not an electrical license and doesn't cover electrical work. If you're paid for it, a licensed electrical contractor has to be the one running it. "Small" isn't a category in the code.
+
+        Call the Division of Consumer Affairs and ask them directly before you form anything.
+    - author: Kash_sing
+      body: |
+        Same in my trade. As I understand it:
+        - HIC registration covers general home improvement work
+        - Licensed trades (electrical, plumbing, HVACR) need the license, or a licensed contractor running the work
+        - An LLC is a business structure, not a license
+        Your buddy's carpentry side may be fine under HIC. Check with Consumer Affairs for your exact case.
+    - author: LiveFrontLessons
+      body: "wait so he can do the decks but i can't do the fans? even under the same company?"
+    - author: dhollis61
+      body: |
+        > even under the same company?
+        yes. the company doesn't make you licensed.
+    - author: HelperForNow
+      body: "this is basically what my boss's shop is. he's licensed, his brother does the carpentry under the same company. the license is the part that makes it work"
+    - author: mbell_wireman
+      body: "Also think about the fact that you already work for an electrical shop. Doing the same kind of work on the side, in the same area, is going to get back to your boss. Small state. Talk to him before you do anything; some owners will even help you find a path."
+    - author: Exit117Plumber
+      body: "my foreman says the same thing about plumbing. he says the fastest way to lose your shot at a license is getting caught doing licensed work without one. not sure if that's true word for word but he was dead serious"
+    - author: LiveFrontLessons
+      body: "ok so what if my buddy does the bathrooms and we just sub the electrical out to a licensed guy?"
+    - author: thiago_sparks
+      body: "Honestly that's how a lot of legit small outfits work. You pay the licensed EC, he pulls the permit and does or supervises the work. You learn by being on his jobs. Less money for you, but it's clean, and you're building a relationship with someone who might hire you or sign off on your hours."
+    - author: Kash_sing
+      body: |
+        And on insurance, if you go that route:
+        - General liability for the LLC, with a carrier that knows contractors
+        - Every sub shows you a current certificate of insurance before they start
+        - Workers' comp if you hire anyone
+        Get quotes before you price your first job. It will change your prices.
+    - author: rui_t_kearny
+      body: "One thing I'd push back on a little, thiago. Subbing out is clean, but a lot of the shops that sub for small outfits get burned on payment and stop doing it. Make sure the EC knows you pay on time, or you won't find one twice. My father stopped subbing for two GCs in one year over that."
+    - author: thiago_sparks
+      body: "Fair point. I've been the EC who got stiffed, more than once. Pay your subs."
+    - author: LiveFrontLessons
+      body: "my buddy is not happy lol. he thought the LLC thing was a loophole"
+    - author: codebook_dale
+      body: "It's the most common misunderstanding I hear. As I understand it, an LLC is about liability and taxes, and a lawyer or an accountant should tell you what it does and doesn't protect. It doesn't license anyone to do anything. Have him call Consumer Affairs too, so he hears it from them and not from strangers online."
+    - author: NorthJerseyCopper
+      body: "I asked the insurance half of this in another thread. Short answer was get real quotes, and it's more than you think."
+    - author: neutral_bar_99
+      body: "Our teacher said something similar when a kid asked about LLCs. I wrote it down: the LLC is paperwork you filed, the license is a test you passed. Not his exact words, but close."
+    - author: LiveFrontLessons
+      body: "update: talked to my boss like mbell said. he laughed at the LLC part, then said if my buddy lands bathrooms the shop will do the electrical and i can be on those jobs. so that's kind of a win?"
+    - author: thiago_sparks
+      body: "That's a big win. That's how your name gets around. Sounds like a good boss, hang onto him."
+
+# ----------------------------------------------------------------------------
+# brief B105 (Senior business-side post)
+- id: T143
+  category: D
+  topic: D3_going_out_on_own
+  type: discussion
+  trade: plumbing
+  when: mid
+  fact_risk: ["trade licenses are personal and don't transfer with a business sale"]
+  author: rui_t_kearny
+  title: "No kids in the trade. Who buys a 2-truck shop when you want out?"
+  body: |
+    Business side question, for the owners and for any Juniors thinking long-term.
+
+    My father ran this shop for three decades and handed it to me. None of my kids want it. My nephew in Hamilton is in IT. So in ten years or so, who buys a 2-truck residential shop on the Hudson/Bergen line? The trucks and tools aren't worth much. The customer list and the phone number are the whole business.
+
+    My father used to say a shop is just the people who still call you back. I half regret not thinking about this sooner. Anyone been through selling, or buying in?
+  replies:
+    - author: Kash_sing
+      body: |
+        We've started thinking about this too. What I've learned so far:
+        - The license is personal; a buyer needs their own, or a licensed person running the work
+        - Your books need to be clean for years before anyone pays real money for goodwill
+        - The most likely buyer is someone already working for you
+        That last one means you start grooming someone now. Ten years goes fast.
+    - author: threeway_02
+      body: "Not an owner, I haven't even started yet, but I spent 11 years in insurance claims and saw a lot of small businesses get valued. Clean records and repeat customers were always what moved the number. Kash is right about the books."
+    - author: rui_t_kearny
+      body: "The someone-already-working-for-you part is what I keep coming back to. I hired a vo-tech kid last year who might be that guy, if he doesn't go union first. My father would laugh at me for worrying about any of this."
+
+# ----------------------------------------------------------------------------
+# brief B109 (NYC)
+- id: T144
+  category: D
+  topic: D3_going_out_on_own
+  type: question
+  trade: electrical
+  nyc: true
+  fact_risk: ["NYC master electrician experience requirement (roughly 7+ years documented)", "whether military experience counts", "veteran program details"]
+  author: auelecny
+  title: "Army vet, 35, want my own electrical shop in Queens someday. Realistic timeline?"
+  body: "Got out of the Army last year, now about a year in as a helper at a small shop in Queens. I'm 35. Long-term I want my own shop. From what I can tell I'd need a master electrician license in the city, and that takes years of documented experience. idk the exact number. Is own-shop-by-45 realistic? Also, does military electrical experience count for anything? I did generator and power distribution work, not building wiring."
+  replies:
+    - author: bklyn_arkady
+      accepted: true
+      body: |
+        In the city it's different from Jersey, and the master license is serious. Last I looked, the requirement was years of documented experience under a licensed master electrician, somewhere north of seven, plus the exams. Read the DOB licensing page for the current rules; they've changed since I did mine, and mine is plumbing, so check the electrical requirements specifically.
+
+        Whether military work counts, ask DOB directly. 45 isn't crazy if you start documenting everything today.
+    - author: codebook_dale
+      body: "Not legal advice, and I'm on the Jersey side, but two things apply anywhere: keep every pay stub and a log of the work you did, and get your employer's signature on it periodically, while they still remember you. People lose years of credit because nobody can verify them later."
+    - author: dreb_jman
+      body: "Brother, thank you for your service. Same advice on documenting. Also look into whether any veteran programs help with apprenticeship or exam costs. I don't know the details, but a couple of guys on my job have used them."
+
+# ----------------------------------------------------------------------------
+# brief B153
+- id: T145
+  category: D
+  topic: D3_going_out_on_own
+  type: question
+  trade: electrical
+  when: late
+  author: neutral_bar_99
+  title: "Planning way ahead: first work vehicle, used van or a pickup with a cap?"
+  body: "I'm in the electrical program at the county vo-tech, so I realize this is a long way off, but I like to plan. I've been saving from my weekend job, and my dad suggested I think about what I'd eventually need for a vehicle if I ever go out on my own. I see guys with box trucks, Transit vans, pickups with caps, and one man at the Wawa near Wayne who runs everything out of a Prius. For someone starting small in electrical, used van or pickup with a cap? I'd rather buy once."
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Good instinct. From my own first truck:
+        - Used is fine. Reliability beats everything else; mine was 9 years old and never left me stranded
+        - A van keeps tools dry and locked; a pickup with a cap is a compromise for electrical
+        - Shelving costs more than you expect
+        - Commercial insurance and registration are part of the price
+        Buy it after you have the license and the work, not before.
+    - author: WawaRunWired
+      body: "i think i've seen the prius guy lol. sorry, not helpful at all. thanks in advance for not deleting this"
+    - author: haddad_mech
+      body: "Here's what I look for when a new hire shows up in his own vehicle: organized, clean, nothing leaking. Customers judge you by what's parked in their driveway before you say a word."
+    - author: neutral_bar_99
+      body: "Noted on buying it after the license and the work. The savings stay in the bank for now. My dad will be relieved, honestly."
+
+# ----------------------------------------------------------------------------
+# brief B037
+- id: T146
+  category: D
+  topic: D4_prevailing_wage
+  type: question
+  trade: electrical
+  when: mid
+  fact_risk: ["NJ prevailing wage rates set by NJ Dept. of Labor by craft and county", "apprentice rates require a registered apprenticeship", "certified payroll"]
+  author: JunctionBoxJunkie
+  title: "My teacher says public school jobs pay way more. What is prevailing wage?"
+  body: "Before school let out my shop teacher was going on about how the summer school renovation jobs pay \"prevailing wage\" and that's why everyone fights to get on them. I nodded. I have no idea what it means. Is it a union thing? Would I make more as a helper on one of those jobs? And why would a school pay more than a house? Explain it like I'm a vo-tech kid in Hamilton whose whole resume is one summer carrying wire, because that's what I am."
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: |
+        Short version: on covered public jobs in NJ (schools, municipal buildings, a lot of publicly funded work), contractors have to pay at least the rates the state sets for each trade and county. Those rates are published by the state labor department.
+
+        It isn't only a union thing. Non-union shops like mine do prevailing-wage work and pay the rates. The paperwork is certified payroll: every week, every worker, every hour. That's part of why not every shop bids them.
+    - author: Kash_sing
+      body: |
+        To add the helper part:
+        - Apprentice rates on those jobs generally depend on being in a registered apprenticeship program
+        - If you're not in one, a shop may not be able to use you as an apprentice there at all
+        - Ask your teacher about it before you graduate
+        Check the details with the state, not with me.
+    - author: dhollis61
+      body: "the state sets the rate. the school isn't being generous."
+    - author: JunctionBoxJunkie
+      body: "OK that actually makes sense. So it's less \"schools pay more\" and more \"the state says you can't pay less on public jobs.\" Asking my teacher about the registered apprenticeship part tomorrow and pretending I knew all along."
+
+# ----------------------------------------------------------------------------
+# brief B046
+- id: T147
+  category: D
+  topic: D4_prevailing_wage
+  type: question
+  trade: hvac
+  when: early
+  fact_risk: ["prevailing wage classification and apprentice-rate rules", "specific wage ($22/hr) is one person's"]
+  author: Bergen_Ducts
+  title: "shop won a summer school job... do I get the prevailing rate too?"
+  body: "so my shop just won a job replacing rooftop units at a middle school, we start next week while the kids are out... my boss said it's prevailing wage but then said I'm still at my regular $22. I'm two years in, non-union. is that right?? I thought prevailing meant everyone on the job gets the rate. not trying to make trouble, just confused... also it's going to be 95 on that roof lol"
+  replies:
+    - author: haddad_mech
+      body: "Here's how it works on our jobs, as I understand the rules: everyone doing the work on a prevailing-wage job is paid at least the published rate for their classification. Apprentice rates are only for apprentices in a registered program; otherwise you'd generally be classified and paid as a journeyman. Politely ask your boss which classification you're listed under on the certified payroll. If the answer is fuzzy, the state labor department has the rules."
+    - author: big_zach_hvac
+      body: "same thing happened to me on a township job. asked which classification i was under. got moved to the right rate on the next check. ask"
+
+# ----------------------------------------------------------------------------
+# brief B061 (re-cast: duplicate Bergen_Ducts starter -> zghvacnj; zero replies)
+- id: T148
+  category: D
+  topic: D4_prevailing_wage
+  type: question
+  trade: hvac
+  fact_risk: ["how prevailing wage fringe benefits are paid (fund vs cash)"]
+  author: zghvacnj
+  title: "what is the 'fringe' line on my pay stub from a public job"
+  body: |
+    did two weeks on a township building in middlesex with my shop. my stub that week had my regular rate, a higher prevailing rate for those hours, and a separate line that says fringe. idk what the fringe is or why part of it went to a benefits fund and part came to me as cash. is this normal or did payroll mess up
+
+    edit: the shop is non-union if that matters
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B111 (Senior starter)
+- id: T149
+  category: D
+  topic: D4_prevailing_wage
+  type: tip
+  trade: electrical
+  when: late
+  fact_risk: ["prevailing wage coverage thresholds/exceptions", "what a project labor agreement is", "apprentice classification on public works"]
+  author: mbell_wireman
+  title: "Prevailing wage vs PLAs: why the big public jobs look the way they do"
+  body: |
+    This keeps coming up, so here's the union-side view. I'd welcome the non-union contractors here to correct me where it's different for them.
+
+    Prevailing wage is a floor. On covered public work, everyone gets at least the published rate for their trade and county, union or not.
+
+    A project labor agreement is a different thing. It's an agreement for a specific project, usually a big one, about labor terms: hiring through the trades, how disputes get handled, no strikes. You'll hear about them on large public construction.
+
+    If you're an apprentice and you land on one of these jobs, a few things will be new: sign-in sheets, long safety orientations, and someone checking that your classification matches your paperwork. Bring your ID, bring your card, wear your glasses. Stay safe.
+  replies:
+    - author: haddad_mech
+      body: "Mostly right, and thanks for asking for the other side. One thing I'd adjust: it isn't every public job. There are thresholds and exceptions, and the state's site spells them out. From the non-union side, the certified payroll is the real cost of public work, not the wages. On PLAs, I'll just say not every contractor thinks they're good for competition, and leave it there."
+    - author: mbell_wireman
+      body: "Fair correction on the thresholds, and I appreciate you keeping it civil. Plenty of people on my side would say the same thing about PLAs from the other direction."
+    - author: codebook_dale
+      body: "From the inspection side: whatever the labor terms are, the code doesn't change. I've seen people on public jobs assume the rules are different because the paperwork is. Check which code edition is in effect for the project, and read the project specs, which sometimes ask for more than code."
+    - author: neutral_bar_99
+      body: "This is very helpful. My teacher mentioned PLAs once and moved on. When you say classification has to match your paperwork, does that mean a student couldn't work on one of these at all?"
+    - author: mbell_wireman
+      body: "Not at an apprentice rate unless you're in a registered program, as I understand it. That's a question for your instructor and the state's rules, though. Finish school first. The jobs will still be there."
+    - author: peteplumb80
+      body: "1st year in 24, did a week on a public school job in july. the sign-in sheet thing is real. the safety orientation was 3 hours and half of it was ladders lol"
+    - author: JerseyTomatoWires
+      body: "the orientation on the big jobs is long... my foreman says that's where they catch the guys who don't belong there. bring your card"
+    - author: dhollis61
+      body: "certified payroll is why my old shop stopped bidding them. good jobs if your office can handle it."
+    - author: Exit117Plumber
+      body: "saving this for when I graduate, didn't know any of it. our class is going to get a lot of questions from me now"
+
+# ----------------------------------------------------------------------------
+# brief B114 (re-cast: duplicate LiveFrontLessons starter -> MonmouthPlumber; reading the union package)
+- id: T150
+  category: D
+  topic: D4_prevailing_wage
+  type: question
+  trade: plumbing
+  fact_risk: ["union package composition (wage + fund contributions)"]
+  author: MonmouthPlumber
+  title: "Reading the wage sheet: how much of the 'package' actually hits my check?"
+  body: "3rd year apprentice in Local 9. My girlfriend saw the published package number for my year and asked why my check is so much smaller. Honestly, I couldn't explain it well. I know part of it is health, pension, annuity and training, but I'd like to be able to explain it properly, and to compare it fairly when non-union friends tell me what they make. How do you all explain this to family? Thanks in advance."
+  replies:
+    - author: dhollis61
+      accepted: true
+      body: "the package is the wage plus what goes into the funds. your check is the wage part, minus taxes and dues. put the stub and the fund statements side by side for her."
+    - author: mbell_wireman
+      body: "Same structure on our side. When I explain it to family, I say the check is what you live on now, and the funds are the health care, retirement and school you'd otherwise pay for yourself. When a non-union friend quotes you an hourly number, ask what he pays for health insurance and what goes into his retirement. The conversation usually gets quieter."
+    - author: haddad_mech
+      body: "To be fair from the non-union side: a good non-union shop pays benefits too, structured differently. Compare total compensation, not labels. Some of my guys come out fine against a package; some shops around here offer nothing. It varies a lot."
+    - author: MonmouthPlumber
+      body: "That helps, thank you. Going to print the stub and the fund statement and do the side by side with her this weekend."
+
+# ----------------------------------------------------------------------------
+# brief B137
+- id: T151
+  category: D
+  topic: D4_prevailing_wage
+  type: question
+  trade: plumbing
+  when: late
+  fact_risk: ["prevailing wage pay vs regular pay (anecdotal)", "background checks for school jobs"]
+  author: ginaj75
+  title: "two weeks on a township job and my check almost doubled. now what"
+  body: "plumbing helper, 2 years, small shop near pleasantville. we just did two weeks on a township building, bathrooms and a new water heater room. prevailing wage. my check those weeks was almost double my normal. back on regular jobs now and its hard to go back lol. how do i get on more of those? do i need to switch shops? also i'm waiting on the union, would that be all public work?"
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: |
+        Here's what I look for when I staff public work: someone who shows up at 6, can pass a background check for schools, keeps a clean sign-in record, and doesn't need babysitting on a site full of other trades.
+
+        If your shop only lands a couple of these a year, a shop that bids them regularly is where the steady hours are. Don't quit over one good check, though. Ask your boss if he plans to bid more.
+    - author: dhollis61
+      body: "the union isn't all public work. hospitals, pharma, plenty of private jobs. the rate is what it is either way."
+    - author: tnguyen_refrig
+      body: "down here the public jobs come in waves, summer for schools mostly. rest of the year youre back at the regular rate. dont plan your rent around it"
+    - author: FluxOnMyBoots
+      body: "this is the first time i understood why my boss gets so excited about school jobs lol"
+    - author: ginaj75
+      body: "fair, not quitting. asked my boss and he said they're bidding 2 more this winter. i'll ask to be on them"
+    - author: haddad_mech
+      body: "Good. Make it easy for him to say yes. And keep your stubs from those weeks; they're a good record of the work."
+
+# ----------------------------------------------------------------------------
+# brief B159
+- id: T152
+  category: D
+  topic: D4_prevailing_wage
+  type: question
+  trade: electrical
+  fact_risk: ["school district maintenance hiring requirements (licensing)"]
+  author: peteq75
+  title: "Ex-teacher here: school district maintenance job vs working for a contractor?"
+  body: "Sorry if this is a strange one. I taught middle school for nine years before switching, and I'm a few months in as an electrical helper in Atlantic County. I still know people in the district, and they say the maintenance department hires electricians, with a pension, and summers that are actually busy. Pay looks lower than contractor work but steadier. Has anyone gone from a contractor to a school district or county maintenance job? What do you give up? Appreciate it."
+  replies:
+    - author: haddad_mech
+      accepted: true
+      body: "I've lost a few good guys to districts and I don't blame them. What you gain: steady hours, public benefits, home for dinner. What you lose: variety, overtime, and usually the fastest learning. Most district jobs want someone already licensed or well along, from what I've seen. Get your years in with a contractor first. The district job will still be there."
+    - author: tnguyen_refrig
+      body: "my buddy did commercial for fifteen years then went to a school district down here. says it was the best thing he did for his back and the worst for his skills. he got bored. depends what you want"
+    - author: dhollis61
+      body: "the pension math is real. do your years with a contractor first, then decide."
+
+# ----------------------------------------------------------------------------
+# new D thread (Senior business-side post)
+- id: T153
+  category: D
+  topic: D5_shop_economics
+  type: tip
+  trade: hvac
+  when: late
+  fact_risk: ["service call fee ($189) and tech wage ($22/hr) are one shop's", "paid drive time for employees"]
+  author: Kash_sing
+  title: "Where the money from a $189 service call actually goes"
+  body: |
+    Every year a new tech sees an invoice and asks why he makes $22 an hour when we charged $189 for forty minutes. Fair question. Here's roughly how I explain it at my shop. Numbers differ everywhere; this is the shape, not a formula.
+    - The tech's wage, plus payroll taxes and workers' comp on top of it
+    - The truck: payment, fuel, insurance, repairs, the stock on the shelves
+    - The office: the person who answered the phone and scheduled you
+    - Drive time between calls that the customer never sees on the bill
+    - Callbacks, which we fix for free
+    - Slow weeks in October when the phones are quiet and everyone still gets paid
+    After all that, a healthy shop keeps a margin, and plenty of shops don't. I'd rather you understand this before you go out on your own and price yourself out of business.
+  replies:
+    - author: Woodbridge.ducts
+      body: |
+        > a healthy shop keeps a margin
+        ok but if the margin is there why does every owner say they're broke lol
+    - author: Kash_sing
+      body: |
+        Because some of them are. Two things:
+        - A lot of owners pay themselves last
+        - Equipment margins and service margins are very different animals
+        I'm not saying every owner is honest about it. I'm saying the $189 isn't profit.
+    - author: haddad_mech
+      body: "Same on the mechanical side. The number new guys never see is unbilled time. Here's what I look for in a tech who's earned a raise: the one whose calls don't come back. A callback is the most expensive hour we have."
+    - author: CondensateOverflow
+      body: "idk, this actually helps. my boss charges about that and i always assumed he was pocketing $150 of it"
+    - author: HeatwaveOnCall
+      body: "so is drive time not paid for helpers?? or just not billed to the customer"
+    - author: Kash_sing
+      body: |
+        Not billed separately in a flat call fee. Different thing from your pay:
+        - Driving between calls during the workday should be paid to you as hours worked, as far as I know
+        - If it isn't, that's a conversation with your boss, and the state labor department has the details
+    - author: tnguyen_refrig
+      body: "add to the list: the 2am walk-in call where the restaurant pays net 60. owners float a lot of money nobody sees"
+    - author: big_zach_hvac
+      body: "saving this. kash drew a version of this on a napkin for me once. makes more sense written down"
+
+# ----------------------------------------------------------------------------
+# new D thread
+- id: T154
+  category: D
+  topic: D6_benefits_health_insurance
+  type: question
+  trade: other
+  fact_risk: ["marketplace (Get Covered NJ) subsidies depend on household income"]
+  author: carlosu88
+  title: "Left a job with benefits. How do helpers handle health insurance?"
+  body: "1 year in, switched over from a call center. my old job covered health insurance for me and my wife. the new shop near voorhees doesn't offer any yet. we've been on her plan but adding me is expensive. how are other helpers handling this? marketplace? spouse? going without? not looking for a lecture, just what people actually do."
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        What I see with new guys:
+        - Spouse's plan, when it's available
+        - The state marketplace, which can be subsidized depending on household income
+        - A shop that offers it, which is a reason to change shops on its own
+        Don't go without. One ladder fall costs more than a year of premiums. Get a marketplace quote and compare it to the cost of adding you to her plan.
+    - author: joe.plumb
+      body: "my shop started it at 6 months... so they're out there. ask around at the supply house when you're ready to look"
+    - author: QuickChekCrew
+      body: "We did the marketplace my first year... it came out cheaper than I expected with the income drop. Worth getting the quote before you decide anything... I was about to ask this exact question myself"
+    - author: carlosu88
+      body: "marketplace quote came back lower than adding me to her plan. doing that. thanks"
+
+# ----------------------------------------------------------------------------
+# new D thread
+- id: T155
+  category: D
+  topic: D7_1099_misclassification
+  type: question
+  trade: electrical
+  fact_risk: ["NJ independent-contractor test (ABC test) / misclassification", "1099 self-employment tax obligations"]
+  author: Passaic_Sparky
+  title: "new shop wants me on a 1099 with my own van. red flag or normal"
+  body: "4 years in, service and panel swaps. got an offer from a shop in wayne, more per hour than i make now, but they want me as a 1099 'independent contractor' and i'd use my own van, my own tools, my own gas. i'd still be on their schedule, in their shirt, running their calls. idk if that's normal or a way to skip paying for stuff. anyone done 1099 in the trades in nj?"
+  replies:
+    - author: codebook_dale
+      accepted: true
+      body: "Not legal advice, just how I'd look at it: NJ is strict about who counts as an independent contractor. As far as I know, the state uses a test where, among other things, you have to be free of their control and actually running your own independent business. Their schedule, their shirt and their calls sounds like an employee to me. Read the NJ Department of Labor's material on misclassification, or talk to an accountant, before you sign anything."
+    - author: Kash_sing
+      body: |
+        From the owner's side, here's what a 1099 usually means you pay for yourself:
+        - Both halves of payroll taxes
+        - Your own insurance, and no workers' comp if you get hurt
+        - Van, fuel, tools, phone
+        - No overtime
+        Subtract all of that from the higher rate before you compare. It's often less money, not more.
+    - author: Passaic_Sparky
+      body: "yeah the gas alone is like $80 a week on that route. didnt even think about the tax part"
+    - author: thiago_sparks
+      body: "Honestly, there are legit 1099 setups in this trade, but they look like a guy with his own license and his own customers subbing for someone. Not a 4-year tech in the owner's shirt."
+    - author: hudson_conduit
+      body: "my cousin did this in jersey city for a year and got destroyed at tax time lol. set money aside if you do it, thier office won't remind you"
+    - author: Dev_H
+      body: "different situation but my shop pays me cash, no paperwork at all. at least a 1099 is paper? or is that worse?"
+    - author: codebook_dale
+      body: "A 1099 is paper, but if the relationship is really employment, it can be the wrong paper. That's a different problem than cash, not necessarily a better one. Same answer for both of you: the state labor department or an accountant, not a forum."
+
+# ----------------------------------------------------------------------------
+# new D thread
+- id: T156
+  category: D
+  topic: D8_tools_spend
+  type: question
+  trade: electrical
+  when: late
+  author: FirstYearSparky
+  title: "How much did you actually spend on tools your first two years?"
+  body: "Year one almost done at a non-union shop in Morris County. I added up my receipts for the guy who does my taxes and I've spent way more on tools than I thought: hand tools, a meter, a bag, and two pairs of boots that died. Is that normal? Does your shop give a tool allowance or is it all on you? And what do you wish you hadn't bought?"
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: "Normal, and it's the most common regret I hear: buying a kit before you know what you'll use. Our apprentices get a basic list; anything beyond that is their choice. Buy quality on the things that protect you, like boots, glasses, gloves and a good tester. Everything else can wait until you've borrowed it three times. Stay safe."
+    - author: thiago_sparks
+      body: "Honestly, at my shop I give a small tool allowance once a year, and I know plenty of shops don't. Ask. Worst they say is no."
+    - author: JughandleJourneyman
+      body: "biggest waste for me was a big rolling toolbox in year one... it lives in my parents' garage now. second biggest was a cheap meter I had to replace"
+    - author: RookieWireman
+      body: "nobody tells you boots are a tool. two pairs a year for me on new construction, every year"
+    - author: FirstYearSparky
+      body: "Ok, asking about an allowance at my review. No rolling toolbox, noted. Did anyone ever deduct tools on taxes, or is that not a thing for employees?"
+
+# ======================= F. Culture, venting, wins ==========================
+# brief B003 (Senior starter, NYC)
+- id: T157
+  category: F
+  topic: F7_nyc_commute_from_nj
+  type: tip
+  trade: electrical
+  nyc: true
+  when: late
+  author: dreb_jman
+  title: "For the Jersey apprentices on my crew: the commute, honestly"
+  body: |
+    Half my apprentices live in Jersey, so I've heard every version of this. Here's what I tell them.
+
+    Don't drive in unless the job pays for parking or you have a spot. Between the crossing, the tolls and a garage in Midtown, you're working the first hour of the day for free. Train or PATH, then walk.
+
+    Leave earlier than you think. A 7am start means on the floor at 7 with your glasses on, not walking in the door.
+
+    Don't move to the city in year one. You don't know where your jobs will be in two years, and rent will eat you alive.
+
+    And I'm not one to talk. My sister lives in Bayonne, and every Sunday after dinner I sit in tunnel traffic going home and swear never again. So I get it, brother.
+  replies:
+    - author: Edison.volts
+      body: "New Brunswick to Midtown on NJ Transit is like an hour and a half door to door. Is that normal for guys on your crew brother?"
+    - author: dreb_jman
+      body: "Some of them do worse. The guys from down your way are on the first train out. It's doable for a few years. It gets old."
+    - author: hudson_conduit
+      body: "union city here, i can see the city from my window and the week we had a job over there it took me an hour because of the bus to the tunnel lol"
+    - author: bklyn_arkady
+      body: "In the city it's different for us plumbers, we're in the van all day, so parking is my whole life. Brooklyn street parking with a work van is a sport. For electricians in Midtown, take the train, absolutely."
+    - author: plumbguy917
+      body: "bay ridge to anywhere in manhattan is also an hour lol, it's not just jersey people"
+    - author: threeway_02
+      body: "Question from someone not in yet: do apprentices get any say in which jobs they're sent to? Or could you end up in the city even if you apply in Jersey?"
+    - author: dreb_jman
+      body: "Depends on the local and its jurisdiction. I can only speak for Local 3, and you go where the work is. If you apply in Jersey, ask that local how they assign."
+    - author: neutral_bar_99
+      body: "My uncle commuted from Wayne to the city for 20 years on the bus. He says the trick is sleeping on the bus and never driving. He has not driven into Manhattan since the 90s."
+    - author: Edison.volts
+      body: "Sleeping on the train I can definitely do. Already practicing on the way home"
+    - author: hudson_conduit
+      body: "the real trick is never missing the bus lol. miss one and you're late for everything all day"
+    - author: JerseyTomatoWires
+      body: "164 so I stay in Jersey, but my foreman did years in the city before he came over here... he says he doesn't miss the trains, he misses the lunch spots"
+    - author: dreb_jman
+      body: "Your foreman's right about lunch. That's the one thing Midtown has on Jersey."
+    - author: bklyn_arkady
+      body: "I grew up in Jersey and I'll say this: the bagels are a tie and the pizza is closer than either side admits."
+    - author: threeway_02
+      body: "Appreciate the honest answers. Leaving the city question alone until I'm actually in somewhere."
+
+# ----------------------------------------------------------------------------
+# brief B007 (re-topiced: duplicate pork roll brief -> back-to-school post by the same Senior)
+- id: T158
+  category: F
+  topic: F10_back_to_school
+  type: discussion
+  trade: hvac
+  when: mid
+  author: ms_almonte
+  title: "First week of the fall semester: 22 new faces, three have held a torch"
+  body: |
+    Every September I swear I'll stop being surprised, and every September I'm surprised. New class started this week. Twenty-two of them. Three have held a torch, and one of those set his sleeve on fire in the first hour. Nobody hurt, everybody learned something.
+
+    First thing I teach, before anything technical: where the extinguisher is and how to use it. Second: how to sweep a floor properly. They laugh at that one. They stop laughing when they find out how much of the job it is.
+
+    For anyone who trains helpers: what's the first thing you make a new person learn? Ask me how I know it matters.
+  replies:
+    - author: oldsteam_zig
+      body: "Where the main shutoff is, kid. Before anything else. Every house, every job, find the main and make sure it actually turns. That's the job."
+    - author: mbell_wireman
+      body: "Lockout/tagout and how to verify a circuit is dead, before they touch a tool. Then glasses on every day, no arguments. Good luck with the 22. Stay safe."
+    - author: hec_does_ac
+      body: "So this one time in AC... first day on a hotel job I made the new kid learn where the exits were before anything else lol. Sounds dumb. He still got lost in the basement for an hour on day two"
+    - author: CentralJersey_Coils
+      body: "Student in a different county here, and our teacher did the extinguisher thing first too. Then we swept for a week. I understand why now."
+    - author: joyd_plumbing
+      body: "Mine: show up ten minutes early and write down what you're told. A notebook in the back pocket fixes half the problems I see with new helpers."
+    - author: TaylorHamHVAC
+      body: "career switcher here. the notebook thing is real. my first month i wrote down everything my lead said and reread it at night. still do it"
+
+# ----------------------------------------------------------------------------
+# brief B031
+- id: T159
+  category: F
+  topic: F4_yelled_at_by_gc
+  type: discussion
+  trade: plumbing
+  when: late
+  author: benplumb79
+  title: "Got screamed at by a GC in front of the whole crew. Wasn't even my mistake"
+  body: "Sorry, venting a little. We're doing the plumbing on a kitchen and two baths in a gut reno in Hillsborough. The GC walked in this morning, saw the island drain wasn't where the new cabinet layout had it, and screamed at me in front of the tile guys and the electricians. I'm the helper. My lead set it from the drawings we were given last month. The GC changed the layout and never told us. I just stood there. Should I have said something? I didn't want to make it worse for my boss."
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: "You did fine by not arguing on the spot. Tell your lead exactly what happened, today, and let him handle it with the GC. That's his job, not yours. Next time there's a revised drawing, ask to see the date on it. Paper settles most of these. Keep your head down and stay safe."
+    - author: rui_t_kearny
+      body: "My father used to say the GC yells at whoever's standing closest. It wasn't about you. I've been the guy who yelled, early on, and I regret it. The good ones come back and apologize. This one might not."
+    - author: Dev_H
+      body: "had the same thing happen in deptford over a vent. my lead backed me up. did yours?"
+    - author: benplumb79
+      body: "edit: my lead called the GC, showed him the old drawing, and the GC came back after lunch and said \"my bad\" to my lead. Not to me. But I'll take it."
+
+# ----------------------------------------------------------------------------
+# brief B034 (NYC)
+- id: T160
+  category: F
+  topic: F3_quit_bad_shop
+  type: discussion
+  trade: electrical
+  nyc: true
+  when: late
+  author: groundrod_05
+  title: "Quit the Bronx shop today. Two weeks' notice, no drama"
+  body: "Two years at a non-union shop in the Bronx while I wait on the list. The last few months a lot of things got unsafe, and I'll leave it at that. I gave two weeks' notice this morning, thanked the owner for the two years, and that was it. Starting at a shop in Queens that does commercial fit-outs next month. My mentor told me to leave clean and never say a bad word about them publicly, so that's all I'll say. Mostly posting because I've been nervous about this for a month."
+  replies:
+    - author: dreb_jman
+      body: "Proud of you, brother. You left the right way. Nobody in this trade remembers why you left. They remember how."
+    - author: rui_t_kearny
+      body: "Two weeks and a thank-you. You'd be surprised how many guys can't manage that. The owner will remember it when somebody calls him for a reference, and somebody always does."
+    - author: wchen_controls
+      body: "fwiw 'unsafe' is reason enough, you don't owe anybody details. good luck at the new place. fit-outs means you'll see some low voltage, pay attention to it, it's a real trade"
+
+# ----------------------------------------------------------------------------
+# brief B035 (re-cast and re-topiced: duplicate quit-thread starter -> Dev.R, first solo week)
+- id: T161
+  category: F
+  topic: F8_first_solo_calls
+  type: discussion
+  trade: hvac
+  when: mid
+  author: Dev.R
+  title: "first week running calls solo. no callbacks yet"
+  body: "3 years riding with a lead and this week they gave me my own van and my own calls. pemberton, browns mills, mount holly. 14 calls in 5 days, mostly no-cools on the last hot days and two furnace checks. no callbacks yet. called my lead twice, once for weird thermostat wiring and once because i couldn't find the attic access in a split level. he answered both times and didn't make me feel stupid. anyway. that's it. just wanted to tell people who get it"
+  replies:
+    - author: hec_does_ac
+      body: "Nice!! A first solo week with no callbacks is a good week... my first solo week I called my lead eleven times. Twice is nothing lol. Keep calling when you need to"
+    - author: haddad_mech
+      body: "Here's what I look for in a new service tech: calls the lead when he isn't sure instead of guessing. You're doing it right. Callbacks will come eventually; how you handle the first one is what matters."
+    - author: Kash_sing
+      body: |
+        Congratulations. One habit for the first year:
+        - Photo of the nameplate, the thermostat wiring and your readings on every call
+        When a callback does happen, you'll know exactly what you left.
+
+# ----------------------------------------------------------------------------
+# brief B047
+- id: T162
+  category: F
+  topic: F6_regional_rollcall
+  type: discussion
+  trade: other
+  author: PlumberFromRahway
+  title: "union county roll call (the county, not the union lol)"
+  body: "anyone else from union county on here? i'm in rahway, 2nd year in local 9, which i realize makes the title confusing, union county and also union, i meant the county. i spend my days on water heaters from elizabeth to cranford. feels like everyone on here is either bergen or down the shore. sound off"
+  replies:
+    - author: big_zach_hvac
+      body: "elizabeth. hvac, 1 yr in. probably passed your van on route 1 this morning"
+    - author: Elizabeth.traps
+      body: "rahway too. non-union plumbing, boilers in the winter. small world, we probably use the same supply house"
+    - author: Kash_sing
+      body: "Edison, so next door. I'm claiming honorary Union County status for every no-heat call I've run in Rahway over the years."
+    - author: TryingAllThree
+      body: "Piscataway, is that close enough? Still undecided on a trade, but I drive through Rahway twice a week for ride-alongs, so I'm counting myself in."
+
+# ----------------------------------------------------------------------------
+# brief B050 (re-cast: Exit117Plumber -> GSP_Exit82 so the Ocean County roll call is started from Ocean County)
+- id: T163
+  category: F
+  topic: F6_regional_rollcall
+  type: discussion
+  trade: other
+  when: late
+  author: GSP_Exit82
+  title: "anyone else from ocean county on here? feels like it's all north jersey"
+  body: "vo-tech kid from manahawkin, trades program, haven't picked a trade yet (leaning electrical because my foreman at my summer job was an electrician). feels like every thread on here is bergen and hudson. where's ocean county at? toms river, brick, lakewood, barnegat, LBI, sound off. appreciate it"
+  replies:
+    - author: RainDayRestock
+      body: "Brick! First year electrical helper. Glad it's not just me down here."
+    - author: plumbnj77
+      body: "brick too, plumbing, 3 years. brother we're everywhere, we're just stuck in traffic on route 37 instead of posting"
+    - author: dahvacnj
+      body: "toms river. hvac, ocean county vo-tech grad, doing duct work and changeouts. hi"
+    - author: HelperForNow
+      body: "manahawkin too. electrical helper, residential remodels. small world, which program are you in"
+    - author: GSP_Exit82
+      body: "the county vo-tech trades program, same as everyone lol. you?"
+    - author: HelperForNow
+      body: "same school, couple years ahead of you. look into the evening classes when you're done, they're better than people think"
+    - author: ThreeWayConfusion
+      body: "Jackson here, 2nd year in Local 400. Which, for the Ocean County kids reading, is the IBEW local I believe covers this area, but check their site, because jurisdiction maps are confusing and I got it wrong the first time I looked"
+    - author: codebook_dale
+      body: "I'm at the shore too, and that's all I'll say about where. Good to see the county represented. If any of you ever want to know why something failed inspection down here, start a thread."
+    - author: thiago_sparks
+      body: "Monmouth, so I'm the neighbor who says he isn't from Ocean County but does half his work there. Honestly, half my raised-house jobs since Sandy have been in your county."
+    - author: tnguyen_refrig
+      body: "egg harbor twp. not ocean but close enough. you guys get the LBI restaurant calls before we do"
+    - author: dahvacnj
+      body: "anyone else get coffee at the wawa on route 37 every morning or is that just me"
+    - author: plumbnj77
+      body: "every wawa on 37 is the same wawa brother. they're all connected underground"
+    - author: HelperForNow
+      body: "can confirm. been to most of them this month on material runs for the shop"
+    - author: LiveFrontLessons
+      body: "asbury park, monmouth, but i'll take any thread that isn't bergen county lol"
+    - author: GSP_Exit82
+      body: "this is more of us than i thought. appreciate it everyone. if anyone's foreman needs a helper over winter break, i'm around"
+
+# ----------------------------------------------------------------------------
+# brief B051 (Senior starter; "got the call" told from the shop owner's side)
+- id: T164
+  category: F
+  topic: F2_got_the_call
+  type: discussion
+  trade: plumbing
+  when: late
+  author: rui_t_kearny
+  title: "My best helper got the call from the Local. Happy for him. Mostly."
+  body: |
+    The vo-tech kid I hired last year, best helper I've had in a long time. Shows up early, listens, asks the right questions. He applied to the plumbers' local in the spring without telling me. Got the call this week. Starts in January.
+
+    I'm happy for him, and I mean that. I was in the union myself for a few years. I know exactly what he's getting: real schooling, real benefits. My father used to say you can't keep a good kid in a small shop, you can only be the shop he's glad he started in.
+
+    Still. I'd started thinking he might be the one to take this place over someday. Back to the hiring pile. Anyone else lose their best guy this year?
+  replies:
+    - author: ms_almonte
+      body: "Every spring I lose students to the locals and every spring I'm proud and a little sad. You did your part. He'll remember who taught him to carry a water heater properly."
+    - author: Dev_H
+      body: "the guy from deptford is still reading, just saying lol. appreciate the advice from the other thread either way"
+    - author: benplumb79
+      body: "Congratulations to him. Sorry if this is a dumb question, but do shops ever stay in touch with guys who go union? Do they ever come back?"
+    - author: rui_t_kearny
+      body: "Some do. I did, didn't I? Took me a few years. The door's open for him, and I told him so."
+
+# ----------------------------------------------------------------------------
+# brief B056 (re-topiced: T20 is already the one pork roll thread, so this is the
+# Wawa vs QuickChek spin-off and gets the long run instead)
+- id: T165
+  category: F
+  topic: F5_pork_roll_taylor_ham
+  type: discussion
+  trade: other
+  when: late
+  author: sweatjoint200amp
+  title: "Since the pork roll thread settled nothing... Wawa or QuickChek?"
+  body: "Sorry, I know there was already a whole pork roll war on here... but nobody settled the other one. I'm in Little Falls, I just started riding with a crew that does commercial bathrooms all over, and this week we were in Hamilton and the guys from down there acted like I insulted their mother when I said QuickChek coffee is better. So... Wawa or QuickChek? And is it a north/south thing or an actual coffee thing? Defend your answer, I'm buying coffee for the crew Friday and I need to pick a side..."
+  replies:
+    - author: hec_does_ac
+      body: "Wawa. Not even a question... I've been going to the same Wawa in Cherry Hill for 15 years and they know my order lol. QuickChek is a nice gas station. Wawa is a lifestyle"
+    - author: joyd_plumbing
+      body: "QuickChek. I said it in the other thread and I'll say it again. Up here it isn't even a choice, it's geography."
+    - author: JunctionBoxJunkie
+      body: "I'm from Hamilton. I wasn't there, but I would have been one of the guys acting insulted. Wawa. The hoagie line at 6am is a sacred place and you walked in and disrespected it."
+    - author: QuickChekCrew
+      body: "In my defense the handle was a joke... I live in Cherry Hill. I'm Wawa. I'm sorry to everyone who expected otherwise."
+    - author: WawaRunWired
+      body: "fair lawn. my handle is also a lie, the closest wawa is a real drive. quickchek every morning. sorry"
+    - author: oldsteam_zig
+      body: "Kid, I've been drinking deli coffee in Lodi for 28 years. You're all wrong. Buy the crew coffee at the deli by the supply house and nobody fights."
+    - author: sweatjoint200amp
+      body: "ziggy that is the most boss answer possible... but which one would you pick if you HAD to?"
+    - author: oldsteam_zig
+      body: "QuickChek, because it's on my way. That's the whole reason. Don't tell anybody down south."
+    - author: tnguyen_refrig
+      body: "wawa. down here at 5am in july the wawa is the only thing open and its full of guys in work boots. thats your answer"
+    - author: TaylorHamHVAC
+      body: "secaucus. my handle says taylor ham and my coffee says quickchek. consistent at least"
+    - author: Bergen_Ducts
+      body: "hackensack, but my mom's from toms river so we drive past six wawas to see my grandma... honestly wawa coffee is better and the quickchek sandwiches are better, fight me"
+    - author: hec_does_ac
+      body: "Ok Bergen_Ducts gets a pass because his mom raised him right... the rest of you up north are still lost"
+    - author: ms_almonte
+      body: "I polled my class this morning instead of teaching them anything. Fourteen QuickChek, eight Wawa, and one student who said 7-Eleven and now has to sit in the back."
+    - author: peteplumb80
+      body: "montclair, quickchek during the week. but on the parkway down the shore it's wawa, everybody knows the rules"
+    - author: dahvacnj
+      body: "toms river. wawa. same answer as the pork roll thread. consistency matters"
+    - author: mbell_wireman
+      body: "I'll stay out of this one. I'll only say a cold coffee on a hot jobsite is fine as long as you're drinking water too. Stay hydrated, stay safe."
+    - author: Kearny_Pipefitter
+      body: "bayonne. quickchek. brother how is this even a debate north of 195"
+    - author: joe.plumb
+      body: "cherry hill... wawa. i didn't know quickchek was a real place until i was 19 lol"
+    - author: neutral_bar_99
+      body: "I keep a spreadsheet of coffee stops on the way to my weekend job, mostly as a joke at this point, and statistically my best mornings have been Wawa days. That isn't science. It isn't nothing either."
+    - author: dhollis61
+      body: "the coffee on route 1 jobsites comes off a truck. drink it and go to work."
+    - author: big_ben_tools
+      body: "glassboro. wawa. didn't know this was even a question until this thread. edit: my teacher just said quickchek has better coffee and i don't know what to believe anymore"
+    - author: sweatjoint200amp
+      body: "ok final count from this thread: north says quickchek, south says wawa, ziggy says deli. I'm getting the deli. nobody can be mad at the deli..."
+
+# ----------------------------------------------------------------------------
+# brief B070 (re-cast: OpenNeutralBlues already starts T169 -> EssexPipes)
+- id: T166
+  category: F
+  topic: F3_quit_bad_shop
+  type: question
+  trade: plumbing
+  author: EssexPipes
+  title: "Boss threw a pipe wrench across the basement. Quit on the spot."
+  body: "Two years out of the county vo-tech, 14 months at this shop in Essex. All demo, all carrying, and a boss who throws tools when he's in a mood. Today it was a pipe wrench across a basement. Didn't hit anybody. I put my stuff in my car, told him I was done, and drove home. Already have an interview Thursday with a shop in Montclair that does service. Did I mess up by not giving notice? Should I call him and smooth it over or just let it go?"
+  replies:
+    - author: joyd_plumbing
+      accepted: true
+      body: |
+        What's your actual question? Because "did I mess up" and "should I call him" have different answers.
+
+        Did you mess up: no. Someone throwing a pipe wrench in a basement is a safety problem, not a mood. Should you call: a short text saying you won't be back and where to send your last check is enough.
+    - author: rui_t_kearny
+      body: "Don't trash him around the supply houses, though, even if he deserves it. People will hear about the wrench without your help. You just be the guy who shows up Thursday."
+    - author: peteplumb80
+      body: "montclair has a few decent service shops. good luck thursday. wear the clean boots"
+    - author: mbell_wireman
+      body: "Agree with both. Thrown tools are how people get hurt, and you don't owe notice to someone who makes the site unsafe. Write down the date and what happened, in case it ever matters for anything."
+    - author: EssexPipes
+      body: "Sent the text. He replied with a thumbs up. That's the most communication I've gotten from him in a year. Interview's Thursday, boots are clean."
+
+# ----------------------------------------------------------------------------
+# brief B072 (zero replies)
+- id: T167
+  category: F
+  topic: F1_passed_608
+  type: discussion
+  trade: hvac
+  when: late
+  author: CentralJersey_Coils
+  title: "Got the 608 Universal on the first try (core was the hard part)"
+  body: "Took the EPA 608 at a supply house testing session Saturday and passed Universal. Core was the hardest section, like everyone says. Big thanks to ms_almonte, who told me to drill Core until I could recite the dates in my sleep. Still a vo-tech student, but now I'm allowed to actually hook up gauges with my lead watching. The shop I'm doing Saturdays at said they'd bump me a dollar once I had it, so we'll see if they remember."
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B081 (re-topiced: third NYC-commute brief -> first heating call of the season, NJ)
+- id: T168
+  category: F
+  topic: F8_first_solo_calls
+  type: discussion
+  trade: hvac
+  when: late
+  author: kofihvac87
+  title: "First heating call of the season and the thermostat was set to COOL"
+  body: "First cold morning this week and the phones at the shop went off. My first heating call of the season, in Roselle: \"furnace blowing cold air.\" I pulled the panel, checked the flame sensor, checked the inducer, checked the filter. Twenty minutes in, the homeowner's daughter asked if the thermostat was supposed to say COOL. It was. Switched it to HEAT and the furnace fired right up. We still charged the service fee because the office said so, and I felt terrible. Lol. Two years in and I still fell for it."
+  replies:
+    - author: hec_does_ac
+      body: "Lol everybody has one of these... thermostat first is the oldest lesson in the book and we all learn it the hard way anyway. Welcome to heating season"
+    - author: Kash_sing
+      body: |
+        Don't feel terrible about the fee. You drove there, diagnosed it, and checked the flame sensor and filter while you were in there, which is real work. Two things I'd do:
+        - Tell the customer what you checked, so they know they got something
+        - Write "tstat in cool" on the ticket so the office starts asking that question on the phone
+        The first cold week is full of these.
+    - author: ms_almonte
+      body: "First thing I tell students on a no-heat: talk to the thermostat before you talk to the furnace. Second: ask the homeowner what changed since the last time it worked. Ask me how I know you'll still forget once a year."
+    - author: big_zach_hvac
+      body: "did the exact same thing last week in elizabeth. except it was the fan set to ON not AUTO. homeowner thought it was broken because it blew cold between cycles"
+
+# ----------------------------------------------------------------------------
+# brief B101
+- id: T169
+  category: F
+  topic: F2_got_the_call
+  type: discussion
+  trade: electrical
+  when: late
+  author: OpenNeutralBlues
+  title: "Got the call. Interview for the IBEW apprenticeship is next month"
+  body: "Applied over the summer because my shop teacher would not stop bringing it up. Took the aptitude test. Got a call today with an interview date. I was at the Wawa when my phone rang and almost dropped my coffee. Not in yet, I know. But I didn't think I'd get this far. What do I wear and what do they ask?"
+  replies:
+    - author: dreb_jman
+      body: "Brother, congrats. That's a big step. I can only speak for how mine went years ago: clean simple clothes, on time means early, and be honest. They want to know you'll show up and listen. Don't pretend you know more than you do."
+    - author: mbell_wireman
+      body: "Congratulations. Bring proof of any work or school you have, even weekend helper hours. Know why you want this trade in one or two sentences. And when they ask about safety, mean it. Stay safe."
+    - author: mselecnj
+      body: "1st year 164. i wore a button down and was the most overdressed guy in the room lol. still got in. just be on time"
+    - author: ms_almonte
+      body: "Practice saying your answers out loud before the day. My students who do mock interviews with me always do better than the ones who wing it. Ask me how I know."
+    - author: epa60812_2
+      body: "congrats brother. hvac guy here but rooting for you, update us after the interview"
+
+# ----------------------------------------------------------------------------
+# brief B117 (re-cast: ExRetail_NowHVAC just started a job in T19 -> blowerwheel_91,
+# who is waiting on an apprenticeship; zero replies)
+- id: T170
+  category: F
+  topic: F2_got_the_call
+  type: discussion
+  trade: hvac
+  when: late
+  author: blowerwheel_91
+  title: "Accepted into the steamfitters' apprenticeship. I start in January."
+  body: "Sorry if this isn't the right place for it. I'm two years out of the Morris County vo-tech HVAC program. I applied to the steamfitters' apprenticeship last spring, did the test and the interview, and got the acceptance call today. I start in January. My parents didn't really understand why I was so excited until I explained the benefits part. Anyway, I wanted to tell people who would understand. If anyone has advice for the first year, thanks in advance."
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B121
+- id: T171
+  category: F
+  topic: F4_yelled_at_by_gc
+  type: question
+  trade: hvac
+  author: DinerCoffeeHVAC
+  title: "GC's super ripped into me on a JC jobsite. This time I deserved it"
+  body: "Doing a ductless install in an apartment renovation in Jersey City. I left a ceiling access open and a bag of insulation in the hallway overnight. Fire inspector walked through first thing in the morning. The GC's super found me at 7am and let me have it in front of the drywall guys. He was right. I was embarrassed. Apologized, cleaned it up. Sorry if this is a dumb post, I'm just stewing on it. How do you get over getting yelled at when it actually was your fault?"
+  replies:
+    - author: ms_almonte
+      accepted: true
+      body: |
+        First: you owned it and fixed it. That's most of it.
+
+        Second: tomorrow, be the first one cleaning up at the end of the day, without being asked, where he can see it.
+
+        Third: let it go by the weekend. Every one of us has a story like this. Ask me how I know.
+    - author: mbell_wireman
+      body: "Open ceilings and material in an egress path are a real problem on a multifamily job, so he wasn't wrong to be upset. Take the lesson, ignore the tone. Do an end-of-day walk every day: access panels closed, path clear. Stay safe."
+    - author: Passaic_Sparky
+      body: "idk, getting yelled at when you were wrong is alot easier than when you weren't. at least you know what to fix"
+    - author: DinerCoffeeHVAC
+      body: "fair. did the end of day walk today. super nodded at me on the way out. that's probably as good as it gets"
+
+# ----------------------------------------------------------------------------
+# brief B123 (re-topiced: duplicate NYC-commute brief -> rain rant, NJ)
+- id: T172
+  category: F
+  topic: F9_weather_rant
+  type: discussion
+  trade: plumbing
+  when: late
+  author: plumbnj77
+  title: "Rain rant: nine days of mud on an underground job in Jackson"
+  body: "Not a question, I just need to yell. New construction in Jackson, we're supposed to be setting underground for six houses. It has rained nine of the last eleven days. The trench is soup. The GC wants it done by Friday anyway. My boots weigh ten pounds each and I've lost a glove in the mud every single day. How do you guys keep your stuff dry? Does anyone own boots that actually survive this, brother?"
+  replies:
+    - author: tnguyen_refrig
+      body: "rotate two pairs of boots. one dries by the heater overnight while you destroy the other one. thats the whole secret"
+    - author: RainDayRestock
+      body: "My handle is literally about this. On rain days my boss sends us to restock the van. Underground guys don't get that luxury I guess."
+    - author: oldsteam_zig
+      body: "Kid, mud's part of it. Rubber boots over your work boots on trench days, and a bucket with a lid for your tools. And don't let the GC rush you into a bad joint because of a deadline. The inspector won't care that it rained. That's the job."
+    - author: JunctionBoxJunkie
+      body: "Electrical vo-tech kid here. I thought the attic in July was the worst thing in the trades. This sounds worse."
+    - author: plumbnj77
+      body: "attic in july is worse for like 2 months. mud is worse the rest of the year. both suck brother"
+    - author: ThreeWayConfusion
+      body: "I'm in Jackson too and it's been miserable. Our new-construction job got pushed a week because nobody could get trucks down the access road."
+    - author: hec_does_ac
+      body: "Lol we once did a rooftop changeout in a nor'easter because the crane was already paid for... nobody should do that. Stay dry out there"
+
+# ----------------------------------------------------------------------------
+# brief B132 (re-topiced: third GC brief -> heat-wave rant)
+- id: T173
+  category: F
+  topic: F9_weather_rant
+  type: discussion
+  trade: electrical
+  when: early
+  author: JunctionBoxJunkie
+  title: "It was 97 outside and I swear 140 in that attic"
+  body: "Summer job, helping an electrical contractor while school's out. Today we ran a new circuit for a bathroom fan in a Cape in Hamilton, which meant the attic. In the heat wave. My shirt was soaked through in four minutes. I drank three bottles of water and my boss made me come down every 20 minutes, which I was mad about until I got dizzy on the ladder coming down the last time. I'm fine. Sat in the truck with the AC on for a while. Is this just what summers are? How do you all do this for 20 years?"
+  replies:
+    - author: mbell_wireman
+      body: "Your boss made the right call, and I'm glad he did. Heat illness sneaks up on people, and dizziness on a ladder is exactly how someone gets hurt. Do attic work early in the morning, take breaks before you need them, water plus something with electrolytes. If you feel off, you come down. Stay safe."
+    - author: tnguyen_refrig
+      body: "try a walk-in compressor on a boardwalk roof in july. at least your attic had shade lol"
+    - author: thiago_sparks
+      body: "Honestly the shore attics are the worst. Raised houses, dark shingles, no ventilation. I schedule attic work before 10am in July and August now, period. Took me way too long to learn that."
+    - author: big_paulie_plumb
+      body: "20 years? i'm 4 years in and i already bought a cooling towel and a little fan that clips on my hard hat. no shame"
+    - author: HeatwaveOnCall
+      body: "hvac helper in clifton, we did 3 attic air handlers this week. my handle was a joke when i made it. it's not a joke anymore"
+    - author: JunctionBoxJunkie
+      body: "Ordering the cooling towel. My boss also said nobody gets a medal for staying up there. Writing that on my tool bag."
+    - author: hec_does_ac
+      body: "Lol that's a good boss... So this one time in AC, a guy on my crew didn't come down when he should have and we had to help him out of the attic. He was ok. Come down when your boss says come down"
+    - author: codebook_dale
+      body: "One thing from my side, since I inspect a lot of summer attic work: when you're miserable, you rush, and rushed connections are what fail later. Take the break, then make the connection right. Heat makes people skip steps."
+
+# ----------------------------------------------------------------------------
+# brief B136 (re-cast and re-topiced: duplicate pork roll brief -> tipping culture)
+- id: T174
+  category: F
+  topic: F11_small_wins_culture
+  type: question
+  trade: plumbing
+  when: late
+  author: leadfree98
+  title: "Homeowner tried to hand me a $20 tip. Do you take it?"
+  body: "First month as a helper at a shop near Long Branch. We fixed a leak under an older lady's kitchen sink today, and while we were packing up she tried to hand me a $20 and a bottle of water. I took the water and said no to the money because idk what the rule is. My lead laughed at me in the truck. Is it ok to take tips? Does the shop care? Do you split it with your lead?"
+  replies:
+    - author: thiago_sparks
+      accepted: true
+      body: "Honestly, at my shop the rule is simple: if a customer insists, say thank you and take it, and never ask or hint. Some shops have a no-tip policy, so ask your boss once and then you know. Splitting with your lead is a nice move when he did most of the work, which in month one, he probably did."
+    - author: oldsteam_zig
+      body: "Take the water every time, kid. Take the money if she insists twice. Never take it from someone who looks like they can't afford it. That's the job."
+    - author: Exit117Plumber
+      body: "my foreman says a tip means the customer liked you, it's not a payment. he gives it to whoever did the cleanup. no idea if that's a thing everywhere"
+    - author: hec_does_ac
+      body: "Down here in summer it's cold Gatorade and leftover hoagies... I've been tipped in tomatoes from a guy's garden. Took the tomatoes lol"
+    - author: leadfree98
+      body: "ok asked my boss. he said keep it if they insist, nothing over $20, and buy the lead a coffee. so now i owe my lead a coffee for a tip i didn't even take lol"
+
+# ----------------------------------------------------------------------------
+# brief B145 (re-cast and re-topiced: NYC-commute brief -> a small win, NJ)
+- id: T175
+  category: F
+  topic: F11_small_wins_culture
+  type: discussion
+  trade: plumbing
+  author: big_hector_plumb
+  title: "Customer called the office and asked for me by name"
+  body: "4 years in, running service on my own in Hudson. I'm not a talker. Customers usually ask for my boss or the other guy, the one who can talk to anybody. Today the office said a lady in Weehawken called back for a second job and asked for \"the quiet one who explained the water heater.\" Small thing. Made my week. The explanation was me drawing on a piece of cardboard because I'm better at that than talking lol."
+  replies: []
+
+# ----------------------------------------------------------------------------
+# brief B163 (re-topiced: duplicate pork roll brief -> apprentice milestone)
+- id: T176
+  category: F
+  topic: F11_small_wins_culture
+  type: discussion
+  trade: electrical
+  author: JerseyTomatoWires
+  title: "A first-year asked ME how to bend an offset today..."
+  body: "4th year in 164... today a brand new first-year on our job asked me how to bend an offset and I just showed him without thinking about it. Then I realized I was him three years ago, asking the same thing and wasting half a stick of EMT. My foreman saw it and said \"see, you're useful now.\" Weird feeling... anyway, I top out next year. Just wanted to say it somewhere"
+  replies:
+    - author: mbell_wireman
+      body: "That's the moment. Teaching someone is how you find out you actually know it. Keep doing it, and teach him the safety part along with the bend. Stay safe."
+    - author: codebook_dale
+      body: "Good. The apprentices who teach well usually make the best journeymen. Teach him why, not just how. 'Because that's how we do it' is how bad habits travel from crew to crew."
+    - author: TwistAndTape
+      body: "2nd year 164 here, still the one asking lol. i hope somebody on my job is this nice"
+    - author: JerseyTomatoWires
+      body: "appreciate it... and yeah, the safety part, I made him put his glasses on first. learned that one from my foreman too"
+
+# ----------------------------------------------------------------------------
+# brief B165 (re-cast and re-topiced: Senior zero-reply pork roll brief -> a Junior's
+# first-week post; gets replies to keep zero-reply threads at 4/50)
+- id: T177
+  category: F
+  topic: F11_small_wins_culture
+  type: discussion
+  trade: plumbing
+  when: late
+  author: jess2093
+  title: "Week one done. Everything hurts and I'm weirdly happy"
+  body: "Left insurance claims last month, I'm 28, and I started as a plumbing helper at a shop out of Glassboro on Monday. Five days of carrying cast iron out of a basement in Pitman and hauling a water heater up some stairs. My hands are wrecked, my back is wrecked, I fell asleep at 8:30 every night. And I haven't checked a work email in a week. Don't know if I'll last. Anyway. Week one, done."
+  replies:
+    - author: joyd_plumbing
+      body: "Week one is the worst one, physically. Your body catches up in about a month. I switched over from restaurant management at 26 and I remember falling asleep in my boots. It gets better. Keep going."
+    - author: FluxOnMyBoots
+      body: "career switcher too. week 1 i couldn't close my hands in the morning lol. by week 6 i was fine"
+    - author: joe.plumb
+      body: "pitman basements are no joke... welcome. it gets easier, or you just stop noticing"
+
+# ----------------------------------------------------------------------------
+# brief B167 (re-cast and re-topiced: second Rui "got the call" brief -> Labor Day rant)
+- id: T178
+  category: F
+  topic: F9_weather_rant
+  type: discussion
+  trade: hvac
+  when: mid
+  author: ThirdYearTinknocker
+  title: "worked all of labor day weekend on strip mall rooftops. rant incoming"
+  body: "everybody i know was at the beach labor day weekend. me? three days straight of rooftop units on strip malls around neptune and ocean township, 90+ and humid, and every RTU in monmouth county decided to die the same weekend. one roof had no hatch so it was an extension ladder in the heat with a bag of tools. made good OT. hate everything. appreciate you guys reading this far"
+  replies:
+    - author: hec_does_ac
+      body: "Labor Day weekend in HVAC is a tradition... nobody in this trade is at a barbecue lol. Congrats on surviving it"
+    - author: tnguyen_refrig
+      body: "same weekend every year down here, ice machines and walk-ins on the boardwalk nonstop. the tuesday after labor day everything goes quiet and you sleep for a week"
+    - author: Kash_sing
+      body: |
+        Holiday weekends are where the money gets made and where techs burn out. If you work a lot of them:
+        - Ask how holiday pay works before the weekend, not after
+        - Bank some of that OT
+        - Take a day when it slows down, and ask for it in writing
+    - author: matt_the_hvac
+      body: "bound brook. same. 3 rooftops sunday. nobody told me labor day means actual labor lol"
+
+# ----------------------------------------------------------------------------
+# brief B149 (re-cast: benplumb79 already starts T131/T159 -> Kearny_Pipefitter, Hudson roll call)
+- id: T179
+  category: F
+  topic: F6_regional_rollcall
+  type: discussion
+  trade: other
+  author: Kearny_Pipefitter
+  title: "Hudson County, where you at? Bayonne checking in"
+  body: "Feels like half this place is Bergen and the shore. Hudson County roll call. I'm in Bayonne, plumbing helper, a year in, mostly old buildings and a lot of walkups. Where are the Hudson people? JC, Hoboken, Union City, North Bergen, Kearny, Secaucus, brother, sound off. Bonus points if you've ever parked a work van in Hoboken without a ticket."
+  replies:
+    - author: joyd_plumbing
+      body: "Jersey City. Seventeen years of multifamily and co-ops. And no. Nobody parks a work van in Hoboken legally. It's a myth."
+    - author: DinerCoffeeHVAC
+      body: "Bayonne too. HVAC, 2 years. we've probably been in the same building"
+    - author: big_hector_plumb
+      body: "union city. service plumbing. hi lol, didn't know there were this many of us"
+    - author: hudson_conduit
+      body: "union city as well, electrical helper. parking in hoboken got me two tickets in one week lol"
+    - author: TaylorHamHVAC
+      body: "secaucus. career switcher, hvac. secaucus is hudson county even if everyone forgets"
+    - author: big_paulie_plumb
+      body: "north bergen, 4 years, service. sorry for the dumb add but anyone know a supply house in jc that opens before 7"
+    - author: rui_t_kearny
+      body: "Kearny, right on the line with Bergen, so I claim both counties like my father did. Good to see this many of you. If any of you ever want to talk old Hudson buildings, I've been in most of them."
+    - author: Kearny_Pipefitter
+      body: "more of us than I thought brother. and yes my handle says Kearny and I live in Bayonne. long story, don't ask"

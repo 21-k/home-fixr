@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   AlertTriangle,
@@ -11,11 +12,22 @@ import {
 } from "lucide-react";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
+import { CollabFilledBadge, CollabFilledToggle } from "@/components/CollabFilled";
 import { CollabIcon } from "@/components/icons";
 import { UserName } from "@/components/UserName";
 import { respondToCollabInterest, toggleCollabInterest } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { COLLAB_TYPE_LABEL, profileHeadline, timeAgo } from "@/lib/format";
+import { isCollabFilled, shouldOfferMarkFilled } from "@/lib/collabs";
+import { displayName } from "@/lib/display";
+import { loginHref } from "@/lib/next-path";
+import {
+  COLLAB_TYPE_LABEL,
+  COLLABS_NAV,
+  COLLABS_TITLE,
+  profileHeadline,
+  timeAgo,
+  yearsLabel,
+} from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { ageRangeLabel } from "@/lib/skills";
 import { CV_BUCKET, CV_SIGNED_URL_SECONDS } from "@/lib/storage";
@@ -43,34 +55,39 @@ const STATUS_BADGE: Record<CollabInterestStatus, { label: string; className: str
   },
 };
 
+const MY_TITLE = "My ride-alongs and collaborations";
+
+export const metadata: Metadata = { title: MY_TITLE };
+
 export default async function MyJobsPage() {
   const me = await getCurrentProfile();
   const supabase = await createClient();
 
   const sidebar = (
     <nav>
-      <SideSection>Jobs</SideSection>
-      <Link href="/collabs">
-        <SideLink>
-          <Briefcase className="size-4" /> All collabs
-        </SideLink>
-      </Link>
-      <Link href="/collabs/mine">
-        <SideLink active>
-          <ClipboardList className="size-4" /> My jobs
-        </SideLink>
-      </Link>
+      <SideSection>{COLLABS_NAV}</SideSection>
+      <SideLink href="/collabs">
+        <Briefcase className="size-4" /> All opportunities
+      </SideLink>
+      <SideLink href="/collabs/mine" active>
+        <ClipboardList className="size-4" /> My opportunities
+      </SideLink>
     </nav>
   );
 
   if (!me) {
     return (
-      <AppBody sidebar={sidebar}>
+      <AppBody sidebar={sidebar} mobileLabel={COLLABS_NAV}>
+        <h1 className="mb-4 text-xl font-semibold">{MY_TITLE}</h1>
         <p className="rounded-xl border border-zinc-200 bg-white p-6 text-sm text-zinc-600">
-          <Link href="/login" className="font-medium text-brand-600 hover:underline">
+          <Link
+            href={loginHref("/collabs/mine")}
+            className="font-medium text-brand-600 hover:underline"
+          >
             Sign in
           </Link>{" "}
-          to track the jobs you&apos;ve posted and applied to.
+          to track the ride-alongs and collaborations you&apos;ve posted and
+          applied to.
         </p>
       </AppBody>
     );
@@ -162,18 +179,18 @@ export default async function MyJobsPage() {
     applicants.filter((i) => i.collab_id === collabId);
 
   return (
-    <AppBody sidebar={sidebar}>
-      <h1 className="mb-1 text-xl font-semibold">My jobs</h1>
+    <AppBody sidebar={sidebar} mobileLabel={COLLABS_NAV}>
+      <h1 className="mb-1 text-xl font-semibold">{MY_TITLE}</h1>
       <p className="mb-5 text-[13px] text-zinc-600">
-        Jobs you posted and who&apos;s interested, plus the ones you&apos;ve put
-        your hand up for.
+        What you posted and who&apos;s interested, plus the ones you&apos;ve
+        applied to.
       </p>
 
       {posted.length === 0 && myInterests.length === 0 && (
         <p className="rounded-xl border border-dashed border-zinc-300 bg-white p-10 text-center text-sm text-zinc-500">
           Nothing here yet.{" "}
           <Link href="/collabs" className="font-medium text-brand-600 hover:underline">
-            Browse collabs
+            Browse {COLLABS_TITLE.toLowerCase()}
           </Link>{" "}
           or post one of your own.
         </p>
@@ -182,17 +199,47 @@ export default async function MyJobsPage() {
       {posted.length > 0 && (
         <section className="mb-5">
           <h2 className="mb-2 text-[13px] font-semibold uppercase tracking-wide text-zinc-500">
-            Jobs you posted ({posted.length})
+            You posted ({posted.length})
           </h2>
           <div className="flex flex-col gap-3">
             {posted.map((c) => {
               const rows = byCollab(c.id);
+              const filled = isCollabFilled(c);
+              const accepted = rows.filter((i) => i.status === "accepted");
               return (
                 <div
                   key={c.id}
+                  id={`collab-${c.id}`}
+                  data-testid="my-posted-collab"
+                  data-filled={filled ? "true" : "false"}
                   className="rounded-xl border border-zinc-200 bg-white p-5"
                 >
                   <CollabHeading collab={c} />
+
+                  {shouldOfferMarkFilled(c, rows.map((i) => i.status)) ? (
+                    <div
+                      data-testid="offer-mark-filled"
+                      className="mt-3 flex flex-wrap items-center gap-2 rounded-lg bg-success-bg px-3 py-2 text-[13px] text-success-fg"
+                    >
+                      <span className="mr-auto">
+                        You accepted{" "}
+                        {accepted
+                          .map((i) => displayName(peopleById.get(i.user_id) ?? null))
+                          .join(", ")}
+                        . Is the position filled now?
+                      </span>
+                      <CollabFilledToggle collabId={c.id} filled={false} emphasis />
+                    </div>
+                  ) : (
+                    <div className="mt-3 flex flex-wrap items-center gap-2">
+                      <span className="mr-auto text-[13px] text-zinc-600">
+                        {filled
+                          ? "Marked filled: it shows as Position filled and takes no new applications."
+                          : "Open: taking applications."}
+                      </span>
+                      <CollabFilledToggle collabId={c.id} filled={filled} />
+                    </div>
+                  )}
 
                   {rows.length === 0 ? (
                     <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] text-zinc-500">
@@ -223,7 +270,7 @@ export default async function MyJobsPage() {
                                 {person ? profileHeadline(person) : ""}
                               </div>
                               {i.note && (
-                                <p className="mt-1.5 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700">
+                                <p className="mt-1.5 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700 wrap-anywhere">
                                   {i.note}
                                 </p>
                               )}
@@ -275,7 +322,7 @@ export default async function MyJobsPage() {
       {myInterests.length > 0 && (
         <section>
           <h2 className="mb-2 text-[13px] font-semibold uppercase tracking-wide text-zinc-500">
-            Jobs you&apos;re interested in ({myInterests.length})
+            You applied to ({myInterests.length})
           </h2>
           <div className="flex flex-col gap-3">
             {myInterests.map((i) => {
@@ -289,7 +336,7 @@ export default async function MyJobsPage() {
                 >
                   <CollabHeading collab={c} />
                   {i.note && (
-                    <p className="mt-2 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700">
+                    <p className="mt-2 rounded-lg bg-zinc-50 px-3 py-2 text-[13px] leading-relaxed text-zinc-700 wrap-anywhere">
                       {i.note}
                     </p>
                   )}
@@ -300,7 +347,11 @@ export default async function MyJobsPage() {
                     </div>
                   )}
                   <div className="mt-3 flex flex-wrap items-center gap-2 border-t border-zinc-100 pt-3">
-                    <Badge status={i.status} />
+                    {isCollabFilled(c) && i.status === "interested" ? (
+                      <CollabFilledBadge />
+                    ) : (
+                      <Badge status={i.status} />
+                    )}
                     <span className="text-[13px] text-zinc-600">
                       Posted by{" "}
                       <UserName
@@ -338,14 +389,17 @@ function CollabHeading({ collab }: { collab: JobCollab }) {
     <>
       <div className="flex items-start justify-between gap-3">
         <h3 className="font-semibold">
-          <Link href="/collabs" className="hover:text-brand-500">
+          <Link href={`/collabs#collab-${collab.id}`} className="hover:text-brand-500">
             {collab.title}
           </Link>
         </h3>
-        <span className="inline-flex shrink-0 items-center gap-1 rounded bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
-          <CollabIcon type={collab.type} className="size-3.5" />
-          {COLLAB_TYPE_LABEL[collab.type]}
-        </span>
+        <div className="flex shrink-0 flex-col items-end gap-1.5">
+          {isCollabFilled(collab) && <CollabFilledBadge />}
+          <span className="inline-flex shrink-0 items-center gap-1 rounded bg-zinc-100 px-2 py-0.5 text-xs font-medium text-zinc-600">
+            <CollabIcon type={collab.type} className="size-3.5" />
+            {COLLAB_TYPE_LABEL[collab.type]}
+          </span>
+        </div>
       </div>
       <div className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px] text-zinc-600">
         {collab.location && (
@@ -380,7 +434,7 @@ function ApplicationDetail({ interest: i }: { interest: CollabInterest }) {
   if (i.years_experience != null) {
     facts.push({
       label: "In the trade",
-      value: `${i.years_experience} ${i.years_experience === 1 ? "yr" : "yrs"}`,
+      value: yearsLabel(i.years_experience),
     });
   }
   if (i.graduation_year != null) {
@@ -454,12 +508,12 @@ function ApplicationDetail({ interest: i }: { interest: CollabInterest }) {
 }
 
 /**
- * Download link for an attached CV. `url` is a signed, expiring link — if
+ * Download link for an attached resume. `url` is a signed, expiring link — if
  * signing failed (expired session, deleted object) we show the filename
  * without a dead link rather than a broken download.
  */
 function CvLink({ url, name }: { url: string | undefined; name: string | null }) {
-  const label = name ?? "Attached CV";
+  const label = name ?? "Attached resume";
   if (!url) {
     return (
       <span className="inline-flex items-center gap-1.5 text-[13px] text-zinc-500">

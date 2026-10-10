@@ -35,7 +35,7 @@ export function PostComposer({ me }: { me: AvatarPerson }) {
           name="title"
           required
           onFocus={() => setOpen(true)}
-          placeholder="Got a question for the pros?"
+          placeholder="Got a question? Ask the community."
           className="flex-1 rounded-lg border border-zinc-300 px-3.5 py-2.5 text-sm outline-none focus:border-brand-500"
         />
         {!open && (

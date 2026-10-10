@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { FoundingBadge } from "@/components/FoundingBadge";
 import { TradeIcon } from "@/components/icons";
 import { displayName } from "@/lib/display";
-import { AVAILABILITY_LABEL, profileHeadline } from "@/lib/format";
+import { AVAILABILITY_LABEL, SELF_REPORTED_NOTE, profileHeadline } from "@/lib/format";
 import { createClient } from "@/lib/supabase/server";
 import type { Profile, TradeType } from "@/lib/types";
 
@@ -31,6 +32,8 @@ function buildHref(current: Search, patch: Search): string {
   return qs ? `/mentors?${qs}` : "/mentors";
 }
 
+export const metadata: Metadata = { title: "Find a mentor" };
+
 export default async function MentorsPage({
   searchParams,
 }: {
@@ -44,7 +47,7 @@ export default async function MentorsPage({
   if (sp.region) query = query.ilike("region", `%${sp.region}%`);
   if (sp.avail === "messages") query = query.eq("is_open_to_messages", true);
   if (sp.avail === "ride_alongs") query = query.eq("is_open_to_ride_alongs", true);
-  // "Accepting mentees" only lists mentors a real person will answer for:
+  // "Accepting mentorship requests" only lists mentors a real person will answer for:
   // Founding Community accounts never qualify (plan §4 / §6).
   if (sp.avail === "accepting")
     query = query.eq("mentor_availability", "accepting").eq("is_founding_member", false);
@@ -55,63 +58,65 @@ export default async function MentorsPage({
   });
   const mentors = (data ?? []) as Profile[];
 
-  // Real "mentees" counts, tallied from active mentorships in one query.
-  const { data: mentorships } = await supabase
-    .from("mentorships")
-    .select("senior_id")
-    .eq("status", "active");
+  // Real "mentees" counts. RLS hides mentorship rows from everyone but the two
+  // people involved, so the counts come from a function that returns numbers
+  // only (migration 0012), never who mentors whom.
+  const { data: menteeRows } = await supabase.rpc("active_mentee_counts");
   const menteeCount = new Map<string, number>();
-  for (const m of mentorships ?? [])
-    menteeCount.set(m.senior_id, (menteeCount.get(m.senior_id) ?? 0) + 1);
+  for (const m of (menteeRows ?? []) as { senior_id: string; mentees: number }[])
+    menteeCount.set(m.senior_id, m.mentees);
 
-  // Real "answered" counts, tallied from replies in one query.
-  const { data: replies } = await supabase.from("replies").select("author_id");
-  const answeredCount = new Map<string, number>();
-  for (const r of replies ?? [])
-    answeredCount.set(r.author_id, (answeredCount.get(r.author_id) ?? 0) + 1);
+  // Real "answered" counts: one exact count per listed mentor. (Selecting
+  // every reply and tallying here silently stopped at the API's 1,000-row
+  // cap once the site had more replies than that.)
+  const answeredCount = new Map<string, number>(
+    await Promise.all(
+      mentors.map(async (m) => {
+        const { count } = await supabase
+          .from("replies")
+          .select("*", { count: "exact", head: true })
+          .eq("author_id", m.id);
+        return [m.id, count ?? 0] as [string, number];
+      }),
+    ),
+  );
 
   const sidebar = (
     <nav>
       <SideSection>Filter</SideSection>
-      <Link href={buildHref(sp, { trade: undefined })}>
-        <SideLink active={!sp.trade}>All trades</SideLink>
-      </Link>
+      <SideLink href={buildHref(sp, { trade: undefined })} active={!sp.trade}>All trades</SideLink>
       {TRADES.map((t) => (
-        <Link key={t.key} href={buildHref(sp, { trade: t.key })}>
-          <SideLink active={sp.trade === t.key}>
-            <TradeIcon trade={t.key} /> {t.label}
-          </SideLink>
-        </Link>
+        <SideLink key={t.key} href={buildHref(sp, { trade: t.key })} active={sp.trade === t.key}>
+          <TradeIcon trade={t.key} /> {t.label}
+        </SideLink>
       ))}
       <SideSection>Region</SideSection>
-      <Link href={buildHref(sp, { region: undefined })}>
-        <SideLink active={!sp.region}>All regions</SideLink>
-      </Link>
+      <SideLink href={buildHref(sp, { region: undefined })} active={!sp.region}>All regions</SideLink>
       {REGIONS.map((r) => (
-        <Link key={r.value} href={buildHref(sp, { region: r.value })}>
-          <SideLink active={sp.region === r.value}>{r.label}</SideLink>
-        </Link>
+        <SideLink key={r.value} href={buildHref(sp, { region: r.value })} active={sp.region === r.value}>{r.label}</SideLink>
       ))}
       <SideSection>Availability</SideSection>
-      <Link href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })}>
-        <SideLink active={sp.avail === "accepting"}>Accepting mentees</SideLink>
-      </Link>
-      <Link href={buildHref(sp, { avail: sp.avail === "messages" ? undefined : "messages" })}>
-        <SideLink active={sp.avail === "messages"}>Open to messages</SideLink>
-      </Link>
-      <Link href={buildHref(sp, { avail: sp.avail === "ride_alongs" ? undefined : "ride_alongs" })}>
-        <SideLink active={sp.avail === "ride_alongs"}>Open to ride-alongs</SideLink>
-      </Link>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "accepting" ? undefined : "accepting" })} active={sp.avail === "accepting"}>{AVAILABILITY_LABEL.accepting}</SideLink>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "messages" ? undefined : "messages" })} active={sp.avail === "messages"}>Open to messages</SideLink>
+      <SideLink href={buildHref(sp, { avail: sp.avail === "ride_alongs" ? undefined : "ride_alongs" })} active={sp.avail === "ride_alongs"}>Open to hosting ride-alongs</SideLink>
     </nav>
   );
 
   return (
-    <AppBody sidebar={sidebar}>
-      <div className="mb-4 flex items-center justify-between">
-        <h1 className="text-xl font-semibold">Senior pros in the community</h1>
-        <span className="text-[13px] text-zinc-500">
-          Showing {mentors.length} mentor{mentors.length === 1 ? "" : "s"}
-        </span>
+    <AppBody sidebar={sidebar} mobileLabel="Filter mentors">
+      <div className="mb-4">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+          <h1 className="text-xl font-semibold">Find a mentor</h1>
+          <span className="text-[13px] text-zinc-500">
+            Showing {mentors.length} mentor{mentors.length === 1 ? "" : "s"}
+          </span>
+        </div>
+        <p className="mt-1 text-[13px] text-zinc-600">
+          Browse mentors and send a mentorship request. Mentors choose whether to accept.
+        </p>
+        <p className="mt-1 text-xs text-zinc-500" data-testid="self-reported-note">
+          {SELF_REPORTED_NOTE}
+        </p>
       </div>
 
       {mentors.length === 0 ? (
@@ -139,7 +144,7 @@ export default async function MentorsPage({
                   </div>
                 </div>
                 {m.bio && (
-                  <p className="mb-3 line-clamp-3 text-[13px] leading-5 text-zinc-700">
+                  <p className="mb-3 line-clamp-3 text-[13px] leading-5 text-zinc-700 wrap-anywhere">
                     {m.bio}
                   </p>
                 )}

@@ -8,7 +8,7 @@ import { ImageResponse } from "next/og";
 // margins rather than `gap` to stay on the well-supported path.
 
 export const alt =
-  "Home Fixr — mentorship for the skilled trades. Senior plumbers, HVAC techs, and electricians mentoring the next generation.";
+  "Home Fixr — mentorship for the skilled trades. Experienced electricians, plumbers, and HVAC technicians mentoring apprentices.";
 
 export const size = { width: 1200, height: 630 };
 
@@ -76,8 +76,8 @@ export default async function OpengraphImage() {
               maxWidth: 860,
             }}
           >
-            Senior plumbers, HVAC techs, and electricians mentoring the next
-            generation.
+            Experienced electricians, plumbers, and HVAC technicians mentoring
+            apprentices.
           </div>
         </div>
 

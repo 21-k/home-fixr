@@ -294,6 +294,126 @@ def member_can_set_own_avatar_within_the_allowed_set(conn):
     assert cur.rowcount == 0
 
 
+# ---------------------------------------------------------------- 0013 filled
+def real_collab(cur, poster_email="poster@example.test"):
+    poster = make_user(cur, poster_email)
+    cur.execute("insert into job_collabs (poster_id, type, title, body) values (%s, 'extra_hand', 't', 'b') returning id", (poster,))
+    return poster, cur.fetchone()[0]
+
+
+@case
+def poster_can_mark_own_collab_filled_and_reopen_it(conn):
+    cur = conn.cursor()
+    poster, cid = real_collab(cur)
+    other = make_user(cur, "notposter@example.test")
+    as_user(cur, poster)
+    cur.execute("update job_collabs set filled_at = now() where id = %s", (cid,))
+    assert cur.rowcount == 1, "poster must be able to mark their own collab filled"
+    cur.execute("select filled_at is not null from job_collabs where id = %s", (cid,))
+    assert cur.fetchone()[0]
+    cur.execute("update job_collabs set filled_at = null where id = %s", (cid,))
+    cur.execute("select filled_at from job_collabs where id = %s", (cid,))
+    assert cur.fetchone()[0] is None, "poster must be able to reopen"
+    as_user(cur, other)
+    cur.execute("update job_collabs set filled_at = now() where id = %s", (cid,))
+    assert cur.rowcount == 0, "only the poster can mark a collab filled (RLS)"
+
+
+@case
+def api_filled_at_is_stamped_now_not_backdated(conn):
+    cur = conn.cursor()
+    poster, cid = real_collab(cur)
+    as_user(cur, poster)
+    cur.execute("update job_collabs set filled_at = '2001-01-01' where id = %s", (cid,))
+    cur.execute("select filled_at > now() - interval '1 minute' from job_collabs where id = %s", (cid,))
+    assert cur.fetchone()[0], "an API user's filled_at must be the time they marked it"
+    expect_error(cur, "update job_collabs set seed_batch_id = 'x' where id = %s", (cid,), "staff")
+
+
+@case
+def real_member_cannot_apply_to_filled_collab(conn):
+    cur = conn.cursor()
+    poster, cid = real_collab(cur)
+    jr = make_user(cur, "applicant@example.test")
+    as_staff(cur)
+    cur.execute("update job_collabs set filled_at = now() where id = %s", (cid,))
+    as_user(cur, jr)
+    expect_error(cur, "insert into collab_interests (collab_id, user_id, note) values (%s, %s, 'me')", (cid, jr), "filled")
+    expect_error(cur, "select express_collab_interest(%s, 'me')", (cid,), "filled")
+
+
+@case
+def reopened_collab_takes_applications_again(conn):
+    cur = conn.cursor()
+    poster, cid = real_collab(cur)
+    jr = make_user(cur, "again@example.test")
+    as_user(cur, poster)
+    cur.execute("update job_collabs set filled_at = now() where id = %s", (cid,))
+    cur.execute("update job_collabs set filled_at = null where id = %s", (cid,))
+    as_user(cur, jr)
+    cur.execute("insert into collab_interests (collab_id, user_id, note) values (%s, %s, 'me')", (cid, jr))
+    cur.execute("select interested_count from job_collabs where id = %s", (cid,))
+    assert cur.fetchone()[0] == 1
+
+
+@case
+def applicant_cannot_revise_on_filled_collab_but_poster_can_still_decide(conn):
+    cur = conn.cursor()
+    poster, cid = real_collab(cur)
+    jr = make_user(cur, "pending@example.test")
+    as_user(cur, jr)
+    cur.execute("insert into collab_interests (collab_id, user_id, note) values (%s, %s, 'me') returning id", (cid, jr))
+    iid = cur.fetchone()[0]
+    as_user(cur, poster)
+    cur.execute("update job_collabs set filled_at = now() where id = %s", (cid,))
+    as_user(cur, jr)
+    expect_error(cur, "update collab_interests set note = 'changed' where id = %s", (iid,), "filled")
+    expect_error(cur, "insert into collab_interests (collab_id, user_id, note) values (%s, %s, 'me2') "
+                      "on conflict (collab_id, user_id) do update set note = excluded.note", (cid, jr), "filled")
+    as_user(cur, poster)
+    cur.execute("update collab_interests set status = 'declined' where id = %s", (iid,))
+    assert cur.rowcount == 1, "the poster can still answer a pending applicant after filling"
+    as_user(cur, jr)
+    cur.execute("delete from collab_interests where id = %s", (iid,))
+    assert cur.rowcount == 1, "withdrawing stays possible"
+
+
+@case
+def filled_founding_collab_refuses_with_position_filled_first(conn):
+    cur = conn.cursor()
+    real, fm = founding_pair(cur)
+    cur.execute("insert into job_collabs (poster_id, type, title, body, filled_at) values (%s, 'ride_along', 't', 'b', now()) returning id", (fm,))
+    cid = cur.fetchone()[0]
+    as_user(cur, real)
+    expect_error(cur, "insert into collab_interests (collab_id, user_id, note) values (%s, %s, 'me')", (cid, real), "position has been filled")
+
+
+@case
+def express_interest_rpc_cannot_bypass_the_founding_guard(conn):
+    # The 0004 RPC is SECURITY DEFINER, so triggers inside it see the owner
+    # role; it must check the founding rule itself.
+    cur = conn.cursor()
+    real, fm = founding_pair(cur)
+    cur.execute("insert into job_collabs (poster_id, type, title, body) values (%s, 'ride_along', 't', 'b') returning id", (fm,))
+    cid = cur.fetchone()[0]
+    as_user(cur, real)
+    expect_error(cur, "select express_collab_interest(%s, 'me')", (cid,), "Founding Community")
+
+
+@case
+def staff_seeding_can_write_interests_on_filled_collabs_quietly(conn):
+    cur = conn.cursor()
+    poster, cid = real_collab(cur)
+    jr = make_user(cur, "seeded@example.test")
+    cur.execute("select count(*) from notifications")
+    before = cur.fetchone()[0]
+    cur.execute("set local homefixr.seeding = 'on'")
+    cur.execute("update job_collabs set filled_at = now() where id = %s", (cid,))
+    cur.execute("insert into collab_interests (collab_id, user_id, note, status) values (%s, %s, 'me', 'accepted')", (cid, jr))
+    cur.execute("select count(*) from notifications")
+    assert cur.fetchone()[0] == before, "seeding must not notify"
+
+
 if __name__ == "__main__":
     width = max(len(n) for n, _, _ in RESULTS)
     failed = 0

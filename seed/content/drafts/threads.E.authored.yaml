@@ -1,0 +1,1323 @@
+# ---------------------------------------------------------------------------
+# Category E (Technical "dumb questions"): 34 threads, T180-T213.
+# Written by hand from thread_briefs.json (category E), themes.yaml and the
+# persona voice blocks. Fictional people, shops and quotes. Same format as
+# content/threads.sample.authored.yaml; validated with the gen_threads.py rules.
+#
+# Extra keys (all optional, ignored by gen_threads.py):
+#   brief:     the thread_briefs.json brief this thread was written from
+#              (topic id kept from the brief; several go "sideways" within it)
+#   when:      early (late Jul-mid Aug) | mid (mid Aug-mid Sep) |
+#              late (mid Sep-early Oct 2026); set from season and join dates
+#   fact_risk: code/spec claims, hedged in character, for human review
+#
+# Skipped briefs: B019, B028, B043, B048, B078, B083 (see the report).
+# ---------------------------------------------------------------------------
+threads:
+
+# ===================== E1 family: joints, fittings, bonding =================
+- id: T180
+  brief: B118
+  category: E
+  topic: E1_sweat_vs_press
+  type: tip
+  trade: plumbing
+  when: late
+  author: oldsteam_zig
+  title: "Torch work in old houses: stick around after you put the torch down"
+  body: |
+    Had a helper sweat a couple of fittings on a boiler near a joist bay in Lodi last week. Nice joints. We packed up, I went back down for a tool I forgot, and I smelled it before I saw it. The old wood and the dust up in that bay had been smoldering the whole time.
+
+    Nobody got hurt and the house is fine. But here's what everybody on my trucks does now, and what I should have made him do:
+
+    Fire cloth behind the joint before you light the torch, not after. Wet down old framing if it's dry as paper. Spray bottle and an extinguisher on the floor next to you, not out on the truck. And when you're done, stay and watch it for half an hour. Put your hand near the wood. Look up into the bay with a light.
+
+    Old balloon-frame houses in Bergen have bays that run open floor to floor. A spark goes up there and you won't see it until it's a real problem.
+
+    Thirty minutes of watching is cheap. That's the job.
+  replies:
+    - author: EssexPipes
+      body: |
+        Good one. What kind of fire cloth do you guys actually use, the cheap felt ones from the supply house or the pricier ones? And do you wet the wood every single time or only when it's old?
+    - author: joyd_plumbing
+      body: |
+        The felt ones are fine for half inch and three quarter copper if you keep them in good shape. I spray old wood every time, it costs nothing. And check the other side of the wall. Hoboken brownstones share party walls, and the smoke shows up in the neighbor's place first.
+    - author: ms_almonte
+      body: |
+        First thing I teach before anyone touches a torch: know where the extinguisher is and what's on the other side of the wall. Second: you're not done when the joint is done. Students hate the waiting part. Ask me how I know it matters.
+
+# ----------------------------------------------------------------------------
+- id: T181
+  brief: B002
+  category: E
+  topic: E1_sweat_vs_press
+  type: question
+  trade: plumbing
+  when: mid
+  author: joe.plumb
+  title: "Press coupling spit water under test... boss says I never pressed it"
+  fact_risk: ["press fittings designed to leak when left unpressed (manufacturer feature)"]
+  body: |
+    So we did a small repipe in a ranch in Cherry Hill, all press, and when the boss put it under test one of my 3/4 couplings was spitting... he took one look and said I never pressed it. I swear I did. Then he showed me the pipe and there was no depth mark, because I skipped marking on couplings since "I could feel it seat"...
+
+    Couple questions. Is it normal for an unpressed fitting to leak like that or did I just get lucky? And if I DID press it and it still leaked, what else causes that? Trying to not do this twice
+
+    edit: boss redid it, passed. buying a marker for every pouch I own
+  replies:
+    - author: haddad_mech
+      body: |
+        You got lucky in the right way. A lot of the press fittings on the market now are designed to leak when they haven't been pressed, so you find them under test instead of months later behind drywall. It did its job.
+
+        If a fitting is pressed and still leaks, the usual causes on our jobs: the pipe wasn't fully inserted, a burr or a rough cut nicked the O-ring, dirt on the pipe, a dented or out-of-round end, or the wrong jaw for the size. Cut square, deburr, wipe, mark, insert to the mark, press. Every time.
+
+        Here's what I look for when I hire, by the way: somebody who marks depth on couplings too.
+    - author: Exit117Plumber
+      body: |
+        my uncle makes me mark depth and then he checks the mark after the press before he lets me move on. annoying but it works
+
+# ----------------------------------------------------------------------------
+- id: T182
+  brief: B059
+  category: E
+  topic: E1_sweat_vs_press
+  type: question
+  trade: hvac
+  when: mid
+  author: DinerCoffeeHVAC
+  title: "Why does my lead flow nitrogen when we braze linesets?"
+  fact_risk: ["flowing nitrogen while brazing to prevent internal oxide scale"]
+  body: |
+    Sorry if this is a dumb one. Doing a lot of AC changeouts in Bayonne and JC this summer. Every time we braze the lineset my lead hooks up the nitrogen bottle with a regulator and has a little flow going through the pipe while I braze. He told me "so you don't make crud" and walked off. What crud? In school we just brazed. Is this actually a big deal or is it one of those things one guy does?
+  replies:
+    - author: hec_does_ac
+      body: |
+        Not a one-guy thing... it's a big deal lol. Copper heated with air inside it grows black oxide scale on the inside wall. Later that scale flakes off and goes where you don't want it: the metering device, the screens, the compressor oil. A low flow of nitrogen pushes the oxygen out so the inside stays clean. So this one time in AC I cut open a line on a casino job where nobody flowed nitrogen and it looked like the inside of a chimney. Low flow, through a regulator, just enough to feel on your hand.
+    - author: oldsteam_zig
+      body: |
+        Plumber's side of it, kid: on water we sweat with soft solder and nobody cares about a little oxide inside. Refrigerant is brazed and the system is sealed, so whatever's inside stays inside forever. Different animal. Listen to your lead on this one.
+
+# ----------------------------------------------------------------------------
+- id: T183
+  brief: B079
+  category: E
+  topic: E1_sweat_vs_press
+  type: question
+  trade: hvac
+  when: mid
+  author: middlesex_coils
+  title: "mini-split flare connection leaking on a brand new install"
+  fact_risk: ["flare nut torque per manufacturer spec", "no thread sealant on flare faces", "nitrogen pressure test and micron-gauge vacuum decay test"]
+  body: |
+    apologies if this is basic. we installed a single zone mini-split in a split-level in woodbridge last week. pulled a vacuum, it held for a few minutes, released the refrigerant, and two days later the customer says it's blowing warm. my lead found the liquid line flare at the indoor head leaking. i made that flare. what usually causes a flare to leak, and how do you know a flare is good before you tighten it? i would like to stop guessing on these.
+  replies:
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Flare leaks are almost always one of these:
+        - Cut not square, or not deburred (or deburred so hard the wall got thin)
+        - Flare nut not on the pipe before you flared it (everyone does it once)
+        - Wrong flare size, or an off-center flare from a worn tool
+        - Not torqued to the manufacturer's spec. Too loose leaks, too tight cracks the flare
+        - Dirt or a scratch on the flare face
+
+        Before you tighten it, look at it: smooth, even, no cracks, sits flat on the cone. Torque wrench and the number from the install manual. Then a nitrogen pressure test and a vacuum on a micron gauge, held long enough to mean something. A few minutes isn't a decay test.
+
+        A callback like this eats the margin on the whole install, so it's worth getting right.
+    - author: rui_t_kearny
+      body: |
+        Plumber here, so take it for what it's worth. My father used to say a flare is a sealing face, not a thread joint. Don't put pipe dope or tape anywhere near it. I watched a guy do that on a gas flare once and I'm still mad about it.
+    - author: tnguyen_refrig
+      body: |
+        torque wrench. every time. the guys who do flares by feel in july are the ones i see again in august. if you have to redo one, cut it off and flare it fresh, don't just crank it tighter and hope
+
+# ----------------------------------------------------------------------------
+- id: T184
+  brief: B055
+  category: E
+  topic: E1_sweat_vs_press
+  type: question
+  trade: plumbing
+  nyc: true
+  when: late
+  author: plumbguy917
+  title: "Brownstone gas job: why are we still threading black iron?"
+  fact_risk: ["NYC gas work must be done under a Licensed Master Plumber", "NYC DOB gas work qualification for workers", "press systems listed for gas and NYC acceptance", "NYC periodic gas piping inspections (Local Law 152)"]
+  body: |
+    1st year. On a brownstone gut reno in Park Slope with my journeyman, running new gas from the meter in the cellar up to the kitchen on the parlor floor. All black iron, threaded, and I'm the one cutting and threading all day lol. The water side of the same job is all press and it goes like 5x faster.
+
+    So why not press the gas too? Journeyman just says "not on this job" and "the inspection is the inspection." Is it a code thing in the city, a cost thing, or is he just old school? Not trying to do anything myself, just want to understand what I'm doing.
+  replies:
+    - author: bklyn_arkady
+      accepted: true
+      body: |
+        In the city it's different, and gas is where it's most different. Gas work here has to be done under a licensed master plumber, the workers need their own DOB gas qualification, and the work gets inspected and tested before the utility will turn anything on. A lot of buildings also have periodic gas piping inspections now, so old brownstone lines get looked at much more than they used to.
+
+        On press for gas: some press systems are made and listed for gas, and I've seen them used. Whether a given job can use one is something I check against the current code and DOB requirements every time. I won't tell you yes from memory, and your journeyman made that call for this job.
+
+        Ask him to show you how he checks a thread. That's the part worth learning.
+    - author: ginaj75
+      body: |
+        jersey side, 2 years in and my boss still won't let me near gas. i carry the pipe and clean up
+    - author: joyd_plumbing
+      body: |
+        What's your actual question: why black iron, or why him and not you? Black iron because that's what he's confident will pass on that job. Him because you're a 1st year and it's gas. Learn to cut a clean thread. Same deal in Jersey City brownstones.
+    - author: oldsteam_zig
+      body: |
+        Jersey side we still thread most gas too, kid. Press is fine when it's the right listed system and the inspector's good with it. Your journeyman's being careful with somebody else's house on a gas job. That's the job.
+    - author: plumbguy917
+      body: |
+        update: asked him. he said every press system for gas he's seen needs its own fittings and jaws and the company doesn't own them yet lol. so it's both. he let me stand with him on the pressure test though
+
+# ----------------------------------------------------------------------------
+- id: T185
+  brief: B010
+  category: E
+  topic: E1_sweat_vs_press
+  type: question
+  trade: electrical
+  nyc: true
+  when: late
+  author: elecny85
+  title: "Plumber says the water pipe bond is pointless now that it's PEX"
+  fact_risk: ["metal water service as grounding electrode, connection near entry, jumper around the meter (NEC 250.52/250.53/250.68)", "bonding of interior metal water piping (NEC 250.104(A))", "NYC Electrical Code amendments to the NEC", "CSST bonding requirements"]
+  body: |
+    non union apprentice in brooklyn... we're on a 3-family townhouse new build in east flatbush. copper water service comes in from the street to the meter, then the plumber ran everything after the meter in PEX. my foreman wants the water bond done a certain way and the plumber is laughing at him, says "it's all plastic brother, there's nothing to bond, that's from the 80s."
+
+    my foreman just said "do it anyway." I'd like to actually understand who's right because they're both going to ask me to do stuff on this job... is the plumber right that PEX means no water bond? and why does the meter matter at all? thanks in advance
+  replies:
+    - author: HelperForNow
+      body: |
+        following. our shop just clamps to whatever copper is near the panel and calls it a day, now im wondering
+    - author: codebook_dale
+      accepted: true
+      body: |
+        Two separate questions, and the plumber and your foreman are each answering a different one.
+
+        One: is the water service an electrode? If the pipe coming in from the street is metal and in the earth long enough, it counts as a grounding electrode, it gets connected close to where it enters, and the connection can't depend on the meter, so there's a jumper around it. If the service is plastic, it isn't an electrode and you need others.
+
+        Two: is there metal water piping inside that has to be bonded? If the inside is all PEX, there may be very little. But a copper service up to the meter is metal piping either way.
+
+        You're in the city, so it's the NYC Electrical Code with its own amendments, and I inspect in Jersey. Check which code edition applies to your permit, and ask your foreman.
+    - author: bklyn_arkady
+      body: |
+        In the city it's different on paper, but the physics is the same. On my townhouse jobs the service comes in copper to the meter, the electrician bonds it near the entry with a jumper around the meter, and after that we go PEX. Nobody argues about it on my jobs.
+    - author: rui_t_kearny
+      body: |
+        My father used to say never cut a water pipe without a jumper on it first. If there's an open neutral on the street, the current goes looking for a path, and the plumber holding both ends of a cut pipe becomes the path. I keep a jumper cable with two clamps on my truck for exactly this.
+    - author: JunctionBoxJunkie
+      body: |
+        wait so if it's all pex then there's nothing to bond and the plumber is right? our shop teacher said pex basically killed the water pipe ground. so the plumber kind of has a point
+    - author: codebook_dale
+      body: |
+        > pex basically killed the water pipe ground
+
+        Partly. It changed what's there to bond. If there's no metal water piping, there's nothing to bond on that system. But on his job the service is copper up to the meter, so that copper is still in play. The answer is always what's actually in the building, not what someone says is in it.
+    - author: mbell_wireman
+      body: |
+        Whatever the answer on paper, treat that pipe as possibly energized until you've proven otherwise. I've watched a meter get swapped in an occupied building with no jumper on and the plumber got bit. A jumper and gloves cost nothing. Stay safe.
+    - author: joyd_plumbing
+      body: |
+        What's your actual question: who's right, or who has to do it? On my jobs the bond is the electrician's. My part is not removing it, and putting a jumper on before I cut anything.
+    - author: dreb_jman
+      body: |
+        Brother, in the high-rises it's the same story, just bigger. Bonding on the water risers, the gas, the steel. Nobody on my job touches a bond without the foreman knowing.
+    - author: elecny85
+      body: |
+        ok this is making more sense... so the plumber is half right? the pex isn't anything to bond but the copper service before the meter still is. thanks for the patience lol
+    - author: oldsteam_zig
+      body: |
+        Half right is how most job-site arguments end up, kid. Tell the plumber to put a jumper across before he swaps that meter, and tell your foreman where the bond is so nobody "cleans it up" later. That's the job.
+    - author: groundrod_05
+      body: |
+        Apex grad here. We were taught the clamp goes on the street side, within the first few feet of where the pipe enters the building, not on some random pipe near the panel. Appreciate everyone explaining the jumper part, that one we didn't really cover.
+    - author: thiago_sparks
+      body: |
+        Honestly I see the flip side of this down the shore. After Sandy a lot of houses got repiped in PEX and the old water bond got left clamped to a stub of copper going nowhere. Looks official, does nothing.
+    - author: HelperForNow
+      body: |
+        edit to my earlier post: asked my boss. he said we clamp the service copper near where it comes in, and he just bought the plumbers a jumper lol. so "whatever copper is near the panel" was me not paying attention
+    - author: auelecny
+      body: |
+        Career switcher in Ozone Park here. idk if this is a dumb question but what about the gas pipe, brother? Does that get bonded too or is that a different thing?
+    - author: bklyn_arkady
+      body: |
+        Gas is its own question. Metal gas piping gets bonded too, and the yellow flexible gas tubing has its own bonding requirements from the manufacturer and the code. In the city I let the electrician and the inspector settle exactly how. Gas bonding is not a place to get creative.
+
+# ----------------------------------------------------------------------------
+- id: T186
+  brief: B106
+  category: E
+  topic: E1_sweat_vs_press
+  type: question
+  trade: electrical
+  when: late
+  author: emt_bender_200amp
+  title: "Set screw or compression EMT fittings? Our instructor won't just say"
+  fact_risk: ["set-screw EMT fittings for dry locations; raintight compression for wet; concrete-tight in concrete (NEC 358.42)"]
+  body: |
+    Ok so context, I'm in a trade program in Queens, senior year, we're doing conduit right now and I'm the kid who actually likes bending (hence the name). We've been using set screw connectors and couplings on everything in the shop. Today the instructor handed out compression fittings for the "outdoor" mockup, and when I asked when you use which, he said "when the job tells you." Which is not an answer.
+
+    Is it just wet vs dry? Is compression better everywhere and set screw is just cheaper? And what do you use in concrete? Thanks in advance, I just want to understand it before I'm on a real job looking stupid.
+  replies:
+    - author: mbell_wireman
+      accepted: true
+      body: |
+        Your instructor is right, but here's the longer version. Set screw fittings are generally for dry locations. Wet and damp locations, outdoors, anywhere water can get in, you want fittings listed for that use, which usually means raintight compression. Embedded in concrete, you need fittings listed as concrete-tight. The listing on the box tells you where it's allowed, so read it.
+
+        Field side: compression costs more and takes longer, and a nut that wasn't tightened will pull apart. Set screws strip if you lean on them. On our data center jobs it's set screw inside the building and compression for anything outdoors or on the roof. Stay safe, and enjoy the bending. It's a skill people pay for.
+    - author: joyd_plumbing
+      body: |
+        Plumber here. Compression fittings are my whole world and they leak if you don't tighten them. Apparently it's the same idea for you guys.
+    - author: LiveFrontLessons
+      body: |
+        1st year out of vo-tech in jersey. we did a whole porch in set screw and the inspector made us redo it in raintight. so yeah wet vs dry is real. does anybody actually use concrete tight on residential?
+    - author: OpenNeutralBlues
+      body: |
+        Our shop teacher at the vo-tech says the same thing as yours. Read the box. We literally got quizzed on box labels.
+    - author: LateStartPlumber
+      body: |
+        sorry, plumbing guy on staten island, but why emt outdoors at all and not pvc? is that a cost thing or a code thing
+    - author: thiago_sparks
+      body: |
+        Honestly down the shore I run a lot of PVC outdoors because salt air eats steel. EMT outside works with the right fittings, it just rusts near the ocean. Depends on the job and the spec. And to the other question, yes, concrete-tight on residential when there's conduit in a slab, garages mostly.
+    - author: emt_bender_200amp
+      body: |
+        This is the answer I wanted. Read the listing, wet vs dry, concrete tight in concrete, and the beach eats everything. Bringing box labels to class tomorrow lol
+
+# ======================= E2 family: switches and loops =======================
+- id: T187
+  brief: B001
+  category: E
+  topic: E2_three_way_switch
+  type: question
+  trade: electrical
+  when: late
+  author: leadfree98
+  title: "swapped one hallway switch and now the light only works from one end"
+  body: |
+    plumbing guy here so go easy. my mom's hallway in long branch has a light switch at both ends. one switch was cracked so I bought a new one at the hardware store, breaker off, swapped it wire for wire (I thought). now the light only works from the new switch when the other one is in one position, and sometimes not at all. did I buy the wrong switch or wire it wrong? idk why it would care which screw. also is this a call-an-electrician thing at this point
+
+    edit: it was the dark screw thing. thanks
+  replies:
+    - author: thiago_sparks
+      body: |
+        Honestly this is the most common 3-way mistake there is, don't feel bad. A 3-way has one darker screw (the common) and two lighter ones (the travelers). Your new switch probably has the common in a different spot than the old one, so the wire that was on the old common ended up on a traveler screw. Breaker off, verify dead with a tester, then find that wire. If you didn't mark it, that's where it gets harder. If the wiring is cloth or crumbly, stop and call someone. Long Branch has plenty of hallways like that.
+    - author: codebook_dale
+      body: |
+        To your second question: if you can't sort it out with the power off and a tester, that's the point to call an electrician. Next time, put a piece of tape on the wire from the dark screw before anything comes off.
+    - author: Dev_H
+      body: |
+        same thing happened to me in my apartment in deptford. it was the common. took me an hour. appreciate it, learned something too
+
+# ----------------------------------------------------------------------------
+- id: T188
+  brief: B054
+  category: E
+  topic: E2_three_way_switch
+  type: question
+  trade: electrical
+  when: mid
+  author: peteplumb80
+  title: "what does a 4-way switch actually do in the middle?"
+  body: |
+    UA 1st year, plumbing, so this is pure curiosity. The electrician on our job (commercial bathrooms in a building in Montclair, long corridor outside them) was explaining the corridor lights at lunch. 3-way at each end, I followed that from the other thread on here. Then he said there's a 4-way in the middle and it "flips the travelers" and he lost me. Flips them how? Why can't you just put a third 3-way in the middle?
+  replies:
+    - author: JughandleJourneyman
+      accepted: true
+      body: |
+        IBEW 2nd year here... the way my foreman explained it: both travelers come into the 4-way, and the 4-way either passes them straight through or crosses them over, so traveler A goes out on B and B goes out on A. Flipping it swaps which traveler is live at the far end... so any switch can change the light. A 3-way only has one common and two travelers, it can't do the swap, which is why the middle one has to be a 4-way. You can put as many 4-ways in a row as you want between the two 3-ways.
+    - author: thiago_sparks
+      body: |
+        Honestly that's one of the better explanations I've seen. Draw it: two 3-ways on the ends, the 4-way in the middle, and trace it with your finger in every position.
+    - author: codebook_dale
+      body: |
+        One thing to add for when you see these in the field: check the 4-way's instructions for which screws are the pair in and which are the pair out. They aren't always laid out the same, and mixing them up gives you exactly the "works sometimes" complaint.
+    - author: peteplumb80
+      body: |
+        ok the crossing over thing finally clicked. kind of like a diverter on a manifold, sort of. thanks guys, back to toilets
+
+# ----------------------------------------------------------------------------
+- id: T189
+  brief: B091
+  category: E
+  topic: E2_three_way_switch
+  type: question
+  trade: electrical
+  when: mid
+  author: HelperForNow
+  title: "re-identifying the white wire on a switch loop, is tape enough"
+  fact_risk: ["re-identifying the white conductor in a switch loop, white as the supply (NEC 200.7(C))", "neutral at switch locations (NEC 404.2(C)) and when it applies"]
+  body: |
+    residential remodel in manahawkin. old part of the house has a ceiling light fed at the fixture, with a 2-wire cable down to the switch. my boss wraps black tape on the white at both ends and moves on. in school they mentioned something about needing a neutral at switches now. is the tape enough on an existing loop, and does the newer code mean we have to rewire it when we touch it?
+  replies:
+    - author: codebook_dale
+      body: |
+        Re-identifying the white with tape or another permanent marking, wherever it's visible and accessible, is the long-standing way to use it as a hot in a switch loop. In a loop the white is supposed to be the supply going to the switch, not the return to the light.
+
+        The neutral-at-the-switch requirement applies to switch locations in the code editions that have it, with exceptions. Whether touching an existing loop pulls you into it depends on the edition and the scope of the permit, so check which code edition is in effect and ask your inspector before you assume.
+    - author: thiago_sparks
+      body: |
+        Honestly on remodels, if the wall's already open we pull a new 14/3. Costs you ten minutes and the next guy who wants a smart switch there will thank you.
+
+# ----------------------------------------------------------------------------
+- id: T190
+  brief: B092
+  category: E
+  topic: E2_three_way_switch
+  type: question
+  trade: electrical
+  nyc: true
+  when: mid
+  author: groundrod_05
+  title: "Prewar Bronx building: fixture is hot with both 3-ways off"
+  fact_risk: ["Carter system wiring prohibited for new work (edition/year not stated)", "NYC Electrical Code vs NEC"]
+  body: |
+    Working non-union in the Bronx, mostly apartment renovations in prewar buildings. Today we were replacing a hallway fixture in a unit in Kingsbridge. Both 3-way switches off, and I checked the fixture with my non-contact tester anyway and it lit up on both wires. My mechanic checked with a meter, said there was voltage to ground on both conductors, then said "it's a Carter, leave it and call the office."
+
+    I have never heard of a Carter system. We did 3-ways at Apex and none of this matched. What is it, and why would both wires be hot with the light off? Appreciate any explanation.
+
+    edit: nobody touched anything live. He made us stop and the office is sending someone to look at it.
+  replies:
+    - author: dreb_jman
+      accepted: true
+      body: |
+        Brother, your mechanic did exactly right. A Carter system is an old way of wiring 3-ways where the travelers carry the hot and the neutral, and each switch picks which one goes to its side of the light. Light's on when one side gets hot and the other gets neutral. Light's off when both sides get the same thing, and that can be both hot. So "off" doesn't mean dead.
+
+        It's been prohibited for new work for a long time, I couldn't tell you the year. You still run into it in old buildings up here. You don't fix it by swapping a switch. It gets rewired properly, under a permit, by whoever the office sends.
+    - author: codebook_dale
+      body: |
+        Good catch testing a fixture you'd been told was off. That's the whole lesson. I inspect in Jersey, not the city, so I won't speak to the NYC code, but I've seen a couple of these in very old houses at the shore. Same answer: rewire it, don't patch it.
+    - author: mbell_wireman
+      body: |
+        This is why we test before we touch on every job, even when somebody swears it's off. Verify with a meter you've just checked on a known live source. Stay safe.
+    - author: threeway_02
+      body: |
+        I'm just starting out as a career switcher and I would have assumed off meant off. Glad I read this before my first really old house.
+    - author: groundrod_05
+      body: |
+        Appreciate it, all of you. Going to look up the diagram tonight so I recognize it next time.
+
+# ----------------------------------------------------------------------------
+- id: T191
+  brief: B099
+  category: E
+  topic: E2_three_way_switch
+  type: question
+  trade: electrical
+  when: mid
+  author: BackflowBlues
+  title: "smart switch needs a neutral, can i just use the bare ground?"
+  fact_risk: ["equipment grounding conductor may not carry normal current / be used as a neutral", "listed no-neutral smart switches"]
+  body: |
+    plumbing guy, mostly demo right now lol. my mom wants a smart switch for the porch light at her house in lawrence. got it out of the box and it wants a neutral. switch box has a black, a white taped black, and a bare copper. guy at the store said "some people use the ground as the neutral, it's fine, it only draws like nothing." is that ok or no. not doing anything till somebody tells me
+  replies:
+    - author: codebook_dale
+      accepted: true
+      body: |
+        No. Don't. The equipment ground is not a current-carrying conductor. It's there to carry fault current long enough to trip the breaker. Put normal current on it and every grounded thing on that circuit, metal boxes, fixture housings, appliance frames, carries a little current all the time, and if that ground path ever opens, those parts can sit at line voltage with nobody knowing. Small current doesn't make it fine.
+
+        What you described, a black and a white taped black, sounds like a switch loop: no neutral in that box. Your options are a smart switch listed to work without a neutral, a smart bulb in the fixture, or a new cable with a neutral to that box. Breaker off and tested dead before anything comes apart.
+    - author: JunctionBoxJunkie
+      body: |
+        honestly people do it all the time, my cousin did it in his whole house. a smart switch pulls a few milliamps, nothing is going to happen. no inspector is ever coming back to look at a porch switch
+    - author: thiago_sparks
+      body: |
+        Honestly I've been on service calls where the "few milliamps" guy did his whole house, and we found it because the GFCIs and AFCIs kept tripping. It's not about the inspector coming back. It's about whoever touches that fixture someday when the ground's loose. Don't.
+    - author: mbell_wireman
+      body: |
+        Agree with both of them. And whatever you end up doing, kill the breaker and verify dead with a tester you've checked. Porch lights sometimes share an outdoor circuit with things you wouldn't expect. Stay safe.
+    - author: wchen_controls
+      body: |
+        fwiw the no-neutral smart switches are a real product, listed, and they work by trickling a tiny bit of current through the bulb instead of through the ground. downside is some leds flicker or glow with them. low voltage guy here, we run into this all the time on retrofits
+    - author: benplumb79
+      body: |
+        Sorry if this is a dumb question, but how would you even tell the white is taped because it's a switch loop and not just somebody's random tape?
+    - author: codebook_dale
+      body: |
+        Not dumb. Breaker off, open the fixture box and look. In a switch loop the white from the switch cable is spliced to a hot, not to the other whites. If you can't tell, assume it isn't a neutral.
+    - author: peteplumb80
+      body: |
+        UA here, and this is the same conversation we have about tying a vent into a drain because "it works." works until it doesn't
+    - author: plumbnj88
+      body: |
+        smart bulb is the easy answer. we had them at the bar i used to work at, zero wiring, never had a problem
+    - author: BackflowBlues
+      body: |
+        update: got the no neutral one that says it's listed for that. my foreman's brother is an electrician, he came by and put it in. porch light works from the phone. mom happy. thanks
+
+# ----------------------------------------------------------------------------
+- id: T192
+  brief: B140
+  category: E
+  topic: E2_three_way_switch
+  type: question
+  trade: electrical
+  when: late
+  author: Exit117Plumber
+  title: "LED bulbs on the basement stairs glow when the switches are off"
+  body: |
+    Helping my uncle again this weekend. His basement stairs have a light with a switch at the top and the bottom. He swapped the old bulbs for LEDs and now with both switches off they glow really faint, like a nightlight. He says it's cheap bulbs and to ignore it. I'm a plumbing kid so I don't really know electrical, but it bugs me. Is that a bulb thing or is something wired wrong? Should I be worried about it
+  replies:
+    - author: Dev_H
+      body: |
+        had this in my apartment, swapped brands and it went away. so cheap bulbs, or was something else going on with mine too?
+    - author: mbell_wireman
+      body: |
+        Could be the bulbs, could be the wiring, and it's worth knowing which. The common harmless cause: on a 3-way the two travelers run side by side in the same cable, and on a long run a little voltage couples from one to the other. An incandescent never shows it. An LED needs so little that it glows. Lighted switches do the same thing.
+
+        The cause you want to rule out is the switches breaking the neutral instead of the hot. Then the fixture is still hot when it's off, and somebody changing a bulb gets a surprise. Have someone qualified check it with a meter. If it's coupling, a different bulb or a small device made for this usually fixes it. Stay safe.
+    - author: peteplumb80
+      body: |
+        my parents had this in Montclair, turned out to be the lighted switch at the bottom of the stairs. took it out, glow gone
+    - author: joyd_plumbing
+      body: |
+        What's your actual question? "Should I be worried" is the real one, and the answer is: not until somebody checks it. Have your uncle get an electrician to look. It's a short visit.
+
+# ====================== E3 family: AFCI, GFCI, tripping ======================
+- id: T193
+  brief: B022
+  category: E
+  topic: E3_afci_nuisance
+  type: question
+  trade: electrical
+  when: late
+  author: RainDayRestock
+  title: "Bedroom AFCI at my dad's place trips every couple nights. Just swap it?"
+  fact_risk: ["breaker size limited by conductor (14 AWG / 15 A)", "combination AFCIs with ground-fault sensing trip on shared neutrals", "AFCI trip indicators vary by manufacturer"]
+  body: |
+    Sorry if this is a dumb question, I'm about a month in as a helper in Brick. My dad had his panel replaced in the spring by an electrician (not my boss) and now the breaker for the back bedroom trips every two or three nights. Always at night, sometimes with nothing on but a fan and a phone charger. It's one of the breakers with the test button.
+
+    My dad's answer is "you work for an electrician now, put a regular breaker in." I said I'd ask first. The house is a 60s ranch, some of the wiring is original. Is the breaker just bad? Is it the fan? What would you even check?
+  replies:
+    - author: neutral_bar_99
+      body: |
+        Not an expert, I'm in vo-tech, but in our class we learned breakers trip when the load is too high. If it's a 15 amp, maybe it just needs to be a 20 amp so it stops tripping. That seems like the simplest thing to try first.
+    - author: codebook_dale
+      body: |
+        Please don't. The breaker size is set by the wire, not by what you want to plug in. If that bedroom is wired in 14 gauge, a 20 amp breaker lets the wire overheat before it trips, and that's how fires start. And a breaker that trips with a fan and a phone charger on isn't tripping on load anyway.
+    - author: neutral_bar_99
+      body: |
+        Understood, thank you for the correction. I didn't realize the wire was what set it.
+    - author: thiago_sparks
+      body: |
+        Honestly the first generation of these nuisance tripped like crazy and I cursed them on every Sandy rebuild. The newer ones are a lot better, but I still see the odd one that just doesn't like a certain fan motor or treadmill.
+    - author: codebook_dale
+      accepted: true
+      body: |
+        Thiago's right that the early ones had problems. What I see now, most trips are telling you something real. Field version of what I'd check, in order:
+
+        Is it a combination type that also senses ground faults? Many are. Then a neutral from that bedroom shared with another circuit somewhere, or a neutral touching ground in a box, will trip it, and a 60s ranch that's been added onto is exactly where that hides. Next, a loose connection or a backstabbed receptacle on the run. Then damaged cable: a nail, a staple driven too tight. Then the loads. Unplug the fan for a week and see.
+
+        And don't put a regular breaker in. That panel was just replaced under a permit, so call the electrician who did it back. It's very likely theirs to solve.
+    - author: dahvacnj
+      body: |
+        hvac not electrical, but my house in toms river did this and it turned out to be the window ac. new ac, no more trips. thanks in advance for not laughing
+    - author: Dev_H
+      body: |
+        plumbing guy in deptford. question for the electricians: how would he even find a shared neutral, is it just opening every box? appreciate it
+    - author: thiago_sparks
+      body: |
+        Pretty much, plus some tricks. Circuit off, look at how the neutrals land in the panel, open the boxes on that run and the ones next to it. In an old ranch you're also in the attic looking for junction boxes nobody remembers. It's a couple of hours, not a couple of minutes.
+    - author: Passaic_Sparky
+      body: |
+        service guy here. most of these i find a neutral tied together in a box in the attic or the basement. idk why people did that, saved a wire nut i guess
+    - author: hec_does_ac
+      body: |
+        So this one time in AC... hotel room kept tripping and it was the guest running a hair dryer and a space heater on the same outlet lol. Not saying that's your dad, but ask what's plugged in back there.
+    - author: WawaRunWired
+      body: |
+        sorry if dumb but does the breaker tell you anything about why it tripped? some of ours have lights that blink after
+    - author: Passaic_Sparky
+      body: |
+        yeah some of them do, depends on the brand. there's a code on the label or the manufacturer sheet, like arc vs ground fault. look it up for whatever's in his panel before you start opening boxes
+    - author: RainDayRestock
+      body: |
+        update: unplugged the fan all week and it still tripped, so dad gave in and called the electrician back. He found the bedroom neutral tied in with the hallway circuit's neutral in a junction box in the attic, from some old add-on. Separated them, no trips since. Mom says thanks too, she was tired of resetting it.
+    - author: thiago_sparks
+      body: |
+        There it is. Shared neutral in the attic. Good on you for asking before swapping the breaker.
+    - author: JerseyTomatoWires
+      body: |
+        saving this one... my foreman always says the breaker is just the messenger. appreciate it
+
+# ----------------------------------------------------------------------------
+- id: T194
+  brief: B011
+  category: E
+  topic: E3_afci_nuisance
+  type: question
+  trade: hvac
+  when: late
+  author: ExRetail_NowHVAC
+  title: "Vacuum pump keeps tripping a bedroom AFCI on install day"
+  body: |
+    End of my first week at the new job, sorry if this is obvious to everyone. We were doing a ductless head in a back bedroom in Washington Township and I plugged the vacuum pump into the bedroom outlet. Tripped the breaker within a minute. Reset it, tripped again. Lead told me to run a cord from the garage instead and it was fine.
+
+    Homeowner was annoyed and asked me if something's wrong with her house, and I definately had no idea what to say. Is it the pump, the breaker, or her wiring? And what do you tell the customer in that moment without sounding like an idiot?
+  replies: []
+
+# ----------------------------------------------------------------------------
+- id: T195
+  brief: B166
+  category: E
+  topic: E3_afci_nuisance
+  type: question
+  trade: electrical
+  when: early
+  author: JunctionBoxJunkie
+  title: "how does an AFCI actually tell a bad arc from a light switch?"
+  fact_risk: ["how combination AFCIs detect series and parallel arcing"]
+  body: |
+    ok so last year in class we covered AFCIs and the teacher said they detect "dangerous arcing." but every time you flip a switch or plug something in there's a little arc, and a brushed motor like a drill arcs constantly. so how does the breaker know which arc is the bad one? is it just guessing off some pattern? because from what I hear on here they trip on random stuff and miss other stuff, so I'm skeptical. also the teacher couldn't really answer it so here I am
+  replies:
+    - author: codebook_dale
+      body: |
+        Good question, and the skepticism is reasonable. In plain terms: the breaker has electronics that watch the current waveform for the signature of a dangerous arc, the erratic high-frequency noise and the pattern a loose or damaged conductor makes over time, as opposed to the brief, predictable arc of a switch or the steady noise of a motor. Combination types look for arcing in series, like a loose connection, and from line to neutral or ground, like damaged insulation. Many also sense ground faults.
+
+        It is pattern recognition, so it isn't perfect. Some motors and electronics look suspicious to some models. That's part of why the designs keep getting updated.
+    - author: benplumb79
+      body: |
+        Plumbing guy, but that was a better explanation than I've gotten from two years of listening to electricians complain about them. Thanks for asking it.
+
+# ----------------------------------------------------------------------------
+- id: T196
+  brief: B053
+  category: E
+  topic: E3_afci_nuisance
+  type: question
+  trade: plumbing
+  when: late
+  author: big_paulie_plumb
+  title: "new lower element in an electric water heater and the breaker trips instantly"
+  fact_risk: ["typical residential element resistance range", "fill and purge the tank before energizing (dry-fire)"]
+  body: |
+    sorry if this is a dumb one, 4 years in and i mostly do gas tanks. condo in north bergen, electric 40 gallon, no hot water. tested and the lower element was bad so i swapped it. drained it, new element in, filled it up, turned the breaker back on and it tripped right away. reset, tripped again. didn't touch anything else. is the new element bad out of the box or did i do something
+  replies:
+    - author: oldsteam_zig
+      accepted: true
+      body: |
+        First question, kid: did you open a hot faucet and let it run until the water came out solid, no spitting, before the breaker went on? If the top of that tank had air in it, the upper element runs dry and dies, and sometimes takes the breaker with it.
+
+        Second: an instant trip usually means a short, not a weak element. Breaker off, verify dead at the heater, pull the wires off the element and check it with your meter. Across the two terminals you should read some ohms, roughly 10 to 17 depending on the wattage. From either terminal to the tank should read open. While you're in there, look hard at the wires you pushed back under that cover. That's the job.
+    - author: codebook_dale
+      body: |
+        Agree with all of that. From the electrical side, a straight short to ground trips any breaker instantly, and the usual spot after an element swap is a conductor pinched by the cover or nicked on the bracket. Check the insulation on both leads before you close it up.
+    - author: Elizabeth.traps
+      body: |
+        burned up my first element that way, breaker went on before the tank was full. seconds and done. my foreman makes me bleed every tank now
+    - author: big_paulie_plumb
+      body: |
+        update: it was the wire. the lower lead got jammed against the edge of the bracket when i stuffed the insulation back in, cut right through. new piece of wire, works fine. element was ok the whole time
+
+# ----------------------------------------------------------------------------
+- id: T197
+  brief: B102
+  category: E
+  topic: E3_afci_nuisance
+  type: question
+  trade: plumbing
+  when: late
+  author: plumbguy917
+  title: "New dishwasher trips the GFCI on the dry cycle. On us or the electrician?"
+  fact_risk: ["GFCI protection for dishwasher outlets (varies by code edition and NYC code)"]
+  body: |
+    1st year, Local 1. Last week my journeyman had me do the water and drain on a dishwasher in a Bay Ridge apartment, the electrician did the circuit. Customer called back: it runs through wash and rinse fine, then the GFCI trips on the heated dry. Electrician says it's the appliance. Customer's blaming us because we were the last ones under there lol.
+
+    Is there any way a water connection trips a GFCI, or is this not our problem?
+  replies:
+    - author: codebook_dale
+      body: |
+        It can absolutely be your problem without being your circuit. A GFCI trips when current leaks to ground. Two common causes on a new dishwasher: the heating element leaking current once it gets hot, which is the appliance, and water getting into the junction box under the front, which can be a weeping supply fitting right above it.
+    - author: joe.plumb
+      body: |
+        had a callback like this in cherry hill... the elbow on the supply was weeping onto everything, you couldn't see it unless the kick plate was off and it was running
+    - author: thiago_sparks
+      accepted: true
+      body: |
+        Honestly the dry-cycle detail is the clue. Heat makes a failing element leak, and heat plus a little water in a box makes a GFCI unhappy. Look at your fitting first because it's free: dry the whole area, run a cycle with the kick plate off, flashlight on the connection. If it's bone dry and it still trips on heat, it's the appliance and the customer calls the manufacturer. Either way, nobody bypasses the GFCI.
+    - author: Exit117Plumber
+      body: |
+        My uncle tapes the threaded side of the dishwasher elbow (never the compression side) and checks it with a paper towel after the first fill. The paper towel shows drips you can't see.
+    - author: plumbguy917
+      body: |
+        update: went back with my journeyman. elbow was weeping right onto the j-box. redid it, ran two full cycles, no trip. so yeah it was us lol. paper towel trick is going in my bag
+
+# ----------------------------------------------------------------------------
+- id: T198
+  brief: B088
+  category: E
+  topic: E3_afci_nuisance
+  type: tip
+  trade: electrical
+  when: late
+  author: codebook_dale
+  title: "Sump pumps on GFCI: what I tell homeowners after every big storm"
+  fact_risk: ["GFCI required for basement receptacles in current NEC editions", "removal of the dedicated single-receptacle (sump) exception several code cycles ago", "hardwired sump pumps and GFCI rules / local acceptance"]
+  body: |
+    Every big rain, I hear the same complaint: "the GFCI tripped and my basement flooded, why does code make me do this?" Here's how I explain it.
+
+    Current code editions want GFCI protection on basement receptacles, and the old exception that let a single dedicated sump receptacle skip it went away several cycles back. Check which code edition is in effect for your permit, because an older install may have been legal when it went in.
+
+    A GFCI that trips on a sump pump is usually telling you something. Pumps sit in water, and as they age the windings and cords leak current. That leak is exactly the thing that kills people in wet basements.
+
+    So the answer I give isn't "remove the GFCI." It's: put a high-water alarm in the pit, think hard about a battery backup pump, test the GFCI and the pump before storm season, and replace a pump that keeps tripping it. Not legal advice, just how I'd look at it after too many flooded basements.
+  replies:
+    - author: thiago_sparks
+      body: |
+        Honestly I'm torn on this one and I'll say it. After Ida I had three customers with flooded basements, and every one was a tripped GFCI on the sump. I install it the way the code says, but I push the alarm and the backup pump hard, because a GFCI by itself is a bad plan in a basement that floods.
+    - author: codebook_dale
+      body: |
+        Fair, and we're not that far apart. The GFCI isn't the plan, it's the protection. The alarm and the backup pump are the plan.
+    - author: oldsteam_zig
+      body: |
+        Plumber's side: half the pumps I pull that were tripping GFCIs have a cord that's been sitting in water or a motor on its way out. Replace the pump, check the check valve while you're there, and the trips go away. A good pump tripping a good GFCI is rare.
+    - author: neutral_bar_99
+      body: |
+        As a student, may I ask why not put the sump on its own hardwired circuit with no receptacle at all? Wouldn't that avoid the GFCI question entirely?
+    - author: codebook_dale
+      body: |
+        Good question. Depending on the pump, the code edition and what your local office accepts, hardwiring can change the analysis, but most pumps are cord-and-plug so they can be swapped fast at 2am. Ask the inspector before you plan around it. I wouldn't treat it as a loophole.
+
+# ============================ E4 family: charging ============================
+- id: T199
+  brief: B025
+  category: E
+  topic: E4_superheat_subcool
+  type: tip
+  trade: hvac
+  when: early
+  author: ms_almonte
+  title: "Target superheat needs indoor wet bulb. Students, buy the probe."
+  fact_risk: ["target superheat charts use indoor (return) wet bulb and outdoor dry bulb"]
+  body: |
+    Every summer a few of my former students come back from their first jobs saying they "checked the superheat" on a piston system and it was fine. Then I ask what their target was and they look at me.
+
+    First, superheat by itself is just a number. On a fixed orifice system you compare it to a target, and the target comes from the manufacturer's chart or a target superheat chart, using indoor wet bulb and outdoor dry bulb.
+
+    Second, wet bulb, not dry bulb. Wet bulb tells you how much moisture the coil is dealing with, and that moves the target a lot. A sticky July afternoon in Paterson and a dry day in September want different numbers.
+
+    Third, measure the return air at the unit, not in the hallway.
+
+    Buy a decent wet bulb probe before you buy the fancy gauges. Ask me how I know which one matters more.
+  replies: []
+
+# ----------------------------------------------------------------------------
+- id: T200
+  brief: B120
+  category: E
+  topic: E4_superheat_subcool
+  type: question
+  trade: hvac
+  when: mid
+  author: QuickChekCrew
+  title: "Should gauges go on every system at a maintenance visit?"
+  fact_risk: ["refrigerant loss from hoses on connection", "low-loss fittings"]
+  body: |
+    Night program student here... I've been doing a ride-along with a tech this summer through a friend. At every maintenance visit he puts gauges on. My instructor says don't hook up gauges on a system that's working unless you have a reason, because you lose refrigerant every time... The tech says you can't know it's working without them.
+
+    Who's right? Or is it one of those "depends" answers... I'd like to understand the reasoning so I don't pick up a bad habit early. Thanks in advance.
+  replies:
+    - author: Kash_sing
+      body: |
+        Your instructor is closer, in my opinion:
+        - Every connection is a chance for a leak, a contaminated port, or a valve core that doesn't reseat
+        - On a small system, what's left in the hoses is a real share of the charge if you don't handle it properly
+        - You can learn a lot without them: temperature split, line temperatures, amp draw, airflow, a clean coil
+        - When those tell you something's off, then connect, with low-loss fittings
+
+        Plenty of good techs disagree with me on this, and that's fine. Just have a reason for every connection.
+    - author: hec_does_ac
+      body: |
+        I'm one of the ones who disagrees lol... I don't put hoses on every visit, but I do put clamp-on temp probes and wireless pressure probes on most systems. Low loss, and I'd rather see real numbers than guess from a temperature split. So this one time in AC the split looked fine on a rooftop unit and the superheat said it was way short on charge. The split doesn't tell you everything.
+    - author: joe.plumb
+      body: |
+        we put a gauge on every water heater and boiler job, static pressure on the house, takes a minute... is hvac different?
+    - author: tnguyen_refrig
+      body: |
+        he's asking about refrigerant gauges, not water pressure lol. different thing. on walk-ins i only connect when the box tells me something's wrong. every connection is a leak waiting for july
+    - author: WhichTradeTho
+      body: |
+        Taking a night class too and we got told the same thing as your instructor. Interesting that the field guys split on it.
+
+# ========================= E5 family: condensate ============================
+- id: T201
+  brief: B095
+  category: E
+  topic: E5_condensate_sizing
+  type: question
+  trade: hvac
+  when: mid
+  author: HeatwaveOnCall
+  title: "where can a condensate pump actually drain in a finished basement"
+  fact_risk: ["acceptable condensate disposal points (local plumbing code / inspector)", "air gap or air break for indirect waste", "condensate pump safety switch wiring"]
+  body: |
+    ok so long story, we're doing a furnace and coil swap in a split-level in clifton and the basement is getting finished. right now the condensate pump just dumps into the laundry sink with the tube clipped on the edge. homeowner wants it "hidden," so the contractor finishing the basement asked if we can run it into the washer standpipe or tie it into the sump pit. my lead said "depends" (of course) and that it's the inspector's call. what are the normal options and which ones get people in trouble? also does the pump need anything wired to it besides the plug
+  replies:
+    - author: ms_almonte
+      body: |
+        First thing my students forget: condensate is waste, and where it goes is a plumbing code question in your town, so the inspector really is the answer. Second: whatever it drains into, don't make a direct connection to a drain without an air gap or air break. You don't want sewer gas coming back up the tube, or a backup pushing into the pump.
+    - author: Kash_sing
+      accepted: true
+      body: |
+        Field version, around here:
+        - Laundry tub, or a standpipe with an air gap, is the common option and usually accepted. Check locally
+        - The sump pit gets used a lot and some towns don't allow it. Ask before you do it
+        - Never glue it straight into a drain or a vent with no trap and no air gap
+        - Wire the pump's safety switch so the AC shuts off if the pump fails. Most pumps have the switch; plenty of installers never connect it
+        - Leave access. Finished basements bury pumps behind drywall and then it's a callback
+
+        The safety switch is the one that saves the new floor.
+    - author: epa60812_2
+      body: |
+        brother we had one in paterson where the pump was buried inside a soffit, took my lead an hour just to find it. leave it where you can get to it
+    - author: HeatwaveOnCall
+      body: |
+        update: inspector was fine with the standpipe with an air gap. we wired the safety switch into the furnace control so the ac stops if the pump dies. contractor is building a little access door. thanks everyone
+
+# ----------------------------------------------------------------------------
+- id: T202
+  brief: B124
+  category: E
+  topic: E5_condensate_sizing
+  type: question
+  trade: hvac
+  when: late
+  author: OpenNeutralBlues
+  title: "Electrical student: why does the HVAC float switch cut the thermostat wire?"
+  fact_risk: ["float switch wired in series with R or Y per instructions"]
+  body: |
+    Electrical student at the county vo-tech, Nutley. I've been shadowing an HVAC tech friend of my dad's on Saturdays. He put a float switch on an AC drain pan and wired it into the thin thermostat wire, not the power. In class everything we do is 120 or 240, so I asked why not just cut power to the unit. He said "it's the control side." Can someone explain why it's done that way, and which wire it goes on?
+  replies:
+    - author: Kash_sing
+      body: |
+        "Control side" is the right answer. Here's why:
+        - The thermostat wiring is 24 volts and tells the system when to run. Open one wire and the call for cooling stops
+        - Most of those float switches are made for low-voltage control wiring, not for the line voltage the equipment runs on
+        - It usually goes in series with the R or the Y, depending on what you want shut down and what the instructions say
+        - Killing line power can also shut off things you might want running, like the blower
+
+        Follow the switch instructions and the equipment's wiring diagram, not a rule of thumb.
+    - author: ms_almonte
+      body: |
+        And low voltage still deserves respect. First thing my students do on 24 volt wiring is short R to C and blow the little fuse on the control board. Second thing they do is swear it wasn't them. Ask me how I know.
+    - author: wchen_controls
+      body: |
+        fwiw controls is a whole trade built on exactly this. a small signal decides what the big equipment does. if that part interests you, look at low voltage and controls. the work is mostly indoors in august too
+
+# ----------------------------------------------------------------------------
+- id: T203
+  brief: B170
+  category: E
+  topic: E5_condensate_sizing
+  type: question
+  trade: hvac
+  when: late
+  author: ExRetail_NowHVAC
+  title: "First fall startups: high-efficiency furnace drain lines, what size and how much pitch?"
+  fact_risk: ["condensate drain not smaller than 3/4 in and not reduced from the equipment connection (mechanical code)", "minimum slope 1/8 in per foot", "manufacturer guidance against double-trapping condensing furnaces", "freeze protection per manufacturer"]
+  body: |
+    Haven't started yet, but my new shop let me ride along on fall startups this week, sorry for the basic question. We're doing fall startups and maintenance, and two furnaces this week had condensate problems. One in a garage in Sicklerville where the line ran dead flat and was half full of slime, one in Blackwood where somebody necked the drain down to 1/2 inch tubing because "it's just a furnace." That one was shutting off on the pressure switch.
+
+    My lead fixed both, but I want the rules in my head. What size should the line be, how much pitch, and does it need a trap if the furnace has one built in? And what about the garage one freezing this winter? Damn, I thought heating was going to be the easy season.
+  replies:
+    - author: ms_almonte
+      accepted: true
+      body: |
+        First: don't neck it down. The mechanical code I learned on wants condensate drains no smaller than 3/4 inch and no smaller than the equipment's connection, all the way to where they end. Check which edition your town enforces and the furnace manual, because the manual can ask for more.
+
+        Second: pitch. At least an eighth of an inch per foot, more if you can get it. Flat lines grow exactly the slime you saw.
+
+        Third: traps. Most condensing furnaces have their own trap, and the manual will usually tell you not to add a second one in series, because a double trap can air-lock. Read it for that model.
+
+        Fourth: the garage. Protect it from freezing the way the manual says, or reroute it inside. Ask me how I know what a frozen line does in January.
+    - author: Kash_sing
+      body: |
+        Two more from the business side:
+        - Condensate from a condensing furnace is acidic. If it's going into a cast iron drain or onto a floor, talk about a neutralizer. Customers like hearing why
+        - Fall startups are where you clean the trap and the line and pour test it. That prevents the January no-heat call, which costs you more than the visit pays
+    - author: Dev_H
+      body: |
+        plumbing side, we see these tied into floor drains and laundry tubs. is there a rule on where it can go, or is it the same as an AC drain? appreciate it
+    - author: hec_does_ac
+      body: |
+        Same idea as the AC drain, where it lands is the inspector's call, and an air gap if it's going to a drain... So this one time in Gloucester a whole basement smelled like sewer every fall. Somebody glued the furnace drain straight into the stack, and the furnace's trap dried out every summer. Fix took ten minutes, finding it took two hours lol.
+    - author: tnguyen_refrig
+      body: |
+        drain lines freeze down here too, not just up north. had a walk-in freezer in somers point go down on the coldest night because the drain line ran through an unheated hallway with no heat tape. winter is when you learn
+    - author: ExRetail_NowHVAC
+      body: |
+        This is gold, thank you. Writing "3/4, eighth inch per foot, read the trap section" on the inside of my van door. Lead says that's how he learned too.
+
+# ======================= E6 family: heat pumps, winter =======================
+- id: T204
+  brief: B093
+  category: E
+  topic: E6_heat_pump_nj_winter
+  type: discussion
+  trade: hvac
+  nyc: true
+  when: late
+  author: dreb_jman
+  title: "Midtown tower going all heat pump. How do these do 40 floors up in January?"
+  fact_risk: ["NYC Local Law 97 driving building electrification", "cold-climate heat pump capacity at low ambient", "supplemental heat in electrical load calculations"]
+  body: |
+    Question for the mechanical guys. The office tower in Midtown I'm on is ripping out the old steam and going all electric heat pumps, because of the city's emissions law from what the owners say. My side is new feeders up the risers, a lot more amps on every floor than the building was ever built for. Fine. That's our work.
+
+    What I want to know from the mechanical side: rooftop and setback units up there get wind like you wouldn't believe. On a 10 degree January night, 40 floors up, with wind, do these things actually keep up? Or are we going to be back in two winters adding electric heat and more feeders? Asking because I'm the one who'll be up there.
+
+    Also the 7 train is down again, so I have time to read.
+  replies:
+    - author: Kash_sing
+      body: |
+        Not a high-rise guy, but these are the questions I'd ask the engineer:
+        - What's the rated capacity at the design low temperature, not at 47 degrees? Cold-climate equipment publishes it
+        - Is there backup or supplemental heat in the design, and is that load already in your feeder calc?
+        - Defrost: where does the water go, and does it freeze on the roof?
+        - Who services them, and can they get to them in February?
+
+        If the engineer has answers to all of those, you're probably fine.
+    - author: mbell_wireman
+      body: |
+        Data center side, we see the same thing: every mechanical change ends up being an electrical change. Get the supplemental heat into the load calc now, not as a change order later.
+    - author: hec_does_ac
+      body: |
+        So this one time in AC... the casino I worked at had rooftop heat pump units on the garage that iced up every time the wind came off the ocean in February lol. Wind matters. The engineers who've done tall buildings use screens or put the units on mechanical floors instead of out in the open.
+    - author: codebook_dale
+      body: |
+        From the inspection side, and I don't inspect in the city: the load calculation and the equipment nameplates will tell the story. Whatever the mechanical engineer says about supplemental heat should show up on the electrical drawings. If it doesn't, ask.
+    - author: threeway_91
+      body: |
+        staten island apprentice here, brother. our shop wired a bunch of heat pumps in houses out here last winter and they kept up fine. in houses though. no idea about 40 floors up
+    - author: neutral_bar_99
+      body: |
+        Student question, possibly off topic: why not geothermal for a building like that? We read about it in class and it seemed like it avoids the cold air problem entirely.
+    - author: dreb_jman
+      body: |
+        Not off topic, brother. You need somewhere to drill, and in Midtown there's a subway and a lot of foundation under you. Some buildings in the city do it. Not ours.
+    - author: HelperForNow
+      body: |
+        following this one. our shop in manahawkin does more heat pumps every month and nobody talks about the electrical side until the panel is full
+    - author: dreb_jman
+      body: |
+        Appreciate it. Sent the engineer Kash's list. Answer on defrost was "we'll look into it." So that's going great.
+
+# ----------------------------------------------------------------------------
+- id: T205
+  brief: B152
+  category: E
+  topic: E6_heat_pump_nj_winter
+  type: question
+  trade: hvac
+  when: late
+  author: peteq75
+  title: "Galloway colonial on propane: cold-climate heat pump or keep the furnace?"
+  fact_risk: ["cold-climate heat pump ratings at 5°F", "NJ Clean Energy and utility rebates (change often)", "whole-house load calculation for panel capacity", "nameplate MCA/MOCP"]
+  body: |
+    Sorry if this belongs somewhere else. I'm brand new on the electrical side, career switcher, but this one is my own house. 90s colonial in Galloway, no gas on our street, propane furnace and a central AC that's on its last legs. The propane bill last winter was ugly. My wife wants to go heat pump since we have to replace the AC anyway.
+
+    Everybody I talk to says something different. One guy says heat pumps don't work when it's cold. One says get rid of the furnace. One says keep the furnace as backup. And since I'm "the electrical guy" now, everyone asks me if our 150 amp panel can handle it, and I don't know.
+
+    What would you actually do here? Appreciate it.
+  replies:
+    - author: HelperForNow
+      body: |
+        my old boss said heat pumps quit working under like 30 degrees and then you're on strip heat and the electric bill kills you. so keep the furnace
+    - author: Kash_sing
+      body: |
+        That was true of a lot of older units. It isn't true of current cold-climate equipment:
+        - Cold-climate heat pumps are rated to put out real heat at 5°F. Look at the published capacity at your design temperature, not the brochure
+        - Size it from a heat load calculation on your house, not from the old furnace's number
+        - Ductwork that was fine for AC can be marginal for heating airflow, so have someone check it
+        - NJ Clean Energy and utility rebates change often. Look up what's current before you sign anything
+    - author: haddad_mech
+      accepted: true
+      body: |
+        I'd do it a little differently from Kash, with respect. In your situation, with a furnace that still works, I'd look hard at dual fuel: a heat pump for most of the season and the propane furnace for the coldest nights. You give up a little efficiency on those nights, you keep a backup if the heat pump goes down in January, and you don't need electric strips loading your panel.
+
+        If the furnace were old too, a properly sized cold-climate heat pump with strips can absolutely carry a house in Atlantic County. Either way, step one is the load calculation. Anybody quoting you without one is guessing.
+    - author: Kash_sing
+      body: |
+        Fair point. With a furnace that has life left, dual fuel is a good answer and I quote it all the time. I was answering the "they don't work when it's cold" part.
+    - author: mbell_wireman
+      body: |
+        On the panel: 150 amps might be fine. You find out with a load calculation for the whole house, done by an electrician, not by adding up breaker handles. The heat pump nameplate gives you the minimum circuit ampacity and the max breaker size. Strip heat is usually what pushes a panel over.
+    - author: tnguyen_refrig
+      body: |
+        egg harbor twp here, same story on half my street, propane and no gas line. the ones who went heat pump with the furnace as backup are happy. and our design temp down here isn't north jersey's
+    - author: hec_does_ac
+      body: |
+        So this one time in AC... I did a heat pump in Absecon for a guy who swore it would never keep up, and he called me in February just to ask why the house felt so even lol. It runs longer and lower than a furnace. Tell your wife to expect that.
+    - author: codebook_dale
+      body: |
+        Permits for both the mechanical and the electrical side. And if strips are part of it, make sure that circuit is in the load calculation, not added later.
+    - author: ThirdYearTinknocker
+      body: |
+        3rd year hvac in monmouth, we put in alot of these now. warn her the air at the register feels cooler than a furnace, like 90 something instead of way hotter. totally normal, but people call about it
+    - author: peteq75
+      body: |
+        This is way more than I expected, appreciate it. So: load calc first, look at dual fuel since the furnace is only 8 years old, panel calc by an actual electrician. Not by me lol.
+    - author: HelperForNow
+      body: |
+        ok i stand corrected on the 30 degree thing. old boss was going off old units i guess
+    - author: peteq75
+      body: |
+        update: had two companies do load calcs. both came back with a cold-climate unit and keeping the furnace as backup. electrician's calc says the 150 is ok without strips. signing next week
+
+# ===================== E7 family: mini-splits, Cape Cods =====================
+- id: T206
+  brief: B036
+  category: E
+  topic: E7_minisplit_vs_ducted_cape
+  type: discussion
+  trade: hvac
+  when: mid
+  author: hec_does_ac
+  title: "Cape Cods: ductless heads upstairs or a ducted unit in the kneewall?"
+  fact_risk: ["multi-zone outdoor units powering heads through the interconnect"]
+  body: |
+    Settle a fight at my shop... we're doing a lot of Capes in Gloucester and Camden County this summer, upstairs is 85 by 3pm and there's no ductwork up there. Half our guys sell a head in every bedroom. The other half want a small ducted air handler in the kneewall or the attic with short runs to each room.
+
+    So this one time in AC I put three heads in a Cape and the customer called the next summer saying the kid's room was freezing and clammy and the other two were fine lol. Oversized head in a tiny room.
+
+    What do you guys do and how do you decide? Not looking for a brand war.
+  replies:
+    - author: Kash_sing
+      body: |
+        How I decide:
+        - Small bedrooms: the smallest wall head is often too big for them, so it short-cycles and doesn't pull moisture out. That favors ducted
+        - Kneewall space: if there's room for an air handler with short, sealed runs and a real return, ducted is quieter and cleaner looking
+        - If the kneewall is cramped, or the customer wants room-by-room control, heads
+        - Either way, the insulation in those kneewalls is usually terrible, so price the air sealing in
+
+        Margins are better on the ducted job if you price the labor honestly.
+    - author: haddad_mech
+      body: |
+        Here's how it plays out for us: the ducted kneewall unit is the better system when there's room, but it takes a tech who can actually design duct. Heads are more forgiving for a crew that's still learning. I sell the system my people can install well.
+    - author: HeatwaveOnCall
+      body: |
+        we did a cape in clifton with one ducted unit in the attic over the dormer and it was so quiet the customer thought it was off. getting up there in july was brutal though
+    - author: tnguyen_refrig
+      body: |
+        attic air handler in a cape in july, enjoy. whatever you pick, put a pan and a float switch under it. i've seen what a kneewall full of water does to a ceiling
+    - author: thiago_sparks
+      body: |
+        Honestly on the raised houses at the shore after Sandy we did a lot of heads, because there was nowhere to put anything. Not Capes, but the same problem: no space, no ducts.
+    - author: peteq75
+      body: |
+        Electrical side question, sorry if dumb: does one ducted unit mean one circuit instead of three? That's a lot less work on our end.
+    - author: Kash_sing
+      body: |
+        Depends on the setup. A multi-zone outdoor unit usually powers its heads through the interconnect, so that's one circuit to the outdoor unit. Three separate single-zone systems are three circuits. Follow the install manual either way.
+    - author: TaylorHamHVAC
+      body: |
+        customer question i get a lot in secaucus: do the heads look bad? and can you hide the linesets on the outside of a cape without it looking like spaghetti?
+    - author: hec_does_ac
+      body: |
+        Lol the spaghetti question... lineset covers, run them on the back of the house, and talk about it before the install, not after. Some people hate the look of a head no matter what. Those are your ducted customers.
+    - author: big_zach_hvac
+      body: |
+        first summer in hvac, we did 6 capes in union county, all heads. didn't know ducted in a kneewall was even an option. learning
+    - author: ms_almonte
+      body: |
+        Good thread, I'm stealing it for class. What students should take away is that you decide from the house: the room sizes, the space, the insulation, the customer. Not from whatever your shop usually sells.
+
+# ----------------------------------------------------------------------------
+- id: T207
+  brief: B090
+  category: E
+  topic: E7_minisplit_vs_ducted_cape
+  type: question
+  trade: electrical
+  when: mid
+  author: JunctionBoxJunkie
+  title: "Parents' Cape is getting mini-splits. What's the electrician's part?"
+  fact_risk: ["circuit sizing from nameplate MCA and MOCP", "HVAC disconnect within sight of the unit (NEC 440.14)", "GFCI for outdoor HVAC equipment (2020 NEC 210.8(F)) and later changes/local amendments"]
+  body: |
+    my parents' cape in hamilton is getting a 3-zone mini-split next month and the hvac company said "you'll need an electrician for the power." my dad looked at me because I'm in the electrical program at vo-tech, which, no, I'm a student. but I want to understand what the electrician is actually going to do so I can watch and not be useless. like how do they know what size breaker, what's the box on the wall outside for, and does it need a GFCI? our book says something about outdoor GFCI but my teacher said it's complicated
+  replies:
+    - author: codebook_dale
+      body: |
+        Your teacher's right that it's complicated. Here's the outline. Wire and breaker size come from the outdoor unit's nameplate: the minimum circuit ampacity sets the wire, the maximum overcurrent protection sets the largest breaker allowed. The box outside is the disconnect, which the code wants within sight of the unit so a tech can kill it while working on it.
+
+        The GFCI part: a recent code edition expanded GFCI requirements for outdoor outlets in a way that caught HVAC equipment, a lot of inverter units nuisance tripped, and there were changes and local amendments afterward. Check which code edition is in effect for your parents' permit. That's a question for the inspector, not the internet.
+    - author: Kash_sing
+      body: |
+        From the HVAC side, also watch the interconnect between the outdoor unit and the heads. Most multi-zone units power the heads from the outdoor unit through that cable, and the manual specifies the wire. Nobody should be using leftover thermostat wire for it.
+    - author: Exit117Plumber
+      body: |
+        Watch where the condensate from each head goes too. Not electrical, but my uncle got called to a Cape where a head was draining into the wall cavity lol
+    - author: big_zach_hvac
+      body: |
+        we just did 3 of these in elizabeth. electrician was there like 2 hours total, disconnect, whip, breaker, done. we ran the interconnect ourselves
+
+# ----------------------------------------------------------------------------
+- id: T208
+  brief: B103
+  category: E
+  topic: E7_minisplit_vs_ducted_cape
+  type: question
+  trade: hvac
+  when: late
+  author: MonmouthPlumber
+  title: "One multi-zone outdoor unit or separate single-zone systems for my Cape?"
+  fact_risk: ["single-zone vs multi-zone part-load efficiency and low-temperature ratings"]
+  body: |
+    This is for my own house, not a job. Cape in Middletown, upstairs has two bedrooms and a small bath, downstairs has the original oil-fired baseboard and window units. We're finally doing mini-splits before next summer.
+
+    I have two quotes. One is a single multi-zone outdoor unit with three heads. The other is three separate single-zone systems, one for each bedroom plus one for the living room, so three outdoor units. The second is more money and more equipment on the side of the house.
+
+    The salesman on the first one says multi-zone is "the same thing, just one box." I'm a plumber, so I get suspicious when someone says that. What are the actual tradeoffs? Thanks in advance.
+  replies:
+    - author: Kash_sing
+      body: |
+        It's not the same thing:
+        - One multi-zone outdoor unit fails, every room is down. Separate systems fail one at a time
+        - Multi-zone units often run less efficiently when only one small head is calling, which in a bedroom is most of the night
+        - Single-zone units usually have better low-temperature heating ratings, if you care about heat
+        - Multi-zone is fewer boxes outside and one circuit, which some houses need
+
+        For three rooms I lean singles if the budget and the wall space allow. For five rooms in a small house, multi-zone starts making more sense.
+    - author: hec_does_ac
+      body: |
+        Agree with Kash mostly... the one thing I'd add is ask both companies for the head sizes, room by room. Small bedroom with a big head is the callback I see the most lol
+    - author: benplumb79
+      body: |
+        Sorry if this is off topic, but since the downstairs is oil baseboard, would they replace that too, or do people keep the boiler for heat?
+    - author: MonmouthPlumber
+      body: |
+        We're keeping the boiler for now. Getting the upstairs comfortable is the goal this year, heat can be the next project.
+    - author: Dev_H
+      body: |
+        plumbing in deptford. my parents went multi-zone and the outdoor unit died last july, whole house hot for a week waiting on a part. appreciate the singles point
+    - author: PullingWireAgain
+      body: |
+        Electrical side... three singles is three circuits and three disconnects... ask who's doing the electric and whether it's in the price
+    - author: NorthJerseyCopper
+      body: |
+        UA 24 1st year. Asking for the same reason, my parents have a Cape in Fair Lawn. Following.
+    - author: MonmouthPlumber
+      body: |
+        update: asked both for head sizes. The multi-zone quote had a head in the small bedroom about twice what the other company sized. Going with the singles.
+
+# ======================= E8 family: oil-to-gas, fuel gas =====================
+- id: T209
+  brief: B074
+  category: E
+  topic: E8_oil_to_gas
+  type: question
+  trade: plumbing
+  when: late
+  author: FluxOnMyBoots
+  title: "what actually happens in an oil to gas conversion, start to finish"
+  fact_risk: ["utility gas service and meter process", "oil tank removal/abandonment rules vary by town", "permits and inspection before utility turn-on"]
+  body: |
+    career switcher, night class, ewing. my neighbor is converting from oil and asked me what's involved since i'm "in plumbing now" lol. i have no idea and ziggy's on a job all week so asking here. who does what, how long does it take, and what happens to the tank in the basement? just want the big picture so i don't say something dumb to him
+  replies:
+    - author: Kash_sing
+      body: |
+        Big picture, roughly in order:
+        - Utility first: is gas available on the street, and how long for a service and a meter. That timeline drives everything
+        - Equipment: a new gas boiler or furnace is the usual answer. Converting the old oil boiler with a gas burner is possible but less common
+        - Venting: a liner for the chimney, or a direct-vent unit out the side wall
+        - Gas piping sized from the meter to everything that will burn gas
+        - Permits and inspections before the utility turns it on
+        - The oil tank: removed or properly abandoned, depending on the town and where it is
+
+        A licensed contractor for all of it. Your neighbor's job is to pick someone good, not to figure it out.
+    - author: oldsteam_zig
+      body: |
+        Kash covered it. One thing for you, kid: next time the neighbor asks, the right answer is "call two licensed shops and ask them about the chimney and the tank." Knowing what to ask is half of it. That's the job.
+    - author: NorthJerseyCopper
+      body: |
+        UA 24 here, 1st year. We did two of these in Fair Lawn this summer. The tank part took longer than the boiler both times. Idk why but every time.
+
+# ----------------------------------------------------------------------------
+- id: T210
+  brief: B089
+  category: E
+  topic: E8_oil_to_gas
+  type: question
+  trade: plumbing
+  when: late
+  author: TryingAllThree
+  title: "Three conversion quotes, three different answers on the chimney"
+  fact_risk: ["orphaned water heater draft problems / chimney liner sizing", "sidewall vent materials per manufacturer"]
+  body: |
+    Different kind of question from me. We're finally converting our own house in Piscataway from oil to gas: split-level, oil boiler with baseboard, hot water off a tankless coil in the boiler. Got three quotes and they disagree on the chimney.
+
+    Quote 1: new gas boiler and a new gas water heater, both into the chimney with a new liner.
+    Quote 2: high-efficiency boiler vented out the side wall in plastic, new water heater into the existing chimney, no liner.
+    Quote 3: high-efficiency boiler out the side wall, a separate sidewall-vented water heater, chimney not used at all.
+
+    Quote 2 is cheapest. Quote 1's guy says Quote 2 is going to cause problems. Who's right, and why does the chimney matter so much? Appreciate it. Joy told me to get more than one quote, so here we are. Still doing ride-alongs too, so this is half for the house and half for me.
+  replies:
+    - author: oldsteam_zig
+      accepted: true
+      body: |
+        Quote 1's guy is pointing at a real problem, kid. That old chimney was sized for an oil boiler sending a lot of hot exhaust up it. Take the boiler out, and a gas water heater alone in that big flue is what we call an orphaned water heater. Not enough heat to draft right, so the flue gas cools and condenses, and you get weak draft, moisture eating the masonry, and possibly exhaust spilling into the basement.
+
+        That's why conversions get a liner sized for whatever's left in the chimney, or take the chimney out of the picture like Quote 3. Quote 2 could be fine if they actually checked that chimney, so ask them exactly how. If the answer is "it'll be fine," that's a no.
+
+        And CO detectors on every floor, whoever you pick.
+    - author: Kash_sing
+      body: |
+        What I'd ask all three:
+        - Did you do a heat loss, or are you matching the old boiler's size? Old oil boilers are usually oversized
+        - Who removes or abandons the oil tank, and is it in the price?
+        - Who handles the gas service with the utility?
+        - What's the warranty on the installation, not just the equipment?
+    - author: BackflowBlues
+      body: |
+        my foreman did one of these in lawrence where the water heater got left orphaned in the chimney. went back in november because the co alarm kept going off lol. relined it
+    - author: benplumb79
+      body: |
+        Sorry, newer guy question. Is the side wall vent the white plastic pipe sticking out of the side of houses? I always wondered what those were.
+    - author: TryingAllThree
+      body: |
+        Thanks Ziggy, this is exactly what I needed. Going to ask Quote 2 how they checked the chimney.
+
+        edit: Quote 2 said they'd "see when they get there." Going with Quote 3.
+    - author: joyd_plumbing
+      body: |
+        Good call. "We'll see when we get there" on venting is the answer that gets people hurt. And benplumb, yes, usually PVC or a similar plastic on high-efficiency equipment, whatever the manufacturer specifies.
+
+# ----------------------------------------------------------------------------
+- id: T211
+  brief: B094
+  category: E
+  topic: E8_oil_to_gas
+  type: question
+  trade: plumbing
+  when: late
+  author: big_hector_plumb
+  title: "Customer wants the old oil tank left in the basement after the gas conversion"
+  fact_risk: ["NJ DEP involvement and certified contractors when a heating oil tank leaks", "municipal permits for tank removal or abandonment in place", "homeowners insurance coverage of tank leaks", "NYC rules for cellar/vault oil tanks"]
+  body: |
+    Service tech, Union City. Finishing a conversion next week in a two-family in Weehawken. Customer wants the 275 gallon oil tank in the basement just left there, empty, "for later." Then he tells me the home inspector on another house he's buying found a buried tank in the yard during the tank sweep, and the seller says "it was abandoned years ago."
+
+    Boss is out till Monday and I'm bad at talking to customers lol. What do I tell him on both? I know we don't do tank work, I just don't want to sound like an idiot.
+  replies:
+    - author: oldsteam_zig
+      body: |
+        Basement tank first. Empty is never empty, kid. There's always sludge and some oil in the bottom. Leave it and it leaks someday, or the next buyer's inspector flags it. On most of our conversions the tank comes out: pumped, cleaned, cut up, hauled. Your town may want a permit for the removal. Tell him your boss will price it, and don't let him keep it "for later."
+    - author: SumpPumpSeason
+      body: |
+        our boss in woodbridge puts the tank removal right in the conversion quote so the customer can't skip it. saves you this exact conversation. appreciate the thread
+    - author: Kash_sing
+      body: |
+        On the buried tank, from my experience in NJ:
+        - Ask the seller for paperwork. "Abandoned" without a permit and closure paperwork from the town means very little
+        - If there's any sign of a leak, it becomes a cleanup, and in NJ that brings in DEP rules and certified contractors
+        - His attorney and insurance company should hear about it before closing, not after
+        - None of this is yours to sort out. Send him to his attorney and a tank company
+    - author: oldsteam_zig
+      body: |
+        And on the buried one, I'd want it pulled and the soil tested before I bought that house.
+    - author: rui_t_kearny
+      body: |
+        Respectfully, Ziggy, pulling isn't always the answer on buried tanks. Some are under a porch, an addition or a driveway, and abandonment in place, done properly with a permit and soil sampling, is what gets done. The paperwork is the thing. Depends on the town.
+    - author: oldsteam_zig
+      body: |
+        Fair, Rui. If it can't come out, it's done on paper. My point is "abandoned years ago" with no paper isn't abandoned.
+    - author: joyd_plumbing
+      body: |
+        What's your actual question? You asked two. Basement: it should come out, your boss prices it. Yard: not your job, send him to a lawyer and a tank outfit. Two sentences, then stop talking.
+    - author: big_hector_plumb
+      body: |
+        > Two sentences, then stop talking.
+
+        lol that's the part i need
+    - author: bklyn_arkady
+      body: |
+        In the city it's different in the details. Some older buildings still have oil tanks in the cellar or a vault, and the rules and who you call are city ones. Same principle though. Nobody believes "empty" and nobody believes "abandoned" without paperwork.
+    - author: HeatwaveOnCall
+      body: |
+        dumb question, why is a buried tank such a big deal if it's just sitting there? like if it's not leaking what's the problem? and who even checks
+    - author: Kash_sing
+      body: |
+        Because old steel in wet soil eventually leaks, and nobody knows when. When it does, the cleanup can get very expensive, and it can land on the homeowner. That's why buyers here do tank sweeps, and why sellers get nervous about them.
+    - author: Dev_H
+      body: |
+        had one in deptford where the customer's homeowners insurance didn't cover the leak. paid out of pocket. appreciate this thread
+    - author: blowerwheel_91
+      body: |
+        Apologies if this is basic. In Morris County a lot of houses still have oil. Is tank removal something HVAC companies do, or is it always a separate company? Thanks in advance.
+    - author: haddad_mech
+      body: |
+        Mostly separate. On our commercial jobs it's always a sub with its own insurance for that work. Here's what I look for in that sub: their permits and paperwork, every time.
+    - author: mbell_wireman
+      body: |
+        Electrical side note: the oil burner circuit and its emergency switch should be removed or properly reused during the conversion. I've seen dead burner switches left at the top of the stairs for decades confusing everybody. Label it or remove it.
+    - author: plumbnj77
+      body: |
+        brother we pulled an "empty" one out of a basement in brick last month, bottom had a few inches of sludge. smelled for days. who even takes that stuff?
+    - author: big_hector_plumb
+      body: |
+        talked to him today. basement tank is coming out, boss is pricing it. told him the yard one is a lawyer question. he actually listened lol. thier inspector already told them the same thing so that helped
+    - author: rui_t_kearny
+      body: |
+        That's how you do it. My father used to say the customer remembers how you said it more than what you said.
+    - author: TryingAllThree
+      body: |
+        We're in the middle of our own conversion and tank removal was in all three quotes. Reading this, I'm glad it was.
+
+# ----------------------------------------------------------------------------
+- id: T212
+  brief: B151
+  category: E
+  topic: E8_oil_to_gas
+  type: question
+  trade: plumbing
+  when: late
+  author: EssexPipes
+  title: "Sizing gas pipe for a conversion: why does everyone talk about the longest run?"
+  fact_risk: ["longest-length method for gas pipe sizing (fuel gas code tables)", "CSST bonding requirements", "pressure test and inspection before utility turn-on"]
+  body: |
+    2 years in, Bloomfield. We're doing a bunch of oil to gas conversions this fall and I'm finally being let near the gas piping, carrying and cutting at least. My journeyman sized the pipe for a house with a boiler, a water heater and a range and kept saying "the longest run" and "total BTU." Why the longest run and not each run on its own? And why does it matter if the pipe's a little small, the gas still gets there right?
+
+    Not planning on doing any of this myself. I just want to understand it before somebody quizzes me on the job.
+  replies:
+    - author: joyd_plumbing
+      accepted: true
+      body: |
+        What's your actual question? Two, I count.
+
+        Why it matters: undersized pipe means not enough gas reaches the appliance when everything runs at once. The burner runs starved, burns badly, and can make carbon monoxide. "Gets there" isn't enough. It has to get there at the right pressure.
+
+        Why the longest run: the common method in the code tables sizes every section using the total length from the meter to the farthest appliance, and the BTU load that section carries. It's conservative on purpose. Your journeyman reads the table for that gas pressure and pipe material.
+
+        He does the sizing, the master signs for it, the inspector checks it, and it gets tested before the utility turns anything on.
+    - author: oldsteam_zig
+      body: |
+        And the load is the input rating off each appliance's nameplate, not a guess. Add them up and think about what they might add later, a dryer, a generator. Cheaper to run it right once, kid.
+    - author: dhollis61
+      body: |
+        use the table for your pressure and material. test it. get it inspected. don't light anything that wasn't tested.
+    - author: epa60812_2
+      body: |
+        brother hvac helper in paterson here. we see undersized gas on furnace calls all the time, burner looks lazy and yellow. now i know why
+    - author: hudson_conduit
+      body: |
+        electrical guy here but the yellow flexible gas pipe needs to get bonded right? our shop got called about that on a conversion lol
+    - author: Kash_sing
+      body: |
+        Yes. CSST comes with its own bonding instructions, the code has a say too, and it matters mostly because of lightning. It gets bonded the way the manufacturer and your local code say. Nobody should be making that one up on site.
+    - author: OpenNeutralBlues
+      body: |
+        Our shop teacher mentioned bonding that yellow gas tubing last week. Didn't understand why until this thread.
+
+# ----------------------------------------------------------------------------
+- id: T213
+  brief: B067
+  category: E
+  topic: E8_oil_to_gas
+  type: question
+  trade: hvac
+  when: late
+  author: neutral_bar_99
+  title: "What is the red switch plate at the top of my basement stairs for?"
+  body: |
+    Vo-tech student, electrical, Passaic County class of '27. This is about my grandparents' house in Wayne, which I've been looking at much more carefully since I started the program. At the top of the basement stairs there's a switch with a red plate that says something like "burner emergency." My grandfather says it's for the oil burner. They converted to gas a few years ago and the boiler is new.
+
+    Does that switch still do anything now? Is it supposed to stay with a gas boiler, and if so, why is it at the top of the stairs and not next to the boiler? I'm only asking out of curiosity, I'm not planning to touch it.
+  replies: []
