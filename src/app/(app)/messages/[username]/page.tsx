@@ -7,7 +7,6 @@ import { MarkRead } from "@/components/MarkRead";
 import { MessageComposer } from "@/components/MessageComposer";
 import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { FOUNDING_CONTACT_MESSAGE } from "@/lib/founding";
 import { findProfileByHandle } from "@/lib/profile-lookup";
 import { loginHref } from "@/lib/next-path";
 import { profileHeadline, timeAgo } from "@/lib/format";
@@ -139,9 +138,9 @@ export default async function ConversationPage({
         </div>
 
         {other.is_founding_member ? (
-          <p className="border-t border-zinc-200 bg-amber-50 p-4 text-[13px] leading-relaxed text-amber-900">
-            {FOUNDING_CONTACT_MESSAGE}{" "}
-            <Link href="/about#founding-community" className="font-medium underline">
+          <p className="border-t border-zinc-200 p-4 text-[13px] text-zinc-500">
+            Messaging isn&apos;t available for this profile.{" "}
+            <Link href="/about#founding-community" className="underline hover:text-zinc-700">
               Learn more
             </Link>
           </p>

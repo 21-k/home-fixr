@@ -7,8 +7,12 @@ import { USERS, storageStatePath } from "./support/users";
 // The external review's copy and the authorship labels (review-changes pass).
 // Logged-out checks are @public (safe on production); the rest are local.
 
-const LABEL = "Team-written example • AI-assisted";
-const label = (scope: import("@playwright/test").Locator) => scope.getByTestId("team-written-label");
+// Post-level "Team-written example" labels were removed (Oct 2026). What
+// discloses the example profiles now: the HF Community badge (linking to the
+// About explanation) next to their names, and the About sentence.
+const BADGE = "HF Community";
+const badge = (scope: import("@playwright/test").Locator) => scope.getByRole("link", { name: BADGE });
+const NO_LABEL = /Team-written example/;
 const isDesktop = () => test.info().project.name === "desktop";
 
 const HERO_COPY =
@@ -65,58 +69,32 @@ test.describe("homepage @public", () => {
   });
 });
 
-test.describe("authorship labels on team-written content @public", () => {
-  test("seeded feed cards carry the label, as readable text", async ({ page }) => {
+test.describe("HF Community badge on team-written content @public", () => {
+  test("seeded feed cards carry the badge; no post-level label anywhere", async ({ page }) => {
     await visit(page, "/feed");
-    const cards = page.getByTestId("post-card");
-    const founding = cards.filter({ has: page.getByRole("link", { name: "Founding Community" }) });
-    const n = await founding.count();
-    expect(n).toBeGreaterThan(3);
-    for (let i = 0; i < Math.min(n, 10); i++) {
-      await expect(label(founding.nth(i))).toHaveText(LABEL);
-      await expect(label(founding.nth(i))).toBeVisible();
-    }
-    // Readable on a phone: at least 12px.
-    const size = await label(founding.first()).evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
-    expect(size).toBeGreaterThanOrEqual(12);
+    const founding = page.getByTestId("post-card").filter({ has: badge(page) });
+    expect(await founding.count()).toBeGreaterThan(3);
+    await expect(badge(founding.first())).toHaveAttribute("href", "/about#founding-community");
+    expect(await bodyText(page)).not.toMatch(NO_LABEL);
     await expectFitsViewport(page);
   });
 
-  test("a seeded thread labels the post and every reply", async ({ page }) => {
+  test("a seeded thread: badge on the post and replies, no post-level label", async ({ page }) => {
     await visit(page, "/feed");
-    const card = page
-      .getByTestId("post-card")
-      .filter({ has: page.getByTestId("team-written-label") })
-      .filter({ hasNotText: /\b0 replies\b/ })
-      .first();
+    const card = page.getByTestId("post-card").filter({ has: badge(page) }).filter({ hasNotText: /\b0 replies\b/ }).first();
     const href = await card.locator('a[href^="/q/"]').first().getAttribute("href");
     await visit(page, href!);
-    await expect(label(page.getByTestId("thread-post"))).toHaveText(LABEL);
-    const replies = page.getByTestId("reply");
-    const n = await replies.count();
-    expect(n).toBeGreaterThan(0);
-    for (let i = 0; i < n; i++) await expect(label(replies.nth(i))).toHaveText(LABEL);
+    await expect(badge(page.getByTestId("thread-post")).first()).toBeVisible();
+    expect(await page.getByTestId("reply").filter({ has: badge(page) }).count()).toBeGreaterThan(0);
+    expect(await bodyText(page)).not.toMatch(NO_LABEL);
     await expectFitsViewport(page);
-  });
-
-  test("search results and a Founding profile's answers are labeled", async ({ page }) => {
-    await visit(page, "/search?q=pex");
-    const results = page.getByTestId("post-card");
-    expect(await results.count()).toBeGreaterThan(0);
-    await expect(label(results.first())).toBeVisible();
-
-    await visit(page, `/u/${FOUNDING.senior}`);
-    const answers = page.getByTestId("profile-answer");
-    const n = await answers.count();
-    expect(n).toBeGreaterThan(0);
-    for (let i = 0; i < n; i++) await expect(label(answers.nth(i))).toHaveText(LABEL);
   });
 });
 
-test.describe("a real member's post and reply are not labeled (local)", () => {
+test.describe("a real member's post and reply carry no HF Community badge (local)", () => {
   test.use({ storageState: storageStatePath("junior") });
 
-  test("feed card, thread post, reply and profile show no label", async ({ page }) => {
+  test("feed card, thread post, reply and profile show no badge", async ({ page }) => {
     const tag = test.info().project.name;
     const title = `Real member label check ${tag}`;
     const replyText = `Real member reply ${tag}`;
@@ -137,23 +115,23 @@ test.describe("a real member's post and reply are not labeled (local)", () => {
     try {
       await page.reload();
       await expect(card).toBeVisible();
-      await expect(label(card)).toHaveCount(0);
+      await expect(badge(card)).toHaveCount(0);
       // ...while the seeded cards on the same page keep theirs.
-      await expect(label(page.locator("main")).first()).toBeVisible();
+      await expect(badge(page.locator("main")).first()).toBeVisible();
 
       await visit(page, `/q/${row.slug}`);
-      await expect(label(page.getByTestId("thread-post"))).toHaveCount(0);
+      await expect(badge(page.getByTestId("thread-post"))).toHaveCount(0);
       await page.getByPlaceholder("Share what you'd do…").fill(replyText);
       await page.getByRole("button", { name: "Post reply" }).click();
       const reply = page.getByTestId("reply").filter({ hasText: replyText });
       await expect(reply).toBeVisible();
       await page.reload();
       await expect(reply).toBeVisible();
-      await expect(label(reply)).toHaveCount(0);
+      await expect(badge(reply)).toHaveCount(0);
 
       await visit(page, `/u/${USERS.junior.handle}`);
       await expect(page.getByTestId("post-card").filter({ hasText: title })).toBeVisible();
-      await expect(label(page.locator("main"))).toHaveCount(0);
+      await expect(badge(page.locator("main"))).toHaveCount(0);
     } finally {
       // Clean up through the app's own delete (cascades the reply).
       await visit(page, `/q/${row.slug}`);
@@ -200,11 +178,12 @@ test.describe("mentor directory @public", () => {
     await expectFitsViewport(page);
   });
 
-  test("a Founding mentor's profile: availability label, note, example-profile notice", async ({ page }) => {
+  test("a Founding mentor's profile: availability label, self-reported note, HF Community badge, no yellow notice", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
     await expect(page.getByText(/^(Accepting mentorship requests|Limited availability|Not accepting mentorship requests)$/)).toBeVisible();
     await expect(page.getByTestId("self-reported-note")).toBeVisible();
-    await expect(page.getByText(/This is an example profile prepared by the Home Fixr team/)).toBeVisible();
+    await expect(page.locator("main").getByRole("link", { name: "HF Community" }).first()).toBeVisible();
+    await expect(page.getByText(/This is an example profile prepared by the Home Fixr team/)).toHaveCount(0);
     const text = await bodyText(page);
     expect(text).not.toMatch(/\byrs\b|Mentoring:|collabs posted/);
     await expectFitsViewport(page);
@@ -267,11 +246,12 @@ test.describe("ride-alongs empty state (local)", () => {
 });
 
 test.describe("About / FAQ disclosure @public", () => {
-  test("carries the new sentence and shows the label", async ({ page }) => {
+  test("carries the disclosure sentence and shows the badge", async ({ page }) => {
     await visit(page, "/about");
     await expect(page.getByText(/^Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance/)).toBeVisible();
-    await expect(page.getByText("Founding Community profiles are not real members and can't be messaged.", { exact: false })).toBeVisible();
-    await expect(label(page.locator("main")).first()).toHaveText(LABEL);
+    await expect(page.getByText("HF Community profiles are not real members and can't be messaged.", { exact: false })).toBeVisible();
+    await expect(badge(page.locator("main")).first()).toBeVisible();
+    expect(await bodyText(page)).not.toMatch(NO_LABEL);
     expect(await bodyText(page)).not.toMatch(/licence|judgement/i);
   });
 });

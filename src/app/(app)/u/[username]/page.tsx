@@ -8,11 +8,9 @@ import { FoundingBadge } from "@/components/FoundingBadge";
 import { FollowButton } from "@/components/FollowButton";
 import { MentorshipButton } from "@/components/MentorshipButton";
 import { PostCard } from "@/components/PostCard";
-import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { ToastButton } from "@/components/ToastButton";
 import { getCurrentProfile } from "@/lib/auth/session";
 import { displayName } from "@/lib/display";
-import { FOUNDING_CONTACT_MESSAGE, isTeamWritten } from "@/lib/founding";
 import {
   AVAILABILITY_LABEL,
   SELF_REPORTED_NOTE,
@@ -168,17 +166,6 @@ export default async function ProfilePage({
                     isFollowing={isFollowing}
                   />
                 )}
-                <p className="w-full rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-[13px] leading-relaxed text-amber-900">
-                  {FOUNDING_CONTACT_MESSAGE}{" "}
-                  <Link href="/about#founding-community" className="font-medium underline">
-                    Learn more
-                  </Link>
-                  . To find a mentor who&apos;ll answer, filter the{" "}
-                  <Link href="/mentors?avail=accepting" className="font-medium underline">
-                    mentor directory
-                  </Link>{" "}
-                  by &ldquo;{AVAILABILITY_LABEL.accepting}&rdquo;.
-                </p>
               </>
             ) : !viewer ? (
               <Link
@@ -262,7 +249,6 @@ export default async function ProfilePage({
                   </span>
                 )}
               </div>
-              {isTeamWritten(a, profile) && <TeamWrittenLabel className="mb-1.5" />}
               {/* pre-line keeps bullet lists on their own lines; clamp the preview. */}
               <p className="line-clamp-5 whitespace-pre-line text-sm wrap-anywhere leading-relaxed text-zinc-700">
                 {a.body}

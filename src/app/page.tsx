@@ -414,7 +414,7 @@ export default async function LandingPage() {
                   a: "As little as you want. Answer a question when you've got five minutes. Mentorship requests are opt-in, and you can turn off ride-alongs and messages in your settings.",
                 },
                 {
-                  q: "What are the Founding Community profiles and team-written examples?",
+                  q: "What are the HF Community profiles?",
                   a: FOUNDING_ABOUT_SENTENCE,
                 },
                 {

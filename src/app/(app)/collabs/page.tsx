@@ -15,7 +15,6 @@ import { CollabComposer } from "@/components/CollabComposer";
 import { CollabFilledBadge } from "@/components/CollabFilled";
 import { CollabIcon } from "@/components/icons";
 import { CollabInterestControl } from "@/components/CollabInterestControl";
-import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { UserName } from "@/components/UserName";
 import { getCurrentProfile } from "@/lib/auth/session";
 import {
@@ -27,7 +26,6 @@ import {
   sortCollabsOpenFirst,
 } from "@/lib/collabs";
 import { loginHref } from "@/lib/next-path";
-import { isTeamWritten } from "@/lib/founding";
 import { COLLAB_TYPE_LABEL, COLLABS_TITLE } from "@/lib/format";
 import { AUTHOR_COLS } from "@/lib/profile-cols";
 import { createClient } from "@/lib/supabase/server";
@@ -202,7 +200,6 @@ export default async function CollabsPage({
             >
               <div className="flex items-start justify-between gap-3">
                 <div>
-                  {isTeamWritten(c, c.poster) && <TeamWrittenLabel className="mb-1.5" />}
                   <h3 className={`font-semibold wrap-anywhere ${filled ? "text-zinc-600" : ""}`}>{c.title}</h3>
                   <p className="mt-0.5 text-[13px] text-zinc-600">
                     Posted by{" "}

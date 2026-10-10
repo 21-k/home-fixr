@@ -9,22 +9,7 @@ export const FOUNDING_CONTACT_MESSAGE =
 
 /** Shown on a ride-along or collaboration posted from a Founding profile. */
 export const FOUNDING_COLLAB_MESSAGE =
-  "This is a team-written example posted from a Founding Community profile. It isn't a real opportunity and doesn't take applications.";
+  "This is a team-written example posted from an HF Community profile. It isn't a real opportunity and doesn't take applications.";
 
 export const FOUNDING_ABOUT_SENTENCE =
-  "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Those posts are labeled “Team-written example • AI-assisted”, and example profiles carry a Founding Community badge. Founding Community profiles are not real members and can't be messaged.";
-
-/** The label on every post and reply written by the team (see isTeamWritten). */
-export const TEAM_WRITTEN_LABEL = "Team-written example • AI-assisted";
-
-/**
- * True for a post, reply or collab the team wrote: its author is a Founding
- * Community profile, or the row came from a seed batch. Pure, so the tests and
- * every surface share one rule.
- */
-export function isTeamWritten(
-  row: { seed_batch_id?: string | null } | null | undefined,
-  author: { is_founding_member?: boolean | null } | null | undefined,
-): boolean {
-  return Boolean(author?.is_founding_member) || Boolean(row?.seed_batch_id);
-}
+  "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Example profiles, and the posts they wrote, carry an HF Community badge. HF Community profiles are not real members and can't be messaged.";
