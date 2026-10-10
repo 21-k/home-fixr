@@ -11,8 +11,8 @@ export const metadata: Metadata = {
 };
 
 /**
- * Minimal About / FAQ page. Its main job is the Founding Community disclosure
- * (seeding plan §0.3): every seeded account's badge links here.
+ * Minimal About / FAQ page. It explains the HF Community badge (seeding plan
+ * §0.3) alongside the Terms of Service, section 5.
  */
 export default function AboutPage() {
   return (
@@ -47,6 +47,13 @@ export default function AboutPage() {
             <FoundingBadge size="md" />
           </div>
           <p className="text-[15px] leading-7 text-zinc-800">{FOUNDING_ABOUT_SENTENCE}</p>
+          <p className="mt-2 text-[14px] text-zinc-600">
+            Also set out in our{" "}
+            <Link href="/terms#hf-community" className="font-medium text-brand-600 hover:underline">
+              Terms of Service
+            </Link>
+            .
+          </p>
           <ul className="mt-4 list-disc space-y-2 pl-5 text-[14px] leading-6 text-zinc-700">
             <li>
               Every example profile, and every post, reply and ride-along it

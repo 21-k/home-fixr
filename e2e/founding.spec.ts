@@ -4,7 +4,7 @@ import { FOUNDING } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
 
 // The old yellow example-profile notice was removed (Oct 2026); the HF Community
-// badge (linking to the About explanation) is what remains on these profiles.
+// badge (plain text, explained in the Terms of Service and About) is what remains.
 const NOTICE = /This is an example profile prepared by the Home Fixr team/;
 const BADGE = "HF Community";
 
@@ -17,9 +17,11 @@ async function expectNoContactControls(page: import("@playwright/test").Page) {
 test.describe("Founding accounts, logged out @public", () => {
   test("founding profile shows the HF Community badge, no yellow notice, no contact controls", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
-    const badge = page.locator("main").getByRole("link", { name: BADGE }).first();
-    await expect(badge).toBeVisible();
-    await expect(badge).toHaveAttribute("href", "/about#founding-community");
+    const badge = page.locator("main").getByTestId("hf-community-badge").first();
+    await expect(badge).toHaveText(BADGE);
+    // Plain text, not a link; the meaning is in the Terms (and its hover note).
+    expect(await badge.evaluate((el) => el.closest("a"))).toBeNull();
+    await expect(badge).toHaveAttribute("title", /example profile prepared by the Home Fixr team/);
     await expect(page.getByText(NOTICE)).toHaveCount(0);
     await expectNoContactControls(page);
     await expect(page.getByRole("link", { name: "Sign in to connect" })).toHaveCount(0);
@@ -28,13 +30,13 @@ test.describe("Founding accounts, logged out @public", () => {
   test("founding mentor cards show the badge, never a Message button", async ({ page }) => {
     await visit(page, "/mentors");
     const card = page.locator("main div.rounded-xl", { hasText: `${FOUNDING.senior}` }).first();
-    await expect(card.getByRole("link", { name: BADGE })).toBeVisible();
+    await expect(card.getByTestId("hf-community-badge")).toBeVisible();
     await expect(card.getByRole("link", { name: /^Message$/ })).toHaveCount(0);
   });
 
   test("the Accepting mentorship requests filter never lists a founding account", async ({ page }) => {
     await visit(page, "/mentors?avail=accepting");
-    await expect(page.locator("main").getByRole("link", { name: BADGE })).toHaveCount(0);
+    await expect(page.locator("main").getByTestId("hf-community-badge")).toHaveCount(0);
   });
 });
 
@@ -43,7 +45,7 @@ test.describe("Founding accounts, logged in", () => {
 
   test("founding profile: badge, no yellow notice, no Message / mentorship buttons", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
-    await expect(page.locator("main").getByRole("link", { name: BADGE }).first()).toBeVisible();
+    await expect(page.locator("main").getByTestId("hf-community-badge").first()).toBeVisible();
     await expect(page.getByText(NOTICE)).toHaveCount(0);
     await expectNoContactControls(page);
   });
