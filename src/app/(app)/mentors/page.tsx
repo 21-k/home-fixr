@@ -128,7 +128,7 @@ export default async function MentorsPage({
           {mentors.map((m) => (
             <div
               key={m.id}
-              className="rounded-xl border border-zinc-200 bg-white p-5 transition-all hover:border-brand-500 hover:shadow-[0_2px_8px_rgba(140,93,225,0.12)]"
+              className="rounded-xl border border-zinc-200 bg-white p-5 transition-all hover:border-brand-500 hover:shadow-[0_2px_8px_rgba(37,99,235,0.12)]"
             >
               <Link href={`/u/${m.username}`} className="block">
                 <div className="mb-3 flex gap-3.5">
