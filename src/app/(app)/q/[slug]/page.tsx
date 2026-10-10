@@ -6,7 +6,6 @@ import { AppBody, SideLink, SideSection } from "@/components/AppBody";
 import { Avatar } from "@/components/Avatar";
 import { ReplyComposer } from "@/components/ReplyComposer";
 import { RichText } from "@/components/RichText";
-import { TeamWrittenLabel } from "@/components/TeamWrittenLabel";
 import { UserName } from "@/components/UserName";
 import {
   acceptReply,
@@ -16,7 +15,6 @@ import {
   markReplyHelpful,
 } from "@/lib/actions";
 import { getCurrentProfile } from "@/lib/auth/session";
-import { isTeamWritten } from "@/lib/founding";
 import { loginHref } from "@/lib/next-path";
 import {
   POST_TYPE_LABEL,
@@ -124,7 +122,6 @@ export default async function ThreadPage({
           />{" "}
           · {timeAgo(post.created_at)}
         </p>
-        {isTeamWritten(post, post.author) && <TeamWrittenLabel className="-mt-2 mb-4" />}
         <RichText
           text={post.body}
           className="whitespace-pre-line text-sm leading-relaxed text-zinc-700"
@@ -195,7 +192,6 @@ export default async function ThreadPage({
                 </span>
               )}
             </div>
-            {isTeamWritten(reply, reply.author) && <TeamWrittenLabel className="mb-2" />}
             <RichText
               text={reply.body}
               className="whitespace-pre-line text-sm leading-relaxed text-zinc-700"

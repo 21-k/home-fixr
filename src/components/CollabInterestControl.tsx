@@ -11,7 +11,6 @@ import {
 import { CollabFilledToggle } from "@/components/CollabFilled";
 import { toggleCollabInterest } from "@/lib/actions";
 import { applyBlockReason, COLLAB_FILLED_MESSAGE } from "@/lib/collabs";
-import { FOUNDING_COLLAB_MESSAGE } from "@/lib/founding";
 import type { CollabInterestStatus, TradeType } from "@/lib/types";
 
 /**
@@ -93,14 +92,7 @@ export function CollabInterestControl({
             Not this time
           </span>
         )}
-        <p className="text-[13px] leading-relaxed text-zinc-600">
-          {COLLAB_FILLED_MESSAGE}
-          {posterIsFounding && (
-            <span className="mt-1 block text-[12px] text-zinc-500">
-              {FOUNDING_COLLAB_MESSAGE}
-            </span>
-          )}
-        </p>
+        <p className="text-[13px] leading-relaxed text-zinc-600">{COLLAB_FILLED_MESSAGE}</p>
         {!posterIsFounding && <div className="ml-auto">{messageLink}</div>}
       </div>
     );
@@ -109,7 +101,7 @@ export function CollabInterestControl({
   if (block === "founding") {
     return (
       <p className="mt-3 border-t border-zinc-100 pt-3 text-[13px] leading-relaxed text-zinc-500">
-        {FOUNDING_COLLAB_MESSAGE}
+        Applications aren&apos;t available for this listing.
       </p>
     );
   }

@@ -1102,10 +1102,10 @@ def check_app_collabs(app, collabs, cookie: str | None = None):
         record(f"app ({who}): open collabs listed before filled ones", code == 200 and open_first,
                f"{flags.count(False)} open, {flags.count(True)} filled")
         if who == "signed-in member":
-            fm = sum("posted from a Founding Community profile" in by_title.get(c["title"], "") for c in collabs)
+            fm = sum("posted from" not in by_title.get(c["title"], "") for c in collabs)
             signed = 'href="/collabs/mine"' in page
-            record("app (signed-in member): seeded collabs also keep the Founding notice, under Position filled",
-                   signed and fm == len(collabs), f"signed in: {signed}; founding notice on {fm}/{len(collabs)}")
+            record("app (signed-in member): seeded collabs show Position filled with no example-statement line",
+                   signed and fm == len(collabs), f"signed in: {signed}; clean on {fm}/{len(collabs)}")
         code, op = fetch(f"{app}/collabs?status=open", cookie=hdr)
         shown = [c["id"] for c in collabs if htmllib.escape(c["title"], quote=False) in op or c["title"] in op]
         record(f"app ({who}): 'Open only' hides every seeded (filled) collab", code == 200 and not shown, f"{code}; shown: {shown[:3]}")
@@ -1114,9 +1114,8 @@ def check_app_collabs(app, collabs, cookie: str | None = None):
 # Disclosure copy (src/lib/founding.ts), checked verbatim on the rendered pages.
 TEAM_LABEL = "Team-written example \u2022 AI-assisted"
 ABOUT_SENTENCE = ("Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance "
-                  "to show how the community works. Those posts are labeled \u201cTeam-written example \u2022 AI-assisted\u201d, "
-                  "and example profiles carry a Founding Community badge. Founding Community profiles are not real members "
-                  "and can't be messaged.")
+                  "to show how the community works. Example profiles, and the posts they wrote, carry an HF Community "
+                  "badge. HF Community profiles are not real members and can't be messaged.")
 PROFILE_NOTICE = "This is an example profile prepared by the Home Fixr team"
 
 
@@ -1143,21 +1142,20 @@ def check_app(app, people, threads, expected=None):
     record("app: /feed renders", code == 200, str(code))
     leaks = [p["handle"] for p in people if p["display_preference"] == "handle" and p["full_name"] in feed]
     record("app: no full_name of handle-preference users on /feed", not leaks, str(leaks[:5]))
-    record("app: Founding Community badge on /feed", feed.count("Founding Community") >= len(threads),
-           f"{feed.count('Founding Community')} badges for {len(threads)} posts")
-    # Every team-written post card carries the label; no real member's card does.
+    record("app: HF Community badge on /feed", feed.count("HF Community") >= len(threads),
+           f"{feed.count('HF Community')} badges for {len(threads)} posts")
+    # Post-level labels were removed (Oct 2026): the HF Community badge marks
+    # every seeded card, and no "Team-written example" label renders anywhere.
     cards = re.split(r'(?=<article[^>]*data-testid="post-card")', feed)[1:]
-    labeled = [('data-testid="team-written-label"' in ch and TEAM_LABEL in ch) for ch in cards]
-    founding = ["Founding Community</a>" in ch for ch in cards]
-    wrong = [i for i, (lab, fm) in enumerate(zip(labeled, founding)) if lab != fm]
-    record("app: /feed labels every team-written post 'Team-written example \u2022 AI-assisted', and only those",
-           bool(cards) and sum(labeled) >= len(threads) and not wrong,
-           f"{sum(labeled)} labeled of {len(cards)} cards ({sum(founding)} by Founding profiles); mismatched cards: {wrong[:5]}")
+    founding = ["HF Community</a>" in ch for ch in cards]
+    record("app: /feed marks every seeded post with the HF Community badge, and no post-level label renders",
+           bool(cards) and sum(founding) >= len(threads) and TEAM_LABEL not in feed,
+           f"{sum(founding)} badged of {len(cards)} cards; label present: {TEAM_LABEL in feed}")
     code, mentors = fetch(f"{app}/mentors")
     seniors = [p for p in people if p["role"] == "senior"]
     shown = [p["handle"] for p in seniors if p["handle"] in mentors or (p["display_name"] and p["display_name"] in mentors)]
-    record("app: /mentors lists all 15 seeded Seniors with badge", code == 200 and len(shown) == 15 and mentors.count("Founding Community") >= 15,
-           f"{len(shown)} shown, {mentors.count('Founding Community')} badges")
+    record("app: /mentors lists all 15 seeded Seniors with badge", code == 200 and len(shown) == 15 and mentors.count("HF Community") >= 15,
+           f"{len(shown)} shown, {mentors.count('HF Community')} badges")
     leaks = [p["handle"] for p in seniors if p["display_preference"] == "handle" and p["full_name"] in mentors]
     record("app: no full_name of handle-preference Seniors on /mentors", not leaks, str(leaks))
     if expected:
@@ -1173,7 +1171,7 @@ def check_app(app, people, threads, expected=None):
         record("app: /mentors 'mentees' counts match the DB", len(cards) == 15 and not f_men,
                f"{len(f_men)} of {len(cards)} cards differ: {f_men[:6]}")
     code, acc = fetch(f"{app}/mentors?avail=accepting")
-    record("app: 'Accepting mentorship requests' filter excludes every Founding account", code == 200 and "Founding Community" not in acc.split("<main", 1)[-1])
+    record("app: 'Accepting mentorship requests' filter excludes every Founding account", code == 200 and "HF Community" not in acc.split("<main", 1)[-1])
     # Every profile page: badge present, handle shown, private name absent.
     missing, leaks, bad = [], [], []
     stat_bad = {"followers": [], "active mentees": [], "answers": []}
@@ -1188,12 +1186,12 @@ def check_app(app, people, threads, expected=None):
                 shown, want = _num(clean, label, "dt"), expected[key].get(p["handle"], 0)
                 if shown != want:
                     stat_bad[label].append(f"{p['handle']}: shows {shown}, DB {want}")
-        if "Founding Community" not in html or PROFILE_NOTICE not in html:
+        if "HF Community" not in html or PROFILE_NOTICE in html:
             missing.append(p["handle"])
         if p["display_preference"] == "handle" and p["full_name"] in html:
             leaks.append(p["handle"])
     record("app: all 136 profile pages render (200)", not bad, str(bad[:5]))
-    record("app: Founding Community badge + example-profile notice on every seeded profile", not missing, str(missing[:5]))
+    record("app: HF Community badge (and no yellow example-profile notice) on every seeded profile", not missing, str(missing[:5]))
     record("app: no private full_name on handle-preference profiles", not leaks, str(leaks[:5]))
     if expected:
         for label, bads in stat_bad.items():
@@ -1207,19 +1205,17 @@ def check_app(app, people, threads, expected=None):
     thread_bad, label_bad = [], []
     for s in sorted(set(slugs)):
         c, h = fetch(f"{app}/q/{s}")
-        if c != 200 or "Founding Community" not in h:
+        if c != 200 or "HF Community" not in h:
             thread_bad.append(f"{s}:{c}")
-        # The post plus every reply carries the label (all seeded authors).
-        n_replies = h.count('data-testid="reply"')
-        n_labels = h.count('data-testid="team-written-label"')
-        if n_labels != 1 + n_replies or TEAM_LABEL not in h:
-            label_bad.append(f"{s}: {n_labels} labels for 1 post + {n_replies} replies")
+        # No post-level label on seeded threads any more (removed Oct 2026).
+        if TEAM_LABEL in h or 'data-testid="team-written-label"' in h:
+            label_bad.append(s)
     record("app: seeded thread pages render with badges", bool(slugs) and not thread_bad, f"{len(set(slugs))} threads checked; bad: {thread_bad[:3]}")
-    record("app: seeded thread pages label the post and every reply", bool(slugs) and not label_bad, f"{len(set(slugs))} threads; bad: {label_bad[:3]}")
+    record("app: seeded thread pages carry no post-level label", bool(slugs) and not label_bad, f"{len(set(slugs))} threads; still labeled: {label_bad[:3]}")
     code, about = fetch(f"{app}/about")
     record("app: About page carries the §0.3 sentence", code == 200 and ABOUT_SENTENCE in about.replace("&#x27;", "'"))
     code, landing = fetch(f"{app}/")
-    record("app: landing FAQ + footer link to About", code == 200 and 'href="/about"' in landing and "Founding Community" in landing)
+    record("app: landing FAQ + footer link to About", code == 200 and 'href="/about"' in landing and "HF Community" in landing)
 
 
 def main() -> None:

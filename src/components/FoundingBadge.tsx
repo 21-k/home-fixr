@@ -13,10 +13,10 @@ export function FoundingBadge({ size = "sm" }: { size?: "sm" | "md" }) {
   return (
     <Link
       href="/about#founding-community"
-      title="Founding Community: an example profile prepared by the Home Fixr team with AI assistance. Not a real member. Click to learn more."
+      title="HF Community: an example profile prepared by the Home Fixr team with AI assistance. Not a real member. Click to learn more."
       className={`inline-flex shrink-0 items-center rounded border border-amber-300 bg-amber-50 font-semibold uppercase tracking-wide text-amber-800 hover:bg-amber-100 ${cls}`}
     >
-      Founding Community
+      HF Community
     </Link>
   );
 }

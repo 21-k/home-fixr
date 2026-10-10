@@ -64,7 +64,7 @@ test("every surface that renders another member's name uses UserName or displayN
   }
 });
 
-test("Founding Community badge is wired into profile header, post cards, replies, mentor cards, collabs", () => {
+test("HF Community (founding) badge is wired into profile header, post cards, replies, mentor cards, collabs", () => {
   const userName = readFileSync(join(ROOT, "src/components/UserName.tsx"), "utf8");
   assert.match(userName, /is_founding_member && <FoundingBadge/);
   const profile = readFileSync(join(ROOT, "src/app/(app)/u/[username]/page.tsx"), "utf8");
@@ -82,7 +82,7 @@ test("About page carries the disclosure sentence verbatim (review-changes wordin
   const { FOUNDING_ABOUT_SENTENCE } = await import("../src/lib/founding.ts");
   assert.equal(
     FOUNDING_ABOUT_SENTENCE,
-    "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Those posts are labeled \u201cTeam-written example \u2022 AI-assisted\u201d, and example profiles carry a Founding Community badge. Founding Community profiles are not real members and can't be messaged.",
+    "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Example profiles, and the posts they wrote, carry an HF Community badge. HF Community profiles are not real members and can't be messaged.",
   );
   const about = readFileSync(join(ROOT, "src/app/about/page.tsx"), "utf8");
   assert.match(about, /FOUNDING_ABOUT_SENTENCE/);

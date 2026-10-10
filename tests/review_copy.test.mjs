@@ -1,4 +1,4 @@
-// The external review's interface copy and the "Team-written example" labels.
+// The external review's interface copy, and the HF Community disclosure that remains.
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync, statSync } from "node:fs";
@@ -13,11 +13,7 @@ import {
   profileHeadline,
   yearsLabel,
 } from "../src/lib/format.ts";
-import {
-  FOUNDING_CONTACT_MESSAGE,
-  TEAM_WRITTEN_LABEL,
-  isTeamWritten,
-} from "../src/lib/founding.ts";
+import { FOUNDING_ABOUT_SENTENCE, FOUNDING_CONTACT_MESSAGE } from "../src/lib/founding.ts";
 import { COLLABS_EMPTY_MESSAGE } from "../src/lib/collabs.ts";
 
 const ROOT = new URL("..", import.meta.url).pathname;
@@ -50,35 +46,17 @@ test("role, availability and ride-along labels use the review's vocabulary (DB v
   assert.match(SELF_REPORTED_NOTE, /self-reported .* not verified/);
 });
 
-test("team-written: Founding author or a seed batch, never a real member's own row", () => {
-  assert.equal(TEAM_WRITTEN_LABEL, "Team-written example • AI-assisted");
-  assert.equal(isTeamWritten({ seed_batch_id: null }, { is_founding_member: true }), true);
-  assert.equal(isTeamWritten({ seed_batch_id: "fm-2026-10" }, { is_founding_member: false }), true);
-  assert.equal(isTeamWritten({ seed_batch_id: null }, { is_founding_member: false }), false);
-  assert.equal(isTeamWritten({}, null), false);
-  assert.equal(isTeamWritten(null, undefined), false);
-});
-
-test("the label is wired into every surface that renders posts or replies", () => {
-  for (const f of [
-    "src/components/PostCard.tsx", // feed, search, profile Recent posts
-    "src/app/(app)/q/[slug]/page.tsx", // thread post + each reply
-    "src/app/(app)/u/[username]/page.tsx", // profile Recent answers
-    "src/app/(app)/collabs/page.tsx", // seeded ride-alongs
-  ]) {
-    const s = src(f);
-    assert.match(s, /<TeamWrittenLabel/, f);
-    assert.match(s, /isTeamWritten\(/, f);
-  }
-  const thread = src("src/app/(app)/q/[slug]/page.tsx");
-  assert.match(thread, /isTeamWritten\(post, post\.author\)/);
-  assert.match(thread, /isTeamWritten\(reply, reply\.author\)/);
-  // The profile's answers select must carry seed_batch_id for the rule.
-  assert.match(src("src/app/(app)/u/[username]/page.tsx"), /seed_batch_id, post:posts/);
-  // Feed, search and thread select * (which includes seed_batch_id).
-  for (const f of ["src/app/(app)/feed/page.tsx", "src/app/(app)/search/page.tsx"]) {
-    assert.match(src(f), /select\(`\*, author:profiles/, f);
-  }
+test("post-level 'Team-written example' labels were removed (Oct 2026); the badge + About remain", () => {
+  const all = walk(join(ROOT, "src")).map((f) => readFileSync(f, "utf8")).join("\n");
+  assert.doesNotMatch(all, /Team-written example|TeamWrittenLabel|isTeamWritten/);
+  // What still discloses the example profiles: the HF Community badge (linking
+  // to the About explanation, with a hover note) and the About sentence.
+  const badge = src("src/components/FoundingBadge.tsx");
+  assert.match(badge, /HF Community/);
+  assert.match(badge, /href="\/about#founding-community"/);
+  assert.match(badge, /example profile prepared by the Home Fixr team/);
+  assert.match(FOUNDING_ABOUT_SENTENCE, /example profiles .* HF Community badge/);
+  assert.match(FOUNDING_ABOUT_SENTENCE, /not real members/);
 });
 
 test("no wording implies the example profiles are real people", () => {
