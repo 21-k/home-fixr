@@ -140,7 +140,7 @@ export default async function ConversationPage({
         {other.is_founding_member ? (
           <p className="border-t border-zinc-200 p-4 text-[13px] text-zinc-500">
             Messaging isn&apos;t available for this profile.{" "}
-            <Link href="/about#founding-community" className="underline hover:text-zinc-700">
+            <Link href="/terms#hf-community" className="underline hover:text-zinc-700">
               Learn more
             </Link>
           </p>

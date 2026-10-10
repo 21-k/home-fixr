@@ -49,12 +49,16 @@ test("role, availability and ride-along labels use the review's vocabulary (DB v
 test("post-level 'Team-written example' labels were removed (Oct 2026); the badge + About remain", () => {
   const all = walk(join(ROOT, "src")).map((f) => readFileSync(f, "utf8")).join("\n");
   assert.doesNotMatch(all, /Team-written example|TeamWrittenLabel|isTeamWritten/);
-  // What still discloses the example profiles: the HF Community badge (linking
-  // to the About explanation, with a hover note) and the About sentence.
+  // What still discloses the example profiles: the HF Community badge (plain
+  // text with a hover note), the Terms of Service section 5 and the About sentence.
   const badge = src("src/components/FoundingBadge.tsx");
   assert.match(badge, /HF Community/);
-  assert.match(badge, /href="\/about#founding-community"/);
+  assert.doesNotMatch(badge, /<Link|href=/);
   assert.match(badge, /example profile prepared by the Home Fixr team/);
+  const terms = src("src/app/terms/page.tsx");
+  assert.match(terms, /id: "hf-community"/);
+  assert.match(terms, /They are not real members\./);
+  assert.match(src("src/app/page.tsx"), /href: "\/terms", label: "Terms of Service"/);
   assert.match(FOUNDING_ABOUT_SENTENCE, /example profiles .* HF Community badge/);
   assert.match(FOUNDING_ABOUT_SENTENCE, /not real members/);
 });

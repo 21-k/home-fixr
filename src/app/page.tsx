@@ -481,6 +481,7 @@ export default async function LandingPage() {
               { href: "/collabs", label: COLLABS_NAV },
               { href: "/search", label: "Search" },
               { href: "/about", label: "About" },
+              { href: "/terms", label: "Terms of Service" },
               { href: "/join", label: "Join" },
               { href: "/login", label: "Sign in" },
             ].map((l) => (

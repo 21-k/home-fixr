@@ -120,6 +120,13 @@ export function JoinForm({
               {pending ? "Creating account…" : "Create account →"}
             </button>
           </div>
+          <p className="mt-4 text-[12px] text-zinc-500">
+            By creating an account you agree to the{" "}
+            <Link href="/terms" className="underline hover:text-zinc-700">
+              Terms of Service
+            </Link>
+            .
+          </p>
         </form>
       </div>
     </div>
