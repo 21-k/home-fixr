@@ -1,12 +1,13 @@
 import { test, expect, visit, expectFitsViewport } from "./support/fixtures";
 import { profileId, rest } from "./support/db";
-import { FOUNDING } from "./support/routes";
+import { FOUNDING, REMOVED_FOUNDING } from "./support/routes";
+import { IS_LIVE } from "./support/env";
 import { USERS, storageStatePath } from "./support/users";
+import { expectHfLogoBadge } from "./support/badge";
 
-// The old yellow example-profile notice was removed (Oct 2026); the HF Community
-// badge (plain text, explained in the Terms of Service and About) is what remains.
+// The old yellow example-profile notice was removed (Oct 2026); the HF logo
+// (explained in its hover note, the Terms of Service and About) is what remains.
 const NOTICE = /This is an example profile prepared by the Home Fixr team/;
-const BADGE = "HF Community";
 
 async function expectNoContactControls(page: import("@playwright/test").Page) {
   const main = page.locator("main");
@@ -15,13 +16,12 @@ async function expectNoContactControls(page: import("@playwright/test").Page) {
 }
 
 test.describe("Founding accounts, logged out @public", () => {
-  test("founding profile shows the HF Community badge, no yellow notice, no contact controls", async ({ page }) => {
+  test("founding profile shows the HF logo badge, no yellow notice, no contact controls", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
     const badge = page.locator("main").getByTestId("hf-community-badge").first();
-    await expect(badge).toHaveText(BADGE);
-    // Plain text, not a link; the meaning is in the Terms (and its hover note).
+    // The HF logo only, with an accessible name and hover note; not a link.
+    await expectHfLogoBadge(badge);
     expect(await badge.evaluate((el) => el.closest("a"))).toBeNull();
-    await expect(badge).toHaveAttribute("title", /example profile prepared by the Home Fixr team/);
     await expect(page.getByText(NOTICE)).toHaveCount(0);
     await expectNoContactControls(page);
     await expect(page.getByRole("link", { name: "Sign in to connect" })).toHaveCount(0);
@@ -30,13 +30,35 @@ test.describe("Founding accounts, logged out @public", () => {
   test("founding mentor cards show the badge, never a Message button", async ({ page }) => {
     await visit(page, "/mentors");
     const card = page.locator("main div.rounded-xl", { hasText: `${FOUNDING.senior}` }).first();
-    await expect(card.getByTestId("hf-community-badge")).toBeVisible();
+    await expectHfLogoBadge(card.getByTestId("hf-community-badge"));
     await expect(card.getByRole("link", { name: /^Message$/ })).toHaveCount(0);
   });
 
   test("the Accepting mentorship requests filter never lists a founding account", async ({ page }) => {
     await visit(page, "/mentors?avail=accepting");
     await expect(page.locator("main").getByTestId("hf-community-badge")).toHaveCount(0);
+  });
+});
+
+test.describe("the example batch after the cut to 9 mentors + 20 apprentices (local)", () => {
+  // Production is cut by seed/out/reduce-cast-fm-2026-10.sql after this merges.
+  test.skip(IS_LIVE, "local only until the reduce SQL has run on production");
+
+  test("removed example profiles 404; the batch is 9 mentors + 20 apprentices; /mentors shows the 9", async ({ page, health }) => {
+    for (const h of REMOVED_FOUNDING) health.allow(new RegExp(`HTTP 404 GET .*/u/${h.replace(".", "\\.")}$`));
+    health.allow(/Failed to load resource: the server responded with a status of 404/);
+    for (const h of REMOVED_FOUNDING) {
+      const res = await visit(page, `/u/${h}`);
+      expect(res?.status(), h).toBe(404);
+    }
+    const rows = await rest<{ role: string; username: string }[]>("profiles?select=role,username&seed_batch_id=eq.fm-2026-10");
+    expect(rows.filter((r) => r.role === "senior")).toHaveLength(9);
+    expect(rows.filter((r) => r.role === "junior")).toHaveLength(20);
+    expect(rows.map((r) => r.username)).toEqual(expect.arrayContaining(Object.values(FOUNDING)));
+    await visit(page, "/mentors");
+    const cards = page.locator("main div.rounded-xl").filter({ has: page.getByTestId("hf-community-badge") });
+    await expect(cards).toHaveCount(9);
+    await expectHfLogoBadge(cards.first().getByTestId("hf-community-badge"));
   });
 });
 

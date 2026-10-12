@@ -31,7 +31,7 @@ export type Profile = {
   display_preference: DisplayPreference;
   /** Null = handle was auto-derived at signup and never chosen. */
   username_changed_at: string | null;
-  /** Seeded by the Home Fixr team; shown with a "Founding Community" badge. */
+  /** Seeded by the Home Fixr team; an example profile, marked with the HF logo (FoundingBadge). */
   is_founding_member: boolean;
   mentor_availability: MentorAvailability;
   /** Avatar (migration 0011): initials | icon | none; icon key when style = icon. */

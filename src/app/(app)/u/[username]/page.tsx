@@ -214,10 +214,10 @@ export default async function ProfilePage({
           </div>
 
           <dl className="mt-5 flex flex-wrap gap-8 border-t border-zinc-200 pt-4">
-            <Stat value={answeredCount ?? 0} label="answers" />
-            <Stat value={followerCount} label="followers" />
-            <Stat value={menteeCount ?? 0} label="active mentees" />
-            <Stat value={collabCount ?? 0} label="opportunities posted" />
+            <Stat value={answeredCount ?? 0} one="answer" many="answers" />
+            <Stat value={followerCount} one="follower" many="followers" />
+            <Stat value={menteeCount ?? 0} one="active mentee" many="active mentees" />
+            <Stat value={collabCount ?? 0} one="opportunity posted" many="opportunities posted" />
           </dl>
         </div>
       </section>
@@ -274,11 +274,11 @@ export default async function ProfilePage({
   );
 }
 
-function Stat({ value, label }: { value: number; label: string }) {
+function Stat({ value, one, many }: { value: number; one: string; many: string }) {
   return (
     <div>
       <dt className="text-xl font-semibold text-zinc-900">{value}</dt>
-      <dd className="text-[13px] text-zinc-600">{label}</dd>
+      <dd className="text-[13px] text-zinc-600">{value === 1 ? one : many}</dd>
     </div>
   );
 }

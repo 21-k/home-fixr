@@ -1,0 +1,165 @@
+# The reduced example cast for batch fm-2026-10 (owner decisions, Oct 2026).
+# Read by seed/scripts/reduce_cast.py together with repairs.yaml. Every time is
+# UTC; reduce_cast.py validates the windows, join dates and posting hours.
+
+# 1. Who stays. Mentors: the 9 busiest (owner's list). Apprentices: the 20
+#    busiest by posts + replies in full-136/threads.scheduled.json, ties broken
+#    by handle (case-insensitive). reduce_cast.py recomputes the 20 and refuses
+#    if they differ from this list.
+mentors: [Kash_sing, oldsteam_zig, mbell_wireman, codebook_dale, thiago_sparks, hec_does_ac, haddad_mech, ms_almonte, rui_t_kearny]
+apprentices: [benplumb79, JerseyTomatoWires, neutral_bar_99, peteplumb80, plumbguy917, JunctionBoxJunkie, Dev_H, HeatwaveOnCall,
+              NorthJerseyCopper, groundrod_05, joe.plumb, TryingAllThree, HelperForNow, Exit117Plumber, LiveFrontLessons,
+              threeway_02, big_hector_plumb, Flushing.sparks, Kearny_Pipefitter, Passaic_Sparky]
+
+# 3. Mentorships. Rows between two kept accounts stay as they are, except the
+#    status changes below; new rows are added. Every other row goes.
+#    Requests come after any thread exchange in which the mentor answered the
+#    apprentice like a stranger, and every "my mentor" in a thread comes after
+#    the mentorship started (qa.py checks both).
+mentorship_status:
+  - junior: LiveFrontLessons
+    senior: thiago_sparks
+    status: active
+    decided_at: "2026-10-02T23:25:41+00:00"
+    why: "his pending request (after T07/T142, where Thiago helped him) is accepted"
+mentorships_new:
+  - {junior: groundrod_05, senior: mbell_wireman, status: active, requested_at: "2026-08-21T00:42:17+00:00", decided_at: "2026-08-21T23:15:09+00:00",
+     anchor_thread: T190, why: "Marcus answered his T190; T051 ('preparing with my mentor here') and T160 need a mentor, who was dreb_jman (removed)"}
+  - {junior: HelperForNow, senior: codebook_dale, status: active, requested_at: "2026-08-24T23:40:33+00:00", decided_at: "2026-08-25T23:20:52+00:00",
+     anchor_thread: T189, why: "Dale answered his T189; same county (Ocean), the one mentee Dale took before he stopped taking more"}
+  - {junior: TryingAllThree, senior: Kash_sing, status: active, requested_at: "2026-08-26T00:35:40+00:00", decided_at: "2026-08-26T22:10:12+00:00",
+     anchor_thread: T03, why: "Kash's pay-cut list in T03; same county; replaces joyd_plumbing as the mentor named in T042/T110/T210"}
+  - {junior: Kearny_Pipefitter, senior: rui_t_kearny, status: active, requested_at: "2026-09-09T01:05:26+00:00", decided_at: "2026-09-10T00:30:48+00:00",
+     anchor_thread: T179, why: "Rui answered his Hudson roll call (T179); Bayonne/Kearny; replaces joyd_plumbing"}
+  - {junior: big_hector_plumb, senior: ms_almonte, status: active, requested_at: "2026-09-11T00:12:05+00:00", decided_at: "2026-09-11T23:48:37+00:00",
+     anchor_thread: T066, why: "Rosa answered his T066 (and later T115); plumbing, North Jersey"}
+  - {junior: JunctionBoxJunkie, senior: thiago_sparks, status: active, requested_at: "2026-09-20T00:55:19+00:00", decided_at: "2026-09-20T23:30:44+00:00",
+     anchor_thread: T024, why: "worked Thiago's C03 Saturday in August; Thiago's accepted answer in T024; Central Jersey electrical"}
+  - {junior: NorthJerseyCopper, senior: oldsteam_zig, status: active, requested_at: "2026-09-26T23:10:58+00:00", decided_at: "2026-09-27T22:40:15+00:00",
+     anchor_thread: T097, why: "Ziggy answered his T029/T097/T105; both Bergen County plumbing"}
+  - {junior: benplumb79, senior: haddad_mech, status: active, requested_at: "2026-09-30T00:20:31+00:00", decided_at: "2026-09-30T23:35:02+00:00",
+     anchor_thread: T131, why: "haddad_mech's accepted answer on his review (T131), which he followed; plumbing"}
+  - {junior: Flushing.sparks, senior: mbell_wireman, status: active, requested_at: "2026-09-30T22:30:14+00:00", decided_at: "2026-10-01T23:45:27+00:00",
+     anchor_thread: null, why: "no thread exchange: weighing a Jersey IBEW local (T054), he asks the IBEW foreman he mentions in T053 (who mentors his friend groundrod_05); replaces dreb_jman"}
+  - {junior: Dev_H, senior: hec_does_ac, status: active, requested_at: "2026-09-30T23:50:36+00:00", decided_at: "2026-10-02T00:15:59+00:00",
+     anchor_thread: T10, why: "hec_does_ac's Gloucester County shop tip in T10 found him his new job (T049); same region; his request to Rui (Kearny, far away) is still unanswered. Cross-trade: the new shop does service and boilers"}
+
+# 4. Follows: every follow between two kept accounts stays; these are added
+#    (each mentee follows their mentor; mentors' follower counts topped up to
+#    6-15 from people they answered; two mentors follow their mentee).
+follows_new:
+  - {follower: groundrod_05, following: mbell_wireman, created_at: "2026-08-19T10:40:12+00:00", why: "answered his thread (T190); mentee follows mentor"}
+  - {follower: Kearny_Pipefitter, following: rui_t_kearny, created_at: "2026-09-07T10:12:31+00:00", why: "answered his thread (T179); mentee follows mentor"}
+  - {follower: big_hector_plumb, following: ms_almonte, created_at: "2026-09-09T00:20:44+00:00", why: "answered his thread (T115); mentee follows mentor"}
+  - {follower: Flushing.sparks, following: mbell_wireman, created_at: "2026-09-30T21:55:03+00:00", why: "mentee follows mentor (before the request)"}
+  - {follower: Kash_sing, following: hec_does_ac, created_at: "2026-08-23T22:50:27+00:00", why: "same thread (T119)"}
+  - {follower: hec_does_ac, following: Kash_sing, created_at: "2026-08-24T10:15:49+00:00", why: "same thread (T119)"}
+  - {follower: joe.plumb, following: hec_does_ac, created_at: "2026-08-12T23:30:16+00:00", why: "trade/region (both Cherry Hill)"}
+  - {follower: threeway_02, following: hec_does_ac, created_at: "2026-09-15T22:40:08+00:00", why: "answered his thread (T108)"}
+  - {follower: NorthJerseyCopper, following: hec_does_ac, created_at: "2026-09-22T10:20:35+00:00", why: "answered his thread (T105)"}
+  - {follower: plumbguy917, following: hec_does_ac, created_at: "2026-09-22T22:30:51+00:00", why: "answered his thread (T086)"}
+  - {follower: TryingAllThree, following: hec_does_ac, created_at: "2026-09-28T11:05:22+00:00", why: "answered his thread (T042)"}
+  - {follower: Passaic_Sparky, following: Kash_sing, created_at: "2026-09-14T22:05:40+00:00", why: "answered his thread (T155)"}
+  - {follower: benplumb79, following: Kash_sing, created_at: "2026-09-23T22:15:13+00:00", why: "answered his thread (T12)"}
+  - {follower: neutral_bar_99, following: Kash_sing, created_at: "2026-09-24T10:30:57+00:00", why: "accepted answer on his thread (T145)"}
+  - {follower: mbell_wireman, following: threeway_02, created_at: "2026-08-24T00:20:33+00:00", why: "mentor follows mentee"}
+  - {follower: rui_t_kearny, following: Kearny_Pipefitter, created_at: "2026-09-10T00:45:18+00:00", why: "mentor follows mentee"}
+
+# 5. Ride-alongs ("collabs"). Kept: posted by a kept mentor AND still fillable
+#    by a kept apprentice of a matching trade. Dropped (no kept apprentice could
+#    plausibly have filled it; see REPORT §13): C02 (a week in Willingboro,
+#    posted before any kept HVAC apprentice in the South had joined), C04 (an
+#    unpaid week of shadowing in Camden County, Aug 17-21), C19 and C20 (both
+#    need an EPA 608 card, which no kept HVAC apprentice holds).
+collabs_drop: [C02, C04, C19, C20]
+# Existing pitches from kept apprentices whose status changes (the accepted
+# applicant was removed). decided_at must stay before the collab's filled_at.
+pitch_status:
+  - {collab: C01, applicant: big_hector_plumb, status: accepted, decided_at: "2026-08-13T10:08:23+00:00",
+     why: "the accepted big_paulie_plumb was removed; Ziggy's post says 'you don't need to know boilers', and hector says he's never done one"}
+  - {collab: C03, applicant: JunctionBoxJunkie, status: accepted, decided_at: "2026-08-13T23:59:47+00:00",
+     why: "the accepted RookieWireman was removed; the vo-tech student looking for weekend work gets the Saturday"}
+  - {collab: C17, applicant: big_hector_plumb, status: accepted, decided_at: "2026-09-25T23:50:21+00:00",
+     why: "the accepted sweatjoint200amp was removed; hector has done steam vents, and worked Ziggy's C01"}
+# New pitches, in the applicant's voice (detail filled from the persona as gen_collabs.py does).
+pitches_new:
+  - collab: C06
+    applicant: HeatwaveOnCall
+    status: accepted
+    applied_at: "2026-08-12T23:47:31+00:00"
+    decided_at: "2026-08-16T22:33:03+00:00"
+    skills: ["Heat pumps", "Split systems"]
+    tools: true
+    transport: true
+    note: "ok so some context, my boss in clifton said i can take tuesday and wednesday if i want, he'd rather i see a heat pump go in on somebody else's job before we start doing them. i've never done one start to finish, mostly furnaces and carrying. can i meet you at the house, and do i need anything besides hand tools?"
+    why: "the accepted big_zach_hvac was removed; the only kept HVAC apprentice (Clifton, about 40 minutes away). He asks Kash to mentor him two weeks later"
+  - collab: C07
+    applicant: big_hector_plumb
+    status: accepted
+    applied_at: "2026-08-17T22:41:09+00:00"
+    decided_at: "2026-08-18T23:42:29+00:00"
+    skills: ["Water heaters", "Soldering / press fit", "Repipes"]
+    tools: true
+    transport: true
+    note: "Union City, 4 years of service, I do water heaters most weeks. Worked a Saturday for oldsteam_zig this weekend so I know the drill lol. Can meet you at the first house."
+    why: "the accepted ParkwayPipes was removed; hector is 10 minutes from Kearny and does water heaters every week"
+  - collab: C09
+    applicant: HeatwaveOnCall
+    status: accepted
+    applied_at: "2026-08-24T23:12:46+00:00"
+    decided_at: "2026-08-27T01:31:08+00:00"
+    skills: ["Split systems", "Heat pumps"]
+    tools: true
+    transport: true
+    note: "clifton, so wayne is like 15 min. helper at a small residential shop, mostly furnaces and carrying, i saw one mini split go in but i was in the truck for most of it lol. do you want me there before you start, and should i bring a notebook?"
+    why: "the accepted DinerCoffeeHVAC was removed; the kept HVAC apprentice next door in Clifton"
+  - collab: C12
+    applicant: joe.plumb
+    status: accepted
+    applied_at: "2026-09-05T00:37:52+00:00"
+    decided_at: "2026-09-11T23:45:44+00:00"
+    skills: ["Fixture install", "Repipes", "Soldering / press fit"]
+    tools: true
+    transport: true
+    note: "cherry hill, 2 years in at a residential shop... never seen a commercial rough-in and I'd like to. 6:30 is fine, I'm about 15 minutes away. edit: I'll bring my own level"
+    why: "the accepted big_nicole_plumb was removed; joe.plumb had asked haddad_mech to mentor him two days earlier (still pending)"
+  - collab: C15
+    applicant: HelperForNow
+    status: accepted
+    applied_at: "2026-09-16T23:20:15+00:00"
+    decided_at: "2026-09-19T00:35:57+00:00"
+    skills: ["Rough-in wiring", "Ladder / heights work"]
+    tools: true
+    transport: true
+    note: "electrician helper out of manahawkin, about a year in. mostly remodels, i've never seen a service upgrade start to finish. my boss said i can take monday. i have a harness. edit: i can stay tuesday too if you need"
+    why: "the accepted Edison.volts was removed; the kept electrical apprentices in Central Jersey are students (a Monday is a school day) or joined after it was posted"
+  - collab: C16
+    applicant: HeatwaveOnCall
+    status: accepted
+    applied_at: "2026-09-14T00:18:27+00:00"
+    decided_at: "2026-09-18T00:25:35+00:00"
+    skills: ["Load calculations", "Ductwork"]
+    tools: true
+    transport: true
+    note: "clifton again, so this one's around the corner lol. i've been on a bunch of changeouts now and nobody's ever explained how they picked the size, it's always 'same as the old one'. does it take all day, and should i bring the notebook from the mini split day?"
+    why: "the accepted epa60812_2 was removed; the kept HVAC apprentice, in Clifton, who worked Rosa's C09"
+  - collab: C17
+    applicant: Kearny_Pipefitter
+    status: declined
+    applied_at: "2026-09-19T00:05:44+00:00"
+    decided_at: "2026-09-25T23:48:09+00:00"
+    skills: ["Repipes", "Soldering / press fit"]
+    tools: true
+    transport: true
+    note: "bayonne, about a year as a helper, mostly old buildings, so a low basement doesn't scare me. never touched steam, brother, and i want to. can be there before 7."
+    why: "a second pitch so the job isn't a one-applicant post; Ziggy goes with hector, who worked his C01"
+  - collab: C18
+    applicant: Kearny_Pipefitter
+    status: accepted
+    applied_at: "2026-09-23T00:41:30+00:00"
+    decided_at: "2026-09-27T23:21:47+00:00"
+    skills: ["Repipes", "Water heaters", "Soldering / press fit"]
+    tools: true
+    transport: true
+    note: "not a vo-tech grad, brother, so tell me if that rules me out. a year at a shop in bayonne, mostly demo and carrying, and i want to see how a shop that actually teaches runs. i can do the whole week."
+    why: "the accepted NorthJersey_Plumber was removed; Rui's mentee since Sep 9, and Rui's own post says this is how his father hired him"

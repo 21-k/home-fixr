@@ -8,11 +8,11 @@ import { LogoMark } from "@/components/LogoMark";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "What Home Fixr is and what the HF Community badge on some profiles means.",
+    "What Home Fixr is and what the HF logo on some profiles means.",
 };
 
 /**
- * Minimal About / FAQ page. It explains the HF Community badge (seeding plan
+ * Minimal About / FAQ page. It explains the HF logo on example profiles (seeding plan
  * §0.3) alongside the Terms of Service, section 5.
  */
 export default function AboutPage() {
@@ -42,7 +42,7 @@ export default function AboutPage() {
           className="mt-10 scroll-mt-20 rounded-xl border border-zinc-200 bg-white p-6"
         >
           <div className="mb-3 flex items-center gap-2">
-            <h2 className="text-lg font-semibold">HF Community profiles</h2>
+            <h2 className="text-lg font-semibold">Example profiles marked HF</h2>
             <FoundingBadge size="md" />
           </div>
           <p className="text-[15px] leading-7 text-zinc-800">{FOUNDING_ABOUT_SENTENCE}</p>
@@ -56,7 +56,7 @@ export default function AboutPage() {
           <ul className="mt-4 list-disc space-y-2 pl-5 text-[14px] leading-6 text-zinc-700">
             <li>
               Every example profile, and every post, reply and ride-along it
-              wrote, shows the HF Community badge next to its name.
+              wrote, shows the HF logo next to its name.
             </li>
             <li>
               Example profiles don&apos;t take direct messages, mentorship

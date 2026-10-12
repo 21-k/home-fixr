@@ -1,0 +1,1543 @@
+{
+  "batch_id": "fm-2026-10",
+  "generated_by": "seed/scripts/gen_collabs.py",
+  "rng_seed": 20261005,
+  "source": "content/collabs.authored.yaml",
+  "window": [
+    "2026-07-24",
+    "2026-10-04"
+  ],
+  "note": "Every collab is filled (filled_at after its applications). status 'interested' = still pending. decided_at is the accept/decline time, kept for QA (collab_interests has no such column). Application detail fields come from the applicant's persona; no CV files.",
+  "collabs": [
+    {
+      "id": "C01",
+      "poster": "oldsteam_zig",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Extra set of hands Sat for a boiler swap in Clifton. 8 hrs, day rate, you learn",
+      "body": "Swapping an old cast iron boiler in a two-family in Clifton Saturday. Rigging the old one out of the basement is the worst part, so I need a strong back first and a brain second. 7am start, figure 8 hours, maybe 9. Day rate, paid at the end of the day, and I'll show you how the near-boiler piping goes together while we do it.\n\nYou don't need to know boilers, kid. You need to show up on time with boots and gloves and not be on your phone. That's the job.",
+      "location": "Clifton, NJ",
+      "town": "Clifton",
+      "county": "Passaic",
+      "region": "NJ-North",
+      "scheduled_date": "2026-08-15",
+      "pay_type": "day_rate",
+      "posted_at": "2026-08-10T01:43:23+00:00",
+      "filled_at": "2026-08-13T23:15:10+00:00",
+      "pitches": [
+        {
+          "applicant": "big_hector_plumb",
+          "status": "declined",
+          "note": "4 years in, run my own service calls in Hudson. Never done a boiler. Strong, on time, quiet lol.",
+          "years_experience": 4,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Water heaters",
+            "Fixture install",
+            "Soldering / press fit"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-13T00:04:52+00:00",
+          "decided_at": "2026-08-14T01:00:35+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "big_paulie_plumb",
+          "status": "accepted",
+          "note": "4 yrs in, i run residential service calls on my own now but i've only ever helped on one boiler swap and i want more of that. north bergen so clifton's easy, i can be there before 7. sorry if this is a dumb question but should i bring my own press tool or just hand tools",
+          "years_experience": 4,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Water heaters",
+            "Drain cleaning",
+            "Soldering / press fit",
+            "Fixture install"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-13T00:05:52+00:00",
+          "decided_at": "2026-08-13T10:08:23+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "ParkwayPipes",
+          "status": "declined",
+          "note": "Belleville, 3 years doing service. I can lift, I don't mind basements, and I want to get off drain calls for a day. Is it cash or check, and do you want me there 6:45 or right at 7?",
+          "years_experience": 3,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Drain cleaning",
+            "Water heaters",
+            "Fixture install"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-13T00:31:49+00:00",
+          "decided_at": "2026-08-14T01:35:14+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "poster": "haddad_mech",
+      "type": "extra_hand",
+      "trade": "hvac",
+      "title": "One helper for a week on a school unit-ventilator job, Willingboro",
+      "body": "We are replacing classroom unit ventilators in a school in Willingboro the week of August 3, while the building is empty. I need one helper for the week: carrying, demo, cleaning up, staging the new units. 6:00 start, and I mean 6:00.\n\nHere's what I look for when I hire: you show up, you listen, you don't need to be told twice. This is a public job, so you would be on our certified payroll for the week at the rate set for the classification, and the district requires a background check before you set foot in the building. I'll walk whoever I pick through both.",
+      "location": "Willingboro, NJ",
+      "town": "Willingboro",
+      "county": "Burlington",
+      "region": "NJ-South",
+      "scheduled_date": "2026-08-03",
+      "pay_type": "day_rate",
+      "posted_at": "2026-07-28T00:18:29+00:00",
+      "filled_at": "2026-08-03T00:34:59+00:00",
+      "pitches": [
+        {
+          "applicant": "Ryan.N",
+          "status": "declined",
+          "note": "1 yr in non-union down in atlantic county, i can drive up every day brother. background check is fine, 6am is fine. mostly been doing installs and carrying for my boss so the demo and staging stuff i can do",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Split systems"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-07-31T02:50:25+00:00",
+          "decided_at": "2026-08-02T22:21:25+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "Dev.R",
+          "status": "accepted",
+          "note": "3 yrs in, mostly installs, i have my 608 type II and my own van this year. pemberton so willingboro is 20 min. no problem with a background check or 6am. never done unit ventilators, want to see it. thanks in advance",
+          "years_experience": 3,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Split systems",
+            "Ductwork",
+            "Charging & recovery",
+            "Controls / thermostats"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Type II",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-01T23:43:18+00:00",
+          "decided_at": "2026-08-02T02:19:38+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "poster": "thiago_sparks",
+      "type": "extra_hand",
+      "trade": "electrical",
+      "title": "Extra hand Saturday: rewire on a raised house in Long Branch, day rate",
+      "body": "Honestly this one is a classic shore job. House got raised after Sandy, the electrical got \"temporarily\" reconnected by somebody years ago, and now we're doing it right. Saturday, all day. I need a helper to pull wire, drill, and keep the job clean while I do the panel side.\n\nDay rate. You'll be up and down ladders and in a crawlspace that's more of a crawl than a space. If you've only done new construction, that's fine, this is a good look at what remodel work actually is.",
+      "location": "Long Branch, NJ",
+      "town": "Long Branch",
+      "county": "Monmouth",
+      "region": "NJ-Central",
+      "scheduled_date": "2026-08-15",
+      "pay_type": "day_rate",
+      "posted_at": "2026-08-09T23:29:15+00:00",
+      "filled_at": "2026-08-14T01:55:27+00:00",
+      "pitches": [
+        {
+          "applicant": "RookieWireman",
+          "status": "accepted",
+          "note": "1 yr in at a shop out of middletown, it's all new construction townhouses so i've never seen an old house opened up and i really want to. i pull wire all day so that part i'm good at. 15 min away, free saturday",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Rough-in wiring",
+            "Conduit bending"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-11T11:48:09+00:00",
+          "decided_at": "2026-08-12T02:24:16+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "PullingWireAgain",
+          "status": "interested",
+          "note": "Vo-tech grad, about a year at a shop in Union... still the new guy. Saturdays are free. Can bring hand tools.",
+          "years_experience": 1,
+          "graduation_year": 2025,
+          "age_range": null,
+          "skills": [
+            "Rough-in wiring",
+            "Conduit bending"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-12T00:49:35+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "JunctionBoxJunkie",
+          "status": "declined",
+          "note": "I'm in the electrical program at the Mercer vo-tech, so I'm a student, not a helper yet, but I've been looking for weekend work for exactly this reason. We've done rough-in in the shop booths and I'm good on a ladder. Hamilton to Long Branch is about 45 minutes and I'd leave early.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Rough-in wiring",
+            "Ladder / heights work"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-13T16:16:50+00:00",
+          "decided_at": "2026-08-13T23:59:47+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "poster": "hec_does_ac",
+      "type": "ride_along",
+      "trade": "hvac",
+      "title": "Shadow a service tech for a week, Camden County (week of Aug 17)",
+      "body": "So this one time in AC... I spent my whole first summer carrying condensers and never once saw anybody actually diagnose anything lol. Not doing that to the next guy.\n\nI've got a week of service calls around Cherry Hill, Voorhees and Pennsauken starting Monday the 17th. Ride along, watch how a no-cool call goes from the door to the invoice, ask questions in the van not in front of the customer... You'll carry stuff too, that's the deal. Unpaid, it's a shadow week, but I'll buy the Wawa.",
+      "location": "Cherry Hill, NJ",
+      "town": "Cherry Hill",
+      "county": "Camden",
+      "region": "NJ-South",
+      "scheduled_date": "2026-08-17",
+      "pay_type": "unpaid",
+      "posted_at": "2026-08-10T16:06:33+00:00",
+      "filled_at": "2026-08-16T23:19:27+00:00",
+      "pitches": [
+        {
+          "applicant": "Ryan.N",
+          "status": "interested",
+          "note": "1 yr non-union from egg harbor township, i'd drive up for this brother. my boss doesn't really let me near diagnosing yet so this is what i'm missing",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Split systems"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-10T23:52:42+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "hector.hvac",
+          "status": "accepted",
+          "note": "i'm a helper at a small shop near lakewood, we do installs mostly and i barely see service. can i take the week off for this? yes, already asked my boss. is it every day or can i do 4 of the 5?",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Split systems",
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-12T01:37:30+00:00",
+          "decided_at": "2026-08-15T02:23:08+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "dahvacnj",
+          "status": "declined",
+          "note": "vo-tech grad, have my 608 universal. doing duct work and changeouts in toms river right now, want to see service before the apprenticeship calls. thanks in advance",
+          "years_experience": 0,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Split systems",
+            "Charging & recovery"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Universal",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-13T02:26:31+00:00",
+          "decided_at": "2026-08-15T16:11:22+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "poster": "joyd_plumbing",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Helper for 3 days on a riser job in Jersey City",
+      "body": "Replacing a section of domestic water riser in a six-story co-op, Jersey City. Three days starting Wednesday the 19th. You'd be carrying, cutting, staging, and dealing with residents who want to know when their water comes back. Day rate.\n\nTell me in two lines what you've done and whether you can be there at 7. That's all I need to know.",
+      "location": "Jersey City, NJ",
+      "town": "Jersey City",
+      "county": "Hudson",
+      "region": "NJ-North",
+      "scheduled_date": "2026-08-19",
+      "pay_type": "day_rate",
+      "posted_at": "2026-08-13T00:32:26+00:00",
+      "filled_at": "2026-08-14T10:09:05+00:00",
+      "pitches": [
+        {
+          "applicant": "big_hector_plumb",
+          "status": "accepted",
+          "note": "4 years, residential service, I work alone most days. Never done a riser. Union City, there by 7.",
+          "years_experience": 4,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Soldering / press fit",
+            "Repipes",
+            "Water heaters"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-13T02:46:37+00:00",
+          "decided_at": "2026-08-14T01:31:06+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "ParkwayPipes",
+          "status": "declined",
+          "note": "3 years of service out of Belleville, lots of copper. Want to see commercial. All three days or can I split it with someone? And is parking a nightmare there?",
+          "years_experience": 3,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Soldering / press fit",
+            "Repipes",
+            "Drain cleaning"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-13T22:18:38+00:00",
+          "decided_at": "2026-08-15T00:56:26+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "poster": "Kash_sing",
+      "type": "extra_hand",
+      "trade": "hvac",
+      "title": "Helper needed: heat pump install, Edison, 2 days",
+      "body": "Ducted heat pump replacing an old oil furnace, Edison split-level. Two days, Tuesday and Wednesday.\n- Day 1: removal, pad, line set, air handler\n- Day 2: wiring with the electrician, startup, cleanup\n- Day rate, start 7:30\n- You will carry a lot and you will clean up more than you think\n- I explain the rebate paperwork at lunch for anyone who wants it\n\nCallbacks cost me more than labor does, so I care more about careful than fast.",
+      "location": "Edison, NJ",
+      "town": "Edison",
+      "county": "Middlesex",
+      "region": "NJ-Central",
+      "scheduled_date": "2026-08-18",
+      "pay_type": "day_rate",
+      "posted_at": "2026-08-11T01:09:07+00:00",
+      "filled_at": "2026-08-17T22:55:05+00:00",
+      "pitches": [
+        {
+          "applicant": "big_zach_hvac",
+          "status": "accepted",
+          "note": "i'm in if you'll have me. been on two heat pump jobs since i started, both with somebody else's crew. can i ride in with you from edison or meet at the house? what time should i stop for coffee lol",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": "35_44",
+          "skills": [
+            "Ductwork",
+            "Heat pumps"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-11T10:06:19+00:00",
+          "decided_at": "2026-08-16T22:33:03+00:00",
+          "mentee_of_poster": true
+        },
+        {
+          "applicant": "condensate_3way",
+          "status": "interested",
+          "note": "switched from a call center last year, asbury park. i'm slow but i'm careful lol. both days are fine",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": "25_34",
+          "skills": [
+            "Ductwork",
+            "Customer-facing"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-11T22:10:35+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "zghvacnj",
+          "status": "declined",
+          "note": "about a year in at a non-union shop in new brunswick. mostly furnaces and carrying, idk much about heat pumps yet which is why i'm asking",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-11T23:42:25+00:00",
+          "decided_at": "2026-08-17T00:29:19+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "GreenhornHVAC",
+          "status": "declined",
+          "note": "I have about a year at a small shop in Trenton, boilers and furnaces mostly. My foreman says I'm careful, which sounds like what you want. Both days work. Thanks in advance.",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Controls / thermostats"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-16T23:07:12+00:00",
+          "decided_at": "2026-08-17T02:04:19+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C07",
+      "poster": "rui_t_kearny",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Saturday of water heater swaps around Kearny, need an extra hand",
+      "body": "Three water heaters booked for one Saturday, Kearny and Harrison. My father used to say you can tell a plumber by how he leaves a basement, so the job is half install, half cleanup. Draining, carrying the old tanks up, hauling, and I'll let you do a connection or two if you've done them before.\n\nDay rate. I was a helper like this once and I remember who treated me right. I try to be that guy.",
+      "location": "Kearny, NJ",
+      "town": "Kearny",
+      "county": "Hudson",
+      "region": "NJ-North",
+      "scheduled_date": "2026-08-22",
+      "pay_type": "day_rate",
+      "posted_at": "2026-08-17T01:04:56+00:00",
+      "filled_at": "2026-08-20T00:20:54+00:00",
+      "pitches": [
+        {
+          "applicant": "ParkwayPipes",
+          "status": "accepted",
+          "note": "Third time pitching on here, so let me be quick. 3 years of service out of Belleville, I've done more water heaters than I can count, gas and electric. I carry tanks, I clean up. Can I start at the first house or meet you at the shop?",
+          "years_experience": 3,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Water heaters",
+            "Gas lines",
+            "Soldering / press fit"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-17T16:11:15+00:00",
+          "decided_at": "2026-08-18T23:42:29+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "big_paulie_plumb",
+          "status": "declined",
+          "note": "running service calls in hudson for 4 yrs, water heaters are like half my week. sorry if i'm late to this, saturday's open",
+          "years_experience": 4,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Water heaters",
+            "Gas lines",
+            "Drain cleaning"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-19T01:52:46+00:00",
+          "decided_at": "2026-08-20T00:56:54+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C08",
+      "poster": "bklyn_arkady",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Helper for a gas test + inspection day, Bay Ridge brownstone",
+      "body": "In the city it's different: on a gas job the inspection day is its own day. We finished a new gas line in a Bay Ridge brownstone and I need a helper on Thursday the 27th for the pressure test, tagging, and standing around while we wait on the inspector. Plus cleanup in the cellar. The inspector decides when he shows up, not me, so bring patience.\n\nPaid by the day or swap it for a Saturday on my next job if you want more hours with me. Your choice.",
+      "location": "Bay Ridge, Brooklyn",
+      "town": "Bay Ridge",
+      "county": "Brooklyn",
+      "region": "NYC",
+      "scheduled_date": "2026-08-27",
+      "pay_type": "flexible",
+      "posted_at": "2026-08-21T00:50:53+00:00",
+      "filled_at": "2026-08-26T23:10:58+00:00",
+      "pitches": [
+        {
+          "applicant": "BayRidge.traps",
+          "status": "declined",
+          "note": "Apex grad, service and drain calls for a shop out of Canarsie. My foreman says I need to see gas work before the apprenticeship calls. Thursday works.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Drain cleaning",
+            "Fixture install",
+            "Camera inspection"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-21T09:57:02+00:00",
+          "decided_at": "2026-08-26T23:31:32+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "LateStartPlumber",
+          "status": "interested",
+          "note": "42, switched from IT help desk this year, staten island. sorry, i don't have much to offer yet besides showing up and taking notes. i'm fine waiting around if it means watching a gas test",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "35_44",
+          "skills": [
+            "Customer-facing"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-21T16:12:18+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "briplumb87",
+          "status": "accepted",
+          "note": "I'll take the inspection day if you'll have me. Coming from the Bronx so I'll leave early. My foreman at the shop won't let me near gas without the card, so this is the part I most want to see.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "25_34",
+          "skills": [
+            "Gas lines",
+            "Drain cleaning"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": false,
+          "applied_at": "2026-08-26T09:19:26+00:00",
+          "decided_at": "2026-08-26T16:39:07+00:00",
+          "mentee_of_poster": true
+        }
+      ]
+    },
+    {
+      "id": "C09",
+      "poster": "ms_almonte",
+      "type": "extra_hand",
+      "trade": "hvac",
+      "title": "Saturday mini-split install in Wayne, one helper",
+      "body": "Doing a two-zone ductless install on a Cape in Wayne on Saturday, the 29th. One helper. First, you'll help me plan the line set route, because that's where every bad install starts. Second, you'll do the core drilling with me, and third you'll watch the vacuum and the startup, not just hand me tools.\n\nDay rate. Ask me how I know a helper who's never seen a micron gauge learns more in one Saturday than a week of slides.",
+      "location": "Wayne, NJ",
+      "town": "Wayne",
+      "county": "Passaic",
+      "region": "NJ-North",
+      "scheduled_date": "2026-08-29",
+      "pay_type": "day_rate",
+      "posted_at": "2026-08-24T00:07:23+00:00",
+      "filled_at": "2026-08-29T00:44:37+00:00",
+      "pitches": [
+        {
+          "applicant": "deshawn.hvac",
+          "status": "declined",
+          "note": "vo-tech grad, morristown, 608 type II. waiting on the union so i'm with a shop for now. sorry brother if this is late, saturday is open",
+          "years_experience": 0,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Split systems",
+            "Ductwork"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Type II",
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-24T02:06:19+00:00",
+          "decided_at": "2026-08-28T01:49:39+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "DinerCoffeeHVAC",
+          "status": "accepted",
+          "note": "Two years in at a shop in Hudson, mostly ducted changeouts. Have my 608 Type II. Sorry if it's obvious, but I've never pulled a vacuum on a mini split myself and I want to.",
+          "years_experience": 2,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Split systems",
+            "Brazing",
+            "Charging & recovery"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Type II",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-25T00:02:46+00:00",
+          "decided_at": "2026-08-27T01:31:08+00:00",
+          "mentee_of_poster": true
+        },
+        {
+          "applicant": "Bergen_Ducts",
+          "status": "declined",
+          "note": "2 years non-union out of Hackensack... mostly ductwork, a couple of mini splits. Saturday's good, I'll grab coffees at the Wawa on the way.",
+          "years_experience": 2,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Split systems"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-27T16:56:22+00:00",
+          "decided_at": "2026-08-28T00:17:46+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "epa608_672",
+          "status": "interested",
+          "note": "Vo-tech grad, new guy at a shop in Morris, I have my 608 Universal. I'm only about 20 minutes from Wayne. I'd love to see a full install start to finish.",
+          "years_experience": 0,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Split systems",
+            "Brazing"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Universal",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-27T23:45:42+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "poster": "mbell_wireman",
+      "type": "ride_along",
+      "trade": "electrical",
+      "title": "Ride-along for an apprentice interested in commercial: Secaucus fit-out, 2 days",
+      "body": "We are in the middle of a large commercial fit-out in Secaucus and I can bring one apprentice along for two days (Tuesday and Wednesday) to see how a commercial job runs: the morning huddle, lockout/tagout on a live building, how a crew splits up the work.\n\nYou will watch, carry, and ask questions on breaks. You will not work on anything energized. Hard hat, safety glasses, gloves and boots are required; the GC also needs your name a few days ahead for a site badge, so I can only take someone who answers quickly. Stay safe.",
+      "location": "Secaucus, NJ",
+      "town": "Secaucus",
+      "county": "Hudson",
+      "region": "NJ-North",
+      "scheduled_date": "2026-09-01",
+      "pay_type": "unpaid",
+      "posted_at": "2026-08-27T00:32:16+00:00",
+      "filled_at": "2026-09-01T01:42:45+00:00",
+      "pitches": [
+        {
+          "applicant": "threeway_02",
+          "status": "accepted",
+          "note": "I started as a helper at a residential shop a few weeks ago and I'd like to see the commercial side before I go much further. I have boots, glasses and gloves, and I'll buy a hard hat. I can take both days off. I'll stop at the Wawa on the way and be early.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "35_44",
+          "skills": [
+            "Customer-facing",
+            "Reading blueprints"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-08-27T16:39:50+00:00",
+          "decided_at": "2026-08-28T23:43:08+00:00",
+          "mentee_of_poster": true
+        },
+        {
+          "applicant": "hudson_conduit",
+          "status": "interested",
+          "note": "I'm with a shop in Union City, service calls and panel swaps. Secaucus is 10 min lol. Would love to see how a big crew runs.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Panel upgrades",
+            "Troubleshooting"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-28T02:12:03+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "WawaRunWired",
+          "status": "declined",
+          "note": "about a year at a shop out of fair lawn, lots of emt. sorry if this is a dumb question but do i need my own hard hat or does the site give one. thanks in advance",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Conduit bending",
+            "Rough-in wiring"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-29T14:41:33+00:00",
+          "decided_at": "2026-08-29T22:37:44+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "panelchanger_200amp",
+          "status": "declined",
+          "note": "Pulling wire in warehouses off 8A for a Nutley shop, so I've been near commercial but never on a real fit-out. I'd love the two days. I'll get my name in for the badge the same night.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Rough-in wiring",
+            "Conduit bending"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-08-31T02:10:40+00:00",
+          "decided_at": "2026-08-31T22:02:13+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "poster": "wchen_controls",
+      "type": "ride_along",
+      "trade": "electrical",
+      "title": "shadow a controls tech for a day, bms service calls around bridgewater",
+      "body": "my company's ok with me bringing someone along for a day of building automation service, thursday the 10th. two or three office buildings around bridgewater and somerville: chasing a dead bacnet trunk, swapping a controller, some front-end work on the laptop.\n\nfwiw low voltage is a real trade and a lot of people only find out it exists when they're 10 years into something else. unpaid, it's a look-see day. bring a notebook, not a tool bag",
+      "location": "Bridgewater, NJ",
+      "town": "Bridgewater",
+      "county": "Somerset",
+      "region": "NJ-Central",
+      "scheduled_date": "2026-09-10",
+      "pay_type": "unpaid",
+      "posted_at": "2026-09-03T01:40:46+00:00",
+      "filled_at": "2026-09-09T23:59:35+00:00",
+      "pitches": [
+        {
+          "applicant": "PullingWireAgain",
+          "status": "accepted",
+          "note": "Vo-tech grad, about a year at a shop in Union... Never seen controls. Thursday works, I'll take the day.",
+          "years_experience": 1,
+          "graduation_year": 2025,
+          "age_range": null,
+          "skills": [
+            "Low voltage / data",
+            "Troubleshooting"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-03T23:47:36+00:00",
+          "decided_at": "2026-09-09T22:26:25+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "WiremanFromPiscataway",
+          "status": "declined",
+          "note": "i'm 33 and switching from delivery driving, still figuring out where i fit in electrical. low voltage keeps coming up and i'd like to see what the day actually looks like. appreciate it",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "25_34",
+          "skills": [
+            "Customer-facing"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-06T00:27:07+00:00",
+          "decided_at": "2026-09-10T01:09:24+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "JunctionBoxJunkie",
+          "status": "interested",
+          "note": "I'm in the electrical program at the Mercer vo-tech and our instructor mentioned BMS once and then moved on, so I have no idea what it is beyond the name. I'd be missing a class day, which I'd clear with the school first.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Low voltage / data"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-09T09:40:45+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "poster": "haddad_mech",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Extra hand Saturday: restroom rough-in at a warehouse, Mount Laurel",
+      "body": "Private job this time, no certified payroll: a warehouse adding a restroom group in Mount Laurel. Saturday the 12th, 6:30 start. We will be laying out and roughing in the waste and vent, so you will be cutting, carrying, and holding a level for a while.\n\nDay rate. Here's what I look for when I hire: shows up on time, listens, doesn't need to be told twice. If you have a few years in and want to see commercial rough-in, say so in your pitch.",
+      "location": "Mount Laurel, NJ",
+      "town": "Mount Laurel",
+      "county": "Burlington",
+      "region": "NJ-South",
+      "scheduled_date": "2026-09-12",
+      "pay_type": "day_rate",
+      "posted_at": "2026-09-04T01:20:18+00:00",
+      "filled_at": "2026-09-12T01:30:35+00:00",
+      "pitches": [
+        {
+          "applicant": "codyplumb83",
+          "status": "declined",
+          "note": "35, came over from a bank branch this year. medford, so close. i can carry, cut and hold a level all day. happy to stop at the wawa for the crew",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "35_44",
+          "skills": [
+            "Customer-facing"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-04T16:29:26+00:00",
+          "decided_at": "2026-09-11T22:27:27+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "emeka.plumb",
+          "status": "interested",
+          "note": "About a year in, Voorhees. Sorry, I've only done residential, but I want to see commercial lol. Saturday works.",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Fixture install",
+            "Drain cleaning"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-07T22:49:13+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "big_nicole_plumb",
+          "status": "accepted",
+          "note": "3 years non-union in Burlington, residential mostly. I've done rough-in on additions, never a restroom group. I'm 10 minutes away and I'm never late.",
+          "years_experience": 3,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Repipes",
+            "Fixture install",
+            "Soldering / press fit",
+            "Reading blueprints"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-08T09:18:57+00:00",
+          "decided_at": "2026-09-11T23:45:44+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "poster": "joyd_plumbing",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Saturday helper, boiler room cleanup and new feed in a Hoboken co-op",
+      "body": "Co-op building in Hoboken. Saturday the 19th. We're cleaning up a boiler room nobody has touched in years and running a new feed line. Dirty, hot, and you'll carry everything down a narrow stairwell. Day rate.\n\nWhat I need to know: what you've done, and can you be there at 7. Parking is your problem, sorry.",
+      "location": "Hoboken, NJ",
+      "town": "Hoboken",
+      "county": "Hudson",
+      "region": "NJ-North",
+      "scheduled_date": "2026-09-19",
+      "pay_type": "day_rate",
+      "posted_at": "2026-09-13T22:53:43+00:00",
+      "filled_at": "2026-09-19T00:09:33+00:00",
+      "pitches": [
+        {
+          "applicant": "sweatjoint200amp",
+          "status": "declined",
+          "note": "Helper at a small shop near Little Falls... commercial bathrooms mostly. Sorry, is Little Falls too far for you? And is it ok if I'm still kind of slow with a torch?",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Fixture install",
+            "Soldering / press fit"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-15T00:46:24+00:00",
+          "decided_at": "2026-09-19T01:40:29+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "EssexPipes",
+          "status": "interested",
+          "note": "Vo-tech grad out of Bloomfield, my first job is mostly demo so a boiler room cleanup is right up my alley. Do you want me at 7 or earlier to unload? And is it one day or does it spill into Sunday?",
+          "years_experience": 2,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Boilers / hydronics",
+            "Fixture install"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-15T23:20:22+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "Kearny_Pipefitter",
+          "status": "accepted",
+          "note": "Helper at a small shop in Bayonne, a year in, mostly commercial bathrooms. Never been in a boiler room that wasn't new. I'll take the PATH and be there at 7, brother.",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Soldering / press fit",
+            "Fixture install",
+            "Boilers / hydronics"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": false,
+          "applied_at": "2026-09-18T16:00:11+00:00",
+          "decided_at": "2026-09-18T23:48:06+00:00",
+          "mentee_of_poster": true
+        }
+      ]
+    },
+    {
+      "id": "C14",
+      "poster": "tnguyen_refrig",
+      "type": "ride_along",
+      "trade": "hvac",
+      "title": "ride along on walk-in calls, atlantic city, end of season",
+      "body": "boardwalk's winding down so the walk-ins and reach-ins that limped through july are finally getting fixed. tuesday the 15th, three or four restaurant calls in ac. you watch, you hold the light, you learn why a walk-in ices up. winter is when you learn, but september's not bad either.\n\nunpaid. no sandals. its going to smell like a dumpster at least once",
+      "location": "Atlantic City, NJ",
+      "town": "Atlantic City",
+      "county": "Atlantic",
+      "region": "NJ-South",
+      "scheduled_date": "2026-09-15",
+      "pay_type": "unpaid",
+      "posted_at": "2026-09-09T01:59:06+00:00",
+      "filled_at": "2026-09-14T22:07:28+00:00",
+      "pitches": [
+        {
+          "applicant": "dahvacnj",
+          "status": "interested",
+          "note": "vo-tech grad with my 608 universal, toms river. never seen a walk-in up close. thanks in advance",
+          "years_experience": 0,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Refrigeration",
+            "Charging & recovery"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Universal",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-09T23:53:49+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "hector.hvac",
+          "status": "declined",
+          "note": "helper out of lakewood, did a shadow week with a service tech last month and want to see the commercial side next. is it all day? and should i bring gloves or will it be mostly watching?",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Split systems",
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-10T09:13:58+00:00",
+          "decided_at": "2026-09-13T23:54:53+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "Ryan.N",
+          "status": "accepted",
+          "note": "egg harbor township brother, i'm 10 minutes from you. 1 yr in non-union, never touched refrigeration, my boss only does resi. i'll hold the light all day",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Split systems"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-11T09:25:47+00:00",
+          "decided_at": "2026-09-13T10:08:17+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C15",
+      "poster": "thiago_sparks",
+      "type": "extra_hand",
+      "trade": "electrical",
+      "title": "Helper for a service upgrade on a raised house in Sea Bright",
+      "body": "Another shore one. Raised house in Sea Bright, the meter and service got moved up after Sandy and now the owner wants a real panel and a generator inlet. Monday, all day, maybe a few hours Tuesday. Honestly it's a good one to see if you've never watched a service upgrade from start to finish.\n\nDay rate. Ladders, a lot of them. Bring a harness if you have one, I have a spare if you don't.",
+      "location": "Sea Bright, NJ",
+      "town": "Sea Bright",
+      "county": "Monmouth",
+      "region": "NJ-Central",
+      "scheduled_date": "2026-09-21",
+      "pay_type": "day_rate",
+      "posted_at": "2026-09-15T01:02:03+00:00",
+      "filled_at": "2026-09-21T00:22:55+00:00",
+      "pitches": [
+        {
+          "applicant": "Edison.volts",
+          "status": "accepted",
+          "note": "I can get Monday off from the shop. Never seen a service upgrade start to finish, brother, only the inside half.",
+          "years_experience": 0,
+          "graduation_year": 2025,
+          "age_range": null,
+          "skills": [
+            "Rough-in wiring",
+            "Panel upgrades"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-18T09:18:31+00:00",
+          "decided_at": "2026-09-19T00:35:57+00:00",
+          "mentee_of_poster": true
+        },
+        {
+          "applicant": "WiremanFromPiscataway",
+          "status": "interested",
+          "note": "still trying to land a full-time helper spot. i'm careful on ladders and i'll do whatever you need. perth amboy, i'd leave early. appreciate it",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "25_34",
+          "skills": [
+            "Ladder / heights work"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-18T10:23:38+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "DripLoopDays",
+          "status": "declined",
+          "note": "2 years non-union in Lawrence, service calls and panel swaps. Done a couple of upgrades. Monday works, I'll grab Wawa on the way down lol.",
+          "years_experience": 2,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Panel upgrades",
+            "Service entrance",
+            "Troubleshooting"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-20T15:49:30+00:00",
+          "decided_at": "2026-09-21T01:01:53+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C16",
+      "poster": "ms_almonte",
+      "type": "ride_along",
+      "trade": "hvac",
+      "title": "Ride-along Sunday: load calc and duct survey on a Clifton Cape",
+      "body": "Sunday the 20th I'm doing a heat-loss calc and a duct survey on a Cape in Clifton, for a homeowner who wants to know if a heat pump will keep up in January. Bring a notebook. First, we measure every room. Second, we look at the ductwork in the attic, which will be ugly. Third, I'll show you how the numbers turn into equipment size.\n\nUnpaid, it's a learning day, but it's the part of HVAC nobody teaches you on the job. Ask me how I know.",
+      "location": "Clifton, NJ",
+      "town": "Clifton",
+      "county": "Passaic",
+      "region": "NJ-North",
+      "scheduled_date": "2026-09-20",
+      "pay_type": "unpaid",
+      "posted_at": "2026-09-13T10:00:43+00:00",
+      "filled_at": "2026-09-19T00:27:45+00:00",
+      "pitches": [
+        {
+          "applicant": "epa60812_2",
+          "status": "accepted",
+          "note": "i'm in paterson so clifton is right there brother. less than a year in, non-union, my boss just says 'put a 3 ton in' every time so i want to see how you actually figure it out",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork",
+            "Load calculations"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-15T23:35:06+00:00",
+          "decided_at": "2026-09-18T00:25:35+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "JerseyDuctwork",
+          "status": "declined",
+          "note": "2 yrs in jersey city, ductwork mostly. can i come for the attic part only? or do you want the whole day. appreciate it",
+          "years_experience": 2,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-17T21:03:18+00:00",
+          "decided_at": "2026-09-19T01:43:18+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "deshawn.hvac",
+          "status": "interested",
+          "note": "vo-tech grad, morristown. they taught us manual j for like a week and i forgot all of it, sorry. sunday's open",
+          "years_experience": 0,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Load calculations",
+            "Split systems"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Type II",
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-18T16:14:16+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C17",
+      "poster": "oldsteam_zig",
+      "type": "extra_hand",
+      "trade": "plumbing",
+      "title": "Steam job in Garfield Saturday: need someone who isn't afraid of a basement",
+      "body": "One-pipe steam system in a Garfield two-family that hasn't heated right since the owner's father died. We're replacing vents, skimming the boiler, and fixing pitch on a couple of runs in a basement with 6 feet of headroom on a good day. Saturday, 7am.\n\nDay rate. If you've never seen steam, this is how you learn it, kid: in a dirty basement with somebody who's done it for 28 years. That's the job.",
+      "location": "Garfield, NJ",
+      "town": "Garfield",
+      "county": "Bergen",
+      "region": "NJ-North",
+      "scheduled_date": "2026-09-26",
+      "pay_type": "day_rate",
+      "posted_at": "2026-09-17T22:29:01+00:00",
+      "filled_at": "2026-09-26T00:53:46+00:00",
+      "pitches": [
+        {
+          "applicant": "big_hector_plumb",
+          "status": "declined",
+          "note": "4 years of service in Hudson, did a couple of steam vents on my own. Saturday's good. I'm not great with customers but fine in a basement lol.",
+          "years_experience": 4,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Boilers / hydronics",
+            "Water heaters"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-18T09:38:05+00:00",
+          "decided_at": "2026-09-25T23:54:54+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "EssexPipes",
+          "status": "declined",
+          "note": "Bloomfield, vo-tech grad, first job is mostly demo. Steam is the thing I most want to learn. Do I need my own respirator? And is it all day or half?",
+          "years_experience": 2,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Boilers / hydronics"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-19T12:06:21+00:00",
+          "decided_at": "2026-09-25T22:45:40+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "NorthJersey_Plumber",
+          "status": "interested",
+          "note": "bergen vo-tech grad, hackensack. never done steam. saturday works",
+          "years_experience": 2,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Boilers / hydronics",
+            "Fixture install"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-21T16:53:55+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "sweatjoint200amp",
+          "status": "accepted",
+          "note": "I'd really like this one... I've never seen steam at all. Little Falls, so Garfield's close. Do I need anything besides my hand tools? And is 6:45 ok so I'm not late?",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Boilers / hydronics",
+            "Soldering / press fit"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-25T02:26:48+00:00",
+          "decided_at": "2026-09-25T23:50:21+00:00",
+          "mentee_of_poster": true
+        }
+      ]
+    },
+    {
+      "id": "C18",
+      "poster": "rui_t_kearny",
+      "type": "ride_along",
+      "trade": "plumbing",
+      "title": "Ride-along week at a small shop in Kearny, for a vo-tech grad",
+      "body": "I hire out of the county vo-techs and I've learned the hard way that a kid doesn't know if he wants a small shop until he's done a week in one. So: ride along with my trucks Monday the 28th through Friday. Service calls, a water heater, a repipe if it holds. You'll see the phone ring and the schedule fall apart by 10am, which is the real lesson.\n\nPaid for the days you work, or count it as a tryout. My father hired me this way. I want to do it right.",
+      "location": "Kearny, NJ",
+      "town": "Kearny",
+      "county": "Hudson",
+      "region": "NJ-North",
+      "scheduled_date": "2026-09-28",
+      "pay_type": "flexible",
+      "posted_at": "2026-09-22T23:14:18+00:00",
+      "filled_at": "2026-09-28T00:20:33+00:00",
+      "pitches": [
+        {
+          "applicant": "EssexPipes",
+          "status": "declined",
+          "note": "Essex vo-tech grad, Bloomfield. My first job is mostly demo and I want a shop that'll send me to school. Is this a real tryout or just the week? And do you take people who aren't from Hudson?",
+          "years_experience": 2,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Fixture install",
+            "Repipes"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-24T23:40:46+00:00",
+          "decided_at": "2026-09-27T22:55:02+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "NorthJersey_Plumber",
+          "status": "accepted",
+          "note": "bergen vo-tech grad, about 2 yrs since school. at a shop in hackensack now but the job is teaching me more than school did and i want to see how a small shop runs. can do the full week",
+          "years_experience": 2,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Fixture install",
+            "Drain cleaning",
+            "Water heaters"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-27T01:24:07+00:00",
+          "decided_at": "2026-09-27T23:21:47+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C19",
+      "poster": "hec_does_ac",
+      "type": "specialist",
+      "trade": "hvac",
+      "title": "Need someone with their 608 for a rooftop PM day in AC",
+      "body": "Fall PM day on rooftop units at a hotel in Atlantic City, Tuesday the 29th. I need a second set of hands who can legally handle refrigerant, so you need your 608 card, Type II or Universal. Filters, belts, coil cleaning, and checking charge on a couple that are acting up...\n\nSo this one time in AC I had a helper show up without his card and I had to send him back down to sit in the van lol. Bring the card. Paid by the day, or trade for a day on a no-heat call this winter if you'd rather learn than earn.",
+      "location": "Atlantic City, NJ",
+      "town": "Atlantic City",
+      "county": "Atlantic",
+      "region": "NJ-South",
+      "scheduled_date": "2026-09-29",
+      "pay_type": "flexible",
+      "posted_at": "2026-09-24T16:56:16+00:00",
+      "filled_at": "2026-09-29T00:08:23+00:00",
+      "pitches": [
+        {
+          "applicant": "ExRetail_NowHVAC",
+          "status": "declined",
+          "note": "I'm testing for my 608 this week, so I don't have the card yet, sorry. I'll carry filters all day and stay out of the way if that helps. 35, came over from retail, Gloucester Township.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": "35_44",
+          "skills": [
+            "Customer-facing",
+            "Ladder / heights work"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-25T01:30:44+00:00",
+          "decided_at": "2026-09-28T00:23:32+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "sam2214",
+          "status": "interested",
+          "note": "1 yr in, glassboro. do you need a universal or is type II ok? and is parking at the hotel covered? stopping at wawa either way",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Rooftop units",
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-25T16:23:53+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "dahvacnj",
+          "status": "accepted",
+          "note": "i have my 608 universal. vo-tech grad, doing changeouts in toms river. never done rooftops but i'm fine with heights. sorry for applying twice in a month, thanks in advance",
+          "years_experience": 0,
+          "graduation_year": 2024,
+          "age_range": null,
+          "skills": [
+            "Rooftop units",
+            "Charging & recovery",
+            "Refrigeration",
+            "Ladder / heights work"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Universal",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-26T15:46:47+00:00",
+          "decided_at": "2026-09-27T22:49:53+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "big_ben_tools",
+          "status": "interested",
+          "note": "I'm an HVAC student at the Gloucester County vo-tech, so I don't have my 608 yet, but I'd love to see rooftop work. I can carry and clean coils.",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Rooftop units"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-28T02:32:31+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        }
+      ]
+    },
+    {
+      "id": "C20",
+      "poster": "Kash_sing",
+      "type": "specialist",
+      "trade": "hvac",
+      "title": "Need a 608-certified helper for recovery on two changeouts, South Brunswick",
+      "body": "Two heat pump changeouts on the same street in South Brunswick, Thursday October 1. I need someone who can handle recovery while my lead does the installs.\n- EPA 608 required (Type II or Universal)\n- Recovery machine and tanks provided; bring your gauges if you have them\n- Day rate, 7:30 start\n- I'll check your card before you touch a valve\n\nPaperwork matters on these: recovered pounds go on the job sheet, every time.",
+      "location": "South Brunswick, NJ",
+      "town": "South Brunswick",
+      "county": "Middlesex",
+      "region": "NJ-Central",
+      "scheduled_date": "2026-10-01",
+      "pay_type": "day_rate",
+      "posted_at": "2026-09-25T00:02:55+00:00",
+      "filled_at": "2026-10-01T00:00:48+00:00",
+      "pitches": [
+        {
+          "applicant": "Raritan.airside",
+          "status": "interested",
+          "note": "vo-tech student, sayreville. no 608 yet idk if that rules me out",
+          "years_experience": 0,
+          "graduation_year": null,
+          "age_range": null,
+          "skills": [
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-25T09:31:55+00:00",
+          "decided_at": null,
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "matt_the_hvac",
+          "status": "accepted",
+          "note": "608 universal, somerset vo-tech grad. bound brook so not far. first job is mostly demo but i've done recovery at school lol. have my own gauges",
+          "years_experience": 2,
+          "graduation_year": 2025,
+          "age_range": null,
+          "skills": [
+            "Charging & recovery",
+            "Heat pumps",
+            "Brazing"
+          ],
+          "is_licensed": true,
+          "license_note": "EPA 608 Universal",
+          "has_own_tools": true,
+          "has_transport": true,
+          "applied_at": "2026-09-25T16:56:04+00:00",
+          "decided_at": "2026-09-28T10:21:25+00:00",
+          "mentee_of_poster": false
+        },
+        {
+          "applicant": "middlesex_coils",
+          "status": "declined",
+          "note": "sorry, i should say up front i don't have my 608 yet. switched from bartending at 35, woodbridge. is there a helper spot that doesn't touch refrigerant? or should i wait for the next one",
+          "years_experience": 1,
+          "graduation_year": null,
+          "age_range": "35_44",
+          "skills": [
+            "Customer-facing",
+            "Ductwork"
+          ],
+          "is_licensed": false,
+          "license_note": null,
+          "has_own_tools": false,
+          "has_transport": true,
+          "applied_at": "2026-09-29T00:09:19+00:00",
+          "decided_at": "2026-09-29T01:14:43+00:00",
+          "mentee_of_poster": false
+        }
+      ]
+    }
+  ]
+}

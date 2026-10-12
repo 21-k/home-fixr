@@ -1,7 +1,12 @@
-// Disclosure copy for the Founding Community: the example profiles and early
-// discussions the Home Fixr team prepared, with AI assistance, to show how the
-// community works. These accounts are not real members, so they never take
-// messages, mentorship requests or applications.
+// Disclosure copy for the example profiles (the "Founding Community" seed): the
+// example profiles and early discussions the Home Fixr team prepared, with AI
+// assistance, to show how the community works. They are marked with the HF
+// logo. These accounts are not real members, so they never take messages,
+// mentorship requests or applications.
+
+/** Accessible name and hover note of the HF logo that marks an example profile. */
+export const FOUNDING_BADGE_NOTE =
+  "HF: an example profile prepared by the Home Fixr team with AI assistance. Not a real member.";
 
 /** Shown on a Founding profile, and whenever someone tries to contact one. */
 export const FOUNDING_CONTACT_MESSAGE =
@@ -9,7 +14,7 @@ export const FOUNDING_CONTACT_MESSAGE =
 
 /** Shown on a ride-along or collaboration posted from a Founding profile. */
 export const FOUNDING_COLLAB_MESSAGE =
-  "This is a team-written example posted from an HF Community profile. It isn't a real opportunity and doesn't take applications.";
+  "This is a team-written example posted from an example profile marked HF. It isn't a real opportunity and doesn't take applications.";
 
 export const FOUNDING_ABOUT_SENTENCE =
-  "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Example profiles, and the posts they wrote, carry an HF Community badge. HF Community profiles are not real members and can't be messaged.";
+  "Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance to show how the community works. Example profiles, and the posts they wrote, are marked with the HF logo. Profiles marked HF are not real members and can't be messaged.";

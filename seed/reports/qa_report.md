@@ -1,95 +1,97 @@
 # QA report
 
-Run: 2026-10-09T19:27:01-04:00 · threads: `content/threads.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-12T00:24:12-04:00 · threads: `content/threads.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
-| PASS | counts: 15 Seniors / 121 Juniors = 136 | 15 / 121 |
-| PASS | NJ 122 / NYC 14 (±1) | NJ 122 / NYC 14 |
-| PASS | trade mix within ±3 pts | electrical 34.6%, plumbing 33.1%, hvac 25.7%, general 6.6% |
+| PASS | counts: exactly 9 mentors + 20 apprentices = 29 | 9 / 20 |
+| PASS | the apprentices are the 20 busiest of the full set (posts + replies, ties by handle) | missing [] |
+| PASS | regions (info; the plan's NJ 122 / NYC 14 was for 136 accounts) | NJ 26 / NYC 3: NJ-Central 7, NJ-North 13, NJ-South 6, NYC 3 |
+| PASS | every trade has at least 2 mentors (the plan's 35/33/25/7 mix was for 136 accounts) | mentors electrical 3, plumbing 2, hvac 4; apprentices electrical 9, general 1, hvac 1, plumbing 9 |
 | PASS | no seeded Senior general/undecided |  |
 | PASS | handles unique (case-insensitive) |  |
 | PASS | no near-duplicate handles (Levenshtein <= 1) | [] |
 | PASS | handle format 4-22 [A-Za-z0-9_.] | [] |
 | PASS | every handle logged in handles_checked.csv | [] |
-| WARN | every handle has a logged Reddit 404 | 0/136 have a 404; rest unverified (Reddit returned 403, see REPORT.md) |
-| PASS | display preference ≈80/18/2 | {'handle': 110, 'first_name_initial': 25, 'full_name': 1} |
+| WARN | every handle has a logged Reddit 404 | 0/29 have a 404; rest unverified (Reddit returned 403, see REPORT.md) |
+| WARN | display preference ≈80/18/2 | {'handle': 25, 'first_name_initial': 3, 'full_name': 1} |
 | PASS | no seeded Senior shown as accepting mentees | [] |
-| PASS | avatar mix ≈45% none / 40% initials / 15% icon (±5 pts) | icon 16%, initials 40%, none 44% |
+| PASS | avatar mix (info; the ≈45/40/15 target was for 136 accounts, the kept 29 keep their own avatars) | icon 17%, initials 59%, none 24% |
 | PASS | every 'icon' persona has an allowed icon (and only they do) | [] |
 | PASS | Junior icons match their trade | [] |
-| PASS | junior activity 40/35/20/5 | {'regular': 24, 'occasional': 42, 'lurker': 49, 'heavy': 6} |
+| PASS | apprentice activity levels (info; the busiest 20 are all regular/heavy) | {'regular': 14, 'heavy': 6} |
 | PASS | all flagged is_founding_member + batch |  |
-| PASS | ≥8% zero-reply threads | 18/213 = 8% (sample of 20; 2 needed for 8%) |
-| PASS | reply length right-skewed (median < mean) | median 31.0, mean 36.7, max 146 |
+| PASS | ≥6% zero-reply threads (relaxed from 8% after the cut) | 8/104 = 7.7% |
+| PASS | reply length right-skewed (median < mean) | median 35.0, mean 39.6, max 137 |
 | PASS | no two threads share a title stem | [] |
-| PASS | ~85% of starters are Juniors | {'junior': 181, 'senior': 32} |
+| PASS | ~85% of starters are Juniors | {'junior': 79, 'senior': 25} |
 | PASS | ≥2 NYC threads in sample |  |
-| PASS | all categories A–F present | {'A': 47, 'B': 30, 'C': 43, 'D': 30, 'E': 38, 'F': 25} |
+| PASS | all categories A–F present | {'A': 25, 'B': 17, 'C': 20, 'D': 15, 'E': 18, 'F': 9} |
 | PASS | persona consistency: Seniors' stated years match |  |
 | PASS | lowercase-voice Seniors stay lowercase | [] |
 | PASS | bullet points only from Kash_sing | [] |
 | PASS | nobody mentions/praises Home Fixr | [] |
-| PASS | plagiarism: no 12-word overlap (internal; no external corpus) | pairs sharing an 8-gram: 227, 214 of them the same persona repeating a tic; 12+: [] |
-| PASS | plagiarism: 8-gram overlap between different people ~0 (pairs ≤ 8% of the thread count; what's left is stock phrases and quotes) | 13: T026~T052: 'program at a trade high school in queens'; T031~T036: 'than a year in at a non union'; T033~T107: "i don't want to be the guy who"; T043/r2~T164/r2: 'sorry if this is a dumb question but'; T043/r2~T191/r5: 'sorry if this is a dumb question but'; T048/r0~T048/r2: 'them on at the end of the day' |
+| PASS | plagiarism: no 12-word overlap (internal; no external corpus) | pairs sharing an 8-gram: 75, 72 of them the same persona repeating a tic; 12+: [] |
+| PASS | plagiarism: 8-gram overlap between different people ~0 (pairs ≤ 8% of the thread count; what's left is stock phrases and quotes) | 3: T022/r1~T022/r2: "don't let either side tell you the other"; T090/r1~T090/r2: 'real task a day that you can check'; T110/r1~T110/r2: 'ask that shop what their july looks like' |
 | PASS | lowercase-voice Juniors stay lowercase (new threads; T06/r4 is live) | [] |
-| PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 80%, 0-4am 0%; 5:134 6:122 7:39 8:50 9:42 10:46 11:27 12:55 13:39 14:22 15:18 16:18 17:32 18:61 19:107 20:152 21:178 22:171 23:124 |
-| PASS | Friday nights quiet | 2 posts Fri after 6pm |
-| PASS | fact lint written for human review | 599 flagged sentences -> seed/reports/fact_lint.md |
+| PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 79%, 0-4am 0%; 5:43 6:45 7:10 8:20 9:23 10:18 11:7 12:23 13:24 14:9 15:2 16:8 17:18 18:28 19:38 20:51 21:73 22:67 23:41 |
+| PASS | Friday nights quiet | 1 posts Fri after 6pm |
+| PASS | fact lint written for human review | 266 flagged sentences -> seed/reports/fact_lint.md |
 | PASS | About sentence present in source |  |
-| PASS | social: ~35 mentorships (30-40) | 36: active 22, declined 3, pending 11 |
-| PASS | social: ~60% active (50-70%) | 61% active |
-| PASS | social: a few declined (2-5), rest pending | declined 3, pending 11 |
+| PASS | social: active mentorships 13-17 and pending requests 2-5 | 19: active 15, pending 4 |
+| PASS | social: declined requests 0-2 (none needed in the reduced cast) | declined 0 |
 | PASS | social: every mentorship is junior -> senior | [] |
 | PASS | social: no duplicate mentorship pairs | [] |
 | PASS | social: no Junior has two active mentors | [] |
-| PASS | social: a second, pending request is rare (<= 2 Juniors) | ['joe.plumb'] |
-| PASS | social: pending requests mostly to 'limited' Seniors (>= 70%) | 11/11 |
+| PASS | social: a second, pending request is rare (<= 2 Juniors) | ['joe.plumb', 'Dev_H'] |
+| PASS | social: pending requests mostly to 'limited' Seniors (>= 70%) | 4/4 |
 | PASS | social: no pending/declined request to a 'not taking mentees' Senior (the app hides the button) | [] |
-| PASS | social: active mentees per Senior vary (>=2 with 3-5, >=3 with 1-2, >=2 with 0, none >5) | 3-5: 3, 1-2: 6, 0: 6; oldsteam_zig:4 mbell_wireman:2 thiago_sparks:1 Kash_sing:3 codebook_dale:1 joyd_plumbing:2 ms_almonte:5 dreb_jman:2 bklyn_arkady:2 |
-| PASS | social: 'not taking mentees' Seniors carry 0-2 actives (some 1-2: that's why they're full) | {'dhollis61': 0, 'codebook_dale': 1, 'tnguyen_refrig': 0, 'dreb_jman': 2} |
-| PASS | social: no full Senior shown as 'Accepting mentees' | [] |
-| PASS | social: actives matched by trade (>= 80%) | 22/22 |
-| PASS | social: actives often in the same region (>= 40%) | 14/22 |
-| PASS | social: NYC Juniors' mentors mostly the NYC Seniors; NJ Juniors' almost never | NYC 4/4; NJ->NYC 0 |
-| PASS | social: career switchers / vo-tech more likely to have a mentor | 27% of 56 vs 11% of 65 |
-| PASS | social: regular+heavy > occasional > lurker for having a mentor; lurkers rarely (<= 10%) | regular+heavy 37% (heavy 17%, regular 42%, occasional 24%, lurker 2%) |
-| PASS | social: mentorship times inside the window, after both joined, accepted hours-days later | latency h: min 2, median 23, max 143;  |
-| PASS | social: thread-implied pairs (thanks / 'update: did what X said') are in the graph, after the exchange | 10 anchored; [] |
+| PASS | social: every mentor has 1-3 active mentees | oldsteam_zig:3 mbell_wireman:3 thiago_sparks:2 Kash_sing:2 hec_does_ac:1 codebook_dale:1 ms_almonte:1 haddad_mech:1 rui_t_kearny:1 |
+| PASS | social: 'not taking mentees' Seniors carry 1-2 actives (that's why they're full) | {'codebook_dale': 1} |
+| PASS | social: availability labels agree with the load (no mentor shown 'Accepting'; 3 actives only on 'limited') | oldsteam_zig:3/limited mbell_wireman:3/limited thiago_sparks:2/limited Kash_sing:2/limited hec_does_ac:1/limited codebook_dale:1/not_accepting ms_almonte:1/limited haddad_mech:1/limited rui_t_kearny:1/limited |
+| PASS | social: actives matched by trade (>= 80%) | 14/15 |
+| PASS | social: actives often in the same region (>= 40%) | 9/15 |
+| PASS | social: NYC apprentices' mentors are NYC mentors, or North Jersey ones when no NYC mentor stays | 2/2; NYC mentors kept: 0 |
+| PASS | social: a few apprentices have no mentor (2-7) | ['JerseyTomatoWires', 'peteplumb80', 'Passaic_Sparky', 'neutral_bar_99', 'plumbguy917'] |
+| PASS | social: career switchers / vo-tech at least as likely to have a mentor | 89% of 9 vs 64% of 11 |
+| PASS | social: mentors by activity (info; the kept apprentices are all regular/heavy) | regular+heavy 75% (heavy 33% of 6, regular 93% of 14) |
+| PASS | social: mentorship times inside the window, after both joined, accepted hours-days later | latency h: min 10, median 23, max 37;  |
+| PASS | social: thread-implied pairs (thanks / 'update: did what X said') are in the graph, after the exchange | 13 anchored; [] |
+| PASS | social: every 'my mentor' in a thread matches an active mentorship | [] |
 | PASS | social: no mentor answers their mentee's later thread as a stranger | [] |
-| PASS | social: no self-follows, no duplicate follows, both ends are personas | 389 follows |
+| PASS | social: no self-follows, no duplicate follows, both ends are personas | 111 follows |
 | PASS | social: every mentee follows their mentor | [] |
-| PASS | social: ~20% of accounts follow nobody (17-23%) | 28/136 = 21% |
-| PASS | social: followers by kind in band (pillars 15-40, Seniors 5-15, active Juniors 0-8, occasional 0-5, lurkers 0-3) | pillar 22-40 (median 26); senior 6-14 (median 12); heavy 1-8 (median 7); regular 0-7 (median 2); occasional 0-4 (median 1); lurker 0-1 (median 0) |
-| PASS | social: the graph is skewed (top 5 accounts hold >= 25% of follows) | top 5: [('oldsteam_zig', 40), ('Kash_sing', 31), ('mbell_wireman', 26), ('codebook_dale', 22), ('ms_almonte', 22)] |
-| PASS | social: follows of non-pillars mostly within trade or region (>= 75%) | 195/248 |
+| PASS | social: accounts following nobody (info; the plan's ~20% were mostly lurkers, and no lurker stays) | 0/29 = 0% |
+| PASS | social: followers in band (mentors 6-15, apprentices 0-6) | pillar 7-14 (median 9); senior 6-10 (median 7); heavy 0-5 (median 3); regular 0-3 (median 1) |
+| PASS | social: the graph is skewed (top 5 accounts hold >= 25% of follows) | top 5: [('oldsteam_zig', 14), ('mbell_wireman', 13), ('rui_t_kearny', 10), ('Kash_sing', 9), ('ms_almonte', 8)] |
+| PASS | social: follows of non-pillars mostly within trade or region (>= 60%; relaxed from 75%: 29 busy people follow across trades more) | 39/60 |
 | PASS | social: Seniors who follow anyone follow some other Seniors | [] |
-| PASS | social: Seniors follow only the occasional standout Junior (regular/heavy) | {'heavy': 6, 'regular': 2} |
-| PASS | social: Juniors mostly follow the Senior whose answer they accepted (>= 50%; the 20 threads the graph was built from) | 11/11 |
+| PASS | social: Seniors follow only the occasional standout Junior (regular/heavy) | {'heavy': 6, 'regular': 3} |
+| PASS | social: Juniors mostly follow the Senior whose answer they accepted (>= 50%; the 20 threads the graph was built from) | 5/5 |
 | PASS | social: every follow is after both joined and inside the window | [] |
-| PASS | social: thread-prompted follows come after the exchange | 51 prompted; early: [] |
-| PASS | social: follows/requests keep the posting rhythm (0-4am <= 3%) | 0/425 at 0-4am |
+| PASS | social: thread-prompted follows come after the exchange | 33 prompted; early: [] |
+| PASS | social: follows/requests keep the posting rhythm (0-4am <= 3%) | 0/130 at 0-4am |
 | PASS | helpful: the accepted answer has the most helpful votes in its thread | [] |
 | PASS | helpful: no short reply outvotes the substantive Senior answer | [] |
-| PASS | answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted) | oldsteam_zig:62/51(+1 own) mbell_wireman:60/56(+3 own) thiago_sparks:49/42(+1 own) Kash_sing:71/62(+9 own) dhollis61:20/20 hec_does_ac:44/39(+4 own) codebook_dale:58/50(+2 own) joyd_plumbing:40/36(+2 own) ms_almonte:39/33(+1 own) wchen_controls:12/11(+2 own) haddad_mech:42/38(+2 own) rui_t_kearny:40/37(+2 own) tnguyen_refrig:32/27(+1 own) dreb_jman:30/23(+8 own) bklyn_arkady:26/20 |
-| PASS | full: category mix within ±3 pts of plan §4 | A 47 (22.1% vs 22), B 30 (14.1% vs 14), C 43 (20.2% vs 20), D 30 (14.1% vs 14), E 38 (17.8% vs 18), F 25 (11.7% vs 12) |
-| PASS | full: ~10% NYC threads (8-12%) | 23/213 = 10.8% |
-| PASS | full: ≥8% zero-reply threads | 18/213 = 8.5% |
-| PASS | full: reply depth 60/30/10 (2-5 / 6-12 / 13-25, ±10/±10/±5 pts), none with 1 or >25 | 62/29/10% of 195 threads with replies; max 24; total replies 1224 |
-| PASS | full: lengths right-skewed (bodies and replies median < mean) | bodies median 90 mean 92; replies median 31.0 mean 37 |
+| PASS | answered: Seniors' 'answered' = their reply count (replies/threads; own-thread replies noted) | oldsteam_zig:32/25 mbell_wireman:27/24(+3 own) thiago_sparks:29/26(+1 own) Kash_sing:38/30(+9 own) hec_does_ac:14/13(+3 own) codebook_dale:33/29(+2 own) ms_almonte:24/20(+1 own) haddad_mech:24/21(+2 own) rui_t_kearny:29/27(+2 own) |
+| PASS | full: category mix within ±4 pts of plan §4 (relaxed from ±3 for 104 threads) | A 25 (24.0% vs 22), B 17 (16.3% vs 14), C 20 (19.2% vs 20), D 15 (14.4% vs 14), E 18 (17.3% vs 18), F 9 (8.7% vs 12) |
+| PASS | full: ~10% NYC threads (8-12%) | 11/104 = 10.6% |
+| PASS | full: 6-10% zero-reply threads (relaxed from ≥8%: the cut removed no unanswered thread's replies) | 8/104 = 7.7% |
+| PASS | full: reply depth after the cut: mostly 2-5, some 6-12, a few 13-25; at most 12% with a single reply; none over 25 (relaxed from 60/30/10 with no single-reply threads) | 1: 9%, 2-5: 66%, 6-12: 20%, 13-25: 5% of 96 threads with replies; max 17; total replies 444 |
+| PASS | full: lengths right-skewed (bodies and replies median < mean) | bodies median 98.0 mean 100; replies median 35.0 mean 40 |
 | PASS | full: exactly one pork roll vs taylor ham thread (T20; T165 is the Wawa/QuickChek follow-up) | ['T20'] |
 | PASS | full: thread ids and titles unique | [] |
-| PASS | full: the 20 live sample threads are byte-for-byte as live (text, helpful, timestamps) | [] |
-| PASS | full: thread volume follows daily_plan (≤15 days off by 2+, none 4+ over) | 213 slots; 40/73 days exact; off by 2+: 08-21 2->0, 08-22 2->4, 08-30 9->7, 08-31 3->0, 09-01 3->1, 09-02 2->0, 09-03 3->0, 09-06 3->1, 09-08 4->2, 09-13 5->7, 09-19 1->3 |
+| PASS | full: every kept thread is as live (authors, timestamps, text, votes) apart from the repairs in reduce_edits.md | 11 of the 20 live sample threads kept; drift: [] |
+| PASS | full: thread days stay inside daily_plan's window, none over its slots (relaxed: half the threads are gone) | 213 slots; 19/73 days exact; off by 2+: 08-02 3->1, 08-09 4->1, 08-11 4->1, 08-12 4->0, 08-16 5->1, 08-20 3->1, 08-21 2->0, 08-29 5->1, 08-30 9->2, 08-31 3->0, 09-01 3->1, 09-02 2->0, 09-03 3->0, 09-06 3->1, 09-08 4->1, 09-09 4->1, 09-14 4->2, 09-15 4->2, 09-17 5->1, 09-18 4->2, 09-22 5->1, 09-25 3->1, 09-27 6->4, 09-29 5->1, 09-30 5->2, 10-01 4->2, 10-02 3->1, 10-03 3->0, 10-04 7->2 |
 | PASS | full: every post after its author joined (new threads: whole cast), replies in order, inside Jul 24 - Oct 4 | 0: [] |
-| PASS | full: writers' when hints held (within 7 days) wherever the cast's join dates allow | 120/169 strictly inside; misses []; hints the cast's join dates rule out (placed after the last join): ['T065 early -> 09-08 (cast complete 09-07)', 'T070 mid -> 09-27 (cast complete 09-25)', 'T073 mid -> 09-28 (cast complete 09-25)', 'T074 early -> 08-23 (cast complete 08-23)', 'T075 mid -> 09-27 (cast complete 09-25)', 'T083 mid -> 09-27 (cast complete 09-25)', 'T084 mid -> 09-29 (cast complete 09-24)'] |
-| PASS | full: writer-flagged order holds (T125 before Aug 17 incl. dreb_jman's replies; T124 Sep 28 - Oct 4; T099 after T04; follow-ups 4+ days after the thread they follow) | T125 07-30, T124 10-01, T099 09-30 (T04 last reply 09-21); [] |
+| PASS | full: writers' when hints held (within 7 days) wherever the cast's join dates allow | 61/82 strictly inside; misses []; hints the cast's join dates rule out (placed after the last join): ['T073 mid -> 09-28 (cast complete 09-25)', 'T075 mid -> 09-27 (cast complete 09-25)', 'T083 mid -> 09-27 (cast complete 09-25)'] |
+| PASS | full: writer-flagged order holds for the kept threads (T125 before Aug 17; T099 after T04; follow-ups 4+ days after the thread they follow) | T125 07-30, T099 09-30 (T04 last reply 09-21); [] |
 | PASS | full: date-bound statements land on dates that make them true | [] |
 | PASS | full: mentees credit/quote their mentor only after the mentorship started | [] |
 | PASS | full: no active mentor answers their mentee's thread as a stranger | [] |
-| PASS | full: ≥20% of users have zero posts | 28/136 = 20.6% |
-| PASS | full: activity levels fit the posts (lurkers ≤2; heavy ≤15 × volume ratio; each level's range sits below the next; mix 49/42/24/6) | Junior volume ×2.40 the plan caps' midpoints; posts per level: lurker 0-2, occasional 3-10, regular 10-21, heavy 23-32; over []; overlaps [] |
-| PASS | full: Senior pillars (heavy) post more than the median regular Senior; every Senior posts | Kash_sing:76 oldsteam_zig:65 mbell_wireman:63 codebook_dale:61 thiago_sparks:50 hec_does_ac:47 haddad_mech:44 ms_almonte:42 rui_t_kearny:42 joyd_plumbing:41 dreb_jman:34 tnguyen_refrig:33 bklyn_arkady:26 dhollis61:20 wchen_controls:13 |
+| PASS | full: everyone kept posts (the plan's ≥20% with zero posts were lurkers; the cut kept the busiest) | 0/29 with zero posts |
+| PASS | full: activity levels (info; levels were set on the full set, and the cut took more posts from some people than others) | Junior volume ×1.75 the plan caps' midpoints; posts per level: regular 6-15, heavy 14-28; over ['benplumb79(heavy):28']; overlaps ['regular>heavy'] |
+| PASS | full: Senior pillars (heavy) post more than regular Seniors on average; every Senior posts (relaxed from 'more than the median regular') | Kash_sing:43 codebook_dale:36 oldsteam_zig:35 rui_t_kearny:31 mbell_wireman:30 thiago_sparks:30 ms_almonte:27 haddad_mech:26 hec_does_ac:17 |
 | PASS | full: persona consistency across all threads: years | 0:  |
 | PASS | full: persona consistency across all threads: age | 0:  |
 | PASS | full: persona consistency across all threads: town | 0:  |
@@ -100,34 +102,36 @@ Run: 2026-10-09T19:27:01-04:00 · threads: `content/threads.scheduled.json` · d
 | PASS | full: persona consistency across all threads: school | 0:  |
 | PASS | full: persona consistency across all threads: employer | 0:  |
 | PASS | full: persona notes in the LIVE threads (can't be edited here; listed for the owner) | town: T20 hec_does_ac: 'i'm from gloucester county' (Gloucester) vs Cherry Hill, Camden |
-| PASS | full: accepted answers: ≤1 per thread, by a Senior or a 2+ year Junior, not the starter; ~55% of 3+ reply threads (45-65%) | 56% of 177; [] |
+| PASS | full: accepted answers: ≤1 per thread, by a Senior or a 2+ year Junior, not the starter; ~50% of 3+ reply threads (40-65%) | 52% of 69; [] |
 | PASS | full: helpful counts in range (threads 2-40, replies 0-45) | [] |
 | PASS | full: unanswered threads don't outvote answered ones (questions <=4, Senior tips <=12) | [] |
 | PASS | full: 'update:'/'edit:' replies come at least as late as the time they say has passed | [] |
-| PASS | full: posting-hour histogram (ET) | 0:0 1:0 2:0 3:0 4:0 5:134 6:122 7:39 8:50 9:42 10:46 11:27 12:55 13:39 14:22 15:18 16:18 17:32 18:61 19:107 20:152 21:178 22:171 23:124 |
-| PASS | collabs: ~20 job collabs (18-22), all posted by seeded Seniors | 20 collabs by 12 Seniors: oldsteam_zig 2, haddad_mech 2, thiago_sparks 2, hec_does_ac 2, joyd_plumbing 2, Kash_sing 2, rui_t_kearny 2, ms_almonte 2, bklyn_arkady 1, mbell_wireman 1, wchen_controls 1, tnguyen_refrig 1 |
-| PASS | collabs: 2-4 pitches each, from seeded Juniors, one per Junior per collab | 61 pitches; sizes {2: 4, 3: 11, 4: 5} |
-| PASS | collabs: exactly 1 accepted per collab; the rest declined or pending ('interested') | {'declined': 25, 'accepted': 20, 'interested': 16}; bad: [] |
-| PASS | collabs: types extra_hand / ride_along / specialist all used; pay_type per schema | {'extra_hand': 12, 'ride_along': 6, 'specialist': 2}; pay {'day_rate': 12, 'unpaid': 5, 'flexible': 3} |
+| PASS | full: posting-hour histogram (ET) | 0:0 1:0 2:0 3:0 4:0 5:43 6:45 7:10 8:20 9:23 10:18 11:7 12:23 13:24 14:9 15:2 16:8 17:18 18:28 19:38 20:51 21:73 22:67 23:41 |
+| PASS | no kept reply, thread or collab mentions a removed account; every author is kept | 134 name patterns for 107 removed accounts; hits: []; foreign authors: [] |
+| PASS | collabs: 9-13 ride-alongs (the kept mentors' collabs that a kept apprentice could fill), all posted by seeded Seniors | 11 collabs by 7 Seniors: oldsteam_zig 2, thiago_sparks 2, rui_t_kearny 2, ms_almonte 2, Kash_sing 1, mbell_wireman 1, haddad_mech 1 |
+| PASS | collabs: 1-4 pitches each (relaxed from 2-4: most applicants were removed), from seeded Juniors, one per Junior per collab | 12 pitches; sizes {1: 10, 2: 1} |
+| PASS | collabs: every collab has exactly one accepted pitch; the rest declined or pending ('interested') | {'accepted': 11, 'declined': 1}; bad: [] |
+| PASS | collabs: types and pay types per schema (the two specialist collabs needed an EPA 608 card no kept apprentice holds, so they went) | {'extra_hand': 8, 'ride_along': 3}; pay {'day_rate': 8, 'unpaid': 2, 'flexible': 1} |
 | PASS | collabs: every collab filled_at after its last application and its accept, before the job day | [] |
-| PASS | collabs: job dates Aug 1 - Oct 3; every timestamp inside the window, none at 0-4 am | 146 timestamps; window [] night [] dates [] |
+| PASS | collabs: job dates Aug 1 - Oct 3; every timestamp inside the window, none at 0-4 am | 46 timestamps; window [] night [] dates [] |
 | PASS | collabs: poster joined before posting; applicants joined before applying, after posting; decisions after pitches | [] |
-| PASS | collabs: trade match (applicants' trade = the job's; the poster works that trade) | [] |
-| PASS | collabs: region match (job county in the poster's region; every applicant lives in it) | [] |
-| PASS | collabs: some accepted pitches are the poster's mentee (3-10), each sent after the mentorship was accepted | 7 of 20: C06 big_zach_hvac->Kash_sing, C08 briplumb87->bklyn_arkady, C09 DinerCoffeeHVAC->ms_almonte, C10 threeway_02->mbell_wireman, C13 Kearny_Pipefitter->joyd_plumbing, C15 Edison.volts->thiago_sparks, C17 sweatjoint200amp->oldsteam_zig |
+| PASS | collabs: trade match (applicants' trade = the job's, or 'general'; the poster works that trade) | [] |
+| PASS | collabs: job county in the poster's region; applicants mostly from the job's region (>= 70%, 'where possible') | 10/12 local; from elsewhere: ['C06/HeatwaveOnCall(NJ-North)', 'C15/HelperForNow(NJ-South)'] |
+| PASS | collabs: some accepted pitches come from the poster's mentee (>= 1), flagged only when sent after the mentorship started | 2 of 11: C10 threeway_02->mbell_wireman, C18 Kearny_Pipefitter->rui_t_kearny |
 | PASS | collabs: town-level locations only; no street address, phone or email anywhere | [] [] |
 | PASS | collabs: application detail and stated years match each persona; no CV files | [] |
 | PASS | collabs: persona voice (lowercase voices stay lowercase, bullets only from Kash_sing, nobody mentions Home Fixr) | [] |
 | PASS | collabs: no 12-word overlap with each other or with the threads | [] |
-| PASS | DB: 136 seeded profiles | 136 |
+| PASS | DB: exactly 9 mentors + 20 apprentices in the batch | 9 + 20 = 29 |
+| PASS | DB: the batch's handles are exactly the kept cast | extra [], missing [] |
 | PASS | DB: every seeded profile is_founding_member |  |
 | PASS | DB: no handle collision with any other member | 0 |
 | PASS | DB: zero notifications involving seeded accounts | 0 |
 | PASS | DB: no seeded Senior accepting mentees | 0 |
 | PASS | DB: seeded avatar fields written and consistent | 0 |
 | PASS | DB: seeded auth users have no password and are banned | 0 |
-| PASS | DB: batch mentorships / follows match the files | mentorships 36/36, follows 389/389 |
-| PASS | DB: mentorship statuses as generated | {'declined': 3, 'active': 22, 'pending': 11} |
+| PASS | DB: batch mentorships / follows match the files | mentorships 19/19, follows 111/111 |
+| PASS | DB: mentorship statuses as generated | {'pending': 4, 'active': 15} |
 | PASS | DB: social rows are seeded-to-seeded only | 0 |
 | PASS | DB: every mentorship is junior -> senior | 0 |
 | PASS | DB: no Junior with two active mentors | 0 |
@@ -135,40 +139,38 @@ Run: 2026-10-09T19:27:01-04:00 · threads: `content/threads.scheduled.json` · d
 | PASS | DB: social timestamps inside the window and after both joined | 0 |
 | PASS | DB: no notifications from the social rows (or anything seeded) | 0 |
 | PASS | DB: reply helpful counts match the (rebalanced) files | [] |
-| PASS | DB: logged-out visitors can read follows but no mentorship rows (RLS unchanged) | anon sees 0 mentorships, 389 follows |
-| PASS | DB: batch job collabs / pitches match the file | collabs 20/20, pitches 61/61 |
-| PASS | DB: pitch statuses as generated | {'declined': 25, 'interested': 16, 'accepted': 20} |
+| PASS | DB: logged-out visitors can read follows but no mentorship rows (RLS unchanged) | anon sees 0 mentorships, 111 follows |
+| PASS | DB: batch job collabs / pitches match the file | collabs 11/11, pitches 12/12 |
+| PASS | DB: pitch statuses as generated | {'declined': 1, 'accepted': 11} |
 | PASS | DB: exactly one accepted pitch per batch collab | 0 |
 | PASS | DB: every batch collab filled, after its last pitch | 0 |
 | PASS | DB: interested_count matches the pitches (trigger) | 0 |
 | PASS | DB: collab rows are seeded-to-seeded only | 0 |
 | PASS | DB: no CV files on seeded pitches | 0 |
 | PASS | DB: no collab notifications from the seeded collabs | 0 |
-| PASS | DB: logged-out visitors see the filled collabs but no pitches (RLS) | anon sees 20 filled collabs, 0 pitches |
-| PASS | DB: a real member applying to any seeded collab is refused with 'position has been filled' | 20 tries: Counter({'This position has been filled': 20}) |
+| PASS | DB: logged-out visitors see the filled collabs but no pitches (RLS) | anon sees 11 filled collabs, 0 pitches |
+| PASS | DB: a real member applying to any seeded collab is refused with 'position has been filled' | 11 tries: Counter({'This position has been filled': 11}) |
 | PASS | app: /feed renders | 200 |
 | PASS | app: no full_name of handle-preference users on /feed | [] |
-| PASS | app: Founding Community badge on /feed | 851 badges for 213 posts |
-| PASS | app: /feed labels every team-written post 'Team-written example • AI-assisted', and only those | 213 labeled of 218 cards (213 by Founding profiles); mismatched cards: [] |
-| PASS | app: /mentors lists all 15 seeded Seniors with badge | 15 shown, 60 badges |
+| PASS | app: the badge renders as the HF logo only (one SVG, no visible text, no 'Community'), with an accessible name and hover note | 104 badges on /feed, 104 as the logo only; 'HF Community' text present: False |
+| PASS | app: /feed marks every seeded post with the HF badge, and no post-level label renders | 104 badged of 111 cards; label present: False |
+| PASS | app: /mentors lists all 9 seeded mentors with the HF logo badge | 9 shown, 9 badges |
 | PASS | app: no full_name of handle-preference Seniors on /mentors | [] |
-| PASS | app: /mentors 'answered' counts match the DB | 15 cards; [] |
-| PASS | app: /mentors 'mentees' counts match the DB | 0 of 15 cards differ: [] |
+| PASS | app: /mentors 'answered' counts match the DB | 9 cards; [] |
+| PASS | app: /mentors 'mentees' counts match the DB | 0 of 9 cards differ: [] |
 | PASS | app: 'Accepting mentorship requests' filter excludes every Founding account |  |
-| PASS | app: all 136 profile pages render (200) | [] |
-| PASS | app: Founding Community badge + example-profile notice on every seeded profile | [] |
+| PASS | app: all 29 profile pages render (200) | [] |
+| PASS | app: HF logo badge (and no yellow example-profile notice, no 'HF Community') on every seeded profile | [] |
+| PASS | app: every removed example profile is gone (404) | 107 checked; [] |
 | PASS | app: no private full_name on handle-preference profiles | [] |
-| PASS | app: /u/<handle> 'followers' match the DB (all 136) | 0 differ: [] |
-| PASS | app: /u/<handle> 'active mentees' match the DB (all 136) | 0 differ: [] |
-| PASS | app: /u/<handle> 'answers' match the DB (all 136) | 0 differ: [] |
-| PASS | app: seeded thread pages render with badges | 213 threads checked; bad: [] |
-| PASS | app: seeded thread pages label the post and every reply | 213 threads; bad: [] |
+| PASS | app: /u/<handle> 'followers' match the DB (all 29) | 0 differ: [] |
+| PASS | app: /u/<handle> 'active mentees' match the DB (all 29) | 0 differ: [] |
+| PASS | app: /u/<handle> 'answers' match the DB (all 29) | 0 differ: [] |
+| PASS | app: seeded thread pages render with badges | 104 threads checked; bad: [] |
+| PASS | app: seeded thread pages carry no post-level label | 104 threads; still labeled: [] |
 | PASS | app: About page carries the §0.3 sentence |  |
-| PASS | app: landing FAQ + footer link to About |  |
-| PASS | app (logged out): /collabs shows 'Position filled' and no apply control on every seeded collab | 200; 23 cards; missing []; [] |
-| PASS | app (logged out): open collabs listed before filled ones | 3 open, 20 filled |
+| PASS | app: landing FAQ asks about the profiles marked HF (no 'HF Community') + footer link to About |  |
+| PASS | app: Terms §5 says profiles marked HF are team-made examples, not real members, and shows the logo |  |
+| PASS | app (logged out): /collabs shows 'Position filled' and no apply control on every seeded collab | 200; 14 cards; missing []; [] |
+| PASS | app (logged out): open collabs listed before filled ones | 3 open, 11 filled |
 | PASS | app (logged out): 'Open only' hides every seeded (filled) collab | 200; shown: [] |
-| PASS | app (signed-in member): /collabs shows 'Position filled' and no apply control on every seeded collab | 200; 23 cards; missing []; [] |
-| PASS | app (signed-in member): open collabs listed before filled ones | 3 open, 20 filled |
-| PASS | app (signed-in member): seeded collabs also keep the Founding notice, under Position filled | signed in: True; founding notice on 20/20 |
-| PASS | app (signed-in member): 'Open only' hides every seeded (filled) collab | 200; shown: [] |

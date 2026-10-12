@@ -1,0 +1,57 @@
+Reduce-cast local cycle, 2026-10-12T04:16Z (local Supabase, project home-fixr)
+== wipe the batch
+deleted {'collab_interests': 12, 'follows': 111, 'mentorships': 19, 'replies': 444, 'posts': 104, 'job_collabs': 11, 'notifications': 0, 'auth.users (+profiles)': 29, 'auth.users (orphans)': 0}
+== seed the batch as live (136 accounts, seed.py --full-136)
+before: {'profiles': 13, 'posts': 7, 'replies': 4, 'job_collabs': 3, 'collab_interests': 4, 'mentorships': 4, 'follows': 0, 'notifications': 16, 'messages': 4, 'auth.users': 13}
+after:  {'profiles': 149, 'posts': 220, 'replies': 1228, 'job_collabs': 23, 'collab_interests': 65, 'mentorships': 40, 'follows': 389, 'notifications': 16, 'messages': 4, 'auth.users': 149}
+== DB vs content/full-136
+mismatches: 0
+
+helpful diffs (real/local votes?): 0
+
+== apply seed/out/reduce-cast-fm-2026-10.sql (docker exec -i supabase_db_home-fixr psql -U postgres -d postgres -v ON_ERROR_STOP=1 < file)
+exit 0
+ item | who | target | at 
+------+-----+--------+----
+(0 rows)
+
+                    t                    |    n    
+-----------------------------------------+---------
+ example profiles (batch)                | 29
+ mentors / apprentices                   | 9 / 20
+ threads (batch)                         | 104
+ replies (batch)                         | 444
+ mentorships active / pending            | 15 / 4
+ follows (batch)                         | 111
+ collabs / pitches (batch)               | 11 / 12
+ notifications removed with the accounts | 0
+ notifications now                       | 16
+(9 rows)
+
+COMMIT
+== DB vs reduced content files
+mismatches: 0
+
+helpful diffs (real/local votes?): 0
+
+== the same file again
+exit 3
+ERROR:  batch fm-2026-10 already has 29 profiles: the cast was already cut, nothing to do
+CONTEXT:  PL/pgSQL function inline_code_block line 4 at RAISE
+29
+
+== simulation cycle (earlier, same file): stand-ins for production's real rows (emma.reyes follows joyd_plumbing; helpful votes on T03/r0 (removed) and T190/r4 (kept))
+NOTICE:  REPORT real follow of a removed account (dropped): emma.reyes -> joyd_plumbing
+NOTICE:  REPORT real helpful vote on a removed reply (dropped): emma.reyes -> joyd_plumbing: What's your actual question? Because I see three: which trad
+NOTICE:  REPORT real helpful vote on kept content (kept): emma.reyes -> Appreciate it, all of you. Going to look up the diagram toni
+ REPORTED: real follow of a removed account (dropped)     | 1: emma.reyes -> joyd_plumbing
+ REPORTED: real helpful vote on a removed reply (dropped) | 1: emma.reyes -> joyd_plumbing: What's your actual question? Because I see three: which trad
+ REPORTED: real helpful vote on kept content (kept)       | 1: emma.reyes -> Appreciate it, all of you. Going to look up the diagram toni
+T190/r4 after the cut: DB 4 = file 3 + 1 real vote (delta kept)
+refusal test, final file (real member reply on removed T05, live state rebuilt): ERROR:  refusing to delete real members' rows: 1 real replies on threads that go; exit 3, batch still 136; reply deleted, file applied again: COMMIT, DB = reduced files (0 mismatches)
+
+== checks on the cut state
+npm run lint: clean; npm run build: OK; npm test: 30/30; npm run test:db: 28/28
+npm run test:app: 19/19 passed
+qa.py --threads content/threads.scheduled.json --db --app http://localhost:3000 --allow-unverified-handles: 168 pass, 2 warn, 0 fail
+npm run test:e2e:  5 skipped; 297 passed (3.1m);

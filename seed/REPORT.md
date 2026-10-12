@@ -857,3 +857,114 @@ review's "prepared by … approved by [name]" labels were not implemented. Inste
 - QA (`seed/reports/review_changes_qa_local.txt`): 167 pass, 1 warn (Reddit 404s), 0 fail; new checks for the
   label on /feed (only on team-written cards) and on all 213 thread pages (post + every reply), the example-profile
   notice on all 136 profiles, and the new About sentence. Screenshots: `e2e/reports/review-changes/{before,after}/`.
+
+
+---
+
+## 13. Reduced cast: 9 mentors + 20 apprentices (branch `feat/reduce-cast`)
+
+Owner decision (Oct 2026): keep the 9 busiest mentors and the 20 busiest apprentices (posts + replies in the
+full thread set, ties by handle; #21 dahvacnj has 12 to Passaic_Sparky's 13) and remove the other 107 example
+accounts with everything they wrote. The example badge becomes the HF logo only.
+
+### How it's built
+- The live 136-account files moved to `seed/content/full-136/` and `seed/personas/full-136/` (unchanged).
+- `seed/content/reduce/plan.yaml` (who stays, mentorships, follows, ride-alongs) and `repairs.yaml` (every edit,
+  drop and accepted-answer decision, each with its reason) are the hand-made inputs.
+- `seed/scripts/reduce_cast.py` writes the reduced `personas/` and `content/` files, the production file
+  `seed/out/reduce-cast-fm-2026-10.sql` and the log `seed/reports/reduce_edits.md`. It is deterministic and
+  refuses if the computed top 20 differ from the plan, if a removed accepted answer has no decision, or if any
+  kept text (or collab) still names a removed account (handle, @handle, a mentor's nickname, a display first name).
+- Kept replies carry their full-thread index as `idx`; `seed.py` builds reply ids from it, so a fresh local seed
+  (`uv run seed/scripts/seed.py --replace`) gives exactly the rows production has after the SQL.
+  `seed.py --full-136 --replace` rebuilds the live 136-account batch locally. `wipe.py` is unchanged and works.
+- The upstream generators (`gen_threads.py`, `schedule.py`, `gen_social.py`, `gen_collabs.py`, the drafts and
+  `collabs.authored.yaml`) still describe the 136-account batch; they are history now. Re-running them would
+  regenerate the full set, which `reduce_cast.py` then cuts.
+
+### Before / after
+| | before (live) | after |
+|---|---|---|
+| example accounts | 136 (15 mentors, 121 apprentices) | 29 (9 + 20) |
+| threads / replies | 213 / 1,224 | 104 / 444 |
+| mentorships | 36 (22 active, 11 pending, 3 declined) | 19 (15 active, 4 pending) |
+| follows | 389 | 111 (95 kept + 16 added) |
+| ride-alongs / pitches | 20 / 61 | 11 / 12 |
+
+### Threads
+- Kept: every thread started by one of the 29 (104). They lost 219 replies by removed accounts; 76 threads lost at
+  least one. All 76 were read: 34 read fine without the missing replies; the rest (plus T073 and T104, which named
+  a removed person or thread without losing replies) were repaired: 37 reply edits, 6 thread-body edits, 17 kept
+  replies dropped (they only answered, quoted or thanked a removed reply), 5 accepted flags changed, 3 helpful
+  counts moved. Everything, with the original text, is in `seed/reports/reduce_edits.md`.
+- Accepted answers removed in 10 threads: a remaining substantive mentor reply is accepted in 4 (T140 codebook_dale,
+  T184 oldsteam_zig, T188 thiago_sparks, T190 codebook_dale; in T188/T190 the removed explanation now lives, briefly,
+  in that mentor's reply), none in 6 (T04, T051, T055, T080, T099, T125). T06's self-accepted follow-up (a live
+  oddity) is unaccepted. Accepted / substantive mentor answers still lead on helpful votes; unanswered threads keep
+  the low counts.
+- Mentor storylines: TryingAllThree's mentor was joyd_plumbing; it is now Kash_sing (T03, T042, T110, T210 edited).
+  groundrod_05's "my mentor" (T051, T160) is now mbell_wireman. Kearny_Pipefitter's "like Joy said" (T09, T104) now
+  credits Ziggy's answer, and his mentor is rui_t_kearny.
+
+### Social and ride-alongs
+- Mentors and active mentees: oldsteam_zig (Exit117Plumber, joe.plumb, NorthJerseyCopper), mbell_wireman
+  (threeway_02, groundrod_05, Flushing.sparks), Kash_sing (HeatwaveOnCall, TryingAllThree), thiago_sparks
+  (JunctionBoxJunkie, LiveFrontLessons), rui_t_kearny (Kearny_Pipefitter), haddad_mech (benplumb79), ms_almonte
+  (big_hector_plumb), hec_does_ac (Dev_H; cross-trade, same region), codebook_dale (HelperForNow). Pending:
+  JerseyTomatoWires -> mbell_wireman, joe.plumb -> haddad_mech, Dev_H -> rui_t_kearny, neutral_bar_99 ->
+  thiago_sparks. No mentor at all: peteplumb80, plumbguy917, Passaic_Sparky. No mentor shows "Accepting".
+- Follows: mentors 6-14 followers, apprentices 0-5; every mentee follows their mentor.
+- Ride-alongs: the 5 posted by removed mentors go, and **4 posted by kept mentors also go (a deviation from "keep
+  collabs posted by kept mentors")**: C02 and C04 (a week in Willingboro / an unpaid week in Camden County, posted
+  before any kept HVAC apprentice in the South had joined), C19 and C20 (both need an EPA 608 card, which no kept
+  HVAC apprentice holds). Only one kept apprentice works HVAC, so a trade-matched accepted pitch was impossible
+  without inventing implausible applicants. The other 11 each have exactly one accepted pitch from a kept
+  apprentice of the job's trade: 3 existing pitches flip to accepted, 8 new pitches are written in voice
+  (HeatwaveOnCall and big_hector_plumb each fill three jobs near home). Two accepted applicants travel from the
+  next region (C06, C15).
+
+### Relaxed (a 29-person community can't meet the 136-account plan)
+Category mix ±4 pts (F is 8.7% vs 12); zero-reply threads 6-10% (7.7%); reply depth (9% single-reply threads,
+66/20/5% in 2-5/6-12/13-25); follower bands (mentors 6-15, apprentices 0-6); non-pillar follows within trade or
+region ≥60% (65%); "~20% follow nobody" and "≥20% never post" are info (no lurkers were kept); activity levels
+info; pillars post more than regular mentors on average (not more than the median); accepted share 40-65% (52%);
+collabs 1-4 pitches, applicants from the job's region "where possible" (10/12), no specialist collab; NYC
+apprentices' mentors may be in North Jersey (no NYC mentor was kept); avatar mix info.
+
+### Badge
+`FoundingBadge` renders only `<LogoMark />` (`role="img"`, `aria-label` and `title`: "HF: an example profile
+prepared by the Home Fixr team with AI assistance. Not a real member."; `data-testid="hf-community-badge"` kept).
+"Community" is gone from the badge copy: About sentence ("…are marked with the HF logo. Profiles marked HF are not
+real members and can't be messaged."), About heading "Example profiles marked HF", homepage FAQ "What are the
+profiles marked HF?", Terms §5 "Example profiles marked HF, and example content" (logo shown inline; the
+`#hf-community` anchor is kept so links don't break), collab notice. No migration.
+
+### Production file
+`seed/out/reduce-cast-fm-2026-10.sql`, one transaction with `homefixr.seeding = 'on'`. It aborts unless the batch is
+exactly live (136 profiles with ids and handles, 213/1,224/36/389/20/61, and every row it edits still holds the
+seeded text); aborts if any real member's post, reply, message, mentorship or collab application would be deleted;
+reports (SELECT + NOTICE, and again in the final summary) real follows of removed accounts and real helpful votes on
+removed content, which are dropped, and real votes on kept content, which stay; deletes in FK-safe order (votes,
+pitches, collabs, follows, mentorships, replies, posts, notifications, auth users -> profiles); applies the repairs
+(helpful counts as deltas, so real votes are kept); adds mentorships, follows and pitches; verifies the final
+counts and invariants; and refuses a second run (29 profiles). Expect on production: 1 real follow dropped if it
+points at a removed account, and the 2 real helpful votes dropped if they are on removed content (the report says
+which).
+
+### Local cycle (`seed/reports/reduce_local_cycle.txt`, QA in `reduce_qa_local.txt`)
+The local DB had been loaded from the threads SQL before 91a574d (5 kept unanswered threads had the old, higher
+thread vote counts), so the batch was rebuilt from the committed content first. Then: batch as live
+(`seed.py --full-136`), DB = full-136 files (0 mismatches); the SQL through
+`docker exec -i supabase_db_home-fixr psql -U postgres -d postgres -v ON_ERROR_STOP=1`: COMMIT; DB = reduced files
+(0 mismatches); the file again: refused. A simulation with stand-ins for the real rows reported the follow and both
+votes and kept the real vote on a kept reply; a real reply on a removed thread made it refuse. `npm run lint` clean,
+`npm run build` OK, `npm test` 30/30, `npm run test:db` 28/28, `npm run test:app` 19/19,
+`qa.py --threads content/threads.scheduled.json --db --app http://localhost:3000 --allow-unverified-handles`
+168 pass, 2 warn (Reddit 404s, display mix), 0 fail; `npm run test:e2e` 297 passed, 5 skipped (the suite's own
+desktop-only / run-once skips). Screenshots: `seed/reports/screens/reduce/` (mentors, feed, thread T042; desktop
+and mobile).
+
+### Production order
+1. Merge the PR and deploy (the badge needs no migration; the app works with either cast).
+2. `npx supabase --workdir ~/home-fixr/.prod db query --linked -f <worktree>/seed/out/reduce-cast-fm-2026-10.sql`
+   and read the REPORTED rows in its output.

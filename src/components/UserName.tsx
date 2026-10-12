@@ -12,7 +12,7 @@ type Person = {
 
 /**
  * A member's public name (via displayName) linked to their profile, followed
- * by the Founding Community badge when it applies. Use this anywhere another
+ * by the HF badge (the HF logo marking an example profile) when it applies. Use this anywhere another
  * person's name is shown so the disclosure can't be forgotten on one surface.
  */
 export function UserName({
