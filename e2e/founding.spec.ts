@@ -6,7 +6,7 @@ import { USERS, storageStatePath } from "./support/users";
 import { expectHfLogoBadge } from "./support/badge";
 
 // The old yellow example-profile notice was removed (Oct 2026); the HF logo
-// (explained in its hover note, the Terms of Service and About) is what remains.
+// (explained in the Terms of Service and About) is what remains.
 const NOTICE = /This is an example profile prepared by the Home Fixr team/;
 
 async function expectNoContactControls(page: import("@playwright/test").Page) {
@@ -19,7 +19,7 @@ test.describe("Founding accounts, logged out @public", () => {
   test("founding profile shows the HF logo badge, no yellow notice, no contact controls", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
     const badge = page.locator("main").getByTestId("hf-community-badge").first();
-    // The HF logo only, with an accessible name and hover note; not a link.
+    // The HF logo only, with an accessible name (no hover note); not a link.
     await expectHfLogoBadge(badge);
     expect(await badge.evaluate((el) => el.closest("a"))).toBeNull();
     await expect(page.getByText(NOTICE)).toHaveCount(0);

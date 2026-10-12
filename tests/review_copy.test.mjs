@@ -55,12 +55,12 @@ test("post-level 'Team-written example' labels were removed (Oct 2026); the badg
   const all = walk(join(ROOT, "src")).map((f) => readFileSync(f, "utf8")).join("\n");
   assert.doesNotMatch(all, /Team-written example|TeamWrittenLabel|isTeamWritten/);
   // What still discloses the example profiles: the HF logo (with an accessible
-  // name and hover note), the Terms of Service section 5 and the About sentence.
+  // name; no hover note), the Terms of Service section 5 and the About sentence.
   const badge = src("src/components/FoundingBadge.tsx");
   assert.match(badge, /<LogoMark /);
   assert.doesNotMatch(badge, /<Link|href=/);
   assert.match(badge, /aria-label=\{FOUNDING_BADGE_NOTE\}/);
-  assert.match(badge, /title=\{FOUNDING_BADGE_NOTE\}/);
+  assert.doesNotMatch(badge, /title=/);
   assert.match(FOUNDING_BADGE_NOTE, /^HF: an example profile prepared by the Home Fixr team with AI assistance\. Not a real member\.$/);
   const terms = src("src/app/terms/page.tsx");
   assert.match(terms, /id: "hf-community"/);
