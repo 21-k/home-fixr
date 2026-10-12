@@ -286,6 +286,24 @@ class Reduced:
     def follows(self) -> None:
         K = self.keep
         rows = [dict(f) for f in self.follows_full["follows"] if f["follower"] in K and f["following"] in K]
+        # A follow prompted by a thread exchange whose replies went with the cut is now just a follow:
+        # relabel its (seed-only) reason so it isn't read as prompted by a reply that no longer exists.
+        first_meet: dict[tuple[str, str], datetime] = {}
+        for t in self.threads:
+            cast = {t["author"]} | {r["author"] for r in t["replies"]}
+            for r in t["replies"]:
+                at = dt(r["created_at"])
+                for o in cast:
+                    for k in ((o, r["author"]), (r["author"], o)):
+                        if k[0] != k[1]:
+                            first_meet[k] = min(first_meet.get(k, at), at)
+        self.follow_relabelled = []
+        for f in rows:
+            if f.get("why") in ("answered their thread", "same thread"):
+                meet = first_meet.get((f["follower"], f["following"]))
+                if meet is None or dt(f["created_at"]) <= meet:
+                    self.follow_relabelled.append((f["follower"], f["following"], f["why"]))
+                    f["why"] = "trade/region (the thread exchange behind it went with the cut)"
         have = {(f["follower"], f["following"]) for f in rows}
         self.follow_new = []
         for f in self.plan.get("follows_new", []):

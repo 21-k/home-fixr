@@ -32,7 +32,7 @@ mentorships_new:
   - {junior: Kearny_Pipefitter, senior: rui_t_kearny, status: active, requested_at: "2026-09-09T01:05:26+00:00", decided_at: "2026-09-10T00:30:48+00:00",
      anchor_thread: T179, why: "Rui answered his Hudson roll call (T179); Bayonne/Kearny; replaces joyd_plumbing"}
   - {junior: big_hector_plumb, senior: ms_almonte, status: active, requested_at: "2026-09-11T00:12:05+00:00", decided_at: "2026-09-11T23:48:37+00:00",
-     anchor_thread: T115, why: "Rosa answered his T066 and T115; plumbing, North Jersey"}
+     anchor_thread: T066, why: "Rosa answered his T066 (and later T115); plumbing, North Jersey"}
   - {junior: JunctionBoxJunkie, senior: thiago_sparks, status: active, requested_at: "2026-09-20T00:55:19+00:00", decided_at: "2026-09-20T23:30:44+00:00",
      anchor_thread: T024, why: "worked Thiago's C03 Saturday in August; Thiago's accepted answer in T024; Central Jersey electrical"}
   - {junior: NorthJerseyCopper, senior: oldsteam_zig, status: active, requested_at: "2026-09-26T23:10:58+00:00", decided_at: "2026-09-27T22:40:15+00:00",
@@ -40,7 +40,7 @@ mentorships_new:
   - {junior: benplumb79, senior: haddad_mech, status: active, requested_at: "2026-09-30T00:20:31+00:00", decided_at: "2026-09-30T23:35:02+00:00",
      anchor_thread: T131, why: "haddad_mech's accepted answer on his review (T131), which he followed; plumbing"}
   - {junior: Flushing.sparks, senior: mbell_wireman, status: active, requested_at: "2026-09-30T22:30:14+00:00", decided_at: "2026-10-01T23:45:27+00:00",
-     anchor_thread: T054, why: "weighing a Jersey IBEW local (T054); the IBEW foreman he mentions in T053; replaces dreb_jman"}
+     anchor_thread: null, why: "no thread exchange: weighing a Jersey IBEW local (T054), he asks the IBEW foreman he mentions in T053 (who mentors his friend groundrod_05); replaces dreb_jman"}
   - {junior: Dev_H, senior: hec_does_ac, status: active, requested_at: "2026-09-30T23:50:36+00:00", decided_at: "2026-10-02T00:15:59+00:00",
      anchor_thread: T10, why: "hec_does_ac's Gloucester County shop tip in T10 found him his new job (T049); same region; his request to Rui (Kearny, far away) is still unanswered. Cross-trade: the new shop does service and boilers"}
 

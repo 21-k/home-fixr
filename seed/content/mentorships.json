@@ -106,8 +106,8 @@
       "status": "active",
       "requested_at": "2026-09-11T00:12:05+00:00",
       "decided_at": "2026-09-11T23:48:37+00:00",
-      "anchor_thread": "T115",
-      "why": "Rosa answered his T066 and T115; plumbing, North Jersey"
+      "anchor_thread": "T066",
+      "why": "Rosa answered his T066 (and later T115); plumbing, North Jersey"
     },
     {
       "junior": "JunctionBoxJunkie",
@@ -151,8 +151,8 @@
       "status": "active",
       "requested_at": "2026-09-30T22:30:14+00:00",
       "decided_at": "2026-10-01T23:45:27+00:00",
-      "anchor_thread": "T054",
-      "why": "weighing a Jersey IBEW local (T054); the IBEW foreman he mentions in T053; replaces dreb_jman"
+      "anchor_thread": null,
+      "why": "no thread exchange: weighing a Jersey IBEW local (T054), he asks the IBEW foreman he mentions in T053 (who mentors his friend groundrod_05); replaces dreb_jman"
     },
     {
       "junior": "Dev_H",

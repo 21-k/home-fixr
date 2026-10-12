@@ -457,11 +457,11 @@ New:
 - HelperForNow -> codebook_dale (active, requested 2026-08-24T23:40Z): Dale answered his T189; same county (Ocean), the one mentee Dale took before he stopped taking more
 - TryingAllThree -> Kash_sing (active, requested 2026-08-26T00:35Z): Kash's pay-cut list in T03; same county; replaces joyd_plumbing as the mentor named in T042/T110/T210
 - Kearny_Pipefitter -> rui_t_kearny (active, requested 2026-09-09T01:05Z): Rui answered his Hudson roll call (T179); Bayonne/Kearny; replaces joyd_plumbing
-- big_hector_plumb -> ms_almonte (active, requested 2026-09-11T00:12Z): Rosa answered his T066 and T115; plumbing, North Jersey
+- big_hector_plumb -> ms_almonte (active, requested 2026-09-11T00:12Z): Rosa answered his T066 (and later T115); plumbing, North Jersey
 - JunctionBoxJunkie -> thiago_sparks (active, requested 2026-09-20T00:55Z): worked Thiago's C03 Saturday in August; Thiago's accepted answer in T024; Central Jersey electrical
 - NorthJerseyCopper -> oldsteam_zig (active, requested 2026-09-26T23:10Z): Ziggy answered his T029/T097/T105; both Bergen County plumbing
 - benplumb79 -> haddad_mech (active, requested 2026-09-30T00:20Z): haddad_mech's accepted answer on his review (T131), which he followed; plumbing
-- Flushing.sparks -> mbell_wireman (active, requested 2026-09-30T22:30Z): weighing a Jersey IBEW local (T054); the IBEW foreman he mentions in T053; replaces dreb_jman
+- Flushing.sparks -> mbell_wireman (active, requested 2026-09-30T22:30Z): no thread exchange: weighing a Jersey IBEW local (T054), he asks the IBEW foreman he mentions in T053 (who mentors his friend groundrod_05); replaces dreb_jman
 - Dev_H -> hec_does_ac (active, requested 2026-09-30T23:50Z): hec_does_ac's Gloucester County shop tip in T10 found him his new job (T049); same region; his request to Rui (Kearny, far away) is still unanswered. Cross-trade: the new shop does service and boilers
 
 All other 27 mentorships involved a removed account and are deleted.
