@@ -1267,7 +1267,7 @@ def check_app(app, people, threads, expected=None):
     cards = re.split(r'(?=<article[^>]*data-testid="post-card")', feed)[1:]
     founding = ['data-testid="hf-community-badge"' in ch for ch in cards]
     record("app: /feed marks every seeded post with the HF badge, and no post-level label renders",
-           bool(cards) and sum(founding) >= min(len(threads), len(cards) - 10) and TEAM_LABEL not in feed,
+           bool(cards) and sum(founding) >= len(threads) and TEAM_LABEL not in feed,
            f"{sum(founding)} badged of {len(cards)} cards; label present: {TEAM_LABEL in feed}")
     code, mentors = fetch(f"{app}/mentors")
     seniors = [p for p in people if p["role"] == "senior"]
