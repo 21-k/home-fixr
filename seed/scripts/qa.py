@@ -1241,7 +1241,9 @@ def fetch(url: str, cookie: str | None = None) -> tuple[int, str]:
 
 
 def _num(html: str, label: str, tag: str):
-    m = re.search(rf"<{tag}[^>]*>(\d+)</{tag}>\s*(?:<[^>]+>)?\s*{label}\b", html)
+    # Labels are singular for 1 ("1 mentee", "1 follower"), plural otherwise.
+    pat = re.escape(label[:-1]) + "s?" if label.endswith("s") else re.escape(label)
+    m = re.search(rf"<{tag}[^>]*>(\d+)</{tag}>\s*(?:<[^>]+>)?\s*{pat}\b", html)
     return int(m.group(1)) if m else None
 
 

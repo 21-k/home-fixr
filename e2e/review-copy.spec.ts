@@ -11,7 +11,7 @@ import { expectHfLogoBadge } from "./support/badge";
 // Post-level "Team-written example" labels were removed (Oct 2026). What
 // discloses the example profiles now: the HF logo next to their names (named
 // for screen readers, explained on hover), the Terms of Service and the About page.
-const badge = (scope: import("@playwright/test").Locator) => scope.getByTestId("hf-community-badge");
+const badge = (scope: import("@playwright/test").Locator | import("@playwright/test").Page) => scope.getByTestId("hf-community-badge");
 const NO_LABEL = /Team-written example/;
 const isDesktop = () => test.info().project.name === "desktop";
 

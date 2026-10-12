@@ -161,7 +161,7 @@ export default async function MentorsPage({
                     <strong className="text-zinc-900">
                       {menteeCount.get(m.id) ?? 0}
                     </strong>{" "}
-                    mentees
+                    {(menteeCount.get(m.id) ?? 0) === 1 ? "mentee" : "mentees"}
                   </span>
                 </div>
                 {m.is_founding_member ? (
