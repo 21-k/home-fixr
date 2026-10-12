@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { FoundingBadge } from "@/components/FoundingBadge";
 import { LogoMark } from "@/components/LogoMark";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "The terms for using Home Fixr, including what HF Community profiles are.",
+  description: "The terms for using Home Fixr, including what the profiles marked HF are.",
 };
 
 const EFFECTIVE = "October 10, 2026";
@@ -68,18 +69,19 @@ const SECTIONS: Section[] = [
   },
   {
     id: "hf-community",
-    title: "5. HF Community profiles and example content",
+    title: "5. Example profiles marked HF, and example content",
     body: (
       <>
         <p>
-          Some profiles on the site carry an <strong>HF Community</strong> badge. These are example
+          Some profiles on the site are marked with the <strong>HF</strong> logo{" "}
+          <FoundingBadge />. These are example
           profiles prepared by the Home Fixr team, with AI assistance, to show how the community
           works. <strong>They are not real members.</strong>
         </p>
         <p>
           The posts, replies, ride-along and collaboration listings, applications, follows, mentorships,
-          answer counts and helpful votes from HF Community profiles are examples too, not real
-          activity. HF Community profiles can&apos;t be messaged and don&apos;t take mentorship requests
+          answer counts and helpful votes from profiles marked HF are examples too, not real
+          activity. Profiles marked HF can&apos;t be messaged and don&apos;t take mentorship requests
           or applications. Any licenses, years of experience or employers they mention are illustrative.
         </p>
       </>

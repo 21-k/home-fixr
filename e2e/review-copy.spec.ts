@@ -3,14 +3,14 @@ import { rest, restPatch } from "./support/db";
 import { IS_LIVE } from "./support/env";
 import { FOUNDING } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
+import { expectHfLogoBadge } from "./support/badge";
 
 // The external review's copy and the authorship labels (review-changes pass).
 // Logged-out checks are @public (safe on production); the rest are local.
 
 // Post-level "Team-written example" labels were removed (Oct 2026). What
-// discloses the example profiles now: the HF Community badge (plain text) next
-// to their names, explained in the Terms of Service and the About page.
-const BADGE = "HF Community";
+// discloses the example profiles now: the HF logo next to their names (named
+// for screen readers, explained on hover), the Terms of Service and the About page.
 const badge = (scope: import("@playwright/test").Locator) => scope.getByTestId("hf-community-badge");
 const NO_LABEL = /Team-written example/;
 const isDesktop = () => test.info().project.name === "desktop";
@@ -69,12 +69,12 @@ test.describe("homepage @public", () => {
   });
 });
 
-test.describe("HF Community badge on team-written content @public", () => {
+test.describe("HF logo badge on team-written content @public", () => {
   test("seeded feed cards carry the badge; no post-level label anywhere", async ({ page }) => {
     await visit(page, "/feed");
     const founding = page.getByTestId("post-card").filter({ has: badge(page) });
     expect(await founding.count()).toBeGreaterThan(3);
-    await expect(badge(founding.first())).toHaveText(BADGE);
+    await expectHfLogoBadge(badge(founding.first()).first());
     expect(await bodyText(page)).not.toMatch(NO_LABEL);
     await expectFitsViewport(page);
   });
@@ -91,7 +91,7 @@ test.describe("HF Community badge on team-written content @public", () => {
   });
 });
 
-test.describe("a real member's post and reply carry no HF Community badge (local)", () => {
+test.describe("a real member's post and reply carry no HF badge (local)", () => {
   test.use({ storageState: storageStatePath("junior") });
 
   test("feed card, thread post, reply and profile show no badge", async ({ page }) => {
@@ -178,11 +178,11 @@ test.describe("mentor directory @public", () => {
     await expectFitsViewport(page);
   });
 
-  test("a Founding mentor's profile: availability label, self-reported note, HF Community badge, no yellow notice", async ({ page }) => {
+  test("a Founding mentor's profile: availability label, self-reported note, HF logo badge, no yellow notice", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
     await expect(page.getByText(/^(Accepting mentorship requests|Limited availability|Not accepting mentorship requests)$/)).toBeVisible();
     await expect(page.getByTestId("self-reported-note")).toBeVisible();
-    await expect(page.locator("main").getByTestId("hf-community-badge").first()).toBeVisible();
+    await expectHfLogoBadge(page.locator("main").getByTestId("hf-community-badge").first());
     await expect(page.getByText(/This is an example profile prepared by the Home Fixr team/)).toHaveCount(0);
     const text = await bodyText(page);
     expect(text).not.toMatch(/\byrs\b|Mentoring:|collabs posted/);
@@ -249,19 +249,24 @@ test.describe("About / FAQ disclosure @public", () => {
   test("carries the disclosure sentence and shows the badge", async ({ page }) => {
     await visit(page, "/about");
     await expect(page.getByText(/^Some early discussions and example profiles were prepared by the Home Fixr team with AI assistance/)).toBeVisible();
-    await expect(page.getByText("HF Community profiles are not real members and can't be messaged.", { exact: false })).toBeVisible();
-    await expect(badge(page.locator("main")).first()).toBeVisible();
+    await expect(page.getByText("Example profiles, and the posts they wrote, are marked with the HF logo. Profiles marked HF are not real members and can't be messaged.", { exact: false })).toBeVisible();
+    await expect(page.getByRole("heading", { name: "Example profiles marked HF" })).toBeVisible();
+    await expectHfLogoBadge(badge(page.locator("main")).first());
+    expect(await page.locator("#founding-community").innerText()).not.toMatch(/Community/);
     expect(await bodyText(page)).not.toMatch(NO_LABEL);
     expect(await bodyText(page)).not.toMatch(/licence|judgement/i);
   });
 });
 
 test.describe("Terms of Service @public", () => {
-  test("the page sets out what HF Community profiles are", async ({ page }) => {
+  test("the page sets out what the profiles marked HF are", async ({ page }) => {
     await visit(page, "/terms");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText("Terms of Service");
     const section = page.locator("#hf-community");
-    await expect(section.getByRole("heading")).toHaveText("5. HF Community profiles and example content");
+    await expect(section.getByRole("heading")).toHaveText("5. Example profiles marked HF, and example content");
+    await expect(section).toContainText("marked with the HF logo");
+    await expect(section).toContainText("Profiles marked HF can't be messaged");
+    expect(await section.innerText()).not.toMatch(/HF Community/);
     await expect(section).toContainText("example profiles prepared by the Home Fixr team, with AI assistance");
     await expect(section).toContainText("They are not real members.");
     await expect(page.locator("#eligibility")).toContainText("at least 16 years old");

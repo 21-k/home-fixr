@@ -1,20 +1,23 @@
 import type { Page } from "@playwright/test";
 import { visit } from "./fixtures";
 
-// Seeded Founding Community handles that exist both locally (after
-// seed.py --replace) and on production.
+// Seeded example (HF) handles that exist both locally (after seed.py --replace)
+// and on production, after the batch was cut to 9 mentors + 20 apprentices.
 export const FOUNDING = {
   /** Senior, bullet-point multi-line answers. Mixed case + underscore. */
   senior: "Kash_sing",
   /** Junior, mixed case, no separators. */
-  junior: "BergenPlumber",
+  junior: "HeatwaveOnCall",
   /** Junior with a dot and capitals. */
-  dotted: "Raritan.airside",
+  dotted: "Flushing.sparks",
   /** Junior with an underscore and capitals. */
-  underscored: "NorthJersey_Plumber",
+  underscored: "Kearny_Pipefitter",
   /** Lower-case dotted junior. */
-  lowerDotted: "chris.plumb",
+  lowerDotted: "joe.plumb",
 };
+
+/** Handles that were in the example batch until it was cut to 29 (seed/out/reduce-cast-fm-2026-10.sql). */
+export const REMOVED_FOUNDING = ["BergenPlumber", "Raritan.airside", "NorthJersey_Plumber", "chris.plumb", "joyd_plumbing", "dreb_jman"];
 
 export const MISSING_HANDLE = "no_such_member_e2e";
 export const MISSING_SLUG = "no-such-thread-e2e-0000";

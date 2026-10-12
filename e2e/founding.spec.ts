@@ -2,11 +2,11 @@ import { test, expect, visit, expectFitsViewport } from "./support/fixtures";
 import { profileId, rest } from "./support/db";
 import { FOUNDING } from "./support/routes";
 import { USERS, storageStatePath } from "./support/users";
+import { expectHfLogoBadge } from "./support/badge";
 
-// The old yellow example-profile notice was removed (Oct 2026); the HF Community
-// badge (plain text, explained in the Terms of Service and About) is what remains.
+// The old yellow example-profile notice was removed (Oct 2026); the HF logo
+// (explained in its hover note, the Terms of Service and About) is what remains.
 const NOTICE = /This is an example profile prepared by the Home Fixr team/;
-const BADGE = "HF Community";
 
 async function expectNoContactControls(page: import("@playwright/test").Page) {
   const main = page.locator("main");
@@ -15,13 +15,12 @@ async function expectNoContactControls(page: import("@playwright/test").Page) {
 }
 
 test.describe("Founding accounts, logged out @public", () => {
-  test("founding profile shows the HF Community badge, no yellow notice, no contact controls", async ({ page }) => {
+  test("founding profile shows the HF logo badge, no yellow notice, no contact controls", async ({ page }) => {
     await visit(page, `/u/${FOUNDING.senior}`);
     const badge = page.locator("main").getByTestId("hf-community-badge").first();
-    await expect(badge).toHaveText(BADGE);
-    // Plain text, not a link; the meaning is in the Terms (and its hover note).
+    // The HF logo only, with an accessible name and hover note; not a link.
+    await expectHfLogoBadge(badge);
     expect(await badge.evaluate((el) => el.closest("a"))).toBeNull();
-    await expect(badge).toHaveAttribute("title", /example profile prepared by the Home Fixr team/);
     await expect(page.getByText(NOTICE)).toHaveCount(0);
     await expectNoContactControls(page);
     await expect(page.getByRole("link", { name: "Sign in to connect" })).toHaveCount(0);
@@ -30,7 +29,7 @@ test.describe("Founding accounts, logged out @public", () => {
   test("founding mentor cards show the badge, never a Message button", async ({ page }) => {
     await visit(page, "/mentors");
     const card = page.locator("main div.rounded-xl", { hasText: `${FOUNDING.senior}` }).first();
-    await expect(card.getByTestId("hf-community-badge")).toBeVisible();
+    await expectHfLogoBadge(card.getByTestId("hf-community-badge"));
     await expect(card.getByRole("link", { name: /^Message$/ })).toHaveCount(0);
   });
 
