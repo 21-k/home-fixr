@@ -4,7 +4,7 @@
 // logo. These accounts are not real members, so they never take messages,
 // mentorship requests or applications.
 
-/** Accessible name and hover note of the HF logo that marks an example profile. */
+/** Screen-reader name of the HF logo that marks an example profile (no hover note). */
 export const FOUNDING_BADGE_NOTE =
   "HF: an example profile prepared by the Home Fixr team with AI assistance. Not a real member.";
 

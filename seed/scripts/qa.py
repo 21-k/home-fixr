@@ -1219,14 +1219,14 @@ def badges(html: str) -> list[str]:
 
 
 def badge_ok(b: str) -> bool:
-    """The HF logo only: one SVG inside, no visible text, named for screen readers, hover note."""
+    """The HF logo only: one SVG inside, no visible text, named for screen readers, no hover note."""
     import html as htmllib
     inner = BADGE_RE.match(b).group(1)
     text = re.sub(r"<svg.*?</svg>", "", inner, flags=re.S)
     note = htmllib.escape(BADGE_NOTE, quote=True)
     return (inner.count("<svg") == 1 and not re.sub(r"<[^>]+>", "", text).strip()
             and (f'aria-label="{note}"' in b or f'aria-label="{BADGE_NOTE}"' in b) and 'role="img"' in b
-            and (f'title="{note}"' in b or f'title="{BADGE_NOTE}"' in b) and "Community" not in b)
+            and "title=" not in b and "Community" not in b)
 
 
 def fetch(url: str, cookie: str | None = None) -> tuple[int, str]:
@@ -1261,7 +1261,7 @@ def check_app(app, people, threads, expected=None):
     leaks = [p["handle"] for p in people if p["display_preference"] == "handle" and p["full_name"] in feed]
     record("app: no full_name of handle-preference users on /feed", not leaks, str(leaks[:5]))
     fb = badges(feed)
-    record("app: the badge renders as the HF logo only (one SVG, no visible text, no 'Community'), with an accessible name and hover note",
+    record("app: the badge renders as the HF logo only (one SVG, no visible text, no 'Community'), with an accessible name and no hover note",
            bool(fb) and all(badge_ok(b) for b in fb) and "HF Community" not in feed,
            f"{len(fb)} badges on /feed, {sum(map(badge_ok, fb))} as the logo only; 'HF Community' text present: {'HF Community' in feed}")
     # Post-level labels were removed (Oct 2026): the HF badge marks every
