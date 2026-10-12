@@ -5,7 +5,7 @@
 """
 Write the Founding Community batch to the database (plan §7).
 
-    uv run seed/scripts/seed.py                       # LOCAL stack, sample threads
+    uv run seed/scripts/seed.py                       # LOCAL stack: the batch as it is now (29 accounts, 104 threads)
     uv run seed/scripts/seed.py --dry-run             # do everything, then roll back
     uv run seed/scripts/seed.py --replace             # wipe this batch first, then seed
     uv run seed/scripts/seed.py --emit-sql PATH       # the whole batch as one SQL transaction
@@ -18,6 +18,14 @@ Write the Founding Community batch to the database (plan §7).
     uv run seed/scripts/seed.py --emit-collabs-sql PATH
         # ONLY the job collabs + pitches (content/collabs.json) for a batch that
         # is already live; needs migration 0013 first; refuses to run twice
+
+The batch is now 29 accounts (9 mentors + 20 apprentices): content/ and
+personas/ hold the reduced cast written by reduce_cast.py, and the 136-account
+files that went live are kept in content/full-136/ and personas/full-136/.
+The --emit-additions-sql / --emit-threads-sql / --emit-collabs-sql modes are
+the historical additions for the 136-account batch (their outputs in seed/out/
+are already applied); production moves to the reduced cast with
+seed/out/reduce-cast-fm-2026-10.sql (reduce_cast.py).
 
 Mechanism: SQL in ONE transaction as the database owner, with FK integrity
 checks before commit (the app has no ORM, and the API path would need a
@@ -129,6 +137,12 @@ COLLAB_ZERO = {
 
 def uid(batch: str, *key: str) -> str:
     return str(uuid.uuid5(NS, "|".join((batch,) + key)))
+
+
+def reply_id(batch: str, t: dict, i: int, r: dict) -> str:
+    """A reply's id. Replies of the reduced cast keep their index in the full thread
+    as `idx` (reduce_cast.py), so they keep the id they have in production."""
+    return uid(batch, "reply", t["id"], str(r.get("idx", i)))
 
 
 def app_trade(t: str) -> str:
@@ -307,7 +321,7 @@ def seed(conn, batch: str, people: list[dict], threads: list[dict],
             cur.execute(
                 """insert into replies (id, post_id, author_id, body, is_accepted, helpful_count, created_at, seed_batch_id)
                    values (%s, %s, %s, %s, %s, %s, %s, %s)""",
-                (uid(batch, "reply", t["id"], str(i)), post_id, pid[r["author"]], r["body"].strip(),
+                (reply_id(batch, t, i, r), post_id, pid[r["author"]], r["body"].strip(),
                  r["accepted"], r["helpful_count"], r["created_at"], batch),
             )
             n_replies += 1
@@ -465,7 +479,7 @@ def emit_sql(batch: str, people: list[dict], threads: list[dict],
         for i, r in enumerate(t.get("replies", [])):
             out.append(
                 "insert into replies (id, post_id, author_id, body, is_accepted, helpful_count, created_at, seed_batch_id) values ("
-                f"{L(uid(batch, 'reply', t['id'], str(i)))}, {L(post_id)}, {L(pid[r['author']])}, {L(r['body'].strip())}, "
+                f"{L(reply_id(batch, t, i, r))}, {L(post_id)}, {L(pid[r['author']])}, {L(r['body'].strip())}, "
                 f"{L(r['accepted'])}, {L(r['helpful_count'])}, {L(r['created_at'])}, {L(batch)});"
             )
             n_replies += 1
@@ -612,7 +626,7 @@ def thread_rows_sql(batch: str, pid: dict[str, str], threads: list[dict]) -> tup
             "insert into posts (id, author_id, type, title, body, trade, region, helpful_count, created_at, seed_batch_id) values ("
             f"{L(post_id)}, {L(pid[t['author']])}, {L(t['type'])}, {L(t['title'])}, {L(t['body'].strip())}, "
             f"{L(t['trade'])}, {L(t['region'])}, {L(t['helpful_count'])}, {L(t['created_at'])}, {L(batch)});")
-        rows = [f"({L(uid(batch, 'reply', t['id'], str(i)))}, {L(post_id)}, {L(pid[r['author']])}, {L(r['body'].strip())}, "
+        rows = [f"({L(reply_id(batch, t, i, r))}, {L(post_id)}, {L(pid[r['author']])}, {L(r['body'].strip())}, "
                 f"{L(r['accepted'])}, {L(r['helpful_count'])}, {L(r['created_at'])}, {L(batch)})"
                 for i, r in enumerate(t.get("replies", []))]
         if rows:
@@ -643,7 +657,7 @@ def emit_threads_sql(batch: str, people: list[dict], threads: list[dict], live_i
     if unknown:
         raise SystemExit(f"unknown authors: {unknown[:5]}")
     new_post_ids = [uid(batch, "post", t["id"]) for t in new]
-    new_reply_ids = [uid(batch, "reply", t["id"], str(i)) for t in new for i in range(len(t.get("replies", [])))]
+    new_reply_ids = [reply_id(batch, t, i, r) for t in new for i, r in enumerate(t.get("replies", []))]
     live_post_ids = [uid(batch, "post", t["id"]) for t in live]
     n_new_rep = len(new_reply_ids)
     by = {p["handle"]: p for p in people}
@@ -727,6 +741,7 @@ def helpful_updates(batch: str, threads: list[dict], live: dict) -> list[dict]:
         if old is not None and old != t["helpful_count"]:
             out.append({"table": "posts", "id": uid(batch, "post", t["id"]), "key": t["id"], "old": old, "new": t["helpful_count"]})
         for i, r in enumerate(t.get("replies", [])):
+            i = r.get("idx", i)
             key = f"{t['id']}/r{i}"
             old = live["replies"].get(key)
             if old is None:
@@ -820,7 +835,7 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--db-url", default=LOCAL_DB_URL)
     ap.add_argument("--batch", default=BATCH_ID)
-    ap.add_argument("--threads", default="content/threads.sample.scheduled.json")
+    ap.add_argument("--threads", default="content/threads.scheduled.json")
     ap.add_argument("--dry-run", action="store_true")
     ap.add_argument("--replace", action="store_true", help="wipe this batch first (local only)")
     ap.add_argument("--emit-sql", metavar="PATH", help="write the seed as one self-checking SQL transaction instead of connecting")

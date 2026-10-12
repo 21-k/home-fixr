@@ -1,0 +1,345 @@
+# Thread repairs for the reduced cast (batch fm-2026-10, 9 mentors + 20 apprentices).
+#
+# Applied by seed/scripts/reduce_cast.py AFTER the removed accounts' replies are
+# dropped. Reply numbers (r) are ORIGINAL indices in the full 136-cast thread
+# (seed/content/full-136/threads.scheduled.json), so they name the same database
+# rows as uid(batch, 'reply', thread, r).
+#
+# Item kinds:
+#   {r, old, new, why}    replace `old` (must occur exactly once) in reply r
+#   {r, drop: true, why}  drop reply r (it only made sense after a removed reply)
+#   {body: true, old, new, why}  replace in the thread body
+#   {accepted: r | none, why}    the accepted answer after the removals
+#
+# Every item is logged, with the original text, in seed/reports/reduce_edits.md.
+
+T03:
+  - r: 5
+    old: "The ride-along idea is the one I didn't think of. Going to ask around and try to do one in each before the end of the year."
+    new: "Kash, the two-year math is the part I hadn't actually done. Going to run real numbers, and ask around about seeing each trade up close before the end of the year."
+    why: "thanked joyd_plumbing's ride-along idea (removed); now answers Kash's pay-cut list, which is still in the thread (Kash becomes his mentor, see T042/T110/T210)"
+
+T04:
+  - accepted: none
+    why: "the accepted answer (dreb_jman) was removed; the only reply left is groundrod_05 saying he isn't sure how it works now, so nothing to accept"
+
+T06:
+  - r: 1
+    old: "Realistic if you study."
+    new: "Universal is realistic if you study, even with zero background."
+    why: "answered ExRetail_NowHVAC's removed question ('is Universal realistic?'); now a follow-up to her own tip"
+  - accepted: none
+    why: "the question it answered is gone, and a tip's author accepting her own follow-up read wrong (flagged as a live oddity in REPORT §11)"
+
+T09:
+  - r: 5
+    old: "update: asked to do the fittings on a repipe friday like Joy said."
+    new: "update: asked for one new thing like zig said, the fittings on a repipe friday."
+    why: "credited joyd_plumbing's removed advice; Ziggy's accepted answer ('start asking for one new thing a week') is still there"
+
+T12:
+  - r: 2
+    old: "Careful with numbers like that. A 2nd-year non-union helper at $40 an hour in Central Jersey isn't typical. Either your buddy's in the union"
+    new: "Careful with whatever number your school friend is comparing you to. If he's heard of a 2nd-year non-union helper making $40 an hour in Central Jersey, that isn't typical. Either that guy's in the union"
+    why: "answered Woodbridge.ducts' removed '$40/hr, you're getting robbed'; now answers the school friend in benplumb79's own post"
+
+T14:
+  - r: 3
+    old: "Short answer as I understand it:"
+    new: "On the first point, since it comes up every time, the short answer as I understand it:"
+    why: "answered CondensateOverflow's removed question; now a clarification of his own first bullet"
+
+T20:
+  - r: 7
+    old: "QuickChek... ok now I know you're all lost up there lol"
+    new: "Montclair deli... ok now I know you're all lost up there lol"
+    why: "answered joyd_plumbing's removed 'it's QuickChek, not Wawa'; now answers peteplumb80's Montclair deli reply above it"
+  - r: 11
+    drop: true
+    why: "'^ the most steamfitter answer possible' replied to dhollis61's removed 'same thing. eat it.'"
+
+T022:
+  - r: 3
+    old: "> he's not trying to scam you\n\nFair. I didn't mean he's scamming anybody."
+    new: "> Don't let either side tell you the other one's a scam\n\nFair. I didn't mean my teacher's scamming anybody."
+    why: "quoted peteq75's removed reply; now quotes thiago_sparks' reply above, which makes the same point"
+
+T029:
+  - r: 1
+    old: "The interview. I had real jobs to talk about the third time. Before that I had nothing."
+    new: "Since the first thing everyone asks is what changed: the interview. I had real jobs to talk about the third time. Before that I had nothing. And yes, I retook the test each time. Idk if that's required everywhere, ask the program directly."
+    why: "answered chris.plumb's removed question; folds in r3's answer about the test"
+  - r: 3
+    drop: true
+    why: "answered Bergen_Ducts' removed question (its content moved into r1)"
+  - r: 6
+    drop: true
+    why: "answered ginaj75's removed 'how long between tries?'"
+  - r: 14
+    old: "They knew. I said it before they could."
+    new: "For anyone wondering whether to bring up a third try: they knew. I said it before they could."
+    why: "answered DinerCoffeeHVAC's removed question; now stands on its own"
+  - r: 18
+    old: "Will do. Thanks everyone, didn't expect this many questions tonight."
+    new: "Thanks everyone, didn't expect this many replies."
+    why: "'Will do' answered dhollis61's removed reply, and most of the questions it mentions were removed"
+
+T033:
+  - r: 2
+    drop: true
+    why: "'That's a good idea' replied to dreb_jman's removed suggestion"
+
+T042:
+  - body: true
+    old: "Joy suggested ride-alongs, and she's been mentoring me since, so here's the report."
+    new: "Kash has been mentoring me since then, and he helped me line up a ride-along in each trade, so here's the report."
+    why: "named joyd_plumbing (removed) as his mentor; his mentor is now Kash_sing (active from late August), who answered him in T03"
+  - r: 1
+    drop: true
+    why: "'Ha. Fair... after you set the whole thing up' replied to joyd_plumbing's removed reply"
+  - r: 13
+    old: "Mostly watching."
+    new: "For anyone wondering if they let you do anything on these: mostly watching."
+    why: "answered peteq75's removed question; now stands on its own"
+
+T050:
+  - r: 8
+    drop: true
+    why: "answered WawaRunWired's removed bender question"
+
+T051:
+  - r: 4
+    old: "From what people told me, mostly about you and your work, but I am not sure."
+    new: "Will do. From what people told me, it is mostly about you and your work, but I am not sure."
+    why: "answered WawaRunWired's removed question; now answers Flushing.sparks' 'please post how it goes'"
+  - r: 7
+    old: "Appreciate everyone here, and dreb especially."
+    new: "Appreciate everyone here, and my mentor especially."
+    why: "thanked dreb_jman (removed); his mentor is now mbell_wireman (active before this thread, as T051's 'my mentor here' requires)"
+  - accepted: none
+    why: "the accepted answer (dreb_jman) was removed and no mentor reply is left"
+
+T053:
+  - r: 14
+    drop: true
+    why: "answered LateStartPlumber's removed post"
+  - r: 16
+    old: "Same as the Bay Ridge kid. Still in school in Queens, reading all of this. There's a Local 3 guy on here who answers everybody, so I'm getting a lot of good advice already."
+    new: "Still in school in Queens, just reading all of this. There's an IBEW foreman on here who answers everybody, so I'm getting a lot of good advice already."
+    why: "pointed at emt_bender_200amp's removed post and at dreb_jman (the Local 3 regular, removed); now points at mbell_wireman, who later mentors him"
+  - r: 18
+    old: "This blew up lol. Thanks everybody. Short version from all of you: keep working, apply anyway, check the official site, and non-union is real too."
+    new: "Thanks everybody. Short version from all of you: keep working while you wait, apply anyway, and a second or third try is normal lol."
+    why: "summed up removed replies (dreb_jman's 'official site', bklyn_arkady's non-union shop); now sums up the replies that are left"
+
+T054:
+  - body: true
+    old: "Dreb already told me jurisdiction is a \"call them and ask\" thing, which I will."
+    new: "I know jurisdiction is a \"call them and ask\" thing, which I will."
+    why: "named dreb_jman (removed)"
+
+T055:
+  - accepted: none
+    why: "the accepted answer (dreb_jman) was removed and no mentor reply is left"
+
+T056:
+  - r: 3
+    old: "Yes. Warehouse people know"
+    new: "One I get every time: would I look at someone coming out of a warehouse with no field experience? Yes. Warehouse people know"
+    why: "answered QuickChekCrew's removed question; now raised by haddad_mech himself in his own Q&A thread"
+
+T058:
+  - r: 3
+    old: "Not dumb. They're usually separate;"
+    new: "One I always get: does a vo-tech certificate count as the diploma? Usually not, they're separate;"
+    why: "answered PullingWireAgain's removed question; now raised by mbell_wireman in his own tip thread"
+
+T073:
+  - body: true
+    old: "After reading the thread about what license you have when you top out, I started keeping a log."
+    new: "After reading the thread on here about keeping a paper trail, I started keeping a log."
+    why: "pointed at T05 ('What license do I actually have when I top out?', BergenPlumber's thread, removed); now points at haddad_mech's T100, which is still there (not named: benplumb79 asks haddad_mech to mentor him two days later)"
+
+T075:
+  - r: 14
+    old: "theres a whole thread on that one, a 164 guy asked it in the summer"
+    new: "theres a thread on here where a bronx electrician's boss wanted two of his guys to have it for ptac units. so sometimes lol"
+    why: "pointed at T065 (TwistAndTape's thread, removed); now points at groundrod_05's T067, which is still there"
+
+T080:
+  - r: 10
+    old: "Thank you all. So: installing doesn't need it, repairing the sealed side does, and it's cheap enough to get anyway."
+    new: "Thank you all. So: it's cheap enough to get anyway, and if one of these ever needs the sealed side opened, I'd rather be the one he sends."
+    why: "summed up tnguyen_refrig's and bklyn_arkady's removed answers; now sums up Ziggy's"
+  - accepted: none
+    why: "the accepted answer (tnguyen_refrig) was removed; Ziggy's replies are short ('get the card'), so none is accepted"
+
+T090:
+  - r: 16
+    drop: true
+    why: "answered Exit145Electric's removed 'find a different shop'"
+
+T093:
+  - r: 3
+    drop: true
+    why: "'That's a good point I hadn't considered... insurance' answered bklyn_arkady's removed reply"
+
+T097:
+  - r: 6
+    drop: true
+    why: "'I am in the Local now' answered epa60812_2's removed 'go work for a shop that pays on the books'"
+
+T099:
+  - accepted: none
+    why: "the accepted answer (bklyn_arkady) was removed and no mentor reply is left"
+
+T104:
+  - body: true
+    old: "Joy told me to ask for one new thing a week so this is me asking ahead of time."
+    new: "Ziggy told me to ask for one new thing a week so this is me asking ahead of time."
+    why: "credited joyd_plumbing (removed); the 'one new thing a week' advice is Ziggy's accepted answer in T09, which is still there"
+
+T110:
+  - body: true
+    old: "but Joy said to do a second day in whatever I was least sure about"
+    new: "but Kash said to do a second day in whatever I was least sure about"
+    why: "named joyd_plumbing (removed); his mentor is now Kash_sing"
+  - r: 5
+    old: "Honestly it was a day of drains. The guy was great. I just didn't light up. Maybe that's unfair to plumbing."
+    new: "For anyone wondering about plumbing: the repipe day was good and the guy was great, my knees just weren't. I didn't light up the way I did on startup day. Maybe that's unfair to plumbing."
+    why: "answered leadfree98's removed question; also fixed a contradiction with T042, where his plumbing ride-along was a repipe, not drains"
+  - r: 6
+    old: "Not unfair. A day of drains would scare off plenty of people who'd make good plumbers."
+    new: "Not unfair. One hard day on your knees would scare off plenty of people who'd make good plumbers."
+    why: "followed r5's 'day of drains', now changed"
+
+T112:
+  - r: 2
+    drop: true
+    why: "'Fair. My trucks, my bad habit' answered joyd_plumbing's removed pushback"
+
+T115:
+  - r: 1
+    drop: true
+    why: "'turned on before the door is the part' answered joyd_plumbing's removed reply"
+  - r: 4
+    old: "First, follow the manufacturer's calibration and bump-test schedule."
+    new: "On the bump testing Marcus mentioned: first, follow the manufacturer's calibration and bump-test schedule."
+    why: "answered Elizabeth.traps' removed calibration question; now follows mbell_wireman's accepted answer"
+  - r: 13
+    old: "he said i 'broke it' when i was looking at it lol."
+    new: "update on the super: he said i 'broke it' when i was looking at it lol."
+    why: "answered big_paulie_plumb's removed question"
+  - r: 19
+    old: "Yes, you should. Electricians spend plenty of time in rooms with fuel-burning equipment, and the meter doesn't care what trade you're in."
+    new: "Yes, buy your own. You won't always be standing next to your lead. And for the electricians reading: we spend plenty of time in rooms with fuel-burning equipment too, and the meter doesn't care what trade you're in."
+    why: "answered hudson_conduit's removed post; now answers Kearny_Pipefitter's 'should i buy my own' (whose answer, from joyd_plumbing, was removed)"
+
+T119:
+  - r: 6
+    drop: true
+    why: "'Bring it up... nicely' answered Dev.R's removed question"
+
+T125:
+  - r: 1
+    drop: true
+    why: "'Gang box stays on the job, that makes sense' answered dreb_jman's removed reply"
+  - r: 5
+    old: "Deliveries are scheduled, usually early, with a loading area and a time slot for the hoist. On the city jobs I did back in my union days, miss your slot and you wait half a day."
+    new: "Can't help on parking, it's been years. What I remember from the city jobs I did back in my union days: deliveries are scheduled, usually early, with a loading area and a time slot for the hoist. Miss your slot and you wait half a day."
+    why: "answered hudson_conduit's removed question; now answers groundrod_05's post"
+  - accepted: none
+    why: "the accepted answer (dreb_jman) was removed; Rui's reply is about deliveries, not the question"
+
+T134:
+  - r: 7
+    old: "Not a dumb question."
+    new: "Related, since it always comes up: what if the shop calls you salaried?"
+    why: "answered condensate_3way's removed question"
+
+T137:
+  - r: 2
+    old: "Smaller exposure, same basic problem:"
+    new: "And for the no-refrigerant side jobs, like cleaning coils and changing filters for neighbors, it's a smaller exposure but the same basic problem:"
+    why: "answered dahvacnj's removed question; now an addendum to his own tip"
+
+T140:
+  - r: 3
+    drop: true
+    why: "'I never said I was licensed' answered bklyn_arkady's removed reply"
+  - r: 11
+    drop: true
+    why: "'That's a good line, stealing it' answered elecny85's removed reply"
+  - accepted: 5
+    why: "the accepted answer (dreb_jman) was removed; codebook_dale's reply answers the question ('is it really that bad if it's small stuff?') directly"
+
+T153:
+  - r: 1
+    old: "Because some of them are. Two things:"
+    new: "And if you're wondering why every owner says he's broke when there's a margin: some of them are. Two things:"
+    why: "answered Woodbridge.ducts' removed question"
+
+T173:
+  - r: 5
+    old: "Ordering the cooling towel. My boss also said"
+    new: "Attic work before 10 is going on my list. My boss also said"
+    why: "the cooling towel came from big_paulie_plumb's removed reply; now picks up thiago_sparks' reply"
+
+T179:
+  - r: 2
+    old: "hi lol, didn't know there were this many of us"
+    new: "hi lol, figured i was the only one"
+    why: "after the removals he is the first to answer the roll call"
+  - r: 6
+    old: "Good to see this many of you."
+    new: "Good to see some Hudson people on here."
+    why: "most of the roll call was removed"
+  - r: 7
+    old: "more of us than I thought brother."
+    new: "at least it's not just me brother."
+    why: "most of the roll call was removed"
+
+T184:
+  - accepted: 3
+    why: "the accepted answer (bklyn_arkady) was removed; Ziggy's reply is the remaining mentor answer to 'code, cost or old school?'"
+
+T188:
+  - r: 1
+    old: "Honestly that's one of the better explanations I've seen. Draw it:"
+    new: "Honestly it's simpler than it sounds. Both travelers come into the 4-way, and it either passes them straight through or crosses them over, so whichever way the other switches sit, flipping it changes which traveler is live at the far end. A 3-way can't do that swap, which is why the middle one has to be a 4-way. Draw it:"
+    why: "praised JughandleJourneyman's removed explanation; the explanation (in thiago_sparks' words) now lives here, so peteplumb80's 'the crossing over thing finally clicked' still follows"
+  - accepted: 1
+    why: "the accepted answer (JughandleJourneyman) was removed; thiago_sparks' reply now carries the explanation"
+
+T190:
+  - r: 1
+    old: "Good catch testing a fixture you'd been told was off. That's the whole lesson. I inspect in Jersey, not the city, so I won't speak to the NYC code, but I've seen a couple of these in very old houses at the shore. Same answer: rewire it, don't patch it."
+    new: "Good catch testing a fixture you'd been told was off. That's the whole lesson. A Carter system is an old way of wiring 3-ways where the travelers carry the hot and the neutral, so with the light off both sides can be hot. I inspect in Jersey, not the city, so I won't speak to the NYC code, but I've seen a couple of these in very old houses at the shore. The answer is the same: rewire it properly, don't patch it."
+    why: "'Same answer' pointed at dreb_jman's removed explanation; codebook_dale now explains the Carter system himself"
+  - accepted: 1
+    why: "the accepted answer (dreb_jman) was removed; codebook_dale's reply now answers the question"
+
+T206:
+  - r: 6
+    old: "Depends on the setup."
+    new: "For the electricians wondering whether one ducted unit means less circuit work: it depends on the setup."
+    why: "answered peteq75's removed question"
+  - r: 8
+    old: "Lol the spaghetti question..."
+    new: "And the question every customer asks, can you hide the linesets without it looking like spaghetti lol..."
+    why: "answered TaylorHamHVAC's removed question"
+
+T210:
+  - body: true
+    old: "Joy told me to get more than one quote, so here we are."
+    new: "Kash told me to get more than one quote, so here we are."
+    why: "named joyd_plumbing (removed); his mentor is now Kash_sing (active before this thread)"
+
+T211:
+  - r: 7
+    drop: true
+    why: "quoted joyd_plumbing's removed 'Two sentences, then stop talking.'"
+  - r: 13
+    old: "Mostly separate."
+    new: "On who actually does the tank work: mostly a separate company."
+    why: "answered blowerwheel_91's removed question"
