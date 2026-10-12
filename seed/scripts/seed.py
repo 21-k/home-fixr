@@ -6,6 +6,7 @@
 Write the Founding Community batch to the database (plan §7).
 
     uv run seed/scripts/seed.py                       # LOCAL stack: the batch as it is now (29 accounts, 104 threads)
+    uv run seed/scripts/seed.py --full-136 --replace  # LOCAL stack: the 136-account batch as it is live before the cut
     uv run seed/scripts/seed.py --dry-run             # do everything, then roll back
     uv run seed/scripts/seed.py --replace             # wipe this batch first, then seed
     uv run seed/scripts/seed.py --emit-sql PATH       # the whole batch as one SQL transaction
@@ -852,9 +853,19 @@ def main() -> None:
                     help="write ONLY the not-yet-live threads (+ profile text fixes) for a batch that is already live")
     ap.add_argument("--emit-collabs-sql", metavar="PATH",
                     help="write ONLY the job collabs + pitches for a batch that is already live (needs migration 0013)")
+    ap.add_argument("--full-136", action="store_true",
+                    help="seed the 136-account batch as it is live before the cut (personas/full-136, content/full-136), "
+                         "e.g. to test seed/out/reduce-cast-fm-2026-10.sql locally")
     args = ap.parse_args()
+    pdir = "personas"
+    if args.full_136:
+        pdir = "personas/full-136"
+        for name in ("threads", "mentorships", "follows", "collabs"):
+            cur_v = getattr(args, name)
+            if cur_v.startswith("content/") and not cur_v.startswith("content/full-136/"):
+                setattr(args, name, "content/full-136/" + cur_v[len("content/"):])
 
-    people = load_json("personas/seniors.json") + load_json("personas/juniors.json")
+    people = load_json(f"{pdir}/seniors.json") + load_json(f"{pdir}/juniors.json")
     threads = load_json(args.threads)["threads"]
     missing = [t["id"] for t in threads if "created_at" not in t]
     if missing:
