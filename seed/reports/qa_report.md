@@ -1,6 +1,6 @@
 # QA report
 
-Run: 2026-10-12T00:18:08-04:00 · threads: `content/threads.scheduled.json` · db: yes · app: http://localhost:3000
+Run: 2026-10-12T00:24:12-04:00 · threads: `content/threads.scheduled.json` · db: yes · app: http://localhost:3000
 
 | status | check | detail |
 |---|---|---|
@@ -32,7 +32,7 @@ Run: 2026-10-12T00:18:08-04:00 · threads: `content/threads.scheduled.json` · d
 | PASS | bullet points only from Kash_sing | [] |
 | PASS | nobody mentions/praises Home Fixr | [] |
 | PASS | plagiarism: no 12-word overlap (internal; no external corpus) | pairs sharing an 8-gram: 75, 72 of them the same persona repeating a tic; 12+: [] |
-| PASS | plagiarism: 8-gram overlap between different people ~0 (pairs ≤ 8% of the thread count; what's left is stock phrases and quotes) | 3: T022/r1~T022/r2: "let either side tell you the other one's"; T090/r1~T090/r2: 'him one real task a day that you'; T110/r1~T110/r2: 'ask that shop what their july looks like' |
+| PASS | plagiarism: 8-gram overlap between different people ~0 (pairs ≤ 8% of the thread count; what's left is stock phrases and quotes) | 3: T022/r1~T022/r2: "don't let either side tell you the other"; T090/r1~T090/r2: 'real task a day that you can check'; T110/r1~T110/r2: 'ask that shop what their july looks like' |
 | PASS | lowercase-voice Juniors stay lowercase (new threads; T06/r4 is live) | [] |
 | PASS | posting hours match §6 (evening/early/lunch ≥70%, 0–4am ≤3%) | rhythm 79%, 0-4am 0%; 5:43 6:45 7:10 8:20 9:23 10:18 11:7 12:23 13:24 14:9 15:2 16:8 17:18 18:28 19:38 20:51 21:73 22:67 23:41 |
 | PASS | Friday nights quiet | 1 posts Fri after 6pm |
